@@ -57,6 +57,6 @@ constexpr void UseIG() {
   const Kelvin T = 300.0; 
   const auto V = 10.1_cm3; // string literal operators 
   // const auto pres = IdealGas(n,T,V); // Does not compile
-  const auto pres = IdealGas(n,T,V);
+  const auto pres = IdealGas(n,V,T);
 }
 ```
