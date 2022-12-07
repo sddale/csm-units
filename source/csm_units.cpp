@@ -1,11 +1,12 @@
 #include <fmt/format.h>
-#include <greeter/greeter.h>
 
-using namespace greeter;
+#include <csm_units/csm_units.hpp>
 
-Greeter::Greeter(std::string _name) : name(std::move(_name)) {}
+namespace csm_units {
 
-std::string Greeter::greet(LanguageCode lang) const {
+CSMUnits::CSMUnits(std::string _name) : name(std::move(_name)) {}
+
+auto CSMUnits::greet(LanguageCode lang) const -> std::string {
   switch (lang) {
     default:
     case LanguageCode::EN:
@@ -18,3 +19,5 @@ std::string Greeter::greet(LanguageCode lang) const {
       return fmt::format("Bonjour {}!", name);
   }
 }
+
+}  // namespace csm_units
