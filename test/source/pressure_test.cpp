@@ -1,4 +1,4 @@
-#include "csm-units/standalone/source/pressure.hpp"
+#include "pressure.hpp"
 
 #include <doctest/doctest.h>
 
