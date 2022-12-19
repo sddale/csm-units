@@ -1,4 +1,4 @@
-#include "pressure.hpp"
+#include "csm_units/pressure.hpp"
 
 #include <doctest/doctest.h>
 
@@ -8,7 +8,7 @@ namespace pressure::test {
 
 TEST_CASE("Pressure") {
   Pressure pressure(13.0);
-  CHECK(math.abs(std::abs(pressure.pressure - 13.0) < 0.001);
+  CHECK(std::abs(pressure.pressure - 13.0) < 0.001);
 }
 
 }  // namespace pressure::test
