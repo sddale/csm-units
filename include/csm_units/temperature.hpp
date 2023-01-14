@@ -3,10 +3,12 @@
 namespace csm_units {
 
 class Temperature {
-    int temp = 78;
 
     public:
-    Temperature(int temp);
+        int temp;
+        Temperature(int temp) {
+            this->temp = temp;
+        }
 
 };
 
