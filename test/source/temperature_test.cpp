@@ -6,7 +6,6 @@ namespace csm_units::test {
 
 TEST_CASE("Temperature") {
     Temperature temperature(78);
-    
     CHECK(temperature.temp == 78);
 }
 
