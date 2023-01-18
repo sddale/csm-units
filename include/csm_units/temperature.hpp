@@ -3,13 +3,11 @@
 namespace csm_units {
 
 class Temperature {
+ public:
+  constexpr explicit Temperature(double temperature) noexcept
+      : data(temperature) {}
 
-    public:
-        int temp;
-        Temperature(int temp) {
-            this->temp = temp;
-        }
-
+  double data;
 };
 
-}
+}  // namespace csm_units

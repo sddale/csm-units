@@ -5,8 +5,8 @@
 namespace csm_units::test {
 
 TEST_CASE("Temperature") {
-    Temperature temperature(78);
-    CHECK(temperature.temp == 78);
+  const auto temperature = Temperature(78);
+  CHECK(temperature.data == 78);
 }
 
-}
+}  // namespace csm_units::test
