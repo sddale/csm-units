@@ -1,11 +1,7 @@
-#ifndef PRESSURE_H
-#define PRESSURE_H
+#pragma once
 
 class Pressure {
  public:
-  Pressure(double pressure) { this->pressure = pressure; }
-  // constexpr double pressure; <- why does this not work?
-  double pressure;  // Pa
+  constexpr explicit Pressure(double pressure) noexcept : data(pressure) {}
+  double data;  // Pa
 };
-
-#endif
