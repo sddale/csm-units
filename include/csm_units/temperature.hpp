@@ -12,18 +12,26 @@ class Temperature : public Converter {
 };
 
 class KelvinConverter {
-  // how do we represent a kelvin such that we can easily convert units
   auto ConvertValue(double value) -> double {
-    return value;  // Do nothing
+    return value;  
   }
 };
 
 class CelsiusConverter {
-  // how do we represent a kelvin such that we can easily convert units
   auto ConvertValue(double value) -> double { return value + 273.15; }
+};
+
+class FahernheitConverter {
+    auto ConvertValue(double value) -> double {
+        return ((value - 32) / 1.8) + 273.15;
+    }
+
 };
 
 using Kelvin = Temperature<KelvinConverter>;
 using Celsius = Temperature<CelsiusConverter>;
+using Fahrenheit = Temperature<FahernheitConverter>;
+
+// ^ how does it know what that is? the using part
 
 }  // namespace csm_units
