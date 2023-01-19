@@ -1,3 +1,4 @@
+
 #pragma once
 
 namespace csm_units {
@@ -5,24 +6,26 @@ namespace csm_units {
 template <class Converter>
 class Temperature : public Converter {
  public:
-  constexpr explicit Temperature(double temperature) noexcept
-      : data(Converter::ConvertValue(temperature)) {}
-
+  //setting data to temperature, but had to convert it first using template and respective converter function
+  constexpr explicit Temperature(double temperature) noexcept : data(Converter::ConvertValue(temperature)) {}
+    
   double data;
 };
 
 class KelvinConverter {
-  auto ConvertValue(double value) -> double {
+  constexpr auto ConvertValue(double value) noexcept -> double {
     return value;  
   }
 };
 
 class CelsiusConverter {
-  auto ConvertValue(double value) -> double { return value + 273.15; }
+  constexpr auto ConvertValue(double value) noexcept -> double { 
+    return value + 273.15; }
 };
 
+//not in clang tidy yet - still have to figure out
 class FahernheitConverter {
-    auto ConvertValue(double value) -> double {
+    constexpr auto ConvertValue(double value) noexcept -> double {
         return ((value - 32) / 1.8) + 273.15;
     }
 
