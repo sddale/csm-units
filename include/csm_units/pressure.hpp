@@ -11,44 +11,68 @@ class Pressure : public Converter {
   auto getData() -> double { return Converter::ConvertValueFrom(data); }
   void setData(double value) { data = Converter::ConvertValueTo(value); }
 
+  auto getDataInPascals() -> double { return data; }
+
   // Should we make all data members private?
   double data;  // Pa
+};
+
+class PascalsConverter {
+ public:
+  // do nothing in either of the below because we want it in pascals
+  static auto ConvertValueTo(double paData) -> double { return paData; }
+  static auto ConvertValueFrom(double paData) -> double { return paData; }
 };
 
 class BarConverter {
  public:
   // 1 bar = 100,000 pascals
-  auto ConvertValueTo(double barData) -> double { return (barData * 100000); }
+  static auto ConvertValueTo(double barData) -> double {
+    return (barData * 100000);
+  }
 
-  auto ConvertValueFrom(double paData) -> double { return (paData / 100000); }
+  static auto ConvertValueFrom(double paData) -> double {
+    return (paData / 100000);
+  }
 };
 
 class ATMConverter {
  public:
   // 1 atm = 101,325 Pa
-  auto ConvertValueTo(double atmData) -> double { return (atmData * 101325); }
+  static auto ConvertValueTo(double atmData) -> double {
+    return (atmData * 101325);
+  }
 
-  auto ConvertValueFrom(double paData) -> double { return (paData / 101325); }
+  static auto ConvertValueFrom(double paData) -> double {
+    return (paData / 101325);
+  }
 };
 
 class PSIConverter {
  public:
   // 1 psi = 6894.76 Pa
-  auto ConvertValueTo(double psiData) -> double { return (psiData * 6894.76); }
+  static auto ConvertValueTo(double psiData) -> double {
+    return (psiData * 6894.76);
+  }
 
-  auto ConvertValueFrom(double paData) -> double { return (paData / 6894.76); }
+  static auto ConvertValueFrom(double paData) -> double {
+    return (paData / 6894.76);
+  }
 };
 
 class PSIGConverter {
  public:
   // 1 psig = 6894.76 Pa
-  auto ConvertValueTo(double psigData) -> double {
+  static auto ConvertValueTo(double psigData) -> double {
     return (psigData * 6894.76);
   }
 
-  auto ConvertValueFrom(double paData) -> double { return (paData / 6894.76); }
+  static auto ConvertValueFrom(double paData) -> double {
+    return (paData / 6894.76);
+  }
 };
 
+using Pascals = Pressure<PascalsConverter>;
 using Bar = Pressure<BarConverter>;
 using ATM = Pressure<ATMConverter>;
 using PSI = Pressure<PSIConverter>;
