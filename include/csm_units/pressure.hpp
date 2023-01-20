@@ -20,18 +20,22 @@ class Pressure : public Converter {
 class PascalsConverter {
  public:
   // do nothing in either of the below because we want it in pascals
-  static auto ConvertValueTo(double paData) -> double { return paData; }
-  static auto ConvertValueFrom(double paData) -> double { return paData; }
+  constexpr static auto ConvertValueTo(double paData) -> double {
+    return paData;
+  }
+  constexpr static auto ConvertValueFrom(double paData) -> double {
+    return paData;
+  }
 };
 
 class BarConverter {
  public:
   // 1 bar = 100,000 pascals
-  static auto ConvertValueTo(double barData) -> double {
+  constexpr static auto ConvertValueTo(double barData) -> double {
     return (barData * 100000);
   }
 
-  static auto ConvertValueFrom(double paData) -> double {
+  constexpr static auto ConvertValueFrom(double paData) -> double {
     return (paData / 100000);
   }
 };
@@ -39,7 +43,7 @@ class BarConverter {
 class ATMConverter {
  public:
   // 1 atm = 101,325 Pa
-  static auto ConvertValueTo(double atmData) -> double {
+  constexpr static auto ConvertValueTo(double atmData) -> double {
     return (atmData * 101325);
   }
 
@@ -51,11 +55,11 @@ class ATMConverter {
 class PSIConverter {
  public:
   // 1 psi = 6894.76 Pa
-  static auto ConvertValueTo(double psiData) -> double {
+  constexpr static auto ConvertValueTo(double psiData) -> double {
     return (psiData * 6894.76);
   }
 
-  static auto ConvertValueFrom(double paData) -> double {
+  constexpr static auto ConvertValueFrom(double paData) -> double {
     return (paData / 6894.76);
   }
 };
@@ -63,11 +67,11 @@ class PSIConverter {
 class PSIGConverter {
  public:
   // 1 psig = 6894.76 Pa
-  static auto ConvertValueTo(double psigData) -> double {
+  constexpr static auto ConvertValueTo(double psigData) -> double {
     return (psigData * 6894.76);
   }
 
-  static auto ConvertValueFrom(double paData) -> double {
+  constexpr static auto ConvertValueFrom(double paData) -> double {
     return (paData / 6894.76);
   }
 };
