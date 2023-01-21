@@ -1,6 +1,5 @@
 
 #pragma once
-#include <iostream>
 #include <cmath>
 
 namespace csm_units {
@@ -25,8 +24,8 @@ class KelvinConverter {
 class CelsiusConverter {
   public:
   constexpr auto ConvertValue(double value) noexcept -> double { 
-    value = value + 273.15;                   // actual calculation
-    value = (int)(value * 1000.0) / 1000.0;   // rounding to 3 decimal places
+    value = value + 273.15;                        // actual calculation
+    value = (int)(value * 1000.0) / 1000.0;        // rounding to 3 decimal places
     
     return value;
     }
@@ -48,6 +47,5 @@ using Kelvin = Temperature<KelvinConverter>;
 using Celsius = Temperature<CelsiusConverter>;
 using Fahrenheit = Temperature<FahrenheitConverter>;
 
-// ^ how does it know what that is? the using part
 
 }  // namespace csm_units
