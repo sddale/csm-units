@@ -1,5 +1,6 @@
 
 #pragma once
+#include <iostream>
 
 namespace csm_units {
 
@@ -13,27 +14,31 @@ class Temperature : public Converter {
 };
 
 class KelvinConverter {
+  public:
   constexpr auto ConvertValue(double value) noexcept -> double {
     return value;  
   }
 };
 
 class CelsiusConverter {
+  public:
   constexpr auto ConvertValue(double value) noexcept -> double { 
     return value + 273.15; }
 };
 
 //not in clang tidy yet - still have to figure out
-class FahernheitConverter {
+class FahrenheitConverter {
+  public:
     constexpr auto ConvertValue(double value) noexcept -> double {
         return ((value - 32) / 1.8) + 273.15;
+        std::cout << value;
     }
 
 };
 
 using Kelvin = Temperature<KelvinConverter>;
 using Celsius = Temperature<CelsiusConverter>;
-using Fahrenheit = Temperature<FahernheitConverter>;
+using Fahrenheit = Temperature<FahrenheitConverter>;
 
 // ^ how does it know what that is? the using part
 
