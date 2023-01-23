@@ -1,5 +1,7 @@
 #include "../../include/csm_units/temperature.hpp"
 
+#include <iostream>
+
 #include "../../build/_deps/doctest-src/doctest/doctest.h"
 
 namespace csm_units::test {
@@ -35,6 +37,11 @@ TEST_CASE("Celsius to Kelvin") {
 
   auto highTemperature = Celsius(120.453);
   CHECK(highTemperature.data == doctest::Approx(393.602));
+}
+
+TEST_CASE("Size") {
+  auto temp = Kelvin(10);
+  REQUIRE(sizeof(temp) == sizeof(temp.data));  // converter requires 0 bytes
 }
 
 }  // namespace csm_units::test
