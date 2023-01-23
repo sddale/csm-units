@@ -8,12 +8,21 @@ class Pressure : public Converter {
   constexpr explicit Pressure(double pressure) noexcept
       : data(Converter::ConvertValueTo(pressure)) {}
 
-  auto getData() -> double { return Converter::ConvertValueFrom(data); }
-  void setData(double value) { data = Converter::ConvertValueTo(value); }
+  // Get value in original unit (i.e. Bar if BarConverter)
+  constexpr auto Value() const noexcept -> double {
+    return Converter::ConvertValueFrom(data);
+  }
 
-  auto getDataInPascals() -> double { return data; }
+  // Get raw stored value (i.e. in Pascals)
+  [[nodiscard]] constexpr auto Data() const noexcept -> double { return data; }
 
-  // Should we make all data members private?
+  constexpr void Set(double value) noexcept {
+    data = Converter::ConvertValueTo(value);
+  }
+
+  constexpr auto getDataInPascals() const noexcept -> double { return data; }
+
+ private:
   double data;  // Pa
 };
 
@@ -40,7 +49,7 @@ class BarConverter {
   }
 };
 
-class ATMConverter {
+class AtmConverter {
  public:
   // 1 atm = 101,325 Pa
   constexpr static auto ConvertValueTo(double atmData) -> double {
@@ -52,34 +61,21 @@ class ATMConverter {
   }
 };
 
-class PSIConverter {
+class PsiConverter {
  public:
   // 1 psi = 6894.76 Pa
   constexpr static auto ConvertValueTo(double psiData) -> double {
-    return (psiData * 6894.76);
+    return (psiData * 6894.7572931783);
   }
 
   constexpr static auto ConvertValueFrom(double paData) -> double {
-    return (paData / 6894.76);
-  }
-};
-
-class PSIGConverter {
- public:
-  // 1 psig = 6894.76 Pa
-  constexpr static auto ConvertValueTo(double psigData) -> double {
-    return (psigData * 6894.76);
-  }
-
-  constexpr static auto ConvertValueFrom(double paData) -> double {
-    return (paData / 6894.76);
+    return (paData / 6894.7572931783);
   }
 };
 
 using Pascals = Pressure<PascalsConverter>;
 using Bar = Pressure<BarConverter>;
-using ATM = Pressure<ATMConverter>;
-using PSI = Pressure<PSIConverter>;
-using PSIG = Pressure<PSIGConverter>;
+using Atm = Pressure<AtmConverter>;
+using Psi = Pressure<PsiConverter>;
 
 }  // namespace csm_units
