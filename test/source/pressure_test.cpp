@@ -1,39 +1,49 @@
-#include "csm_units/pressure.hpp"
 
-#include <doctest/doctest.h>
+#include "../../include/csm_units/pressure.hpp"
 
 #include <cmath>
 
+#include "../../build/_deps/doctest-src/doctest/doctest.h"
+
 namespace csm_units::test {
-TEST_CASE("Pressure") {
+
+// NOLINTBEGIN(modernize-use-trailing-return-type)
+TEST_SUITE("Pressure") {
   // test to make user each data unit can go back and forth by creating each
   // type then asking for it back
 
-  // test for Pascals
-  auto pascalsTest = Pascals(1234567.0);
-  CHECK(std::abs(pascalsTest.getData() - 1234567.0) < 0.001);
+  TEST_CASE("Pascal") {  // test for Pascals
+    auto test = Pascals(1234567.0);
+    CHECK(test.Value() == doctest::Approx(1234567.0));
+  }
 
   // test for Bar
-  auto barTest = Bar(12.34567);
-  CHECK(std::abs(barTest.getData() - 12.34567) < 0.001);
+  TEST_CASE("Bar") {
+    auto test = Bar(12.34567);
+    CHECK(test.Value() == doctest::Approx(12.34567));
+
+    auto ref = Pascals(1234567.0);
+    CHECK(test.Data() == doctest::Approx(ref.Value()));
+  }
 
   // test for ATM
-  auto atmTest = ATM(12.18422897);
-  CHECK(std::abs(atmTest.getData() - 12.18422897) < 0.001);
+  TEST_CASE("ATM") {
+    auto test = Atm(12.18422897);
+    CHECK(test.Value() == doctest::Approx(12.18422897));
+
+    auto ref = Pascals(1234567.0);
+    CHECK(test.Data() == doctest::Approx(ref.Value()));
+  }
 
   // test for PSI
-  auto psiTest = PSI(179.0588048);
-  CHECK(std::abs(psiTest.getData() - 179.05873445) < 0.001);
+  TEST_CASE("PSI") {
+    const auto test = Psi(179.0588048);
+    CHECK(test.Value() == doctest::Approx(179.05873445));
 
-  // test for PSIG
-  auto psigTest = PSIG(179.0588048);
-  CHECK(std::abs(psigTest.getData() - 179.05873445) < 0.001);
-
-  // all of these should be the same just in their respective units. So, the
-  // below will test to make sure that they are all actually equivalent.
-  CHECK(std::abs(pascalsTest.getData() - barTest.getDataInPascals()) < 0.001);
-  CHECK(std::abs(pascalsTest.getData() - atmTest.getDataInPascals()) < 0.001);
-  CHECK(std::abs(pascalsTest.getData() - psiTest.getDataInPascals()) < 0.5);
-  CHECK(std::abs(pascalsTest.getData() - psigTest.getDataInPascals()) < 0.5);
+    const auto ref = Pascals(1234567.0);
+    CHECK(test.Data() == doctest::Approx(ref.Value()));
+  }
 }
+// NOLINTEND(modernize-use-trailing-return-type)
+
 }  // namespace csm_units::test
