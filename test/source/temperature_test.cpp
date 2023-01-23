@@ -35,5 +35,4 @@ TEST_CASE("Celsius to Kelvin") {
 }
 
 
-
 }  // namespace csm_units::test
