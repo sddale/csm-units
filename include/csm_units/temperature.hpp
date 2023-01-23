@@ -4,13 +4,14 @@
 namespace csm_units {
 
 template <class Converter>
-class Temperature : public Converter {
+class Temperature {
  public:
   // setting data to temperature, but had to convert it first using template and
   // respective converter function
   constexpr explicit Temperature(double temperature) noexcept
-      : data(Converter::ConvertValue(temperature)) {}
+      : converter(), data(converter.ConvertValue(temperature)) {}
 
+  [[no_unique_address]] Converter converter;
   double data;
 };
 
