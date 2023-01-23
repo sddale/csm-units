@@ -47,7 +47,7 @@ class ATMConverter {
     return (atmData * 101325);
   }
 
-  static auto ConvertValueFrom(double paData) -> double {
+  constexpr static auto ConvertValueFrom(double paData) -> double {
     return (paData / 101325);
   }
 };
