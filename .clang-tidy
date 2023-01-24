@@ -1,0 +1,13 @@
+# Disable justifications:
+# -readability-magic-numbers: Math coeffs
+# -misc-non-private-member-variables-in-classes: Waiting on refactor
+Checks:
+    -*,
+    bugprone-*,
+    misc-*,
+    modernize-*,
+    performance-*,
+    portability-*,
+    readability-*,
+    -readability-magic-numbers,
+    -misc-non-private-member-variables-in-classes,
