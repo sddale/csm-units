@@ -1,5 +1,7 @@
 #pragma once
 
+#include <compare>
+
 namespace csm_units {
 
 template <class Converter>
@@ -18,6 +20,11 @@ class Pressure : public Converter {
 
   constexpr void Set(double value) noexcept {
     data = Converter::ConvertValueTo(value);
+  }
+
+  template <class T>
+  auto operator<=>(const Pressure<T>& rhs) const {
+    return data <=> rhs->Data();
   }
 
  private:

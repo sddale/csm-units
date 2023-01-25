@@ -46,8 +46,16 @@ TEST_SUITE("Pressure") {
   // test to make sure the size of the class never exceeds the size of the data
   // member variable. Force all test cases to stop if it does.
   TEST_CASE("Size") {
-    auto temp = Pascals(1.0);
+    const auto temp = Pascals(1.0);
     REQUIRE(sizeof(temp) == sizeof(temp.Data()));
+  }
+
+  // test to make sure the three-way comparison operator (<=>) overload works as
+  // it should.
+  TEST_CASE("Three-Way Comparison Overload") {
+    const auto temp = Pascals(13.0);
+    const auto temp2 = Pascals(13.0);
+    CHECK(temp < temp2);
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type)
