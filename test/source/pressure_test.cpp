@@ -1,4 +1,3 @@
-
 #include "../../include/csm_units/pressure.hpp"
 
 #include <cmath>
@@ -13,25 +12,25 @@ TEST_SUITE("Pressure") {
   // type then asking for it back
 
   TEST_CASE("Pascal") {  // test for Pascals
-    auto test = Pascals(1234567.0);
+    const auto test = Pascals(1234567.0);
     CHECK(test.Value() == doctest::Approx(1234567.0));
   }
 
   // test for Bar
   TEST_CASE("Bar") {
-    auto test = Bar(12.34567);
+    const auto test = Bar(12.34567);
     CHECK(test.Value() == doctest::Approx(12.34567));
 
-    auto ref = Pascals(1234567.0);
+    const auto ref = Pascals(1234567.0);
     CHECK(test.Data() == doctest::Approx(ref.Value()));
   }
 
   // test for ATM
   TEST_CASE("ATM") {
-    auto test = Atm(12.18422897);
+    const auto test = Atm(12.18422897);
     CHECK(test.Value() == doctest::Approx(12.18422897));
 
-    auto ref = Pascals(1234567.0);
+    const auto ref = Pascals(1234567.0);
     CHECK(test.Data() == doctest::Approx(ref.Value()));
   }
 
@@ -42,6 +41,13 @@ TEST_SUITE("Pressure") {
 
     const auto ref = Pascals(1234567.0);
     CHECK(test.Data() == doctest::Approx(ref.Value()));
+  }
+
+  // test to make sure the size of the class never exceeds the size of the data
+  // member variable. Force all test cases to stop if it does.
+  TEST_CASE("Size") {
+    auto temp = Pascals(1.0);
+    REQUIRE(sizeof(temp) == sizeof(temp.Data()));
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type)

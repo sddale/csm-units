@@ -6,11 +6,11 @@ template <class Converter>
 class Pressure : public Converter {
  public:
   constexpr explicit Pressure(double pressure) noexcept
-      : data(Converter::ConvertValueTo(pressure)) {}
+      : data(converter.ConvertValueTo(pressure)) {}
 
   // Get value in original unit (i.e. Bar if BarConverter)
-  constexpr auto Value() const noexcept -> double {
-    return Converter::ConvertValueFrom(data);
+  [[nodiscard]] constexpr auto Value() const noexcept -> double {
+    return converter.ConvertValueFrom(data);
   }
 
   // Get raw stored value (i.e. in Pascals)
@@ -20,19 +20,20 @@ class Pressure : public Converter {
     data = Converter::ConvertValueTo(value);
   }
 
-  constexpr auto getDataInPascals() const noexcept -> double { return data; }
-
  private:
+  [[no_unique_address]] Converter converter;
   double data;  // Pa
 };
 
 class PascalsConverter {
  public:
   // do nothing in either of the below because we want it in pascals
-  constexpr static auto ConvertValueTo(double paData) -> double {
+  [[nodiscard]] constexpr static auto ConvertValueTo(double paData) noexcept
+      -> double {
     return paData;
   }
-  constexpr static auto ConvertValueFrom(double paData) -> double {
+  [[nodiscard]] constexpr static auto ConvertValueFrom(double paData) noexcept
+      -> double {
     return paData;
   }
 };
@@ -40,11 +41,13 @@ class PascalsConverter {
 class BarConverter {
  public:
   // 1 bar = 100,000 pascals
-  constexpr static auto ConvertValueTo(double barData) -> double {
+  [[nodiscard]] constexpr static auto ConvertValueTo(double barData) noexcept
+      -> double {
     return (barData * 100000);
   }
 
-  constexpr static auto ConvertValueFrom(double paData) -> double {
+  [[nodiscard]] constexpr static auto ConvertValueFrom(double paData) noexcept
+      -> double {
     return (paData / 100000);
   }
 };
@@ -52,11 +55,13 @@ class BarConverter {
 class AtmConverter {
  public:
   // 1 atm = 101,325 Pa
-  constexpr static auto ConvertValueTo(double atmData) -> double {
+  [[nodiscard]] constexpr static auto ConvertValueTo(double atmData) noexcept
+      -> double {
     return (atmData * 101325);
   }
 
-  constexpr static auto ConvertValueFrom(double paData) -> double {
+  [[nodiscard]] constexpr static auto ConvertValueFrom(double paData) noexcept
+      -> double {
     return (paData / 101325);
   }
 };
@@ -64,11 +69,13 @@ class AtmConverter {
 class PsiConverter {
  public:
   // 1 psi = 6894.76 Pa
-  constexpr static auto ConvertValueTo(double psiData) -> double {
+  [[nodiscard]] constexpr static auto ConvertValueTo(double psiData) noexcept
+      -> double {
     return (psiData * 6894.7572931783);
   }
 
-  constexpr static auto ConvertValueFrom(double paData) -> double {
+  [[nodiscard]] constexpr static auto ConvertValueFrom(double paData) noexcept
+      -> double {
     return (paData / 6894.7572931783);
   }
 };
