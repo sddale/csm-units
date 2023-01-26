@@ -53,9 +53,12 @@ TEST_SUITE("Pressure") {
   // test to make sure the three-way comparison operator (<=>) overload works as
   // it should.
   TEST_CASE("Three-Way Comparison Overload") {
-    const auto temp = Pascals(13.0);
+    const auto temp1 = Pascals(1.0);
     const auto temp2 = Pascals(13.0);
-    CHECK(temp < temp2);
+    const auto temp3 = Pascals(13.0);
+    CHECK(temp1 < temp2);
+    CHECK(temp2 > temp1);
+    CHECK(temp2 == temp3);
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type)

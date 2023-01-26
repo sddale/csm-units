@@ -22,9 +22,8 @@ class Pressure : public Converter {
     data = Converter::ConvertValueTo(value);
   }
 
-  template <class T>
-  auto operator<=>(const Pressure<T>& rhs) const {
-    return data <=> rhs->Data();
+  constexpr auto operator<=>(const Pressure& rhs) const noexcept {
+    return data <=> rhs.Data();
   }
 
  private:
