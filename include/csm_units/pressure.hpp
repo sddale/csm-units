@@ -25,6 +25,11 @@ class Pressure : public Converter {
   constexpr auto operator<=>(const Pressure& rhs) const noexcept {
     return data <=> rhs.Data();
   }
+  /*
+  constexpr auto operator<=>(Pressure&& rhs) const noexcept {
+    return data <=> rhs.Data();
+  }
+  */
 
  private:
   [[no_unique_address]] Converter converter;
