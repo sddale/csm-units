@@ -11,8 +11,21 @@ class Temperature {
   constexpr explicit Temperature(double temperature) noexcept
       : converter(), data(converter.ConvertValue(temperature)) {}
 
-  [[no_unique_address]] Converter converter;
-  double data;
+  
+  constexpr auto Set(double value) noexcept {
+    data = converter.ConvertValue(value);
+  }
+
+
+  //returning stored value - Kelvin
+  constexpr auto Data() noexcept -> double {
+    return data;
+  }
+
+  //[[no_unique_address]] Converter converter;
+  public:
+    Converter converter;
+    double data;
 };
 
 class KelvinConverter {
@@ -20,21 +33,31 @@ class KelvinConverter {
   constexpr static auto ConvertValue(double value) noexcept -> double {
     return value;
   }
+
+  constexpr static auto ConvertValueFrom(double dataKelvin) noexcept -> double {
+    return dataKelvin;
+  }
 };
 
 class CelsiusConverter {
  public:
   constexpr static auto ConvertValue(double value) noexcept -> double {
-    value = value + 273.15;
-    return value;
+    return value + 273.15;
+  }
+
+  constexpr static auto ConvertValueFrom(double dataKelvin) noexcept -> double {
+    return dataKelvin - 273.15;
   }
 };
 
 class FahrenheitConverter {
  public:
   constexpr static auto ConvertValue(double value) noexcept -> double {
-    value = (value - 32) / 1.8 + 273.15;
-    return value;
+    return (value - 32) / 1.8 + 273.15;
+  }
+
+  constexpr static auto ConvertValueFrom(double dataKelvin) noexcept -> double {
+    return (dataKelvin - 273.15) * (9/5) + 32;
   }
 };
 
