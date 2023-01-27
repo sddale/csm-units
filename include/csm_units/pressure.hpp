@@ -22,14 +22,28 @@ class Pressure : public Converter {
     data = Converter::ConvertValueTo(value);
   }
 
+  /*
+  //Shouldn't these work?
+  constexpr auto operator<=>(const Pressure& rhs) const noexcept = default;
+
+  constexpr auto operator<=>(const double& rhs) const noexcept = default;
+  */
+
   constexpr auto operator<=>(const Pressure& rhs) const noexcept {
     return data <=> rhs.Data();
   }
-  /*
-  constexpr auto operator<=>(Pressure&& rhs) const noexcept {
-    return data <=> rhs.Data();
+
+  constexpr auto operator==(const Pressure& rhs) const noexcept -> bool {
+    return data == rhs.Data();
   }
-  */
+
+  constexpr auto operator<=>(const double& rhs) const noexcept {
+    return data <=> rhs;
+  }
+
+  constexpr auto operator==(const double& rhs) const noexcept -> bool {
+    return data == rhs;
+  }
 
  private:
   [[no_unique_address]] Converter converter;

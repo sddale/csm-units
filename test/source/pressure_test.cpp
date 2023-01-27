@@ -51,15 +51,26 @@ TEST_SUITE("Pressure") {
   }
 
   // test to make sure the three-way comparison operator (<=>) overload works as
-  // it should.
-  TEST_CASE("Three-Way Comparison Overload") {
+  // it should. As well as the equality operator overload.
+  TEST_CASE("Comparison Overload") {
     const auto tempLow = Pascals(1.0);
     const auto tempEq1 = Pascals(13.0);
     const auto tempEq2 = Pascals(13.0);
-    CHECK(tempLow < tempEq1);
-    CHECK(tempEq1 > tempLow);
-    bool equivalence = ((tempEq1 <=> tempEq2) == 0);
-    CHECK(equivalence);
+    CHECK(tempLow <= tempEq1);
+    CHECK(tempEq1 >= tempLow);
+    CHECK(tempEq1 == tempEq2);
+
+    const auto intLower = 5;
+    const auto doubleLower = 5.0;
+    CHECK(tempEq1 >= intLower);
+    CHECK(tempEq1 >= doubleLower);
+    CHECK(intLower <= tempEq1);
+    CHECK(doubleLower <= tempEq1);
+
+    const auto intEq = 13;
+    const auto doubleEq = 13.0;
+    CHECK(intEq == tempEq1);
+    CHECK(doubleEq == tempEq1);
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type)
