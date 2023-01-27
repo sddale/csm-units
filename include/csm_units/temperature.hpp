@@ -12,13 +12,15 @@ class Temperature {
       : converter(), data(converter.ConvertValue(temperature)) {}
 
   
-  constexpr auto Set(double value) noexcept {
+  constexpr auto Set(double value) noexcept {       // setting value to Kelvin as default
     data = converter.ConvertValue(value);
   }
 
+  constexpr auto Value() noexcept -> double {       // returning user original unit - F/C/K
+    return converter.ConvertValueFrom(data);
+  }
 
-  //returning stored value - Kelvin
-  constexpr auto Data() noexcept -> double {
+  constexpr auto Data() noexcept -> double {        // returning stored data - Kelvin
     return data;
   }
 
