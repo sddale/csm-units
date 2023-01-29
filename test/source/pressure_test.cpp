@@ -46,31 +46,43 @@ TEST_SUITE("Pressure") {
   // test to make sure the size of the class never exceeds the size of the data
   // member variable. Force all test cases to stop if it does.
   TEST_CASE("Size") {
-    const auto temp = Pascals(1.0);
-    REQUIRE(sizeof(temp) == sizeof(temp.Data()));
+    const auto test = Pascals(1.0);
+    REQUIRE(sizeof(test) == sizeof(test.Data()));
   }
 
   // test to make sure the three-way comparison operator (<=>) overload works as
   // it should. As well as the equality operator overload.
   TEST_CASE("Comparison Overload") {
-    const auto tempLow = Pascals(1.0);
-    const auto tempEq1 = Pascals(13.0);
-    const auto tempEq2 = Pascals(13.0);
-    CHECK(tempLow <= tempEq1);
-    CHECK(tempEq1 >= tempLow);
-    CHECK(tempEq1 == tempEq2);
+    const auto testLow = Pascals(1.0);
+    const auto testEq1 = Pascals(13.0);
+    const auto testEq2 = Pascals(13.0);
+    CHECK(testLow <= testEq1);
+    CHECK(testEq1 >= testLow);
+    CHECK(testEq1 == testEq2);
 
     const auto intLower = 5;
     const auto doubleLower = 5.0;
-    CHECK(tempEq1 >= intLower);
-    CHECK(tempEq1 >= doubleLower);
-    CHECK(intLower <= tempEq1);
-    CHECK(doubleLower <= tempEq1);
+    CHECK(testEq1 >= intLower);
+    CHECK(testEq1 >= doubleLower);
+    CHECK(intLower <= testEq1);
+    CHECK(doubleLower <= testEq1);
 
     const auto intEq = 13;
     const auto doubleEq = 13.0;
-    CHECK(intEq == tempEq1);
-    CHECK(doubleEq == tempEq1);
+    CHECK(intEq == testEq1);
+    CHECK(doubleEq == testEq1);
+  }
+
+  // test to make sure the copy constructor works.
+  TEST_CASE("Copy Constructor") {
+    const auto test = Pascals(1.0);
+    const auto copyTest = test;
+    CHECK(test == copyTest);
+  }
+
+  // test to make sure the move constructor works.
+  TEST_CASE("Move Constructor") {
+    // not really sure how to go about testing this
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type)

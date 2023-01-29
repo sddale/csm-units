@@ -10,6 +10,12 @@ class Pressure : public Converter {
   constexpr explicit Pressure(double pressure) noexcept
       : data(converter.ConvertValueTo(pressure)) {}
 
+  // copy constructor
+  constexpr Pressure(const Pressure& toCopy) noexcept : data(toCopy.Data()) {}
+
+  // move constructor
+  constexpr Pressure(Pressure&& toMove) noexcept : data(toMove.Data()) {}
+
   // Get value in original unit (i.e. Bar if BarConverter)
   [[nodiscard]] constexpr auto Value() const noexcept -> double {
     return converter.ConvertValueFrom(data);
