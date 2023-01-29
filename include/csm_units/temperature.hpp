@@ -17,12 +17,12 @@ class Temperature {
     data = converter.ConvertValue(value);
   }
 
-  constexpr auto Value() const noexcept
+  [[nodiscard]] constexpr auto Value() const noexcept
       -> double {  // returning user original unit - F/C/K
     return converter.ConvertValueFrom(data);
   }
 
-  constexpr auto Data() const noexcept
+  [[nodiscard]] constexpr auto Data() const noexcept
       -> double {  // returning stored/converted data - Kelvin
     return data;
   }

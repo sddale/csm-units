@@ -55,12 +55,12 @@ TEST_SUITE("Temperature") {
       CHECK(temperature.Value() == doctest::Approx(120.453));
     }
   }
-  /*
+  
   TEST_CASE("Size") {
-    auto temp = Kelvin(10);
-    REQUIRE(sizeof(temp) == sizeof(temp.data));  // converter requires 0 bytes
+    const auto temp = Kelvin(1.0);
+    REQUIRE(sizeof(temp) == sizeof(temp.Data()));  // converter requires 0 bytes
   }
-  */
+  
 }
 
 }  // namespace csm_units::test
