@@ -65,36 +65,40 @@ TEST_SUITE("Temperature") {
 
   TEST_CASE("Overloading Kelvin") {
     const auto temp = Kelvin(273.15);
+    const auto sameTemp = Kelvin(273.15);
     const auto lowTemp = Kelvin(88.45);
     const auto highTemp = Kelvin(456.32);
+
     CHECK(temp >= lowTemp);
     CHECK(lowTemp <= highTemp);
     CHECK(highTemp >= temp);
+    CHECK((temp <=> sameTemp) == 0);
   }
 
   TEST_CASE("Overloading Fahrenheit") {
     const auto temp = Fahrenheit(66.34);
+    const auto sameTemp = Fahrenheit(66.34);
     const auto lowTemp = Fahrenheit(-56.8);
     const auto highTemp = Fahrenheit(127.84);
+
     CHECK(temp >= lowTemp);
     CHECK(lowTemp <= highTemp);
     CHECK(highTemp >= temp);
+    CHECK((temp <=> sameTemp) == 0);
   }
 
   TEST_CASE("Overloading Celsius") {
     const auto temp = Celsius(0.0);
+    const auto sameTemp = Celsius(0.0);
     const auto lowTemp = Celsius(-34.8);
     const auto highTemp = Celsius(94.33);
+
     CHECK(temp >= lowTemp);
     CHECK(lowTemp <= highTemp);
     CHECK(highTemp >= temp);
+    CHECK((temp <=> sameTemp) == 0);
   }
 
-  TEST_CASE("check") {
-    const auto temp = Kelvin(32.45);
-    const auto temp2 = Kelvin(32.45);
-    CHECK((temp <=> temp2) == 0);
-  }
 }
 
 }  // namespace csm_units::test
