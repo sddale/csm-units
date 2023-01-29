@@ -13,6 +13,19 @@ class Temperature {
       double temperature) noexcept  // setting data to Kelvin
       : converter(), data(converter.ConvertValue(temperature)) {}
 
+
+
+
+
+  // copy constructor hmmm
+  constexpr explicit Temperature(const Temperature &temp) noexcept
+      : data(temp.data) {}
+
+
+
+
+
+
   constexpr auto Set(
       double value) noexcept {  // setting value to Kelvin as default - again??
     data = converter.ConvertValue(value);
@@ -28,14 +41,11 @@ class Temperature {
     return data;
   }
 
-  // so I guess this is not needed??
-  /*
-  constexpr auto operator== (const Temperature &temp) const noexcept -> bool {
+  constexpr auto operator==(const Temperature &temp) const noexcept -> bool {
     return data == temp.Data();
   }
-  */
 
-  constexpr auto operator<=> (const Temperature &temp) const noexcept {
+  constexpr auto operator<=>(const Temperature &temp) const noexcept {
     return data <=> temp.Data();
   }
 
