@@ -1,5 +1,6 @@
 #pragma once
 #include <cmath>
+#include <compare>
 
 namespace csm_units {
 
@@ -27,9 +28,19 @@ class Temperature {
     return data;
   }
 
-  //[[no_unique_address]] Converter converter;
+  // so I guess this is not needed??
+  /*
+  constexpr auto operator== (const Temperature &temp) const noexcept -> bool {
+    return data == temp.Data();
+  }
+  */
+
+  constexpr auto operator<=> (const Temperature &temp) const noexcept {
+    return data <=> temp.Data();
+  }
+
  private:
-  Converter converter;
+  [[no_unique_address]] Converter converter;
   double data;
 };
 

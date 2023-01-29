@@ -55,12 +55,46 @@ TEST_SUITE("Temperature") {
       CHECK(temperature.Value() == doctest::Approx(120.453));
     }
   }
+
   
   TEST_CASE("Size") {
     const auto temp = Kelvin(1.0);
     REQUIRE(sizeof(temp) == sizeof(temp.Data()));  // converter requires 0 bytes
   }
   
+
+  TEST_CASE("Overloading Kelvin") {
+    const auto temp = Kelvin(273.15);
+    const auto lowTemp = Kelvin(88.45);
+    const auto highTemp = Kelvin(456.32);
+    CHECK(temp >= lowTemp);
+    CHECK(lowTemp <= highTemp);
+    CHECK(highTemp >= temp);
+  }
+
+  TEST_CASE("Overloading Fahrenheit") {
+    const auto temp = Fahrenheit(66.34);
+    const auto lowTemp = Fahrenheit(-56.8);
+    const auto highTemp = Fahrenheit(127.84);
+    CHECK(temp >= lowTemp);
+    CHECK(lowTemp <= highTemp);
+    CHECK(highTemp >= temp);
+  }
+
+  TEST_CASE("Overloading Celsius") {
+    const auto temp = Celsius(0.0);
+    const auto lowTemp = Celsius(-34.8);
+    const auto highTemp = Celsius(94.33);
+    CHECK(temp >= lowTemp);
+    CHECK(lowTemp <= highTemp);
+    CHECK(highTemp >= temp);
+  }
+
+  TEST_CASE("check") {
+    const auto temp = Kelvin(32.45);
+    const auto temp2 = Kelvin(32.45);
+    CHECK((temp <=> temp2) == 0);
+  }
 }
 
 }  // namespace csm_units::test
