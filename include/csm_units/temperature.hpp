@@ -8,26 +8,29 @@ class Temperature {
  public:
   // setting data to temperature, but had to convert it first using template and
   // respective converter function
-  constexpr explicit Temperature(double temperature) noexcept
+  constexpr explicit Temperature(
+      double temperature) noexcept  // setting data to Kelvin
       : converter(), data(converter.ConvertValue(temperature)) {}
 
-  
-  constexpr auto Set(double value) noexcept {       // setting value to Kelvin as default
+  constexpr auto Set(
+      double value) noexcept {  // setting value to Kelvin as default - again??
     data = converter.ConvertValue(value);
   }
 
-  constexpr auto Value() noexcept -> double {       // returning user original unit - F/C/K
+  constexpr auto Value() const noexcept
+      -> double {  // returning user original unit - F/C/K
     return converter.ConvertValueFrom(data);
   }
 
-  constexpr auto Data() noexcept -> double {        // returning stored data - Kelvin
+  constexpr auto Data() const noexcept
+      -> double {  // returning stored/converted data - Kelvin
     return data;
   }
 
   //[[no_unique_address]] Converter converter;
-  public:
-    Converter converter;
-    double data;
+ private:
+  Converter converter;
+  double data;
 };
 
 class KelvinConverter {
@@ -59,7 +62,7 @@ class FahrenheitConverter {
   }
 
   constexpr static auto ConvertValueFrom(double dataKelvin) noexcept -> double {
-    return (dataKelvin - 273.15) * (9/5) + 32;
+    return (dataKelvin - 273.15) * 1.8 + 32;
   }
 };
 
