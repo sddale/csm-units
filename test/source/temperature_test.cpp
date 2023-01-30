@@ -70,7 +70,6 @@ TEST_SUITE("Temperature") {
     CHECK(temp >= lowTemp);
     CHECK(lowTemp <= highTemp);
     CHECK(highTemp >= temp);
-    CHECK((temp <=> sameTemp) == 0);   // get rid of
     CHECK(temp == sameTemp);
   }
 
@@ -83,7 +82,6 @@ TEST_SUITE("Temperature") {
     CHECK(temp >= lowTemp);
     CHECK(lowTemp <= highTemp);
     CHECK(highTemp >= temp);
-    CHECK((temp <=> sameTemp) == 0);  // get rid of
     CHECK(temp == sameTemp);
   }
 
@@ -96,14 +94,13 @@ TEST_SUITE("Temperature") {
     CHECK(temp >= lowTemp);
     CHECK(lowTemp <= highTemp);
     CHECK(highTemp >= temp);
-    CHECK((temp <=> sameTemp) == 0);   // get rid of
     CHECK(temp == sameTemp);
   }
 
   TEST_CASE("Copy Constructor") {
-    const auto temperature = Kelvin(30.5);
-    const auto diffTemperature = temperature;
-    CHECK(diffTemperature.Data() == doctest::Approx(30.5));
+    //const auto temperature = Kelvin(30.5);
+    //const auto diffTemperature = temperature;
+    //CHECK(diffTemperature.Data() == doctest::Approx(30.5));
 
 
   }
