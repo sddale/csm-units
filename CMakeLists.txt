@@ -76,4 +76,4 @@ target_compile_options(${PROJECT_NAME}_test PRIVATE -g -Wall -Wextra)
 
 enable_testing()
 include(${doctest_SOURCE_DIR}/scripts/cmake/doctest.cmake)
-doctest_discover_tests(${PROJECT_NAME})
+doctest_discover_tests(${PROJECT_NAME}_test)
