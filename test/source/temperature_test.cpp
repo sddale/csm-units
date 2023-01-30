@@ -99,7 +99,7 @@ TEST_SUITE("Temperature") {
 
   TEST_CASE("Copy Constructor") {
     //const auto temperature = Kelvin(30.5);
-    //const auto diffTemperature = temperature;
+    //const auto diffTemperature = temperature;  // throwing error here not sure what is going on
     //CHECK(diffTemperature.Data() == doctest::Approx(30.5));
 
 
