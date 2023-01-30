@@ -2,4 +2,6 @@
 /.vscode
 /cpm_modules
 .DS_Store
+CMakeCache.txt
+CMakeFiles/
 .cache

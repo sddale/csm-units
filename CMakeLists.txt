@@ -63,7 +63,7 @@ CPMAddPackage(
 # header paths string(TOLOWER ${PROJECT_NAME}/version.hpp VERSION_HEADER_LOCATION)
 
 # Test Executable
-add_executable(csm_units_test test/source/main.cpp test/source/temperature_test.cpp)
+add_executable(csm_units_test test/source/main.cpp test/source/temperature_test.cpp test/source/pressure_test.cpp)
 target_link_libraries(csm_units_test PRIVATE doctest::doctest)
 target_include_directories(csm_units_test PRIVATE "test" "include")
 set_property(
