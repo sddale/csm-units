@@ -11,38 +11,42 @@ class Temperature {
   // respective converter function
   constexpr explicit Temperature(
       double temperature) noexcept  // setting data to Kelvin
-      : converter(), data(converter.ConvertValue(temperature)) {}
+      : data(temperature), converter() {}
 
   // copy constructor hmmm... this is right but test being weird
   constexpr explicit Temperature(const Temperature &temp) noexcept
-      : data(temp.data) {}  // should be temp.Data()?
+      : data(temp.data) {}
 
-  constexpr auto Set(
-      double value) noexcept {  // setting value to Kelvin as default - again??
-    data = converter.ConvertValue(value);
-  }
-
-  [[nodiscard]] constexpr auto Value() const noexcept
-      -> double {  // returning user original unit - F/C/K
-    return converter.ConvertValueFrom(data);
-  }
-
-  [[nodiscard]] constexpr auto Data() const noexcept
-      -> double {  // returning stored/converted data - Kelvin
-    return data;
-  }
+  template <class OtherConverter>
+  constexpr explicit Temperature(
+      const Temperature<OtherConverter> &temp) noexcept
+      : data(converter.ConvertValueFrom(
+            OtherConverter::ConvertValue(temp.data))) {}
 
   constexpr auto operator==(const Temperature &temp) const noexcept -> bool {
-    return data == temp.Data();
+    return data == temp.data;
   }
 
-  constexpr auto operator<=>(const Temperature &temp) const noexcept {
-    return data <=> temp.Data();
+  template <class OtherConverter>
+  constexpr auto operator==(
+      const Temperature<OtherConverter> &temp) const noexcept -> bool {
+    return converter.ConvertValue(data) ==
+           OtherConverter::ConvertValue(temp.data);
   }
+
+  template <class OtherConverter>
+  constexpr auto operator<=>(
+      const Temperature<OtherConverter> &temp) const noexcept {
+    return converter.ConvertValue(data) <=>
+           OtherConverter::ConvertValue(temp.data);
+  }
+
+  double data;
 
  private:
-  [[no_unique_address]] Converter converter;
-  double data;
+  [[no_unique_address]] Converter
+      converter;  // Performance compared to references to static i.e.
+                  // converter.Convert vs. Converter::Convert ?
 };
 
 class KelvinConverter {
