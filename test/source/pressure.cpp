@@ -1,8 +1,5 @@
-#include "../../include/csm_units/pressure.hpp"
-
-#include <cmath>
-
-#include "../../build/_deps/doctest-src/doctest/doctest.h"
+#include <csm_units/units.hpp>
+#include <doctest/doctest.h>
 
 namespace csm_units::test {
 

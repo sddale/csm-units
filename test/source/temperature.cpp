@@ -1,11 +1,9 @@
-#include "../../include/csm_units/temperature.hpp"
-
-#include <iostream>
-
-#include "../../build/_deps/doctest-src/doctest/doctest.h"
+#include <csm_units/units.hpp>
+#include <doctest/doctest.h>
 
 namespace csm_units::test {
 
+// NOLINTBEGIN(modernize-use-trailing-return-type)
 TEST_SUITE("Temperature") {
   // TEST_CASE("Kelvin to Kelvin") {
   //   {
@@ -125,5 +123,6 @@ TEST_SUITE("Temperature") {
     CHECK(diffTemperature.data == doctest::Approx(30.5));
   }
 }
+// NOLINTEND(modernize-use-trailing-return-type)
 
 }  // namespace csm_units::test
