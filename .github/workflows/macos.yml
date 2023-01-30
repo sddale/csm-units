@@ -13,6 +13,8 @@ on:
 env:
   CTEST_OUTPUT_ON_FAILURE: 1
   CPM_SOURCE_CACHE: ${{ github.workspace }}/cpm_modules
+  BUILD_TYPE: Debug
+  EXECUTABLE: CSMUnits_test
 
 jobs:
   build:
