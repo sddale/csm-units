@@ -15,7 +15,7 @@ class Temperature {
 
   // copy constructor hmmm... this is right but test being weird
   constexpr explicit Temperature(const Temperature &temp) noexcept
-      : data(temp.data) {}
+      : data(temp.data) {}  // should be temp.Data()?
 
   constexpr auto Set(
       double value) noexcept {  // setting value to Kelvin as default - again??
