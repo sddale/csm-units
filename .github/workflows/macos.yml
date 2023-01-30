@@ -2,13 +2,9 @@ name: MacOS
 
 on:
   push:
-    branches:
-      - master
-      - main
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - master
-      - main
+    branches: [ "main" ]
 
 env:
   CTEST_OUTPUT_ON_FAILURE: 1

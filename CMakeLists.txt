@@ -70,8 +70,10 @@ set_property(
   PROPERTY CMAKE_EXPORT_COMPILE_COMMANDS ON
 )
 
-# Compiler Properties for Benchmarking
+# Compiler Properties for testing
 target_compile_features(${PROJECT_NAME}_test PRIVATE cxx_std_20)
 target_compile_options(${PROJECT_NAME}_test PRIVATE -g -Wall -Wextra)
 
 enable_testing()
+include(${doctest_SOURCE_DIR}/scripts/cmake/doctest.cmake)
+doctest_discover_tests(${PROJECT_NAME})
