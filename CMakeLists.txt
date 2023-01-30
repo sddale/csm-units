@@ -71,7 +71,11 @@ set_property(
 
 # Compiler Properties for testing
 target_compile_features(${PROJECT_NAME}_test PRIVATE cxx_std_20)
-target_compile_options(${PROJECT_NAME}_test PRIVATE -g -Wall -Wextra)
+if(MSVC)
+  target_compile_options(${PROJECT_NAME}_test PRIVATE /G /W4 /WX)
+else()
+  target_compile_options(${PROJECT_NAME}_test PRIVATE -g -Wall -Wextra -Wpedantic -Werror)
+endif()
 
 enable_testing()
 include(${doctest_SOURCE_DIR}/scripts/cmake/doctest.cmake)
