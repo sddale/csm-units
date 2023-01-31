@@ -152,8 +152,9 @@ TEST_SUITE("Pressure") {
       }
     }
 
-    // TODO(Sander): test Heterogenous unit type comparisons (ie comparing
+    // TODO(Sander): test Heterogenous unit types comparisons (ie comparing
     // between units)
+    // STILL TODO: Bar and Psi
   }
 
   // test to make sure the copy constructor works.
