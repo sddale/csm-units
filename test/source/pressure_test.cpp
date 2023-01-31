@@ -59,15 +59,14 @@ TEST_SUITE("Pressure") {
 
     SUBCASE("Testing Pressure to Pressure Comparisons") {
       // put these in here because the other sub cases don't need them
-
-      const auto testEq2 = Pascals(13.0);
+      const auto test2 = Pascals(13.0);
 
       CHECK(testLow <= test);
       CHECK(testLow < test);
       CHECK(test >= testLow);
       CHECK(test > testLow);
-      CHECK(test == testEq2);
-      CHECK_FALSE(test != testEq2);
+      CHECK(test == test2);
+      CHECK_FALSE(test != test2);
     }
 
     SUBCASE("Testing Pressure to Primitive Data Types Comparisons") {
@@ -76,37 +75,49 @@ TEST_SUITE("Pressure") {
 
       SUBCASE("Testing Pressure to Int Comparisons") {
         // put these in here because the other sub cases don't need them
-        const auto intLower = 5;
-        const auto intEq = 13;
+        const int intLower = 5;
+        const int intEq = 13;
+        const int intHigher = 15;
 
-        CHECK(test >= intLower);  // "C++ Feature: Type promotion"
-        CHECK(test > intLower);
-        CHECK(intLower <= test);  // look into why this works
-        CHECK(intLower < test);
-        CHECK(intEq == test);
-        CHECK_FALSE(test != intEq);
+        SUBCASE("Pressure to Int") {
+          CHECK(test <= intHigher);  // "C++ Feature: Type promotion"
+          CHECK(test < intHigher);
+          CHECK(test >= intLower);
+          CHECK(test > intLower);
+          CHECK(test == intEq);
+          CHECK_FALSE(test != intEq);
+        }
+
+        SUBCASE("Int to Pressure") {
+          CHECK(intLower <= test);  // look into why this works
+          CHECK(intLower < test);
+          CHECK(intHigher >= test);
+          CHECK(intHigher > test);
+          CHECK(intEq == test);
+          CHECK_FALSE(intEq != test);
+        }
       }
 
       SUBCASE("Testing Pressure to Double Comparisons") {
         // put these in here because the other sub cases don't need them
-        const auto doubleLower = 5.0;
-        const auto doubleEq = 13.0;
-        const auto doubleHigher = 15.0;
+        const double doubleLower = 5.0;
+        const double doubleEq = 13.0;
+        const double doubleHigher = 15.0;
 
         SUBCASE("Pressure to Double") {
           CHECK(test <= doubleHigher);
           CHECK(test < doubleHigher);
           CHECK(test >= doubleLower);
           CHECK(test > doubleLower);
-          CHECK(doubleEq == test);
-          CHECK_FALSE(doubleEq != test);
+          CHECK(test == doubleEq);
+          CHECK_FALSE(test != doubleEq);
         }
 
         SUBCASE("Double to Pressure") {
           CHECK(doubleLower <= test);
           CHECK(doubleLower < test);
-          CHECK(test >= doubleLower);
-          CHECK(test > doubleLower);
+          CHECK(doubleHigher >= test);
+          CHECK(doubleHigher > test);
           CHECK(doubleEq == test);
           CHECK_FALSE(doubleEq != test);
         }
