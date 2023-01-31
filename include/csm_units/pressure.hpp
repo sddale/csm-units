@@ -11,11 +11,11 @@ class Pressure {
  public:
   constexpr explicit Pressure(double pressure) noexcept : data(pressure) {}
 
-  // copy constructor
+  // copy constructor for pressures with the same unit
   constexpr explicit Pressure(const Pressure& to_copy) noexcept
       : data(to_copy.data) {}
 
-  // copy constructor
+  // copy constructor for pressures with different unit
   template <class OtherConverter>
   constexpr explicit Pressure(const Pressure<OtherConverter>& to_move) noexcept
       : data(converter.ConvertValueFrom(
