@@ -75,51 +75,79 @@ TEST_SUITE("Pressure") {
 
       SUBCASE("Testing Pressure to Int Comparisons") {
         // put these in here because the other sub cases don't need them
-        const int intLower = 5;
-        const int intEq = 13;
-        const int intHigher = 15;
+        const int int_lower = 5;
+        const int int_eq = 13;
+        const int int_higher = 15;
 
         SUBCASE("Pressure to Int") {
-          CHECK(test <= intHigher);  // "C++ Feature: Type promotion"
-          CHECK(test < intHigher);
-          CHECK(test >= intLower);
-          CHECK(test > intLower);
-          CHECK(test == intEq);
-          CHECK_FALSE(test != intEq);
+          CHECK(test <= int_higher);  // "C++ Feature: Type promotion"
+          CHECK(test < int_higher);
+          CHECK(test >= int_lower);
+          CHECK(test > int_lower);
+          CHECK(test == int_eq);
+          CHECK_FALSE(test != int_eq);
         }
 
         SUBCASE("Int to Pressure") {
-          CHECK(intLower <= test);  // look into why this works
-          CHECK(intLower < test);
-          CHECK(intHigher >= test);
-          CHECK(intHigher > test);
-          CHECK(intEq == test);
-          CHECK_FALSE(intEq != test);
+          CHECK(int_lower <= test);  // look into why this works
+          CHECK(int_lower < test);
+          CHECK(int_higher >= test);
+          CHECK(int_higher > test);
+          CHECK(int_eq == test);
+          CHECK_FALSE(int_eq != test);
         }
       }
 
       SUBCASE("Testing Pressure to Double Comparisons") {
         // put these in here because the other sub cases don't need them
-        const double doubleLower = 5.0;
-        const double doubleEq = 13.0;
-        const double doubleHigher = 15.0;
+        const double double_lower = 5.0;
+        const double double_eq = 13.0;
+        const double double_higher = 15.0;
 
         SUBCASE("Pressure to Double") {
-          CHECK(test <= doubleHigher);
-          CHECK(test < doubleHigher);
-          CHECK(test >= doubleLower);
-          CHECK(test > doubleLower);
-          CHECK(test == doubleEq);
-          CHECK_FALSE(test != doubleEq);
+          CHECK(test <= double_higher);
+          CHECK(test < double_higher);
+          CHECK(test >= double_lower);
+          CHECK(test > double_lower);
+          CHECK(test == double_eq);
+          CHECK_FALSE(test != double_eq);
         }
 
         SUBCASE("Double to Pressure") {
-          CHECK(doubleLower <= test);
-          CHECK(doubleLower < test);
-          CHECK(doubleHigher >= test);
-          CHECK(doubleHigher > test);
-          CHECK(doubleEq == test);
-          CHECK_FALSE(doubleEq != test);
+          CHECK(double_lower <= test);
+          CHECK(double_lower < test);
+          CHECK(double_higher >= test);
+          CHECK(double_higher > test);
+          CHECK(double_eq == test);
+          CHECK_FALSE(double_eq != test);
+        }
+      }
+    }
+
+    SUBCASE(
+        "Testing Heterogenous Unit Type Comparisons (i.e. comparing between "
+        "units)") {
+      SUBCASE("Testing Pascals to Atm Comparisons") {
+        const auto atm_lower = Atm(0.0);
+        const auto atm_eq = Atm(0.0001283000247);
+        const auto atm_higher = Atm(1.0);
+
+        SUBCASE("Pascals to Atm") {
+          CHECK(test <= atm_higher);
+          CHECK(test < atm_higher);
+          CHECK(test >= atm_lower);
+          CHECK(test > atm_lower);
+          CHECK(test == atm_eq);
+          CHECK_FALSE(test != atm_eq);
+        }
+
+        SUBCASE("Atm to Pascals") {
+          CHECK(atm_lower <= test);
+          CHECK(atm_lower < test);
+          CHECK(atm_higher >= test);
+          CHECK(atm_higher > test);
+          CHECK(atm_eq == test);
+          CHECK_FALSE(atm_eq != test);
         }
       }
     }

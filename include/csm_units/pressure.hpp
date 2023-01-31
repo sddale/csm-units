@@ -1,6 +1,8 @@
 #pragma once
 
+#include <cmath>
 #include <compare>
+#include <cstdlib>
 
 namespace csm_units {
 
@@ -33,15 +35,15 @@ class Pressure {
   template <class OtherConverter>
   constexpr auto operator<=>(
       const Pressure<OtherConverter>& rhs) const noexcept {
-    return converter.ConvertValueFrom(data) <=>
-           OtherConverter::ConvertValue(rhs.data);
+    return (converter.ConvertValue(data) -
+            OtherConverter::ConvertValue(rhs.data)) <=> 0;
   }
 
   template <class OtherConverter>
   constexpr auto operator==(const Pressure<OtherConverter>& rhs) const noexcept
       -> bool {
-    return converter.ConvertValueFrom(data) ==
-           OtherConverter::ConvertValue(rhs.data);
+    return std::abs(converter.ConvertValue(data) -
+                    OtherConverter::ConvertValue(rhs.data)) <= 0.0001;
   }
 
   constexpr auto operator<=>(double rhs) const noexcept { return data <=> rhs; }
