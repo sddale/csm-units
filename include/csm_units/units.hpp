@@ -16,4 +16,4 @@ using Kelvin = Temperature<KelvinConverter>;
 using Celsius = Temperature<CelsiusConverter>;
 using Fahrenheit = Temperature<FahrenheitConverter>;
 
-}
+}  // namespace csm_units
