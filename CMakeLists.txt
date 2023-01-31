@@ -55,7 +55,7 @@ packageProject(
 file(GLOB_RECURSE test_sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/test/source/*.cpp")
 
 # Test Executable
-add_executable(${PROJECT_NAME}_test test/source/main.cpp ${test_sources})
+add_executable(${PROJECT_NAME}_test ${test_sources})
 
 target_link_libraries(${PROJECT_NAME}_test PRIVATE doctest::doctest)
 
