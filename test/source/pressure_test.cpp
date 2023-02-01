@@ -127,6 +127,30 @@ TEST_SUITE("Pressure") {
     SUBCASE(
         "Testing Heterogenous Unit Type Comparisons (i.e. comparing between "
         "units)") {
+      SUBCASE("Testing Pascals to Bar Comparisons") {
+        const auto bar_lower = Atm(0.0);
+        const auto bar_eq = Atm(0.00013);
+        const auto bar_higher = Atm(1.0);
+
+        SUBCASE("Pascals to Bar") {
+          CHECK(test <= bar_higher);
+          CHECK(test < bar_higher);
+          CHECK(test >= bar_lower);
+          CHECK(test > bar_lower);
+          CHECK(test == bar_eq);
+          CHECK_FALSE(test != bar_eq);
+        }
+
+        SUBCASE("Bar to Pascals") {
+          CHECK(bar_lower <= test);
+          CHECK(bar_lower < test);
+          CHECK(bar_higher >= test);
+          CHECK(bar_higher > test);
+          CHECK(bar_eq == test);
+          CHECK_FALSE(bar_eq != test);
+        }
+      }
+
       SUBCASE("Testing Pascals to Atm Comparisons") {
         const auto atm_lower = Atm(0.0);
         const auto atm_eq = Atm(0.0001283000247);
