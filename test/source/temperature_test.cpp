@@ -14,42 +14,37 @@ TEST_SUITE("Temperature") {
     }
     {
       const auto temperature = Kelvin(300.4543);
-      CHECK(temperature.data== doctest::Approx(300.4543));
+      CHECK(temperature.data == doctest::Approx(300.4543));
     }
   }
 
   TEST_CASE("Fahrenheit to Kelvin") {
     {
       const auto temperature = Fahrenheit(32.0);
-      CHECK(temperature.data == doctest::Approx(273.15));
+      CHECK(temperature.data == doctest::Approx(32.0));
     }
     {
       const auto temperature = Fahrenheit(-32.554);
-      CHECK(temperature.data == doctest::Approx(237.286));
-      //CHECK(temperature.Value() == doctest::Approx(-32.554));
+      CHECK(temperature.data == doctest::Approx(-32.554));
     }
     {
       const auto temperature = Fahrenheit(150.58483948747);
-      CHECK(temperature.data == doctest::Approx(339.030));
-      //CHECK(temperature.Value() == doctest::Approx(150.58483948747));
+      CHECK(temperature.data == doctest::Approx(150.58483948747));
     }
   }
 
   TEST_CASE("Celsius to Kelvin") {
     {
       const auto temperature = Celsius(0.0);
-      CHECK(temperature.data == doctest::Approx(273.15));
-      //CHECK(temperature.Value() == doctest::Approx(0.0));
+      CHECK(temperature.data == doctest::Approx(0.0));
     }
     {
       const auto temperature = Celsius(-132.34211111);
-      CHECK(temperature.data == doctest::Approx(140.807));
-      //CHECK(temperature.Value() == doctest::Approx(-132.34211111));
+      CHECK(temperature.data == doctest::Approx(-132.34211111));
     }
     {
       const auto temperature = Celsius(120.453);
-      CHECK(temperature.data == doctest::Approx(393.602));
-      //CHECK(temperature.Value() == doctest::Approx(120.453));
+      CHECK(temperature.data == doctest::Approx(120.453));
     }
   }
 
@@ -72,64 +67,75 @@ TEST_SUITE("Operator Overloading Tests") {
     CHECK(temp <= highTemp);
     CHECK(temp >= sameTemp);
     CHECK(temp <= sameTemp);
+    CHECK(temp == sameTemp);
     CHECK(lowTemp < highTemp);
     CHECK(lowTemp <= highTemp);
     CHECK_FALSE(lowTemp > highTemp);
     CHECK_FALSE(highTemp <= lowTemp);
   }
 
-  // TEST_CASE("Fahrenheit - Same Unit") {
-  //   const auto temp = Fahrenheit(66.34);
-  //   const auto sameTemp = Fahrenheit(66.34);
-  //   const auto lowTemp = Fahrenheit(-56.8);
-  //   const auto highTemp = Fahrenheit(127.84);
+  TEST_CASE("Fahrenheit - Same Unit") {
+    const auto temp = Fahrenheit(66.34);
+    const auto sameTemp = Fahrenheit(66.34);
+    const auto lowTemp = Fahrenheit(-56.8);
+    const auto highTemp = Fahrenheit(127.84);
 
-  //   CHECK(temp >= lowTemp);
-  //   CHECK(lowTemp <= highTemp);
-  //   CHECK(highTemp >= temp);
-  //   CHECK(temp > lowTemp);
-  //   CHECK(lowTemp < highTemp);
-  //   CHECK(highTemp > temp);
-  //   CHECK(temp == sameTemp);
-  // }
+    CHECK(temp > lowTemp);
+    CHECK(temp < highTemp);
+    CHECK(temp >= lowTemp);
+    CHECK(temp <= highTemp);
+    CHECK(temp >= sameTemp);
+    CHECK(temp <= sameTemp);
+    CHECK(temp == sameTemp);
+    CHECK(lowTemp < highTemp);
+    CHECK(lowTemp <= highTemp);
+    CHECK_FALSE(lowTemp > highTemp);
+    CHECK_FALSE(highTemp <= lowTemp);
+  }
+
+  TEST_CASE("Celsius - Same Unit") {
+    const auto temp = Celsius(0.0);
+    const auto sameTemp = Celsius(0.0);
+    const auto lowTemp = Celsius(-34.8);
+    const auto highTemp = Celsius(94.33);
+
+    CHECK(temp > lowTemp);
+    CHECK(temp < highTemp);
+    CHECK(temp >= lowTemp);
+    CHECK(temp <= highTemp);
+    CHECK(temp >= sameTemp);
+    CHECK(temp <= sameTemp);
+    CHECK(temp == sameTemp);
+    CHECK(lowTemp < highTemp);
+    CHECK(lowTemp <= highTemp);
+    CHECK_FALSE(lowTemp > highTemp);
+    CHECK_FALSE(highTemp <= lowTemp);
+  }
+
+  TEST_CASE("Different Unit Comparisons") {
+    const auto tempCelsius = Celsius(0.0);
+    const auto tempKelvin = Kelvin(273.15);
+    const auto tempFahrenheit = Fahrenheit(32.0);
+    CHECK(tempCelsius == tempKelvin);
+    CHECK(tempCelsius == tempFahrenheit);
+    CHECK(tempKelvin >= tempFahrenheit);
+
+    // add way more here
+  }
 }
 
   
 
-  
 
-  // TEST_CASE("Overloading Celsius") {
-  //   const auto temp = Celsius(0.0);
-  //   const auto sameTemp = Celsius(0.0);
-  //   const auto lowTemp = Celsius(-34.8);
-  //   const auto highTemp = Celsius(94.33);
 
-  //   CHECK(temp >= lowTemp);
-  //   CHECK(lowTemp <= highTemp);
-  //   CHECK(highTemp >= temp);
-  //   CHECK(highTemp >= sameTemp);
-  //   CHECK(temp > lowTemp);
-  //   CHECK(lowTemp < highTemp);
-  //   CHECK(highTemp > temp);
-  //   CHECK(temp == sameTemp);
-  // }
+  // TODO(MANAS): Refactor comparison overload test cases
 
-  // TEST_CASE("different unit test check") {
-  //   const auto temperature = Celsius(0.0);
-  //   const auto temperature2 = Kelvin(273.15);
-  //   const auto temperature3 = Fahrenheit(273.15);
-  //   CHECK(temperature == temperature2);
-  //   CHECK_FALSE(temperature2 > temperature3);
-  // }
-
-  // // TODO(MANAS): Refactor comparison overload test cases
-
-  // TEST_CASE("Copy Constructor") {
-  //   const auto temperature = Kelvin(30.5);
-  //   const auto diffTemperature =
-  //       Kelvin(temperature);  // throwing error here not sure what is going on
-  //   CHECK(diffTemperature.data == doctest::Approx(30.5));
-  // }
+  TEST_CASE("Copy Constructor") {
+    const auto temperature = Kelvin(30.5);
+    const auto diffTemperature =
+        Kelvin(temperature);  // throwing error here not sure what is going on
+    CHECK(diffTemperature.data == doctest::Approx(30.5));
+  }
 }
 
 }  // namespace csm_units::test

@@ -7,10 +7,8 @@ namespace csm_units {
 template <class Converter>
 class Temperature {
  public:
-  // setting data to temperature, but had to convert it first using template and
-  // respective converter function
-  constexpr explicit Temperature(
-      double temperature) noexcept  // setting data to Kelvin
+  constexpr explicit Temperature(            // setting data to default value
+      double temperature) noexcept  
       : data(temperature), converter() {}
 
   // copy constructor 
