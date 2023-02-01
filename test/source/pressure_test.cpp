@@ -128,17 +128,17 @@ TEST_SUITE("Pressure") {
         "Testing Heterogenous Unit Type Comparisons (i.e. comparing between "
         "units)") {
       SUBCASE("Testing Pascals to Bar Comparisons") {
-        const auto bar_lower = Atm(0.0);
-        const auto bar_eq = Atm(0.00013);
-        const auto bar_higher = Atm(1.0);
+        const auto bar_lower = Bar(0.0);
+        const auto bar_eq = Bar(0.00013);
+        const auto bar_higher = Bar(1.0);
 
         SUBCASE("Pascals to Bar") {
           CHECK(test <= bar_higher);
           CHECK(test < bar_higher);
           CHECK(test >= bar_lower);
           CHECK(test > bar_lower);
-          CHECK(test == bar_eq);
-          CHECK_FALSE(test != bar_eq);
+          CHECK_FALSE(test == bar_eq);
+          CHECK(test != bar_eq);
         }
 
         SUBCASE("Bar to Pascals") {
@@ -146,8 +146,8 @@ TEST_SUITE("Pressure") {
           CHECK(bar_lower < test);
           CHECK(bar_higher >= test);
           CHECK(bar_higher > test);
-          CHECK(bar_eq == test);
-          CHECK_FALSE(bar_eq != test);
+          CHECK_FALSE(bar_eq == test);
+          CHECK(bar_eq != test);
         }
       }
 
@@ -161,8 +161,8 @@ TEST_SUITE("Pressure") {
           CHECK(test < atm_higher);
           CHECK(test >= atm_lower);
           CHECK(test > atm_lower);
-          CHECK(test == atm_eq);
-          CHECK_FALSE(test != atm_eq);
+          CHECK_FALSE(test == atm_eq);
+          CHECK(test != atm_eq);
         }
 
         SUBCASE("Atm to Pascals") {
@@ -170,15 +170,35 @@ TEST_SUITE("Pressure") {
           CHECK(atm_lower < test);
           CHECK(atm_higher >= test);
           CHECK(atm_higher > test);
-          CHECK(atm_eq == test);
-          CHECK_FALSE(atm_eq != test);
+          CHECK_FALSE(atm_eq == test);
+          CHECK(atm_eq != test);
+        }
+      }
+
+      SUBCASE("Testing Pascals to Psi Comparisons") {
+        const auto psi_lower = Psi(0.0);
+        const auto psi_eq = Psi(0.00188549);
+        const auto psi_higher = Psi(1.0);
+
+        SUBCASE("Pascals to Atm") {
+          CHECK(test <= psi_higher);
+          CHECK(test < psi_higher);
+          CHECK(test >= psi_lower);
+          CHECK(test > psi_lower);
+          CHECK_FALSE(test == psi_eq);
+          CHECK(test != psi_eq);
+        }
+
+        SUBCASE("Atm to Pascals") {
+          CHECK(psi_lower <= test);
+          CHECK(psi_lower < test);
+          CHECK(psi_higher >= test);
+          CHECK(psi_higher > test);
+          CHECK_FALSE(psi_eq == test);
+          CHECK(psi_eq != test);
         }
       }
     }
-
-    // TODO(Sander): test Heterogenous unit types comparisons (ie comparing
-    // between units)
-    // STILL TODO: Bar and Psi
   }
 
   // test to make sure the copy constructor works.

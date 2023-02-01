@@ -35,15 +35,15 @@ class Pressure {
   template <class OtherConverter>
   constexpr auto operator<=>(
       const Pressure<OtherConverter>& rhs) const noexcept {
-    return (converter.ConvertValue(data) -
-            OtherConverter::ConvertValue(rhs.data)) <=> 0;
+    return converter.ConvertValue(data) <=>
+           OtherConverter::ConvertValue(rhs.data);
   }
 
   template <class OtherConverter>
   constexpr auto operator==(const Pressure<OtherConverter>& rhs) const noexcept
       -> bool {
-    return std::abs(converter.ConvertValue(data) -
-                    OtherConverter::ConvertValue(rhs.data)) <= 0.0001;
+    return converter.ConvertValue(data) ==
+           OtherConverter::ConvertValue(rhs.data);
   }
 
   constexpr auto operator<=>(double rhs) const noexcept { return data <=> rhs; }
