@@ -13,10 +13,11 @@ class Temperature {
       double temperature) noexcept  // setting data to Kelvin
       : data(temperature), converter() {}
 
-  // copy constructor hmmm... this is right but test being weird
+  // copy constructor 
   constexpr explicit Temperature(const Temperature &temp) noexcept
       : data(temp.data) {}
 
+  // other copy constructor
   template <class OtherConverter>
   constexpr explicit Temperature(
       const Temperature<OtherConverter> &temp) noexcept
