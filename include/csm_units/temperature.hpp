@@ -7,11 +7,11 @@ namespace csm_units {
 template <class Converter>
 class Temperature {
  public:
-  constexpr explicit Temperature(            // setting data to default value
-      double temperature) noexcept  
+  constexpr explicit Temperature(  // setting data to default value
+      double temperature) noexcept
       : data(temperature), converter() {}
 
-  // copy constructor 
+  // copy constructor
   constexpr explicit Temperature(const Temperature &temp) noexcept
       : data(temp.data) {}
 
