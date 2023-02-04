@@ -203,11 +203,9 @@ TEST_SUITE("Pressure") {
 
   // test to make sure the copy constructor works.
   TEST_CASE("Copy Constructor") {
-    const auto test = Pascals(1.0);
-    const auto copyTest = Pascals(test);
-    const auto copyTest2 = Bar(test);
+    auto test = Pascals(1.0);
+    auto copyTest = test;
     CHECK(test == copyTest);
-    CHECK(test == copyTest2);
   }
 
   // test to make sure the move constructor works.

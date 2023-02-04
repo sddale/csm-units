@@ -17,12 +17,23 @@ class Pressure {
 
   // copy constructor for pressures with different unit
   template <class OtherConverter>
-  constexpr explicit Pressure(const Pressure<OtherConverter>& to_move) noexcept
+  constexpr explicit Pressure(const Pressure<OtherConverter>& to_copy) noexcept
       : data(converter.ConvertValueFrom(
-            OtherConverter::ConvertValue(to_move.data))) {}
+            OtherConverter::ConvertValue(to_copy.data))) {}
 
   // move constructor
-  constexpr Pressure(Pressure&& to_move) noexcept : data(to_move.Data()) {}
+  constexpr explicit Pressure(const Pressure&& to_move) noexcept
+      : data(to_move.data) {}
+
+  // not sure why the overload operator for = is not working
+  template <class OtherConverter>
+  constexpr auto operator=(const Pressure<OtherConverter>& rhs) const noexcept
+      -> Pressure<OtherConverter>& {
+    if (this == &rhs) return *this;
+
+    *this = Pressure<OtherConverter>(rhs);
+    return *this;
+  }
 
   constexpr auto operator<=>(const Pressure& rhs) const noexcept {
     return data <=> rhs.data;
