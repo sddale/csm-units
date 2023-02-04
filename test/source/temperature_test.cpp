@@ -113,12 +113,22 @@ TEST_SUITE("Operator Overloading Tests") {
   }
 
   TEST_CASE("Different Unit Comparisons") {
-    const auto tempCelsius = Celsius(0.0);
-    const auto tempKelvin = Kelvin(273.15);
-    const auto tempFahrenheit = Fahrenheit(32.0);
-    CHECK(tempCelsius == tempKelvin);
-    CHECK(tempCelsius == tempFahrenheit);
-    CHECK(tempKelvin >= tempFahrenheit);
+    {
+      const auto tempCelsius = Celsius(0.0);
+      const auto tempKelvin = Kelvin(273.15);
+      const auto tempFahrenheit = Fahrenheit(32.0);
+      
+      CHECK(tempCelsius == tempKelvin);
+      CHECK(tempCelsius == tempFahrenheit);
+      CHECK(tempKelvin >= tempFahrenheit);
+    }
+    {
+      const auto tempCelsius = Celsius(100.0);
+      const auto tempKelvin = Kelvin(373.15);
+      const auto tempFahrenheit = Fahrenheit(212.0);
+
+    }
+
 
     // add way more here
   }
