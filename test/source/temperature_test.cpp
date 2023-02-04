@@ -11,10 +11,12 @@ TEST_SUITE("Temperature") {
     {
       const auto temperature = Kelvin(34.0);
       CHECK(temperature.data == doctest::Approx(34.0));
+      CHECK(KelvinConverter::ConvertValue(temperature.data) == doctest::Approx(34.0));
     }
     {
       const auto temperature = Kelvin(300.4543);
       CHECK(temperature.data == doctest::Approx(300.4543));
+      CHECK(KelvinConverter::ConvertValue(temperature.data) == doctest::Approx(300.4543));
     }
   }
 
@@ -22,14 +24,17 @@ TEST_SUITE("Temperature") {
     {
       const auto temperature = Fahrenheit(32.0);
       CHECK(temperature.data == doctest::Approx(32.0));
+      CHECK(FahrenheitConverter::ConvertValue(temperature.data) == doctest::Approx(273.15));
     }
     {
       const auto temperature = Fahrenheit(-32.554);
       CHECK(temperature.data == doctest::Approx(-32.554));
+      CHECK(FahrenheitConverter::ConvertValue(temperature.data) == doctest::Approx(237.28677));
     }
     {
       const auto temperature = Fahrenheit(150.58483948747);
       CHECK(temperature.data == doctest::Approx(150.58483948747));
+      CHECK(FahrenheitConverter::ConvertValue(temperature.data) == doctest::Approx(339.03044444));
     }
   }
 
@@ -37,14 +42,18 @@ TEST_SUITE("Temperature") {
     {
       const auto temperature = Celsius(0.0);
       CHECK(temperature.data == doctest::Approx(0.0));
+      CHECK(CelsiusConverter::ConvertValue(temperature.data) == doctest::Approx(273.15));
     }
     {
       const auto temperature = Celsius(-132.34211111);
       CHECK(temperature.data == doctest::Approx(-132.34211111));
+      CHECK(CelsiusConverter::ConvertValue(temperature.data) == doctest::Approx(140.807889));
+      
     }
     {
       const auto temperature = Celsius(120.453);
       CHECK(temperature.data == doctest::Approx(120.453));
+      CHECK(CelsiusConverter::ConvertValue(temperature.data) == doctest::Approx(393.603));
     }
   }
 
@@ -70,6 +79,7 @@ TEST_SUITE("Operator Overloading Tests") {
     CHECK(temp == sameTemp);
     CHECK(lowTemp < highTemp);
     CHECK(lowTemp <= highTemp);
+    CHECK(temp != lowTemp);
     CHECK_FALSE(lowTemp > highTemp);
     CHECK_FALSE(highTemp <= lowTemp);
   }
@@ -89,6 +99,7 @@ TEST_SUITE("Operator Overloading Tests") {
     CHECK(temp == sameTemp);
     CHECK(lowTemp < highTemp);
     CHECK(lowTemp <= highTemp);
+    CHECK(temp != highTemp);
     CHECK_FALSE(lowTemp > highTemp);
     CHECK_FALSE(highTemp <= lowTemp);
   }
@@ -108,28 +119,61 @@ TEST_SUITE("Operator Overloading Tests") {
     CHECK(temp == sameTemp);
     CHECK(lowTemp < highTemp);
     CHECK(lowTemp <= highTemp);
+    CHECK(highTemp != lowTemp);
     CHECK_FALSE(lowTemp > highTemp);
     CHECK_FALSE(highTemp <= lowTemp);
   }
 
   TEST_CASE("Different Unit Comparisons") {
-    {
+    SUBCASE("All Unit Comparison 0") {
+      // all these are the same
       const auto tempCelsius = Celsius(0.0);
       const auto tempKelvin = Kelvin(273.15);
       const auto tempFahrenheit = Fahrenheit(32.0);
       
       CHECK(tempCelsius == tempKelvin);
       CHECK(tempCelsius == tempFahrenheit);
+      CHECK(tempKelvin == tempFahrenheit);
+      CHECK(tempCelsius >= tempKelvin);
+      CHECK(tempCelsius <= tempFahrenheit);
       CHECK(tempKelvin >= tempFahrenheit);
+      CHECK_FALSE(tempCelsius < tempKelvin);
+      CHECK_FALSE(tempCelsius < tempFahrenheit);
+      CHECK_FALSE(tempKelvin > tempFahrenheit);
     }
-    {
+    SUBCASE("All Unit Comparison 1") {
+      // all these are the same
       const auto tempCelsius = Celsius(100.0);
       const auto tempKelvin = Kelvin(373.15);
       const auto tempFahrenheit = Fahrenheit(212.0);
 
+      CHECK(tempCelsius == tempKelvin);
+      CHECK(tempCelsius == tempFahrenheit);
+      CHECK(tempKelvin == tempFahrenheit);
+      CHECK(tempCelsius >= tempKelvin);
+      CHECK(tempCelsius <= tempFahrenheit);
+      CHECK(tempKelvin >= tempFahrenheit);
+      CHECK_FALSE(tempCelsius < tempKelvin);
+      CHECK_FALSE(tempCelsius < tempFahrenheit);
+      CHECK_FALSE(tempKelvin > tempFahrenheit);
     }
+    SUBCASE("All Unit Comparison 2") {
+      // all these are the same
+      const auto tempCelsius = Celsius(24.0);
+      const auto tempKelvin = Kelvin(297.15);
+      const auto tempFahrenheit = Fahrenheit(75.2);
 
-
+      CHECK(tempCelsius == tempKelvin);
+      CHECK(tempCelsius == tempFahrenheit);
+      CHECK(tempKelvin == tempFahrenheit);
+      CHECK(tempCelsius >= tempKelvin);
+      CHECK(tempCelsius <= tempFahrenheit);
+      CHECK(tempKelvin >= tempFahrenheit);
+      CHECK_FALSE(tempCelsius < tempKelvin);
+      CHECK_FALSE(tempCelsius < tempFahrenheit);
+      CHECK_FALSE(tempKelvin > tempFahrenheit);
+    }
+  
     // add way more here
   }
 }
