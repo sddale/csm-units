@@ -223,9 +223,21 @@ TEST_SUITE("Temperature") {
     const auto tempCelsius = Celsius(68.45);
     const auto tempFahrenheit = Fahrenheit(98.45);
 
-    SUBCASE("test") {
-      const auto tempObject = Kelvin(tempKelvin);
-      CHECK(tempObject.data == doctest::Approx(325.0));
+    SUBCASE("Same Unit Copies") {
+      // using default copy constructor
+      const auto tempKelObject = Kelvin(tempKelvin);
+      const auto tempCelObject = Celsius(tempCelsius);
+      const auto tempFahObject = Fahrenheit(tempFahrenheit);
+
+      CHECK(tempKelObject.data == doctest::Approx(325.0));
+      CHECK(tempCelObject.data == doctest::Approx(68.45));
+      CHECK(tempFahObject.data == doctest::Approx(98.45));
+      CHECK(FahrenheitConverter::ConvertValue(tempFahObject.data) == doctest::Approx(310.066));
+      CHECK(CelsiusConverter::ConvertValue(tempCelObject.data) == doctest::Approx(341.6));
+      CHECK(KelvinConverter::ConvertValue(tempKelObject.data) == doctest::Approx(325.0)); 
+      //
+      
+
     }
   
     
