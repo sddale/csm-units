@@ -182,7 +182,6 @@ TEST_SUITE("Temperature") {
         CHECK_FALSE(tempKelvin > tempFahrenheit);
       }
 
-      // add way more here
     }
 
     TEST_CASE("Comparisons With Int/Double Types") {
@@ -213,25 +212,23 @@ TEST_SUITE("Temperature") {
         CHECK(tempKelvin > high_num);
         CHECK(tempKelvin != low_num);
         CHECK(tempFahrenheit <= high_num);
-        CHECK_FALSE(tempFahrenheit == num);
+        CHECK_FALSE(tempFahrenheit == high_num);
       }
-
-
-
-
-
-
 
     }
   }
 
-  // TODO(MANAS): Refactor comparison overload test cases
-
   TEST_CASE("Copy Constructor") {
-    const auto temperature = Kelvin(30.5);
-    const auto diffTemperature =
-        Kelvin(temperature);  // throwing error here not sure what is going on
-    CHECK(diffTemperature.data == doctest::Approx(30.5));
+    const auto tempKelvin = Kelvin(325.0);
+    const auto tempCelsius = Celsius(68.45);
+    const auto tempFahrenheit = Fahrenheit(98.45);
+
+    SUBCASE("test") {
+      const auto tempObject = Kelvin(tempKelvin);
+      CHECK(tempObject.data == doctest::Approx(325.0));
+    }
+  
+    
   }
 }
 
