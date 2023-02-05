@@ -184,6 +184,45 @@ TEST_SUITE("Temperature") {
 
       // add way more here
     }
+
+    TEST_CASE("Comparisons With Int/Double Types") {
+      const auto tempCelsius = Celsius(24.0);
+      const auto tempKelvin = Kelvin(297.15);
+      const auto tempFahrenheit = Fahrenheit(75.2);
+
+      SUBCASE("Integer Comparisons") {
+        int low_num = -50;
+        int num = 22;
+        int high_num = 80;
+
+        CHECK(tempCelsius < high_num);
+        CHECK(tempCelsius >= num);
+        CHECK(tempKelvin > high_num);
+        CHECK(tempKelvin != low_num);
+        CHECK(tempFahrenheit <= high_num);
+        CHECK_FALSE(tempFahrenheit == num);
+      }
+
+      SUBCASE("Double Comparisons") {
+        double low_num = -50.47;
+        double num = 22.78;
+        double high_num = 80.556;
+
+        CHECK(tempCelsius < high_num);
+        CHECK(tempCelsius >= num);
+        CHECK(tempKelvin > high_num);
+        CHECK(tempKelvin != low_num);
+        CHECK(tempFahrenheit <= high_num);
+        CHECK_FALSE(tempFahrenheit == num);
+      }
+
+
+
+
+
+
+
+    }
   }
 
   // TODO(MANAS): Refactor comparison overload test cases

@@ -22,8 +22,12 @@ class Temperature {
       : data(converter.ConvertValueFrom(
             OtherConverter::ConvertValue(temp.data))) {}
 
-  constexpr auto operator==(const Temperature &temp) const noexcept -> bool {
-    return data == temp.data;
+  constexpr auto operator==(double temp) const noexcept -> bool {
+    return data == temp;
+  }
+
+  constexpr auto operator<=>(double temp) const noexcept {
+    return data <=> temp;
   }
 
   template <class OtherConverter>
