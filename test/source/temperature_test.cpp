@@ -181,7 +181,6 @@ TEST_SUITE("Temperature") {
         CHECK_FALSE(tempCelsius < tempFahrenheit);
         CHECK_FALSE(tempKelvin > tempFahrenheit);
       }
-
     }
 
     TEST_CASE("Comparisons With Int/Double Types") {
@@ -214,7 +213,11 @@ TEST_SUITE("Temperature") {
         CHECK(tempFahrenheit <= high_num);
         CHECK_FALSE(tempFahrenheit == high_num);
       }
+    }
 
+    TEST_CASE("Assignment Operator Overload") {
+      const auto tempKelvin = Kelvin(273.15);
+      // const auto tempKelvin2 = tempKelvin;  // this is not working
     }
   }
 
@@ -232,15 +235,22 @@ TEST_SUITE("Temperature") {
       CHECK(tempKelObject.data == doctest::Approx(325.0));
       CHECK(tempCelObject.data == doctest::Approx(68.45));
       CHECK(tempFahObject.data == doctest::Approx(98.45));
-      CHECK(FahrenheitConverter::ConvertValue(tempFahObject.data) == doctest::Approx(310.066));
-      CHECK(CelsiusConverter::ConvertValue(tempCelObject.data) == doctest::Approx(341.6));
-      CHECK(KelvinConverter::ConvertValue(tempKelObject.data) == doctest::Approx(325.0)); 
+      CHECK(FahrenheitConverter::ConvertValue(tempFahObject.data) ==
+            doctest::Approx(310.066));
+      CHECK(CelsiusConverter::ConvertValue(tempCelObject.data) ==
+            doctest::Approx(341.6));
+      CHECK(KelvinConverter::ConvertValue(tempKelObject.data) ==
+            doctest::Approx(325.0));
       //
-      
-
     }
-  
-    
+
+    SUBCASE("Different Unit Copies (other copy constructor)") {
+      // not sure how to go about this
+    }
+  }
+
+  TEST_CASE("Move Constructor") {
+    // test for move constructor
   }
 }
 

@@ -22,6 +22,12 @@ class Temperature {
       : data(converter.ConvertValueFrom(
             OtherConverter::ConvertValue(temp.data))) {}
 
+
+
+  // move constructor goes here
+
+
+
   constexpr auto operator==(double temp) const noexcept -> bool {
     return data == temp;
   }
@@ -42,6 +48,14 @@ class Temperature {
       const Temperature<OtherConverter> &temp) const noexcept {
     return converter.ConvertValue(data) <=>
            OtherConverter::ConvertValue(temp.data);
+  }
+
+  // assignment operator overload
+  template <class OtherConverter>
+  constexpr auto operator=(
+      const Temperature<OtherConverter> &temp) const noexcept {
+    // data = temp.data; not this?
+    converter.ConvertValue(data) = OtherConverter::ConvertValue(temp.data);
   }
 
   double data;
