@@ -22,11 +22,11 @@ class Temperature {
       : data(converter.ConvertValueFrom(
             OtherConverter::ConvertValue(temp.data))) {}
 
-
-
-  // move constructor goes here
-
-
+  // move constructor
+  constexpr explicit Temperature(const Temperature &&temp) noexcept
+      : data(temp.data) {
+    temp.data = nullptr;
+  }
 
   constexpr auto operator==(double temp) const noexcept -> bool {
     return data == temp;
