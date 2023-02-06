@@ -1,6 +1,7 @@
 # Disable justifications:
 # -readability-magic-numbers: Math coeffs
 # -misc-non-private-member-variables-in-classes: Waiting on refactor
+# -readability-function-cognitive-complexity: Unfairly punishes functional programming
 Checks:
     -*,
     bugprone-*,
@@ -11,3 +12,4 @@ Checks:
     readability-*,
     -readability-magic-numbers,
     -misc-non-private-member-variables-in-classes,
+    -readability-function-cognitive-complexity
