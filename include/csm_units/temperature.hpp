@@ -58,8 +58,8 @@ class Temperature {
       return *this;
     }
     delete data;
-    data = temp.data;  // not this
-    // have to do a deep copy - call copy constructor again
+    data = temp.data;  // not this?
+    // have to do a deep copy - call copy constructor again?
     // converter.ConvertValue(data) = OtherConverter::ConvertValue(temp.data);
   }
 
