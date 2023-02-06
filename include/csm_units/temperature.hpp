@@ -1,6 +1,7 @@
 #pragma once
 #include <cmath>
 #include <compare>
+#include <cstddef>
 
 namespace csm_units {
 
@@ -9,24 +10,29 @@ class Temperature {
  public:
   constexpr explicit Temperature(  // setting data to default value
       double temperature) noexcept
-      : data(temperature), converter() {}
+      : data(temperature) {}
 
   // copy constructor - keeps it the same
-  constexpr explicit Temperature(const Temperature &temp) noexcept
-      : data(temp.data) {}
+  constexpr Temperature(const Temperature &temp) noexcept : data(temp.data) {}
 
   // copy constructor - converts to Kelvin
   template <class OtherConverter>
-  constexpr explicit Temperature(
-      const Temperature<OtherConverter> &temp) noexcept
-      : data(converter.ConvertValueFrom(
+  constexpr Temperature(const Temperature<OtherConverter> &temp) noexcept
+      : data(Converter::ConvertValueFrom(
             OtherConverter::ConvertValue(temp.data))) {}
 
-  // move constructor
-  constexpr explicit Temperature(const Temperature &&temp) noexcept
-      : data(temp.data) {
-    temp.data = nullptr;
-  }
+  // // move constructor
+  // constexpr Temperature(Temperature &&temp) noexcept : data(temp.data) {
+  //   temp.data = nullptr;
+  // }
+
+  // move constructor - converts to Kelvin
+  // template <class OtherConverter>
+  // constexpr Temperature(Temperature<OtherConverter> &&temp) noexcept
+  //     : data(Converter::ConvertValueFrom(
+  //           OtherConverter::ConvertValue(temp.data))) {
+  //   temp.data = 0;
+  // }
 
   constexpr auto operator==(double temp) const noexcept -> bool {
     return data == temp;
@@ -39,36 +45,30 @@ class Temperature {
   template <class OtherConverter>
   constexpr auto operator==(
       const Temperature<OtherConverter> &temp) const noexcept -> bool {
-    return converter.ConvertValue(data) ==
+    return Converter::ConvertValue(data) ==
            OtherConverter::ConvertValue(temp.data);
   }
 
   template <class OtherConverter>
   constexpr auto operator<=>(
       const Temperature<OtherConverter> &temp) const noexcept {
-    return converter.ConvertValue(data) <=>
+    return Converter::ConvertValue(data) <=>
            OtherConverter::ConvertValue(temp.data);
   }
 
-  // assignment operator overload
+  // copy assignment
   template <class OtherConverter>
   constexpr auto operator=(
-      const Temperature<OtherConverter> &temp) const noexcept {
+      const Temperature<OtherConverter> &temp) const noexcept -> Temperature & {
     if (this == &temp) {
       return *this;
     }
-    delete data;
-    data = temp.data;  // not this?
-    // have to do a deep copy - call copy constructor again?
-    // converter.ConvertValue(data) = OtherConverter::ConvertValue(temp.data);
+    data = Converter::ConvertValueFrom(OtherConverter::ConvertValue(temp.data));
+
+    return *this;
   }
 
   double data;
-
- private:
-  [[no_unique_address]] Converter
-      converter;  // Performance compared to references to static i.e.
-                  // converter.Convert vs. Converter::Convert ?
 };
 
 class KelvinConverter {

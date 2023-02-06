@@ -6,6 +6,7 @@
 
 namespace csm_units::test {
 
+// NOLINTBEGIN(modernize-use-trailing-return-type)
 TEST_SUITE("Temperature") {
   TEST_CASE("Kelvin to Kelvin") {
     SUBCASE("Kelvin Test 0") {
@@ -216,8 +217,9 @@ TEST_SUITE("Temperature") {
     }
 
     TEST_CASE("Assignment Operator Overload") {
-      const auto tempKelvin = Kelvin(273.15);
-      // const auto tempKelvin2 = tempKelvin;  // this is not working
+      [[maybe_unused]] const auto tempKelvin = Kelvin(273.15);
+      [[maybe_unused]] const auto tempKelvin2 =
+          tempKelvin;  // this is not working
     }
   }
 
@@ -226,6 +228,17 @@ TEST_SUITE("Temperature") {
     const auto tempCelsius = Celsius(68.45);
     const auto tempFahrenheit = Fahrenheit(98.45);
 
+    const auto foo = Kelvin(Kelvin(325));
+
+    // 1. Kelvin(325) gets constructed
+    // 2. Outer Kelvin make a copy
+    // 3. Foo gets copy
+
+    // 1. Kelvin(325) is an r-value ("temporary")
+    // 2. Outer Kelvin move constructor gets called
+    // 3. Move assignment operator
+
+    // recommend: std::vector move semantics
     SUBCASE("Same Unit Copies") {
       // using default copy constructor
       const auto tempKelObject = Kelvin(tempKelvin);
@@ -249,9 +262,68 @@ TEST_SUITE("Temperature") {
     }
   }
 
-  TEST_CASE("Move Constructor") {
-    // test for move constructor
-  }
+  // TEST_CASE("Move Constructor") {
+  //   auto tempKelvin = Kelvin(325.0);
+  //   auto tempCelsius = Celsius(68.45);
+  //   auto tempFahrenheit = Fahrenheit(98.45);
+
+  //   SUBCASE("Same Unit Copies") {
+  //     // using default copy constructor
+  //     const auto tempObject = std::move(tempKelvin);
+  //     const auto tempKelObject = Kelvin(std::move(tempKelvin));
+  //     const auto tempCelObject = Celsius(tempCelsius);
+  //     const auto tempFahObject = Fahrenheit(tempFahrenheit);
+
+  //     CHECK(tempKelObject.data == doctest::Approx(325.0));
+  //     CHECK(tempCelObject.data == doctest::Approx(68.45));
+  //     CHECK(tempFahObject.data == doctest::Approx(98.45));
+  //     CHECK(FahrenheitConverter::ConvertValue(tempFahObject.data) ==
+  //           doctest::Approx(310.066));
+  //     CHECK(CelsiusConverter::ConvertValue(tempCelObject.data) ==
+  //           doctest::Approx(341.6));
+  //     CHECK(KelvinConverter::ConvertValue(tempKelObject.data) ==
+  //           doctest::Approx(325.0));
+  //     //
+  //   }
+
+  //   SUBCASE("Different Unit Copies (other copy constructor)") {
+  //     // not sure how to go about this
+  //   }
+  // }
 }
+// NOLINTEND(modernize-use-trailing-return-type)
 
 }  // namespace csm_units::test
+
+class Vector {
+ public:
+  Vector(const Vector& in) {
+    size = in.size;
+    capacity = in.capacity;
+    data = in.data;  // slow!
+  }
+  Vector(Vector&& in) {
+    size = in.size;
+    capacity = in.capacity;
+    data.begin() = in.data.begin();
+    data.end() = in.data.end();
+    // make data null;
+  }
+  int size;
+  int capacity;
+  std::array<huge> data;
+};
+
+Vector v1 = v2;
+Vector v3 = std::move(v2);  // this may invalidate v2, but faster
+
+class Foo {
+  Foo(Foo&&) {
+    // use vector move semantics
+  }
+  Vector member;
+}
+
+template <class T>
+void foo(T&& bar) {  // takes both l and r values
+}
