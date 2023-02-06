@@ -54,8 +54,8 @@ class Temperature {
   template <class OtherConverter>
   constexpr auto operator=(
       const Temperature<OtherConverter> &temp) const noexcept {
-    // data = temp.data; not this?
-    converter.ConvertValue(data) = OtherConverter::ConvertValue(temp.data);
+    data = temp.data;  // not this
+    // converter.ConvertValue(data) = OtherConverter::ConvertValue(temp.data);
   }
 
   double data;
