@@ -1,6 +1,8 @@
 #pragma once
 
+#include <cmath>
 #include <compare>
+#include <cstdlib>
 
 namespace csm_units {
 
@@ -9,18 +11,28 @@ class Pressure {
  public:
   constexpr explicit Pressure(double pressure) noexcept : data(pressure) {}
 
-  // copy constructor
-  constexpr explicit Pressure(const Pressure& to_copy) noexcept
-      : data(to_copy.data) {}
+  // copy constructor for pressures with the same unit
+  constexpr Pressure(const Pressure& to_copy) noexcept : data(to_copy.data) {}
 
-  // copy constructor
+  // copy constructor for pressures with different unit
   template <class OtherConverter>
-  constexpr explicit Pressure(const Pressure<OtherConverter>& to_move) noexcept
+  constexpr Pressure(const Pressure<OtherConverter>& to_copy) noexcept
       : data(converter.ConvertValueFrom(
-            OtherConverter::ConvertValue(to_move.data))) {}
+            OtherConverter::ConvertValue(to_copy.data))) {}
 
   // move constructor
-  constexpr Pressure(Pressure&& to_move) noexcept : data(to_move.Data()) {}
+  constexpr explicit Pressure(const Pressure&& to_move) noexcept
+      : data(to_move.data) {}
+
+  // not sure why the overload operator for = is not working
+  template <class OtherConverter>
+  constexpr auto operator=(const Pressure<OtherConverter>& rhs) const noexcept
+      -> Pressure<OtherConverter>& {
+    if (this == &rhs) return *this;
+
+    *this = Pressure<OtherConverter>(rhs);
+    return *this;
+  }
 
   constexpr auto operator<=>(const Pressure& rhs) const noexcept {
     return data <=> rhs.data;
@@ -33,14 +45,14 @@ class Pressure {
   template <class OtherConverter>
   constexpr auto operator<=>(
       const Pressure<OtherConverter>& rhs) const noexcept {
-    return converter.ConvertValueFrom(data) <=>
+    return converter.ConvertValue(data) <=>
            OtherConverter::ConvertValue(rhs.data);
   }
 
   template <class OtherConverter>
   constexpr auto operator==(const Pressure<OtherConverter>& rhs) const noexcept
       -> bool {
-    return converter.ConvertValueFrom(data) ==
+    return converter.ConvertValue(data) ==
            OtherConverter::ConvertValue(rhs.data);
   }
 
