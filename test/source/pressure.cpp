@@ -205,11 +205,6 @@ TEST_SUITE("Pressure") {
     auto copyTest = test;
     CHECK(test == copyTest);
   }
-
-  // test to make sure the move constructor works.
-  TEST_CASE("Move Constructor") {
-    // not really sure how to go about testing this
-  }
 }
 // NOLINTEND(modernize-use-trailing-return-type)
 }  // namespace csm_units::test

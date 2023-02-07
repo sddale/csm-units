@@ -251,10 +251,6 @@ TEST_SUITE("Temperature") {
             doctest::Approx(325.0));
       //
     }
-
-    SUBCASE("Different Unit Copies (other copy constructor)") {
-      // not sure how to go about this
-    }
   }
 
   // TEST_CASE("Move Constructor") {
