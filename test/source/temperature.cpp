@@ -1,8 +1,6 @@
-#include "../../include/csm_units/temperature.hpp"
+#include <doctest/doctest.h>
 
-#include <iostream>
-
-#include "../../build/_deps/doctest-src/doctest/doctest.h"
+#include <csm_units/units.hpp>
 
 namespace csm_units::test {
 
@@ -294,36 +292,3 @@ TEST_SUITE("Temperature") {
 // NOLINTEND(modernize-use-trailing-return-type)
 
 }  // namespace csm_units::test
-
-class Vector {
- public:
-  Vector(const Vector& in) {
-    size = in.size;
-    capacity = in.capacity;
-    data = in.data;  // slow!
-  }
-  Vector(Vector&& in) {
-    size = in.size;
-    capacity = in.capacity;
-    data.begin() = in.data.begin();
-    data.end() = in.data.end();
-    // make data null;
-  }
-  int size;
-  int capacity;
-  std::array<huge> data;
-};
-
-Vector v1 = v2;
-Vector v3 = std::move(v2);  // this may invalidate v2, but faster
-
-class Foo {
-  Foo(Foo&&) {
-    // use vector move semantics
-  }
-  Vector member;
-}
-
-template <class T>
-void foo(T&& bar) {  // takes both l and r values
-}

@@ -1,8 +1,6 @@
-cmake_minimum_required(VERSION 3.14...3.22)
+cmake_minimum_required(VERSION 3.14)
 
 # ---- Project ----
-
-# Note: update this to your new project's name and version
 project(
   CSMUnits
   VERSION 1.0
@@ -10,7 +8,6 @@ project(
 )
 
 # ---- Include guards ----
-
 if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
   message(
     FATAL_ERROR
@@ -19,66 +16,67 @@ if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
 endif()
 
 # ---- Add dependencies via CPM ----
-# see https://github.com/TheLartians/CPM.cmake for more info
-
+# See https://github.com/TheLartians/CPM.cmake for more info
 include(cmake/CPM.cmake)
 CPMAddPackage("gh:onqtam/doctest@2.4.9")
 CPMAddPackage("gh:TheLartians/Format.cmake@1.7.3")
-# PackageProject.cmake will be used to make our target installable
-CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0")
-
-CPMAddPackage(
-  NAME fmt
-  GIT_TAG 8.1.1
-  GITHUB_REPOSITORY fmtlib/fmt
-  OPTIONS "FMT_INSTALL YES" # create an installable target
-)
-
-# ---- Add source files ----
-
-# Note: globbing sources is considered bad practice as CMake's generators may not detect new files
-# automatically. Keep that in mind when changing files, or explicitly mention them here.
-# file(GLOB_RECURSE headers CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp")
-# file(GLOB_RECURSE sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp")
+CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0") # To make target installable
 
 # ---- Create library ----
+add_library(${PROJECT_NAME} INTERFACE)
+set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 20)
 
-# Note: for header-only libraries change all PUBLIC flags to INTERFACE and create an interface
-# target: add_library(${PROJECT_NAME} INTERFACE) add_library(${PROJECT_NAME} ${headers} ${sources})
-# set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 20)
+# Enforce standards conformance on MSVC
+target_compile_options(${PROJECT_NAME} INTERFACE "$<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/permissive->")
 
-# being a cross-platform target, we enforce standards conformance on MSVC
-# target_compile_options(${PROJECT_NAME} PUBLIC "$<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/permissive->")
-
-# Link dependencies target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt)
-
-# target_include_directories( ${PROJECT_NAME} PUBLIC
-# $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
-# $<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}> )
+target_include_directories(
+  ${PROJECT_NAME} INTERFACE $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+                            $<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>
+)
 
 # ---- Create an installable target ----
-# this allows users to install and find the library via `find_package()`.
+# Allows users to install and find the library via `find_package()`. The location where the
+# project's version header will be placed should match the project's regular header paths
+string(TOLOWER ${PROJECT_NAME}/version.hpp VERSION_HEADER_LOCATION)
 
-# the location where the project's version header will be placed should match the project's regular
-# header paths string(TOLOWER ${PROJECT_NAME}/version.hpp VERSION_HEADER_LOCATION)
+packageProject(
+  NAME ${PROJECT_NAME}
+  VERSION ${PROJECT_VERSION}
+  NAMESPACE ${PROJECT_NAME}
+  BINARY_DIR ${PROJECT_BINARY_DIR}
+  INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include
+  INCLUDE_DESTINATION include/${PROJECT_NAME}-${PROJECT_VERSION} # VERSION_HEADER
+                                                                 # "${VERSION_HEADER_LOCATION}"
+  COMPATIBILITY SameMajorVersion
+)
+
+# ---- Test Target ----
+# Find test files
+file(GLOB_RECURSE test_sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/test/source/*.cpp")
 
 # Test Executable
-add_executable(csm_units_test test/source/main.cpp test/source/temperature_test.cpp test/source/pressure_test.cpp)
-target_link_libraries(csm_units_test PRIVATE doctest::doctest)
-target_include_directories(csm_units_test PRIVATE "test" "include")
+add_executable(${PROJECT_NAME}_test ${test_sources})
+
+target_link_libraries(${PROJECT_NAME}_test PRIVATE doctest::doctest)
+
+target_include_directories(${PROJECT_NAME}_test PRIVATE "test" "include" ".")
+# target_include_directories(${PROJECT_NAME}_test PRIVATE "test" "include"
+# ${CMAKE_CURRENT_LIST_DIR})
+
 set_property(
-  TARGET csm_units_test
+  TARGET ${PROJECT_NAME}_test
   PROPERTY CMAKE_BUILD_TYPE Debug
   PROPERTY CMAKE_EXPORT_COMPILE_COMMANDS ON
 )
 
-# Compiler Properties for Benchmarking
-target_compile_features(csm_units_test PRIVATE cxx_std_20)
-target_compile_options(csm_units_test PRIVATE -g -Wall -Wextra)
+# Compiler Properties for testing
+target_compile_features(${PROJECT_NAME}_test PRIVATE cxx_std_20)
+if(MSVC)
+  target_compile_options(${PROJECT_NAME}_test PRIVATE /G /W4 /WX)
+else()
+  target_compile_options(${PROJECT_NAME}_test PRIVATE -g -Wall -Wextra -Wpedantic -Werror)
+endif()
 
 enable_testing()
-
-# packageProject( NAME ${PROJECT_NAME} VERSION ${PROJECT_VERSION} NAMESPACE ${PROJECT_NAME}
-# BINARY_DIR ${PROJECT_BINARY_DIR} INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include INCLUDE_DESTINATION
-# include/${PROJECT_NAME}-${PROJECT_VERSION} # VERSION_HEADER "${VERSION_HEADER_LOCATION}"
-# COMPATIBILITY SameMajorVersion DEPENDENCIES "fmt 8.1.1" )
+include(${doctest_SOURCE_DIR}/scripts/cmake/doctest.cmake)
+doctest_discover_tests(${PROJECT_NAME}_test)

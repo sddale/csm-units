@@ -12,13 +12,15 @@ on:
 
 env:
   CPM_SOURCE_CACHE: ${{ github.workspace }}/cpm_modules
+  BUILD_TYPE: Debug
+  EXECUTABLE: CSMUnits_test
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: actions/cache@v2
         with:
@@ -29,7 +31,7 @@ jobs:
         run: pip3 install clang-format==14.0.6 cmake_format==0.6.11 pyyaml
 
       - name: configure
-        run: cmake -Stest -Bbuild
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
       - name: check style
-        run: cmake --build build --target check-format
+        run: cmake --build ${{github.workspace}}/build --target check-format

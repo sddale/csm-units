@@ -104,9 +104,4 @@ class FahrenheitConverter {
   }
 };
 
-using Kelvin = Temperature<KelvinConverter>;
-using Celsius = Temperature<CelsiusConverter>;
-using Fahrenheit = Temperature<FahrenheitConverter>;
-// added comment
-
 }  // namespace csm_units
