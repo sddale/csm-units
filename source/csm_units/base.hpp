@@ -46,8 +46,9 @@ class Base {
       const Base<Dimension, T, Data>& rhs) const noexcept {
     if constexpr (std::is_same_v<Converter, T>) {
       return data <=> rhs.data;
+    } else {
+      return Converter::ToBase(data) <=> T::ToBase(rhs.data);
     }
-    return Converter::ToBase(data) <=> T::ToBase(rhs.data);
   }
 
   constexpr auto operator==(Arithmetic auto rhs) const noexcept -> bool {
@@ -58,8 +59,9 @@ class Base {
   constexpr auto operator==(const OtherBase<T>& rhs) const noexcept {
     if constexpr (std::is_same_v<Converter, T>) {
       return data == rhs.data;
+    } else {
+      return Converter::ToBase(data) == T::ToBase(rhs.data);
     }
-    return Converter::ToBase(data) == T::ToBase(rhs.data);
   }
 
   Data data;
