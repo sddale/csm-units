@@ -226,8 +226,6 @@ TEST_SUITE("Temperature") {
     const auto tempCelsius = Celsius(68.45);
     const auto tempFahrenheit = Fahrenheit(98.45);
 
-    const auto foo = Kelvin(Kelvin(325));
-
     // 1. Kelvin(325) gets constructed
     // 2. Outer Kelvin make a copy
     // 3. Foo gets copy
