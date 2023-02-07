@@ -10,13 +10,12 @@ TEST_SUITE("Temperature") {
     SUBCASE("Kelvin Test 0") {
       const auto temperature = Kelvin(34.0);
       CHECK(temperature.data == doctest::Approx(34.0));
-      CHECK(KelvinConverter::ConvertValue(temperature.data) ==
-            doctest::Approx(34.0));
+      CHECK(KelvinConverter::ToBase(temperature.data) == doctest::Approx(34.0));
     }
     SUBCASE("Kelvin Test 1") {
       const auto temperature = Kelvin(300.4543);
       CHECK(temperature.data == doctest::Approx(300.4543));
-      CHECK(KelvinConverter::ConvertValue(temperature.data) ==
+      CHECK(KelvinConverter::ToBase(temperature.data) ==
             doctest::Approx(300.4543));
     }
   }
@@ -25,19 +24,19 @@ TEST_SUITE("Temperature") {
     SUBCASE("Fahrenheit Test 0") {
       const auto temperature = Fahrenheit(32.0);
       CHECK(temperature.data == doctest::Approx(32.0));
-      CHECK(FahrenheitConverter::ConvertValue(temperature.data) ==
+      CHECK(FahrenheitConverter::ToBase(temperature.data) ==
             doctest::Approx(273.15));
     }
     SUBCASE("Fahrenheit Test 1") {
       const auto temperature = Fahrenheit(-32.554);
       CHECK(temperature.data == doctest::Approx(-32.554));
-      CHECK(FahrenheitConverter::ConvertValue(temperature.data) ==
+      CHECK(FahrenheitConverter::ToBase(temperature.data) ==
             doctest::Approx(237.28677));
     }
     SUBCASE("Fahrenheit Test 2") {
       const auto temperature = Fahrenheit(150.58483948747);
       CHECK(temperature.data == doctest::Approx(150.58483948747));
-      CHECK(FahrenheitConverter::ConvertValue(temperature.data) ==
+      CHECK(FahrenheitConverter::ToBase(temperature.data) ==
             doctest::Approx(339.03044444));
     }
   }
@@ -46,19 +45,19 @@ TEST_SUITE("Temperature") {
     SUBCASE("Celsius Test 0") {
       const auto temperature = Celsius(0.0);
       CHECK(temperature.data == doctest::Approx(0.0));
-      CHECK(CelsiusConverter::ConvertValue(temperature.data) ==
+      CHECK(CelsiusConverter::ToBase(temperature.data) ==
             doctest::Approx(273.15));
     }
     SUBCASE("Celsius Test 1") {
       const auto temperature = Celsius(-132.34211111);
       CHECK(temperature.data == doctest::Approx(-132.34211111));
-      CHECK(CelsiusConverter::ConvertValue(temperature.data) ==
+      CHECK(CelsiusConverter::ToBase(temperature.data) ==
             doctest::Approx(140.807889));
     }
     SUBCASE("Celsius Test 2") {
       const auto temperature = Celsius(120.453);
       CHECK(temperature.data == doctest::Approx(120.453));
-      CHECK(CelsiusConverter::ConvertValue(temperature.data) ==
+      CHECK(CelsiusConverter::ToBase(temperature.data) ==
             doctest::Approx(393.603));
     }
   }
@@ -244,11 +243,11 @@ TEST_SUITE("Temperature") {
       CHECK(tempKelObject.data == doctest::Approx(325.0));
       CHECK(tempCelObject.data == doctest::Approx(68.45));
       CHECK(tempFahObject.data == doctest::Approx(98.45));
-      CHECK(FahrenheitConverter::ConvertValue(tempFahObject.data) ==
+      CHECK(FahrenheitConverter::ToBase(tempFahObject.data) ==
             doctest::Approx(310.066));
-      CHECK(CelsiusConverter::ConvertValue(tempCelObject.data) ==
+      CHECK(CelsiusConverter::ToBase(tempCelObject.data) ==
             doctest::Approx(341.6));
-      CHECK(KelvinConverter::ConvertValue(tempKelObject.data) ==
+      CHECK(KelvinConverter::ToBase(tempKelObject.data) ==
             doctest::Approx(325.0));
       //
     }
@@ -273,11 +272,11 @@ TEST_SUITE("Temperature") {
   //     CHECK(tempKelObject.data == doctest::Approx(325.0));
   //     CHECK(tempCelObject.data == doctest::Approx(68.45));
   //     CHECK(tempFahObject.data == doctest::Approx(98.45));
-  //     CHECK(FahrenheitConverter::ConvertValue(tempFahObject.data) ==
+  //     CHECK(FahrenheitConverter::ToBase(tempFahObject.data) ==
   //           doctest::Approx(310.066));
-  //     CHECK(CelsiusConverter::ConvertValue(tempCelObject.data) ==
+  //     CHECK(CelsiusConverter::ToBase(tempCelObject.data) ==
   //           doctest::Approx(341.6));
-  //     CHECK(KelvinConverter::ConvertValue(tempKelObject.data) ==
+  //     CHECK(KelvinConverter::ToBase(tempKelObject.data) ==
   //           doctest::Approx(325.0));
   //     //
   //   }

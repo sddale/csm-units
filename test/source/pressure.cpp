@@ -20,7 +20,7 @@ TEST_SUITE("Pressure") {
     CHECK(test.data == doctest::Approx(12.34567));
 
     const auto ref = Pascals(1234567.0);
-    CHECK(BarConverter::ConvertValue(test.data) == doctest::Approx(ref.data));
+    CHECK(BarConverter::ToBase(test.data) == doctest::Approx(ref.data));
   }
 
   // test for ATM
@@ -29,7 +29,7 @@ TEST_SUITE("Pressure") {
     CHECK(test.data == doctest::Approx(12.18422897));
 
     const auto ref = Pascals(1234567.0);
-    CHECK(AtmConverter::ConvertValue(test.data) == doctest::Approx(ref.data));
+    CHECK(AtmConverter::ToBase(test.data) == doctest::Approx(ref.data));
   }
 
   // test for PSI
@@ -38,7 +38,7 @@ TEST_SUITE("Pressure") {
     CHECK(test.data == doctest::Approx(179.05873445));
 
     const auto ref = Pascals(1234567.0);
-    CHECK(PsiConverter::ConvertValue(test.data) == doctest::Approx(ref.data));
+    CHECK(PsiConverter::ToBase(test.data) == doctest::Approx(ref.data));
   }
 
   // test to make sure the size of the class never exceeds the size of the data
