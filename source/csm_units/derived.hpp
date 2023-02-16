@@ -5,6 +5,7 @@
 #include "DimLength.hpp"
 #include "DimMass.hpp"
 #include "DimTime.hpp"
+#include "Converter.hpp"
 #include "base.hpp"
 
 namespace csm_units {
@@ -38,7 +39,7 @@ class Derived {
   }
 
   // operator overload methods
-  // have to convert (to proper converter methods when actually dividing)
+  // have to convert data (to proper converter methods when actually dividing)
 
   // compound / compound
   template <class Length1, int LengthPower1, class Mass1, int MassPower1,
