@@ -5,6 +5,7 @@ namespace csm_units {
 
 class DimTemperature {};
 
+/*
 // Converters to define relationship between various pressure units
 class KelvinConverter {
  public:
@@ -17,6 +18,7 @@ class KelvinConverter {
     return dataKelvin;
   }
 };
+*/ // *** Shouldn't need this anymore. Talk with Seth though before deleting ***
 
 class CelsiusConverter {
  public:

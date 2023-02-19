@@ -19,7 +19,8 @@ class PascalsConverter {
     return paData;
   }
 };
-*/ // *** All of this shouldn't be needed anymore, but want to talk to Seth before deleting ***
+*/  // *** All of this shouldn't be needed anymore, but want to talk to Seth
+    // before deleting ***
 
 class BarConverter {
  public:
