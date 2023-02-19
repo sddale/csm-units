@@ -6,6 +6,7 @@ namespace csm_units {
 
 class DimPressure {};
 
+/*
 // Converters to define relationship between various pressure units
 class PascalsConverter {
  public:
@@ -18,6 +19,7 @@ class PascalsConverter {
     return paData;
   }
 };
+*/ // *** All of this shouldn't be needed anymore, but want to talk to Seth before deleting ***
 
 class BarConverter {
  public:

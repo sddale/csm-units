@@ -4,6 +4,8 @@
 #include <csm_units/concepts.hpp>
 #include <type_traits>
 
+#include "Converter.hpp"
+
 namespace csm_units {
 
 template <class Dimension, class Converter, Arithmetic Data = double>
