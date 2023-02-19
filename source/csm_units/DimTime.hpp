@@ -3,7 +3,7 @@
 namespace csm_units {
 
 class DimTime {
-  // Length units
+  // Time units
 };
 
 }  // namespace csm_units
