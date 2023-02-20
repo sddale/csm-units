@@ -97,8 +97,9 @@ class Derived {
   }
 
   // base / compound
- template <class Length1, int LengthPower1, class Mass1, int MassPower1,
-            class Time1, int TimePower1, class T> // don't think we have to define template again
+  template <class Length1, int LengthPower1, class Mass1, int MassPower1,
+            class Time1, int TimePower1,
+            class T>  // don't think we have to define template again
   auto operator/(
       T lhs,
       Derived<Length1, LengthPower1, Mass1, MassPower1, Time1, TimePower1>
