@@ -1,6 +1,7 @@
 #pragma once
 
 #include "source/csm_units/Converter.hpp"
+#include "source/csm_units/derived.hpp"
 #include "source/csm_units/pressure.hpp"
 #include "source/csm_units/temperature.hpp"
 

@@ -8,7 +8,8 @@
 
 namespace csm_units {
 
-template <class Dimension, class Converter, Arithmetic Data = double>
+template <class Dimension, class Converter = NoConverter,
+          class Ratio = std::ratio<1, 1>, Arithmetic Data = double>
 class Base {
   template <class T>
   using OtherBase = Base<Dimension, T, Data>;
