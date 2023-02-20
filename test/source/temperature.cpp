@@ -1,5 +1,6 @@
 #include <doctest/doctest.h>
 
+#include <../source/csm_units/Converter.hpp>
 #include <csm_units/units.hpp>
 
 namespace csm_units::test {
@@ -10,13 +11,12 @@ TEST_SUITE("Temperature") {
     SUBCASE("Kelvin Test 0") {
       const auto temperature = Kelvin(34.0);
       CHECK(temperature.data == doctest::Approx(34.0));
-      CHECK(KelvinConverter::ToBase(temperature.data) == doctest::Approx(34.0));
+      CHECK(NoConverter::ToBase(temperature.data) == doctest::Approx(34.0));
     }
     SUBCASE("Kelvin Test 1") {
       const auto temperature = Kelvin(300.4543);
       CHECK(temperature.data == doctest::Approx(300.4543));
-      CHECK(KelvinConverter::ToBase(temperature.data) ==
-            doctest::Approx(300.4543));
+      CHECK(NoConverter::ToBase(temperature.data) == doctest::Approx(300.4543));
     }
   }
 
@@ -247,8 +247,7 @@ TEST_SUITE("Temperature") {
             doctest::Approx(310.066));
       CHECK(CelsiusConverter::ToBase(tempCelObject.data) ==
             doctest::Approx(341.6));
-      CHECK(KelvinConverter::ToBase(tempKelObject.data) ==
-            doctest::Approx(325.0));
+      CHECK(NoConverter::ToBase(tempKelObject.data) == doctest::Approx(325.0));
       //
     }
   }
