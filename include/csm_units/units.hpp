@@ -19,7 +19,7 @@ using Psi = Pressure<PsiConverter>;
 // Temperature typedefs
 template <class Converter>
 using Temperature = Base<DimTemperature, Converter>;
-using Kelvin = Temperature<KelvinConverter>;
+using Kelvin = Temperature<NoConverter>;
 using Celsius = Temperature<CelsiusConverter>;
 using Fahrenheit = Temperature<FahrenheitConverter>;
 
