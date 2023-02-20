@@ -12,6 +12,7 @@ template <class Converter>
 using Pressure = Base<DimPressure, Converter>;
 // Once we get derived working with more than just the 3 we can change the above
 
+// Pressure typedefs
 using Pascals = Pressure<NoConverter>;
 using Bar = Pressure<BarConverter>;
 using Atm = Pressure<AtmConverter>;
