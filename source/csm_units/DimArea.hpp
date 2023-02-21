@@ -2,8 +2,6 @@
 
 namespace csm_units {
 
-class DimTime {
-  // Time units
-};
+class DimArea {};
 
 }  // namespace csm_units
