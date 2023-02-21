@@ -67,7 +67,6 @@ TEST_SUITE("Derived") {
     const auto baseDimLength = Base<DimLength>(4.0);
     const auto baseDimMass = Base<DimMass>(2.0);
 
-    // why does the below not work?
     const auto quotientDerivedDerived = length2Mass2 / mass1;
     const auto quotientDerivedBase = length2Mass2 / baseDimLength;
     const auto quotientBaseDerived = baseDimLength / length1;
