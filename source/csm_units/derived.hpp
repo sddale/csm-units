@@ -16,6 +16,15 @@ template <class Length, int LengthPower, class Mass, int MassPower, class Time,
 class Derived {
  public:
   Derived(Data value) : data(value) {}
+
+  // copy constructor for derived of the same type
+  constexpr Derived(const Derived& other) noexcept = default;
+
+  // copy constructor for derived of different type -- not sure how to implement
+  // this yet
+  template <class... T>
+  constexpr Derived(const Derived<T...>& other) noexcept : data(other.data) {}
+
   Data data;
   // not making member variables for now and seeing if I can access them from
   // template
