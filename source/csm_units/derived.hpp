@@ -12,7 +12,33 @@
 namespace csm_units {
 
 template <class Length, int LengthPower, class Mass, int MassPower, class Time,
-          int TimePower, Arithmetic Data = double>
+          int TimePower, Arithmetic Data>
+class Derived;
+
+namespace derived {
+struct Factory {
+  template <class Conv, class Ratio, Arithmetic Data>
+  static auto Make(Base<DimLength, Conv, Ratio, Data> base) {
+    return Derived<Base<DimLength, Conv, Ratio, Data>, 1, Base<DimMass>, 0,
+                   Base<DimTime>, 0, Data>(base.data);
+  }
+
+  template <class Conv, class Ratio, Arithmetic Data>
+  static auto Make(Base<DimTime, Conv, Ratio, Data> base) {
+    return Derived<Base<DimLength>, 0, Base<DimMass>, 0,
+                   Base<DimTime, Conv, Ratio, Data>, 1, Data>(base.data);
+  }
+
+  template <class Conv, class Ratio, Arithmetic Data>
+  static auto Make(Base<DimMass, Conv, Ratio, Data> base) {
+    return Derived<Base<DimLength>, 0, Base<DimMass, Conv, Ratio, Data>, 1,
+                   Base<DimTime>, 0, Data>(base.data);
+  }
+};
+}  // namespace derived
+
+template <class Length, int LengthPower, class Mass, int MassPower, class Time,
+          int TimePower, Arithmetic Data>
 class Derived {
  public:
   Derived(Data value) : data(value) {}
@@ -26,26 +52,6 @@ class Derived {
   constexpr Derived(const Derived<T...>& other) noexcept : data(other.data) {}
 
   Data data;
-
-  struct DerivedFactory {
-    template <class Conv, class Ratio>
-    static auto MakeDerived(Base<DimLength, Conv, Ratio> base) {
-      return Derived<Base<DimLength, Conv, Ratio>, 1, Base<DimMass>, 0,
-                     Base<DimTime>, 0>(base.data);
-    }
-
-    template <class Conv, class Ratio>
-    static auto MakeDerived(Base<DimTime, Conv, Ratio> base) {
-      return Derived<Base<DimLength>, 0, Base<DimMass>, 0,
-                     Base<DimTime, Conv, Ratio>, 1>(base.data);
-    }
-
-    template <class Conv, class Ratio>
-    static auto MakeDerived(Base<DimMass, Conv, Ratio> base) {
-      return Derived<Base<DimLength>, 0, Base<DimMass, Conv, Ratio>, 1,
-                     Base<DimTime>, 0>(base.data);
-    }
-  };
 
   // not making member variables for now and seeing if I can access them from
   // template
@@ -87,25 +93,42 @@ class Derived {
   //   return Derived< // confused here hmmm - wrong approach
   friend constexpr auto operator/(
       Derived lhs,
-      Derived<Length2, LengthPower2, Mass2, MassPower2, Time2, TimePower2>
+      Derived<Length2, LengthPower2, Mass2, MassPower2, Time2, TimePower2, Data>
           rhs) noexcept {
     return (Derived<Length, LengthPower - LengthPower2, Mass,
-                    MassPower - MassPower2, Time, TimePower - TimePower2>(
+                    MassPower - MassPower2, Time, TimePower - TimePower2, Data>(
         lhs.data / rhs.data));
   }
 
   // compound / base
   template <class... Ts>
   friend constexpr auto operator/(Derived lhs, Base<Ts...> rhs) noexcept {
-    return lhs / DerivedFactory::MakeDerived(rhs);
+    return lhs / derived::Factory::Make(rhs);
   }
 
   // base / compound
-  template <class... Ts>  // don't think we have to define template again
+  template <class... Ts>
   friend constexpr auto operator/(Base<Ts...> lhs, Derived rhs) noexcept {
-    return DerivedFactory::MakeDerived(lhs) / rhs;
+    return derived::Factory::Make(lhs) / rhs;
   }
 
-  // base / base ?
+  // compound /= double
+  constexpr auto operator/=(double rhs) noexcept -> auto& {
+    data /= rhs;
+    return *this;
+  }
+
+  // compound / double
+  friend constexpr auto operator/(Derived lhs, double rhs) noexcept {
+    lhs /= rhs;
+    return lhs;
+  }
 };
+
+// base / base
+template <class... T1s, class... T2s>
+constexpr auto operator/(Base<T1s...> lhs, Base<T2s...> rhs) noexcept {
+  return derived::Factory::Make(lhs) / derived::Factory::Make(rhs);
+}
+
 }  // namespace csm_units

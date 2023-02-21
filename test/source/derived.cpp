@@ -4,53 +4,48 @@
 
 namespace csm_units::test {
 
+template <int LP, int MP, int TP>
+using DBasic =
+    Derived<Base<DimLength>, LP, Base<DimMass>, MP, Base<DimTime>, TP, double>;
+
 // NOLINTBEGIN(modernize-use-trailing-return-type)
 TEST_SUITE("Derived") {
   // Tests to make sure that the derived class is working the way we expect
 
   TEST_CASE("Objects") {
     SUBCASE("DimLength") {
-      const auto testLengthPow1 =
-          Derived<DimLength, 1, DimMass, 0, DimTime, 0>(13.0);
+      const auto testLengthPow1 = DBasic<1, 0, 0>(13.0);
 
-      const auto testLengthPow2 =
-          Derived<DimLength, 2, DimMass, 0, DimTime, 0>(13.0);
+      const auto testLengthPow2 = DBasic<2, 0, 0>(13.0);
 
       CHECK(testLengthPow1.data == doctest::Approx(13.0));
       CHECK(testLengthPow2.data == doctest::Approx(13.0));
     }
 
     SUBCASE("DimMass") {
-      const auto testMassPow1 =
-          Derived<DimLength, 1, DimMass, 0, DimTime, 0>(13.0);
+      const auto testMassPow1 = DBasic<0, 1, 0>(13.0);
 
-      const auto testMassPow2 =
-          Derived<DimLength, 2, DimMass, 0, DimTime, 0>(13.0);
+      const auto testMassPow2 = DBasic<0, 2, 0>(13.0);
 
       CHECK(testMassPow1.data == doctest::Approx(13.0));
       CHECK(testMassPow2.data == doctest::Approx(13.0));
     }
 
     SUBCASE("DimTime") {
-      const auto testTimePow1 =
-          Derived<DimLength, 1, DimMass, 0, DimTime, 0>(13.0);
+      const auto testTimePow1 = DBasic<0, 0, 1>(13.0);
 
-      const auto testTimePow2 =
-          Derived<DimLength, 2, DimMass, 0, DimTime, 0>(13.0);
+      const auto testTimePow2 = DBasic<0, 0, 2>(13.0);
 
       CHECK(testTimePow1.data == doctest::Approx(13.0));
       CHECK(testTimePow2.data == doctest::Approx(13.0));
     }
 
     SUBCASE("Mix of All 3") {
-      const auto length1Mass1Time1 =
-          Derived<DimLength, 1, DimMass, 1, DimTime, 1>(13.0);
+      const auto length1Mass1Time1 = DBasic<1, 1, 1>(13.0);
 
-      const auto length2Mass2Time2 =
-          Derived<DimLength, 2, DimMass, 2, DimTime, 2>(13.0);
+      const auto length2Mass2Time2 = DBasic<2, 2, 2>(13.0);
 
-      const auto arbitraryMixUp =
-          Derived<DimLength, 3, DimMass, 1, DimTime, 4>(13.0);
+      const auto arbitraryMixUp = DBasic<3, 1, 4>(13.0);
 
       CHECK(length1Mass1Time1.data == doctest::Approx(13.0));
       CHECK(length2Mass2Time2.data == doctest::Approx(13.0));
@@ -59,22 +54,26 @@ TEST_SUITE("Derived") {
   }
 
   TEST_CASE("Division") {
-    const auto length1Mass2 =
-        Derived<Base<DimLength>, 2, Base<DimMass>, 2, Base<DimTime>, 0>(20.0);
-    const auto length1 =
-        Derived<Base<DimLength>, 1, Base<DimMass>, 0, Base<DimTime>, 0>(2.0);
-    const auto mass1 =
-        Derived<Base<DimLength>, 0, Base<DimMass>, 1, Base<DimTime>, 0>(10.0);
+    const auto length2Mass2 = DBasic<2, 2, 0>(20.0);
+    const auto length1 = DBasic<1, 0, 0>(2.0);
+    const auto mass1 = DBasic<0, 1, 0>(10.0);
     const auto baseDimLength = Base<DimLength>(4.0);
 
     // why does the below not work?
-    const auto quotientDerivedDerived = length1Mass2 / mass1;
-    const auto quotientDerivedBase = length1Mass2 / baseDimLength;
-    const auto quotienBaseDerived = baseDimLength / length1;
+    const auto quotientDerivedDerived = length2Mass2 / mass1;
+    const auto quotientDerivedBase = length2Mass2 / baseDimLength;
+    const auto quotientBaseDerived = baseDimLength / length1;
 
     CHECK(quotientDerivedDerived.data == doctest::Approx(2.0));
     CHECK(quotientDerivedBase.data == doctest::Approx(5.0));
-    CHECK(quotienBaseDerived.data == doctest::Approx(2.0));
+    CHECK(quotientBaseDerived.data == doctest::Approx(2.0));
+
+    CHECK(std::is_same_v<std::remove_const_t<decltype(quotientDerivedDerived)>,
+                         DBasic<2, 1, 0>>);
+    CHECK(std::is_same_v<std::remove_const_t<decltype(quotientDerivedBase)>,
+                         DBasic<1, 2, 0>>);
+    CHECK(std::is_same_v<std::remove_const_t<decltype(quotientBaseDerived)>,
+                         DBasic<0, 0, 0>>);
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type)
