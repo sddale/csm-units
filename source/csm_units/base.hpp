@@ -22,8 +22,8 @@ class Base {
   constexpr Base(const Base& other) noexcept = default;
 
   // copy constructor for units of the same dimension and different converter
-  template <class T>
-  constexpr Base(const OtherBase<T>& other) noexcept
+  template <class T, class R>
+  constexpr Base(const OtherBase<T, R>& other) noexcept
       : data(Converter::FromBase(T::ToBase(other.data))) {}
 
   template <class T>
