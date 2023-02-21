@@ -1,8 +1,8 @@
 #pragma once
 
 #include <compare>
-#include <ratio>
 #include <csm_units/concepts.hpp>
+#include <ratio>
 #include <type_traits>
 
 #include "Converter.hpp"
@@ -45,9 +45,9 @@ class Base {
     return data <=> rhs;
   }
 
-  template <class T>
+  template <class T, class R>
   constexpr auto operator<=>(
-      const Base<Dimension, T, Data>& rhs) const noexcept {
+      const Base<Dimension, T, R, Data>& rhs) const noexcept {
     if constexpr (std::is_same_v<Converter, T>) {
       return data <=> rhs.data;
     } else {
