@@ -1,6 +1,7 @@
 #pragma once
 
 #include <compare>
+#include <ratio>
 #include <csm_units/concepts.hpp>
 #include <type_traits>
 
