@@ -41,15 +41,10 @@ template <class Length, int LengthPower, class Mass, int MassPower, class Time,
           int TimePower, Arithmetic Data>
 class Derived {
  public:
-  Derived(Data value) : data(value) {}
+  constexpr explicit Derived(Data value) noexcept : data(value) {}
 
   // copy constructor for derived of the same type
   constexpr Derived(const Derived& other) noexcept = default;
-
-  // copy constructor for derived of different type -- not sure how to implement
-  // this yet
-  template <class... T>
-  constexpr Derived(const Derived<T...>& other) noexcept : data(other.data) {}
 
   Data data;
 
@@ -113,15 +108,21 @@ class Derived {
   }
 
   // compound /= double
-  constexpr auto operator/=(double rhs) noexcept -> auto& {
+  constexpr auto operator/=(Arithmetic auto rhs) noexcept -> auto& {
     data /= rhs;
     return *this;
   }
 
   // compound / double
-  friend constexpr auto operator/(Derived lhs, double rhs) noexcept {
+  friend constexpr auto operator/(Derived lhs, Arithmetic auto rhs) noexcept {
     lhs /= rhs;
     return lhs;
+  }
+
+  // double / compound
+  friend constexpr auto operator/(Arithmetic auto lhs, Derived rhs) noexcept {
+    return (Derived<Base<DimLength>, -LengthPower, Base<DimMass>, -MassPower,
+                    Base<DimTime>, -TimePower, decltype(lhs)>(lhs / rhs.data));
   }
 };
 
