@@ -98,15 +98,9 @@ class Derived {
 
   // base / compound
   template <class Length1, int LengthPower1, class Mass1, int MassPower1,
-<<<<<<< HEAD
-            class Time1, int TimePower1,
-            class T>  // don't think we have to define template again
-  auto operator/(
-=======
             class Time1, int TimePower1, class T,
             class... Result>  // don't think we have to define template again
   friend constexpr auto operator/(
->>>>>>> 57c1220211e26663f20f5ffea11ce234380364ab
       T lhs,
       Derived<Length1, LengthPower1, Mass1, MassPower1, Time1, TimePower1>
           rhs) noexcept -> Derived<Result...>;
