@@ -12,8 +12,8 @@ namespace csm_units {
 template <class Dimension, class Converter = NoConverter,
           class Ratio = std::ratio<1, 1>, Arithmetic Data = double>
 class Base {
-  template <class T>
-  using OtherBase = Base<Dimension, T, Data>;
+  template <class T, class R>
+  using OtherBase = Base<Dimension, T, R, Data>;
 
  public:
   constexpr explicit Base(double value) noexcept : data(value) {}
@@ -59,8 +59,8 @@ class Base {
     return data == rhs;
   }
 
-  template <class T>
-  constexpr auto operator==(const OtherBase<T>& rhs) const noexcept {
+  template <class T, class R>
+  constexpr auto operator==(const OtherBase<T, R>& rhs) const noexcept {
     if constexpr (std::is_same_v<Converter, T>) {
       return data == rhs.data;
     } else {
