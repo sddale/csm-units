@@ -26,6 +26,27 @@ class Derived {
   constexpr Derived(const Derived<T...>& other) noexcept : data(other.data) {}
 
   Data data;
+
+  struct DerivedFactory {
+    template <class Conv, class Ratio>
+    static auto MakeDerived(Base<DimLength, Conv, Ratio> base) {
+      return Derived<Base<DimLength, Conv, Ratio>, 1, Base<DimMass>, 0,
+                     Base<DimTime>, 0>(base.data);
+    }
+
+    template <class Conv, class Ratio>
+    static auto MakeDerived(Base<DimTime, Conv, Ratio> base) {
+      return Derived<Base<DimLength>, 0, Base<DimMass>, 0,
+                     Base<DimTime, Conv, Ratio>, 1>(base.data);
+    }
+
+    template <class Conv, class Ratio>
+    static auto MakeDerived(Base<DimMass, Conv, Ratio> base) {
+      return Derived<Base<DimLength>, 0, Base<DimMass, Conv, Ratio>, 1,
+                     Base<DimTime>, 0>(base.data);
+    }
+  };
+
   // not making member variables for now and seeing if I can access them from
   // template
 
@@ -55,9 +76,7 @@ class Derived {
   // have to convert data (to proper converter methods when actually dividing)
 
   // compound / compound
-  template <class Length1, int LengthPower1, class Mass1, int MassPower1,
-            class Time1, int TimePower1,  // first object
-            class Length2, int LengthPower2, class Mass2, int MassPower2,
+  template <class Length2, int LengthPower2, class Mass2, int MassPower2,
             class Time2, int TimePower2>  // second object
   // // so instead of line above, we can do using structs...
   // template <class Length, class Mass, class Time> // and now we can get both
@@ -67,78 +86,26 @@ class Derived {
   // rhs) { // oops figure out mistake yikes but good start)
   //   return Derived< // confused here hmmm - wrong approach
   friend constexpr auto operator/(
-      Derived<Length1, LengthPower1, Mass1, MassPower1, Time1, TimePower1> lhs,
+      Derived lhs,
       Derived<Length2, LengthPower2, Mass2, MassPower2, Time2, TimePower2>
-          rhs) noexcept;
+          rhs) noexcept {
+    return (Derived<Length, LengthPower - LengthPower2, Mass,
+                    MassPower - MassPower2, Time, TimePower - TimePower2>(
+        lhs.data / rhs.data));
+  }
 
   // compound / base
-  template <class Length1, int LengthPower1, class Mass1, int MassPower1,
-            class Time1, int TimePower1, class T>
-  friend constexpr auto operator/(
-      Derived<Length1, LengthPower1, Mass1, MassPower1, Time1, TimePower1> lhs,
-      T rhs) noexcept;
+  template <class... Ts>
+  friend constexpr auto operator/(Derived lhs, Base<Ts...> rhs) noexcept {
+    return lhs / DerivedFactory::MakeDerived(rhs);
+  }
 
   // base / compound
-  template <class Length1, int LengthPower1, class Mass1, int MassPower1,
-            class Time1, int TimePower1,
-            class T>  // don't think we have to define template again
-  friend constexpr auto operator/(
-      T lhs,
-      Derived<Length1, LengthPower1, Mass1, MassPower1, Time1, TimePower1>
-          rhs) noexcept;
+  template <class... Ts>  // don't think we have to define template again
+  friend constexpr auto operator/(Base<Ts...> lhs, Derived rhs) noexcept {
+    return DerivedFactory::MakeDerived(lhs) / rhs;
+  }
 
   // base / base ?
 };
-
-struct DerivedFactory {
-  template <class Conv, class Ratio>
-  static auto MakeDerived(Base<DimLength, Conv, Ratio> base) {
-    return Derived<Base<DimLength, Conv, Ratio>, 1, Base<DimMass>, 0,
-                   Base<DimTime>, 0>(base.data);
-  }
-
-  template <class Conv, class Ratio>
-  static auto MakeDerived(Base<DimTime, Conv, Ratio> base) {
-    return Derived<Base<DimLength>, 0, Base<DimMass>, 0,
-                   Base<DimTime, Conv, Ratio>, 1>(base.data);
-  }
-
-  template <class Conv, class Ratio>
-  static auto MakeDerived(Base<DimMass, Conv, Ratio> base) {
-    return Derived<Base<DimLength>, 0, Base<DimMass, Conv, Ratio>, 1,
-                   Base<DimTime>, 0>(base.data);
-  }
-};
-
-// compound / compound
-template <class Length1, int LengthPower1, class Mass1, int MassPower1,
-          class Time1, int TimePower1, class Length2, int LengthPower2,
-          class Mass2, int MassPower2, class Time2, int TimePower2>
-constexpr auto operator/(
-    Derived<Length1, LengthPower1, Mass1, MassPower1, Time1, TimePower1> lhs,
-    Derived<Length2, LengthPower2, Mass2, MassPower2, Time2, TimePower2>
-        rhs) noexcept {
-  return (Derived<Length1, LengthPower1 - LengthPower2, Mass1,
-                  MassPower1 - MassPower2, Time1, TimePower1 - TimePower2>(
-      lhs.data / rhs.data));
-}
-
-// compound / base
-template <class Length1, int LengthPower1, class Mass1, int MassPower1,
-          class Time1, int TimePower1, class T>
-constexpr auto operator/(
-    Derived<Length1, LengthPower1, Mass1, MassPower1, Time1, TimePower1> lhs,
-    T rhs) noexcept {
-  return lhs / DerivedFactory::MakeDerived(rhs);
-}
-
-// base / compound
-template <class Length1, int LengthPower1, class Mass1, int MassPower1,
-          class Time1, int TimePower1, class T>
-constexpr auto operator/(
-    T lhs, Derived<Length1, LengthPower1, Mass1, MassPower1, Time1, TimePower1>
-               rhs) noexcept {
-  return DerivedFactory::MakeDerived(lhs) / rhs;
-}
-
 }  // namespace csm_units
