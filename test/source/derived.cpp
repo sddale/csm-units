@@ -1,5 +1,6 @@
 #include <doctest/doctest.h>
 
+#include <concepts>
 #include <csm_units/units.hpp>
 
 namespace csm_units::test {
@@ -59,7 +60,7 @@ TEST_SUITE("Derived") {
   }
 
   TEST_CASE("Division") {
-    const auto length1Mass2 =
+    const auto length2Mass2 =
         Derived<Base<DimLength>, 2, Base<DimMass>, 2, Base<DimTime>, 0>(20.0);
     const auto length1 =
         Derived<Base<DimLength>, 1, Base<DimMass>, 0, Base<DimTime>, 0>(2.0);
@@ -68,13 +69,23 @@ TEST_SUITE("Derived") {
     const auto baseDimLength = Base<DimLength>(4.0);
 
     // why does the below not work?
-    const auto quotientDerivedDerived = length1Mass2 / mass1;
-    const auto quotientDerivedBase = length1Mass2 / baseDimLength;
-    const auto quotienBaseDerived = baseDimLength / length1;
+    const auto quotientDerivedDerived = length2Mass2 / mass1;
+    const auto quotientDerivedBase = length2Mass2 / baseDimLength;
+    const auto quotientBaseDerived = baseDimLength / length1;
 
     CHECK(quotientDerivedDerived.data == doctest::Approx(2.0));
     CHECK(quotientDerivedBase.data == doctest::Approx(5.0));
-    CHECK(quotienBaseDerived.data == doctest::Approx(2.0));
+    CHECK(quotientBaseDerived.data == doctest::Approx(2.0));
+
+    CHECK(std::is_same_v<decltype(quotientDerivedDerived),
+                         const Derived<Base<DimLength>, 2, Base<DimMass>, 1,
+                                       Base<DimTime>, 0>>);
+    CHECK(std::is_same_v<decltype(quotientDerivedBase),
+                         const Derived<Base<DimLength>, 1, Base<DimMass>, 2,
+                                       Base<DimTime>, 0>>);
+    CHECK(std::is_same_v<decltype(quotientBaseDerived),
+                         const Derived<Base<DimLength>, 0, Base<DimMass>, 0,
+                                       Base<DimTime>, 0>>);
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type)
