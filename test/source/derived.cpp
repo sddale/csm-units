@@ -102,8 +102,8 @@ TEST_SUITE("Derived") {
     const auto check = length2Mass2 * length1;
 
     CHECK(check.data == doctest::Approx(40.0));
-    CHECK(std::is_same_v<std::remove_const_t<decltype(check)>,
-                         DBasic<3, 2, 0>>);
+    CHECK(
+        std::is_same_v<std::remove_const_t<decltype(check)>, DBasic<3, 2, 0>>);
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type)
