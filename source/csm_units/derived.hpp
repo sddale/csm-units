@@ -48,7 +48,7 @@ class Derived {
 
   Data data;
 
-  // operator overload methods
+  // / operator overloads
 
   // compound / compound
   template <class Length2, int LengthPower2, class Mass2, int MassPower2,
@@ -91,6 +91,54 @@ class Derived {
     return (Derived<Base<DimLength>, -LengthPower, Base<DimMass>, -MassPower,
                     Base<DimTime>, -TimePower, decltype(lhs)>(lhs / rhs.data));
   }
+
+  // * operator overloads
+
+  // compound * compound
+  template <class Length2, int LengthPower2, class Mass2, int MassPower2,
+            class Time2, int TimePower2>  // second object
+  friend constexpr auto operator*(
+      Derived lhs,
+      Derived<Length2, LengthPower2, Mass2, MassPower2, Time2, TimePower2, Data>
+          rhs) noexcept {
+    return (Derived<Length, LengthPower + LengthPower2, Mass,
+                    MassPower + MassPower2, Time, TimePower + TimePower2, Data>(
+        lhs.data * rhs.data));
+  }
+
+  // compound * base
+  template <class... Ts>
+  friend constexpr auto operator*(Derived lhs, Base<Ts...> rhs) noexcept {
+    return lhs * derived::Factory::Make(rhs);
+  }
+
+  // base * compound
+  template <class... Ts>
+  friend constexpr auto operator*(Base<Ts...> lhs, Derived rhs) noexcept {
+    return derived::Factory::Make(lhs) * rhs;
+  }
+
+  // compoud *= double
+  template <class... Ts>
+  friend constexpr auto operator*=(Arithmetic auto rhs) noexcept -> auto& {
+    data *= rhs;
+    return *this;
+  }
+  
+  // compound * double
+  friend constexpr auto operator*(Derived lhs, Arithmetic auto rhs) noexcept {
+    lhs *= rhs;
+    return lhs;
+  }
+
+  // double * compound
+  // still need this one
+
+  // + operator overloads
+
+
+
+
 };
 
 // base / base
