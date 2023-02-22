@@ -119,12 +119,11 @@ class Derived {
   }
 
   // compoud *= double
-  template <class... Ts>
-  friend constexpr auto operator*=(Arithmetic auto rhs) noexcept -> auto& {
+  constexpr auto operator*=(Arithmetic auto rhs) noexcept -> auto& {
     data *= rhs;
     return *this;
   }
-  
+
   // compound * double
   friend constexpr auto operator*(Derived lhs, Arithmetic auto rhs) noexcept {
     lhs *= rhs;
@@ -135,10 +134,6 @@ class Derived {
   // still need this one
 
   // + operator overloads
-
-
-
-
 };
 
 // base / base

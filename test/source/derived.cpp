@@ -94,6 +94,17 @@ TEST_SUITE("Derived") {
     CHECK(std::is_same_v<std::remove_const_t<decltype(quotientDoubleDerived)>,
                          DBasic<-2, -2, 0>>);
   }
+
+  TEST_CASE("Multiplication") {
+    // working for now
+    const auto length2Mass2 = DBasic<2, 2, 0>(20.0);
+    const auto length1 = DBasic<1, 0, 0>(2.0);
+    const auto check = length2Mass2 * length1;
+
+    CHECK(check.data == doctest::Approx(40.0));
+    CHECK(std::is_same_v<std::remove_const_t<decltype(check)>,
+                         DBasic<3, 2, 0>>);
+  }
 }
 // NOLINTEND(modernize-use-trailing-return-type)
 }  // namespace csm_units::test
