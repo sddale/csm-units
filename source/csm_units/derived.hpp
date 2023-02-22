@@ -48,44 +48,11 @@ class Derived {
 
   Data data;
 
-  // not making member variables for now and seeing if I can access them from
-  // template
-
-  // // an attempt to templatizing the arguments - attempted around lines 63 but
-  // // wrong approach just did a speed run so bad
-  // struct {
-  //   template <class Conv, class Ratio>
-  //   Base<DimLength, Conv, Ratio> lengthValue;  // is this right?
-  //   int length_power;
-  // } Length;
-
-  // class Mass {
-  //  public:
-  //   template <class Conv, class Ratio>
-  //   Base<DimMass, Conv, Ratio> massValue;
-  //   int mass_power;
-  // }
-
-  // class Time {
-  //  public:
-  //   template <class Conv, class Ratio>
-  //   Base<DimTime, Conv, Ratio> timeValue;
-  //   int time_power;
-  // }
-
   // operator overload methods
-  // have to convert data (to proper converter methods when actually dividing)
 
   // compound / compound
   template <class Length2, int LengthPower2, class Mass2, int MassPower2,
             class Time2, int TimePower2>  // second object
-  // // so instead of line above, we can do using structs...
-  // template <class Length, class Mass, class Time> // and now we can get both
-  // the value and power from Length
-  // // and the operator overload function would like
-  // auto operator/(Derived<Length, Mass, Time> lhs, Derived<Length, Mass, Time>
-  // rhs) { // oops figure out mistake yikes but good start)
-  //   return Derived< // confused here hmmm - wrong approach
   friend constexpr auto operator/(
       Derived lhs,
       Derived<Length2, LengthPower2, Mass2, MassPower2, Time2, TimePower2, Data>
