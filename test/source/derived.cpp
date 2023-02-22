@@ -126,6 +126,8 @@ TEST_SUITE("Derived") {
     // our answer is held here
     const auto velocity = distance / time;
     CHECK(velocity.data == doctest::Approx(10.0));
+    CHECK(std::is_same_v<std::remove_const_t<decltype(velocity)>,
+                         DBasic<1, 0, -1>>);
 
     std::cout << std::endl
               << "Question 1" << std::endl
@@ -143,6 +145,8 @@ TEST_SUITE("Derived") {
     // our answer is held here
     const auto acceleration = velocity_delta / time;
     CHECK(acceleration.data == doctest::Approx(25.0));
+    CHECK(std::is_same_v<std::remove_const_t<decltype(acceleration)>,
+                         DBasic<1, 0, -2>>);
 
     std::cout << "Question 2a" << std::endl
               << "The race car has an acceleration of " << acceleration.data
@@ -156,10 +160,32 @@ TEST_SUITE("Derived") {
     // our answer is held here
     const auto force = mass * acceleration;
     CHECK(force.data == doctest::Approx(20000.0));
+    CHECK(
+        std::is_same_v<std::remove_const_t<decltype(force)>, DBasic<1, 1, -2>>);
 
     std::cout << "Question 2b" << std::endl
               << "The race car has a force of " << force.data
               << " N being applied to it." << std::endl
+              << std::endl;
+  }
+
+  TEST_CASE("Polished Test Case Calculating Density") {
+    // A block of constant density has a length of 0.5 m, a width of 0.25 m, a
+    // height of 0.1 m, and a mass of 3 kg. What is the block's density?
+    const auto length = Meter(0.5);
+    const auto width = Meter(0.25);
+    const auto height = Meter(0.1);
+    const auto mass = Kilograms(3.0);
+
+    // our answer is held here
+    const auto density = mass / (length * width * height);
+    CHECK(density.data == doctest::Approx(240.0));
+    CHECK(std::is_same_v<std::remove_const_t<decltype(density)>,
+                         DBasic<-3, 1, 0>>);
+
+    std::cout << "Question 3" << std::endl
+              << "The block has a density of " << density.data << " kg/m^3"
+              << std::endl
               << std::endl;
   }
 }
