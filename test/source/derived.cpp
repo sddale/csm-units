@@ -166,8 +166,20 @@ TEST_SUITE("Derived") {
                            DBasic<1, 1, 0>>);
     }
 
-    SUBCASE("Weird Numbers") {
+    SUBCASE("True Decimals") {
+      const auto len = DBasic<1, 0, 0>(5.6839);
+      const auto mass = DBasic<0, 1, 0>(42.0422);
+      const double num = 2.9204203;
 
+      const auto check1 = len * mass;
+      const auto check2 = num * mass;
+
+      CHECK(check1.data == doctest::Approx(238.963660));
+      CHECK(check2.data == doctest::Approx(122.780894));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(check1)>,
+                           DBasic<1, 1, 0>>);
+      CHECK(std::is_same_v<std::remove_const_t<decltype(check2)>,
+                           DBasic<0, 1, 0>>);
     }
   }
 
