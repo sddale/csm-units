@@ -106,14 +106,37 @@ TEST_SUITE("Derived") {
   }
 
   TEST_CASE("Multiplication") {
-    // working for now
-    const auto length2_mass2 = DBasic<2, 2, 0>(20.0);
-    const auto length1 = DBasic<1, 0, 0>(2.0);
-    const auto check = length2_mass2 * length1;
+    // bases
+    const auto len_base = Base<DimLength>(4.0);  // <1, 0, 0>
+    const auto mass_base = Base<DimMass>(2.0);   // <0, 1, 0>
 
-    CHECK(check.data == doctest::Approx(40.0));
-    CHECK(
-        std::is_same_v<std::remove_const_t<decltype(check)>, DBasic<3, 2, 0>>);
+    // derived
+    const auto len3_mass2 = DBasic<3, 2, 0>(20.0);
+    const auto len1_time3 = DBasic<1, 0, 3>(50.0);
+    const auto mass2_time2 = DBasic<0, 2, 2>(5.0);
+    const auto len1_mass3_time2 = DBasic<1, 3, 2>(60.0);
+
+    SUBCASE("Multiplication Combinations") {
+      const auto deriv_deriv = len3_mass2 * len1_time3;
+      const auto deriv_base = len1_mass3_time2 * mass_base;
+      const auto base_deriv = len_base * mass2_time2;
+      const auto base_base = len_base * mass_base;
+
+      CHECK(deriv_deriv.data == doctest::Approx(1000.0));
+      CHECK(deriv_base.data == doctest::Approx(120.0));
+      CHECK(base_deriv.data == doctest::Approx(20.0));
+      CHECK(base_base.data == doctest::Approx(8.0));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(deriv_deriv)>,
+                           DBasic<4, 2, 3>>);
+      CHECK(std::is_same_v<std::remove_const_t<decltype(deriv_base)>,
+                           DBasic<1, 4, 2>>);
+      CHECK(std::is_same_v<std::remove_const_t<decltype(base_deriv)>,
+                           DBasic<1, 2, 2>>);
+      CHECK(std::is_same_v<std::remove_const_t<decltype(base_base)>,
+                           DBasic<1, 1, 0>>);
+    }
+
+    SUBCASE("Multiplication Combinations 2") {}
   }
 
   // showcase for 2/22 meeting

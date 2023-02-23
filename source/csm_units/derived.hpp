@@ -146,4 +146,10 @@ constexpr auto operator/(Base<T1s...> lhs, Base<T2s...> rhs) noexcept {
   return derived::Factory::Make(lhs) / derived::Factory::Make(rhs);
 }
 
+// base * base
+template <class... T1s, class... T2s>
+constexpr auto operator*(Base<T1s...> lhs, Base<T2s...> rhs) noexcept {
+  return derived::Factory::Make(lhs) * derived::Factory::Make(rhs);
+}
+
 }  // namespace csm_units
