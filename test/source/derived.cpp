@@ -181,9 +181,12 @@ TEST_SUITE("Derived") {
       CHECK(std::is_same_v<std::remove_const_t<decltype(check2)>,
                            DBasic<0, 1, 0>>);
     }
+
+    SUBCASE("Addition") {}
+    SUBCASE("Subtraction") {}
   }
 
-  // showcase for 2/22 meeting
+    // showcase for 2/22 meeting
   TEST_CASE("Polished Test Case Calculating Velocity") {
     // A race car is traveling at a constant velocity and travels 100 meters in
     // 10 seconds. What is the race car's velocity?
