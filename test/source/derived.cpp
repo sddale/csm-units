@@ -136,7 +136,25 @@ TEST_SUITE("Derived") {
                            DBasic<1, 1, 0>>);
     }
 
-    SUBCASE("Multiplication Combinations 2") {}
+    SUBCASE("Multiplication Combinations 2") {
+      const auto deriv_deriv = len1_time3 * mass2_time2;
+      const auto deriv_base = len3_mass2 * len_base;
+      const auto base_deriv = mass_base * len1_mass3_time2;
+      const auto base_base = mass_base * len_base;
+
+      CHECK(deriv_deriv.data == doctest::Approx(250.0));
+      CHECK(deriv_base.data == doctest::Approx(80.0));
+      CHECK(base_deriv.data == doctest::Approx(120.0));
+      CHECK(base_base.data == doctest::Approx(8.0));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(deriv_deriv)>,
+                           DBasic<1, 2, 5>>);
+      CHECK(std::is_same_v<std::remove_const_t<decltype(deriv_base)>,
+                           DBasic<4, 2, 0>>);
+      CHECK(std::is_same_v<std::remove_const_t<decltype(base_deriv)>,
+                           DBasic<1, 4, 2>>);
+      CHECK(std::is_same_v<std::remove_const_t<decltype(base_base)>,
+                           DBasic<1, 1, 0>>);
+    }
   }
 
   // showcase for 2/22 meeting
