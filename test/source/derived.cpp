@@ -121,11 +121,16 @@ TEST_SUITE("Derived") {
       const auto deriv_base = len1_mass3_time2 * mass_base;
       const auto base_deriv = len_base * mass2_time2;
       const auto base_base = len_base * mass_base;
+      const auto double_deriv = 3.0 * len3_mass2;
+      const auto deriv_double = len1_time3 * 5.0;
 
       CHECK(deriv_deriv.data == doctest::Approx(1000.0));
       CHECK(deriv_base.data == doctest::Approx(120.0));
       CHECK(base_deriv.data == doctest::Approx(20.0));
       CHECK(base_base.data == doctest::Approx(8.0));
+      CHECK(double_deriv.data == doctest::Approx(60.0));
+      CHECK(deriv_double.data == doctest::Approx(250.0));
+
       CHECK(std::is_same_v<std::remove_const_t<decltype(deriv_deriv)>,
                            DBasic<4, 2, 3>>);
       CHECK(std::is_same_v<std::remove_const_t<decltype(deriv_base)>,
@@ -141,11 +146,16 @@ TEST_SUITE("Derived") {
       const auto deriv_base = len3_mass2 * len_base;
       const auto base_deriv = mass_base * len1_mass3_time2;
       const auto base_base = mass_base * len_base;
+      const auto double_deriv = 10.0 * len1_time3;
+      const auto deriv_double = mass2_time2 * 2.0;
 
       CHECK(deriv_deriv.data == doctest::Approx(250.0));
       CHECK(deriv_base.data == doctest::Approx(80.0));
       CHECK(base_deriv.data == doctest::Approx(120.0));
       CHECK(base_base.data == doctest::Approx(8.0));
+      CHECK(double_deriv.data == doctest::Approx(500.0));
+      CHECK(deriv_double.data == doctest::Approx(10.0));
+
       CHECK(std::is_same_v<std::remove_const_t<decltype(deriv_deriv)>,
                            DBasic<1, 2, 5>>);
       CHECK(std::is_same_v<std::remove_const_t<decltype(deriv_base)>,
@@ -154,6 +164,10 @@ TEST_SUITE("Derived") {
                            DBasic<1, 4, 2>>);
       CHECK(std::is_same_v<std::remove_const_t<decltype(base_base)>,
                            DBasic<1, 1, 0>>);
+    }
+
+    SUBCASE("Weird Numbers") {
+
     }
   }
 
