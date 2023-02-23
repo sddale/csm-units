@@ -186,7 +186,7 @@ TEST_SUITE("Derived") {
     // SUBCASE("Subtraction") {}
   }
 
-    // showcase for 2/22 meeting
+  // showcase for 2/22 meeting
   TEST_CASE("Polished Test Case Calculating Velocity") {
     // A race car is traveling at a constant velocity and travels 100 meters in
     // 10 seconds. What is the race car's velocity?
