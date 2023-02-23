@@ -131,7 +131,11 @@ class Derived {
   }
 
   // double * compound
-  // still need this one
+  friend constexpr auto operator*(Arithmetic auto lhs, Derived rhs) noexcept {
+    return (Derived<Base<DimLength>, LengthPower, Base<DimMass>, MassPower,
+                    Base<DimTime>, TimePower, decltype(lhs)>(lhs * rhs.data));
+  }
+  // like that ^?
 
   // + operator overloads
 };
