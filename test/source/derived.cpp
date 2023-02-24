@@ -187,12 +187,16 @@ TEST_SUITE("Derived") {
       // const auto object = DBasic<1,1,1>(10.0);
       const auto object2 = DBasic<1,0,0>(30.0);  
       const auto sameBase = Base<DimLength>(20.0); 
+      const auto sameBase2 = Base<DimLength>(4.0);
+
       // CHECK(std::is_same_v<std::remove_const_t<decltype(sameBase)>,
       //                      DBasic<1, 0, 0>>);
       // const auto sameObject = DBasic<1,1,1>(10.0);
       // const auto check = object + sameObject;
       const auto check2 = object2 + sameBase;
       const auto check3 = object2 + 50.0;
+      const auto check4 = sameBase + sameBase2;
+      CHECK(check4.data == doctest::Approx(24.0));
       CHECK(check2.data == doctest::Approx(50.0));
       CHECK(check3.data == doctest::Approx(80.0));
       CHECK(std::is_same_v<std::remove_const_t<decltype(check3)>,

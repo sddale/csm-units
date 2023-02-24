@@ -167,6 +167,11 @@ class Derived {
     lhs += rhs;
     return lhs;
   }
+
+  // double + compound
+  friend constexpr auto operator+(Arithmetic auto lhs, Derived rhs) noexcept {
+    return (Derived(lhs + rhs.data));
+  }
 };
 
 // base / base
@@ -179,6 +184,12 @@ constexpr auto operator/(Base<T1s...> lhs, Base<T2s...> rhs) noexcept {
 template <class... T1s, class... T2s>
 constexpr auto operator*(Base<T1s...> lhs, Base<T2s...> rhs) noexcept {
   return derived::Factory::Make(lhs) * derived::Factory::Make(rhs);
+}
+
+// base + base
+template <class... T1s, class... T2s>
+constexpr auto operator+(Base<T1s...> lhs, Base<T2s...> rhs) noexcept {
+  return derived::Factory::Make(lhs) + derived::Factory::Make(rhs);
 }
 
 }  // namespace csm_units
