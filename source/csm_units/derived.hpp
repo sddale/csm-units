@@ -138,6 +138,11 @@ class Derived {
   // like that ^?
 
   // + operator overloads
+
+  // compound + compound
+  friend constexpr auto operator+(Derived lhs, Derived rhs) noexcept {
+    return (Derived(lhs.data + rhs.data));
+  }
 };
 
 // base / base

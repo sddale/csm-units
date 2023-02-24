@@ -182,7 +182,13 @@ TEST_SUITE("Derived") {
                            DBasic<0, 1, 0>>);
     }
 
-    // SUBCASE("Addition") {}
+    SUBCASE("Addition") {
+      // just a simple check to make sure it works - it does
+      const auto object = DBasic<1,1,1>(10.0);
+      const auto sameObject = DBasic<1,1,1>(10.0);
+      const auto check = object + sameObject;
+      CHECK(check.data == doctest::Approx(20.0));
+    }
     // SUBCASE("Subtraction") {}
   }
 
