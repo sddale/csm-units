@@ -143,6 +143,12 @@ class Derived {
   friend constexpr auto operator+(Derived lhs, Derived rhs) noexcept {
     return (Derived(lhs.data + rhs.data));
   }
+
+  // compound + base (I guess a scenario where this happens is rare)
+  template <class... Ts>
+  friend constexpr auto operator+(Derived lhs, Base<Ts...> rhs) noexcept {
+    return lhs + derived::Factory::Make(rhs);
+  }
 };
 
 // base / base

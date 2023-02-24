@@ -184,10 +184,16 @@ TEST_SUITE("Derived") {
 
     SUBCASE("Addition") {
       // just a simple check to make sure it works - it does
-      const auto object = DBasic<1,1,1>(10.0);
-      const auto sameObject = DBasic<1,1,1>(10.0);
-      const auto check = object + sameObject;
-      CHECK(check.data == doctest::Approx(20.0));
+      // const auto object = DBasic<1,1,1>(10.0);
+      const auto object2 = DBasic<1,0,0>(30.0);  
+      const auto sameBase = Base<DimLength>(20.0); 
+      // CHECK(std::is_same_v<std::remove_const_t<decltype(sameBase)>,
+      //                      DBasic<1, 0, 0>>);
+      // const auto sameObject = DBasic<1,1,1>(10.0);
+      // const auto check = object + sameObject;
+      const auto check2 = object2 + sameBase;
+      CHECK(check2.data == doctest::Approx(50.0));
+      // CHECK(check2.data == doctest::Approx(50.0));
     }
     // SUBCASE("Subtraction") {}
   }
