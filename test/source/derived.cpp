@@ -185,8 +185,8 @@ TEST_SUITE("Derived") {
     SUBCASE("Addition") {
       // just a simple check to make sure it works - it does
       // const auto object = DBasic<1,1,1>(10.0);
-      const auto object2 = DBasic<1,0,0>(30.0);  
-      const auto sameBase = Base<DimLength>(20.0); 
+      const auto object2 = DBasic<1, 0, 0>(30.0);
+      const auto sameBase = Base<DimLength>(20.0);
       const auto sameBase2 = Base<DimLength>(4.0);
 
       // CHECK(std::is_same_v<std::remove_const_t<decltype(sameBase)>,
