@@ -31,7 +31,6 @@ TEST_SUITE("Derived") {
   TEST_CASE("Objects") {
     SUBCASE("DimLength") {
       const auto test_length_pow1 = DBasic<1, 0, 0>(13.0);
-
       const auto test_length_pow2 = DBasic<2, 0, 0>(13.0);
 
       CHECK(test_length_pow1.data == doctest::Approx(13.0));
@@ -40,7 +39,6 @@ TEST_SUITE("Derived") {
 
     SUBCASE("DimMass") {
       const auto test_mass_pow1 = DBasic<0, 1, 0>(13.0);
-
       const auto test_mass_pow2 = DBasic<0, 2, 0>(13.0);
 
       CHECK(test_mass_pow1.data == doctest::Approx(13.0));
@@ -49,7 +47,6 @@ TEST_SUITE("Derived") {
 
     SUBCASE("DimTime") {
       const auto test_time_pow1 = DBasic<0, 0, 1>(13.0);
-
       const auto test_time_pow2 = DBasic<0, 0, 2>(13.0);
 
       CHECK(test_time_pow1.data == doctest::Approx(13.0));
@@ -58,9 +55,7 @@ TEST_SUITE("Derived") {
 
     SUBCASE("Mix of All 3") {
       const auto length1_mass1_time1 = DBasic<1, 1, 1>(13.0);
-
       const auto length2_mass2_time2 = DBasic<2, 2, 2>(13.0);
-
       const auto arbitrary_mix_up = DBasic<3, 1, 4>(13.0);
 
       CHECK(length1_mass1_time1.data == doctest::Approx(13.0));
@@ -70,6 +65,7 @@ TEST_SUITE("Derived") {
   }
 
   TEST_CASE("Division") {
+    // may have to refactor
     const auto length2_mass2 = DBasic<2, 2, 0>(20.0);
     const auto length1 = DBasic<1, 0, 0>(2.0);
     const auto mass1 = DBasic<0, 1, 0>(10.0);
@@ -220,7 +216,9 @@ TEST_SUITE("Derived") {
                            DBasic<0, 1, 0>>);
     }
 
-    SUBCASE("True Decimals") {}
+    SUBCASE("True Decimals") {
+      // need to implement this
+    }
   }
 
   TEST_CASE("Substraction") {
@@ -241,12 +239,16 @@ TEST_SUITE("Derived") {
       const auto deriv_sum = deriv_obj - deriv_same;
       const auto deriv_base = len_obj - len_base;
       const auto base_deriv = mass_base - mass_obj;
+      const auto double_deriv = 22.0 + deriv_obj;
+      const auto deriv_double = deriv_obj + 4.0;
 
       CHECK(len_sum.data == doctest::Approx(10.0));
       CHECK(mass_sum.data == doctest::Approx(35.0));
       CHECK(deriv_sum.data == doctest::Approx(-5.0));
       CHECK(deriv_base.data == doctest::Approx(16.0));
       CHECK(base_deriv.data == doctest::Approx(-44.0));
+      CHECK(double_deriv.data == doctest::Approx(27.0));
+      CHECK(deriv_double.data == doctest::Approx(9.0));
       CHECK(std::is_same_v<std::remove_const_t<decltype(len_sum)>,
                            DBasic<1, 0, 0>>);
       CHECK(std::is_same_v<std::remove_const_t<decltype(mass_sum)>,
@@ -257,9 +259,15 @@ TEST_SUITE("Derived") {
                            DBasic<1, 0, 0>>);
       CHECK(std::is_same_v<std::remove_const_t<decltype(base_deriv)>,
                            DBasic<0, 1, 0>>);
+      CHECK(std::is_same_v<std::remove_const_t<decltype(double_deriv)>,
+                           DBasic<1, 0, 2>>);
+      CHECK(std::is_same_v<std::remove_const_t<decltype(deriv_double)>,
+                           DBasic<1, 0, 2>>);
     }
 
-    SUBCASE("True Decimals") {}
+    SUBCASE("True Decimals") {
+      // need to implement this
+    }
   }
 
   // showcase for 2/22 meeting
