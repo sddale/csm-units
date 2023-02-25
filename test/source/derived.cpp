@@ -181,29 +181,46 @@ TEST_SUITE("Derived") {
       CHECK(std::is_same_v<std::remove_const_t<decltype(check2)>,
                            DBasic<0, 1, 0>>);
     }
+  }
 
-    SUBCASE("Addition") {
-      // just a simple check to make sure it works - it does
-      // const auto object = DBasic<1,1,1>(10.0);
-      const auto object2 = DBasic<1, 0, 0>(30.0);
-      const auto sameBase = Base<DimLength>(20.0);
-      const auto sameBase2 = Base<DimLength>(4.0);
+  TEST_CASE("Addition") {
+    // derived
+    const auto len_obj = DBasic<1, 0, 0>(20.0);
+    const auto len_same = DBasic<1, 0, 0>(10.0);
+    const auto mass_obj = DBasic<0, 1, 0>(50.0);
+    const auto mass_same = DBasic<0, 1, 0>(15.0);
+    const auto deriv_obj = DBasic<1, 0, 2>(5.0);
+    const auto deriv_same = DBasic<1, 0, 2>(10.0);
 
-      // CHECK(std::is_same_v<std::remove_const_t<decltype(sameBase)>,
-      //                      DBasic<1, 0, 0>>);
-      // const auto sameObject = DBasic<1,1,1>(10.0);
-      // const auto check = object + sameObject;
-      const auto check2 = object2 + sameBase;
-      const auto check3 = object2 + 50.0;
-      const auto check4 = sameBase + sameBase2;
-      CHECK(check4.data == doctest::Approx(24.0));
-      CHECK(check2.data == doctest::Approx(50.0));
-      CHECK(check3.data == doctest::Approx(80.0));
-      CHECK(std::is_same_v<std::remove_const_t<decltype(check3)>,
+    // bases
+    const auto len_base = Base<DimLength>(4.0);
+    const auto mass_base = Base<DimMass>(6.0);
+
+    SUBCASE("Addition Combinations") {
+      const auto len_sum = len_obj + len_same;
+      const auto mass_sum = mass_obj + mass_same;
+      const auto deriv_sum = deriv_obj + deriv_same;
+      const auto deriv_base = len_obj + len_base;
+      const auto base_deriv = mass_base + mass_obj;
+
+      CHECK(len_sum.data == doctest::Approx(30.0));
+      CHECK(mass_sum.data == doctest::Approx(65.0));
+      CHECK(deriv_sum.data == doctest::Approx(15.0));
+      CHECK(deriv_base.data == doctest::Approx(24.0));
+      CHECK(base_deriv.data == doctest::Approx(56.0));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(len_sum)>,
                            DBasic<1, 0, 0>>);
-      // CHECK(check2.data == doctest::Approx(50.0));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(mass_sum)>,
+                           DBasic<0, 1, 0>>);
+      CHECK(std::is_same_v<std::remove_const_t<decltype(deriv_sum)>,
+                           DBasic<1, 0, 2>>);
+      CHECK(std::is_same_v<std::remove_const_t<decltype(deriv_base)>,
+                           DBasic<1, 0, 0>>);
+      CHECK(std::is_same_v<std::remove_const_t<decltype(base_deriv)>,
+                           DBasic<0, 1, 0>>);
     }
-    // SUBCASE("Subtraction") {}
+
+    SUBCASE("Subtraction") {}
   }
 
   // showcase for 2/22 meeting

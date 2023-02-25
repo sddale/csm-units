@@ -180,19 +180,19 @@ class Derived {
     return (Derived(lhs.data - rhs.data));
   }
 
-  // compound + base (I guess a scenario where this happens is rare)
+  // compound - base (I guess a scenario where this happens is rare)
   template <class... Ts>
   friend constexpr auto operator-(Derived lhs, Base<Ts...> rhs) noexcept {
     return lhs - derived::Factory::Make(rhs);
   }
 
-  // base + compound (I guess a scenario where this happens is rare?)
+  // base - compound (I guess a scenario where this happens is rare?)
   template <class... Ts>
-  friend constexpr auto operator+(Base<Ts...> lhs, Derived rhs) noexcept {
+  friend constexpr auto operator-(Base<Ts...> lhs, Derived rhs) noexcept {
     return derived::Factory::Make(lhs) - rhs;
   }
 
-  // compoud += double
+  // compoud -= double
   constexpr auto operator-=(Arithmetic auto rhs) noexcept -> auto& {
     data -= rhs;
     return *this;
