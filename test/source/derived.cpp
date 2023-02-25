@@ -220,8 +220,10 @@ TEST_SUITE("Derived") {
                            DBasic<0, 1, 0>>);
     }
 
-    SUBCASE("Subtraction") {}
+    SUBCASE("True Decimals") {}
   }
+
+  TEST_CASE("Substraction") {}
 
   // showcase for 2/22 meeting
   TEST_CASE("Polished Test Case Calculating Velocity") {
