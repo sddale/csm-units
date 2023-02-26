@@ -158,7 +158,12 @@ class Derived {
 
   // compoud += double
   constexpr auto operator+=(Arithmetic auto rhs) noexcept -> auto& {
-    data += rhs;
+    if ((LengthPower == 0) && (MassPower == 0) && (TimePower == 0)) {
+      data += rhs;
+    } else {
+      // should throw an error, but not sure how to go about that
+    }
+
     return *this;
   }
 
@@ -194,17 +199,21 @@ class Derived {
 
   // compoud -= double
   constexpr auto operator-=(Arithmetic auto rhs) noexcept -> auto& {
-    data -= rhs;
+    if ((LengthPower == 0) && (MassPower == 0) && (TimePower == 0)) {
+      data -= rhs;
+    } else {
+      // should throw an error, but not sure how to go about that
+    }
     return *this;
   }
 
-  // compound + double
+  // compound - double
   friend constexpr auto operator-(Derived lhs, Arithmetic auto rhs) noexcept {
     lhs -= rhs;
     return lhs;
   }
 
-  // double + compound
+  // double - compound
   friend constexpr auto operator-(Arithmetic auto lhs, Derived rhs) noexcept {
     return (Derived(lhs - rhs.data));
   }

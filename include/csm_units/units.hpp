@@ -8,9 +8,12 @@
 namespace csm_units {
 
 // Pressure typedefs
-template <class Converter>
+template <class Converter>  // not sure how to handle this
 using Pressure = Base<DimPressure, Converter>;
-// Once we get derived working with more than just the 3 we can change the above
+// template <class Converter>  // not sure how to handle this
+// using Pressure =
+//     Derived<Base<DimLength, Converter>, -1, Base<DimMass, Converter>, 1,
+//             Base<DimTime, Converter>, -2>;
 
 // Pressure typedefs
 using Pascals = Pressure<NoConverter>;

@@ -217,7 +217,18 @@ TEST_SUITE("Derived") {
     }
 
     SUBCASE("True Decimals") {
-      // need to implement this
+      const auto unit_deriv = DBasic<0, 0, 0>(30.01);
+      const double num = 12.98;
+
+      const auto check1 = num + unit_deriv;
+      const auto check2 = unit_deriv + num;
+
+      CHECK(check1.data == doctest::Approx(42.99));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(check1)>,
+                           DBasic<0, 0, 0>>);
+      CHECK(check2.data == doctest::Approx(42.99));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(check2)>,
+                           DBasic<0, 0, 0>>);
     }
   }
 
@@ -233,22 +244,19 @@ TEST_SUITE("Derived") {
     const auto len_base = Base<DimLength>(4.0);
     const auto mass_base = Base<DimMass>(6.0);
 
-    SUBCASE("Addition Combinations") {
+    SUBCASE("Subtraction Combinations") {
       const auto len_sum = len_obj - len_same;
       const auto mass_sum = mass_obj - mass_same;
       const auto deriv_sum = deriv_obj - deriv_same;
       const auto deriv_base = len_obj - len_base;
       const auto base_deriv = mass_base - mass_obj;
-      const auto double_deriv = 22.0 + deriv_obj;
-      const auto deriv_double = deriv_obj + 4.0;
 
       CHECK(len_sum.data == doctest::Approx(10.0));
       CHECK(mass_sum.data == doctest::Approx(35.0));
       CHECK(deriv_sum.data == doctest::Approx(-5.0));
       CHECK(deriv_base.data == doctest::Approx(16.0));
       CHECK(base_deriv.data == doctest::Approx(-44.0));
-      CHECK(double_deriv.data == doctest::Approx(27.0));
-      CHECK(deriv_double.data == doctest::Approx(9.0));
+
       CHECK(std::is_same_v<std::remove_const_t<decltype(len_sum)>,
                            DBasic<1, 0, 0>>);
       CHECK(std::is_same_v<std::remove_const_t<decltype(mass_sum)>,
@@ -259,14 +267,23 @@ TEST_SUITE("Derived") {
                            DBasic<1, 0, 0>>);
       CHECK(std::is_same_v<std::remove_const_t<decltype(base_deriv)>,
                            DBasic<0, 1, 0>>);
-      CHECK(std::is_same_v<std::remove_const_t<decltype(double_deriv)>,
-                           DBasic<1, 0, 2>>);
-      CHECK(std::is_same_v<std::remove_const_t<decltype(deriv_double)>,
-                           DBasic<1, 0, 2>>);
     }
 
     SUBCASE("True Decimals") {
-      // need to implement this
+      const auto unit_deriv = DBasic<0, 0, 0>(11.9);
+      const double num1 = 22.9;
+      const double num2 = 8.9;
+
+      const auto check1 = num1 - unit_deriv;
+      const auto check2 = unit_deriv - num2;
+
+      CHECK(check1.data == doctest::Approx(11.0));
+      CHECK(check2.data == doctest::Approx(3.0));
+
+      CHECK(std::is_same_v<std::remove_const_t<decltype(check1)>,
+                           DBasic<0, 0, 0>>);
+      CHECK(std::is_same_v<std::remove_const_t<decltype(check2)>,
+                           DBasic<0, 0, 0>>);
     }
   }
 
@@ -283,11 +300,12 @@ TEST_SUITE("Derived") {
     CHECK(std::is_same_v<std::remove_const_t<decltype(velocity)>,
                          DBasic<1, 0, -1>>);
 
-    std::cout << std::endl
-              << "Question 1" << std::endl
-              << "The race car is traveling at a velocity of " << velocity.data
-              << " m/s" << std::endl
-              << std::endl;
+    // std::cout << std::endl
+    //           << "Question 1" << std::endl
+    //           << "The race car is traveling at a velocity of " <<
+    //           velocity.data
+    //           << " m/s" << std::endl
+    //           << std::endl;
   }
 
   TEST_CASE("Polished Test Case Calculating Acceleration") {
@@ -302,10 +320,10 @@ TEST_SUITE("Derived") {
     CHECK(std::is_same_v<std::remove_const_t<decltype(acceleration)>,
                          DBasic<1, 0, -2>>);
 
-    std::cout << "Question 2a" << std::endl
-              << "The race car has an acceleration of " << acceleration.data
-              << " m/s^2" << std::endl
-              << std::endl;
+    // std::cout << "Question 2a" << std::endl
+    //           << "The race car has an acceleration of " << acceleration.data
+    //           << " m/s^2" << std::endl
+    //           << std::endl;
 
     // The mass of the race car is 800 kg. Using the calculated acceleration
     // from above, what is the force on the car?
@@ -317,10 +335,10 @@ TEST_SUITE("Derived") {
     CHECK(
         std::is_same_v<std::remove_const_t<decltype(force)>, DBasic<1, 1, -2>>);
 
-    std::cout << "Question 2b" << std::endl
-              << "The race car has a force of " << force.data
-              << " N being applied to it." << std::endl
-              << std::endl;
+    // std::cout << "Question 2b" << std::endl
+    //           << "The race car has a force of " << force.data
+    //           << " N being applied to it." << std::endl
+    //           << std::endl;
   }
 
   TEST_CASE("Polished Test Case Calculating Density") {
@@ -337,10 +355,10 @@ TEST_SUITE("Derived") {
     CHECK(std::is_same_v<std::remove_const_t<decltype(density)>,
                          DBasic<-3, 1, 0>>);
 
-    std::cout << "Question 3" << std::endl
-              << "The block has a density of " << density.data << " kg/m^3"
-              << std::endl
-              << std::endl;
+    // std::cout << "Question 3" << std::endl
+    //           << "The block has a density of " << density.data << " kg/m^3"
+    //           << std::endl
+    //           << std::endl;
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type)
