@@ -11,6 +11,9 @@
 
 namespace csm_units {
 
+// compound - compoud alias
+// compound - base alias
+
 template <class Length, int LengthPower, class Mass, int MassPower, class Time,
           int TimePower, Arithmetic Data>
 class Derived;
