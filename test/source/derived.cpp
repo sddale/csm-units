@@ -5,13 +5,6 @@
 
 namespace csm_units::test {
 
-template <int LP, int MP, int TP>
-using DBasic =
-    Derived<Base<DimLength>, LP, Base<DimMass>, MP, Base<DimTime>, TP, double>;
-
-// for polished test cases
-using Meter = DBasic<1, 0, 0>;
-using Seconds = DBasic<0, 0, 1>;
 using Kilograms = DBasic<0, 1, 0>;
 
 // velocity = m/s

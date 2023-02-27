@@ -135,8 +135,7 @@ class Derived {
 
   // double * compound
   friend constexpr auto operator*(Arithmetic auto lhs, Derived rhs) noexcept {
-    return (Derived<Base<DimLength>, LengthPower, Base<DimMass>, MassPower,
-                    Base<DimTime>, TimePower, decltype(lhs)>(lhs * rhs.data));
+    return (Derived(lhs * rhs.data));
   }
   // like that ^?
 
@@ -235,15 +234,32 @@ constexpr auto operator*(Base<T1s...> lhs, Base<T2s...> rhs) noexcept {
 }
 
 // base + base
-template <class... T1s, class... T2s>
-constexpr auto operator+(Base<T1s...> lhs, Base<T2s...> rhs) noexcept {
+template <class... Ts>
+constexpr auto operator+(Base<Ts...> lhs, Base<Ts...> rhs) noexcept {
   return derived::Factory::Make(lhs) + derived::Factory::Make(rhs);
 }
 
 // base - base
-template <class... T1s, class... T2s>
-constexpr auto operator-(Base<T1s...> lhs, Base<T2s...> rhs) noexcept {
+template <class... Ts>
+constexpr auto operator-(Base<Ts...> lhs, Base<Ts...> rhs) noexcept {
   return derived::Factory::Make(lhs) - derived::Factory::Make(rhs);
 }
+
+// Aliases for basic units
+template <int LP, int MP, int TP>
+using DBasic =
+    Derived<Base<DimLength>, LP, Base<DimMass>, MP, Base<DimTime>, TP, double>;
+
+using Meter = DBasic<1, 0, 0>;
+using Seconds = DBasic<0, 0, 1>;
+// using Kilograms =
+//     Derived<Base<DimLength>, 0,
+//             Base<DimMass, NoConverter, std::ratio<1000, 1>, double>, 1,
+//             Base<DimTime>, 0, double>; // Kilograms can't be used like this
+//             yet, because the test cases can't handle ratio yet
+// using Mole = //cannot do this yet
+// using Ampere = //cannot do this yet
+// using Kelvin = //cannot do this yet
+// using Candela = //cannot do this yet
 
 }  // namespace csm_units
