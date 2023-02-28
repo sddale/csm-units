@@ -1,6 +1,6 @@
 #include <doctest/doctest.h>
 
-#include <../source/csm_units/Converter.hpp>
+#include <../source/csm_units/converter.hpp>
 #include <csm_units/units.hpp>
 
 namespace csm_units::test {

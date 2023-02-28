@@ -3,11 +3,11 @@
 #include <ratio>
 #include <utility>
 
-#include "Converter.hpp"
-#include "DimLength.hpp"
-#include "DimMass.hpp"
-#include "DimTime.hpp"
 #include "base.hpp"
+#include "converter.hpp"
+#include "dim_length.hpp"
+#include "dim_mass.hpp"
+#include "dim_time.hpp"
 
 namespace csm_units {
 
@@ -44,7 +44,11 @@ template <class Length, int LengthPower, class Mass, int MassPower, class Time,
           int TimePower, Arithmetic Data>
 class Derived {
  public:
-  constexpr explicit Derived(Data value) noexcept : data(value) {}
+  constexpr explicit Derived(Data value = 0) noexcept : data(value) {
+    static_assert(LengthPower != 0 or MassPower != 0 or TimePower != 0,
+                  "You defined all exponents equal to zero. Use an arithmetic "
+                  "type instead");
+  }
 
   // copy constructor for derived of the same type
   constexpr Derived(const Derived& other) noexcept = default;
@@ -52,6 +56,11 @@ class Derived {
   Data data;
 
   // / operator overloads
+
+  // compound / compound for two of the same derived
+  friend constexpr auto operator/(Derived lhs, Derived rhs) noexcept {
+    return lhs.data / rhs.data;
+  }
 
   // compound / compound
   template <class Length2, int LengthPower2, class Mass2, int MassPower2,
@@ -66,14 +75,12 @@ class Derived {
   }
 
   // compound / base
-  template <class... Ts>
-  friend constexpr auto operator/(Derived lhs, Base<Ts...> rhs) noexcept {
+  friend constexpr auto operator/(Derived lhs, BaseType auto rhs) noexcept {
     return lhs / derived::Factory::Make(rhs);
   }
 
   // base / compound
-  template <class... Ts>
-  friend constexpr auto operator/(Base<Ts...> lhs, Derived rhs) noexcept {
+  friend constexpr auto operator/(BaseType auto lhs, Derived rhs) noexcept {
     return derived::Factory::Make(lhs) / rhs;
   }
 
@@ -96,6 +103,12 @@ class Derived {
   }
 
   // * operator overloads
+  friend constexpr auto operator*(
+      Derived lhs,
+      Derived<Length, -LengthPower, Mass, -MassPower, Time, -TimePower, Data>
+          rhs) noexcept {
+    return lhs.data * rhs.data;
+  }
 
   // compound * compound
   template <class Length2, int LengthPower2, class Mass2, int MassPower2,
@@ -110,14 +123,12 @@ class Derived {
   }
 
   // compound * base
-  template <class... Ts>
-  friend constexpr auto operator*(Derived lhs, Base<Ts...> rhs) noexcept {
+  friend constexpr auto operator*(Derived lhs, BaseType auto rhs) noexcept {
     return lhs * derived::Factory::Make(rhs);
   }
 
   // base * compound
-  template <class... Ts>
-  friend constexpr auto operator*(Base<Ts...> lhs, Derived rhs) noexcept {
+  friend constexpr auto operator*(BaseType auto lhs, Derived rhs) noexcept {
     return derived::Factory::Make(lhs) * rhs;
   }
 
@@ -147,37 +158,13 @@ class Derived {
   }
 
   // compound + base (I guess a scenario where this happens is rare)
-  template <class... Ts>
-  friend constexpr auto operator+(Derived lhs, Base<Ts...> rhs) noexcept {
+  friend constexpr auto operator+(Derived lhs, BaseType auto rhs) noexcept {
     return lhs + derived::Factory::Make(rhs);
   }
 
   // base + compound (I guess a scenario where this happens is rare?)
-  template <class... Ts>
-  friend constexpr auto operator+(Base<Ts...> lhs, Derived rhs) noexcept {
+  friend constexpr auto operator+(BaseType auto lhs, Derived rhs) noexcept {
     return derived::Factory::Make(lhs) + rhs;
-  }
-
-  // compoud += double
-  constexpr auto operator+=(Arithmetic auto rhs) noexcept -> auto& {
-    if ((LengthPower == 0) && (MassPower == 0) && (TimePower == 0)) {
-      data += rhs;
-    } else {
-      // should throw an error, but not sure how to go about that
-    }
-
-    return *this;
-  }
-
-  // compound + double
-  friend constexpr auto operator+(Derived lhs, Arithmetic auto rhs) noexcept {
-    lhs += rhs;
-    return lhs;
-  }
-
-  // double + compound
-  friend constexpr auto operator+(Arithmetic auto lhs, Derived rhs) noexcept {
-    return (Derived(lhs + rhs.data));
   }
 
   // - operator overloads
@@ -188,61 +175,62 @@ class Derived {
   }
 
   // compound - base (I guess a scenario where this happens is rare)
-  template <class... Ts>
-  friend constexpr auto operator-(Derived lhs, Base<Ts...> rhs) noexcept {
+  friend constexpr auto operator-(Derived lhs, BaseType auto rhs) noexcept {
     return lhs - derived::Factory::Make(rhs);
   }
 
   // base - compound (I guess a scenario where this happens is rare?)
-  template <class... Ts>
-  friend constexpr auto operator-(Base<Ts...> lhs, Derived rhs) noexcept {
+  // template <class... Ts>
+  friend constexpr auto operator-(BaseType auto lhs, Derived rhs) noexcept {
     return derived::Factory::Make(lhs) - rhs;
   }
 
-  // compoud -= double
-  constexpr auto operator-=(Arithmetic auto rhs) noexcept -> auto& {
-    if ((LengthPower == 0) && (MassPower == 0) && (TimePower == 0)) {
-      data -= rhs;
-    } else {
-      // should throw an error, but not sure how to go about that
-    }
-    return *this;
-  }
+  // // compoud -= double
+  // constexpr auto operator-=(Arithmetic auto rhs) noexcept -> auto& {
+  //   if ((LengthPower == 0) && (MassPower == 0) && (TimePower == 0)) {
+  //     data -= rhs;
+  //   } else {
+  //     // should throw an error, but not sure how to go about that
+  //   }
+  //   return *this;
+  // }
 
-  // compound - double
-  friend constexpr auto operator-(Derived lhs, Arithmetic auto rhs) noexcept {
-    lhs -= rhs;
-    return lhs;
-  }
+  // // compound - double
+  // friend constexpr auto operator-(Derived lhs, Arithmetic auto rhs) noexcept
+  // {
+  //   lhs -= rhs;
+  //   return lhs;
+  // }
 
-  // double - compound
-  friend constexpr auto operator-(Arithmetic auto lhs, Derived rhs) noexcept {
-    return (Derived(lhs - rhs.data));
-  }
+  // // double - compound
+  // friend constexpr auto operator-(Arithmetic auto lhs, Derived rhs) noexcept
+  // {
+  //   return (Derived(lhs - rhs.data));
+  // }
 };
 
 // base / base
-template <class... T1s, class... T2s>
-constexpr auto operator/(Base<T1s...> lhs, Base<T2s...> rhs) noexcept {
+constexpr auto operator/(BaseType auto lhs, BaseType auto rhs) noexcept {
   return derived::Factory::Make(lhs) / derived::Factory::Make(rhs);
 }
 
 // base * base
-template <class... T1s, class... T2s>
-constexpr auto operator*(Base<T1s...> lhs, Base<T2s...> rhs) noexcept {
+constexpr auto operator*(BaseType auto lhs, BaseType auto rhs) noexcept {
   return derived::Factory::Make(lhs) * derived::Factory::Make(rhs);
 }
 
 // base + base
-template <class... Ts>
-constexpr auto operator+(Base<Ts...> lhs, Base<Ts...> rhs) noexcept {
+// TODO: REFACTOR
+//       conform to: https://en.cppreference.com/w/cpp/language/operators
+//       section: "Binary arithmetic operators"
+// TODO: Return type should decltype(*this) <- type of the calling class
+constexpr auto operator+(BaseType auto lhs, decltype(lhs) rhs) noexcept {
   return derived::Factory::Make(lhs) + derived::Factory::Make(rhs);
 }
 
 // base - base
-template <class... Ts>
-constexpr auto operator-(Base<Ts...> lhs, Base<Ts...> rhs) noexcept {
-  return derived::Factory::Make(lhs) - derived::Factory::Make(rhs);
+constexpr auto operator-(BaseType auto lhs, decltype(lhs) rhs) noexcept {
+  return lhs - derived::Factory::Make(rhs);
 }
 
 // Aliases for basic units

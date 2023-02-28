@@ -5,14 +5,14 @@
 #include <ratio>
 #include <type_traits>
 
-#include "Converter.hpp"
+#include "converter.hpp"
 
 namespace csm_units {
 
-template <class Dimension, class Converter = NoConverter,
+template <class Dimension, ConverterType Converter = NoConverter,
           class Ratio = std::ratio<1, 1>, Arithmetic Data = double>
 class Base {
-  template <class T, class R>
+  template <ConverterType T, class R>
   using OtherBase = Base<Dimension, T, R, Data>;
 
  public:
@@ -69,6 +69,7 @@ class Base {
   }
 
   Data data;
+  [[no_unique_address]] Converter conv;
 };
 
 }  // namespace csm_units
