@@ -19,6 +19,7 @@ template <class Length, int LengthPower, class Mass, int MassPower, class Time,
 class Derived;
 
 namespace derived {
+
 struct Factory {
   template <class Conv, class Ratio, Arithmetic Data>
   static auto Make(Base<DimLength, Conv, Ratio, Data> base) {
@@ -38,6 +39,7 @@ struct Factory {
                    Base<DimTime>, 0, Data>(base.data);
   }
 };
+
 }  // namespace derived
 
 template <class Length, int LengthPower, class Mass, int MassPower, class Time,
