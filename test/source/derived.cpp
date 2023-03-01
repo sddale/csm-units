@@ -224,7 +224,6 @@ TEST_SUITE("Derived") {
 
       test_sum(Base<DimMass>(5.0), Base<DimMass>(6.0), 11.0, DBasic<0, 1, 0>());
     }
-
   }
 
   TEST_CASE("Substraction") {
