@@ -137,8 +137,8 @@ TEST_SUITE("Derived") {
     }
 
     SUBCASE("Derived * Base") {
-      test_mult(DBasic<2, 3, 5>(15.0), Base<DimMass>(2.0), 30.0,
-                DBasic<4, 4, 5>());
+      test_mult(DBasic<3, 2, 4>(20.0), Base<DimLength>(4.0), 80.0,
+                DBasic<4, 2, 4>());
 
       test_mult(DBasic<1, 4, 7>(32.0), Base<DimTime>(3.0), 96.0,
                 DBasic<1, 4, 8>());
@@ -169,6 +169,8 @@ TEST_SUITE("Derived") {
 
     SUBCASE("Derived * Double") {
       test_mult(DBasic<1, 2, 3>(40.0), 10.0, 400.0, DBasic<1, 2, 3>());
+
+      test_mult(DBasic<2, 1, 4>(20.0), 5.0, 100.0, DBasic<2, 1, 4>());
     }
   }
 
