@@ -107,32 +107,64 @@ TEST_SUITE("Derived") {
   }
 
   TEST_CASE("Multiplication") {
-    constexpr auto test_mult = [](auto oprnd1, auto oprnd2, auto exp_prod,
+    constexpr auto test_mult = [](auto first, auto second, auto exp_prod,
                                   auto prod) {
-      const auto product = oprnd1 * oprnd2;
+      const auto product = first * second;
+      const auto inverse_product = second * first;
 
-      CHECK(product.data == doctest::Approx(exp_prod));
+      if constexpr (std::is_convertible_v<decltype(product), double>) {
+        CHECK(product == doctest::Approx(exp_prod));
+
+        CHECK(inverse_product == doctest::Approx(exp_prod));
+      } else {
+        CHECK(product.data == doctest::Approx(exp_prod));
+
+        CHECK(inverse_product.data == doctest::Approx(exp_prod));
+      }
 
       CHECK(std::is_same_v<std::remove_const_t<decltype(product)>,
+                           std::remove_const_t<decltype(prod)>>);
+
+      CHECK(std::is_same_v<std::remove_const_t<decltype(inverse_product)>,
                            std::remove_const_t<decltype(prod)>>);
     };
 
     SUBCASE("Derived * Derived") {
-      test_mult(DBasic<3, 6, 8>(2.0), DBasic<1, 2, 3>(10.0), 20.0,
-                DBasic<4, 8, 11>());
+      test_mult(DBasic<3, 2, 0>(20.0), DBasic<1, 0, 3>(50.0), 1000.0,
+                DBasic<4, 2, 3>());
 
-      test_mult(DBasic<1, 2, 3>(4.0), DBasic<1, 2, 3>(2.0), 8.0,
-                DBasic<2, 4, 6>());
+      test_mult(DBasic<-1, -2, -3>(3.0), DBasic<1, 2, 3>(12.0), 36.0, 0.0);
     }
 
     SUBCASE("Derived * Base") {
-      test_mult(DBasic<3, 2, 4>(20.0), Base<DimLength>(4.0), 80.0,
-                DBasic<4, 2, 4>());
+      test_mult(DBasic<2, 3, 5>(15.0), Base<DimMass>(2.0), 30.0,
+                DBasic<4, 4, 5>());
+
+      test_mult(DBasic<1, 4, 7>(32.0), Base<DimTime>(3.0), 96.0,
+                DBasic<1, 4, 8>());
+
+      test_mult(DBasic<1, 5, 6>(16.0), Base<DimLength>(4.0), 64.0,
+                DBasic<2, 5, 6>());
     }
 
     SUBCASE("Base * Base") {
       test_mult(Base<DimLength>(4.0), Base<DimMass>(2.0), 8.0,
                 DBasic<1, 1, 0>());
+
+      test_mult(Base<DimLength>(3.0), Base<DimTime>(8.0), 24.0,
+                DBasic<1, 0, 1>());
+
+      test_mult(Base<DimMass>(5.0), Base<DimTime>(6.0), 30.0,
+                DBasic<0, 1, 1>());
+
+      test_mult(Base<DimLength>(1.0), Base<DimLength>(7.0), 7.0,
+                DBasic<2, 0, 0>());
+
+      test_mult(Base<DimMass>(10.0), Base<DimMass>(12.0), 120.0,
+                DBasic<0, 2, 0>());
+
+      test_mult(Base<DimTime>(9.0), Base<DimTime>(11.0), 99.0,
+                DBasic<0, 0, 2>());
     }
 
     SUBCASE("Derived * Double") {
