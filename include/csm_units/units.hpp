@@ -7,23 +7,25 @@
 
 namespace csm_units {
 
-// Pressure typedefs
-template <class Converter>  // not sure how to handle this
-using Pressure = Base<DimPressure, Converter>;
-// template <class Converter>  // not sure how to handle this
-// using Pressure =
-//     Derived<Base<DimLength, Converter>, -1, Base<DimMass, Converter>, 1,
-//             Base<DimTime, Converter>, -2>;
+// Pressure type
+template <class Converter>
+using Pressure =
+    Derived<Base<DimLength>, -1, Base<DimMass>, 1, Base<DimTime>, 2, double>;
 
-// Pressure typedefs
+// Pressure units
 using Pascals = Pressure<NoConverter>;
+
+// Converter logic must be updated elsewhere before proper non-si pressure
+// aliases can be built
 using Bar = Pressure<BarConverter>;
 using Atm = Pressure<AtmConverter>;
 using Psi = Pressure<PsiConverter>;
 
-// Temperature typedefs
+// Temperature type
 template <class Converter>
 using Temperature = Base<DimTemperature, Converter>;
+
+// Temperature units
 using Kelvin = Temperature<NoConverter>;
 using Celsius = Temperature<CelsiusConverter>;
 using Fahrenheit = Temperature<FahrenheitConverter>;

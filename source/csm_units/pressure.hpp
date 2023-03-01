@@ -4,7 +4,7 @@
 
 namespace csm_units {
 
-class DimPressure {};  // should probably get rid of this
+// class DimPressure {};  // should probably get rid of this
 
 /*
 // Converters to define relationship between various pressure units
