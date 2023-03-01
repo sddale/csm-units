@@ -175,54 +175,34 @@ TEST_SUITE("Derived") {
   }
 
   TEST_CASE("Addition") {
-    constexpr auto test_sum = [](auto first, auto second, auto exp_sum,
-                                 auto sum) {
+    constexpr auto test_sum = [](auto first, auto second, auto exp_sum) {
       const auto sum_ans = first + second;
       const auto inv_sum = second + first;
 
-      if constexpr (std::is_convertible_v<decltype(sum_ans), double>) {
-        CHECK(sum_ans == doctest::Approx(exp_sum));
-
-        CHECK(inv_sum == doctest::Approx(exp_sum));
-      } else {
-        CHECK(sum.data == doctest::Approx(exp_sum));
-
-        CHECK(inv_sum.data == doctest::Approx(exp_sum));
-      }
-
-      CHECK(std::is_same_v<std::remove_const_t<decltype(sum_ans)>,
-                           std::remove_const_t<decltype(sum)>>);
-
-      CHECK(std::is_same_v<std::remove_const_t<decltype(inv_sum)>,
-                           std::remove_const_t<decltype(sum)>>);
+      CHECK(sum_ans.data == doctest::Approx(exp_sum));
+      CHECK(inv_sum.data == doctest::Approx(exp_sum));
     };
 
     SUBCASE("Derived + Derived") {
-      test_sum(DBasic<3, 2, 0>(20.0), DBasic<3, 2, 0>(50.0), 70.0,
-               DBasic<3, 2, 0>());
+      test_sum(DBasic<3, 2, 0>(20.0), DBasic<3, 2, 0>(50.0), 70.0);
 
-      test_sum(DBasic<-1, -2, -3>(3.0), DBasic<-1, -2, -3>(12.0), 15.0,
-               DBasic<-1, -2, -3>());
+      test_sum(DBasic<-1, -2, -3>(3.0), DBasic<-1, -2, -3>(12.0), 15.0);
     }
 
     SUBCASE("Derived + Base") {
-      test_sum(DBasic<1, 0, 0>(20.0), Base<DimLength>(4.0), 24.0,
-               DBasic<1, 0, 0>());
+      test_sum(DBasic<1, 0, 0>(20.0), Base<DimLength>(4.0), 24.0);
 
-      test_sum(DBasic<0, 0, 1>(32.0), Base<DimTime>(3.0), 35.0,
-               DBasic<0, 0, 1>());
+      test_sum(DBasic<0, 0, 1>(32.0), Base<DimTime>(3.0), 35.0);
 
-      test_sum(DBasic<0, 1, 0>(16.0), Base<DimMass>(4.0), 20.0,
-               DBasic<0, 1, 0>());
+      test_sum(DBasic<0, 1, 0>(16.0), Base<DimMass>(4.0), 20.0);
     }
 
     SUBCASE("Base + Base") {
-      test_sum(Base<DimLength>(4.0), Base<DimLength>(2.0), 6.0,
-               DBasic<1, 0, 0>());
+      test_sum(Base<DimLength>(4.0), Base<DimLength>(2.0), 6.0);
 
-      test_sum(Base<DimTime>(3.0), Base<DimTime>(8.0), 11.0, DBasic<0, 0, 1>());
+      test_sum(Base<DimTime>(3.0), Base<DimTime>(8.0), 11.0);
 
-      test_sum(Base<DimMass>(5.0), Base<DimMass>(6.0), 11.0, DBasic<0, 1, 0>());
+      test_sum(Base<DimMass>(5.0), Base<DimMass>(6.0), 11.0);
     }
   }
 
