@@ -154,9 +154,16 @@ class Derived {
 
   // + operator overloads
 
+  // REFACTOR ATTEMPT according to cppreference.com
+  // friend constexpr auto operator+= (Derived rhs) {
+  //   return decltype(*this);
+  // }
+
   // compound + compound
   friend constexpr auto operator+(Derived lhs, Derived rhs) noexcept {
-    return (Derived(lhs.data + rhs.data));
+    return (Derived(lhs.data + rhs.data));  // what we had before
+    // lhs += rhs;    // conforming to GH issue
+    // return lhs;
   }
 
   // compound + base (I guess a scenario where this happens is rare)
