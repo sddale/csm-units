@@ -62,7 +62,7 @@ struct Exponents {
 
 namespace detail {
 template <class E1, class E2>
-struct ExponentsAdd {
+class ExponentsAdd {
   template <int num, int den>
   using ratio = std::ratio<num, den>;
 
