@@ -1,7 +1,6 @@
 #include <doctest/doctest.h>
 
 #include <csm_units/units.hpp>
-#include <iostream>
 
 namespace csm_units::test {
 
