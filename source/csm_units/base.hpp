@@ -70,6 +70,30 @@ class Base {
 
   Data data;
   [[no_unique_address]] Converter conv;
+
+  // base += base
+  constexpr auto operator+=(const Base&& rhs) noexcept -> auto& {
+    data += rhs.data;
+    return *this;
+  }
+
+  // base + base
+  friend constexpr auto operator+(Base lhs, const Base&& rhs) noexcept {
+    lhs += rhs;
+    return lhs;
+  }
+
+  // base -= base
+  constexpr auto operator-=(const Base&& rhs) noexcept -> auto& {
+    data -= rhs.data;
+    return *this;
+  }
+
+  // base - base
+  friend constexpr auto operator-(Base lhs, const Base&& rhs) noexcept {
+    lhs -= rhs;
+    return lhs;
+  }
 };
 
 }  // namespace csm_units
