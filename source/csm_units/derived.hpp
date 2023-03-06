@@ -156,13 +156,13 @@ class Derived {
 
   // REFACTOR ATTEMPT according to cppreference.com
 
-  constexpr auto operator+=(const Derived rhs) noexcept -> auto& {
+  constexpr auto operator+=(const Derived& rhs) noexcept -> auto& {
     data += rhs.data;
-    return *this;  // this errors once you add two arguments
+    return *this;
   }
 
   // compound + compound
-  friend constexpr auto operator+(Derived lhs, Derived rhs) noexcept {
+  friend constexpr auto operator+(Derived lhs, const Derived& rhs) noexcept {
     // return (Derived(lhs.data + rhs.data));  // what we had before
     // return (Derived(lhs.data += rhs.data));  // attempt not sure
     lhs += rhs;
@@ -184,44 +184,31 @@ class Derived {
 
   // - operator overloads
 
+  constexpr auto operator-=(const Derived& rhs) noexcept -> auto& {
+    data -= rhs.data;
+    return *this;
+  }
+
   // compound - compound
-  friend constexpr auto operator-(Derived lhs, Derived rhs) noexcept {
-    return (Derived(lhs.data - rhs.data));
+  friend constexpr auto operator-(Derived lhs, const Derived& rhs) noexcept {
+    lhs -= rhs;
+    return lhs;
   }
 
   // compound - base (I guess a scenario where this happens is rare)
   friend constexpr auto operator-(Derived lhs, BaseType auto rhs) noexcept {
-    return lhs - derived::Factory::Make(rhs);
+    lhs -= derived::Factory::Make(rhs);
+    return lhs;
   }
 
   // base - compound (I guess a scenario where this happens is rare?)
   // template <class... Ts>
   friend constexpr auto operator-(BaseType auto lhs, Derived rhs) noexcept {
-    return derived::Factory::Make(lhs) - rhs;
+    rhs.data *= -1;  // Is this okay to do? I thought it would save more space
+                     // than casting lhs to derived then doing -=
+    rhs += lhs;
+    return rhs;
   }
-
-  // // compoud -= double
-  // constexpr auto operator-=(Arithmetic auto rhs) noexcept -> auto& {
-  //   if ((LengthPower == 0) && (MassPower == 0) && (TimePower == 0)) {
-  //     data -= rhs;
-  //   } else {
-  //     // should throw an error, but not sure how to go about that
-  //   }
-  //   return *this;
-  // }
-
-  // // compound - double
-  // friend constexpr auto operator-(Derived lhs, Arithmetic auto rhs) noexcept
-  // {
-  //   lhs -= rhs;
-  //   return lhs;
-  // }
-
-  // // double - compound
-  // friend constexpr auto operator-(Arithmetic auto lhs, Derived rhs) noexcept
-  // {
-  //   return (Derived(lhs - rhs.data));
-  // }
 };
 
 // base / base
