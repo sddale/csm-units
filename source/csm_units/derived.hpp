@@ -227,22 +227,6 @@ constexpr auto operator*(BaseType auto&& lhs, BaseType auto&& rhs) noexcept {
          derived::Factory::Make(std::forward<decltype(rhs)>(rhs));
 }
 
-// base + base
-// TODO: REFACTOR
-//       conform to: https://en.cppreference.com/w/cpp/language/operators
-//       section: "Binary arithmetic operators"
-// TODO: Return type should decltype(*this) <- type of the calling class
-constexpr auto operator+(BaseType auto&& lhs, decltype(lhs) rhs) noexcept {
-  return derived::Factory::Make(std::forward<decltype(lhs)>(lhs)) +
-         derived::Factory::Make(std::forward<decltype(rhs)>(rhs));
-}
-
-// base - base
-constexpr auto operator-(BaseType auto&& lhs, decltype(lhs) rhs) noexcept {
-  return derived::Factory::Make(std::forward<decltype(lhs)>(lhs)) -
-         derived::Factory::Make(std::forward<decltype(rhs)>(rhs));
-}
-
 // Aliases for basic units
 template <int LP, int MP, int TP>
 using DBasic =
