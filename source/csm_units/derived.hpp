@@ -61,6 +61,12 @@ class Derived {
 
   Data data;
 
+  // quick stab at flip member function
+  constexpr auto flip(const Derived&& to_flip) noexcept {
+    return Derived<Length, -LengthPower, Mass, -MassPower, Time, -TimePower,
+                   Data>(std::forward<decltype(to_flip)>(to_flip));
+  }
+
   // / operator overloads
 
   // compound / compound for two of the same derived
