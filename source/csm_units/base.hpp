@@ -72,25 +72,49 @@ class Base {
   [[no_unique_address]] Converter conv;
 
   // base += base
-  constexpr auto operator+=(const Base&& rhs) noexcept -> auto& {
+  constexpr auto operator+=(Base&& rhs) noexcept -> auto& {
+    data += rhs.data;
+    return *this;
+  }
+
+  // base += base
+  constexpr auto operator+=(const Base& rhs) noexcept -> auto& {
     data += rhs.data;
     return *this;
   }
 
   // base + base
-  friend constexpr auto operator+(Base lhs, const Base&& rhs) noexcept {
+  friend constexpr auto operator+(Base lhs, Base&& rhs) noexcept {
+    lhs += rhs;
+    return lhs;
+  }
+
+  // base + base
+  friend constexpr auto operator+(Base lhs, const Base& rhs) noexcept {
     lhs += rhs;
     return lhs;
   }
 
   // base -= base
-  constexpr auto operator-=(const Base&& rhs) noexcept -> auto& {
+  constexpr auto operator-=(Base&& rhs) noexcept -> auto& {
+    data -= rhs.data;
+    return *this;
+  }
+
+  // base -= base
+  constexpr auto operator-=(const Base& rhs) noexcept -> auto& {
     data -= rhs.data;
     return *this;
   }
 
   // base - base
-  friend constexpr auto operator-(Base lhs, const Base&& rhs) noexcept {
+  friend constexpr auto operator-(Base lhs, Base&& rhs) noexcept {
+    lhs -= rhs;
+    return lhs;
+  }
+
+  // base - base
+  friend constexpr auto operator-(Base lhs, const Base& rhs) noexcept {
     lhs -= rhs;
     return lhs;
   }

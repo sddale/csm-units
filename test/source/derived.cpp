@@ -236,7 +236,7 @@ TEST_SUITE("Derived") {
     }
 
     SUBCASE("Base - Base") {
-      test_diff(Base<DimMass>(4.0), Base<DimMass>(2.0), 2.0, DBasic<0, 1, 0>(),
+      test_diff(Base<DimMass>(4.0), Base<DimMass>(2.0), 2.0, Base<DimMass>(0.0),
                 -2.0);
     }
 
