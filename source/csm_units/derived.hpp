@@ -156,27 +156,30 @@ class Derived {
 
   // REFACTOR ATTEMPT according to cppreference.com
 
-  // friend constexpr auto operator+= (Derived rhs) {  // saying this should
-  // have two arguments
-  //   return *this;  // this errors once you add two arguments
-  // }
+  constexpr auto operator+=(const Derived rhs) noexcept -> auto& {
+    data += rhs.data;
+    return *this;  // this errors once you add two arguments
+  }
 
   // compound + compound
   friend constexpr auto operator+(Derived lhs, Derived rhs) noexcept {
-    return (Derived(lhs.data + rhs.data));  // what we had before
+    // return (Derived(lhs.data + rhs.data));  // what we had before
     // return (Derived(lhs.data += rhs.data));  // attempt not sure
-    // lhs += rhs;
-    // return (&Derived(lhs.data + rhs.data))
+    lhs += rhs;
+    return lhs;
   }
 
   // compound + base (I guess a scenario where this happens is rare)
   friend constexpr auto operator+(Derived lhs, BaseType auto rhs) noexcept {
-    return lhs + derived::Factory::Make(rhs);
+    lhs += derived::Factory::Make(rhs);
+    return lhs;
   }
 
   // base + compound (I guess a scenario where this happens is rare?)
   friend constexpr auto operator+(BaseType auto lhs, Derived rhs) noexcept {
-    return derived::Factory::Make(lhs) + rhs;
+    rhs += derived::Factory::Make(
+        lhs);  // Is this okay to do with rhs on the left side of the +=?
+    return rhs;
   }
 
   // - operator overloads
