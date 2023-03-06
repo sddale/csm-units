@@ -24,20 +24,20 @@ struct Factory {
   template <class Conv, class Ratio, Arithmetic Data>
   static auto Make(Base<DimLength, Conv, Ratio, Data>&& base) {
     return Derived<Base<DimLength, Conv, Ratio, Data>, 1, Base<DimMass>, 0,
-                   Base<DimTime>, 0, Data>(std::forward(base));
+                   Base<DimTime>, 0, Data>(std::forward<decltype(base)>(base));
   }
 
   template <class Conv, class Ratio, Arithmetic Data>
   static auto Make(Base<DimTime, Conv, Ratio, Data>&& base) {
     return Derived<Base<DimLength>, 0, Base<DimMass>, 0,
                    Base<DimTime, Conv, Ratio, Data>, 1, Data>(
-        std::forward(base));
+        std::forward<decltype(base)>(base));
   }
 
   template <class Conv, class Ratio, Arithmetic Data>
   static auto Make(Base<DimMass, Conv, Ratio, Data>&& base) {
     return Derived<Base<DimLength>, 0, Base<DimMass, Conv, Ratio, Data>, 1,
-                   Base<DimTime>, 0, Data>(std::forward(base));
+                   Base<DimTime>, 0, Data>(std::forward<decltype(base)>(base));
   }
 };
 
@@ -82,12 +82,12 @@ class Derived {
 
   // compound / base
   friend constexpr auto operator/(Derived lhs, BaseType auto&& rhs) noexcept {
-    return lhs / derived::Factory::Make(std::forward(rhs));
+    return lhs / derived::Factory::Make(std::forward<decltype(rhs)>(rhs));
   }
 
   // base / compound
   friend constexpr auto operator/(BaseType auto&& lhs, Derived rhs) noexcept {
-    return derived::Factory::Make(lhs) / rhs;
+    return derived::Factory::Make(std::forward<decltype(lhs)>(lhs)) / rhs;
   }
 
   // compound /= double
@@ -130,12 +130,12 @@ class Derived {
 
   // compound * base
   friend constexpr auto operator*(Derived lhs, BaseType auto&& rhs) noexcept {
-    return lhs * derived::Factory::Make(rhs);
+    return lhs * derived::Factory::Make(std::forward<decltype(rhs)>(rhs));
   }
 
   // base * compound
   friend constexpr auto operator*(BaseType auto&& lhs, Derived rhs) noexcept {
-    return derived::Factory::Make(lhs) * rhs;
+    return derived::Factory::Make(std::forward<decltype(lhs)>(lhs)) * rhs;
   }
 
   // compoud *= double
@@ -175,14 +175,14 @@ class Derived {
 
   // compound + base (I guess a scenario where this happens is rare)
   friend constexpr auto operator+(Derived lhs, BaseType auto&& rhs) noexcept {
-    lhs += derived::Factory::Make(rhs);
+    lhs += derived::Factory::Make(std::forward<decltype(rhs)>(rhs));
     return lhs;
   }
 
   // base + compound (I guess a scenario where this happens is rare?)
   friend constexpr auto operator+(BaseType auto&& lhs, Derived rhs) noexcept {
-    rhs += derived::Factory::Make(
-        lhs);  // Is this okay to do with rhs on the left side of the +=?
+    rhs += derived::Factory::Make(std::forward<decltype(lhs)>(
+        lhs));  // Is this okay to do with rhs on the left side of the +=?
     return rhs;
   }
 
@@ -201,7 +201,7 @@ class Derived {
 
   // compound - base (I guess a scenario where this happens is rare)
   friend constexpr auto operator-(Derived lhs, BaseType auto&& rhs) noexcept {
-    lhs -= derived::Factory::Make(rhs);
+    lhs -= derived::Factory::Make(std::forward<decltype(rhs)>(rhs));
     return lhs;
   }
 
@@ -210,19 +210,21 @@ class Derived {
   friend constexpr auto operator-(BaseType auto&& lhs, Derived rhs) noexcept {
     rhs.data *= -1;  // Is this okay to do? I thought it would save more space
                      // than casting lhs to derived then doing -=
-    rhs += derived::Factory::Make(lhs);
+    rhs += derived::Factory::Make(std::forward<decltype(lhs)>(lhs));
     return rhs;
   }
 };
 
 // base / base
 constexpr auto operator/(BaseType auto&& lhs, BaseType auto&& rhs) noexcept {
-  return derived::Factory::Make(lhs) / derived::Factory::Make(rhs);
+  return derived::Factory::Make(std::forward<decltype(lhs)>(lhs)) /
+         derived::Factory::Make(std::forward<decltype(rhs)>(rhs));
 }
 
 // base * base
 constexpr auto operator*(BaseType auto&& lhs, BaseType auto&& rhs) noexcept {
-  return derived::Factory::Make(lhs) * derived::Factory::Make(rhs);
+  return derived::Factory::Make(std::forward<decltype(lhs)>(lhs)) *
+         derived::Factory::Make(std::forward<decltype(rhs)>(rhs));
 }
 
 // base + base
@@ -231,12 +233,14 @@ constexpr auto operator*(BaseType auto&& lhs, BaseType auto&& rhs) noexcept {
 //       section: "Binary arithmetic operators"
 // TODO: Return type should decltype(*this) <- type of the calling class
 constexpr auto operator+(BaseType auto&& lhs, decltype(lhs) rhs) noexcept {
-  return derived::Factory::Make(lhs) + derived::Factory::Make(rhs);
+  return derived::Factory::Make(std::forward<decltype(lhs)>(lhs)) +
+         derived::Factory::Make(std::forward<decltype(rhs)>(rhs));
 }
 
 // base - base
 constexpr auto operator-(BaseType auto&& lhs, decltype(lhs) rhs) noexcept {
-  return derived::Factory::Make(lhs) - derived::Factory::Make(rhs);
+  return derived::Factory::Make(std::forward<decltype(lhs)>(lhs)) -
+         derived::Factory::Make(std::forward<decltype(rhs)>(rhs));
 }
 
 // Aliases for basic units
