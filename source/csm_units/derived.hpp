@@ -239,6 +239,7 @@ class Derived {
     return lhs;
   }
 
+  // dummy change
   // base - compound (I guess a scenario where this happens is rare?)
   // template <class... Ts>
   friend constexpr auto operator-(BaseType auto&& lhs, Derived rhs) noexcept {

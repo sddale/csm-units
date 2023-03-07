@@ -21,6 +21,7 @@ class Base {
   // copy constructor for units of the same dimensions and converter
   constexpr Base(const Base& other) noexcept = default;
 
+  // dummy change
   // copy constructor for units of the same dimension and different converter
   template <class T, class R>
   constexpr Base(const OtherBase<T, R>& other) noexcept
