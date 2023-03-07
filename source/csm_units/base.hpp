@@ -18,6 +18,7 @@ class Base {
  public:
   constexpr explicit Base(double value) noexcept : data(value) {}
 
+  // dummy change
   // copy constructor for units of the same dimensions and converter
   constexpr Base(const Base& other) noexcept = default;
 
