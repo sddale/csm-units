@@ -69,7 +69,15 @@ class Base {
   }
 
   Data data;
-  constexpr static Converter conv;
+
+  [[nodiscard]] constexpr static auto ToBase(double data) noexcept -> double {
+    return Converter::ToBase(data);
+  }
+  [[nodiscard]] constexpr static auto FromBase(double data) noexcept -> double {
+    return Converter::ToBase(data);
+  }
+
+  // constexpr static Converter conv;
 
   // base += base
   constexpr auto operator+=(Base&& rhs) noexcept -> auto& {

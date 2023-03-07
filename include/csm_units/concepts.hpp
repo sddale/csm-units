@@ -10,20 +10,20 @@ template <class T>
 concept Arithmetic = std::is_arithmetic_v<T>;
 
 template <class T>
-concept ConverterType = requires(T t) {
+concept ConverterType = requires(T base) {
                           { T::ToBase(0.0) } -> std::convertible_to<double>;
                           { T::FromBase(0.0) } -> std::convertible_to<double>;
                         };
 
 template <class T>
-concept BaseType = requires(T t) {
-                     { t.data } -> std::convertible_to<double>;
+concept BaseType = requires(T base) {
+                     { base.data } -> std::convertible_to<double>;
                      {
-                       t.conv.ToBase(0.0)
-                       } -> std::convertible_to<decltype(t.data)>;
+                       std::remove_reference_t<T>::ToBase(0.0)
+                       } -> std::convertible_to<decltype(base.data)>;
                      {
-                       t.conv.FromBase(0.0)
-                       } -> std::convertible_to<decltype(t.data)>;
+                       std::remove_reference_t<T>::FromBase(0.0)
+                       } -> std::convertible_to<decltype(base.data)>;
                    };
 
 template <class T>
