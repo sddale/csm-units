@@ -69,7 +69,7 @@ class Base {
   }
 
   Data data;
-  [[no_unique_address]] Converter conv;
+  constexpr static Converter conv;
 
   // base += base
   constexpr auto operator+=(Base&& rhs) noexcept -> auto& {
