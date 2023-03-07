@@ -1,8 +1,8 @@
 #include "source/csm_units/exponents.hpp"
 
 #include <doctest/doctest.h>
+
 #include <type_traits>
-#include <cstdint>
 
 namespace csm_units::test {
 
