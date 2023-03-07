@@ -59,39 +59,51 @@ TEST_SUITE("Derived") {
 
   TEST_CASE("Division") {
     // may have to refactor
-    const auto length2_mass2 = DBasic<2, 2, 0>(20.0);
-    const auto length1 = DBasic<1, 0, 0>(2.0);
-    const auto mass1 = DBasic<0, 1, 0>(10.0);
-    const auto base_dim_length = Base<DimLength>(4.0);
-    const auto base_dim_mass = Base<DimMass>(2.0);
 
-    const auto quotient_derived_derived = length2_mass2 / mass1;
-    const auto quotient_derived_base = length2_mass2 / base_dim_length;
-    const auto quotient_base_derived = base_dim_length / length1;
-    const auto quotient_base_base = base_dim_length / base_dim_mass;
-    const auto quotient_derived_double = length2_mass2 / 10.0;
-    const auto quotient_double_derived = 40.0 / length2_mass2;
+    constexpr auto test_div = [](auto num, auto den, auto exp_quot, auto quot,
+                                 auto exp_inv, auto inv) {
+      const auto quotient = num / den;
+      const auto inverse_quotient = den / num;
 
-    CHECK(quotient_derived_derived.data == doctest::Approx(2.0));
-    CHECK(quotient_derived_base.data == doctest::Approx(5.0));
-    CHECK(quotient_base_derived.data == doctest::Approx(2.0));
-    CHECK(quotient_base_base.data == doctest::Approx(2.0));
-    CHECK(quotient_derived_double.data == doctest::Approx(2.0));
-    CHECK(quotient_double_derived.data == doctest::Approx(2.0));
+      if constexpr (std::is_same_v<decltype(num), decltype(den)>) {
+        CHECK(quotient == doctest::Approx(exp_quot));
 
-    CHECK(
-        std::is_same_v<std::remove_const_t<decltype(quotient_derived_derived)>,
-                       DBasic<2, 1, 0>>);
-    CHECK(std::is_same_v<std::remove_const_t<decltype(quotient_derived_base)>,
-                         DBasic<1, 2, 0>>);
-    CHECK(std::is_same_v<std::remove_const_t<decltype(quotient_base_derived)>,
-                         DBasic<0, 0, 0>>);
-    CHECK(std::is_same_v<std::remove_const_t<decltype(quotient_base_base)>,
-                         DBasic<1, -1, 0>>);
-    CHECK(std::is_same_v<decltype(quotient_derived_double),
-                         decltype(length2_mass2)>);
-    CHECK(std::is_same_v<std::remove_const_t<decltype(quotient_double_derived)>,
-                         DBasic<-2, -2, 0>>);
+        CHECK(inverse_quotient == doctest::Approx(exp_inv));
+      } else {
+        CHECK(quotient.data == doctest::Approx(exp_quot));
+
+        CHECK(inverse_quotient.data == doctest::Approx(exp_inv));
+      }
+
+      CHECK(std::is_same_v<std::remove_const_t<decltype(quotient)>,
+                           std::remove_const_t<decltype(quot)>>);
+
+      CHECK(std::is_same_v<std::remove_const_t<decltype(inverse_quotient)>,
+                           std::remove_const_t<decltype(inv)>>);
+    };
+
+    SUBCASE("Derived/Derived") {
+      test_div(DBasic<3, 6, 8>(20.0), DBasic<1, 2, 3>(10.0), 2.0,
+               DBasic<2, 4, 5>(), 0.5, DBasic<-2, -4, -5>());
+
+      test_div(DBasic<1, 2, 3>(24.0), DBasic<1, 2, 3>(12.0), 2.0, 0.0, 0.5,
+               0.0);
+    }
+
+    SUBCASE("Derived/Base") {
+      test_div(DBasic<3, 2, 4>(20.0), Base<DimLength>(4.0), 5.0,
+               DBasic<2, 2, 4>(), 0.2, DBasic<-2, -2, -4>());
+    }
+
+    SUBCASE("Base/Base") {
+      test_div(Base<DimLength>(4.0), Base<DimMass>(2.0), 2.0,
+               DBasic<1, -1, 0>(), 0.5, DBasic<-1, 1, 0>());
+    }
+
+    SUBCASE("Derived/Double") {
+      test_div(DBasic<1, 2, 3>(40.0), 10.0, 4.0, DBasic<1, 2, 3>(), 0.25,
+               DBasic<-1, -2, -3>());
+    }
   }
 
   TEST_CASE("Multiplication") {
@@ -208,21 +220,6 @@ TEST_SUITE("Derived") {
       CHECK(std::is_same_v<std::remove_const_t<decltype(base_deriv)>,
                            DBasic<0, 1, 0>>);
     }
-
-    SUBCASE("True Decimals") {
-      const auto unit_deriv = DBasic<0, 0, 0>(30.01);
-      const double num = 12.98;
-
-      const auto check1 = num + unit_deriv;
-      const auto check2 = unit_deriv + num;
-
-      CHECK(check1.data == doctest::Approx(42.99));
-      CHECK(std::is_same_v<std::remove_const_t<decltype(check1)>,
-                           DBasic<0, 0, 0>>);
-      CHECK(check2.data == doctest::Approx(42.99));
-      CHECK(std::is_same_v<std::remove_const_t<decltype(check2)>,
-                           DBasic<0, 0, 0>>);
-    }
   }
 
   TEST_CASE("Substraction") {
@@ -260,23 +257,6 @@ TEST_SUITE("Derived") {
                            DBasic<1, 0, 0>>);
       CHECK(std::is_same_v<std::remove_const_t<decltype(base_deriv)>,
                            DBasic<0, 1, 0>>);
-    }
-
-    SUBCASE("True Decimals") {
-      const auto unit_deriv = DBasic<0, 0, 0>(11.9);
-      const double num1 = 22.9;
-      const double num2 = 8.9;
-
-      const auto check1 = num1 - unit_deriv;
-      const auto check2 = unit_deriv - num2;
-
-      CHECK(check1.data == doctest::Approx(11.0));
-      CHECK(check2.data == doctest::Approx(3.0));
-
-      CHECK(std::is_same_v<std::remove_const_t<decltype(check1)>,
-                           DBasic<0, 0, 0>>);
-      CHECK(std::is_same_v<std::remove_const_t<decltype(check2)>,
-                           DBasic<0, 0, 0>>);
     }
   }
 
