@@ -5,6 +5,7 @@
 namespace csm_units::test {
 
 // NOLINTBEGIN(modernize-use-trailing-return-type)
+
 TEST_SUITE("Exponents") {
   TEST_CASE("Addition") {
     CHECK(std::is_same_v<
@@ -12,6 +13,7 @@ TEST_SUITE("Exponents") {
           Exponents<5, 7, 9, 1, 1, 1>>);
   }
 }
+
 // NOLINTEND(modernize-use-trailing-return-type)
 
 }  // namespace csm_units::test

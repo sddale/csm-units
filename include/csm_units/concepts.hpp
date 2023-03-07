@@ -24,4 +24,15 @@ concept BaseType = requires(T t) {
                        t.conv.FromBase(0.0)
                        } -> std::convertible_to<decltype(t.data)>;
                    };
+
+template <class T>
+concept ExpType = requires(T) {
+                    { T::l_num } -> std::convertible_to<intmax_t>;
+                    { T::l_den } -> std::convertible_to<intmax_t>;
+                    { T::m_num } -> std::convertible_to<intmax_t>;
+                    { T::m_den } -> std::convertible_to<intmax_t>;
+                    { T::t_num } -> std::convertible_to<intmax_t>;
+                    { T::t_den } -> std::convertible_to<intmax_t>;
+                  };
+
 }  // namespace csm_units
