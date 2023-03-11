@@ -42,6 +42,21 @@ class FahrenheitConverter {
       -> double {
     return (dataKelvin - 273.15) * 1.8 + 32;
   }
+
+  /*
+  want to be able to define a variable like this: const auto temp = 330.0_K;
+
+  friend constexpr auto operator""_K(long double) {
+  }
+  friend constexpr auto operator""_C(long double) {
+  }
+  friend constexpr auto operator""_F(long double) {
+  }
+
+  const auto kelvinTemp = 330.0_K;
+  const auto fahTemp = 98.0_F;
+  const auto celTemp = 32.0_C;
+  */
 };
 
 }  // namespace csm_units
