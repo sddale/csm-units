@@ -47,13 +47,10 @@ class FahrenheitConverter {
   want to be able to define a variable like this: const auto temp = 330.0_K;
 
   friend constexpr auto operator""_K(long double) {
-    data = Kelvin(double); // something like this just a rough draft
   }
   friend constexpr auto operator""_C(long double) {
-    data = Celsius(double);
   }
   friend constexpr auto operator""_F(long double) {
-    data = Fahrenheit(double);
   }
 
   const auto kelvinTemp = 330.0_K;
