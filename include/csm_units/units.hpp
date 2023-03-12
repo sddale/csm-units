@@ -9,8 +9,7 @@ namespace csm_units {
 
 // Pressure type
 template <class Converter>
-using Pressure = Derived<Exponents<-1, 1, 2>, Base<DimLength>, Base<DimMass>,
-                         Base<DimTime>, double>;
+using Pressure = Derived<Exponents<-1, 1, 2>, Converters<>, Prefixes<>, double>;
 
 // Pressure units
 using Pascals = Pressure<NoConverter>;

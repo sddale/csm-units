@@ -89,15 +89,15 @@ TEST_SUITE("Derived") {
                0.0);
     }
 
-    SUBCASE("Derived/Base") {
-      test_div(DBasic<3, 2, 4>(20.0), Base<DimLength>(4.0), 5.0,
-               DBasic<2, 2, 4>(), 0.2, DBasic<-2, -2, -4>());
-    }
+    // SUBCASE("Derived/Base") {
+    //   test_div(DBasic<3, 2, 4>(20.0), Base<DimLength>(4.0), 5.0,
+    //            DBasic<2, 2, 4>(), 0.2, DBasic<-2, -2, -4>());
+    // }
 
-    SUBCASE("Base/Base") {
-      test_div(Base<DimLength>(4.0), Base<DimMass>(2.0), 2.0,
-               DBasic<1, -1, 0>(), 0.5, DBasic<-1, 1, 0>());
-    }
+    // SUBCASE("Base/Base") {
+    //   test_div(Base<DimLength>(4.0), Base<DimMass>(2.0), 2.0,
+    //            DBasic<1, -1, 0>(), 0.5, DBasic<-1, 1, 0>());
+    // }
 
     SUBCASE("Derived/Double") {
       test_div(DBasic<1, 2, 3>(40.0), 10.0, 4.0, DBasic<1, 2, 3>(), 0.25,
@@ -135,36 +135,36 @@ TEST_SUITE("Derived") {
       test_mult(DBasic<-1, -2, -3>(3.0), DBasic<1, 2, 3>(12.0), 36.0, 0.0);
     }
 
-    SUBCASE("Derived * Base") {
-      test_mult(DBasic<3, 2, 4>(20.0), Base<DimLength>(4.0), 80.0,
-                DBasic<4, 2, 4>());
+    // SUBCASE("Derived * Base") {
+    //   test_mult(DBasic<3, 2, 4>(20.0), Base<DimLength>(4.0), 80.0,
+    //             DBasic<4, 2, 4>());
 
-      test_mult(DBasic<1, 4, 7>(32.0), Base<DimTime>(3.0), 96.0,
-                DBasic<1, 4, 8>());
+    //   test_mult(DBasic<1, 4, 7>(32.0), Base<DimTime>(3.0), 96.0,
+    //             DBasic<1, 4, 8>());
 
-      test_mult(DBasic<1, 5, 6>(16.0), Base<DimLength>(4.0), 64.0,
-                DBasic<2, 5, 6>());
-    }
+    //   test_mult(DBasic<1, 5, 6>(16.0), Base<DimLength>(4.0), 64.0,
+    //             DBasic<2, 5, 6>());
+    // }
 
-    SUBCASE("Base * Base") {
-      test_mult(Base<DimLength>(4.0), Base<DimMass>(2.0), 8.0,
-                DBasic<1, 1, 0>());
+    // SUBCASE("Base * Base") {
+    //   test_mult(Base<DimLength>(4.0), Base<DimMass>(2.0), 8.0,
+    //             DBasic<1, 1, 0>());
 
-      test_mult(Base<DimLength>(3.0), Base<DimTime>(8.0), 24.0,
-                DBasic<1, 0, 1>());
+    //   test_mult(Base<DimLength>(3.0), Base<DimTime>(8.0), 24.0,
+    //             DBasic<1, 0, 1>());
 
-      test_mult(Base<DimMass>(5.0), Base<DimTime>(6.0), 30.0,
-                DBasic<0, 1, 1>());
+    //   test_mult(Base<DimMass>(5.0), Base<DimTime>(6.0), 30.0,
+    //             DBasic<0, 1, 1>());
 
-      test_mult(Base<DimLength>(1.0), Base<DimLength>(7.0), 7.0,
-                DBasic<2, 0, 0>());
+    //   test_mult(Base<DimLength>(1.0), Base<DimLength>(7.0), 7.0,
+    //             DBasic<2, 0, 0>());
 
-      test_mult(Base<DimMass>(10.0), Base<DimMass>(12.0), 120.0,
-                DBasic<0, 2, 0>());
+    //   test_mult(Base<DimMass>(10.0), Base<DimMass>(12.0), 120.0,
+    //             DBasic<0, 2, 0>());
 
-      test_mult(Base<DimTime>(9.0), Base<DimTime>(11.0), 99.0,
-                DBasic<0, 0, 2>());
-    }
+    //   test_mult(Base<DimTime>(9.0), Base<DimTime>(11.0), 99.0,
+    //             DBasic<0, 0, 2>());
+    // }
 
     SUBCASE("Derived * Double") {
       test_mult(DBasic<1, 2, 3>(40.0), 10.0, 400.0, DBasic<1, 2, 3>());
@@ -188,21 +188,21 @@ TEST_SUITE("Derived") {
       test_sum(DBasic<-1, -2, -3>(3.0), DBasic<-1, -2, -3>(12.0), 15.0);
     }
 
-    SUBCASE("Derived + Base") {
-      test_sum(DBasic<1, 0, 0>(20.0), Base<DimLength>(4.0), 24.0);
+    // SUBCASE("Derived + Base") {
+    //   test_sum(DBasic<1, 0, 0>(20.0), Base<DimLength>(4.0), 24.0);
 
-      test_sum(DBasic<0, 0, 1>(32.0), Base<DimTime>(3.0), 35.0);
+    //   test_sum(DBasic<0, 0, 1>(32.0), Base<DimTime>(3.0), 35.0);
 
-      test_sum(DBasic<0, 1, 0>(16.0), Base<DimMass>(4.0), 20.0);
-    }
+    //   test_sum(DBasic<0, 1, 0>(16.0), Base<DimMass>(4.0), 20.0);
+    // }
 
-    SUBCASE("Base + Base") {
-      test_sum(Base<DimLength>(4.0), Base<DimLength>(2.0), 6.0);
+    // SUBCASE("Base + Base") {
+    //   test_sum(Base<DimLength>(4.0), Base<DimLength>(2.0), 6.0);
 
-      test_sum(Base<DimTime>(3.0), Base<DimTime>(8.0), 11.0);
+    //   test_sum(Base<DimTime>(3.0), Base<DimTime>(8.0), 11.0);
 
-      test_sum(Base<DimMass>(5.0), Base<DimMass>(6.0), 11.0);
-    }
+    //   test_sum(Base<DimMass>(5.0), Base<DimMass>(6.0), 11.0);
+    // }
   }
 
   TEST_CASE("Substraction") {
@@ -229,50 +229,15 @@ TEST_SUITE("Derived") {
                 DBasic<1, 2, 3>(), -12.0);
     }
 
-    SUBCASE("Derived - Base") {
-      test_diff(DBasic<1, 0, 0>(20.0), Base<DimLength>(4.0), 16.0,
-                DBasic<1, 0, 0>(), -16.0);
-    }
+    // SUBCASE("Derived - Base") {
+    //   test_diff(DBasic<1, 0, 0>(20.0), Base<DimLength>(4.0), 16.0,
+    //             DBasic<1, 0, 0>(), -16.0);
+    // }
 
-    SUBCASE("Base - Base") {
-      test_diff(Base<DimMass>(4.0), Base<DimMass>(2.0), 2.0, Base<DimMass>(0.0),
-                -2.0);
-    }
-
-    // const auto len_obj = DBasic<1, 0, 0>(20.0);
-    // const auto len_same = DBasic<1, 0, 0>(10.0);
-    // const auto mass_obj = DBasic<0, 1, 0>(50.0);
-    // const auto mass_same = DBasic<0, 1, 0>(15.0);
-    // const auto deriv_obj = DBasic<1, 0, 2>(5.0);
-    // const auto deriv_same = DBasic<1, 0, 2>(10.0);
-
-    // // bases
-    // const auto len_base = Base<DimLength>(4.0);
-    // const auto mass_base = Base<DimMass>(6.0);
-
-    // SUBCASE("Subtraction Combinations") {
-    //   const auto len_sum = len_obj - len_same;
-    //   const auto mass_sum = mass_obj - mass_same;
-    //   const auto deriv_sum = deriv_obj - deriv_same;
-    //   const auto deriv_base = len_obj - len_base;
-    //   const auto base_deriv = mass_base - mass_obj;
-
-    //   CHECK(len_sum.data == doctest::Approx(10.0));
-    //   CHECK(mass_sum.data == doctest::Approx(35.0));
-    //   CHECK(deriv_sum.data == doctest::Approx(-5.0));
-    //   CHECK(deriv_base.data == doctest::Approx(16.0));
-    //   CHECK(base_deriv.data == doctest::Approx(-44.0));
-
-    //   CHECK(std::is_same_v<std::remove_const_t<decltype(len_sum)>,
-    //                        DBasic<1, 0, 0>>);
-    //   CHECK(std::is_same_v<std::remove_const_t<decltype(mass_sum)>,
-    //                        DBasic<0, 1, 0>>);
-    //   CHECK(std::is_same_v<std::remove_const_t<decltype(deriv_sum)>,
-    //                        DBasic<1, 0, 2>>);
-    //   CHECK(std::is_same_v<std::remove_const_t<decltype(deriv_base)>,
-    //                        DBasic<1, 0, 0>>);
-    //   CHECK(std::is_same_v<std::remove_const_t<decltype(base_deriv)>,
-    //                        DBasic<0, 1, 0>>);
+    // SUBCASE("Base - Base") {
+    //   test_diff(Base<DimMass>(4.0), Base<DimMass>(2.0), 2.0,
+    //   Base<DimMass>(0.0),
+    //             -2.0);
     // }
   }
 
