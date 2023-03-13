@@ -16,12 +16,6 @@ TEST_SUITE("Derived") {
   // test to make sure the size of the class never exceeds the size of the data
   // member variable. Force all test cases to stop if it does.
 
-  // // test operator overload for _M
-  // constexpr auto operator""_m(long double data) noexcept {
-  //   return Derived<Exponents<1, 0, 0>, Base<DimLength>, Base<DimMass>,
-  //                  Base<DimTime>, double>(static_cast<double>(data));
-  // }
-
   TEST_CASE("Literals temp") {
     const auto meterLength = 40.0_m;
     const auto ref = Meter(40.0);
@@ -29,12 +23,17 @@ TEST_SUITE("Derived") {
     CHECK(ref.data == meterLength.data);
     CHECK(std::is_same_v<decltype(ref), decltype(meterLength)>);
 
+    const auto kgMass = 40.0_kg;
+    const auto ref3 = Kilograms(40.0);
+
+    CHECK(ref3.data == kgMass.data);
+    CHECK(std::is_same_v<decltype(ref3), decltype(kgMass)>);
+
     const auto timeSec = 40.0_s;
     const auto ref2 = Seconds(40.0);
 
     CHECK(ref2.data == timeSec.data);
     CHECK(std::is_same_v<decltype(ref2), decltype(timeSec)>);
-
   }
 
   TEST_CASE("Size") {

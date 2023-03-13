@@ -260,10 +260,16 @@ constexpr auto operator*(BaseType auto&& lhs, BaseType auto&& rhs) noexcept {
 
 // NOLINTEND(bugprone-move-forwarding-reference)
 
-// user defined literals
-// meter
+// user defined literals - all we have as of now: rest play with prefixes and
+// then more dimensions of course meter
 constexpr auto operator""_m(long double data) noexcept {
   return Derived<Exponents<1, 0, 0>, Base<DimLength>, Base<DimMass>,
+                 Base<DimTime>, double>(static_cast<double>(data));
+}
+
+// kilogram
+constexpr auto operator""_kg(long double data) noexcept {
+  return Derived<Exponents<0, 1, 0>, Base<DimLength>, Base<DimMass>,
                  Base<DimTime>, double>(static_cast<double>(data));
 }
 
