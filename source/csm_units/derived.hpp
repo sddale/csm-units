@@ -260,12 +260,18 @@ constexpr auto operator*(BaseType auto&& lhs, BaseType auto&& rhs) noexcept {
 
 // NOLINTEND(bugprone-move-forwarding-reference)
 
-// test operator overload for _M
-  constexpr auto operator""_m(long double data) noexcept {
-    return Derived<Exponents<1, 0, 0>, Base<DimLength>, Base<DimMass>,
-                   Base<DimTime>, double>(static_cast<double>(data));
-  }
+// user defined literals
+// meter
+constexpr auto operator""_m(long double data) noexcept {
+  return Derived<Exponents<1, 0, 0>, Base<DimLength>, Base<DimMass>,
+                 Base<DimTime>, double>(static_cast<double>(data));
+}
 
+// second
+constexpr auto operator""_s(long double data) noexcept {
+  return Derived<Exponents<0, 0, 1>, Base<DimLength>, Base<DimMass>,
+                 Base<DimTime>, double>(static_cast<double>(data));
+}
 
 // Aliases for basic units
 template <int LP, int MP, int TP>

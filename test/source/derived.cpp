@@ -28,6 +28,13 @@ TEST_SUITE("Derived") {
 
     CHECK(ref.data == meterLength.data);
     CHECK(std::is_same_v<decltype(ref), decltype(meterLength)>);
+
+    const auto timeSec = 40.0_s;
+    const auto ref2 = Seconds(40.0);
+
+    CHECK(ref2.data == timeSec.data);
+    CHECK(std::is_same_v<decltype(ref2), decltype(timeSec)>);
+
   }
 
   TEST_CASE("Size") {
