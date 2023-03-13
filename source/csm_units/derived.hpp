@@ -260,6 +260,13 @@ constexpr auto operator*(BaseType auto&& lhs, BaseType auto&& rhs) noexcept {
 
 // NOLINTEND(bugprone-move-forwarding-reference)
 
+// test operator overload for _M
+  constexpr auto operator""_m(long double data) noexcept {
+    return Derived<Exponents<1, 0, 0>, Base<DimLength>, Base<DimMass>,
+                   Base<DimTime>, double>(static_cast<double>(data));
+  }
+
+
 // Aliases for basic units
 template <int LP, int MP, int TP>
 using DBasic = Derived<Exponents<LP, MP, TP>, Base<DimLength>, Base<DimMass>,

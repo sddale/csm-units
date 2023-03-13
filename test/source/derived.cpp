@@ -16,11 +16,11 @@ TEST_SUITE("Derived") {
   // test to make sure the size of the class never exceeds the size of the data
   // member variable. Force all test cases to stop if it does.
 
-  // test operator overload for _M
-  constexpr auto operator""_m(long double data) noexcept {
-    return Derived<Exponents<1, 0, 0>, Base<DimLength>, Base<DimMass>,
-                   Base<DimTime>, double>(static_cast<double>(data));
-  }
+  // // test operator overload for _M
+  // constexpr auto operator""_m(long double data) noexcept {
+  //   return Derived<Exponents<1, 0, 0>, Base<DimLength>, Base<DimMass>,
+  //                  Base<DimTime>, double>(static_cast<double>(data));
+  // }
 
   TEST_CASE("Literals temp") {
     const auto meterLength = 40.0_m;
