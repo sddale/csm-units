@@ -2,8 +2,11 @@
 
 #include <csm_units/concepts.hpp>
 
+#include <tuple>
+
 #include "pressure.hpp"
 #include "temperature.hpp"
+#include "exponents.hpp"
 
 namespace csm_units {
 
@@ -24,34 +27,16 @@ struct Converters {
   // Come back to this because a bit confused about how to get converters to
   // work the best
 
-  [[nodiscard]] constexpr static auto LengthConvertTo(double data) noexcept
-      -> double {
-    return LC::ToBase(data);
+  friend constexpr auto operator|(auto lhs, double rhs) {
+    return lhs[0](rhs, lhs[1]);
   }
 
-  [[nodiscard]] constexpr static auto MassConvertTo(double data) noexcept
-      -> double {
-    return MC::ToBase(data);
+  [[nodiscard]] constexpr static auto ToBase(double data, ExpType auto exponents) noexcept {
+    return (std::make_tuple(LC::ToBase, decltype(exponents)::L) | std::make_tuple(MC::ToBase, decltype(exponents)::MC) | std::make_tuple(TC::ToBase, decltype(exponents)::T) | data);
   }
 
-  [[nodiscard]] constexpr static auto TimeConvertTo(double data) noexcept
-      -> double {
-    return LC::ToBase(data);
-  }
-
-  [[nodiscard]] constexpr static auto LengthConvertFrom(double data) noexcept
-      -> double {
-    return LC::FromBase(data);
-  }
-
-  [[nodiscard]] constexpr static auto MassConvertFrom(double data) noexcept
-      -> double {
-    return LC::FromBase(data);
-  }
-
-  [[nodiscard]] constexpr static auto TimeConvertFrom(double data) noexcept
-      -> double {
-    return LC::FromBase(data);
+  [[nodiscard]] constexpr static auto FromBase(double data, ExpType auto exponents) noexcept {
+    return (std::make_tuple(LC::FromBase, decltype(exponents)::L) | std::make_tuple(MC::FromBase, decltype(exponents)::MC) | std::make_tuple(TC::FromBase, decltype(exponents)::T) | data);
   }
 };
 
