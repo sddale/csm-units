@@ -97,13 +97,6 @@ class Derived {
         std::move(1 / data));
   }
 
-  // test operator overload for _K
-  // friend constexpr long double operator""_M(long double) {
-  //   Derived<Exponents<1, 0, 0>, Base<DimLength>, Base<DimMass>,
-  //   Base<DimTime>,
-  //           long double>(data);
-  // }
-
   // / operator overloads
 
   // compound / compound for two of the same derived
