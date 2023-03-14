@@ -17,7 +17,7 @@ class Unit {
  public:
   constexpr explicit Unit(Data value = 0) noexcept : data(value) {
     static_assert(
-        Powers::L::num != 0 or Powers::M::num != 0 or Powers::T::num != 0,
+        Powers::L::num != 0 or Powers::M::num != 0 or Powers::T::num != 0 or Powers::C::num != 0 or Powers::TP::num != 0 or Powers::A::num != 0 or Powers::LM::num != 0
         "You defined all exponents equal to zero. Use an arithmetic "
         "type instead");
   }
