@@ -9,7 +9,8 @@ namespace csm_units {
 
 // Pressure type
 template <class Converter>
-using Pressure = Unit<Exponents<-1, 1, 2>, Converters<>, Prefixes<>, double>;
+using Pressure = Unit<Exponents<-1, 1, 2, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0>,
+                      Converters<>, Prefixes<>, double>;
 
 // Pressure units
 using Pascals = Pressure<NoConverter>;

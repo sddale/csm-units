@@ -184,11 +184,12 @@ class Unit {
 // }
 
 // Aliases for basic units
-template <int LP, int MP, int TP>
-using DBasic = Unit<Exponents<LP, MP, TP>, Converters<>, Prefixes<>, double>;
+template <int LP, int MP, int TP, int CP, int TPP, int AP, int LMP>
+using DBasic = Unit<Exponents<LP, MP, TP, CP, TPP, AP, LMP>, Converters<>,
+                    Prefixes<>, double>;
 
-using Meter = DBasic<1, 0, 0>;
-using Seconds = DBasic<0, 0, 1>;
+using Meter = DBasic<1, 0, 0, 0, 0, 0, 0>;
+using Seconds = DBasic<0, 0, 1, 0, 0, 0, 0>;
 // using Kilograms =
 //     Unit<Base<DimLength>, 0,
 //             Base<DimMass, NoConverter, std::ratio<1000, 1>, double>, 1,
