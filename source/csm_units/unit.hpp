@@ -50,8 +50,7 @@ class Unit {
   template <ExpType Powers2, class Converters2,
             class Prefixes2>  // second object
   friend constexpr auto operator/(
-      Unit lhs,
-      Unit<Powers2, Converters2, Prefixes2, Data> rhs) noexcept {
+      Unit lhs, Unit<Powers2, Converters2, Prefixes2, Data> rhs) noexcept {
     return (
         Unit<ExponentsSubtract<Powers, Powers2>, Converters, Prefixes, Data>(
             lhs.data / rhs.data));
@@ -91,8 +90,8 @@ class Unit {
   // * operator overloads
   template <class Converters2, class Prefixes2>
   friend constexpr auto operator*(
-      Unit lhs, Unit<ExponentsFlip<Powers>, Converters2, Prefixes2, Data>
-                       rhs) noexcept {
+      Unit lhs,
+      Unit<ExponentsFlip<Powers>, Converters2, Prefixes2, Data> rhs) noexcept {
     return lhs.data * rhs.data;
   }
 
@@ -100,8 +99,7 @@ class Unit {
   template <ExpType Powers2, class Converters2,
             class Prefixes2>  // second object
   friend constexpr auto operator*(
-      Unit lhs,
-      Unit<Powers2, Converters2, Prefixes2, Data> rhs) noexcept {
+      Unit lhs, Unit<Powers2, Converters2, Prefixes2, Data> rhs) noexcept {
     return (Unit<ExponentsAdd<Powers, Powers2>, Converters, Prefixes, Data>(
         lhs.data * rhs.data));
   }
@@ -163,6 +161,25 @@ class Unit {
 };
 
 // NOLINTEND(bugprone-move-forwarding-reference)
+
+// user defined literals - all we have as of now: rest play with prefixes and
+// then more dimensions of course meter
+// constexpr auto operator""_m(long double data) noexcept {
+//   return Unit<Exponents<1, 0, 0>, Converters, Prefixes, double>(
+//       static_cast<double>(data));
+// }
+
+// // kilogram
+// constexpr auto operator""_kg(long double data) noexcept {
+//   return Unit<Exponents<0, 1, 0>, Converters, Prefixes, double>(
+//       static_cast<double>(data));
+// }
+
+// // second
+// constexpr auto operator""_s(long double data) noexcept {
+//   return Unit<Exponents<0, 0, 1>, Converters, Prefixes, double>(
+//       static_cast<double>(data));
+// }
 
 // Aliases for basic units
 template <int LP, int MP, int TP>
