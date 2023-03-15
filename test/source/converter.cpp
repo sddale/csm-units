@@ -105,6 +105,72 @@ class LengthConverter {
   }
 };
 
+class KilogramConverter {
+ public:
+  [[nodiscard]] constexpr static auto ToBase(double data, int N) noexcept
+      -> double {
+    if (N < 0) {
+      for (int i = N; i < 0; ++i) {
+        data /= 1000;
+      }
+    } else {
+      for (int i = 0; i < N; ++i) {
+        data *= 1000;
+      }
+    }
+    return data;
+  }
+
+  [[nodiscard]] constexpr static auto FromBase(double data, int N) noexcept
+      -> double {
+    return ToBase(data, -N);
+  }
+};
+
+class PoundConverter {
+ public:
+  [[nodiscard]] constexpr static auto ToBase(double data, int N) noexcept
+      -> double {
+    if (N < 0) {
+      for (int i = N; i < 0; ++i) {
+        data /= 453.59237;
+      }
+    } else {
+      for (int i = 0; i < N; ++i) {
+        data *= 453.59237;
+      }
+    }
+    return data;
+  }
+
+  [[nodiscard]] constexpr static auto FromBase(double data, int N) noexcept
+      -> double {
+    return ToBase(data, -N);
+  }
+};
+
+class FeetPerInchesSquaredConverter {
+ public:
+  [[nodiscard]] constexpr static auto ToBase(double data, int N) noexcept
+      -> double {
+    if (N < 0) {
+      for (int i = N; i < 0; ++i) {
+        data /= 144 / 0.3048;
+      }
+    } else {
+      for (int i = 0; i < N; ++i) {
+        data *= 144 / 0.3048;
+      }
+    }
+    return data;
+  }
+
+  [[nodiscard]] constexpr static auto FromBase(double data, int N) noexcept
+      -> double {
+    return ToBase(data, -N);
+  }
+};
+
 // NOLINTBEGIN(modernize-use-trailing-return-type)
 
 TEST_SUITE("Converters") {
@@ -148,7 +214,18 @@ TEST_SUITE("Converters") {
     }
   }
 
-  // TODO(Sander & Manas): Test with real units i.e. mph to kmps
+  // TODO(Sander & Manas): Test with real units i.e. Pa to psi
+  TEST_CASE("Pa and psi conversions") {
+    SUBCASE("Pa to psi") {
+      const auto pascals =
+          Converters<NoConverter, KilogramConverter, NoConverter>::ToBase(
+              2.0, Exponents<1, -1, -2>());
+      const auto psi = Converters<FeetPerInchesSquaredConverter, PoundConverter, NoConverter>::FromBase(pascals, Exponents<1,1,-2>());
+      const double psiRef = 441.082908;
+
+      CHECK(test == doctest::Approx(ref));
+    }
+  }
 }
 
 // NOLINTEND(modernize-use-trailing-return-type)

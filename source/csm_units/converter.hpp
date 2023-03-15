@@ -14,11 +14,11 @@ class NoConverter {
   // do nothing in either of the below because we do not want to convert
   [[nodiscard]] constexpr static auto ToBase(double data, int pow) noexcept
       -> double {
-    return data * pow;
+    return data;
   }
   [[nodiscard]] constexpr static auto FromBase(double data, int pow) noexcept
       -> double {
-    return data * pow;
+    return data;
   }
 };
 
