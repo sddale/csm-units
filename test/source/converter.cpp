@@ -219,11 +219,25 @@ TEST_SUITE("Converters") {
     SUBCASE("Pa to psi") {
       const auto pascals =
           Converters<NoConverter, KilogramConverter, NoConverter>::ToBase(
-              2.0, Exponents<1, -1, -2>());
-      const auto psi = Converters<FeetPerInchesSquaredConverter, PoundConverter, NoConverter>::FromBase(pascals, Exponents<1,1,-2>());
-      const double psiRef = 441.082908;
+              2.0, Exponents<-1, 1, -2>());
+      const auto psi =
+          Converters<FeetPerInchesSquaredConverter, PoundConverter,
+                     NoConverter>::FromBase(pascals, Exponents<1, 1, -2>());
+      const double psi_ref = 0.0093329024;
 
-      CHECK(test == doctest::Approx(ref));
+      CHECK(psi == doctest::Approx(psi_ref));
+    }
+
+    SUBCASE("psi to Pa") {
+      const auto psi =
+          Converters<FeetPerInchesSquaredConverter, PoundConverter,
+                     NoConverter>::ToBase(2.0, Exponents<1, 1, -2>());
+      const auto pascals =
+          Converters<NoConverter, KilogramConverter, NoConverter>::FromBase(
+              psi, Exponents<-1, 1, -2>());
+      const double pascals_ref = 428.5912157;
+
+      CHECK(pascals == doctest::Approx(pascals_ref));
     }
   }
 }
