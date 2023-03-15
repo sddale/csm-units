@@ -158,6 +158,15 @@ class Unit {
     lhs -= rhs;
     return lhs;
   }
+
+//   constexpr static auto FromBase(double data, ExpType auto power) {
+//     return Converters::FromBase(data, power);
+//   }
+
+// constexpr static auto ToBase(double data, ExpType auto power) {
+//   return Converters::ToBase(data, power);
+
+// }
 };
 
 // NOLINTEND(bugprone-move-forwarding-reference)
