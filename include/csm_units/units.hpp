@@ -4,12 +4,13 @@
 #include "source/csm_units/pressure.hpp"
 #include "source/csm_units/temperature.hpp"
 #include "source/csm_units/unit.hpp"
+#include "source/csm_units/exponents.hpp"
 
 namespace csm_units {
 
 // Pressure type
 template <class Converter>
-using Pressure = Unit<Exponents<-1, 1, 2, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0>,
+using Pressure = Unit<Exponents<-1, 1, 2, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1>,
                       Converters<>, Prefixes<>, double>;
 
 // Pressure units

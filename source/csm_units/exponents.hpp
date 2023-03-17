@@ -73,6 +73,7 @@ using ExponentsSubtract = typename detail::ExponentsSubtract<E1, E2>::type;
 template <ExpType E>
 using ExponentsFlip =
     Exponents<-E::L::num, -E::M::num, -E::T::num, -E::C::num, -E::TP::num,
-              -E::A::num, -E::LM::num, E::L::den, E::M::den, E::T::den>;
+              -E::A::num, -E::LM::num, E::L::den, E::M::den, E::T::den,
+              E::C::den, E::TP::den, E::A::den, E::LM::den>;
 
 }  // namespace csm_units
