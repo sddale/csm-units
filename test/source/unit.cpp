@@ -4,10 +4,10 @@
 
 namespace csm_units::test {
 
-using Kilograms = DBasic<0, 1, 0>;
+using Kilograms = DBasic<0, 1, 0, 0, 0, 0, 0>;
 
 // velocity = m/s
-using MeterPerSecond = DBasic<1, 0, -1>;
+using MeterPerSecond = DBasic<1, 0, -1, 0, 0, 0, 0>;
 
 // using Pascals = Unit<Exponents<1,-1,-2>, Converters<NoConverter, KilogramConverter, NoConverter>, Prefixes<>, double>;
 // using Psi = Unit<Exponents<1,1,-2>, Converters<FeetPerInchesSquaredConverter, PoundConverter, NoConverter>, Prefixes<>, double>;
@@ -106,39 +106,39 @@ TEST_SUITE("Unit") {
   // }
 
   TEST_CASE("Size") {
-    const auto test = DBasic<14, 14, 14>(14.0);
+    const auto test = DBasic<14, 14, 14, 0, 0, 0, 0>(14.0);
     REQUIRE(sizeof(test) == sizeof(test.data));
   }
 
   TEST_CASE("Objects") {
     SUBCASE("DimLength") {
-      const auto test_length_pow1 = DBasic<1, 0, 0>(13.0);
-      const auto test_length_pow2 = DBasic<2, 0, 0>(13.0);
+      const auto test_length_pow1 = DBasic<1, 0, 0, 0, 0, 0, 0>(13.0);
+      const auto test_length_pow2 = DBasic<2, 0, 0, 0, 0, 0, 0>(13.0);
 
       CHECK(test_length_pow1.data == doctest::Approx(13.0));
       CHECK(test_length_pow2.data == doctest::Approx(13.0));
     }
 
     SUBCASE("DimMass") {
-      const auto test_mass_pow1 = DBasic<0, 1, 0>(13.0);
-      const auto test_mass_pow2 = DBasic<0, 2, 0>(13.0);
+      const auto test_mass_pow1 = DBasic<0, 1, 0, 0, 0, 0, 0>(13.0);
+      const auto test_mass_pow2 = DBasic<0, 2, 0, 0, 0, 0, 0>(13.0);
 
       CHECK(test_mass_pow1.data == doctest::Approx(13.0));
       CHECK(test_mass_pow2.data == doctest::Approx(13.0));
     }
 
     SUBCASE("DimTime") {
-      const auto test_time_pow1 = DBasic<0, 0, 1>(13.0);
-      const auto test_time_pow2 = DBasic<0, 0, 2>(13.0);
+      const auto test_time_pow1 = DBasic<0, 0, 1, 0, 0, 0, 0>(13.0);
+      const auto test_time_pow2 = DBasic<0, 0, 2, 0, 0, 0, 0>(13.0);
 
       CHECK(test_time_pow1.data == doctest::Approx(13.0));
       CHECK(test_time_pow2.data == doctest::Approx(13.0));
     }
 
     SUBCASE("Mix of All 3") {
-      const auto length1_mass1_time1 = DBasic<1, 1, 1>(13.0);
-      const auto length2_mass2_time2 = DBasic<2, 2, 2>(13.0);
-      const auto arbitrary_mix_up = DBasic<3, 1, 4>(13.0);
+      const auto length1_mass1_time1 = DBasic<1, 1, 1, 0, 0, 0, 0>(13.0);
+      const auto length2_mass2_time2 = DBasic<2, 2, 2, 0, 0, 0, 0>(13.0);
+      const auto arbitrary_mix_up = DBasic<3, 1, 4, 0, 0, 0, 0>(13.0);
 
       CHECK(length1_mass1_time1.data == doctest::Approx(13.0));
       CHECK(length2_mass2_time2.data == doctest::Approx(13.0));
@@ -172,11 +172,13 @@ TEST_SUITE("Unit") {
     };
 
     SUBCASE("Unit/Unit") {
-      test_div(DBasic<3, 6, 8>(20.0), DBasic<1, 2, 3>(10.0), 2.0,
-               DBasic<2, 4, 5>(), 0.5, DBasic<-2, -4, -5>());
+      test_div(DBasic<3, 6, 8, 0, 0, 0, 0>(20.0),
+               DBasic<1, 2, 3, 0, 0, 0, 0>(10.0), 2.0,
+               DBasic<2, 4, 5, 0, 0, 0, 0>(), 0.5,
+               DBasic<-2, -4, -5, 0, 0, 0, 0>());
 
-      test_div(DBasic<1, 2, 3>(24.0), DBasic<1, 2, 3>(12.0), 2.0, 0.0, 0.5,
-               0.0);
+      test_div(DBasic<1, 2, 3, 0, 0, 0, 0>(24.0),
+               DBasic<1, 2, 3, 0, 0, 0, 0>(12.0), 2.0, 0.0, 0.5, 0.0);
     }
 
     // SUBCASE("Unit/Base") {
@@ -190,8 +192,9 @@ TEST_SUITE("Unit") {
     // }
 
     SUBCASE("Unit/Double") {
-      test_div(DBasic<1, 2, 3>(40.0), 10.0, 4.0, DBasic<1, 2, 3>(), 0.25,
-               DBasic<-1, -2, -3>());
+      test_div(DBasic<1, 2, 3, 0, 0, 0, 0>(40.0), 10.0, 4.0,
+               DBasic<1, 2, 3, 0, 0, 0, 0>(), 0.25,
+               DBasic<-1, -2, -3, 0, 0, 0, 0>());
     }
   }
 
@@ -219,10 +222,12 @@ TEST_SUITE("Unit") {
     };
 
     SUBCASE("Unit * Unit") {
-      test_mult(DBasic<3, 2, 0>(20.0), DBasic<1, 0, 3>(50.0), 1000.0,
-                DBasic<4, 2, 3>());
+      test_mult(DBasic<3, 2, 0, 0, 0, 0, 0>(20.0),
+                DBasic<1, 0, 3, 0, 0, 0, 0>(50.0), 1000.0,
+                DBasic<4, 2, 3, 0, 0, 0, 0>());
 
-      test_mult(DBasic<-1, -2, -3>(3.0), DBasic<1, 2, 3>(12.0), 36.0, 0.0);
+      test_mult(DBasic<-1, -2, -3, 0, 0, 0, 0>(3.0),
+                DBasic<1, 2, 3, 0, 0, 0, 0>(12.0), 36.0, 0.0);
     }
 
     // SUBCASE("Unit * Base") {
@@ -257,9 +262,11 @@ TEST_SUITE("Unit") {
     // }
 
     SUBCASE("Unit * Double") {
-      test_mult(DBasic<1, 2, 3>(40.0), 10.0, 400.0, DBasic<1, 2, 3>());
+      test_mult(DBasic<1, 2, 3, 0, 0, 0, 0>(40.0), 10.0, 400.0,
+                DBasic<1, 2, 3, 0, 0, 0, 0>());
 
-      test_mult(DBasic<2, 1, 4>(20.0), 5.0, 100.0, DBasic<2, 1, 4>());
+      test_mult(DBasic<2, 1, 4, 0, 0, 0, 0>(20.0), 5.0, 100.0,
+                DBasic<2, 1, 4, 0, 0, 0, 0>());
     }
   }
 
@@ -273,9 +280,11 @@ TEST_SUITE("Unit") {
     };
 
     SUBCASE("Unit + Unit") {
-      test_sum(DBasic<3, 2, 0>(20.0), DBasic<3, 2, 0>(50.0), 70.0);
+      test_sum(DBasic<3, 2, 0, 0, 0, 0, 0>(20.0),
+               DBasic<3, 2, 0, 0, 0, 0, 0>(50.0), 70.0);
 
-      test_sum(DBasic<-1, -2, -3>(3.0), DBasic<-1, -2, -3>(12.0), 15.0);
+      test_sum(DBasic<-1, -2, -3, 0, 0, 0, 0>(3.0),
+               DBasic<-1, -2, -3, 0, 0, 0, 0>(12.0), 15.0);
     }
 
     // SUBCASE("Unit + Base") {
@@ -312,11 +321,13 @@ TEST_SUITE("Unit") {
     };
 
     SUBCASE("Unit - Unit") {
-      test_diff(DBasic<3, 6, 8>(20.0), DBasic<3, 6, 8>(10.0), 10.0,
-                DBasic<3, 6, 8>(), -10.0);
+      test_diff(DBasic<3, 6, 8, 0, 0, 0, 0>(20.0),
+                DBasic<3, 6, 8, 0, 0, 0, 0>(10.0), 10.0,
+                DBasic<3, 6, 8, 0, 0, 0, 0>(), -10.0);
 
-      test_diff(DBasic<1, 2, 3>(24.0), DBasic<1, 2, 3>(12.0), 12.0,
-                DBasic<1, 2, 3>(), -12.0);
+      test_diff(DBasic<1, 2, 3, 0, 0, 0, 0>(24.0),
+                DBasic<1, 2, 3, 0, 0, 0, 0>(12.0), 12.0,
+                DBasic<1, 2, 3, 0, 0, 0, 0>(), -12.0);
     }
 
     // SUBCASE("Unit - Base") {
@@ -342,7 +353,7 @@ TEST_SUITE("Unit") {
     const auto velocity = distance / time;
     CHECK(velocity.data == doctest::Approx(10.0));
     CHECK(std::is_same_v<std::remove_const_t<decltype(velocity)>,
-                         DBasic<1, 0, -1>>);
+                         DBasic<1, 0, -1, 0, 0, 0, 0>>);
 
     // std::cout << std::endl
     //           << "Question 1" << std::endl
@@ -362,7 +373,7 @@ TEST_SUITE("Unit") {
     const auto acceleration = velocity_delta / time;
     CHECK(acceleration.data == doctest::Approx(25.0));
     CHECK(std::is_same_v<std::remove_const_t<decltype(acceleration)>,
-                         DBasic<1, 0, -2>>);
+                         DBasic<1, 0, -2, 0, 0, 0, 0>>);
 
     // std::cout << "Question 2a" << std::endl
     //           << "The race car has an acceleration of " << acceleration.data
@@ -376,8 +387,8 @@ TEST_SUITE("Unit") {
     // our answer is held here
     const auto force = mass * acceleration;
     CHECK(force.data == doctest::Approx(20000.0));
-    CHECK(
-        std::is_same_v<std::remove_const_t<decltype(force)>, DBasic<1, 1, -2>>);
+    CHECK(std::is_same_v<std::remove_const_t<decltype(force)>,
+                         DBasic<1, 1, -2, 0, 0, 0, 0>>);
 
     // std::cout << "Question 2b" << std::endl
     //           << "The race car has a force of " << force.data
@@ -397,7 +408,7 @@ TEST_SUITE("Unit") {
     const auto density = mass / (length * width * height);
     CHECK(density.data == doctest::Approx(240.0));
     CHECK(std::is_same_v<std::remove_const_t<decltype(density)>,
-                         DBasic<-3, 1, 0>>);
+                         DBasic<-3, 1, 0, 0, 0, 0, 0>>);
 
     // std::cout << "Question 3" << std::endl
     //           << "The block has a density of " << density.data << " kg/m^3"

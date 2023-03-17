@@ -37,6 +37,14 @@ concept ExpType = requires(T) {
                     { T::M::den } -> std::convertible_to<intmax_t>;
                     { T::T::num } -> std::convertible_to<intmax_t>;
                     { T::T::den } -> std::convertible_to<intmax_t>;
+                    { T::C::num } -> std::convertible_to<intmax_t>;
+                    { T::C::den } -> std::convertible_to<intmax_t>;
+                    { T::TP::num } -> std::convertible_to<intmax_t>;
+                    { T::TP::den } -> std::convertible_to<intmax_t>;
+                    { T::A::num } -> std::convertible_to<intmax_t>;
+                    { T::A::den } -> std::convertible_to<intmax_t>;
+                    { T::LM::num } -> std::convertible_to<intmax_t>;
+                    { T::LM::den } -> std::convertible_to<intmax_t>;
                   };
 
 template <class T>

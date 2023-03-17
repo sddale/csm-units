@@ -178,7 +178,7 @@ TEST_SUITE("Converters") {
     SUBCASE("Positive Exp") {
       const auto test =
           Converters<LengthConverter, MassConverter, TimeConverter>::ToBase(
-              2.0, Exponents<2, 3, 4>());
+              2.0, Exponents<2, 3, 4, 0, 0, 0, 0>());
       const double ref = 441.082908;
 
       CHECK(test == doctest::Approx(ref));
@@ -187,7 +187,7 @@ TEST_SUITE("Converters") {
     SUBCASE("Negative Exp") {
       const auto test =
           Converters<LengthConverter, MassConverter, TimeConverter>::ToBase(
-              7.3, Exponents<-2, -3, -4>());
+              7.3, Exponents<-2, -3, -4, 0, 0, 0, 0>());
       const double ref = 0.0331003531;
 
       CHECK(test == doctest::Approx(ref));
@@ -198,7 +198,7 @@ TEST_SUITE("Converters") {
     SUBCASE("Positive Exp") {
       const auto test =
           Converters<LengthConverter, MassConverter, TimeConverter>::FromBase(
-              2.0, Exponents<2, 3, 4>());
+              2.0, Exponents<2, 3, 4, 0, 0, 0, 0>());
       const double ref = 0.0090685899;
 
       CHECK(test == doctest::Approx(ref));
@@ -207,7 +207,7 @@ TEST_SUITE("Converters") {
     SUBCASE("Negative Exp") {
       const auto test =
           Converters<LengthConverter, MassConverter, TimeConverter>::FromBase(
-              7.3, Exponents<-2, -3, -4>());
+              7.3, Exponents<-2, -3, -4, 0, 0, 0, 0>());
       const double ref = 1609.952614;
 
       CHECK(test == doctest::Approx(ref));

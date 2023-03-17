@@ -16,10 +16,12 @@ template <ExpType Powers, class Converters, class Prefixes, Arithmetic Data>
 class Unit {
  public:
   constexpr explicit Unit(Data value = 0) noexcept : data(value) {
-    static_assert(
-        Powers::L::num != 0 or Powers::M::num != 0 or Powers::T::num != 0,
-        "You defined all exponents equal to zero. Use an arithmetic "
-        "type instead");
+    static_assert(Powers::L::num != 0 or Powers::M::num != 0 or
+                      Powers::T::num != 0 or Powers::C::num != 0 or
+                      Powers::TP::num != 0 or Powers::A::num != 0 or
+                      Powers::LM::num != 0,
+                  "You defined all exponents equal to zero. Use an arithmetic "
+                  "type instead");
   }
 
   // copy constructor
@@ -191,11 +193,12 @@ class Unit {
 // }
 
 // Aliases for basic units
-template <int LP, int MP, int TP>
-using DBasic = Unit<Exponents<LP, MP, TP>, Converters<>, Prefixes<>, double>;
+template <int LP, int MP, int TP, int CP, int TPP, int AP, int LMP>
+using DBasic = Unit<Exponents<LP, MP, TP, CP, TPP, AP, LMP>, Converters<>,
+                    Prefixes<>, double>;
 
-using Meter = DBasic<1, 0, 0>;
-using Seconds = DBasic<0, 0, 1>;
+using Meter = DBasic<1, 0, 0, 0, 0, 0, 0>;
+using Seconds = DBasic<0, 0, 1, 0, 0, 0, 0>;
 // using Kilograms =
 //     Unit<Base<DimLength>, 0,
 //             Base<DimMass, NoConverter, std::ratio<1000, 1>, double>, 1,

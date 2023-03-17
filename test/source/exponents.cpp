@@ -11,19 +11,22 @@ namespace csm_units::test {
 TEST_SUITE("Exponents") {
   TEST_CASE("Addition") {
     CHECK(std::is_same_v<
-          ExponentsAdd<Exponents<1, 2, 3, 1, 1, 1>, Exponents<4, 5, 6>>,
-          Exponents<5, 7, 9, 1, 1, 1>>);
+          ExponentsAdd<Exponents<1, 2, 3, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1>,
+                       Exponents<4, 5, 6, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1>>,
+          Exponents<5, 7, 9, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1>>);
   }
 
   TEST_CASE("Subtraction") {
     CHECK(std::is_same_v<
-          ExponentsSubtract<Exponents<1, 2, 3, 1, 1, 1>, Exponents<4, 5, 6>>,
-          Exponents<-3, -3, -3, 1, 1, 1>>);
+          ExponentsSubtract<Exponents<1, 2, 3, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1>,
+                            Exponents<4, 5, 6, 0, 0, 0, 0>>,
+          Exponents<-3, -3, -3, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1>>);
   }
 
   TEST_CASE("Flipping") {
-    CHECK(std::is_same_v<ExponentsFlip<Exponents<1, 3, 5, 2, 4, 6>>,
-                         Exponents<-1, -3, -5, 2, 4, 6>>);
+    CHECK(std::is_same_v<
+          ExponentsFlip<Exponents<1, 3, 5, 0, 0, 0, 0, 2, 4, 6, 1, 1, 1, 1>>,
+          Exponents<-1, -3, -5, 0, 0, 0, 0, 2, 4, 6, 1, 1, 1, 1>>);
   }
 }
 
