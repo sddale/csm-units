@@ -161,14 +161,13 @@ class Unit {
     return lhs;
   }
 
-//   constexpr static auto FromBase(double data, ExpType auto power) {
-//     return Converters::FromBase(data, power);
-//   }
+  constexpr static auto FromBase(double data) {
+    return Converters::FromBase(data, Powers());
+  }
 
-// constexpr static auto ToBase(double data, ExpType auto power) {
-//   return Converters::ToBase(data, power);
-
-// }
+  constexpr static auto ToBase(double data) {
+    return Converters::ToBase(data, Powers());
+  }
 };
 
 // NOLINTEND(bugprone-move-forwarding-reference)

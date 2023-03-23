@@ -9,74 +9,79 @@ using Kilograms = DBasic<0, 1, 0, 0, 0, 0, 0>;
 // velocity = m/s
 using MeterPerSecond = DBasic<1, 0, -1, 0, 0, 0, 0>;
 
-// using Pascals = Unit<Exponents<1,-1,-2>, Converters<NoConverter, KilogramConverter, NoConverter>, Prefixes<>, double>;
-// using Psi = Unit<Exponents<1,1,-2>, Converters<FeetPerInchesSquaredConverter, PoundConverter, NoConverter>, Prefixes<>, double>;
+class KilogramConverter {
+ public:
+  [[nodiscard]] constexpr static auto ToBase(double data, int N) noexcept
+      -> double {
+    if (N < 0) {
+      for (int i = N; i < 0; ++i) {
+        data /= 1000;
+      }
+    } else {
+      for (int i = 0; i < N; ++i) {
+        data *= 1000;
+      }
+    }
+    return data;
+  }
 
-// class KilogramConverter {
-//  public:
-//   [[nodiscard]] constexpr static auto ToBase(double data, int N) noexcept
-//       -> double {
-//     if (N < 0) {
-//       for (int i = N; i < 0; ++i) {
-//         data /= 1000;
-//       }
-//     } else {
-//       for (int i = 0; i < N; ++i) {
-//         data *= 1000;
-//       }
-//     }
-//     return data;
-//   }
+  [[nodiscard]] constexpr static auto FromBase(double data, int N) noexcept
+      -> double {
+    return ToBase(data, -N);
+  }
+};
 
-//   [[nodiscard]] constexpr static auto FromBase(double data, int N) noexcept
-//       -> double {
-//     return ToBase(data, -N);
-//   }
-// };
+class PoundConverter {
+ public:
+  [[nodiscard]] constexpr static auto ToBase(double data, int N) noexcept
+      -> double {
+    if (N < 0) {
+      for (int i = N; i < 0; ++i) {
+        data /= 453.59237;
+      }
+    } else {
+      for (int i = 0; i < N; ++i) {
+        data *= 453.59237;
+      }
+    }
+    return data;
+  }
 
-// class PoundConverter {
-//  public:
-//   [[nodiscard]] constexpr static auto ToBase(double data, int N) noexcept
-//       -> double {
-//     if (N < 0) {
-//       for (int i = N; i < 0; ++i) {
-//         data /= 453.59237;
-//       }
-//     } else {
-//       for (int i = 0; i < N; ++i) {
-//         data *= 453.59237;
-//       }
-//     }
-//     return data;
-//   }
+  [[nodiscard]] constexpr static auto FromBase(double data, int N) noexcept
+      -> double {
+    return ToBase(data, -N);
+  }
+};
 
-//   [[nodiscard]] constexpr static auto FromBase(double data, int N) noexcept
-//       -> double {
-//     return ToBase(data, -N);
-//   }
-// };
+class FeetPerInchesSquaredConverter {
+ public:
+  [[nodiscard]] constexpr static auto ToBase(double data, int N) noexcept
+      -> double {
+    if (N < 0) {
+      for (int i = N; i < 0; ++i) {
+        data /= 144 / 0.3048;
+      }
+    } else {
+      for (int i = 0; i < N; ++i) {
+        data *= 144 / 0.3048;
+      }
+    }
+    return data;
+  }
 
-// class FeetPerInchesSquaredConverter {
-//  public:
-//   [[nodiscard]] constexpr static auto ToBase(double data, int N) noexcept
-//       -> double {
-//     if (N < 0) {
-//       for (int i = N; i < 0; ++i) {
-//         data /= 144 / 0.3048;
-//       }
-//     } else {
-//       for (int i = 0; i < N; ++i) {
-//         data *= 144 / 0.3048;
-//       }
-//     }
-//     return data;
-//   }
+  [[nodiscard]] constexpr static auto FromBase(double data, int N) noexcept
+      -> double {
+    return ToBase(data, -N);
+  }
+};
 
-//   [[nodiscard]] constexpr static auto FromBase(double data, int N) noexcept
-//       -> double {
-//     return ToBase(data, -N);
-//   }
-// };
+using Pascals = Unit<Exponents<-1, 1, -2, 0, 0, 0, 0>,
+                     Converters<NoConverter, KilogramConverter, NoConverter>,
+                     Prefixes<>, double>;
+using Psi =
+    Unit<Exponents<1, 1, -2, 0, 0, 0, 0>,
+         Converters<FeetPerInchesSquaredConverter, PoundConverter, NoConverter>,
+         Prefixes<>, double>;
 
 // NOLINTBEGIN(modernize-use-trailing-return-type)
 TEST_SUITE("Unit") {
@@ -416,21 +421,21 @@ TEST_SUITE("Unit") {
     //           << std::endl;
   }
 
-  // TEST_CASE("Polished Test Case for Pascals to PSI") {
-  //   const auto pascal = Pascals(2.0);
+  TEST_CASE("Polished Test Case for Pascals to PSI") {
+    const auto pascal = Pascals(2.0);
 
-  //   const auto psi = Psi(Psi::FromBase(Pascals::ToBase(pascal.data, Exponents<-1, 1, -2>()), Exponents<1, 1, -2>()));
+    const auto psi = Psi(Psi::FromBase(Pascals::ToBase(pascal.data)));
 
-  //   CHECK(psi.data == doctest::Approx(0.0093329024));
-  // }
+    CHECK(psi.data == doctest::Approx(0.0093329024));
+  }
 
-  // TEST_CASE("Polished Test Case for Pascals to PSI") {
-  //   const auto psi = Psi(2.0);
+  TEST_CASE("Polished Test Case for Pascals to PSI") {
+    const auto psi = Psi(2.0);
 
-  //   const auto pascals = Pascals(Pascals::FromBase(Psi::ToBase(psi.data, Exponents<1, 1, -2>()), Exponents<-1, 1, -2>()));
+    const auto pascals = Pascals(Pascals::FromBase(Psi::ToBase(psi.data)));
 
-  //   CHECK(pascals.data == doctest::Approx(428.5912157));
-  // }
+    CHECK(pascals.data == doctest::Approx(428.5912157));
+  }
 }
 // NOLINTEND(modernize-use-trailing-return-type)
 }  // namespace csm_units::test
