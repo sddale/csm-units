@@ -4,14 +4,6 @@
 
 namespace csm_units::test {
 
-using Meter = DBasic<1, 0, 0, 0, 0, 0, 0>;
-using Kilograms = DBasic<0, 1, 0, 0, 0, 0, 0>;
-using Seconds = DBasic<0, 0, 1, 0, 0, 0, 0>;
-using Ampere = DBasic<0, 0, 0, 1, 0, 0, 0>;
-using Kelvin = DBasic<0, 0, 0, 0, 1, 0, 0>;
-using Mole = DBasic<0, 0, 0, 0, 0, 1, 0>;
-using Candela = DBasic<0, 0, 0, 0, 0, 0, 1>;
-
 // velocity = m/s
 using MeterPerSecond = DBasic<1, 0, -1, 0, 0, 0, 0>;
 

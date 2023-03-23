@@ -222,15 +222,11 @@ using DBasic = Unit<Exponents<LP, MP, TP, CP, TPP, AP, LMP>, Converters<>,
                     Prefixes<>, double>;
 
 using Meter = DBasic<1, 0, 0, 0, 0, 0, 0>;
+using Kilograms = DBasic<0, 1, 0, 0, 0, 0, 0>;
 using Seconds = DBasic<0, 0, 1, 0, 0, 0, 0>;
-// using Kilograms =
-//     Unit<Base<DimLength>, 0,
-//             Base<DimMass, NoConverter, std::ratio<1000, 1>, double>, 1,
-//             Base<DimTime>, 0, double>; // Kilograms can't be used like this
-//             yet, because the test cases can't handle ratio yet
-// using Mole = //cannot do this yet
-// using Ampere = //cannot do this yet
-// using Kelvin = //cannot do this yet
-// using Candela = //cannot do this yet
+using Ampere = DBasic<0, 0, 0, 1, 0, 0, 0>;
+using Kelvin = DBasic<0, 0, 0, 0, 1, 0, 0>;
+using Mole = DBasic<0, 0, 0, 0, 0, 1, 0>;
+using Candela = DBasic<0, 0, 0, 0, 0, 0, 1>;
 
 }  // namespace csm_units
