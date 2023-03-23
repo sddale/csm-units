@@ -4,7 +4,13 @@
 
 namespace csm_units::test {
 
+using Meter = DBasic<1, 0, 0, 0, 0, 0, 0>;
 using Kilograms = DBasic<0, 1, 0, 0, 0, 0, 0>;
+using Seconds = DBasic<0, 0, 1, 0, 0, 0, 0>;
+using Ampere = DBasic<0, 0, 0, 1, 0, 0, 0>;
+using Kelvin = DBasic<0, 0, 0, 0, 1, 0, 0>;
+using Mole = DBasic<0, 0, 0, 0, 0, 1, 0>;
+using Candela = DBasic<0, 0, 0, 0, 0, 0, 1>;
 
 // velocity = m/s
 using MeterPerSecond = DBasic<1, 0, -1, 0, 0, 0, 0>;
@@ -87,28 +93,53 @@ using Psi =
 TEST_SUITE("Unit") {
   // Tests to make sure that the unit class is working the way we expect
 
-  // test to make sure the size of the class never exceeds the size of the data
-  // member variable. Force all test cases to stop if it does.
+  //     test to make sure the size of the class never exceeds the size of the
+  //     data
+  //         member variable.Force all test cases to stop if it does.
 
-  // TEST_CASE("Literals temp") {
-  //   const auto meterLength = 40.0_m;
-  //   const auto ref = Meter(40.0);
+  TEST_CASE("Literals temp") {
+    const auto meterLength = 40.0_m;
+    const auto ref = Meter(40.0);
 
-  //   CHECK(ref.data == meterLength.data);
-  //   // CHECK(std::is_same_v<decltype(ref), decltype(meterLength)>);
+    CHECK(ref.data == meterLength.data);
+    CHECK(std::is_same_v<decltype(ref), decltype(meterLength)>);
 
-  //   const auto kgMass = 40.0_kg;
-  //   const auto ref3 = Kilograms(40.0);
+    const auto kgMass = 40.0_kg;
+    const auto ref2 = Kilograms(40.0);
 
-  //   CHECK(ref3.data == kgMass.data);
-  //   // CHECK(std::is_same_v<decltype(ref3), decltype(kgMass)>);
+    CHECK(ref2.data == kgMass.data);
+    CHECK(std::is_same_v<decltype(ref2), decltype(kgMass)>);
 
-  //   const auto timeSec = 40.0_s;
-  //   const auto ref2 = Seconds(40.0);
+    const auto secTime = 40.0_s;
+    const auto ref3 = Seconds(40.0);
 
-  //   CHECK(ref2.data == timeSec.data);
-  //   // CHECK(std::is_same_v<decltype(ref2), decltype(timeSec)>);
-  // }
+    CHECK(ref3.data == secTime.data);
+    CHECK(std::is_same_v<decltype(ref3), decltype(secTime)>);
+
+    const auto ampCurrent = 40.0_A;
+    const auto ref4 = Ampere(40.0);
+
+    CHECK(ref4.data == ampCurrent.data);
+    CHECK(std::is_same_v<decltype(ref4), decltype(ampCurrent)>);
+
+    const auto tempKel = 40.0_K;
+    const auto ref5 = Kelvin(40.0);
+
+    CHECK(ref5.data == tempKel.data);
+    CHECK(std::is_same_v<decltype(ref5), decltype(tempKel)>);
+
+    const auto amtMol = 40.0_mol;
+    const auto ref6 = Mole(40.0);
+
+    CHECK(ref6.data == amtMol.data);
+    CHECK(std::is_same_v<decltype(ref6), decltype(amtMol)>);
+
+    const auto lumCd = 40.0_cd;
+    const auto ref7 = Candela(40.0);
+
+    CHECK(ref7.data == lumCd.data);
+    CHECK(std::is_same_v<decltype(ref7), decltype(lumCd)>);
+  }
 
   TEST_CASE("Size") {
     const auto test = DBasic<14, 14, 14, 0, 0, 0, 0>(14.0);

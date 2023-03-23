@@ -172,24 +172,49 @@ class Unit {
 
 // NOLINTEND(bugprone-move-forwarding-reference)
 
-// user defined literals - all we have as of now: rest play with prefixes and
-// then more dimensions of course meter
-// constexpr auto operator""_m(long double data) noexcept {
-//   return Unit<Exponents<1, 0, 0>, Converters, Prefixes, double>(
-//       static_cast<double>(data));
-// }
+// user defined literals
 
-// // kilogram
-// constexpr auto operator""_kg(long double data) noexcept {
-//   return Unit<Exponents<0, 1, 0>, Converters, Prefixes, double>(
-//       static_cast<double>(data));
-// }
+// length - meter
+constexpr auto operator""_m(long double data) noexcept {
+  return Unit<Exponents<1, 0, 0, 0, 0, 0, 0>, Converters<>, Prefixes<>, double>(
+      static_cast<double>(data));
+}
 
-// // second
-// constexpr auto operator""_s(long double data) noexcept {
-//   return Unit<Exponents<0, 0, 1>, Converters, Prefixes, double>(
-//       static_cast<double>(data));
-// }
+// mass - kilogram
+constexpr auto operator""_kg(long double data) noexcept {
+  return Unit<Exponents<0, 1, 0, 0, 0, 0, 0>, Converters<>, Prefixes<>, double>(
+      static_cast<double>(data));
+}
+
+// time - second
+constexpr auto operator""_s(long double data) noexcept {
+  return Unit<Exponents<0, 0, 1, 0, 0, 0, 0>, Converters<>, Prefixes<>, double>(
+      static_cast<double>(data));
+}
+
+// current - ampere
+constexpr auto operator""_A(long double data) noexcept {
+  return Unit<Exponents<0, 0, 0, 1, 0, 0, 0>, Converters<>, Prefixes<>, double>(
+      static_cast<double>(data));
+}
+
+// temperature - kelvin
+constexpr auto operator""_K(long double data) noexcept {
+  return Unit<Exponents<0, 0, 0, 0, 1, 0, 0>, Converters<>, Prefixes<>, double>(
+      static_cast<double>(data));
+}
+
+// amount - mole
+constexpr auto operator""_mol(long double data) noexcept {
+  return Unit<Exponents<0, 0, 0, 0, 0, 1, 0>, Converters<>, Prefixes<>, double>(
+      static_cast<double>(data));
+}
+
+// luminosity - candela
+constexpr auto operator""_cd(long double data) noexcept {
+  return Unit<Exponents<0, 0, 0, 0, 0, 0, 1>, Converters<>, Prefixes<>, double>(
+      static_cast<double>(data));
+}
 
 // Aliases for basic units
 template <int LP, int MP, int TP, int CP, int TPP, int AP, int LMP>
