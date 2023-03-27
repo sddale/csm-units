@@ -129,7 +129,7 @@ class KilogramConverter {
 
 class PoundConverter {
  public:
-  [[nodiscard]] constexpr static auto ToBase(double data, int N) noexcept
+  [[nodiscard]] constexpr static auto ToBase(double data, intmax_t N) noexcept
       -> double {
     if (N < 0) {
       for (int i = N; i < 0; ++i) {
