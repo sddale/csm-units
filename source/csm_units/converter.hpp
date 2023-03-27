@@ -1,6 +1,7 @@
 #pragma once
 
 #include <csm_units/concepts.hpp>
+#include <cstdint>
 #include <tuple>
 
 #include "exponents.hpp"
@@ -22,9 +23,8 @@ class NoConverter {
   }
 };
 
-constexpr auto operator|(
-    double lhs, std::tuple<double (*)(double, int) noexcept, long> rhs) {
-  return std::get<0>(rhs)(lhs, static_cast<int>(std::get<1>(rhs)));
+constexpr auto operator|(double lhs, auto rhs) {
+  return std::get<0>(rhs)(lhs, std::get<1>(rhs));
 }
 
 template <ConverterType LC = NoConverter, ConverterType MC = NoConverter,
