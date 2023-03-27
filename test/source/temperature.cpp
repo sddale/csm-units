@@ -16,7 +16,8 @@
 //     SUBCASE("Kelvin Test 1") {
 //       const auto temperature = Kelvin(300.4543);
 //       CHECK(temperature.data == doctest::Approx(300.4543));
-//       CHECK(NoConverter::ToBase(temperature.data) == doctest::Approx(300.4543));
+//       CHECK(NoConverter::ToBase(temperature.data) ==
+//       doctest::Approx(300.4543));
 //     }
 //   }
 
@@ -65,7 +66,8 @@
 //   // seems out of place right now
 //   TEST_CASE("Size") {
 //     const auto temp = Kelvin(1.0);
-//     REQUIRE(sizeof(temp) == sizeof(temp.data));  // converter requires 0 bytes
+//     REQUIRE(sizeof(temp) == sizeof(temp.data));  // converter requires 0
+//     bytes
 //   }
 
 //   TEST_SUITE("Operator Overloading Tests") {
@@ -247,7 +249,8 @@
 //             doctest::Approx(310.066));
 //       CHECK(CelsiusConverter::ToBase(tempCelObject.data) ==
 //             doctest::Approx(341.6));
-//       CHECK(NoConverter::ToBase(tempKelObject.data) == doctest::Approx(325.0));
+//       CHECK(NoConverter::ToBase(tempKelObject.data) ==
+//       doctest::Approx(325.0));
 //       //
 //     }
 //   }
