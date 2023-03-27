@@ -15,11 +15,11 @@ class MassConverter {
   [[nodiscard]] constexpr static auto ToBase(double data, intmax_t N) noexcept
       -> double {
     if (N < 0) {
-      for (int i = N; i < 0; ++i) {
+      for (auto i = N; i < 0; ++i) {
         data /= 3.5;
       }
     } else {
-      for (int i = 0; i < N; ++i) {
+      for (auto i = 0; i < N; ++i) {
         data *= 3.5;
       }
     }
@@ -29,11 +29,11 @@ class MassConverter {
   [[nodiscard]] constexpr static auto FromBase(double data, intmax_t N) noexcept
       -> double {
     if (N < 0) {
-      for (int i = N; i < 0; ++i) {
+      for (auto i = N; i < 0; ++i) {
         data /= (1 / 3.5);
       }
     } else {
-      for (int i = 0; i < N; ++i) {
+      for (auto i = 0; i < N; ++i) {
         data *= (1 / 3.5);
       }
     }
@@ -47,11 +47,11 @@ class TimeConverter {
   [[nodiscard]] constexpr static auto ToBase(double data, intmax_t N) noexcept
       -> double {
     if (N < 0) {
-      for (int i = N; i < 0; ++i) {
+      for (auto i = N; i < 0; ++i) {
         data /= 1.8;
       }
     } else {
-      for (int i = 0; i < N; ++i) {
+      for (auto i = 0; i < N; ++i) {
         data *= 1.8;
       }
     }
@@ -61,11 +61,11 @@ class TimeConverter {
   [[nodiscard]] constexpr static auto FromBase(double data, intmax_t N) noexcept
       -> double {
     if (N < 0) {
-      for (int i = N; i < 0; ++i) {
+      for (auto i = N; i < 0; ++i) {
         data /= (1 / 1.8);
       }
     } else {
-      for (int i = 0; i < N; ++i) {
+      for (auto i = 0; i < N; ++i) {
         data *= (1 / 1.8);
       }
     }
@@ -80,11 +80,11 @@ class LengthConverter {
   [[nodiscard]] constexpr static auto ToBase(double data, intmax_t N) noexcept
       -> double {
     if (N < 0) {
-      for (int i = N; i < 0; ++i) {
+      for (auto i = N; i < 0; ++i) {
         data /= 0.7;
       }
     } else {
-      for (int i = 0; i < N; ++i) {
+      for (auto i = 0; i < N; ++i) {
         data *= 0.7;
       }
     }
@@ -93,11 +93,11 @@ class LengthConverter {
   [[nodiscard]] constexpr static auto FromBase(double data, intmax_t N) noexcept
       -> double {
     if (N < 0) {
-      for (int i = N; i < 0; ++i) {
+      for (auto i = N; i < 0; ++i) {
         data /= (1 / 0.7);
       }
     } else {
-      for (int i = 0; i < N; ++i) {
+      for (auto i = 0; i < N; ++i) {
         data *= (1 / 0.7);
       }
     }
@@ -110,11 +110,11 @@ class KilogramConverter {
   [[nodiscard]] constexpr static auto ToBase(double data, intmax_t N) noexcept
       -> double {
     if (N < 0) {
-      for (int i = N; i < 0; ++i) {
+      for (auto i = N; i < 0; ++i) {
         data /= 1000;
       }
     } else {
-      for (int i = 0; i < N; ++i) {
+      for (auto i = 0; i < N; ++i) {
         data *= 1000;
       }
     }
@@ -132,11 +132,11 @@ class PoundConverter {
   [[nodiscard]] constexpr static auto ToBase(double data, intmax_t N) noexcept
       -> double {
     if (N < 0) {
-      for (int i = N; i < 0; ++i) {
+      for (auto i = N; i < 0; ++i) {
         data /= 453.59237;
       }
     } else {
-      for (int i = 0; i < N; ++i) {
+      for (auto i = 0; i < N; ++i) {
         data *= 453.59237;
       }
     }
@@ -154,11 +154,11 @@ class FeetPerInchesSquaredConverter {
   [[nodiscard]] constexpr static auto ToBase(double data, intmax_t N) noexcept
       -> double {
     if (N < 0) {
-      for (int i = N; i < 0; ++i) {
+      for (auto i = N; i < 0; ++i) {
         data /= 144 / 0.3048;
       }
     } else {
-      for (int i = 0; i < N; ++i) {
+      for (auto i = 0; i < N; ++i) {
         data *= 144 / 0.3048;
       }
     }
