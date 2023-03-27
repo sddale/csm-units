@@ -86,8 +86,11 @@ TEST_SUITE("Unit") {
   // Tests to make sure that the unit class is working the way we expect
 
   //     test to make sure the size of the class never exceeds the size of the
-  //     data
-  //         member variable.Force all test cases to stop if it does.
+  //     data member variable. Force all test cases to stop if it does.
+  TEST_CASE("Size") {
+    const auto test = DBasic<14, 14, 14, 0, 0, 0, 0>(14.0);
+    REQUIRE(sizeof(test) == sizeof(test.data));
+  }
 
   TEST_CASE("Literals temp") {
     const auto meterLength = 40.0_m;
@@ -131,11 +134,6 @@ TEST_SUITE("Unit") {
 
     CHECK(ref7.data == lumCd.data);
     CHECK(std::is_same_v<decltype(ref7), decltype(lumCd)>);
-  }
-
-  TEST_CASE("Size") {
-    const auto test = DBasic<14, 14, 14, 0, 0, 0, 0>(14.0);
-    REQUIRE(sizeof(test) == sizeof(test.data));
   }
 
   TEST_CASE("Objects") {
