@@ -12,7 +12,7 @@ namespace csm_units::test {
 class MassConverter {
  public:
   // do nothing in either of the below because we do not want to convert
-  [[nodiscard]] constexpr static auto ToBase(double data, int N) noexcept
+  [[nodiscard]] constexpr static auto ToBase(double data, intmax_t N) noexcept
       -> double {
     if (N < 0) {
       for (int i = N; i < 0; ++i) {
@@ -26,7 +26,7 @@ class MassConverter {
     return data;
   }
 
-  [[nodiscard]] constexpr static auto FromBase(double data, int N) noexcept
+  [[nodiscard]] constexpr static auto FromBase(double data, intmax_t N) noexcept
       -> double {
     if (N < 0) {
       for (int i = N; i < 0; ++i) {
@@ -44,7 +44,7 @@ class MassConverter {
 class TimeConverter {
  public:
   // do nothing in either of the below because we do not want to convert
-  [[nodiscard]] constexpr static auto ToBase(double data, int N) noexcept
+  [[nodiscard]] constexpr static auto ToBase(double data, intmax_t N) noexcept
       -> double {
     if (N < 0) {
       for (int i = N; i < 0; ++i) {
@@ -58,7 +58,7 @@ class TimeConverter {
     return data;
   }
 
-  [[nodiscard]] constexpr static auto FromBase(double data, int N) noexcept
+  [[nodiscard]] constexpr static auto FromBase(double data, intmax_t N) noexcept
       -> double {
     if (N < 0) {
       for (int i = N; i < 0; ++i) {
@@ -77,7 +77,7 @@ class TimeConverter {
 class LengthConverter {
  public:
   // do nothing in either of the below because we do not want to convert
-  [[nodiscard]] constexpr static auto ToBase(double data, int N) noexcept
+  [[nodiscard]] constexpr static auto ToBase(double data, intmax_t N) noexcept
       -> double {
     if (N < 0) {
       for (int i = N; i < 0; ++i) {
@@ -90,7 +90,7 @@ class LengthConverter {
     }
     return data;
   }
-  [[nodiscard]] constexpr static auto FromBase(double data, int N) noexcept
+  [[nodiscard]] constexpr static auto FromBase(double data, intmax_t N) noexcept
       -> double {
     if (N < 0) {
       for (int i = N; i < 0; ++i) {
@@ -107,7 +107,7 @@ class LengthConverter {
 
 class KilogramConverter {
  public:
-  [[nodiscard]] constexpr static auto ToBase(double data, int N) noexcept
+  [[nodiscard]] constexpr static auto ToBase(double data, intmax_t N) noexcept
       -> double {
     if (N < 0) {
       for (int i = N; i < 0; ++i) {
@@ -121,7 +121,7 @@ class KilogramConverter {
     return data;
   }
 
-  [[nodiscard]] constexpr static auto FromBase(double data, int N) noexcept
+  [[nodiscard]] constexpr static auto FromBase(double data, intmax_t N) noexcept
       -> double {
     return ToBase(data, -N);
   }
@@ -143,7 +143,7 @@ class PoundConverter {
     return data;
   }
 
-  [[nodiscard]] constexpr static auto FromBase(double data, int N) noexcept
+  [[nodiscard]] constexpr static auto FromBase(double data, intmax_t N) noexcept
       -> double {
     return ToBase(data, -N);
   }
@@ -151,7 +151,7 @@ class PoundConverter {
 
 class FeetPerInchesSquaredConverter {
  public:
-  [[nodiscard]] constexpr static auto ToBase(double data, int N) noexcept
+  [[nodiscard]] constexpr static auto ToBase(double data, intmax_t N) noexcept
       -> double {
     if (N < 0) {
       for (int i = N; i < 0; ++i) {
@@ -165,7 +165,7 @@ class FeetPerInchesSquaredConverter {
     return data;
   }
 
-  [[nodiscard]] constexpr static auto FromBase(double data, int N) noexcept
+  [[nodiscard]] constexpr static auto FromBase(double data, intmax_t N) noexcept
       -> double {
     return ToBase(data, -N);
   }

@@ -13,11 +13,12 @@ namespace csm_units {
 class NoConverter {
  public:
   // do nothing in either of the below because we do not want to convert
-  [[nodiscard]] constexpr static auto ToBase(double data, int pow) noexcept
+  [[nodiscard]] constexpr static auto ToBase(double data, intmax_t pow) noexcept
       -> double {
     return data + pow * 0;
   }
-  [[nodiscard]] constexpr static auto FromBase(double data, int pow) noexcept
+  [[nodiscard]] constexpr static auto FromBase(double data,
+                                               intmax_t pow) noexcept
       -> double {
     return data + pow * 0;
   }

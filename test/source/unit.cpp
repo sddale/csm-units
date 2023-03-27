@@ -1,6 +1,7 @@
 #include <doctest/doctest.h>
 
 #include <csm_units/units.hpp>
+#include <cstdint>
 
 namespace csm_units::test {
 
@@ -9,7 +10,7 @@ using MeterPerSecond = DBasic<1, 0, -1, 0, 0, 0, 0>;
 
 class KilogramConverter {
  public:
-  [[nodiscard]] constexpr static auto ToBase(double data, int N) noexcept
+  [[nodiscard]] constexpr static auto ToBase(double data, intmax_t N) noexcept
       -> double {
     if (N < 0) {
       for (int i = N; i < 0; ++i) {
@@ -23,7 +24,7 @@ class KilogramConverter {
     return data;
   }
 
-  [[nodiscard]] constexpr static auto FromBase(double data, int N) noexcept
+  [[nodiscard]] constexpr static auto FromBase(double data, intmax_t N) noexcept
       -> double {
     return ToBase(data, -N);
   }
@@ -31,7 +32,7 @@ class KilogramConverter {
 
 class PoundConverter {
  public:
-  [[nodiscard]] constexpr static auto ToBase(double data, int N) noexcept
+  [[nodiscard]] constexpr static auto ToBase(double data, intmax_t N) noexcept
       -> double {
     if (N < 0) {
       for (int i = N; i < 0; ++i) {
@@ -45,7 +46,7 @@ class PoundConverter {
     return data;
   }
 
-  [[nodiscard]] constexpr static auto FromBase(double data, int N) noexcept
+  [[nodiscard]] constexpr static auto FromBase(double data, intmax_t N) noexcept
       -> double {
     return ToBase(data, -N);
   }
@@ -53,7 +54,7 @@ class PoundConverter {
 
 class FeetPerInchesSquaredConverter {
  public:
-  [[nodiscard]] constexpr static auto ToBase(double data, int N) noexcept
+  [[nodiscard]] constexpr static auto ToBase(double data, intmax_t N) noexcept
       -> double {
     if (N < 0) {
       for (int i = N; i < 0; ++i) {
@@ -67,7 +68,7 @@ class FeetPerInchesSquaredConverter {
     return data;
   }
 
-  [[nodiscard]] constexpr static auto FromBase(double data, int N) noexcept
+  [[nodiscard]] constexpr static auto FromBase(double data, intmax_t N) noexcept
       -> double {
     return ToBase(data, -N);
   }
