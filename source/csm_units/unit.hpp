@@ -170,7 +170,8 @@ class Unit {
   }
 };
 
-// template <ExpType Powers, class Converters, class Prefixes, Arithmetic Data>
+// template <ExpType Powers, class Converters, class Prefixes, class Constant,
+//           Arithmetic Data>
 // class Unit {};  // COME BACK TO THIS!!!! Not Done
 
 // NOLINTEND(bugprone-move-forwarding-reference)
