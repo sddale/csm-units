@@ -11,7 +11,7 @@
 //     SUBCASE("Kelvin Test 0") {
 //       const auto temperature = Kelvin(34.0);
 //       CHECK(temperature.data == doctest::Approx(34.0));
-//       CHECK(NoConverter::ToBase(temperature.data) == doctest::Approx(34.0));
+//       CHECK(::ToBase(temperature.data) == doctest::Approx(34.0));
 //     }
 //     SUBCASE("Kelvin Test 1") {
 //       const auto temperature = Kelvin(300.4543);
@@ -282,7 +282,7 @@
 //   //   SUBCASE("Different Unit Copies (other copy constructor)") {
 //   //     // not sure how to go about this
 //   //   }
-//   // }
+//  }
 // }
 // // NOLINTEND(modernize-use-trailing-return-type)
 

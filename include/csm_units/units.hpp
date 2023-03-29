@@ -23,13 +23,14 @@ using Bar = Pressure<BarConverter>;
 using Atm = Pressure<AtmConverter>;
 using Psi = Pressure<PsiConverter>;
 
-// Temperature type
-// template <ConverterType Converter>
+// // Temperature type
+// template <class Converter>
 // using Temperature =
-//     Unit<Exponents<0, 0, 1>, Converters<Converter>, Prefixes<>, double>;
+//     Unit<Exponents<0, 0, 1, 0, 0, 0, 0>,
+//          Converters<NoConverter, NoConverter, Converter>, Prefixes<>,
+//          double>;
 
-// Temperature units
-// using Kelvin = Temperature<NoConverter>;
+// // Temperature units
 // using Celsius = Temperature<CelsiusConverter>;
 // using Fahrenheit = Temperature<FahrenheitConverter>;
 
