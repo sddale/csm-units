@@ -59,17 +59,6 @@ class Unit {
   }
 
   // NOLINTBEGIN(bugprone-move-forwarding-reference) Factory requires std move
-  // //  compound / base
-  // friend constexpr auto operator/(Unit lhs, BaseType auto&& rhs) noexcept
-  // {
-  //   return lhs / unit::Factory::Make(std::move(rhs));
-  // }
-
-  // // base / compound
-  // friend constexpr auto operator/(BaseType auto&& lhs, Unit rhs) noexcept
-  // {
-  //   return unit::Factory::Make(std::move(lhs)) / rhs;
-  // }
 
   // compound /= double
   constexpr auto operator/=(Arithmetic auto rhs) noexcept -> auto& {
@@ -105,18 +94,6 @@ class Unit {
     return (Unit<ExponentsAdd<Powers, Powers2>, Converters, Prefixes, Data>(
         lhs.data * rhs.data));
   }
-
-  // // compound * base
-  // friend constexpr auto operator*(Unit lhs, BaseType auto&& rhs) noexcept
-  // {
-  //   return lhs * unit::Factory::Make(std::move(rhs));
-  // }
-
-  // // base * compound
-  // friend constexpr auto operator*(BaseType auto&& lhs, Unit rhs) noexcept
-  // {
-  //   return unit::Factory::Make(std::move(lhs)) * rhs;
-  // }
 
   // compoud *= double
   constexpr auto operator*=(Arithmetic auto rhs) noexcept -> auto& {
