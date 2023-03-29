@@ -53,4 +53,15 @@ concept RatioType = requires(T) {
                       { T::den } -> std::convertible_to<intmax_t>;
                     };
 
+template <class T>
+concept UnitType = requires(T unit) {
+                     { unit.data } -> std::convertible_to<double>;
+                     {
+                       std::remove_reference_t<T>::ToBase(0.0)
+                       } -> std::convertible_to<decltype(unit.data)>;
+                     {
+                       std::remove_reference_t<T>::FromBase(0.0)
+                       } -> std::convertible_to<decltype(unit.data)>;
+                   };
+
 }  // namespace csm_units
