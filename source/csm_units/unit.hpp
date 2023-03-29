@@ -138,11 +138,11 @@ class Unit {
     return lhs;
   }
 
-  constexpr static auto FromBase(double data) {
+  constexpr static auto FromBase(Data data) {
     return Converters::FromBase(data, Powers());
   }
 
-  constexpr static auto ToBase(double data) {
+  constexpr static auto ToBase(Data data) {
     return Converters::ToBase(data, Powers());
   }
 };
