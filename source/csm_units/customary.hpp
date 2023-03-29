@@ -4,7 +4,7 @@
 
 namespace csm_units {
 
-template <UnitType SI, ConverterType ToBase, ConverterType FromBase>
+template <UnitType SI, RatioType Ratio>
 class Customary {};
 
 }  // namespace csm_units
