@@ -6,7 +6,9 @@ namespace csm_units::test {
 
 // NOLINTBEGIN(modernize-use-trailing-return-type)
 
-TEST_SUITE("Customary") {
+TEST_SUITE("Unit") {
+  TEST_CASE("Unit Tests") { CHECK(true); }
+
   // TEST_CASE("Idea Test") {
   //   const auto foo1 = Foo1(3.0);
   //   const auto foo2 = Foo2(4.0);

@@ -1,5 +1,5 @@
 #include "../exponents.hpp"
-#include "../unit.hpp"
+#include "../unitbase.hpp"
 
 namespace csm_units::literals {
 
@@ -20,7 +20,7 @@ class Literal {
 
   // Derived factory of sorts
   friend constexpr auto operator<<=(double lhs, Literal /*rhs*/) {
-    return Unit<E, Converters<>, Prefixes<>, double>(lhs);
+    return UnitBase<E, double>(lhs);
   }
 };
 

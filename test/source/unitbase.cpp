@@ -74,16 +74,17 @@ class FeetPerInchesSquaredConverter {
   }
 };
 
-using Pascals = Unit<Exponents<-1, 1, -2, 0, 0, 0, 0>,
-                     Converters<NoConverter, KilogramConverter, NoConverter>,
-                     Prefixes<>, double>;
-using Psi =
-    Unit<Exponents<1, 1, -2, 0, 0, 0, 0>,
-         Converters<FeetPerInchesSquaredConverter, PoundConverter, NoConverter>,
-         Prefixes<>, double>;
+using Pascals =
+    UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>,
+             Converters<NoConverter, KilogramConverter, NoConverter>,
+             Prefixes<>, double>;
+using Psi = UnitBase<
+    Exponents<1, 1, -2, 0, 0, 0, 0>,
+    Converters<FeetPerInchesSquaredConverter, PoundConverter, NoConverter>,
+    Prefixes<>, double>;
 
 // NOLINTBEGIN(modernize-use-trailing-return-type)
-TEST_SUITE("Unit") {
+TEST_SUITE("UnitBase") {
   // Tests to make sure that the unit class is working the way we expect
 
   //     test to make sure the size of the class never exceeds the size of the
@@ -198,7 +199,7 @@ TEST_SUITE("Unit") {
                            std::remove_const_t<decltype(inv)>>);
     };
 
-    SUBCASE("Unit/Unit") {
+    SUBCASE("UnitBase/UnitBase") {
       test_div(DBasic<3, 6, 8, 0, 0, 0, 0>(20.0),
                DBasic<1, 2, 3, 0, 0, 0, 0>(10.0), 2.0,
                DBasic<2, 4, 5, 0, 0, 0, 0>(), 0.5,
@@ -208,7 +209,7 @@ TEST_SUITE("Unit") {
                DBasic<1, 2, 3, 0, 0, 0, 0>(12.0), 2.0, 0.0, 0.5, 0.0);
     }
 
-    // SUBCASE("Unit/Base") {
+    // SUBCASE("UnitBase/Base") {
     //   test_div(DBasic<3, 2, 4>(20.0), Base<DimLength>(4.0), 5.0,
     //            DBasic<2, 2, 4>(), 0.2, DBasic<-2, -2, -4>());
     // }
@@ -218,7 +219,7 @@ TEST_SUITE("Unit") {
     //            DBasic<1, -1, 0>(), 0.5, DBasic<-1, 1, 0>());
     // }
 
-    SUBCASE("Unit/Double") {
+    SUBCASE("UnitBase/Double") {
       test_div(DBasic<1, 2, 3, 0, 0, 0, 0>(40.0), 10.0, 4.0,
                DBasic<1, 2, 3, 0, 0, 0, 0>(), 0.25,
                DBasic<-1, -2, -3, 0, 0, 0, 0>());
@@ -248,7 +249,7 @@ TEST_SUITE("Unit") {
                            std::remove_const_t<decltype(prod)>>);
     };
 
-    SUBCASE("Unit * Unit") {
+    SUBCASE("UnitBase * UnitBase") {
       test_mult(DBasic<3, 2, 0, 0, 0, 0, 0>(20.0),
                 DBasic<1, 0, 3, 0, 0, 0, 0>(50.0), 1000.0,
                 DBasic<4, 2, 3, 0, 0, 0, 0>());
@@ -257,7 +258,7 @@ TEST_SUITE("Unit") {
                 DBasic<1, 2, 3, 0, 0, 0, 0>(12.0), 36.0, 0.0);
     }
 
-    // SUBCASE("Unit * Base") {
+    // SUBCASE("UnitBase * Base") {
     //   test_mult(DBasic<3, 2, 4>(20.0), Base<DimLength>(4.0), 80.0,
     //             DBasic<4, 2, 4>());
 
@@ -288,7 +289,7 @@ TEST_SUITE("Unit") {
     //             DBasic<0, 0, 2>());
     // }
 
-    SUBCASE("Unit * Double") {
+    SUBCASE("UnitBase * Double") {
       test_mult(DBasic<1, 2, 3, 0, 0, 0, 0>(40.0), 10.0, 400.0,
                 DBasic<1, 2, 3, 0, 0, 0, 0>());
 
@@ -306,7 +307,7 @@ TEST_SUITE("Unit") {
       CHECK(inv_sum.data == doctest::Approx(exp_sum));
     };
 
-    SUBCASE("Unit + Unit") {
+    SUBCASE("UnitBase + UnitBase") {
       test_sum(DBasic<3, 2, 0, 0, 0, 0, 0>(20.0),
                DBasic<3, 2, 0, 0, 0, 0, 0>(50.0), 70.0);
 
@@ -314,7 +315,7 @@ TEST_SUITE("Unit") {
                DBasic<-1, -2, -3, 0, 0, 0, 0>(12.0), 15.0);
     }
 
-    // SUBCASE("Unit + Base") {
+    // SUBCASE("UnitBase + Base") {
     //   test_sum(DBasic<1, 0, 0>(20.0), Base<DimLength>(4.0), 24.0);
 
     //   test_sum(DBasic<0, 0, 1>(32.0), Base<DimTime>(3.0), 35.0);
@@ -347,7 +348,7 @@ TEST_SUITE("Unit") {
                            std::remove_const_t<decltype(diff)>>);
     };
 
-    SUBCASE("Unit - Unit") {
+    SUBCASE("UnitBase - UnitBase") {
       test_diff(DBasic<3, 6, 8, 0, 0, 0, 0>(20.0),
                 DBasic<3, 6, 8, 0, 0, 0, 0>(10.0), 10.0,
                 DBasic<3, 6, 8, 0, 0, 0, 0>(), -10.0);
@@ -357,7 +358,7 @@ TEST_SUITE("Unit") {
                 DBasic<1, 2, 3, 0, 0, 0, 0>(), -12.0);
     }
 
-    // SUBCASE("Unit - Base") {
+    // SUBCASE("UnitBase - Base") {
     //   test_diff(DBasic<1, 0, 0>(20.0), Base<DimLength>(4.0), 16.0,
     //             DBasic<1, 0, 0>(), -16.0);
     // }
