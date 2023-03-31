@@ -4,28 +4,33 @@
 
 namespace csm_units {
 
-template <UnitType SI, RatioType Power, class Converter, Arithmetic Data>
-class Customary {
+class Foo2;
+
+template <class convertTo>
+constexpr auto Cast(Foo2 convertFrom) -> convertTo;
+
+class Foo2 {
  public:
-  constexpr explicit Customary(Data value = 0) noexcept {
-    represented.data = value;
-  }
+  constexpr explicit Foo2(double value = 0.0) noexcept : data(value){};
 
-  // copy constructor
-  constexpr Customary(const Customary& other) noexcept = default;
+  double data;
+};
 
-  // move constructor
-  constexpr Customary(Customary&& other) noexcept = default;
+class Foo1 {
+ public:
+  constexpr explicit Foo1(double value = 0.0) noexcept : data(value){};
+  constexpr Foo1(Foo2 thing) noexcept { Cast<Foo1>(thing); };
 
-  SI represented;
+  double data;
 
-  constexpr static auto FromBase(Data data) {
-    return Converter::FromBase(data, Power::num);
-  }
-
-  constexpr static auto ToBase(Data data) {
-    return Converter::ToBase(data, Power::den);
+  friend constexpr auto operator+(Foo1 lhs, Foo1 rhs) {
+    return Foo1(lhs.data + rhs.data);
   }
 };
+
+template <class convertTo>
+constexpr auto Cast(Foo2 convertFrom) -> convertTo {
+  return (convertTo(convertFrom.data));
+}
 
 }  // namespace csm_units
