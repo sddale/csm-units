@@ -1,5 +1,7 @@
 #pragma once
 
+#include <csm_units/concepts.hpp>
+
 #include "unitbase.hpp"
 
 namespace csm_units {
@@ -13,18 +15,34 @@ struct StringLiteral {
 
 template <UnitBaseType SI, StringLiteral Unit_Name, Arithmetic Data>
 class Unit {
-  constexpr explicit Unit(Arithmetic auto value = 0.0) noexcept : base(value){};
+ public:
+  constexpr explicit Unit(Data value = 0.0) noexcept : data(value){};
 
-  constexpr Unit(SI new_base) noexecept : base(UnitCast<Unit>(new_base).data){};
+  constexpr Unit(SI new_base) noexecept
+      : data(UnitCast(Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>,
+                           "kg", double>(),
+                      new_base)
+                 .data){};
 
   Data data;
+
+  // template <Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg",
+  // double>
+  //               convert_to>
+  constexpr auto UnitCast(
+      Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg", double>
+      /*convert_to*/,
+      UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double> convert_from) -> Unit {
+    return Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg", double>(
+        convert_from.data / 1000);
+  }
 };
 
 // user defined literals
 
 // length - meter
 constexpr auto operator""_m(long double data) noexcept {
-  return Unit<UnitBase<Exponents<1, 0, 0, 0, 0, 0, 0>, double>, "m">(
+  return Unit<UnitBase<Exponents<1, 0, 0, 0, 0, 0, 0>, double>, "m", double>(
       static_cast<double>(data));
 }
 
@@ -71,7 +89,7 @@ using DBasic = Unit<UnitBase<Exponents<LP, MP, TP, CP, TPP, AP, LMP>, double>,
                     Name, double>;
 
 using Meter = DBasic<1, 0, 0, 0, 0, 0, 0, "m">;
-using Kilograms = DBasic<0, 1, 0, 0, 0, 0, , "kg">;
+using Kilograms = DBasic<0, 1, 0, 0, 0, 0, 0, "kg">;
 using Seconds = DBasic<0, 0, 1, 0, 0, 0, 0, "s">;
 using Ampere = DBasic<0, 0, 0, 1, 0, 0, 0, "A">;
 using Kelvin = DBasic<0, 0, 0, 0, 1, 0, 0, "K">;

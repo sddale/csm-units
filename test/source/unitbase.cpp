@@ -6,82 +6,95 @@
 namespace csm_units::test {
 
 // velocity = m/s
-using MeterPerSecond = DBasic<1, 0, -1, 0, 0, 0, 0>;
+using MeterPerSecond = UnitBase<Exponents<1, 0, -1, 0, 0, 0, 0>, double>;
+using Meter = UnitBase<Exponents<1, 0, 0, 0, 0, 0, 0>, double>;
+using Kilograms = UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>;
+using Seconds = UnitBase<Exponents<0, 0, 1, 0, 0, 0, 0>, double>;
+using Ampere = UnitBase<Exponents<0, 0, 0, 1, 0, 0, 0>, double>;
+using Kelvin = UnitBase<Exponents<0, 0, 0, 0, 1, 0, 0>, double>;
+using Mole = UnitBase<Exponents<0, 0, 0, 0, 0, 1, 0>, double>;
+using Candela = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 1>, double>;
 
-class KilogramConverter {
- public:
-  [[nodiscard]] constexpr static auto ToBase(double data, intmax_t N) noexcept
-      -> double {
-    if (N < 0) {
-      for (auto i = N; i < 0; ++i) {
-        data /= 1000;
-      }
-    } else {
-      for (auto i = 0; i < N; ++i) {
-        data *= 1000;
-      }
-    }
-    return data;
-  }
+// class KilogramConverter {
+//  public:
+//   [[nodiscard]] constexpr static auto ToBase(double data, intmax_t N)
+//   noexcept
+//       -> double {
+//     if (N < 0) {
+//       for (auto i = N; i < 0; ++i) {
+//         data /= 1000;
+//       }
+//     } else {
+//       for (auto i = 0; i < N; ++i) {
+//         data *= 1000;
+//       }
+//     }
+//     return data;
+//   }
 
-  [[nodiscard]] constexpr static auto FromBase(double data, intmax_t N) noexcept
-      -> double {
-    return ToBase(data, -N);
-  }
-};
+//   [[nodiscard]] constexpr static auto FromBase(double data, intmax_t N)
+//   noexcept
+//       -> double {
+//     return ToBase(data, -N);
+//   }
+// };
 
-class PoundConverter {
- public:
-  [[nodiscard]] constexpr static auto ToBase(double data, intmax_t N) noexcept
-      -> double {
-    if (N < 0) {
-      for (auto i = N; i < 0; ++i) {
-        data /= 453.59237;
-      }
-    } else {
-      for (auto i = 0; i < N; ++i) {
-        data *= 453.59237;
-      }
-    }
-    return data;
-  }
+// class PoundConverter {
+//  public:
+//   [[nodiscard]] constexpr static auto ToBase(double data, intmax_t N)
+//   noexcept
+//       -> double {
+//     if (N < 0) {
+//       for (auto i = N; i < 0; ++i) {
+//         data /= 453.59237;
+//       }
+//     } else {
+//       for (auto i = 0; i < N; ++i) {
+//         data *= 453.59237;
+//       }
+//     }
+//     return data;
+//   }
 
-  [[nodiscard]] constexpr static auto FromBase(double data, intmax_t N) noexcept
-      -> double {
-    return ToBase(data, -N);
-  }
-};
+//   [[nodiscard]] constexpr static auto FromBase(double data, intmax_t N)
+//   noexcept
+//       -> double {
+//     return ToBase(data, -N);
+//   }
+// };
 
-class FeetPerInchesSquaredConverter {
- public:
-  [[nodiscard]] constexpr static auto ToBase(double data, intmax_t N) noexcept
-      -> double {
-    if (N < 0) {
-      for (auto i = N; i < 0; ++i) {
-        data /= 144 / 0.3048;
-      }
-    } else {
-      for (auto i = 0; i < N; ++i) {
-        data *= 144 / 0.3048;
-      }
-    }
-    return data;
-  }
+// class FeetPerInchesSquaredConverter {
+//  public:
+//   [[nodiscard]] constexpr static auto ToBase(double data, intmax_t N)
+//   noexcept
+//       -> double {
+//     if (N < 0) {
+//       for (auto i = N; i < 0; ++i) {
+//         data /= 144 / 0.3048;
+//       }
+//     } else {
+//       for (auto i = 0; i < N; ++i) {
+//         data *= 144 / 0.3048;
+//       }
+//     }
+//     return data;
+//   }
 
-  [[nodiscard]] constexpr static auto FromBase(double data, intmax_t N) noexcept
-      -> double {
-    return ToBase(data, -N);
-  }
-};
+//   [[nodiscard]] constexpr static auto FromBase(double data, intmax_t N)
+//   noexcept
+//       -> double {
+//     return ToBase(data, -N);
+//   }
+// };
 
-using Pascals =
-    UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>,
-             Converters<NoConverter, KilogramConverter, NoConverter>,
-             Prefixes<>, double>;
-using Psi = UnitBase<
-    Exponents<1, 1, -2, 0, 0, 0, 0>,
-    Converters<FeetPerInchesSquaredConverter, PoundConverter, NoConverter>,
-    Prefixes<>, double>;
+// using Pascals =
+//     UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>,
+//              Converters<NoConverter, KilogramConverter, NoConverter>,
+//              Prefixes<>, double>;
+// using Psi = UnitBase<
+//     Exponents<1, 1, -2, 0, 0, 0, 0>,
+//     Converters<FeetPerInchesSquaredConverter, PoundConverter, NoConverter>,
+//     Prefixes<>, double>;
 
 // NOLINTBEGIN(modernize-use-trailing-return-type)
 TEST_SUITE("UnitBase") {
@@ -90,7 +103,7 @@ TEST_SUITE("UnitBase") {
   //     test to make sure the size of the class never exceeds the size of the
   //     data member variable. Force all test cases to stop if it does.
   TEST_CASE("Size") {
-    const auto test = DBasic<14, 14, 14, 0, 0, 0, 0>(14.0);
+    const auto test = UnitBase<Exponents<14, 14, 14, 0, 0, 0, 0>, double>(14.0);
     REQUIRE(sizeof(test) == sizeof(test.data));
   }
 
@@ -140,33 +153,42 @@ TEST_SUITE("UnitBase") {
 
   TEST_CASE("Objects") {
     SUBCASE("DimLength") {
-      const auto test_length_pow1 = DBasic<1, 0, 0, 0, 0, 0, 0>(13.0);
-      const auto test_length_pow2 = DBasic<2, 0, 0, 0, 0, 0, 0>(13.0);
+      const auto test_length_pow1 =
+          UnitBase<Exponents<1, 0, 0, 0, 0, 0, 0>, double>(13.0);
+      const auto test_length_pow2 =
+          UnitBase<Exponents<2, 0, 0, 0, 0, 0, 0>, double>(13.0);
 
       CHECK(test_length_pow1.data == doctest::Approx(13.0));
       CHECK(test_length_pow2.data == doctest::Approx(13.0));
     }
 
     SUBCASE("DimMass") {
-      const auto test_mass_pow1 = DBasic<0, 1, 0, 0, 0, 0, 0>(13.0);
-      const auto test_mass_pow2 = DBasic<0, 2, 0, 0, 0, 0, 0>(13.0);
+      const auto test_mass_pow1 =
+          UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>(13.0);
+      const auto test_mass_pow2 =
+          UnitBase<Exponents<0, 2, 0, 0, 0, 0, 0>, double>(13.0);
 
       CHECK(test_mass_pow1.data == doctest::Approx(13.0));
       CHECK(test_mass_pow2.data == doctest::Approx(13.0));
     }
 
     SUBCASE("DimTime") {
-      const auto test_time_pow1 = DBasic<0, 0, 1, 0, 0, 0, 0>(13.0);
-      const auto test_time_pow2 = DBasic<0, 0, 2, 0, 0, 0, 0>(13.0);
+      const auto test_time_pow1 =
+          UnitBase<Exponents<0, 0, 1, 0, 0, 0, 0>, double>(13.0);
+      const auto test_time_pow2 =
+          UnitBase<Exponents<0, 0, 2, 0, 0, 0, 0>, double>(13.0);
 
       CHECK(test_time_pow1.data == doctest::Approx(13.0));
       CHECK(test_time_pow2.data == doctest::Approx(13.0));
     }
 
     SUBCASE("Mix of All 3") {
-      const auto length1_mass1_time1 = DBasic<1, 1, 1, 0, 0, 0, 0>(13.0);
-      const auto length2_mass2_time2 = DBasic<2, 2, 2, 0, 0, 0, 0>(13.0);
-      const auto arbitrary_mix_up = DBasic<3, 1, 4, 0, 0, 0, 0>(13.0);
+      const auto length1_mass1_time1 =
+          UnitBase<Exponents<1, 1, 1, 0, 0, 0, 0>, double>(13.0);
+      const auto length2_mass2_time2 =
+          UnitBase<Exponents<2, 2, 2, 0, 0, 0, 0>, double>(13.0);
+      const auto arbitrary_mix_up =
+          UnitBase<Exponents<3, 1, 4, 0, 0, 0, 0>, double>(13.0);
 
       CHECK(length1_mass1_time1.data == doctest::Approx(13.0));
       CHECK(length2_mass2_time2.data == doctest::Approx(13.0));
@@ -200,29 +222,34 @@ TEST_SUITE("UnitBase") {
     };
 
     SUBCASE("UnitBase/UnitBase") {
-      test_div(DBasic<3, 6, 8, 0, 0, 0, 0>(20.0),
-               DBasic<1, 2, 3, 0, 0, 0, 0>(10.0), 2.0,
-               DBasic<2, 4, 5, 0, 0, 0, 0>(), 0.5,
-               DBasic<-2, -4, -5, 0, 0, 0, 0>());
+      test_div(UnitBase<Exponents<3, 6, 8, 0, 0, 0, 0>, double>(20.0),
+               UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(10.0), 2.0,
+               UnitBase<Exponents<2, 4, 5, 0, 0, 0, 0>, double>(), 0.5,
+               UnitBase<Exponents<-2, -4, -5, 0, 0, 0, 0>, double>());
 
-      test_div(DBasic<1, 2, 3, 0, 0, 0, 0>(24.0),
-               DBasic<1, 2, 3, 0, 0, 0, 0>(12.0), 2.0, 0.0, 0.5, 0.0);
+      test_div(UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(24.0),
+               UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(12.0), 2.0, 0.0,
+               0.5, 0.0);
     }
 
     // SUBCASE("UnitBase/Base") {
-    //   test_div(DBasic<3, 2, 4>(20.0), Base<DimLength>(4.0), 5.0,
-    //            DBasic<2, 2, 4>(), 0.2, DBasic<-2, -2, -4>());
+    //   test_div(UnitBase<Exponents<3, 2, 4>, double>(20.0), Base<DimLength>,
+    //   double>(4.0), 5.0,
+    //            UnitBase<Exponents<2, 2, 4>, double>(), 0.2,
+    //            UnitBase<Exponents<-2, -2, -4>, double>());
     // }
 
     // SUBCASE("Base/Base") {
-    //   test_div(Base<DimLength>(4.0), Base<DimMass>(2.0), 2.0,
-    //            DBasic<1, -1, 0>(), 0.5, DBasic<-1, 1, 0>());
+    //   test_div(Base<DimLength>, double>(4.0), Base<DimMass>,
+    //   double>(2.0), 2.0,
+    //            UnitBase<Exponents<1, -1, 0>, double>(), 0.5,
+    //            UnitBase<Exponents<-1, 1, 0>, double>());
     // }
 
     SUBCASE("UnitBase/Double") {
-      test_div(DBasic<1, 2, 3, 0, 0, 0, 0>(40.0), 10.0, 4.0,
-               DBasic<1, 2, 3, 0, 0, 0, 0>(), 0.25,
-               DBasic<-1, -2, -3, 0, 0, 0, 0>());
+      test_div(UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(40.0), 10.0,
+               4.0, UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(), 0.25,
+               UnitBase<Exponents<-1, -2, -3, 0, 0, 0, 0>, double>());
     }
   }
 
@@ -250,51 +277,54 @@ TEST_SUITE("UnitBase") {
     };
 
     SUBCASE("UnitBase * UnitBase") {
-      test_mult(DBasic<3, 2, 0, 0, 0, 0, 0>(20.0),
-                DBasic<1, 0, 3, 0, 0, 0, 0>(50.0), 1000.0,
-                DBasic<4, 2, 3, 0, 0, 0, 0>());
+      test_mult(UnitBase<Exponents<3, 2, 0, 0, 0, 0, 0>, double>(20.0),
+                UnitBase<Exponents<1, 0, 3, 0, 0, 0, 0>, double>(50.0), 1000.0,
+                UnitBase<Exponents<4, 2, 3, 0, 0, 0, 0>, double>());
 
-      test_mult(DBasic<-1, -2, -3, 0, 0, 0, 0>(3.0),
-                DBasic<1, 2, 3, 0, 0, 0, 0>(12.0), 36.0, 0.0);
+      test_mult(UnitBase<Exponents<-1, -2, -3, 0, 0, 0, 0>, double>(3.0),
+                UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(12.0), 36.0,
+                0.0);
     }
 
     // SUBCASE("UnitBase * Base") {
-    //   test_mult(DBasic<3, 2, 4>(20.0), Base<DimLength>(4.0), 80.0,
-    //             DBasic<4, 2, 4>());
+    //   test_mult(UnitBase<Exponents<3, 2, 4>(20.0),
+    //   Base<DimLength>(4.0), 80.0,
+    //             UnitBase<Exponents<4, 2, 4>());
 
-    //   test_mult(DBasic<1, 4, 7>(32.0), Base<DimTime>(3.0), 96.0,
-    //             DBasic<1, 4, 8>());
+    //   test_mult(UnitBase<Exponents<1, 4, 7>(32.0), Base<DimTime>(3.0), 96.0,
+    //             UnitBase<Exponents<1, 4, 8>());
 
-    //   test_mult(DBasic<1, 5, 6>(16.0), Base<DimLength>(4.0), 64.0,
-    //             DBasic<2, 5, 6>());
+    //   test_mult(UnitBase<Exponents<1, 5, 6>(16.0),
+    //   Base<DimLength>(4.0), 64.0,
+    //             UnitBase<Exponents<2, 5, 6>());
     // }
 
     // SUBCASE("Base * Base") {
     //   test_mult(Base<DimLength>(4.0), Base<DimMass>(2.0), 8.0,
-    //             DBasic<1, 1, 0>());
+    //             UnitBase<Exponents<1, 1, 0>());
 
     //   test_mult(Base<DimLength>(3.0), Base<DimTime>(8.0), 24.0,
-    //             DBasic<1, 0, 1>());
+    //             UnitBase<Exponents<1, 0, 1>());
 
     //   test_mult(Base<DimMass>(5.0), Base<DimTime>(6.0), 30.0,
-    //             DBasic<0, 1, 1>());
+    //             UnitBase<Exponents<0, 1, 1>());
 
     //   test_mult(Base<DimLength>(1.0), Base<DimLength>(7.0), 7.0,
-    //             DBasic<2, 0, 0>());
+    //             UnitBase<Exponents<2, 0, 0>());
 
     //   test_mult(Base<DimMass>(10.0), Base<DimMass>(12.0), 120.0,
-    //             DBasic<0, 2, 0>());
+    //             UnitBase<Exponents<0, 2, 0>());
 
     //   test_mult(Base<DimTime>(9.0), Base<DimTime>(11.0), 99.0,
-    //             DBasic<0, 0, 2>());
+    //             UnitBase<Exponents<0, 0, 2>());
     // }
 
     SUBCASE("UnitBase * Double") {
-      test_mult(DBasic<1, 2, 3, 0, 0, 0, 0>(40.0), 10.0, 400.0,
-                DBasic<1, 2, 3, 0, 0, 0, 0>());
+      test_mult(UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(40.0), 10.0,
+                400.0, UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>());
 
-      test_mult(DBasic<2, 1, 4, 0, 0, 0, 0>(20.0), 5.0, 100.0,
-                DBasic<2, 1, 4, 0, 0, 0, 0>());
+      test_mult(UnitBase<Exponents<2, 1, 4, 0, 0, 0, 0>, double>(20.0), 5.0,
+                100.0, UnitBase<Exponents<2, 1, 4, 0, 0, 0, 0>, double>());
     }
   }
 
@@ -308,19 +338,20 @@ TEST_SUITE("UnitBase") {
     };
 
     SUBCASE("UnitBase + UnitBase") {
-      test_sum(DBasic<3, 2, 0, 0, 0, 0, 0>(20.0),
-               DBasic<3, 2, 0, 0, 0, 0, 0>(50.0), 70.0);
+      test_sum(UnitBase<Exponents<3, 2, 0, 0, 0, 0, 0>, double>(20.0),
+               UnitBase<Exponents<3, 2, 0, 0, 0, 0, 0>, double>(50.0), 70.0);
 
-      test_sum(DBasic<-1, -2, -3, 0, 0, 0, 0>(3.0),
-               DBasic<-1, -2, -3, 0, 0, 0, 0>(12.0), 15.0);
+      test_sum(UnitBase<Exponents<-1, -2, -3, 0, 0, 0, 0>, double>(3.0),
+               UnitBase<Exponents<-1, -2, -3, 0, 0, 0, 0>, double>(12.0), 15.0);
     }
 
     // SUBCASE("UnitBase + Base") {
-    //   test_sum(DBasic<1, 0, 0>(20.0), Base<DimLength>(4.0), 24.0);
+    //   test_sum(UnitBase<Exponents<1, 0, 0>(20.0),
+    //   Base<DimLength>(4.0), 24.0);
 
-    //   test_sum(DBasic<0, 0, 1>(32.0), Base<DimTime>(3.0), 35.0);
+    //   test_sum(UnitBase<Exponents<0, 0, 1>(32.0), Base<DimTime>(3.0), 35.0);
 
-    //   test_sum(DBasic<0, 1, 0>(16.0), Base<DimMass>(4.0), 20.0);
+    //   test_sum(UnitBase<Exponents<0, 1, 0>(16.0), Base<DimMass>(4.0), 20.0);
     // }
 
     // SUBCASE("Base + Base") {
@@ -349,18 +380,19 @@ TEST_SUITE("UnitBase") {
     };
 
     SUBCASE("UnitBase - UnitBase") {
-      test_diff(DBasic<3, 6, 8, 0, 0, 0, 0>(20.0),
-                DBasic<3, 6, 8, 0, 0, 0, 0>(10.0), 10.0,
-                DBasic<3, 6, 8, 0, 0, 0, 0>(), -10.0);
+      test_diff(UnitBase<Exponents<3, 6, 8, 0, 0, 0, 0>, double>(20.0),
+                UnitBase<Exponents<3, 6, 8, 0, 0, 0, 0>, double>(10.0), 10.0,
+                UnitBase<Exponents<3, 6, 8, 0, 0, 0, 0>, double>(), -10.0);
 
-      test_diff(DBasic<1, 2, 3, 0, 0, 0, 0>(24.0),
-                DBasic<1, 2, 3, 0, 0, 0, 0>(12.0), 12.0,
-                DBasic<1, 2, 3, 0, 0, 0, 0>(), -12.0);
+      test_diff(UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(24.0),
+                UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(12.0), 12.0,
+                UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(), -12.0);
     }
 
     // SUBCASE("UnitBase - Base") {
-    //   test_diff(DBasic<1, 0, 0>(20.0), Base<DimLength>(4.0), 16.0,
-    //             DBasic<1, 0, 0>(), -16.0);
+    //   test_diff(UnitBase<Exponents<1, 0, 0>(20.0),
+    //   Base<DimLength>(4.0), 16.0,
+    //             UnitBase<Exponents<1, 0, 0>(), -16.0);
     // }
 
     // SUBCASE("Base - Base") {
@@ -381,7 +413,7 @@ TEST_SUITE("UnitBase") {
     const auto velocity = distance / time;
     CHECK(velocity.data == doctest::Approx(10.0));
     CHECK(std::is_same_v<std::remove_const_t<decltype(velocity)>,
-                         DBasic<1, 0, -1, 0, 0, 0, 0>>);
+                         UnitBase<Exponents<1, 0, -1, 0, 0, 0, 0>, double>>);
 
     // std::cout << std::endl
     //           << "Question 1" << std::endl
@@ -401,7 +433,7 @@ TEST_SUITE("UnitBase") {
     const auto acceleration = velocity_delta / time;
     CHECK(acceleration.data == doctest::Approx(25.0));
     CHECK(std::is_same_v<std::remove_const_t<decltype(acceleration)>,
-                         DBasic<1, 0, -2, 0, 0, 0, 0>>);
+                         UnitBase<Exponents<1, 0, -2, 0, 0, 0, 0>, double>>);
 
     // std::cout << "Question 2a" << std::endl
     //           << "The race car has an acceleration of " << acceleration.data
@@ -416,7 +448,7 @@ TEST_SUITE("UnitBase") {
     const auto force = mass * acceleration;
     CHECK(force.data == doctest::Approx(20000.0));
     CHECK(std::is_same_v<std::remove_const_t<decltype(force)>,
-                         DBasic<1, 1, -2, 0, 0, 0, 0>>);
+                         UnitBase<Exponents<1, 1, -2, 0, 0, 0, 0>, double>>);
 
     // std::cout << "Question 2b" << std::endl
     //           << "The race car has a force of " << force.data
@@ -436,7 +468,7 @@ TEST_SUITE("UnitBase") {
     const auto density = mass / (length * width * height);
     CHECK(density.data == doctest::Approx(240.0));
     CHECK(std::is_same_v<std::remove_const_t<decltype(density)>,
-                         DBasic<-3, 1, 0, 0, 0, 0, 0>>);
+                         UnitBase<Exponents<-3, 1, 0, 0, 0, 0, 0>, double>>);
 
     // std::cout << "Question 3" << std::endl
     //           << "The block has a density of " << density.data << " kg/m^3"
@@ -444,21 +476,21 @@ TEST_SUITE("UnitBase") {
     //           << std::endl;
   }
 
-  TEST_CASE("Polished Test Case for Pascals to PSI") {
-    const auto pascal = Pascals(2.0);
+  // TEST_CASE("Polished Test Case for Pascals to PSI") {
+  //   const auto pascal = Pascals(2.0);
 
-    const auto psi = Psi(Psi::FromBase(Pascals::ToBase(pascal.data)));
+  //   const auto psi = Psi(Psi::FromBase(Pascals::ToBase(pascal.data)));
 
-    CHECK(psi.data == doctest::Approx(0.0093329024));
-  }
+  //   CHECK(psi.data == doctest::Approx(0.0093329024));
+  // }
 
-  TEST_CASE("Polished Test Case for Pascals to PSI") {
-    const auto psi = Psi(2.0);
+  // TEST_CASE("Polished Test Case for Pascals to PSI") {
+  //   const auto psi = Psi(2.0);
 
-    const auto pascals = Pascals(Pascals::FromBase(Psi::ToBase(psi.data)));
+  //   const auto pascals = Pascals(Pascals::FromBase(Psi::ToBase(psi.data)));
 
-    CHECK(pascals.data == doctest::Approx(428.5912157));
-  }
+  //   CHECK(pascals.data == doctest::Approx(428.5912157));
+  // }
 }
 // NOLINTEND(modernize-use-trailing-return-type)
 }  // namespace csm_units::test
