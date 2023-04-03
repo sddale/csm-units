@@ -3,9 +3,8 @@
 #include <ratio>
 #include <utility>
 
-#include "converter.hpp"
 #include "exponents.hpp"
-#include "prefixes.hpp"
+#include "unit.hpp"
 
 namespace csm_units {
 
@@ -23,6 +22,10 @@ class UnitBase {
                   "You defined all exponents equal to zero. Use an arithmetic "
                   "type instead");
   }
+
+  template <UnitType U>
+  constexpr UnitBase(U convert) noexcept
+      : data(UnitCast(convert, UnitBase()).data){};
 
   // copy constructor
   constexpr UnitBase(const UnitBase& other) noexcept = default;
@@ -127,6 +130,15 @@ class UnitBase {
     return lhs;
   }
 };
+
+// constexpr auto UnitCast(
+//     Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg", double>
+//         convert_from,
+//     UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double> /*convert_to*/)
+//     -> UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double> {
+//   return UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>(convert_from.data *
+//                                                           1000);
+// }
 
 // NOLINTEND(bugprone-move-forwarding-reference)
 

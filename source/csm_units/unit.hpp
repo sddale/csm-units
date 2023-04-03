@@ -19,24 +19,27 @@ class Unit {
   constexpr explicit Unit(Data value = 0.0) noexcept : data(value){};
 
   constexpr Unit(SI new_base) noexcept
-      : data(UnitCast(Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>,
-                           "kg", double>(),
-                      new_base)
-                 .data){};
+      : data(UnitCast(new_base, Unit()).data){};
 
   Data data;
 
-  // template <Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg",
-  // double>
-  //               convert_to>
-  constexpr auto UnitCast(
-      Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg", double>
-      /*convert_to*/,
-      UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double> convert_from) -> Unit {
-    return Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg", double>(
-        convert_from.data / 1000);
+  friend constexpr auto operator+(Unit lhs, Unit rhs) noexcept {
+    lhs.data += rhs.data;
+    return lhs;
   }
 };
+
+// template <Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg",
+// double>
+//               convert_to>
+constexpr auto UnitCast(
+    UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double> convert_from,
+    Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg", double>
+    /*convert_to*/)
+    -> Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg", double> {
+  return Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg", double>(
+      convert_from.data / 1000);
+}
 
 // user defined literals
 
