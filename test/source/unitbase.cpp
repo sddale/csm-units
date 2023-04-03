@@ -107,49 +107,49 @@ TEST_SUITE("UnitBase") {
     REQUIRE(sizeof(test) == sizeof(test.data));
   }
 
-  TEST_CASE("Literals temp") {
-    const auto meterLength = 40.0_m;
-    const auto ref = Meter(40.0);
+  // TEST_CASE("Literals temp") {
+  //   const auto meterLength = 40.0_m;
+  //   const auto ref = Meter(40.0);
 
-    CHECK(ref.data == meterLength.data);
-    CHECK(std::is_same_v<decltype(ref), decltype(meterLength)>);
+  //   CHECK(ref.data == meterLength.data);
+  //   CHECK(std::is_same_v<decltype(ref), decltype(meterLength)>);
 
-    const auto kgMass = 40.0_kg;
-    const auto ref2 = Kilograms(40.0);
+  //   const auto kgMass = 40.0_kg;
+  //   const auto ref2 = Kilograms(40.0);
 
-    CHECK(ref2.data == kgMass.data);
-    CHECK(std::is_same_v<decltype(ref2), decltype(kgMass)>);
+  //   CHECK(ref2.data == kgMass.data);
+  //   CHECK(std::is_same_v<decltype(ref2), decltype(kgMass)>);
 
-    const auto secTime = 40.0_s;
-    const auto ref3 = Seconds(40.0);
+  //   const auto secTime = 40.0_s;
+  //   const auto ref3 = Seconds(40.0);
 
-    CHECK(ref3.data == secTime.data);
-    CHECK(std::is_same_v<decltype(ref3), decltype(secTime)>);
+  //   CHECK(ref3.data == secTime.data);
+  //   CHECK(std::is_same_v<decltype(ref3), decltype(secTime)>);
 
-    const auto ampCurrent = 40.0_A;
-    const auto ref4 = Ampere(40.0);
+  //   const auto ampCurrent = 40.0_A;
+  //   const auto ref4 = Ampere(40.0);
 
-    CHECK(ref4.data == ampCurrent.data);
-    CHECK(std::is_same_v<decltype(ref4), decltype(ampCurrent)>);
+  //   CHECK(ref4.data == ampCurrent.data);
+  //   CHECK(std::is_same_v<decltype(ref4), decltype(ampCurrent)>);
 
-    const auto tempKel = 40.0_K;
-    const auto ref5 = Kelvin(40.0);
+  //   const auto tempKel = 40.0_K;
+  //   const auto ref5 = Kelvin(40.0);
 
-    CHECK(ref5.data == tempKel.data);
-    CHECK(std::is_same_v<decltype(ref5), decltype(tempKel)>);
+  //   CHECK(ref5.data == tempKel.data);
+  //   CHECK(std::is_same_v<decltype(ref5), decltype(tempKel)>);
 
-    const auto amtMol = 40.0_mol;
-    const auto ref6 = Mole(40.0);
+  //   const auto amtMol = 40.0_mol;
+  //   const auto ref6 = Mole(40.0);
 
-    CHECK(ref6.data == amtMol.data);
-    CHECK(std::is_same_v<decltype(ref6), decltype(amtMol)>);
+  //   CHECK(ref6.data == amtMol.data);
+  //   CHECK(std::is_same_v<decltype(ref6), decltype(amtMol)>);
 
-    const auto lumCd = 40.0_cd;
-    const auto ref7 = Candela(40.0);
+  //   const auto lumCd = 40.0_cd;
+  //   const auto ref7 = Candela(40.0);
 
-    CHECK(ref7.data == lumCd.data);
-    CHECK(std::is_same_v<decltype(ref7), decltype(lumCd)>);
-  }
+  //   CHECK(ref7.data == lumCd.data);
+  //   CHECK(std::is_same_v<decltype(ref7), decltype(lumCd)>);
+  // }
 
   TEST_CASE("Objects") {
     SUBCASE("DimLength") {

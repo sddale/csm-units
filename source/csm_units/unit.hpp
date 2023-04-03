@@ -18,7 +18,7 @@ class Unit {
  public:
   constexpr explicit Unit(Data value = 0.0) noexcept : data(value){};
 
-  constexpr Unit(SI new_base) noexecept
+  constexpr Unit(SI new_base) noexcept
       : data(UnitCast(Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>,
                            "kg", double>(),
                       new_base)

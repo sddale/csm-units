@@ -23,8 +23,9 @@ TEST_SUITE("test suite") {
       {
         const auto test = 1.0 <<= m / s;
         CHECK(test.data == doctest::Approx(1.0));
-        CHECK(std::is_same_v<std::remove_const_t<decltype(test)>,
-                             UnitBase<Exponents<1, 0, 1, 0, 0, 0, 0>, double>>);
+        CHECK(
+            std::is_same_v<std::remove_const_t<decltype(test)>,
+                           UnitBase<Exponents<1, 0, -1, 0, 0, 0, 0>, double>>);
       }
       {
         const auto test = 1.0 <<= literals::mps;
