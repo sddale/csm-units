@@ -3,45 +3,34 @@
 #include <csm_units/concepts.hpp>
 
 #include "unitbase.hpp"
+#include "unitcast.hpp"
+#include "util.hpp"
 
 namespace csm_units {
-
-template <size_t N>
-struct StringLiteral {
-  constexpr StringLiteral(const char (&str)[N]) { std::copy_n(str, N, value); }
-
-  char value[N];
-};
 
 template <UnitBaseType SI, StringLiteral Unit_Name, Arithmetic Data>
 class Unit {
  public:
-  constexpr explicit Unit(Data value = 0.0) noexcept : data(value){};
+  constexpr explicit Unit(Data value = 0.0) noexcept : data(value) {}
 
-  constexpr Unit(SI new_base) noexcept
-      : data(UnitCast(new_base, Unit()).data){};
+  constexpr Unit(SI new_base) noexcept : data(UnitCast<Unit>(new_base).data) {}
 
   Data data;
-
-  friend constexpr auto operator+(Unit lhs, Unit rhs) noexcept {
-    lhs.data += rhs.data;
-    return lhs;
-  }
 };
 
-// template <Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg",
-// double>
-//               convert_to>
-constexpr auto UnitCast(
-    UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double> convert_from,
-    Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg", double>
-    /*convert_to*/)
+template <>
+constexpr auto UnitCast(UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double> input)
     -> Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg", double> {
   return Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg", double>(
-      convert_from.data / 1000);
+      input.data / 1000);
 }
 
-// user defined literals
+template <>
+constexpr auto UnitCast(
+    Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg", double> input)
+    -> UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double> {
+  return UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>(input.data * 1000);
+}
 
 // length - meter
 constexpr auto operator""_m(long double data) noexcept {
@@ -99,22 +88,29 @@ using Kelvin = DBasic<0, 0, 0, 0, 1, 0, 0, "K">;
 using Mole = DBasic<0, 0, 0, 0, 0, 1, 0, "mol">;
 using Candela = DBasic<0, 0, 0, 0, 0, 0, 1, "cd">;
 
-// class Foo2;
+// template <class DST, class SRC>
+// auto Cast(SRC /*input*/) -> DST;
 
-// template <class convertTo>
-// constexpr auto Cast(Foo2 convertFrom) -> convertTo;
+// template <>
+// auto Cast(Foo2 input) -> Foo1;
 
 // class Foo2 {
 //  public:
-//   constexpr explicit Foo2(double value = 0.0) noexcept : data(value){};
+//   constexpr explicit Foo2(double value = 0.0) noexcept : data(value) {}
+
+//   // constexpr Foo2(Foo1 thing) noexcept { data = Cast<Foo2>(thing).data; }
 
 //   double data;
+
+//   friend constexpr auto operator+(Foo2 lhs, Foo2 rhs) {
+//     return Foo2(Cast<Foo1>(lhs) + rhs);
+//   }
 // };
 
 // class Foo1 {
 //  public:
-//   constexpr explicit Foo1(double value = 0.0) noexcept : data(value){};
-//   constexpr Foo1(Foo2 thing) noexcept : data(Cast<Foo1>(thing).data){};
+//   constexpr explicit Foo1(double value = 0.0) noexcept : data(value) {}
+//   constexpr Foo1(Foo2 thing) noexcept { data = (Cast<Foo1>(thing).data); }
 
 //   double data;
 
@@ -123,9 +119,9 @@ using Candela = DBasic<0, 0, 0, 0, 0, 0, 1, "cd">;
 //   }
 // };
 
-// template <class convertTo>
-// constexpr auto Cast(Foo2 convertFrom) -> convertTo {
-//   return (convertTo(convertFrom.data));
+// template <>
+// auto Cast(Foo2 input) -> Foo1 {
+//   return Foo1(input);
 // }
 
 }  // namespace csm_units

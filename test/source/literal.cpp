@@ -7,6 +7,8 @@
 
 namespace csm_units::test {
 
+// NOLINTBEGIN(modernize-use-trailing-return-type)
+
 TEST_SUITE("test suite") {
   TEST_CASE("test case") {
     using literals::m;
@@ -68,5 +70,7 @@ TEST_SUITE("test suite") {
     }
   }
 }
+
+// NOLINTEND(modernize-use-trailing-return-type)
 
 }  // namespace csm_units::test

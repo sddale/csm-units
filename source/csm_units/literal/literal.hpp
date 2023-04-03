@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../exponents.hpp"
 #include "../unit.hpp"
 

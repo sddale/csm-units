@@ -1,16 +1,16 @@
 #pragma once
 
+#include <csm_units/concepts.hpp>
 #include <ratio>
 #include <utility>
 
 #include "exponents.hpp"
-#include "unit.hpp"
+#include "unitcast.hpp"
 
 namespace csm_units {
 
 // compound - compoud alias
 // compound - base alias
-
 template <ExpType Powers, Arithmetic Data>
 class UnitBase {
  public:
@@ -23,9 +23,9 @@ class UnitBase {
                   "type instead");
   }
 
-  template <UnitType U>
+  template <class U>
   constexpr UnitBase(U convert) noexcept
-      : data(UnitCast(convert, UnitBase()).data){};
+      : data(UnitCast<UnitBase>(convert).data) {}
 
   // copy constructor
   constexpr UnitBase(const UnitBase& other) noexcept = default;
@@ -118,7 +118,6 @@ class UnitBase {
   }
 
   // - operator overloads
-
   constexpr auto operator-=(const UnitBase& rhs) noexcept -> auto& {
     data -= rhs.data;
     return *this;
