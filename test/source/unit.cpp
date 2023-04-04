@@ -40,6 +40,100 @@ TEST_SUITE("Unit") {
                            std::remove_const_t<decltype(kg_unit1)>>);
     }
   }
+
+  TEST_CASE("Polished Test Case for psi and pascals") {
+    using Psi =
+        Unit<UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>, "psi", double>;
+
+    using Pascals = Unit<UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>,
+                         "pascals", double>;
+
+    const auto psi = Psi(31.6);
+    const auto pascals = Pascals(23.5);
+
+    SUBCASE("PSI + PASCALS : Basic Addition") {
+      const auto test = psi + pascals;
+
+      CHECK(test.data == doctest::Approx(217897.8));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(test)>,
+                           UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>>);
+    }
+
+    SUBCASE("PSI + PASCALS : Force Unit psi Addition") {
+      const Psi test = psi + pascals;
+
+      CHECK(test.data == doctest::Approx(31.60340839));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(test)>, Psi>);
+    }
+
+    SUBCASE("PSI + PASCALS : Force Unit pascals Addition") {
+      const Pascals test = psi + pascals;
+
+      CHECK(test.data == doctest::Approx(217897.8));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(test)>, Pascals>);
+    }
+
+    SUBCASE("PSI - PASCALS : Basic Addition") {
+      const auto test = psi - pascals;
+
+      CHECK(test.data == doctest::Approx(217850.8));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(test)>,
+                           UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>>);
+    }
+
+    SUBCASE("PSI - PASCALS : Force Unit psi Addition") {
+      const Psi test = psi - pascals;
+
+      CHECK(test.data == doctest::Approx(31.596587195));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(test)>, Psi>);
+    }
+
+    SUBCASE("PSI - PASCALS : Force Unit pascals Addition") {
+      const Pascals test = psi - pascals;
+
+      CHECK(test.data == doctest::Approx(217850.8));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(test)>, Pascals>);
+    }
+
+    SUBCASE("PASCALS - PSI : Basic Addition") {
+      const auto test = pascals - psi;
+
+      CHECK(test.data == doctest::Approx(-217850.8));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(test)>,
+                           UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>>);
+    }
+
+    SUBCASE("PASCALS - PSI : Force Unit psi Addition") {
+      const Psi test = pascals - psi;
+
+      CHECK(test.data == doctest::Approx(-31.596587195));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(test)>, Psi>);
+    }
+
+    SUBCASE("PASCALS - PSI : Force Unit pascals Addition") {
+      const Pascals test = pascals - psi;
+
+      CHECK(test.data == doctest::Approx(-217850.8));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(test)>, Pascals>);
+    }
+
+    SUBCASE("Conversion Checking") {
+      // Pass pascals to psi and psi to pascals... to make sure conversion works
+      const Psi test1 =
+          UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>(23.5);
+      const Psi test2 = Pascals(23.5);
+      const Pascals test3 = Psi(31.6);
+
+      CHECK(test1.data == doctest::Approx(0.003408387));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(test1)>, Psi>);
+
+      CHECK(test2.data == doctest::Approx(0.003408387));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(test2)>, Psi>);
+
+      CHECK(test3.data == doctest::Approx(217874.3));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(test3)>, Pascals>);
+    }
+  }
 }
 //   TEST_CASE("Idea Test") {
 //     const auto foo1 = Foo1(3.0);

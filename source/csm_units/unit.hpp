@@ -15,9 +15,15 @@ class Unit {
 
   constexpr Unit(SI new_base) noexcept : data(UnitCast<Unit>(new_base).data) {}
 
+  template <StringLiteral UN, Arithmetic D>
+  constexpr Unit(Unit<SI, UN, D> new_unit) noexcept
+      : data(UnitCast<Unit>(UnitCast<SI>(new_unit)).data) {}
+
   Data data;
 };
 
+// Unit Cast for Base g to Unit kg
+// Conversion Equation: 1000 g = 1 kg
 template <>
 constexpr auto UnitCast(UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double> input)
     -> Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg", double> {
@@ -25,11 +31,53 @@ constexpr auto UnitCast(UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double> input)
       input.data / 1000);
 }
 
+// Unit Cast for Unit kg to Base g
+// Conversion Equation: 1000 g = 1 kg
 template <>
 constexpr auto UnitCast(
     Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg", double> input)
     -> UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double> {
   return UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>(input.data * 1000);
+}
+
+// Unit Cast for Base Pascals to Unit Pascals
+// Conversion Equation: Pascals = Pascals
+template <>
+constexpr auto UnitCast(
+    UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double> input)
+    -> Unit<UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>, "pascals",
+            double> {
+  return Unit<UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>, "pascals",
+              double>(input.data);
+}
+
+// Unit Cast for Unit Pascals to Base Pascals
+// Conversion Equation: Pascals = Pascals
+template <>
+constexpr auto UnitCast(
+    Unit<UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>, "pascals", double>
+        input) -> UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double> {
+  return UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>(input.data);
+}
+
+// Unit Cast for Base Pascals to Unit psi
+// Conversion Equation: 1 psi = 6894.76 pascals
+template <>
+constexpr auto UnitCast(
+    UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double> input)
+    -> Unit<UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>, "psi", double> {
+  return Unit<UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>, "psi",
+              double>(input.data / 6894.76);
+}
+
+// Unit Cast for Unit psi to Base Pascals
+// Conversion Equation: 1 psi = 6894.76 pascals
+template <>
+constexpr auto UnitCast(
+    Unit<UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>, "psi", double>
+        input) -> UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double> {
+  return UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>(input.data *
+                                                            6894.76);
 }
 
 // length - meter
