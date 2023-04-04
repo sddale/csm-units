@@ -9,6 +9,13 @@ namespace csm_units::test {
 // NOLINTBEGIN(modernize-use-trailing-return-type)
 
 TEST_SUITE("Unit") {
+  TEST_CASE("Size") {
+    const auto test =
+        Unit<UnitBase<Exponents<14, 14, 14, 0, 0, 0, 0>, double>, "kg", double>(
+            14.0);
+    REQUIRE(sizeof(test) == sizeof(test.data));
+  }
+
   TEST_CASE("Unit Tests") {
     SUBCASE("Unit-Unit Base Addition") {
       const auto kg_unit =
