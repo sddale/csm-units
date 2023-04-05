@@ -149,8 +149,9 @@ TEST_SUITE("Unit") {
       SUBCASE("PASCALS * PSI : Basic Multiplication") {
         const auto test = psi * pascal;
 
-        CHECK(test == doctest::Approx(9271.24680851));
-        CHECK(std::is_same_v<std::remove_const_t<decltype(test)>, double>);
+        CHECK(test.data == doctest::Approx(5.12005e+06));
+        CHECK(std::is_same_v<std::remove_const_t<decltype(test)>,
+                             UnitBase<SqPressure, double>>);
       }
 
       SUBCASE("Conversion Checking") {
@@ -172,22 +173,23 @@ TEST_SUITE("Unit") {
       }
     }
   }
-  //   TEST_CASE("Idea Test") {
-  //     const auto foo1 = Foo1(3.0);
-  //     const auto foo2 = Foo2(4.0);
+}
+//   TEST_CASE("Idea Test") {
+//     const auto foo1 = Foo1(3.0);
+//     const auto foo2 = Foo2(4.0);
 
-  //     const auto fooTest1 = foo1 + foo2;
+//     const auto fooTest1 = foo1 + foo2;
 
-  //     const auto fooTest2 = foo2 + foo2;
+//     const auto fooTest2 = foo2 + foo2;
 
-  //     CHECK(fooTest1.data == doctest::Approx(7.0));
-  //     CHECK(std::is_same_v<std::remove_const_t<decltype(fooTest1)>, Foo1>);
+//     CHECK(fooTest1.data == doctest::Approx(7.0));
+//     CHECK(std::is_same_v<std::remove_const_t<decltype(fooTest1)>, Foo1>);
 
-  //     CHECK(fooTest2.data == doctest::Approx(8.0));
-  //     CHECK(std::is_same_v<std::remove_const_t<decltype(fooTest2)>, Foo1>);
-  //   }
-  // }
+//     CHECK(fooTest2.data == doctest::Approx(8.0));
+//     CHECK(std::is_same_v<std::remove_const_t<decltype(fooTest2)>, Foo1>);
+//   }
+// }
 
-  // NOLINTEND(modernize-use-trailing-return-type)
+// NOLINTEND(modernize-use-trailing-return-type)
 
 }  // namespace csm_units::test
