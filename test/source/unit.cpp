@@ -124,6 +124,13 @@ TEST_SUITE("Unit") {
       CHECK(std::is_same_v<std::remove_const_t<decltype(test)>, Pascals>);
     }
 
+    // SUBCASE("PASCALS * PSI : Basic Multiplication") {
+    //   const auto test = psi * pascals;
+
+    //   // CHECK(test.data == doctest::Approx(-217850.8));
+    //   CHECK(std::is_same_v<std::remove_const_t<decltype(test)>, Pascals>);
+    // }
+
     SUBCASE("Conversion Checking") {
       // Pass pascals to psi and psi to pascals... to make sure conversion works
       const Psi test1 =
