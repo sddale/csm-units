@@ -25,9 +25,15 @@ class UnitBase {
                   "arithmetictype instead");
   }
 
-  template <class U>
+  template <UnitType U>
+    requires std::is_same_v<typename U::SI, UnitBase>
   constexpr UnitBase(U convert) noexcept
       : data(UnitCast<UnitBase>(convert).data) {}
+
+  // template <UnitType U>
+  //   requires std::same_as<typename U::SI, UnitBase>
+  // constexpr UnitBase(U convert) noexcept
+  //     : data(UnitCast<UnitBase>(convert).data) {}
 
   // copy constructor
   constexpr UnitBase(const UnitBase& other) noexcept = default;

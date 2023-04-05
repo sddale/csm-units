@@ -200,6 +200,15 @@ TEST_SUITE("Unit") {
           const auto test_psi = lambda(Psi(31.6));
           CHECK(test_psi.data == doctest::Approx(217874.3));
         }
+
+        SUBCASE("Disallow Passing of Mismatched Dimensioned Parameter") {
+          // auto lambda = [](UnitBase<Pressure, double> input) { return input;
+          // };
+
+          // auto test_m = lambda(Meter(10));
+          // auto foo = Meter(Pascal(2));
+          // CHECK(test_m.data == doctest::Approx(31.6));
+        }
       }
     }
   }

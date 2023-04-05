@@ -70,4 +70,12 @@ concept UnitType = requires(T unit) {
   { typename T::SI() };
 };
 
+template <class T, class U>
+concept UnitOfBase = requires(T unit, U base) {
+  { unit.data } -> std::convertible_to<double>;
+  // { unitbase.data } -> std::convertible_to<double>;
+  // { unitbase.Flip() };
+  // { std::is_same_v<typename T::SI, U> };
+};
+
 }  // namespace csm_units
