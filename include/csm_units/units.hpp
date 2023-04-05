@@ -10,17 +10,15 @@
 namespace csm_units {
 
 // Pressure type
-using Pressure =
-    UnitBase<Exponents<-1, 1, 2, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1>, double>;
+// using Pressure =
+//     UnitBase<Exponents<-1, 1, 2, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1>, double>;
 
-// Pressure units
-using Pascals = Unit<Pressure, "pascals", double>;
+// // Pressure units
+// using Pascals = Unit<Pressure, "pascals", double>;
 
 // Converter logic must be updated elsewhere before proper non-si pressure
 // aliases can be built
-using Bar = Unit<Pressure, "bar", double>;
-using Atm = Unit<Pressure, "Atm", double>;
-using Psi = Unit<Pressure, "psi", double>;
+// using Psi = Unit<Pressure, "psi", double>;
 
 // // Temperature type
 // template <class Converter>
