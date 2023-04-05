@@ -38,7 +38,6 @@ TEST_SUITE("Unit") {
       const auto kg_unit2 =
           Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg", double>(
               4.0);
-      CHECK(true);
 
       const Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg", double>
           test = kg_unit1 + kg_unit2;
