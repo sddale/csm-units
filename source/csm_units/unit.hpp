@@ -8,9 +8,10 @@
 
 namespace csm_units {
 
-template <UnitBaseType SI, StringLiteral Unit_Name, Arithmetic Data>
+template <UnitBaseType Base, StringLiteral Unit_Name, Arithmetic Data>
 class Unit {
  public:
+  using SI = Base;
   constexpr explicit Unit(Data value = 0.0) noexcept : data(value) {}
 
   constexpr Unit(SI new_base) noexcept : data(UnitCast<Unit>(new_base).data) {}
