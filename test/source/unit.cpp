@@ -6,7 +6,7 @@
 
 namespace csm_units::test {
 
-// NOLINTBEGIN(modernize-use-trailing-return-type)
+// NOLINTBEGIN(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
 
 TEST_SUITE("Unit") {
   TEST_CASE("Size") {
@@ -54,10 +54,7 @@ TEST_SUITE("Unit") {
                            std::remove_const_t<decltype(ref)>>);
     };
 
-    using Pressure = Exponents<-1, 1, -2, 0, 0, 0, 0>;
     using SqPressure = Exponents<-2, 2, -4, 0, 0, 0, 0>;
-    using Psi = Unit<UnitBase<Pressure, double>, "psi", double>;
-    using Pascal = Unit<UnitBase<Pressure, double>, "pascals", double>;
 
     const auto psi = Psi(31.6);
     const auto pascal = Pascal(23.5);
@@ -66,7 +63,7 @@ TEST_SUITE("Unit") {
       const auto test = psi + pascal;
 
       CHECK(test.data == doctest::Approx(217897.8));
-      CHECKTYPE(test, UnitBase<Pressure, double>());
+      CHECKTYPE(test, Pressure());
     }
 
     SUBCASE("PSI + PASCALS : Force Unit psi Addition") {
@@ -87,7 +84,7 @@ TEST_SUITE("Unit") {
       const auto test = psi - pascal;
 
       CHECK(test.data == doctest::Approx(217850.8));
-      CHECKTYPE(test, UnitBase<Pressure, double>());
+      CHECKTYPE(test, Pressure());
     }
 
     SUBCASE("PSI - PASCALS : Force Unit psi Subtraction") {
@@ -108,7 +105,7 @@ TEST_SUITE("Unit") {
       const auto test = pascal - psi;
 
       CHECK(test.data == doctest::Approx(-217850.8));
-      CHECKTYPE(test, UnitBase<Pressure, double>());
+      CHECKTYPE(test, Pressure());
     }
 
     SUBCASE("PASCALS - PSI : Force Unit psi Addition") {
@@ -156,7 +153,7 @@ TEST_SUITE("Unit") {
       SUBCASE("Conversion Checking") {
         // Pass pascals to psi and psi to pascals... to make sure conversion
         // works
-        const Psi test1 = UnitBase<Pressure, double>(23.5);
+        const Psi test1 = Pressure(23.5);
         const Psi test2 = Pascal(23.5);
         const Pascal test3 = Psi(31.6);
 
@@ -192,7 +189,7 @@ TEST_SUITE("Unit") {
         }
 
         SUBCASE("Base Pressure Parameter") {
-          auto lambda = [](UnitBase<Pressure, double> input) { return input; };
+          auto lambda = [](Pressure input) { return input; };
 
           const auto test_pa = lambda(Pascal(31.6));
           CHECK(test_pa.data == doctest::Approx(31.6));
@@ -202,7 +199,7 @@ TEST_SUITE("Unit") {
         }
 
         SUBCASE("Disallow Passing of Mismatched Dimensioned Parameter") {
-          // auto lambda = [](UnitBase<Pressure, double> input) { return input;
+          // auto lambda = [](Pressure input) { return input;
           // };
 
           // auto test_m = lambda(Meter(10));
@@ -229,6 +226,6 @@ TEST_SUITE("Unit") {
 //   }
 // }
 
-// NOLINTEND(modernize-use-trailing-return-type)
+// NOLINTEND(modernize-use-trailing-return-type,misc-use-anonymous-namespace)
 
 }  // namespace csm_units::test
