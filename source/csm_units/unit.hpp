@@ -23,64 +23,77 @@ class Unit {
   Data data;
 };
 
+// Base Dimensions
+using Length = UnitBase<Exponents<1, 0, 0, 0, 0, 0, 0>, double>;
+using Mass = UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>;
+using Time = UnitBase<Exponents<0, 0, 1, 0, 0, 0, 0>, double>;
+using ElectrCurrent = UnitBase<Exponents<0, 0, 0, 1, 0, 0, 0>, double>;
+using Temperature = UnitBase<Exponents<0, 0, 0, 0, 1, 0, 0>, double>;
+using Amount = UnitBase<Exponents<0, 0, 0, 0, 0, 1, 0>, double>;
+using Luminosity = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 1>, double>;
+
+// Derived Dimensions
+using Pressure = UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>;
+
+// SI Units
+using Meter = Unit<Length, "m", double>;
+using Gram = Unit<Mass, "g", double>;
+using Kilogram = Unit<Mass, "kg", double>;
+using Second = Unit<Time, "s", double>;
+using Ampere = Unit<ElectrCurrent, "A", double>;
+using Kelvin = Unit<Temperature, "K", double>;
+using Mole = Unit<Amount, "mol", double>;
+using Candela = Unit<Luminosity, "cd", double>;
+using Pascal = Unit<Pressure, "Pa", double>;
+
+// Other Units
+using Psi = Unit<Pressure, "psi", double>;
+using Bar = Unit<Pressure, "bar", double>;
+using Atm = Unit<Pressure, "Atm", double>;
+
 // Unit Cast for Base g to Unit kg
 // Conversion Equation: 1000 g = 1 kg
 template <>
-constexpr auto UnitCast(UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double> input)
-    -> Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg", double> {
-  return Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg", double>(
-      input.data / 1000);
+constexpr auto UnitCast(Mass input) -> Kilogram {
+  return Kilogram(input.data / 1000);
 }
 
 // Unit Cast for Unit kg to Base g
 // Conversion Equation: 1000 g = 1 kg
 template <>
-constexpr auto UnitCast(
-    Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg", double> input)
-    -> UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double> {
-  return UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>(input.data * 1000);
+constexpr auto UnitCast(Kilogram input) -> Mass {
+  return Mass(input.data * 1000);
 }
 
 // Unit Cast for Base Pascals to Unit Pascals
 // Conversion Equation: Pascals = Pascals
 template <>
-constexpr auto UnitCast(
-    UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double> input)
-    -> Unit<UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>, "pascals",
-            double> {
-  return Unit<UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>, "pascals",
-              double>(input.data);
+constexpr auto UnitCast(Pressure input) -> Pascal {
+  return Pascal(input.data);
 }
 
 // Unit Cast for Unit Pascals to Base Pascals
 // Conversion Equation: Pascals = Pascals
 template <>
-constexpr auto UnitCast(
-    Unit<UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>, "pascals", double>
-        input) -> UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double> {
-  return UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>(input.data);
+constexpr auto UnitCast(Pascal input) -> Pressure {
+  return Pressure(input.data);
 }
 
 // Unit Cast for Base Pascals to Unit psi
 // Conversion Equation: 1 psi = 6894.76 pascals
 template <>
-constexpr auto UnitCast(
-    UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double> input)
-    -> Unit<UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>, "psi", double> {
-  return Unit<UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>, "psi",
-              double>(input.data / 6894.76);
+constexpr auto UnitCast(Pressure input) -> Psi {
+  return Psi(input.data / 6894.76);
 }
 
 // Unit Cast for Unit psi to Base Pascals
 // Conversion Equation: 1 psi = 6894.76 pascals
 template <>
-constexpr auto UnitCast(
-    Unit<UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>, "psi", double>
-        input) -> UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double> {
-  return UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>(input.data *
-                                                            6894.76);
+constexpr auto UnitCast(Psi input) -> Pressure {
+  return Pressure(input.data * 6894.76);
 }
 
+// String Literal Operators
 // length - meter
 constexpr auto operator""_m(long double data) noexcept {
   return Unit<UnitBase<Exponents<1, 0, 0, 0, 0, 0, 0>, double>, "m", double>(
@@ -122,20 +135,6 @@ constexpr auto operator""_cd(long double data) noexcept {
   return Unit<UnitBase<Exponents<0, 0, 0, 0, 0, 0, 1>, double>, "cd", double>(
       static_cast<double>(data));
 }
-
-// Aliases for basic units
-template <int LP, int MP, int TP, int CP, int TPP, int AP, int LMP,
-          StringLiteral Name>
-using DBasic = Unit<UnitBase<Exponents<LP, MP, TP, CP, TPP, AP, LMP>, double>,
-                    Name, double>;
-
-using Meter = DBasic<1, 0, 0, 0, 0, 0, 0, "m">;
-using Kilograms = DBasic<0, 1, 0, 0, 0, 0, 0, "kg">;
-using Seconds = DBasic<0, 0, 1, 0, 0, 0, 0, "s">;
-using Ampere = DBasic<0, 0, 0, 1, 0, 0, 0, "A">;
-using Kelvin = DBasic<0, 0, 0, 0, 1, 0, 0, "K">;
-using Mole = DBasic<0, 0, 0, 0, 0, 1, 0, "mol">;
-using Candela = DBasic<0, 0, 0, 0, 0, 0, 1, "cd">;
 
 // template <class DST, class SRC>
 // auto Cast(SRC /*input*/) -> DST;
