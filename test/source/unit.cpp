@@ -134,9 +134,8 @@ TEST_SUITE("Unit") {
         const auto test = psi * pascal;
 
         CHECK(test.data == doctest::Approx(5120046.05));
-        CHECK(
-            std::is_same_v<std::remove_const_t<decltype(test)>,
-                           UnitBase<Exponents<-2, 2, -4, 0, 0, 0, 0>, double>>);
+        CHECK(std::is_same_v<std::remove_const_t<decltype(test)>,
+                             UnitBase<SqPressure, double>>);
       }
 
       SUBCASE("PSI / PASCALS : Basic Division") {
@@ -157,8 +156,7 @@ TEST_SUITE("Unit") {
       SUBCASE("Conversion Checking") {
         // Pass pascals to psi and psi to pascals... to make sure conversion
         // works
-        const Psi test1 =
-            UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>(23.5);
+        const Psi test1 = UnitBase<Pressure, double>(23.5);
         const Psi test2 = Pascal(23.5);
         const Pascal test3 = Psi(31.6);
 
@@ -170,6 +168,38 @@ TEST_SUITE("Unit") {
 
         CHECK(test3.data == doctest::Approx(217874.3));
         CHECK(std::is_same_v<std::remove_const_t<decltype(test3)>, Pascal>);
+      }
+
+      SUBCASE("Function Passing") {
+        SUBCASE("Psi Parameter") {
+          auto lambda = [](Psi input) -> Psi { return input; };
+
+          const auto test_pa = lambda(Pascal(23.5));
+          CHECK(test_pa.data == doctest::Approx(0.003408387));
+
+          const auto test_psi = lambda(Psi(23.5));
+          CHECK(test_psi.data == doctest::Approx(23.5));
+        }
+
+        SUBCASE("Pascal Parameter") {
+          auto lambda = [](Pascal input) -> Pascal { return input; };
+
+          const auto test_pa = lambda(Pascal(31.6));
+          CHECK(test_pa.data == doctest::Approx(31.6));
+
+          const auto test_psi = lambda(Psi(31.6));
+          CHECK(test_psi.data == doctest::Approx(217874.3));
+        }
+
+        SUBCASE("Base Pressure Parameter") {
+          auto lambda = [](UnitBase<Pressure, double> input) { return input; };
+
+          const auto test_pa = lambda(Pascal(31.6));
+          CHECK(test_pa.data == doctest::Approx(31.6));
+
+          const auto test_psi = lambda(Psi(31.6));
+          CHECK(test_psi.data == doctest::Approx(217874.3));
+        }
       }
     }
   }
