@@ -2,6 +2,7 @@
 
 #include <csm_units/concepts.hpp>
 #include <ratio>
+#include <type_traits>
 #include <utility>
 
 #include "exponents.hpp"
@@ -14,13 +15,14 @@ namespace csm_units {
 template <ExpType Powers, Arithmetic Data>
 class UnitBase {
  public:
+  using Dimensions = Powers;
   constexpr explicit UnitBase(Data value = 0) noexcept : data(value) {
     static_assert(Powers::L::num != 0 or Powers::M::num != 0 or
                       Powers::T::num != 0 or Powers::C::num != 0 or
                       Powers::TP::num != 0 or Powers::A::num != 0 or
                       Powers::LM::num != 0,
-                  "You defined all exponents equal to zero. Use an arithmetic "
-                  "type instead");
+                  "You defined all exponents equal to zero. Use an "
+                  "arithmetictype instead");
   }
 
   template <class U>
@@ -51,8 +53,13 @@ class UnitBase {
   template <ExpType Powers2>  // second object
   friend constexpr auto operator/(UnitBase lhs,
                                   UnitBase<Powers2, Data> rhs) noexcept {
-    return (UnitBase<ExponentsSubtract<Powers, Powers2>, Data>(lhs.data /
-                                                               rhs.data));
+    return UnitBase<ExponentsSubtract<Powers, Powers2>, Data>(lhs.data /
+                                                              rhs.data);
+  }
+
+  template <UnitType Other>  // second object
+  friend constexpr auto operator/(UnitBase lhs, Other rhs) noexcept {
+    return lhs / UnitBase(rhs);
   }
 
   // NOLINTBEGIN(bugprone-move-forwarding-reference) Factory requires std move
@@ -84,7 +91,12 @@ class UnitBase {
   template <ExpType Powers2>  // second object
   friend constexpr auto operator*(UnitBase lhs,
                                   UnitBase<Powers2, Data> rhs) noexcept {
-    return (UnitBase<ExponentsAdd<Powers, Powers2>, Data>(lhs.data * rhs.data));
+    return UnitBase<ExponentsAdd<Powers, Powers2>, Data>(lhs.data * rhs.data);
+  }
+
+  template <UnitType Other>  // second object
+  friend constexpr auto operator*(UnitBase lhs, Other rhs) noexcept {
+    return lhs * UnitBase(rhs);
   }
 
   // compoud *= double
