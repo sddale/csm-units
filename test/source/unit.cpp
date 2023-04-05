@@ -124,12 +124,35 @@ TEST_SUITE("Unit") {
       CHECK(std::is_same_v<std::remove_const_t<decltype(test)>, Pascals>);
     }
 
-    // SUBCASE("PASCALS * PSI : Basic Multiplication") {
-    //   const auto test = psi * pascals;
+    SUBCASE("PSI * PASCALS : Basic Multiplication") {
+      const auto test = pascals * psi;
 
-    //   // CHECK(test.data == doctest::Approx(-217850.8));
-    //   CHECK(std::is_same_v<std::remove_const_t<decltype(test)>, Pascals>);
-    // }
+      CHECK(test.data == doctest::Approx(5120046.05));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(test)>,
+                           UnitBase<Exponents<-2, 2, -4, 0, 0, 0, 0>, double>>);
+    }
+
+    SUBCASE("PASCALS * PSI : Basic Multiplication") {
+      const auto test = psi * pascals;
+
+      CHECK(test.data == doctest::Approx(5120046.05));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(test)>,
+                           UnitBase<Exponents<-2, 2, -4, 0, 0, 0, 0>, double>>);
+    }
+
+    SUBCASE("PSI / PASCALS : Basic Division") {
+      const auto test = pascals / psi;
+
+      CHECK(test == doctest::Approx(0.000107860358));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(test)>, double>);
+    }
+
+    SUBCASE("PASCALS * PSI : Basic Multiplication") {
+      const auto test = psi / pascals;
+
+      CHECK(test == doctest::Approx(9271.24680851));
+      CHECK(std::is_same_v<std::remove_const_t<decltype(test)>, double>);
+    }
 
     SUBCASE("Conversion Checking") {
       // Pass pascals to psi and psi to pascals... to make sure conversion works

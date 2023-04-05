@@ -20,6 +20,18 @@ class Unit {
       : data(UnitCast<Unit>(UnitCast<SI>(new_unit)).data) {}
 
   Data data;
+
+  // unit * unit
+  template <UnitBaseType SI2, StringLiteral UN>
+  friend constexpr auto operator*(Unit lhs, Unit<SI2, UN, Data> rhs) noexcept {
+    return (UnitCast<SI>(lhs) * UnitCast<SI2>(rhs));
+  }
+
+  // unit / unit
+  template <UnitBaseType SI2, StringLiteral UN>
+  friend constexpr auto operator/(Unit lhs, Unit<SI2, UN, Data> rhs) noexcept {
+    return (UnitCast<SI>(lhs) / UnitCast<SI2>(rhs));
+  }
 };
 
 // Unit Cast for Base g to Unit kg
