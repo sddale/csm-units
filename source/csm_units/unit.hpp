@@ -34,9 +34,13 @@ using Luminosity = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 1>, double>;
 
 // Derived Dimensions
 using Pressure = UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>;
+using Force = UnitBase<Exponents<1, 1, -2, 0, 0, 0, 0>, double>;
+using Area = UnitBase<Exponents<2, 0, 0, 0, 0, 0, 0>, double>;
+using Accel = UnitBase<Exponents<1, 0, -2, 0, 0, 0, 0>, double>;
 
 // SI Units
 using Meter = Unit<Length, "m", double>;
+using SqMeter = Unit<Length, "m2", double>;
 using Gram = Unit<Mass, "g", double>;
 using Kilogram = Unit<Mass, "kg", double>;
 using Second = Unit<Time, "s", double>;
@@ -45,24 +49,62 @@ using Kelvin = Unit<Temperature, "K", double>;
 using Mole = Unit<Amount, "mol", double>;
 using Candela = Unit<Luminosity, "cd", double>;
 using Pascal = Unit<Pressure, "Pa", double>;
+using Newton = Unit<Force, "N", double>;
 
 // Other Units
 using Psi = Unit<Pressure, "psi", double>;
 using Bar = Unit<Pressure, "bar", double>;
 using Atm = Unit<Pressure, "Atm", double>;
+using MPerS2 = Unit<Accel, "m/s2", double>;
 
 // Unit Cast for Base g to Unit kg
 // Conversion Equation: 1000 g = 1 kg
 template <>
 constexpr auto UnitCast(Mass input) -> Kilogram {
-  return Kilogram(input.data / 1000);
+  return Kilogram(input.data);
 }
 
 // Unit Cast for Unit kg to Base g
 // Conversion Equation: 1000 g = 1 kg
 template <>
 constexpr auto UnitCast(Kilogram input) -> Mass {
-  return Mass(input.data * 1000);
+  return Mass(input.data);
+}
+
+template <>
+constexpr auto UnitCast(Mass input) -> Gram {
+  return Gram(input.data * 1000);
+}
+
+// Unit Cast for Unit kg to Base g
+// Conversion Equation: 1000 g = 1 kg
+template <>
+constexpr auto UnitCast(Gram input) -> Mass {
+  return Mass(input.data / 1000);
+}
+
+template <>
+constexpr auto UnitCast(Time input) -> Second {
+  return Second(input.data);
+}
+
+// Unit Cast for Unit kg to Base g
+// Conversion Equation: 1000 g = 1 kg
+template <>
+constexpr auto UnitCast(Second input) -> Time {
+  return Time(input.data);
+}
+
+template <>
+constexpr auto UnitCast(Length input) -> Meter {
+  return Meter(input.data);
+}
+
+// Unit Cast for Unit kg to Base g
+// Conversion Equation: 1000 g = 1 kg
+template <>
+constexpr auto UnitCast(Meter input) -> Length {
+  return Length(input.data);
 }
 
 // Unit Cast for Base Pascals to Unit Pascals
@@ -91,6 +133,40 @@ constexpr auto UnitCast(Pressure input) -> Psi {
 template <>
 constexpr auto UnitCast(Psi input) -> Pressure {
   return Pressure(input.data * 6894.76);
+}
+
+// Unit Cast for Base Newton
+template <>
+constexpr auto UnitCast(Force input) -> Newton {
+  return Newton(input.data);
+}
+template <>
+constexpr auto UnitCast(Newton input) -> Force {
+  return Force(input.data);
+}
+
+// Unit Cast for Base m2
+template <>
+constexpr auto UnitCast(Area input) -> SqMeter {
+  return SqMeter(input.data);
+}
+
+// Unit Cast for Unit Newton
+template <>
+constexpr auto UnitCast(SqMeter input) -> Area {
+  return Area(input.data);
+}
+
+// Unit Cast for Base mps2
+template <>
+constexpr auto UnitCast(Accel input) -> MPerS2 {
+  return MPerS2(input.data);
+}
+
+// Unit Cast for Unit Newton
+template <>
+constexpr auto UnitCast(MPerS2 input) -> Accel {
+  return Accel(input.data);
 }
 
 // String Literal Operators

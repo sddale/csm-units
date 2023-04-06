@@ -1,5 +1,6 @@
 #pragma once
 
+#include <compare>
 #include <csm_units/concepts.hpp>
 #include <ratio>
 #include <type_traits>
@@ -22,7 +23,7 @@ class UnitBase {
                       Powers::TP::num != 0 or Powers::A::num != 0 or
                       Powers::LM::num != 0,
                   "You defined all exponents equal to zero. Use an "
-                  "arithmetictype instead");
+                  "arithmetic type instead");
   }
 
   template <UnitType U>
@@ -35,6 +36,20 @@ class UnitBase {
   // constexpr UnitBase(U convert) noexcept
   //     : data(UnitCast<UnitBase>(convert).data) {}
 
+  constexpr auto operator<=>(const UnitBase& other) const
+      -> std::strong_ordering = default;
+
+  template <UnitType U>
+  friend constexpr auto operator<=>(const UnitBase& lhs, const U& rhs) -> bool {
+    return lhs <=> UnitBase(rhs);
+  }
+
+  constexpr auto operator==(const UnitBase& other) const -> bool = default;
+
+  template <UnitType U>
+  friend constexpr auto operator==(const UnitBase& lhs, const U& rhs) -> bool {
+    return lhs == UnitBase(rhs);
+  }
   // copy constructor
   constexpr UnitBase(const UnitBase& other) noexcept = default;
 
@@ -65,7 +80,7 @@ class UnitBase {
 
   template <UnitType Other>  // second object
   friend constexpr auto operator/(UnitBase lhs, Other rhs) noexcept {
-    return lhs / UnitBase(rhs);
+    return lhs / typename Other::SI(rhs);
   }
 
   // NOLINTBEGIN(bugprone-move-forwarding-reference) Factory requires std move
@@ -102,7 +117,7 @@ class UnitBase {
 
   template <UnitType Other>  // second object
   friend constexpr auto operator*(UnitBase lhs, Other rhs) noexcept {
-    return lhs * UnitBase(rhs);
+    return lhs * typename Other::SI(rhs);
   }
 
   // compoud *= double
