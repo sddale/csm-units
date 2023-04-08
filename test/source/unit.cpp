@@ -17,6 +17,24 @@ constexpr auto CHECK_DBL_EQ = [](auto lhs, auto rhs) {
   CHECK_EQ(lhs, doctest::Approx(rhs));
 };
 
+// constexpr auto test_sum = [](auto first, auto second, auto exp_default_sum,
+//                              auto exp_first_sum, auto exp_second_sum) {
+//   const auto default_sum_ans = first + second;
+//   const decltype(first) forced_first_ans = first + second;
+//   const decltype(second) forced_sec_ans = first + second;
+
+//   const auto default_inv = second + first;
+//   const decltype(first) forced_first_inv = second + first;
+//   const decltype(second) forced_sec_inv = second + first;
+
+//   CHECK(default_sum_ans.data == doctest::Approx(exp_default_sum));
+//   CHECK(forced_first_ans.data == doctest::Approx(exp_first_sum));
+//   CHECK(forced_sec_ans.data == doctest::Approx(exp_second_sum));
+//   CHECK_TYPE(default_sum_ans, decltype(first)::SI);
+//   CHECK_TYPE(forced_first_ans, first);
+//   CHECK_TYPE(forced_sec_ans, second);
+// };
+
 TEST_SUITE("Unit") {
   TEST_CASE("Size") {
     const auto test = Kilogram(14.0);
@@ -31,10 +49,19 @@ TEST_SUITE("Unit") {
       CHECK_DBL_EQ(test.data, 7.0);
       CHECK_TYPE(test, Mass());
     }
+
     SUBCASE("Unit-Unit Addition") {
       const auto test = Gram(3.0) + Gram(4.0);
       CHECK_DBL_EQ(test.data, 0.007);
       CHECK_TYPE(test, Mass());
+    }
+
+    // Below is the start of in depth tests on different bases to make sure
+    // everything is working as expected
+    SUBCASE("Length Tests") {
+      SUBCASE("Length Additions") {
+        // test_sum(Length(6.0), Meter(3.0), 6.0, 6.0, 6.0);
+      }
     }
   }
 
