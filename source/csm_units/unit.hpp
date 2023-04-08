@@ -135,6 +135,34 @@ constexpr auto UnitCast(Psi input) -> Pressure {
   return Pressure(input.data * 6894.76);
 }
 
+// Unit Cast for Base Pascals to Unit Bar
+// Conversion Equation: 1 bar = 100,000 pascals
+template <>
+constexpr auto UnitCast(Pressure input) -> Bar {
+  return Bar(input.data / 100000);
+}
+
+// Unit Cast for Unit Bar to Base Pascals
+// Conversion Equation: 1 bar = 100,000 pascals
+template <>
+constexpr auto UnitCast(Bar input) -> Pressure {
+  return Pressure(input.data * 100000);
+}
+
+// Unit Cast for Base Pascals to Unit Atm
+// Conversion Equation: 1 atm = 101,325 pascals
+template <>
+constexpr auto UnitCast(Pressure input) -> Atm {
+  return Atm(input.data / 101325);
+}
+
+// Unit Cast for Unit Bar to Base Pascals
+// Conversion Equation: 1 bar = 101,325 pascals
+template <>
+constexpr auto UnitCast(Atm input) -> Pressure {
+  return Pressure(input.data * 101325);
+}
+
 // Unit Cast for Base Newton
 template <>
 constexpr auto UnitCast(Force input) -> Newton {
@@ -167,6 +195,54 @@ constexpr auto UnitCast(Accel input) -> MPerS2 {
 template <>
 constexpr auto UnitCast(MPerS2 input) -> Accel {
   return Accel(input.data);
+}
+
+// Unit Cast for Unit Ampere
+template <>
+constexpr auto UnitCast(ElectrCurrent input) -> Ampere {
+  return Ampere(input.data);
+}
+
+// Unit Cast for Unit Ampere
+template <>
+constexpr auto UnitCast(Ampere input) -> ElectrCurrent {
+  return ElectrCurrent(input.data);
+}
+
+// Unit Cast for Unit Kelvin
+template <>
+constexpr auto UnitCast(Temperature input) -> Kelvin {
+  return Temperature(input.data);
+}
+
+// Unit Cast for Unit Kelvin
+template <>
+constexpr auto UnitCast(Kelvin input) -> Temperature {
+  return Temperature(input.data);
+}
+
+// Unit Cast for Unit Mole
+template <>
+constexpr auto UnitCast(Amount input) -> Mole {
+  return Mole(input.data);
+}
+
+// Unit Cast for Unit Mole
+template <>
+constexpr auto UnitCast(Mole input) -> Amount {
+  return Amount(input.data);
+}
+
+// Unit Cast for Unit Candela
+template <>
+constexpr auto UnitCast(Luminosity input) -> Candela {
+  return Candela(input.data);
+}
+
+// Unit Cast for Unit Ampere
+template <>
+constexpr auto UnitCast(Candela input) -> Luminosity {
+  return Luminosity(input.data);
 }
 
 // String Literal Operators
