@@ -17,23 +17,31 @@ constexpr auto CHECK_DBL_EQ = [](auto lhs, auto rhs) {
   CHECK_EQ(lhs, doctest::Approx(rhs));
 };
 
-// constexpr auto test_sum = [](auto first, auto second, auto exp_default_sum,
-//                              auto exp_first_sum, auto exp_second_sum) {
-//   const auto default_sum_ans = first + second;
-//   const decltype(first) forced_first_ans = first + second;
-//   const decltype(second) forced_sec_ans = first + second;
+constexpr auto test_sum = [](auto first, auto second, auto base,
+                             auto exp_default_sum, auto exp_first_sum,
+                             auto exp_second_sum) {
+  const auto default_sum_ans = first + second;
+  const decltype(first) forced_first_ans = first + second;
+  const decltype(second) forced_sec_ans = first + second;
 
-//   const auto default_inv = second + first;
-//   const decltype(first) forced_first_inv = second + first;
-//   const decltype(second) forced_sec_inv = second + first;
+  const auto default_inv = second + first;
+  const decltype(first) forced_first_inv = second + first;
+  const decltype(second) forced_sec_inv = second + first;
 
-//   CHECK(default_sum_ans.data == doctest::Approx(exp_default_sum));
-//   CHECK(forced_first_ans.data == doctest::Approx(exp_first_sum));
-//   CHECK(forced_sec_ans.data == doctest::Approx(exp_second_sum));
-//   CHECK_TYPE(default_sum_ans, decltype(first)::SI);
-//   CHECK_TYPE(forced_first_ans, first);
-//   CHECK_TYPE(forced_sec_ans, second);
-// };
+  CHECK(default_sum_ans.data == doctest::Approx(exp_default_sum));
+  CHECK(forced_first_ans.data == doctest::Approx(exp_first_sum));
+  CHECK(forced_sec_ans.data == doctest::Approx(exp_second_sum));
+  CHECK_TYPE(default_sum_ans, base);
+  CHECK_TYPE(forced_first_ans, first);
+  CHECK_TYPE(forced_sec_ans, second);
+
+  CHECK(default_inv.data == doctest::Approx(exp_default_sum));
+  CHECK(forced_first_inv.data == doctest::Approx(exp_first_sum));
+  CHECK(forced_sec_inv.data == doctest::Approx(exp_second_sum));
+  CHECK_TYPE(default_inv, base);
+  CHECK_TYPE(forced_first_inv, first);
+  CHECK_TYPE(forced_sec_inv, second);
+};
 
 TEST_SUITE("Unit") {
   TEST_CASE("Size") {
@@ -60,7 +68,17 @@ TEST_SUITE("Unit") {
     // everything is working as expected
     SUBCASE("Length Tests") {
       SUBCASE("Length Additions") {
-        // test_sum(Length(6.0), Meter(3.0), 6.0, 6.0, 6.0);
+        test_sum(Length(6.3), Meter(3.5), Length(), 9.8, 9.8, 9.8);
+        test_sum(Length(6.3), CentiMeter(3.5), Length(), 6.335, 6.335, 633.5);
+        test_sum(Length(6.3), MilliMeter(3.5), Length(), 6.3035, 6.3035,
+                 6303.5);
+        test_sum(Length(6.3), KiloMeter(3.5), Length(), 3506.3, 3506.3, 3.5063);
+        test_sum(Length(6.3), Inch(2.3), Length(), 6.35842, 6.35842, 250.331);
+        test_sum(Length(14.6), Feet(32.5), Length(), 24.506, 24.506, 80.40026);
+        test_sum(Length(13.4), Yard(24.7), Length(), 35.98568, 35.98568,
+                 39.35442);
+        test_sum(Length(23.8), Miles(45.9), Length(), 73892.69, 73892.69,
+                 45.91478863);
       }
     }
   }

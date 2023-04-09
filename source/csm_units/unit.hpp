@@ -41,6 +41,9 @@ using Accel = UnitBase<Exponents<1, 0, -2, 0, 0, 0, 0>, double>;
 // SI Units
 using Meter = Unit<Length, "m", double>;
 using SqMeter = Unit<Length, "m2", double>;
+using CentiMeter = Unit<Length, "cm", double>;
+using MilliMeter = Unit<Length, "mm", double>;
+using KiloMeter = Unit<Length, "km", double>;
 using Gram = Unit<Mass, "g", double>;
 using Kilogram = Unit<Mass, "kg", double>;
 using Second = Unit<Time, "s", double>;
@@ -56,6 +59,10 @@ using Psi = Unit<Pressure, "psi", double>;
 using Bar = Unit<Pressure, "bar", double>;
 using Atm = Unit<Pressure, "Atm", double>;
 using MPerS2 = Unit<Accel, "m/s2", double>;
+using Inch = Unit<Length, "in", double>;
+using Feet = Unit<Length, "ft", double>;
+using Yard = Unit<Length, "yd", double>;
+using Miles = Unit<Length, "miles", double>;
 
 // Unit Cast for Base g to Unit kg
 // Conversion Equation: 1000 g = 1 kg
@@ -71,40 +78,138 @@ constexpr auto UnitCast(Kilogram input) -> Mass {
   return Mass(input.data);
 }
 
+// Unit Cast for Base g to Unit g
 template <>
 constexpr auto UnitCast(Mass input) -> Gram {
   return Gram(input.data * 1000);
 }
 
-// Unit Cast for Unit kg to Base g
-// Conversion Equation: 1000 g = 1 kg
+// Unit Cast for Unit g to Base g
 template <>
 constexpr auto UnitCast(Gram input) -> Mass {
   return Mass(input.data / 1000);
 }
 
-template <>
-constexpr auto UnitCast(Time input) -> Second {
-  return Second(input.data);
-}
-
-// Unit Cast for Unit kg to Base g
-// Conversion Equation: 1000 g = 1 kg
+// Unit Cast for Unit s to Base s
 template <>
 constexpr auto UnitCast(Second input) -> Time {
   return Time(input.data);
 }
 
+// Unit Cast for Base s to Unit s
+template <>
+constexpr auto UnitCast(Time input) -> Second {
+  return Second(input.data);
+}
+
+// Unit cast for Base m to Unit m
 template <>
 constexpr auto UnitCast(Length input) -> Meter {
   return Meter(input.data);
 }
 
-// Unit Cast for Unit kg to Base g
-// Conversion Equation: 1000 g = 1 kg
+// Unit Cast for Unit m to Base m
 template <>
 constexpr auto UnitCast(Meter input) -> Length {
   return Length(input.data);
+}
+
+// Unit cast for Base m to Unit cm
+// Conversion Equation: 1 m = 100 cm
+template <>
+constexpr auto UnitCast(Length input) -> CentiMeter {
+  return CentiMeter(input.data * 100);
+}
+
+// Unit Cast for Unit cm to Base m
+// Conversion Equation: 1 m = 100 cm
+template <>
+constexpr auto UnitCast(CentiMeter input) -> Length {
+  return Length(input.data / 100);
+}
+
+// Unit cast for Base m to Unit mm
+// Conversion Equation: 1 m = 1000 mm
+template <>
+constexpr auto UnitCast(Length input) -> MilliMeter {
+  return MilliMeter(input.data * 1000);
+}
+
+// Unit Cast for Unit mm to Base m
+// Conversion Equation: 1 m = 1000 mm
+template <>
+constexpr auto UnitCast(MilliMeter input) -> Length {
+  return Length(input.data / 1000);
+}
+
+// Unit cast for Base m to Unit km
+// Conversion Equation: 1000 m = 1 km
+template <>
+constexpr auto UnitCast(Length input) -> KiloMeter {
+  return KiloMeter(input.data / 1000);
+}
+
+// Unit Cast for Unit km to Base m
+// Conversion Equation: 1000 m = 1 km
+template <>
+constexpr auto UnitCast(KiloMeter input) -> Length {
+  return Length(input.data * 1000);
+}
+
+// Unit Cast for Base m to Unit in
+// Conversion Equation: 1 m = 39.3701 in
+template <>
+constexpr auto UnitCast(Length input) -> Inch {
+  return Inch(input.data * 39.3701);
+}
+
+// Unit Cast for Unit in to Base m
+// Conversion Equation: 1 m = 39.3701 in
+template <>
+constexpr auto UnitCast(Inch input) -> Length {
+  return Length(input.data / 39.3701);
+}
+
+// Unit Cast for Base m to Unit ft
+// Conversion Equation: 1 m = 3.28084 ft
+template <>
+constexpr auto UnitCast(Length input) -> Feet {
+  return Feet(input.data * 3.28084);
+}
+
+// Unit Cast for Unit ft to Base m
+// Conversion Equation: 1 m = 3.28084 ft
+template <>
+constexpr auto UnitCast(Feet input) -> Length {
+  return Length(input.data / 3.28084);
+}
+
+// Unit Cast for Base m to Unit yard
+// Conversion Equation: 1 m = 1.09361 yard
+template <>
+constexpr auto UnitCast(Length input) -> Yard {
+  return Yard(input.data * 1.09361);
+}
+
+// Unit Cast for Unit yard to Base m
+// Conversion Equation: 1 m = 1.09361 yard
+template <>
+constexpr auto UnitCast(Yard input) -> Length {
+  return Length(input.data / 1.09361);
+}
+
+// Unit Cast for Base m to Unit miles
+// Conversion Equation: 1609.34 m = 1 miles
+template <>
+constexpr auto UnitCast(Length input) -> Miles {
+  return Miles(input.data / 1609.34);
+}
+
+// Unit Cast for Unit miles to Base m
+// Conversion Equation: 1609.34 m = 1 miles
+template <>
+constexpr auto UnitCast(Miles input) -> Length {
+  return Length(input.data * 1609.34);
 }
 
 // Unit Cast for Base Pascals to Unit Pascals
