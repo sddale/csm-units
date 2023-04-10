@@ -1,5 +1,7 @@
 #pragma once
 
+#include <__concepts/same_as.h>
+
 #include <concepts>
 #include <cstdint>
 #include <ratio>
