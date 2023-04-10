@@ -338,7 +338,7 @@ constexpr auto UnitCast(Ampere input) -> ElectrCurrent {
 // base A -> Unit mA
 template <>
 constexpr auto UnitCast(ElectrCurrent input) -> Milliampere {
-  return ElectrCurrent(input.data * 1000);
+  return Milliampere(input.data * 1000);
 }
 
 // Unit mA -> Base A
