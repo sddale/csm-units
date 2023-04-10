@@ -362,6 +362,8 @@ TEST_SUITE("Unit") {
             3.0_m * 2.0_kg / (2.0_s * 2.0_s * 3.0_m * 3.0_m);
         CHECK_DBL_EQ(pres_lit.data, 0.166667);
       }
+
+      // TODO: Density illustrative example
     }
   }
 }
