@@ -37,7 +37,9 @@ class UnitBase {
   //     : data(UnitCast<UnitBase>(convert).data) {}
 
   constexpr auto operator<=>(const UnitBase& other) const
-      -> std::strong_ordering = default;
+      -> std::strong_ordering {
+    return data <=> other.data;
+  }
 
   template <UnitType U>
   friend constexpr auto operator<=>(const UnitBase& lhs, const U& rhs) -> bool {

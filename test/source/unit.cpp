@@ -70,9 +70,9 @@ constexpr auto test_sum = [](auto first, auto second, auto base,
       CHECK_TYPE(forced_first_ans, first);
       CHECK_TYPE(forced_sec_ans, second);
 
-      CHECK(default_inv.data == doctest::Approx(exp_default_diff));
-      CHECK(forced_first_inv.data == doctest::Approx(exp_first_diff));
-      CHECK(forced_sec_inv.data == doctest::Approx(exp_second_diff));
+      CHECK(default_inv.data == doctest::Approx(-exp_default_diff));
+      CHECK(forced_first_inv.data == doctest::Approx(-exp_first_diff));
+      CHECK(forced_sec_inv.data == doctest::Approx(-exp_second_diff));
       CHECK_TYPE(default_inv, base);
       CHECK_TYPE(forced_first_inv, first);
       CHECK_TYPE(forced_sec_inv, second);
@@ -209,10 +209,10 @@ TEST_SUITE("Unit") {
         // and similar ideas
       }
       SUBCASE("Electric Current Subtractions") {
-        // test_diff(ElectrCurrent(7.2), Ampere(3.4), ElectrCurrent(), 3.8, 3.8,
-        //           3.8);
-        // test_diff(ElectrCurrent(14.8), Milliampere(5421.44), ElectrCurrent(),
-        //           9.37856, 9.37856, 9378.56);
+        test_diff(ElectrCurrent(7.2), Ampere(3.4), ElectrCurrent(), 3.8, 3.8,
+                  3.8);
+        test_diff(ElectrCurrent(14.8), Milliampere(5421.44), ElectrCurrent(),
+                  9.37856, 9.37856, 9378.56);
       }
     }
     SUBCASE("Temperature Tests") {}
