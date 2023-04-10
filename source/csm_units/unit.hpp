@@ -21,6 +21,7 @@ class Unit {
       : data(UnitCast<Unit>(UnitCast<SI>(new_unit)).data) {}
 
   Data data;
+  const double K_CONSTANT = 273.15;
 };
 
 // Base Dimensions
@@ -44,12 +45,23 @@ using SqMeter = Unit<Length, "m2", double>;
 using CentiMeter = Unit<Length, "cm", double>;
 using MilliMeter = Unit<Length, "mm", double>;
 using KiloMeter = Unit<Length, "km", double>;
+
 using Gram = Unit<Mass, "g", double>;
 using Kilogram = Unit<Mass, "kg", double>;
+
 using Second = Unit<Time, "s", double>;
+
 using Ampere = Unit<ElectrCurrent, "A", double>;
+using Coulomb = Unit<ElectrCurrent, "C", double>;
+using Milliampere = Unit<ElectrCurrent, "mA", double>;
+
 using Kelvin = Unit<Temperature, "K", double>;
+using Fahrenheit = Unit<Temperature, "F", double>;
+using Celsius = Unit<Temperature, "C", double>;
+
 using Mole = Unit<Amount, "mol", double>;
+using Kilomole = Unit<Amount, "kmol", double>;
+
 using Candela = Unit<Luminosity, "cd", double>;
 using Pascal = Unit<Pressure, "Pa", double>;
 using Newton = Unit<Force, "N", double>;
@@ -324,6 +336,30 @@ constexpr auto UnitCast(Temperature input) -> Kelvin {
 template <>
 constexpr auto UnitCast(Kelvin input) -> Temperature {
   return Temperature(input.data);
+}
+
+// Unit Cast for Base K to Unit F
+template <>
+constexpr auto UnitCast(Temperature input) -> Fahrenheit {
+  return Temperature((input.data - 273.15) * 1.8 + 32);
+}
+
+// Unit Cast for Unit F to Base K
+template <>
+constexpr auto UnitCast(Fahrenheit input) -> Temperature {
+  return Temperature((input.data - 32) * 5 / 9 + 273.15);
+}
+
+// Base K -> Unit C
+template <>
+constexpr auto UnitCast(Temperature input) -> Celsius {
+  return Temperature(input.data - 273.15);
+}
+
+// Unit C -> Base K
+template <>
+constexpr auto UnitCast(Celsius input) -> Temperature {
+  return Temperature(input.data + 273.15);
 }
 
 // Unit Cast for Unit Mole
