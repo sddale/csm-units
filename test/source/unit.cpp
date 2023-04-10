@@ -52,40 +52,40 @@ constexpr auto test_sum = [](auto first, auto second, auto base,
   CHECK(test_second.data == doctest::Approx(forced_sec_inv.data));
 };
 
-[[maybe_unused]] constexpr auto test_diff =
-    [](auto first, auto second, auto base, auto exp_default_diff,
-       auto exp_first_diff, auto exp_second_diff) {
-      const auto default_diff_ans = first - second;
-      const decltype(first) forced_first_ans = first - second;
-      const decltype(second) forced_sec_ans = first - second;
+constexpr auto test_diff = [](auto first, auto second, auto base,
+                              auto exp_default_diff, auto exp_first_diff,
+                              auto exp_second_diff) {
+  const auto default_diff_ans = first - second;
+  const decltype(first) forced_first_ans = first - second;
+  const decltype(second) forced_sec_ans = first - second;
 
-      const auto default_inv = second - first;
-      const decltype(first) forced_first_inv = second - first;
-      const decltype(second) forced_sec_inv = second - first;
+  const auto default_inv = second - first;
+  const decltype(first) forced_first_inv = second - first;
+  const decltype(second) forced_sec_inv = second - first;
 
-      CHECK(default_diff_ans.data == doctest::Approx(exp_default_diff));
-      CHECK(forced_first_ans.data == doctest::Approx(exp_first_diff));
-      CHECK(forced_sec_ans.data == doctest::Approx(exp_second_diff));
-      CHECK_TYPE(default_diff_ans, base);
-      CHECK_TYPE(forced_first_ans, first);
-      CHECK_TYPE(forced_sec_ans, second);
+  CHECK(default_diff_ans.data == doctest::Approx(exp_default_diff));
+  CHECK(forced_first_ans.data == doctest::Approx(exp_first_diff));
+  CHECK(forced_sec_ans.data == doctest::Approx(exp_second_diff));
+  CHECK_TYPE(default_diff_ans, base);
+  CHECK_TYPE(forced_first_ans, first);
+  CHECK_TYPE(forced_sec_ans, second);
 
-      CHECK(default_inv.data == doctest::Approx(-exp_default_diff));
-      CHECK(forced_first_inv.data == doctest::Approx(-exp_first_diff));
-      CHECK(forced_sec_inv.data == doctest::Approx(-exp_second_diff));
-      CHECK_TYPE(default_inv, base);
-      CHECK_TYPE(forced_first_inv, first);
-      CHECK_TYPE(forced_sec_inv, second);
+  CHECK(default_inv.data == doctest::Approx(-exp_default_diff));
+  CHECK(forced_first_inv.data == doctest::Approx(-exp_first_diff));
+  CHECK(forced_sec_inv.data == doctest::Approx(-exp_second_diff));
+  CHECK_TYPE(default_inv, base);
+  CHECK_TYPE(forced_first_inv, first);
+  CHECK_TYPE(forced_sec_inv, second);
 
-      decltype(first) test_first = first;
-      decltype(second) test_second = second;
+  decltype(first) test_first = first;
+  decltype(second) test_second = second;
 
-      test_first -= second;
-      test_second -= first;
+  test_first -= second;
+  test_second -= first;
 
-      CHECK(test_first.data == doctest::Approx(forced_first_ans.data));
-      CHECK(test_second.data == doctest::Approx(forced_sec_inv.data));
-    };
+  CHECK(test_first.data == doctest::Approx(forced_first_ans.data));
+  CHECK(test_second.data == doctest::Approx(forced_sec_inv.data));
+};
 
 TEST_SUITE("Unit") {
   TEST_CASE("Size") {
