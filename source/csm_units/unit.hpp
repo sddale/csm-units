@@ -326,6 +326,29 @@ constexpr auto UnitCast(Ampere input) -> ElectrCurrent {
   return ElectrCurrent(input.data);
 }
 
+// base A -> Unit mA
+template <>
+constexpr auto UnitCast(ElectrCurrent input) -> Milliampere {
+  return ElectrCurrent(input.data * 1000);
+}
+
+// Unit mA -> Base A
+template <>
+constexpr auto UnitCast(Milliampere input) -> ElectrCurrent {
+  return ElectrCurrent(input.data / 1000);
+}
+
+// // idea to casting to and from Coulombs - have to add/change template
+// template<>
+// constexpr auto UnitCast(ElectrCurrent input, Time seconds) -> Coulomb {
+//   return ElectrCurrent(input.data * seconds);
+// }
+
+// template <>
+// constexpr auto UnitCast(Coulomb input, Time seconds) -> ElectrCurrent {
+//   return ElectrCurrent(input.data / seconds);
+// }
+
 // Unit Cast for Unit Kelvin
 template <>
 constexpr auto UnitCast(Temperature input) -> Kelvin {
@@ -362,7 +385,7 @@ constexpr auto UnitCast(Celsius input) -> Temperature {
   return Temperature(input.data + 273.15);
 }
 
-// Unit Cast for Unit Mole
+// Unit Cast for Unit Mol
 template <>
 constexpr auto UnitCast(Amount input) -> Mole {
   return Mole(input.data);
@@ -372,6 +395,18 @@ constexpr auto UnitCast(Amount input) -> Mole {
 template <>
 constexpr auto UnitCast(Mole input) -> Amount {
   return Amount(input.data);
+}
+
+// Base Mole -> Kilomole unit
+template <>
+constexpr auto UnitCast(Amount input) -> Kilomole {
+  return Amount(input.data / 1000);
+}
+
+// unit kmol -> Base Mol
+template <>
+constexpr auto UnitCast(Kilomole input) -> Amount {
+  return Amount(input.data * 1000);
 }
 
 // Unit Cast for Unit Candela
