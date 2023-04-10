@@ -52,40 +52,40 @@ constexpr auto test_sum = [](auto first, auto second, auto base,
   CHECK(test_second.data == doctest::Approx(forced_sec_inv.data));
 };
 
-// constexpr auto test_diff = [](auto first, auto second, auto base,
-//                               auto exp_default_diff, auto exp_first_diff,
-//                               auto exp_second_diff) {
-//   const auto default_diff_ans = first - second;
-//   const decltype(first) forced_first_ans = first - second;
-//   const decltype(second) forced_sec_ans = first - second;
+constexpr auto test_diff = [](auto first, auto second, auto base,
+                              auto exp_default_diff, auto exp_first_diff,
+                              auto exp_second_diff) {
+  const auto default_diff_ans = first - second;
+  const decltype(first) forced_first_ans = first - second;
+  const decltype(second) forced_sec_ans = first - second;
 
-//   const auto default_inv = second - first;
-//   const decltype(first) forced_first_inv = second - first;
-//   const decltype(second) forced_sec_inv = second - first;
+  const auto default_inv = second - first;
+  const decltype(first) forced_first_inv = second - first;
+  const decltype(second) forced_sec_inv = second - first;
 
-//   CHECK(default_diff_ans.data == doctest::Approx(exp_default_diff));
-//   CHECK(forced_first_ans.data == doctest::Approx(exp_first_diff));
-//   CHECK(forced_sec_ans.data == doctest::Approx(exp_second_diff));
-//   CHECK_TYPE(default_diff_ans, base);
-//   CHECK_TYPE(forced_first_ans, first);
-//   CHECK_TYPE(forced_sec_ans, second);
+  CHECK(default_diff_ans.data == doctest::Approx(exp_default_diff));
+  CHECK(forced_first_ans.data == doctest::Approx(exp_first_diff));
+  CHECK(forced_sec_ans.data == doctest::Approx(exp_second_diff));
+  CHECK_TYPE(default_diff_ans, base);
+  CHECK_TYPE(forced_first_ans, first);
+  CHECK_TYPE(forced_sec_ans, second);
 
-//   CHECK(default_inv.data == doctest::Approx(exp_default_diff));
-//   CHECK(forced_first_inv.data == doctest::Approx(exp_first_diff));
-//   CHECK(forced_sec_inv.data == doctest::Approx(exp_second_diff));
-//   CHECK_TYPE(default_inv, base);
-//   CHECK_TYPE(forced_first_inv, first);
-//   CHECK_TYPE(forced_sec_inv, second);
+  CHECK(default_inv.data == doctest::Approx(exp_default_diff));
+  CHECK(forced_first_inv.data == doctest::Approx(exp_first_diff));
+  CHECK(forced_sec_inv.data == doctest::Approx(exp_second_diff));
+  CHECK_TYPE(default_inv, base);
+  CHECK_TYPE(forced_first_inv, first);
+  CHECK_TYPE(forced_sec_inv, second);
 
-//   decltype(first) test_first = first;
-//   decltype(second) test_second = second;
+  decltype(first) test_first = first;
+  decltype(second) test_second = second;
 
-//   test_first -= second;
-//   test_second -= first;
+  test_first -= second;
+  test_second -= first;
 
-//   CHECK(test_first.data == doctest::Approx(forced_first_ans.data));
-//   CHECK(test_second.data == doctest::Approx(forced_sec_inv.data));
-// };
+  CHECK(test_first.data == doctest::Approx(forced_first_ans.data));
+  CHECK(test_second.data == doctest::Approx(forced_sec_inv.data));
+};
 
 TEST_SUITE("Unit") {
   TEST_CASE("Size") {
@@ -111,20 +111,92 @@ TEST_SUITE("Unit") {
     // Below is the start of in depth tests on different bases to make sure
     // everything is working as expected
     SUBCASE("Length Tests") {
-      SUBCASE("Length Additions") {
-        test_sum(Length(6.3), Meter(3.5), Length(), 9.8, 9.8, 9.8);
-        test_sum(Length(6.3), CentiMeter(3.5), Length(), 6.335, 6.335, 633.5);
-        test_sum(Length(6.3), MilliMeter(3.5), Length(), 6.3035, 6.3035,
-                 6303.5);
-        test_sum(Length(6.3), KiloMeter(3.5), Length(), 3506.3, 3506.3, 3.5063);
-        test_sum(Length(6.3), Inch(2.3), Length(), 6.35842, 6.35842, 250.331);
-        test_sum(Length(14.6), Feet(32.5), Length(), 24.506, 24.506, 80.40026);
-        test_sum(Length(13.4), Yard(24.7), Length(), 35.98568, 35.98568,
-                 39.35442);
-        test_sum(Length(23.8), Miles(45.9), Length(), 73892.69, 73892.69,
-                 45.91478863);
+      SUBCASE("Base Length Tests") {
+        SUBCASE("Addition Tests") {
+          test_sum(Length(34.7), Length(13.6), Length(), 48.3, 48.3, 48.3);
+          test_sum(Length(6.3), Meter(3.5), Length(), 9.8, 9.8, 9.8);
+          test_sum(Length(6.3), CentiMeter(3.5), Length(), 6.335, 6.335, 633.5);
+          test_sum(Length(6.3), MilliMeter(3.5), Length(), 6.3035, 6.3035,
+                   6303.5);
+          test_sum(Length(6.3), KiloMeter(3.5), Length(), 3506.3, 3506.3,
+                   3.5063);
+          test_sum(Length(6.3), Inch(2.3), Length(), 6.35842, 6.35842, 250.331);
+          test_sum(Length(14.6), Feet(32.5), Length(), 24.506, 24.506,
+                   80.40026);
+          test_sum(Length(13.4), Yard(24.7), Length(), 35.98568, 35.98568,
+                   39.35442);
+          test_sum(Length(23.8), Miles(45.9), Length(), 73892.69, 73892.69,
+                   45.91478863);
+        }
       }
-    }
+
+      SUBCASE("Unit Meter Tests") {
+        SUBCASE("Addition Tests") {
+          test_sum(Meter(23.8), Meter(13.2), Length(), 37.0, 37.0, 37.0);
+          test_sum(Meter(6.3), CentiMeter(3.5), Length(), 6.335, 6.335, 633.5);
+          test_sum(Meter(6.3), MilliMeter(3.5), Length(), 6.3035, 6.3035,
+                   6303.5);
+          test_sum(Meter(6.3), KiloMeter(3.5), Length(), 3506.3, 3506.3,
+                   3.5063);
+          test_sum(Meter(6.3), Inch(2.3), Length(), 6.35842, 6.35842, 250.331);
+          test_sum(Meter(14.6), Feet(32.5), Length(), 24.506, 24.506, 80.40026);
+          test_sum(Meter(13.4), Yard(24.7), Length(), 35.98568, 35.98568,
+                   39.35442);
+          test_sum(Meter(23.8), Miles(45.9), Length(), 73892.69, 73892.69,
+                   45.91478863);
+        }
+      }
+
+      SUBCASE("Unit cm Tests") {
+        SUBCASE("Addition Tests") {
+          test_sum(CentiMeter(23.8), CentiMeter(13.2), Length(), 0.37, 37.0,
+                   37.0);
+          test_sum(CentiMeter(6.3), MilliMeter(3.5), Length(), 0.0665, 6.65,
+                   66.5);
+          test_sum(CentiMeter(6.3), KiloMeter(3.5), Length(), 3500.063,
+                   350006.3, 3.500063);
+          test_sum(CentiMeter(6.3), Inch(2.3), Length(), 0.1214202769,
+                   12.14202769, 4.7803163);
+          test_sum(CentiMeter(14.6), Feet(32.5), Length(), 10.052, 1005.2,
+                   32.97900262);
+          test_sum(CentiMeter(13.4), Yard(24.7), Length(), 22.71968, 2271.968,
+                   24.846544182);
+          test_sum(CentiMeter(23.8), Miles(45.9), Length(), 73869.128,
+                   7386912.8, 45.9001481349);
+        }
+      }
+
+      SUBCASE("Unit mm Tests") {
+        SUBCASE("Addition Tests") {
+          test_sum(MilliMeter(23.8), MilliMeter(13.2), Length(), 0.037, 37.0,
+                   37.0);
+          test_sum(MilliMeter(6.3), KiloMeter(3.5), Length(), 3500.0035,
+                   3500003.5, 3.5000035);
+          test_sum(MilliMeter(6.3), Inch(2.3), Length(), 0.06472, 64.72,
+                   2.5480315);
+          test_sum(MilliMeter(14.6), Feet(32.5), Length(), 9.9206, 9920.6,
+                   32.5479003);
+          test_sum(MilliMeter(13.4), Yard(24.7), Length(), 22.59908, 22599.08,
+                   24.714654418);
+          test_sum(MilliMeter(23.8), Miles(45.9), Length(), 73869.0238,
+                   73869023.8, 45.90008338801);
+        }
+      }
+      SUBCASE("Unit km Tests") {
+        SUBCASE("Addition Tests") {
+          test_sum(KiloMeter(23.8), KiloMeter(13.2), Length(), 37000.0, 37.0,
+                   37.0);
+          // test_sum(KiloMeter(6.3), Inch(2.3), Length(), 0.06472, 64.72,
+          //          2.5480315);
+          // test_sum(KiloMeter(14.6), Feet(32.5), Length(), 9.9206, 9920.6,
+          //          32.5479003);
+          // test_sum(KiloMeter(13.4), Yard(24.7), Length(), 22.59908, 22599.08,
+          //          24.714654418);
+          // test_sum(KiloMeter(23.8), Miles(45.9), Length(), 73869.0238,
+          //          73869023.8, 45.90008338801);
+        }
+      }
+    }  // namespace csm_units::test
     SUBCASE("Mass Tests") {}
     SUBCASE("Time Tests") {}
     SUBCASE("Electric Current Tests") {

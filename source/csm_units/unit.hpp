@@ -21,7 +21,6 @@ class Unit {
       : data(UnitCast<Unit>(UnitCast<SI>(new_unit)).data) {}
 
   Data data;
-  // const double K_CONSTANT = 273.15;
 
   constexpr auto operator+=(const Base& rhs) noexcept -> auto& {
     data += UnitCast<Unit>(rhs).data;
