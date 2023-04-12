@@ -50,6 +50,7 @@ using Area = UnitBase<Exponents<2, 0, 0, 0, 0, 0, 0>, double>;
 using Volume = UnitBase<Exponents<3, 0, 0, 0, 0, 0, 0>, double>;
 using Accel = UnitBase<Exponents<1, 0, -2, 0, 0, 0, 0>, double>;
 using Density = UnitBase<Exponents<-3, 1, 0, 0, 0, 0, 0>, double>;
+using SqrElectrCurrent = UnitBase<Exponents<0, 0, 0, 2, 0, 0, 0>, double>;
 
 // SI Units
 using Meter = Unit<Length, "m", double>;
@@ -68,6 +69,8 @@ using Second = Unit<Time, "s", double>;
 using Ampere = Unit<ElectrCurrent, "A", double>;
 using Coulomb = Unit<ElectrCurrent, "C", double>;
 using Milliampere = Unit<ElectrCurrent, "mA", double>;
+using SqrAmpere = Unit<SqrElectrCurrent, "A2", double>;
+using SqrMilliamp = Unit<SqrElectrCurrent, "mA2", double>;
 
 using Kelvin = Unit<Temperature, "K", double>;
 using Fahrenheit = Unit<Temperature, "F", double>;
@@ -402,6 +405,16 @@ constexpr auto UnitCast(ElectrCurrent input) -> Milliampere {
 template <>
 constexpr auto UnitCast(Milliampere input) -> ElectrCurrent {
   return ElectrCurrent(input.data / 1000);
+}
+
+template <>
+constexpr auto UnitCast(SqrElectrCurrent input) -> SqrAmpere {
+  return SqrAmpere(input.data);
+}
+
+template <> 
+constexpr auto UnitCast(SqrAmpere input) -> SqrElectrCurrent {
+  return SqrElectrCurrent(input.data);
 }
 
 // // idea to casting to and from Coulombs - have to add/change template

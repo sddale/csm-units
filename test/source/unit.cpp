@@ -334,6 +334,12 @@ TEST_SUITE("Unit") {
         test_diff(ElectrCurrent(14.8), Milliampere(5421.44), ElectrCurrent(),
                   9.37856, 9.37856, 9378.56);
       }
+      SUBCASE("Electric Current Multiplications") {
+        test_mult(ElectrCurrent(8.7), Ampere(5.3), SqrElectrCurrent(),
+                  SqrAmpere(), 46.11, 46.11);
+        // test_mult(ElectrCurrent(8.7), Milliampere(5.3), SqrElectrCurrent(),
+        //           SqrMilliamp(), 46.11, 4611);
+      }
     }
     SUBCASE("Temperature Tests") {}
     SUBCASE("Amount Tests") {}
