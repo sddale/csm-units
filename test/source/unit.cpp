@@ -186,14 +186,49 @@ TEST_SUITE("Unit") {
         SUBCASE("Addition Tests") {
           test_sum(KiloMeter(23.8), KiloMeter(13.2), Length(), 37000.0, 37.0,
                    37.0);
-          // test_sum(KiloMeter(6.3), Inch(2.3), Length(), 0.06472, 64.72,
-          //          2.5480315);
-          // test_sum(KiloMeter(14.6), Feet(32.5), Length(), 9.9206, 9920.6,
-          //          32.5479003);
-          // test_sum(KiloMeter(13.4), Yard(24.7), Length(), 22.59908, 22599.08,
-          //          24.714654418);
-          // test_sum(KiloMeter(23.8), Miles(45.9), Length(), 73869.0238,
-          //          73869023.8, 45.90008338801);
+          test_sum(KiloMeter(6.3), Inch(2.3), Length(), 6300.05842, 6.30005842,
+                   248033.796063);
+          test_sum(KiloMeter(14.6), Feet(32.5), Length(), 14609.906, 14.609906,
+                   47932.7624672);
+          test_sum(KiloMeter(13.4), Yard(24.7), Length(), 13422.58568,
+                   13.42258568, 14679.118197725);
+          test_sum(KiloMeter(23.8), Miles(45.9), Length(), 97668.89, 97.66889,
+                   60.688634624);
+        }
+      }
+
+      SUBCASE("Unit Inch Tests") {
+        SUBCASE("Addition Tests") {
+          test_sum(Inch(23.8), Inch(13.2), Length(), 0.9398, 37.0, 37.0);
+          test_sum(Inch(14.6), Feet(32.5), Length(), 10.27684, 404.6,
+                   33.71666667);
+          test_sum(Inch(13.4), Yard(24.7), Length(), 22.92604, 902.6,
+                   25.072222);
+          test_sum(Inch(23.8), Miles(45.9), Length(), 73869.49412, 2908247.8,
+                   45.9003756313);
+        }
+      }
+
+      SUBCASE("Unit Feet Tests") {
+        SUBCASE("Addition Tests") {
+          test_sum(Feet(23.8), Feet(13.2), Length(), 11.2776, 37.0, 37.0);
+          test_sum(Feet(13.4), Yard(24.7), Length(), 26.67, 87.5, 29.16667);
+          test_sum(Feet(23.8), Miles(45.9), Length(), 73876.14384, 242375.8,
+                   45.904507576);
+        }
+      }
+
+      SUBCASE("Unit Yard Tests") {
+        SUBCASE("Addition Tests") {
+          test_sum(Yard(23.8), Yard(13.2), Length(), 33.8328, 37.0, 37.0);
+          test_sum(Yard(23.8), Miles(45.9), Length(), 73890.65232, 80807.8,
+                   45.91352273);
+        }
+      }
+
+      SUBCASE("Unit Miles Tests") {
+        SUBCASE("Addition Tests") {
+          test_sum(Miles(23.8), Miles(13.2), Length(), 59545.7, 37.0, 37.0);
         }
       }
     }  // namespace csm_units::test
