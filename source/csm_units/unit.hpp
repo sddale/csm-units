@@ -43,6 +43,7 @@ using Amount = UnitBase<Exponents<0, 0, 0, 0, 0, 1, 0>, double>;
 using Luminosity = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 1>, double>;
 
 // Derived Dimensions
+using InvLength = UnitBase<Exponents<-1, 0, 0, 0, 0, 0, 0>, double>;
 using Pressure = UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>;
 using Force = UnitBase<Exponents<1, 1, -2, 0, 0, 0, 0>, double>;
 using Area = UnitBase<Exponents<2, 0, 0, 0, 0, 0, 0>, double>;
@@ -57,6 +58,7 @@ using CubeMeter = Unit<Volume, "m3", double>;
 using CentiMeter = Unit<Length, "cm", double>;
 using MilliMeter = Unit<Length, "mm", double>;
 using KiloMeter = Unit<Length, "km", double>;
+using InvMeter = Unit<InvLength, "inv_m", double>;
 
 using Gram = Unit<Mass, "g", double>;
 using Kilogram = Unit<Mass, "kg", double>;
@@ -89,6 +91,7 @@ using Inch = Unit<Length, "in", double>;
 using Feet = Unit<Length, "ft", double>;
 using Yard = Unit<Length, "yd", double>;
 using Miles = Unit<Length, "miles", double>;
+using SqFt = Unit<Area, "ft2", double>;
 using Liter = Unit<Volume, "L", double>;
 
 // Unit Cast for Base g to Unit kg
@@ -239,6 +242,18 @@ constexpr auto UnitCast(Miles input) -> Length {
   return Length(input.data * 1609.34);
 }
 
+// Unit Cast for Base invlength to Unit invm
+template <>
+constexpr auto UnitCast(InvLength input) -> InvMeter {
+  return InvMeter(input.data);
+}
+
+// Unit Cast for Unit invm to Base invlength
+template <>
+constexpr auto UnitCast(InvMeter input) -> InvLength {
+  return InvLength(input.data);
+}
+
 // Unit Cast for Base Pascals to Unit Pascals
 // Conversion Equation: Pascals = Pascals
 template <>
@@ -315,6 +330,18 @@ constexpr auto UnitCast(Area input) -> SqMeter {
 template <>
 constexpr auto UnitCast(SqMeter input) -> Area {
   return Area(input.data);
+}
+
+// Unit Cast for Base area to ft2
+template <>
+constexpr auto UnitCast(Area input) -> SqFt {
+  return SqFt(input.data * 10.764);
+}
+
+// Unit Cast for Unit ft2 to base area
+template <>
+constexpr auto UnitCast(SqFt input) -> Area {
+  return Area(input.data / 10.764);
 }
 
 // Unit Cast for base m3
