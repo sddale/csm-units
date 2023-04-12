@@ -115,6 +115,35 @@ constexpr auto test_mult = [](auto first, auto second, auto default_ans_type,
   CHECK_TYPE(default_inv, default_ans_type);
 };
 
+[[maybe_unused]] constexpr auto test_div =
+    [](auto first, auto second, auto default_ans_type, auto forced_ans_type,
+       auto exp_default_ans, auto exp_forced_ans, auto exp_default_inv,
+       auto exp_forced_inv) {
+      const auto default_diff_ans = first * second;
+      const decltype(forced_ans_type) forced_ans = first * second;
+
+      const auto default_inv = second * first;
+      const decltype(forced_ans_type) forced_inv = second * first;
+
+      if constexpr (std::is_convertible_v<decltype(default_ans_type), double>) {
+        CHECK_DBL_EQ(default_diff_ans, exp_default_ans);
+        CHECK_DBL_EQ(forced_ans, exp_forced_ans);
+
+        CHECK_DBL_EQ(default_inv, exp_default_inv);
+        CHECK_DBL_EQ(forced_inv, exp_forced_inv);
+      } else {
+        CHECK_DBL_EQ(default_diff_ans.data, exp_default_ans);
+        CHECK_DBL_EQ(forced_ans.data, exp_forced_ans);
+
+        CHECK_DBL_EQ(default_inv.data, exp_default_inv);
+        CHECK_DBL_EQ(forced_inv.data, exp_forced_inv);
+      }
+
+      CHECK_TYPE(default_diff_ans, default_ans_type);
+
+      CHECK_TYPE(default_inv, default_ans_type);
+    };
+
 TEST_SUITE("Unit") {
   TEST_CASE("Size") {
     const auto test = Kilogram(14.0);
