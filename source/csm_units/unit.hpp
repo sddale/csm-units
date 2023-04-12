@@ -50,6 +50,7 @@ using Area = UnitBase<Exponents<2, 0, 0, 0, 0, 0, 0>, double>;
 using Volume = UnitBase<Exponents<3, 0, 0, 0, 0, 0, 0>, double>;
 using Accel = UnitBase<Exponents<1, 0, -2, 0, 0, 0, 0>, double>;
 using Density = UnitBase<Exponents<-3, 1, 0, 0, 0, 0, 0>, double>;
+using Energy = UnitBase<Exponents<2, 1, -2, 0, 0, 0, 0>, double>;
 using SqrElectrCurrent = UnitBase<Exponents<0, 0, 0, 2, 0, 0, 0>, double>;
 
 // SI Units
@@ -82,6 +83,9 @@ using Kilomole = Unit<Amount, "kmol", double>;
 using Candela = Unit<Luminosity, "cd", double>;
 using Pascal = Unit<Pressure, "Pa", double>;
 using Newton = Unit<Force, "N", double>;
+
+using Newton = Unit<Force, "N", double>;
+using Joule = Unit<Energy, "J", double>;
 
 // Other Units
 using Psi = Unit<Pressure, "psi", double>;

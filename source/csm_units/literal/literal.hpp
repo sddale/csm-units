@@ -27,7 +27,11 @@ class Literal {
 };
 
 constexpr auto m = Literal<Exponents<1, 0, 0, 0, 0, 0, 0>>();
+constexpr auto m3 = Literal<Exponents<3, 0, 0, 0, 0, 0, 0>>();
 constexpr auto s = Literal<Exponents<0, 0, 1, 0, 0, 0, 0>>();
+constexpr auto mol = Literal<Exponents<0, 0, 0, 0, 0, 1, 0>>();
+constexpr auto J = Literal<Exponents<2, 1, -2, 0, 0, 0, 0>>();
+constexpr auto K = Literal<Exponents<0, 0, 0, 0, 1, 0, 0>>();
 constexpr auto mps = m / s;
 
 template <Literal L>

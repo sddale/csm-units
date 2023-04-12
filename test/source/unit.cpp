@@ -3,6 +3,7 @@
 #include <doctest/doctest.h>
 
 #include "source/csm_units/exponents.hpp"
+#include "source/csm_units/literal/literal.hpp"
 #include "source/csm_units/unitcast.hpp"
 
 namespace csm_units::test {
@@ -518,15 +519,42 @@ TEST_SUITE("Unit") {
     }
   }
 
+  // NOLINTBEGIN(readability-identifier-length)
   TEST_CASE("Polished Ideal Gas Law Test") {
-    SUBCASE("R - version 1") {
-      const auto n = Mole(13.0);
-      const auto r = UnitBase<Exponents<2, 1, -2, 0, -1, -1, 0>, double>(
-          8.3145);  // 8.3145 J/mol K
-      const auto t = Celsius(20.0);
-      const auto v = Liter(30.0);
+    using csm_units::literals::J;
+    using csm_units::literals::K;
+    using csm_units::literals::m3;
+    using csm_units::literals::mol;
+
+    constexpr auto IdealGasLaw = [](Temperature T, Volume V, Amount n, auto R) {
+      return n * R * T / V;
+    };
+
+    SUBCASE("R - Correct Units") {
+      const auto n = 13.0_mol;
+      const auto R = 8.31446 <<= J / mol / K;  // 8.3145 J/mol K
+      const auto T = 293.15_K;
+      const auto V = 30.0 <<= m3;
+
+      const Pascal P = IdealGasLaw(T, V, n, R);
+      CHECK_DBL_EQ(P.data, 1056.2);
+    }
+
+    SUBCASE("R - Correct Units") {
+      const auto n = 13.0_mol;
+      const auto R =
+          Liter(0.083144626) * Bar(1) / Kelvin(1) / Mole(1);  // 8.3145 J/mol K
+      const auto T = 293.15_K;
+      const auto V = 30.0 <<= m3;
+
+      const Pascal P = IdealGasLaw(T, V, n, R);
+      CHECK_DBL_EQ(P.data, 1056.2);
+
+      const Psi P2 = IdealGasLaw(T, V, n, R);
+      CHECK_DBL_EQ(P2.data, 0.153188859);
     }
   }
+  // NOLINTEND(readability-identifier-length)
 }
 //   TEST_CASE("Idea Test") {
 //     const auto foo1 = Foo1(3.0);
