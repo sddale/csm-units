@@ -46,11 +46,14 @@ using Luminosity = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 1>, double>;
 using Pressure = UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>;
 using Force = UnitBase<Exponents<1, 1, -2, 0, 0, 0, 0>, double>;
 using Area = UnitBase<Exponents<2, 0, 0, 0, 0, 0, 0>, double>;
+using Volume = UnitBase<Exponents<3, 0, 0, 0, 0, 0, 0>, double>;
 using Accel = UnitBase<Exponents<1, 0, -2, 0, 0, 0, 0>, double>;
+using Density = UnitBase<Exponents<-3, 1, 0, 0, 0, 0, 0>, double>;
 
 // SI Units
 using Meter = Unit<Length, "m", double>;
-using SqMeter = Unit<Length, "m2", double>;
+using SqMeter = Unit<Area, "m2", double>;
+using CubeMeter = Unit<Volume, "m3", double>;
 using CentiMeter = Unit<Length, "cm", double>;
 using MilliMeter = Unit<Length, "mm", double>;
 using KiloMeter = Unit<Length, "km", double>;
@@ -80,10 +83,13 @@ using Psi = Unit<Pressure, "psi", double>;
 using Bar = Unit<Pressure, "bar", double>;
 using Atm = Unit<Pressure, "Atm", double>;
 using MPerS2 = Unit<Accel, "m/s2", double>;
+using KgPerM3 = Unit<Density, "kg/m3", double>;
+using KgPerL = Unit<Density, "kg/L", double>;
 using Inch = Unit<Length, "in", double>;
 using Feet = Unit<Length, "ft", double>;
 using Yard = Unit<Length, "yd", double>;
 using Miles = Unit<Length, "miles", double>;
+using Liter = Unit<Volume, "L", double>;
 
 // Unit Cast for Base g to Unit kg
 // Conversion Equation: 1000 g = 1 kg
@@ -305,10 +311,34 @@ constexpr auto UnitCast(Area input) -> SqMeter {
   return SqMeter(input.data);
 }
 
-// Unit Cast for Unit Newton
+// Unit Cast for Unit m2
 template <>
 constexpr auto UnitCast(SqMeter input) -> Area {
   return Area(input.data);
+}
+
+// Unit Cast for base m3
+template <>
+constexpr auto UnitCast(Volume input) -> CubeMeter {
+  return CubeMeter(input.data);
+}
+
+// Unit Cast for Unit m3
+template <>
+constexpr auto UnitCast(CubeMeter input) -> Volume {
+  return Volume(input.data);
+}
+
+// Unit Cast for base
+template <>
+constexpr auto UnitCast(Volume input) -> Liter {
+  return Liter(input.data * 1000);
+}
+
+// Unit Cast for Unit Liter
+template <>
+constexpr auto UnitCast(Liter input) -> Volume {
+  return Volume(input.data / 1000);
 }
 
 // Unit Cast for Base mps2
@@ -424,10 +454,34 @@ constexpr auto UnitCast(Luminosity input) -> Candela {
   return Candela(input.data);
 }
 
-// Unit Cast for Unit Ampere
+// Unit Cast for Unit Candela
 template <>
 constexpr auto UnitCast(Candela input) -> Luminosity {
   return Luminosity(input.data);
+}
+
+// Unit Cast for Unit kg/m^3
+template <>
+constexpr auto UnitCast(Density input) -> KgPerM3 {
+  return KgPerM3(input.data);
+}
+
+// Unit Cast for Unit kg/m^3
+template <>
+constexpr auto UnitCast(KgPerM3 input) -> Density {
+  return Density(input.data);
+}
+
+// Unit Cast for Unit kg/L
+template <>
+constexpr auto UnitCast(Density input) -> KgPerL {
+  return KgPerL(input.data / 1000);
+}
+
+// Unit Cast for Unit kg/L
+template <>
+constexpr auto UnitCast(KgPerL input) -> Density {
+  return Density(input.data * 1000);
 }
 
 // String Literal Operators

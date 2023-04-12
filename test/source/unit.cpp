@@ -362,8 +362,32 @@ TEST_SUITE("Unit") {
             3.0_m * 2.0_kg / (2.0_s * 2.0_s * 3.0_m * 3.0_m);
         CHECK_DBL_EQ(pres_lit.data, 0.166667);
       }
+    }
+  }
 
-      // TODO: Density illustrative example
+  // TODO: Density illustrative example
+  TEST_CASE("Polished Test Case for Density") {
+    SUBCASE("Creating kg/m^3 from base units, KgPerL, and base density") {
+      const KgPerM3 test1 =
+          Kilogram(53.2) / Meter(3.0) / Meter(3.0) / Meter(3.0);
+
+      const KgPerM3 test2 = KgPerL(24.7);
+
+      const KgPerM3 test3 = Density(32.9);
+
+      CHECK(test1.data == doctest::Approx(1.97037037));
+      CHECK(test2.data == doctest::Approx(24700));
+      CHECK(test3.data == doctest::Approx(32.9));
+    }
+
+    SUBCASE("Creating kg/L from base units, KgPerM3, and base density") {
+      const KgPerL test1 = Kilogram(137.98) / Liter(4.7);
+      const KgPerL test2 = KgPerM3(345.2);
+      const KgPerL test3 = Density(32789.76);
+
+      CHECK(test1.data == doctest::Approx(29.35744681));
+      CHECK(test2.data == doctest::Approx(0.3452));
+      CHECK(test3.data == doctest::Approx(32.78976));
     }
   }
 }
