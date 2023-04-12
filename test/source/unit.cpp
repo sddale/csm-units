@@ -2,6 +2,7 @@
 
 #include <doctest/doctest.h>
 
+#include "source/csm_units/exponents.hpp"
 #include "source/csm_units/unitcast.hpp"
 
 namespace csm_units::test {
@@ -514,6 +515,16 @@ TEST_SUITE("Unit") {
       CHECK(test1.data == doctest::Approx(29.35744681));
       CHECK(test2.data == doctest::Approx(0.3452));
       CHECK(test3.data == doctest::Approx(32.78976));
+    }
+  }
+
+  TEST_CASE("Polished Ideal Gas Law Test") {
+    SUBCASE("R - version 1") {
+      const auto n = Mole(13.0);
+      const auto r = UnitBase<Exponents<2, 1, -2, 0, -1, -1, 0>, double>(
+          8.3145);  // 8.3145 J/mol K
+      const auto t = Celsius(20.0);
+      const auto v = Liter(30.0);
     }
   }
 }

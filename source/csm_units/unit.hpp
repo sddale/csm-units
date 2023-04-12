@@ -412,7 +412,7 @@ constexpr auto UnitCast(SqrElectrCurrent input) -> SqrAmpere {
   return SqrAmpere(input.data);
 }
 
-template <> 
+template <>
 constexpr auto UnitCast(SqrAmpere input) -> SqrElectrCurrent {
   return SqrElectrCurrent(input.data);
 }
