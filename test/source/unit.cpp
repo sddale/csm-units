@@ -327,8 +327,6 @@ TEST_SUITE("Unit") {
                  10.6);
         test_sum(ElectrCurrent(4.8), Milliampere(5421.44), ElectrCurrent(),
                  10.22144, 10.22144, 10221.44);
-        // what else? may need to fortify test_sum and test_diff to include +=
-        // and similar ideas
       }
       SUBCASE("Electric Current Subtractions") {
         test_diff(ElectrCurrent(7.2), Ampere(3.4), ElectrCurrent(), 3.8, 3.8,
@@ -339,11 +337,34 @@ TEST_SUITE("Unit") {
       SUBCASE("Electric Current Multiplications") {
         test_mult(ElectrCurrent(8.7), Ampere(5.3), SqrElectrCurrent(),
                   SqrAmpere(), 46.11, 46.11);
-        // test_mult(ElectrCurrent(8.7), Milliampere(5.3), SqrElectrCurrent(),
-        //           SqrMilliamp(), 46.11, 4611);
+        test_mult(ElectrCurrent(8.7), Milliampere(5300), SqrElectrCurrent(),
+                  SqrMilliamp(), 46.11, 46110000);
       }
+      SUBCASE("Electric Current Divisions") {}
     }
-    SUBCASE("Temperature Tests") {}
+    SUBCASE("Temperature Tests") {
+      SUBCASE("Temperature Additions") {
+        test_sum(Temperature(72.4), Kelvin(43.3), Temperature(), 115.7, 115.7,
+                 115.7);
+        test_sum(Temperature(348.9), Celsius(98.4), Temperature(), 447.3, 447.3,
+                 174.15);
+        test_sum(Temperature(239.6), Fahrenheit(108.4), Temperature(), 282.04,
+                 282.04, 109.33);
+        test_sum(Celsius(120.5), Fahrenheit(43.3), Temperature(), 399.93,
+                 126.78, 260.20);
+      }
+      SUBCASE("Temperature Subtractions") {
+        test_diff(Temperature(343.8), Kelvin(209.9), Temperature(), 133.9,
+                  133.9, 133.9);
+        test_diff(Temperature(123.45), Celsius(88.8), Temperature(), 60.9, 60.9,
+                  -60.9);
+        test_diff(Temperature(436.1), Fahrenheit(12.3), Temperature(), 173.67,
+                  173.67, -148.37);
+        test_diff(Celsius(120.5), Fahrenheit(43.3), Temperature(), 665.43,
+                  392.28, 738.11);
+      }
+      // No point in multiplying and dividing temperature
+    }
     SUBCASE("Amount Tests") {}
     SUBCASE("Luminosity Tests") {}
   }

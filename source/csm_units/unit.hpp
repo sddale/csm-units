@@ -84,9 +84,6 @@ using Candela = Unit<Luminosity, "cd", double>;
 using Pascal = Unit<Pressure, "Pa", double>;
 using Newton = Unit<Force, "N", double>;
 
-using Newton = Unit<Force, "N", double>;
-using Joule = Unit<Energy, "J", double>;
-
 // Other Units
 using Psi = Unit<Pressure, "psi", double>;
 using Bar = Unit<Pressure, "bar", double>;
@@ -419,6 +416,16 @@ constexpr auto UnitCast(SqrElectrCurrent input) -> SqrAmpere {
 template <>
 constexpr auto UnitCast(SqrAmpere input) -> SqrElectrCurrent {
   return SqrElectrCurrent(input.data);
+}
+
+template <>
+constexpr auto UnitCast(SqrElectrCurrent input) -> SqrMilliamp {
+  return SqrMilliamp(input.data * 1000000);
+}
+
+template <>
+constexpr auto UnitCast(SqrMilliamp input) -> SqrElectrCurrent {
+  return SqrElectrCurrent(input.data / 1000000);
 }
 
 // // idea to casting to and from Coulombs - have to add/change template
