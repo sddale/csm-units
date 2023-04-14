@@ -97,6 +97,8 @@ using Yard = Unit<Length, "yd", double>;
 using Miles = Unit<Length, "miles", double>;
 using SqFt = Unit<Area, "ft2", double>;
 using Liter = Unit<Volume, "L", double>;
+using Minutes = Unit<Time, "min", double>;
+using Hours = Unit<Time, "hour", double>;
 
 // Unit Cast for Base g to Unit kg
 // Conversion Equation: 1000 g = 1 kg
@@ -134,6 +136,30 @@ constexpr auto UnitCast(Second input) -> Time {
 template <>
 constexpr auto UnitCast(Time input) -> Second {
   return Second(input.data);
+}
+
+// Unit Cast for Unit min to Base s
+template <>
+constexpr auto UnitCast(Minutes input) -> Time {
+  return Time(input.data * 60);
+}
+
+// Unit Cast for Base s to Unit min
+template <>
+constexpr auto UnitCast(Time input) -> Minutes {
+  return Minutes(input.data / 60);
+}
+
+// Unit Cast for Unit min to Base s
+template <>
+constexpr auto UnitCast(Hours input) -> Time {
+  return Time(input.data * 3600);
+}
+
+// Unit Cast for Base s to Unit min
+template <>
+constexpr auto UnitCast(Time input) -> Hours {
+  return Hours(input.data / 3600);
 }
 
 // Unit cast for Base m to Unit m
@@ -442,7 +468,7 @@ constexpr auto UnitCast(SqrMilliamp input) -> SqrElectrCurrent {
 // Unit Cast for Unit Kelvin
 template <>
 constexpr auto UnitCast(Temperature input) -> Kelvin {
-  return Temperature(input.data);
+  return Kelvin(input.data);
 }
 
 // Unit Cast for Unit Kelvin
@@ -454,7 +480,7 @@ constexpr auto UnitCast(Kelvin input) -> Temperature {
 // Unit Cast for Base K to Unit F
 template <>
 constexpr auto UnitCast(Temperature input) -> Fahrenheit {
-  return Temperature((input.data - 273.15) * 1.8 + 32);
+  return Fahrenheit((input.data - 273.15) * 1.8 + 32);
 }
 
 // Unit Cast for Unit F to Base K
@@ -466,7 +492,7 @@ constexpr auto UnitCast(Fahrenheit input) -> Temperature {
 // Base K -> Unit C
 template <>
 constexpr auto UnitCast(Temperature input) -> Celsius {
-  return Temperature(input.data - 273.15);
+  return Celsius(input.data - 273.15);
 }
 
 // Unit C -> Base K
@@ -490,7 +516,7 @@ constexpr auto UnitCast(Mole input) -> Amount {
 // Base Mole -> Kilomole unit
 template <>
 constexpr auto UnitCast(Amount input) -> Kilomole {
-  return Amount(input.data / 1000);
+  return Kilomole(input.data / 1000);
 }
 
 // unit kmol -> Base Mol
