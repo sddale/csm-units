@@ -321,17 +321,17 @@ TEST_SUITE("Unit") {
     }
 
     SUBCASE("Mass Tests") {
-      // Testing to make sure casts in mass work. The above tests test to make
-      // sure arthmetic works in unit and unit base. The below tests just make
-      // sure we can convert from and to kilogram and gram
+      // Testing to make sure casts in mass work. The above length tests test to
+      // make sure arthmetic works in unit and unit base. The below tests just
+      // make sure we can convert from and to kilogram and gram
       test_sum(Mass(32.4), Kilogram(2.7), Mass(), 35.1, 35.1, 35.1);
       test_sum(Kilogram(123.5), Gram(24.5), Mass(), 123.5245, 123.5245,
                123524.5);
     }
     SUBCASE("Time Tests") {
-      // Testing to make sure casts in time work. The above tests test to make
-      // sure arthmetic works in unit and unit base. The below tests just make
-      // sure we can convert from and to seconds, minutes, and hours.
+      // Testing to make sure casts in time work. The above length tests test to
+      // make sure arthmetic works in unit and unit base. The below tests just
+      // make sure we can convert from and to seconds, minutes, and hours.
       test_sum(Time(32.4), Second(2.7), Time(), 35.1, 35.1, 35.1);
       test_sum(Hours(123.5), Minutes(24.5), Time(), 446070.0, 123.9083333,
                7434.5);
