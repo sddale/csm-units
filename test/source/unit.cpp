@@ -280,6 +280,7 @@ TEST_SUITE("Unit") {
         test_sum(MilliMeter(23.8), Miles(45.9), Length(), 73869.0238,
                  73869023.8, 45.90008338801);
       }
+
       SUBCASE("Unit km Tests") {
         test_sum(KiloMeter(23.8), KiloMeter(13.2), Length(), 37000.0, 37.0,
                  37.0);
