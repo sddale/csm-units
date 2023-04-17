@@ -23,12 +23,16 @@ class Unit {
   Data data;
 
   constexpr auto operator+=(const Base& rhs) noexcept -> auto& {
-    data += UnitCast<Unit>(rhs).data;
+    auto temp = UnitCast<Base>(*this);
+    temp = temp + rhs;
+    data = UnitCast<Unit>(temp).data;
     return *this;
   }
 
   constexpr auto operator-=(const Base& rhs) noexcept -> auto& {
-    data -= UnitCast<Unit>(rhs).data;
+    auto temp = UnitCast<Base>(*this);
+    temp = temp - rhs;
+    data = UnitCast<Unit>(temp).data;
     return *this;
   }
 };

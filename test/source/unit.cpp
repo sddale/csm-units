@@ -89,6 +89,42 @@ constexpr auto test_diff = [](auto first, auto second, auto base,
   CHECK(test_second.data == doctest::Approx(forced_sec_inv.data));
 };
 
+constexpr auto test_temp_diff = [](auto first, auto second, auto base,
+                                   auto exp_default_diff, auto exp_first_diff,
+                                   auto exp_second_diff, auto exp_default_inv,
+                                   auto exp_first_inv, auto exp_second_inv) {
+  const auto default_diff_ans = first - second;
+  const decltype(first) forced_first_ans = first - second;
+  const decltype(second) forced_sec_ans = first - second;
+
+  const auto default_inv = second - first;
+  const decltype(first) forced_first_inv = second - first;
+  const decltype(second) forced_sec_inv = second - first;
+
+  CHECK(default_diff_ans.data == doctest::Approx(exp_default_diff));
+  CHECK(forced_first_ans.data == doctest::Approx(exp_first_diff));
+  CHECK(forced_sec_ans.data == doctest::Approx(exp_second_diff));
+  CHECK_TYPE(default_diff_ans, base);
+  CHECK_TYPE(forced_first_ans, first);
+  CHECK_TYPE(forced_sec_ans, second);
+
+  CHECK(default_inv.data == doctest::Approx(exp_default_inv));
+  CHECK(forced_first_inv.data == doctest::Approx(exp_first_inv));
+  CHECK(forced_sec_inv.data == doctest::Approx(exp_second_inv));
+  CHECK_TYPE(default_inv, base);
+  CHECK_TYPE(forced_first_inv, first);
+  CHECK_TYPE(forced_sec_inv, second);
+
+  decltype(first) test_first = first;
+  decltype(second) test_second = second;
+
+  test_first -= second;
+  test_second -= first;
+
+  CHECK(test_first.data == doctest::Approx(exp_first_diff));
+  CHECK(test_second.data == doctest::Approx(exp_second_inv));
+};
+
 constexpr auto test_mult = [](auto first, auto second, auto default_ans_type,
                               auto forced_ans_type, auto exp_default_ans,
                               auto exp_forced_ans) {
@@ -392,27 +428,26 @@ TEST_SUITE("Unit") {
     }
     SUBCASE("Temperature Tests") {
       SUBCASE("Temperature Additions") {
-        // test_sum(Temperature(72.4), Kelvin(43.3), Temperature(), 115.7,
-        // 115.7,
-        //          115.7);
-        // test_sum(Temperature(348.9), Celsius(98.4), Temperature(), 720.45,
-        //          720.45, 447.3);
-        // test_sum(Temperature(239.6), Fahrenheit(108.4), Temperature(),
-        //          759.4922222, 759.4922222, 539.68);
-        // test_sum(Celsius(120.5), Fahrenheit(43.3), Temperature(), 399.93,
-        //          126.78, 260.20);
+        test_sum(Temperature(72.4), Kelvin(43.3), Temperature(), 115.7, 115.7,
+                 115.7);
+        test_sum(Temperature(348.9), Celsius(98.4), Temperature(), 720.45,
+                 720.45, 447.3);
+        test_sum(Temperature(239.6), Fahrenheit(108.4), Temperature(),
+                 555.19444, 555.19444, 539.679992);
+        test_sum(Celsius(120.5), Fahrenheit(43.3), Temperature(), 673.0778,
+                 399.9278, 751.87004);
       }
       SUBCASE("Temperature Subtractions") {
-        // test_diff(Temperature(343.8), Kelvin(209.9), Temperature(), 133.9,
-        //           133.9, 133.9);
-        // test_diff(Temperature(123.45), Celsius(88.8),
-        // Temperature(), 60.9, 60.9,
-        //           -60.9);
-        // test_diff(Temperature(436.1), Fahrenheit(12.3), Temperature(),
-        // 173.67,
-        //           173.67, -148.37);
-        // test_diff(Celsius(120.5), Fahrenheit(43.3), Temperature(), 665.43,
-        //           392.28, 738.11);
+        test_temp_diff(Temperature(343.8), Kelvin(209.9), Temperature(), 133.9,
+                       133.9, 133.9, -133.9, -133.9, -133.9);
+        test_temp_diff(Temperature(123.45), Celsius(88.8), Temperature(),
+                       -238.5, -238.5, -511.65, 238.5, 238.5, -34.65);
+        test_temp_diff(Temperature(436.1), Fahrenheit(12.3), Temperature(),
+                       173.8944, 173.8944, -146.66008, -173.8944, -173.8944,
+                       -772.67992);
+        test_temp_diff(Celsius(120.5), Fahrenheit(43.3), Temperature(),
+                       114.2222, -158.9278, -254.07004, -114.2222, -387.3722,
+                       -665.26996);
       }
       // No point in multiplying and dividing temperature
     }

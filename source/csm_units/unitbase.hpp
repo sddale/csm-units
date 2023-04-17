@@ -58,6 +58,9 @@ class UnitBase {
   // move constructor
   constexpr UnitBase(UnitBase&& other) noexcept = default;
 
+  constexpr auto operator=(const UnitBase&) noexcept -> UnitBase& = default;
+  constexpr auto operator=(UnitBase&&) noexcept -> UnitBase& = default;
+
   Data data;
 
   // quick stab at Flip member function
