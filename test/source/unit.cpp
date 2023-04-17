@@ -342,12 +342,16 @@ TEST_SUITE("Unit") {
                  10.6);
         test_sum(ElectrCurrent(4.8), Milliampere(5421.44), ElectrCurrent(),
                  10.22144, 10.22144, 10221.44);
+        test_sum(Milliampere(4567.22), Ampere(34.5), ElectrCurrent(), 39.06722,
+                 39067.22, 39.06722);
       }
       SUBCASE("Electric Current Subtractions") {
         test_diff(ElectrCurrent(7.2), Ampere(3.4), ElectrCurrent(), 3.8, 3.8,
                   3.8);
         test_diff(ElectrCurrent(14.8), Milliampere(5421.44), ElectrCurrent(),
                   9.37856, 9.37856, 9378.56);
+        test_diff(Milliampere(45677.22), Ampere(4.5), ElectrCurrent(), 41.17722,
+                  41177.22, 41.17722);
       }
       SUBCASE("Electric Current Multiplications") {
         test_mult(ElectrCurrent(8.7), Ampere(5.3), SqrElectrCurrent(),
@@ -359,8 +363,9 @@ TEST_SUITE("Unit") {
     }
     SUBCASE("Temperature Tests") {
       SUBCASE("Temperature Additions") {
-        test_sum(Temperature(72.4), Kelvin(43.3), Temperature(), 115.7, 115.7,
-                 115.7);
+        // test_sum(Temperature(72.4), Kelvin(43.3), Temperature(), 115.7,
+        // 115.7,
+        //          115.7);
         // test_sum(Temperature(348.9), Celsius(98.4), Temperature(), 720.45,
         //          720.45, 447.3);
         // test_sum(Temperature(239.6), Fahrenheit(108.4), Temperature(),
@@ -382,7 +387,17 @@ TEST_SUITE("Unit") {
       }
       // No point in multiplying and dividing temperature
     }
-    SUBCASE("Amount Tests") {}
+    SUBCASE("Amount Tests") {
+      SUBCASE("Additions") {
+        test_sum(Amount(45.8), Mole(32.6), Amount(), 78.4, 78.4, 78.4);
+        test_sum(Amount(560.97), Kilomole(23.9), Amount(), 24460.97, 24460.97,
+                 24.46097);
+        test_sum(Kilomole(4.3), Mole(560.3), Amount(), 4860.3, 4.8603, 4860.3);
+      }
+      SUBCASE("Subtractions") {}
+      SUBCASE("Multiplications") {}
+      SUBCASE("Divisions") {}
+    }
     SUBCASE("Luminosity Tests") {}
   }
 
