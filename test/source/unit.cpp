@@ -117,15 +117,15 @@ constexpr auto test_mult = [](auto first, auto second, auto default_ans_type,
   CHECK_TYPE(default_inv, default_ans_type);
 };
 
-[[maybe_unused]] constexpr auto test_div =
+constexpr auto test_div =
     [](auto first, auto second, auto default_ans_type, auto forced_ans_type,
-       auto exp_default_ans, auto exp_forced_ans, auto exp_default_inv,
-       auto exp_forced_inv) {
-      const auto default_diff_ans = first * second;
-      const decltype(forced_ans_type) forced_ans = first * second;
+       auto default_inv_type, auto forced_inv_type, auto exp_default_ans,
+       auto exp_forced_ans, auto exp_default_inv, auto exp_forced_inv) {
+      const auto default_diff_ans = first / second;
+      const decltype(forced_ans_type) forced_ans = first / second;
 
-      const auto default_inv = second * first;
-      const decltype(forced_ans_type) forced_inv = second * first;
+      const auto default_inv = second / first;
+      const decltype(forced_inv_type) forced_inv = second / first;
 
       if constexpr (std::is_convertible_v<decltype(default_ans_type), double>) {
         CHECK_DBL_EQ(default_diff_ans, exp_default_ans);
@@ -143,7 +143,7 @@ constexpr auto test_mult = [](auto first, auto second, auto default_ans_type,
 
       CHECK_TYPE(default_diff_ans, default_ans_type);
 
-      CHECK_TYPE(default_inv, default_ans_type);
+      CHECK_TYPE(default_inv, default_inv_type);
     };
 
 TEST_SUITE("Unit") {
@@ -211,6 +211,26 @@ TEST_SUITE("Unit") {
           // Base * inv_unit
           test_mult(Length(5.8), InvMeter(3.2), 0.0, 0.0, 18.56, 18.56);
         }
+
+        SUBCASE("Division Tests") {
+          // Base / Base
+          test_div(Length(25.5), Length(5.5), 0.0, 0.0, 0.0, 0.0, 4.636363636,
+                   4.636363636, 0.2156862745, 0.2156862745);
+          // Base / Unit - result double
+          test_div(Length(48.6), CentiMeter(1234.6), 0.0, 0.0, 0.0, 0.0,
+                   3.936497651, 3.936497651, 0.2540329218, 0.2540329218);
+          // Base / Different Unit
+          test_div(Length(23.5), Gram(3.2),
+                   UnitBase<Exponents<1, -1, 0, 0, 0, 0, 0>, double>(),
+                   UnitBase<Exponents<1, -1, 0, 0, 0, 0, 0>, double>(),
+                   UnitBase<Exponents<-1, 1, 0, 0, 0, 0, 0>, double>(),
+                   UnitBase<Exponents<-1, 1, 0, 0, 0, 0, 0>, double>(), 7343.75,
+                   7343.75, 0.0001361702128, 0.0001361702128);
+          // Base / double
+          test_div(Length(45.7), 6.9, Length(), KiloMeter(), InvLength(),
+                   InvMeter(), 6.623188406, 0.0066231884, 0.1509846827,
+                   0.1509846827);
+        }
       }
 
       SUBCASE("Unit Meter Tests") {
@@ -247,6 +267,8 @@ TEST_SUITE("Unit") {
           // Unit * inv_unit
           test_mult(Meter(5.8), InvMeter(3.2), 0.0, 0.0, 18.56, 18.56);
         }
+
+        SUBCASE("Division Tests") {}
       }
 
       SUBCASE("Unit cm Tests") {
