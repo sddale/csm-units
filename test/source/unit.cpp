@@ -268,7 +268,13 @@ TEST_SUITE("Unit") {
           test_mult(Meter(5.8), InvMeter(3.2), 0.0, 0.0, 18.56, 18.56);
         }
 
-        SUBCASE("Division Tests") {}
+        SUBCASE("Division Tests") {
+          // Unit / Unit - result double
+          test_div(Meter(34.6), MilliMeter(3.6), 0.0, 0.0, 0.0, 0.0,
+                   9611.111111, 9611.111111, 0.0001040462428, 0.0001040462428);
+          // Unit / Different Unit
+          // Unit / double
+        }
       }
 
       SUBCASE("Unit cm Tests") {
