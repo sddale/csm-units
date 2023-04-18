@@ -56,10 +56,8 @@ using Accel = UnitBase<Exponents<1, 0, -2, 0, 0, 0, 0>, double>;
 using Density = UnitBase<Exponents<-3, 1, 0, 0, 0, 0, 0>, double>;
 using Energy = UnitBase<Exponents<2, 1, -2, 0, 0, 0, 0>, double>;
 using SqrElectrCurrent = UnitBase<Exponents<0, 0, 0, 2, 0, 0, 0>, double>;
-// using SqrAmount = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 2, 0>, double>;
-// not working as well ^
-// using SqrLuminosity = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 0, 2>, double>;
-// why am I hitting the static assert by adding this?? ^ what is going on
+using SqrAmount = UnitBase<Exponents<0, 0, 0, 0, 0, 2, 0>, double>;
+using SqrLuminosity = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 2>, double>;
 using Luminance = UnitBase<Exponents<-2, 0, 0, 0, 0, 0, 1>, double>;
 
 // SI Units
@@ -89,13 +87,11 @@ using Celsius = Unit<Temperature, "C", double>;
 using Mole = Unit<Amount, "mol", double>;
 using Kilomole = Unit<Amount, "kmol", double>;
 
-// why does it not like these??
-// using SqrMole = Unit<SqrAmount, "mol2", double>;
-// using SqrKilomole = Unit<SqrAmount, "kmol2", double>;
+using SqrMole = Unit<SqrAmount, "mol2", double>;
+using SqrKilomole = Unit<SqrAmount, "kmol2", double>;
 
 using Candela = Unit<Luminosity, "cd", double>;
-// using SqrCandela = Unit<SqrLuminosity, "cd2", double>;
-// doesn't like these either
+using SqrCandela = Unit<SqrLuminosity, "cd2", double>;
 using Pascal = Unit<Pressure, "Pa", double>;
 using Newton = Unit<Force, "N", double>;
 
