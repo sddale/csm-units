@@ -56,6 +56,11 @@ using Accel = UnitBase<Exponents<1, 0, -2, 0, 0, 0, 0>, double>;
 using Density = UnitBase<Exponents<-3, 1, 0, 0, 0, 0, 0>, double>;
 using Energy = UnitBase<Exponents<2, 1, -2, 0, 0, 0, 0>, double>;
 using SqrElectrCurrent = UnitBase<Exponents<0, 0, 0, 2, 0, 0, 0>, double>;
+// using SqrAmount = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 2, 0>, double>;
+// not working as well ^
+// using SqrLuminosity = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 0, 2>, double>;
+// why am I hitting the static assert by adding this?? ^ what is going on
+using Luminance = UnitBase<Exponents<-2, 0, 0, 0, 0, 0, 1>, double>;
 
 // SI Units
 using Meter = Unit<Length, "m", double>;
@@ -84,7 +89,13 @@ using Celsius = Unit<Temperature, "C", double>;
 using Mole = Unit<Amount, "mol", double>;
 using Kilomole = Unit<Amount, "kmol", double>;
 
+// why does it not like these??
+// using SqrMole = Unit<SqrAmount, "mol2", double>;
+// using SqrKilomole = Unit<SqrAmount, "kmol2", double>;
+
 using Candela = Unit<Luminosity, "cd", double>;
+// using SqrCandela = Unit<SqrLuminosity, "cd2", double>;
+// doesn't like these either
 using Pascal = Unit<Pressure, "Pa", double>;
 using Newton = Unit<Force, "N", double>;
 
@@ -103,6 +114,7 @@ using SqFt = Unit<Area, "ft2", double>;
 using Liter = Unit<Volume, "L", double>;
 using Minutes = Unit<Time, "min", double>;
 using Hours = Unit<Time, "hour", double>;
+using CdPerM2 = Unit<Luminance, "cd/m2", double>;
 
 // Unit Cast for Base g to Unit kg
 // Conversion Equation: 1000 g = 1 kg
@@ -529,6 +541,26 @@ constexpr auto UnitCast(Kilomole input) -> Amount {
   return Amount(input.data * 1000);
 }
 
+// template <>
+// constexpr auto UnitCast(SqrAmount input) -> SqrMole {
+//   return SqrMole(input.data);
+// }
+
+// template <>
+// constexpr auto UnitCast(SqrMole input) -> SqrAmount {
+//   return SqrAmount(input.data);
+// }
+
+// template <>
+// constexpr auto UnitCast(SqrAmount input) -> SqrKilomole {
+//   return SqrKilomole(input.data / 1000000);
+// }
+
+// template <>
+// constexpr auto UnitCast(SqrKilomole input) -> SqrAmount {
+//   return SqrAmount(input.data * 1000000);
+// }
+
 // Unit Cast for Unit Candela
 template <>
 constexpr auto UnitCast(Luminosity input) -> Candela {
@@ -539,6 +571,17 @@ constexpr auto UnitCast(Luminosity input) -> Candela {
 template <>
 constexpr auto UnitCast(Candela input) -> Luminosity {
   return Luminosity(input.data);
+}
+
+template <>
+constexpr auto UnitCast(Luminance input) -> CdPerM2 {
+  return CdPerM2(input.data);
+}
+
+// Unit Cast for Unit Newton
+template <>
+constexpr auto UnitCast(CdPerM2 input) -> Luminance {
+  return Luminance(input.data);
 }
 
 // Unit Cast for Unit kg/m^3

@@ -36,13 +36,14 @@ class UnitBase {
   // constexpr UnitBase(U convert) noexcept
   //     : data(UnitCast<UnitBase>(convert).data) {}
 
-  constexpr auto operator<=>(const UnitBase& other) const
+  constexpr auto operator<=>(const UnitBase& other) const noexcept
       -> std::strong_ordering {
     return data <=> other.data;
   }
 
   template <UnitType U>
-  friend constexpr auto operator<=>(const UnitBase& lhs, const U& rhs) -> bool {
+  friend constexpr auto operator<=>(const UnitBase& lhs, const U& rhs) noexcept
+      -> bool {
     return lhs <=> UnitBase(rhs);
   }
 
@@ -144,14 +145,15 @@ class UnitBase {
 
   // + operator overloads
 
-  constexpr auto operator+=(const UnitBase& rhs) noexcept -> auto& {
+  constexpr auto operator+=(UnitBase rhs) noexcept -> auto& {
     data += rhs.data;
     return *this;
   }
 
   // compound + compound
-  friend constexpr auto operator+(UnitBase lhs, const UnitBase& rhs) noexcept {
-    lhs += rhs;
+  friend constexpr auto operator+(UnitBase lhs, UnitBase rhs) noexcept {
+    lhs.data = lhs.data + rhs.data;
+    // lhs += rhs;
     return lhs;
   }
 
@@ -163,7 +165,7 @@ class UnitBase {
 
   // compound - compound
   friend constexpr auto operator-(UnitBase lhs, const UnitBase& rhs) noexcept {
-    lhs -= rhs;
+    lhs.data = lhs.data - rhs.data;
     return lhs;
   }
 };

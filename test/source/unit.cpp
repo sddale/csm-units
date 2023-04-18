@@ -458,11 +458,36 @@ TEST_SUITE("Unit") {
                  24.46097);
         test_sum(Kilomole(4.3), Mole(560.3), Amount(), 4860.3, 4.8603, 4860.3);
       }
-      SUBCASE("Subtractions") {}
-      SUBCASE("Multiplications") {}
+      SUBCASE("Subtractions") {
+        test_diff(Amount(67.4), Mole(32.9), Amount(), 34.5, 34.5, 34.5);
+        test_diff(Amount(3245.8), Kilomole(2.4), Amount(), 845.8, 845.8,
+                  0.8458);
+        test_diff(Kilomole(7.3), Mole(560.3), Amount(), 6739.7, 6.7397, 6739.7);
+      }
+      SUBCASE("Multiplications") {
+        // weird error related to the aliases on line 59 and 91-92 in unit.h
+        // test_mult(Amount(8.7), Mole(5.3), SqrAmount(),
+        //           SqrMole(), 46.11, 46.11);
+        // test_mult(Amount(806.7), Kilomole(5.3), SqrAmount(),
+        //           SqrKilomole(), 4275510, 4275.51);
+      }
       SUBCASE("Divisions") {}
     }
-    SUBCASE("Luminosity Tests") {}
+    SUBCASE("Luminosity Tests") {
+      SUBCASE("Additions") {
+        test_sum(Luminosity(43.5), Candela(87.4), Luminosity(), 130.9, 130.9,
+                 130.9);
+      }
+      SUBCASE("Subtractions") {
+        test_diff(Luminosity(76.8), Candela(32.8), Luminosity(), 44.0, 44.0,
+                  44.0);
+      }
+      SUBCASE("Multiplications") {
+        // test_mult(Luminosity(3.2), Candela(5.4), SqrLuminosity(), 17.28, 17.28,
+        //           17.28);
+      }
+      SUBCASE("Divisions") {}
+    }
   }
 
   TEST_CASE("Polished Test Case for psi and pascals") {
