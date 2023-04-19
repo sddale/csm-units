@@ -344,6 +344,15 @@ TEST_SUITE("Benchmarks") {
             ankerl::nanobench::doNotOptimizeAway(k1 * k2);
           }
         });
+    
+    auto lm1 = Candela(3.4);
+    auto lm2 = Candela(5.7);
+    ankerl::nanobench::Bench().minEpochIterations(5000).run(
+        "add derived kilomole units", [&]() constexpr {
+          for (int i = 0; i < 10000; ++i) {
+            ankerl::nanobench::doNotOptimizeAway(lm1 * lm2);
+          }
+        });
   }
   TEST_CASE("Derived Subtractions") {}
   TEST_CASE("Derived Multiplications") {}
