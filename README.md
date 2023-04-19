@@ -64,16 +64,17 @@ constexpr void UseIG() {
 
 ### Benchmarking Results
 
+|               ns/op |                op/s |    err% |     total | benchmark
 |--------------------:|--------------------:|--------:|----------:|:----------
-|           29,644.76 |           33,732.77 |    3.7% |      1.88 | `add doubles`
-|           40,063.52 |           24,960.37 |    1.8% |      2.50 | `add base units`
-|          126,874.72 |            7,881.79 |    2.1% |      7.62 | `add derived units`
-|           27,312.42 |           36,613.37 |    1.3% |      1.65 | `subtract doubles`
-|           38,710.22 |           25,832.97 |    1.9% |      2.47 | `subtract base units`
-|          107,211.46 |            9,327.36 |    1.6% |      6.43 | `subtract derived units`
-|           27,410.18 |           36,482.80 |    1.9% |      1.65 | `multiply doubles`
-|           49,373.45 |           20,253.80 |    0.5% |      3.00 | `multiply base units`
-|          121,449.66 |            8,233.86 |    0.7% |      7.25 | `multiply derived units`
-|           27,172.66 |           36,801.69 |    0.8% |      1.63 | `divide doubles`
-|           37,040.62 |           26,997.39 |    0.5% |      2.21 | `divide base units`
-|          114,213.69 |            8,755.52 |    0.6% |      6.89 | `divide derived units`
+|           27,952.91 |           35,774.45 |    3.0% |      1.72 | `add doubles`
+|           40,300.55 |           24,813.56 |    0.6% |      2.42 | `add base units`
+|          121,969.87 |            8,198.75 |    1.0% |      7.32 | `add derived units`
+|           26,740.07 |           37,397.06 |    0.5% |      1.61 | `subtract doubles`
+|           38,402.03 |           26,040.29 |    1.5% |      2.33 | `subtract base units`
+|          104,437.66 |            9,575.09 |    0.4% |      6.31 | `subtract derived units`
+|           26,739.71 |           37,397.56 |    0.4% |      1.63 | `multiply doubles`
+|           49,031.65 |           20,394.99 |    0.9% |      2.95 | `multiply base units`
+|          121,122.91 |            8,256.08 |    1.1% |      7.25 | `multiply derived units`
+|           27,327.16 |           36,593.63 |    0.9% |      1.67 | `divide doubles`
+|           36,950.23 |           27,063.43 |    0.7% |      2.25 | `divide base units`
+|          116,889.74 |            8,555.07 |    2.7% |      7.15 | `divide derived units`
