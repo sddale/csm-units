@@ -22,7 +22,15 @@ CPMAddPackage("gh:onqtam/doctest@2.4.9")
 CPMAddPackage("gh:TheLartians/Format.cmake@1.7.3")
 CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0") # To make target installable
 CPMAddPackage("gh:martinus/nanobench@4.3.11") # To make target installable
+<<<<<<< HEAD
 # add_subdirectory(../units/src)
+=======
+
+# # ---- Adding dependencies via CPM for mpusz/units ----
+# CPMAddPackage("gh:gsl-lite/gsl-lite@0.41.0") # To make target installable
+# CPMAddPackage("gh:fmtlib/fmt@9.1.0") # To make target installable
+# add_subdirectory(./units/src)
+>>>>>>> 694669a9bb7f60cdf6832a43d7ad1abf49612cb7
 
 # ---- Create library ----
 add_library(${PROJECT_NAME} INTERFACE)
@@ -59,8 +67,13 @@ file(GLOB_RECURSE test_sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/te
 # Test Executable
 add_executable(${PROJECT_NAME}_test ${test_sources})
 
+<<<<<<< HEAD
 target_link_libraries(${PROJECT_NAME}_test PRIVATE doctest::doctest nanobench) # mp-units::mp-units)
 # target_link_libraries(${PROJECT_NAME}_test PRIVATE doctest::doctest units)
+=======
+target_link_libraries(${PROJECT_NAME}_test PRIVATE doctest::doctest nanobench)
+# target_link_libraries(${PROJECT_NAME}_test PRIVATE doctest::doctest nanobench mp-units::mp-units)
+>>>>>>> 694669a9bb7f60cdf6832a43d7ad1abf49612cb7
 
 target_include_directories(${PROJECT_NAME}_test PRIVATE "test" "include" ".")
 # target_include_directories(${PROJECT_NAME}_test PRIVATE "test" "include"
