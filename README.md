@@ -61,6 +61,9 @@ constexpr void UseIG() {
 }
 ```
 
+
+Benchmarking Results
+
 |               ns/op |                op/s |    err% |     total | benchmark
 |--------------------:|--------------------:|--------:|----------:|:----------
 |           28,164.14 |           35,506.14 |    1.9% |      1.74 | `add doubles`
