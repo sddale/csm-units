@@ -537,25 +537,25 @@ constexpr auto UnitCast(Kilomole input) -> Amount {
   return Amount(input.data * 1000);
 }
 
-// template <>
-// constexpr auto UnitCast(SqrAmount input) -> SqrMole {
-//   return SqrMole(input.data);
-// }
+template <>
+constexpr auto UnitCast(SqrAmount input) -> SqrMole {
+  return SqrMole(input.data);
+}
 
-// template <>
-// constexpr auto UnitCast(SqrMole input) -> SqrAmount {
-//   return SqrAmount(input.data);
-// }
+template <>
+constexpr auto UnitCast(SqrMole input) -> SqrAmount {
+  return SqrAmount(input.data);
+}
 
-// template <>
-// constexpr auto UnitCast(SqrAmount input) -> SqrKilomole {
-//   return SqrKilomole(input.data / 1000000);
-// }
+template <>
+constexpr auto UnitCast(SqrAmount input) -> SqrKilomole {
+  return SqrKilomole(input.data / 1000000);
+}
 
-// template <>
-// constexpr auto UnitCast(SqrKilomole input) -> SqrAmount {
-//   return SqrAmount(input.data * 1000000);
-// }
+template <>
+constexpr auto UnitCast(SqrKilomole input) -> SqrAmount {
+  return SqrAmount(input.data * 1000000);
+}
 
 // Unit Cast for Unit Candela
 template <>
@@ -578,6 +578,16 @@ constexpr auto UnitCast(Luminance input) -> CdPerM2 {
 template <>
 constexpr auto UnitCast(CdPerM2 input) -> Luminance {
   return Luminance(input.data);
+}
+
+template <>
+constexpr auto UnitCast(SqrLuminosity input) -> SqrCandela {
+  return SqrCandela(input.data);
+}
+
+template <>
+constexpr auto UnitCast(SqrCandela input) -> SqrLuminosity {
+  return SqrLuminosity(input.data);
 }
 
 // Unit Cast for Unit kg/m^3

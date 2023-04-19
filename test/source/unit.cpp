@@ -465,11 +465,9 @@ TEST_SUITE("Unit") {
         test_diff(Kilomole(7.3), Mole(560.3), Amount(), 6739.7, 6.7397, 6739.7);
       }
       SUBCASE("Multiplications") {
-        // weird error related to the aliases on line 59 and 91-92 in unit.h
-        // test_mult(Amount(8.7), Mole(5.3), SqrAmount(),
-        //           SqrMole(), 46.11, 46.11);
-        // test_mult(Amount(806.7), Kilomole(5.3), SqrAmount(),
-        //           SqrKilomole(), 4275510, 4275.51);
+        test_mult(Amount(8.7), Mole(5.3), SqrAmount(), SqrMole(), 46.11, 46.11);
+        test_mult(Amount(806.7), Kilomole(5.3), SqrAmount(), SqrKilomole(),
+                  4275510, 4.27551);
       }
       SUBCASE("Divisions") {}
     }
@@ -483,8 +481,8 @@ TEST_SUITE("Unit") {
                   44.0);
       }
       SUBCASE("Multiplications") {
-        // test_mult(Luminosity(3.2), Candela(5.4), SqrLuminosity(), 17.28, 17.28,
-        //           17.28);
+        test_mult(Luminosity(3.2), Candela(5.4), SqrLuminosity(), SqrCandela(),
+                  17.28, 17.28);
       }
       SUBCASE("Divisions") {}
     }
