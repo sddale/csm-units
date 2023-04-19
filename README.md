@@ -66,37 +66,39 @@ constexpr void UseIG() {
 
 |               ns/op |                op/s |    err% |     total | benchmark
 |--------------------:|--------------------:|--------:|----------:|:----------
-|           28,164.14 |           35,506.14 |    1.9% |      1.74 | `add doubles`
-|           40,769.63 |           24,528.06 |    1.0% |      2.53 | `add base length units`
-|           40,521.54 |           24,678.23 |    0.8% |      2.45 | `add base mass units`
-|           40,968.73 |           24,408.86 |    2.0% |      2.47 | `add base time units`
-|           39,798.97 |           25,126.28 |    0.7% |      2.40 | `add base current units`
-|           39,709.83 |           25,182.68 |    0.4% |      2.38 | `add base temperature units`
-|           39,500.88 |           25,315.89 |    0.6% |      2.37 | `add base amount units`
-|           39,840.65 |           25,099.99 |    0.8% |      2.40 | `add base luminosity units`
-|          106,848.94 |            9,359.01 |    0.7% |      6.40 | `add derived units`
-|           27,005.49 |           37,029.51 |    0.7% |      1.61 | `subtract doubles`
-|           38,288.10 |           26,117.77 |    0.7% |      2.30 | `subtract base length units`
-|           38,011.47 |           26,307.85 |    0.4% |      2.29 | `subtract base mass units`
-|           38,331.91 |           26,087.92 |    0.9% |      2.29 | `subtract base time units`
-|           38,149.99 |           26,212.33 |    0.4% |      2.32 | `subtract base current units`
-|           39,053.80 |           25,605.70 |    2.5% |      2.35 | `subtract base temperature units`
-|           38,185.86 |           26,187.70 |    0.3% |      2.28 | `subtract base amount units`
-|           38,506.68 |           25,969.52 |    1.4% |      2.33 | `subtract base luminosity units`
-|          104,654.86 |            9,555.22 |    0.6% |      6.25 | `subtract derived units`
-|           27,110.53 |           36,886.03 |    1.3% |      1.62 | `multiply doubles`
-|           49,536.82 |           20,187.00 |    0.6% |      2.96 | `multiply base length units`
-|           48,996.50 |           20,409.62 |    0.9% |      2.93 | `multiply base mass units`
-|           49,362.96 |           20,258.10 |    0.7% |      2.95 | `multiply base time units`
-|           49,285.34 |           20,290.01 |    1.6% |      3.00 | `multiply base current units`
-|           49,665.99 |           20,134.50 |    0.9% |      2.99 | `multiply base amount units`
-|           49,311.65 |           20,279.18 |    0.8% |      3.00 | `multiply base luminosity units`
-|          120,651.88 |            8,288.31 |    0.7% |      7.21 | `multiply derived units`
-|           26,955.15 |           37,098.67 |    0.4% |      1.62 | `divide doubles`
-|           36,341.46 |           27,516.78 |    1.0% |      2.21 | `divide base length units`
-|           36,614.77 |           27,311.38 |    0.5% |      2.20 | `divide base mass units`
-|           36,887.65 |           27,109.35 |    0.5% |      2.21 | `divide base time units`
-|           36,105.63 |           27,696.51 |    0.4% |      2.17 | `divide base current units`
-|           36,319.82 |           27,533.18 |    0.7% |      2.18 | `divide base amount units`
-|           36,315.46 |           27,536.49 |    0.4% |      2.18 | `divide base luminosity units`
-|          114,583.26 |            8,727.28 |    0.8% |      6.85 | `divide derived units`
+|           28,602.83 |           34,961.58 |    4.2% |      1.81 | `add doubles`
+|           40,414.22 |           24,743.77 |    1.8% |      2.41 | `add base length units`
+|           39,873.02 |           25,079.61 |    1.5% |      2.39 | `add base mass units`
+|           40,640.12 |           24,606.23 |    3.0% |      2.47 | `add base time units`
+|           40,524.00 |           24,676.73 |    2.1% |      2.45 | `add base current units`
+|           40,319.18 |           24,802.09 |    2.0% |      2.44 | `add base temperature units`
+|           39,768.39 |           25,145.60 |    1.3% |      2.43 | `add base amount units`
+|           39,584.90 |           25,262.16 |    0.6% |      2.37 | `add base luminosity units`
+|           26,902.46 |           37,171.32 |    0.6% |      1.62 | `subtract doubles`
+|           38,476.81 |           25,989.68 |    0.9% |      2.30 | `subtract base length units`
+|           38,811.93 |           25,765.27 |    1.6% |      2.35 | `subtract base mass units`
+|           38,300.49 |           26,109.33 |    1.1% |      2.30 | `subtract base time units`
+|           38,596.69 |           25,908.96 |    0.6% |      2.31 | `subtract base current units`
+|           38,479.63 |           25,987.77 |    0.5% |      2.29 | `subtract base temperature units`
+|           39,114.89 |           25,565.71 |    2.1% |      2.34 | `subtract base amount units`
+|           38,966.12 |           25,663.32 |    1.8% |      2.33 | `subtract base luminosity units`
+|           27,150.50 |           36,831.74 |    0.4% |      1.66 | `multiply doubles`
+|           49,145.82 |           20,347.61 |    0.9% |      2.95 | `multiply base length units`
+|           49,173.60 |           20,336.11 |    0.6% |      2.97 | `multiply base mass units`
+|           49,505.15 |           20,199.92 |    0.5% |      2.96 | `multiply base time units`
+|           48,973.42 |           20,419.24 |    1.3% |      2.94 | `multiply base current units`
+|           50,684.25 |           19,730.00 |    3.0% |      3.09 | `multiply base amount units`
+|           49,247.60 |           20,305.56 |    0.7% |      2.94 | `multiply base luminosity units`
+|           27,051.47 |           36,966.57 |    0.7% |      1.62 | `divide doubles`
+|           36,959.18 |           27,056.88 |    0.6% |      2.22 | `divide base length units`
+|           36,266.60 |           27,573.58 |    0.8% |      2.19 | `divide base mass units`
+|           36,149.63 |           27,662.80 |    0.8% |      2.17 | `divide base time units`
+|           36,319.22 |           27,533.63 |    1.3% |      2.18 | `divide base current units`
+|           36,908.14 |           27,094.29 |    0.7% |      2.20 | `divide base amount units`
+|           36,608.08 |           27,316.38 |    1.0% |      2.19 | `divide base luminosity units`
+|          121,110.32 |            8,256.93 |    0.5% |      7.24 | `add derived meter units`
+|          121,175.09 |            8,252.52 |    0.6% |      7.28 | `add derived kilogram units`
+|          120,865.72 |            8,273.64 |    1.3% |      7.23 | `add derived second units`
+|          121,289.94 |            8,244.71 |    0.7% |      7.33 | `add derived ampere units`
+|          136,291.04 |            7,337.24 |    0.6% |      8.15 | `add derived fahrenheit units`
+|          124,396.18 |            8,038.83 |    0.9% |      7.42 | `add derived kilomole units`
