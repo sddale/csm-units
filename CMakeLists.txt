@@ -22,6 +22,7 @@ CPMAddPackage("gh:onqtam/doctest@2.4.9")
 CPMAddPackage("gh:TheLartians/Format.cmake@1.7.3")
 CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0") # To make target installable
 CPMAddPackage("gh:martinus/nanobench@4.3.11") # To make target installable
+CPMAddPackage("gh:mpusz/units@v0.7.0")
 
 # ---- Create library ----
 add_library(${PROJECT_NAME} INTERFACE)
@@ -59,6 +60,7 @@ file(GLOB_RECURSE test_sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/te
 add_executable(${PROJECT_NAME}_test ${test_sources})
 
 target_link_libraries(${PROJECT_NAME}_test PRIVATE doctest::doctest nanobench)
+target_link_libraries(${PROJECT_NAME}_test PRIVATE doctest::doctest units)
 
 target_include_directories(${PROJECT_NAME}_test PRIVATE "test" "include" ".")
 # target_include_directories(${PROJECT_NAME}_test PRIVATE "test" "include"
