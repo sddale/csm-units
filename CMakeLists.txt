@@ -63,13 +63,8 @@ file(GLOB_RECURSE test_sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/te
 # Test Executable
 add_executable(${PROJECT_NAME}_test ${test_sources})
 
-<<<<<<< HEAD
-target_link_libraries(${PROJECT_NAME}_test PRIVATE doctest::doctest nanobench) # mp-units::mp-units)
-# target_link_libraries(${PROJECT_NAME}_test PRIVATE doctest::doctest units)
-=======
 target_link_libraries(${PROJECT_NAME}_test PRIVATE doctest::doctest nanobench)
 # target_link_libraries(${PROJECT_NAME}_test PRIVATE doctest::doctest nanobench mp-units::mp-units)
->>>>>>> 694669a9bb7f60cdf6832a43d7ad1abf49612cb7
 
 target_include_directories(${PROJECT_NAME}_test PRIVATE "test" "include" ".")
 # target_include_directories(${PROJECT_NAME}_test PRIVATE "test" "include"
