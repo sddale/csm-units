@@ -81,15 +81,6 @@ TEST_SUITE("Benchmarks") {
             ankerl::nanobench::doNotOptimizeAway(lm1 + lm2);
           }
         });
-
-    auto meter1 = Meter(3.4);
-    auto meter2 = Meter(5.7);
-    ankerl::nanobench::Bench().minEpochIterations(5000).run(
-        "add derived units", [&]() constexpr {
-          for (int i = 0; i < 10000; ++i) {
-            ankerl::nanobench::doNotOptimizeAway(meter1 + meter2);
-          }
-        });
   }
 
   TEST_CASE("Base Subtractions") {
@@ -165,15 +156,6 @@ TEST_SUITE("Benchmarks") {
             ankerl::nanobench::doNotOptimizeAway(lm1 - lm2);
           }
         });
-
-    auto meter1 = Meter(3.4);
-    auto meter2 = Meter(5.7);
-    ankerl::nanobench::Bench().minEpochIterations(5000).run(
-        "subtract derived units", [&]() constexpr {
-          for (int i = 0; i < 10000; ++i) {
-            ankerl::nanobench::doNotOptimizeAway(meter1 - meter2);
-          }
-        });
   }
 
   TEST_CASE("Base Multiplications") {
@@ -238,15 +220,6 @@ TEST_SUITE("Benchmarks") {
         "multiply base luminosity units", [&]() constexpr {
           for (int i = 0; i < 10000; ++i) {
             ankerl::nanobench::doNotOptimizeAway(lm1 * lm2);
-          }
-        });
-
-    auto meter1 = Meter(3.4);
-    auto meter2 = Meter(5.7);
-    ankerl::nanobench::Bench().minEpochIterations(5000).run(
-        "multiply derived units", [&]() constexpr {
-          for (int i = 0; i < 10000; ++i) {
-            ankerl::nanobench::doNotOptimizeAway(meter1 * meter2);
           }
         });
   }
@@ -315,16 +288,66 @@ TEST_SUITE("Benchmarks") {
             ankerl::nanobench::doNotOptimizeAway(lm1 / lm2);
           }
         });
+  }
 
-    auto meter1 = Meter(3.4);
-    auto meter2 = Meter(5.7);
+  TEST_CASE("Derived Additions") {
+    auto m1 = Meter(3.4);
+    auto m2 = Meter(5.7);
     ankerl::nanobench::Bench().minEpochIterations(5000).run(
-        "divide derived units", [&]() constexpr {
+        "add derived meter units", [&]() constexpr {
           for (int i = 0; i < 10000; ++i) {
-            ankerl::nanobench::doNotOptimizeAway(meter1 / meter2);
+            ankerl::nanobench::doNotOptimizeAway(m1 * m2);
+          }
+        });
+
+    auto kg1 = Kilogram(3.4);
+    auto kg2 = Kilogram(5.7);
+    ankerl::nanobench::Bench().minEpochIterations(5000).run(
+        "add derived kilogram units", [&]() constexpr {
+          for (int i = 0; i < 10000; ++i) {
+            ankerl::nanobench::doNotOptimizeAway(kg1 * kg2);
+          }
+        });
+
+    auto s1 = Second(3.4);
+    auto s2 = Second(5.7);
+    ankerl::nanobench::Bench().minEpochIterations(5000).run(
+        "add derived second units", [&]() constexpr {
+          for (int i = 0; i < 10000; ++i) {
+            ankerl::nanobench::doNotOptimizeAway(s1 * s2);
+          }
+        });
+
+    auto a1 = Ampere(3.4);
+    auto a2 = Ampere(5.7);
+    ankerl::nanobench::Bench().minEpochIterations(5000).run(
+        "add derived ampere units", [&]() constexpr {
+          for (int i = 0; i < 10000; ++i) {
+            ankerl::nanobench::doNotOptimizeAway(a1 * a2);
+          }
+        });
+
+    auto f1 = Fahrenheit(3.4);
+    auto f2 = Fahrenheit(5.7);
+    ankerl::nanobench::Bench().minEpochIterations(5000).run(
+        "add derived fahrenheit units", [&]() constexpr {
+          for (int i = 0; i < 10000; ++i) {
+            ankerl::nanobench::doNotOptimizeAway(f1 * f2);
+          }
+        });
+
+    auto k1 = Kilomole(3.4);
+    auto k2 = Kilomole(5.7);
+    ankerl::nanobench::Bench().minEpochIterations(5000).run(
+        "add derived kilomole units", [&]() constexpr {
+          for (int i = 0; i < 10000; ++i) {
+            ankerl::nanobench::doNotOptimizeAway(k1 * k2);
           }
         });
   }
+  TEST_CASE("Derived Subtractions") {}
+  TEST_CASE("Derived Multiplications") {}
+  TEST_CASE("Derived Divisions") {}
 }
 
 // NOLINTEND(modernize-use-trailing-return-type)
