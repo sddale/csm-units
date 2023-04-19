@@ -62,7 +62,7 @@ constexpr void UseIG() {
 ```
 
 
-###Benchmarking Results
+### Benchmarking Results
 
 |               ns/op |                op/s |    err% |     total | benchmark
 |--------------------:|--------------------:|--------:|----------:|:----------
