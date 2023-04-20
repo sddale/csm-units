@@ -27,6 +27,9 @@ CPMAddPackage("gh:martinus/nanobench@4.3.11") # To make target installable
 # CPMAddPackage("gh:gsl-lite/gsl-lite@0.41.0") # To make target installable
 # CPMAddPackage("gh:fmtlib/fmt@9.1.0") # To make target installable
 # add_subdirectory(./units/src)
+# # ----- ChatGPT told me to add these below lines not my fault ----
+# add_subdirectory(fmt)
+# add_subdirectory(csm_units fmt)
 
 # ---- Create library ----
 add_library(${PROJECT_NAME} INTERFACE)
