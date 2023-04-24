@@ -33,7 +33,7 @@ TEST_SUITE("Benchmarks") {
     ankerl::nanobench::Bench().minEpochIterations(5000).run(
         "add derived units", [&]() constexpr {
           for (int i = 0; i < 10000; ++i) {
-            ankerl::nanobench::doNotOptimizeAway(u1 * u2);
+            ankerl::nanobench::doNotOptimizeAway(u1 + u2);
           }
         });
   }
