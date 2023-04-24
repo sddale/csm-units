@@ -145,15 +145,15 @@ class UnitBase {
 
   // + operator overloads
 
-  constexpr auto operator+=(UnitBase rhs) noexcept -> auto& {
+  constexpr auto operator+=(const UnitBase& rhs) noexcept -> auto& {
     data += rhs.data;
     return *this;
   }
 
   // compound + compound
-  friend constexpr auto operator+(UnitBase lhs, UnitBase rhs) noexcept {
+  friend constexpr auto operator+(UnitBase lhs, const UnitBase& rhs) noexcept {
     lhs.data = lhs.data + rhs.data;
-    // lhs += rhs;
+    // lhs += rhs; // <- this increased the time by 15,000 ns
     return lhs;
   }
 
