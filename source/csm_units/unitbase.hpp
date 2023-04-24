@@ -29,7 +29,7 @@ class UnitBase {
   template <UnitType U>
     requires std::is_same_v<typename U::SI, UnitBase>
   constexpr UnitBase(U convert) noexcept
-      : data(UnitCast<UnitBase>(convert).data) {}
+      : data(UnitCast<UnitBase>(std::forward<U>(convert)).data) {}
 
   // template <UnitType U>
   //   requires std::same_as<typename U::SI, UnitBase>
@@ -152,6 +152,12 @@ class UnitBase {
 
   // compound + compound
   friend constexpr auto operator+(UnitBase lhs, const UnitBase& rhs) noexcept {
+    lhs.data = lhs.data + rhs.data;
+    // lhs += rhs; // <- this increased the time by 15,000 ns
+    return lhs;
+  }
+
+  friend constexpr auto operator+(UnitBase lhs, UnitBase&& rhs) noexcept {
     lhs.data = lhs.data + rhs.data;
     // lhs += rhs; // <- this increased the time by 15,000 ns
     return lhs;
