@@ -1,12 +1,14 @@
 #include <doctest/doctest.h>
 #include <nanobench.h>
+#include <units/isq/si/length.h>
 
 #include <csm_units/units.hpp>
+// #include <units/isq/si/mass.h>
 
 namespace csm_units::test {
 
 // NOLINTBEGIN(modernize-use-trailing-return-type)
-
+using namespace units::isq::si::references;
 TEST_SUITE("Benchmarks") {
   TEST_CASE("Additions") {
     // do additions on double
@@ -34,6 +36,15 @@ TEST_SUITE("Benchmarks") {
         "add derived units", [&]() constexpr {
           for (int i = 0; i < 10000; ++i) {
             ankerl::nanobench::doNotOptimizeAway(u1 + u2);
+          }
+        });
+    // using namespace units::isq::si::references;
+    auto comp1 = units::isq::si::length<units::isq::si::metre>(3.4);
+    auto comp2 = units::isq::si::length<units::isq::si::metre>(5.7);
+    ankerl::nanobench::Bench().minEpochIterations(5000).run(
+        "adding competitor's derived units", [&]() constexpr {
+          for (int i = 0; i < 10000; ++i) {
+            ankerl::nanobench::doNotOptimizeAway(comp1 + comp2);
           }
         });
   }

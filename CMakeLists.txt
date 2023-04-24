@@ -24,11 +24,11 @@ CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0") # To make target inst
 CPMAddPackage("gh:martinus/nanobench@4.3.11") # To make target installable
 
 # # ---- Adding dependencies via CPM for mpusz/units ----
-# CPMAddPackage("gh:gsl-lite/gsl-lite@0.41.0") # To make target installable
-# CPMAddPackage("gh:fmtlib/fmt@9.1.0") # To make target installable
-# add_subdirectory(./units/src)
+CPMAddPackage("gh:gsl-lite/gsl-lite@0.41.0") # To make target installable
+# CPMAddPackage("gh:fmtlib/fmt@8.1.1") # To make target installable
+add_subdirectory(fmt)
+add_subdirectory(./units/src)
 # # ----- ChatGPT told me to add these below lines not my fault ----
-# add_subdirectory(fmt)
 # add_subdirectory(csm_units fmt)
 
 # ---- Create library ----
@@ -66,7 +66,7 @@ file(GLOB_RECURSE test_sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/te
 # Test Executable
 add_executable(${PROJECT_NAME}_test ${test_sources})
 
-target_link_libraries(${PROJECT_NAME}_test PRIVATE doctest::doctest nanobench)
+target_link_libraries(${PROJECT_NAME}_test PRIVATE doctest::doctest nanobench mp-units::mp-units)
 # target_link_libraries(${PROJECT_NAME}_test PRIVATE doctest::doctest nanobench mp-units::mp-units)
 
 target_include_directories(${PROJECT_NAME}_test PRIVATE "test" "include" ".")
