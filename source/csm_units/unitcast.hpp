@@ -4,8 +4,6 @@
 
 #include "util.hpp"
 
-// #include "unitbase.hpp"
-
 namespace csm_units {
 
 template <class DST, class SRC>

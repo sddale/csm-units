@@ -64,41 +64,34 @@ using SqrLuminosity = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 2>, double>;
 using Luminance = UnitBase<Exponents<-2, 0, 0, 0, 0, 0, 1>, double>;
 
 // SI Units
-using Meter = Unit<Length, "m", double>;
+using Meter = Unit<Length, "m", double>;  // ---- Length
 using SqMeter = Unit<Area, "m2", double>;
 using CubeMeter = Unit<Volume, "m3", double>;
 using CentiMeter = Unit<Length, "cm", double>;
 using MilliMeter = Unit<Length, "mm", double>;
 using KiloMeter = Unit<Length, "km", double>;
 using InvMeter = Unit<InvLength, "inv_m", double>;
-
-using Gram = Unit<Mass, "g", double>;
+using Gram = Unit<Mass, "g", double>;  // ---- Mass
 using Kilogram = Unit<Mass, "kg", double>;
-
-using Second = Unit<Time, "s", double>;
-
-using Ampere = Unit<ElectrCurrent, "A", double>;
+using Second = Unit<Time, "s", double>;           // ---- Time
+using Ampere = Unit<ElectrCurrent, "A", double>;  // ---- ElectrCurrent
 using Coulomb = Unit<ElectrCurrent, "C", double>;
 using Milliampere = Unit<ElectrCurrent, "mA", double>;
 using SqrAmpere = Unit<SqrElectrCurrent, "A2", double>;
 using SqrMilliamp = Unit<SqrElectrCurrent, "mA2", double>;
-
-using Kelvin = Unit<Temperature, "K", double>;
+using Kelvin = Unit<Temperature, "K", double>;  // ---- Temperature
 using Fahrenheit = Unit<Temperature, "F", double>;
 using Celsius = Unit<Temperature, "C", double>;
-
-using Mole = Unit<Amount, "mol", double>;
+using Mole = Unit<Amount, "mol", double>;  // ---- Amount
 using Kilomole = Unit<Amount, "kmol", double>;
-
 using SqrMole = Unit<SqrAmount, "mol2", double>;
 using SqrKilomole = Unit<SqrAmount, "kmol2", double>;
-
-using Candela = Unit<Luminosity, "cd", double>;
+using Candela = Unit<Luminosity, "cd", double>;  // ---- Luminosity
 using SqrCandela = Unit<SqrLuminosity, "cd2", double>;
-using Pascal = Unit<Pressure, "Pa", double>;
-using Newton = Unit<Force, "N", double>;
 
 // Other Units
+using Pascal = Unit<Pressure, "Pa", double>;  // ---- Misc.
+using Newton = Unit<Force, "N", double>;
 using Psi = Unit<Pressure, "psi", double>;
 using Bar = Unit<Pressure, "bar", double>;
 using Atm = Unit<Pressure, "Atm", double>;
@@ -477,19 +470,6 @@ template <>
   return SqrElectrCurrent(input.data / 1000000);
 }
 
-// // idea to casting to and from Coulombs - have to add/change template
-// template<>
-// [[nodiscard]] constexpr auto UnitCast( ElectrCurrent input, Time seconds)
-// noexcept -> Coulomb {
-//   return ElectrCurrent(input.data * seconds);
-// }
-
-// template <>
-// [[nodiscard]] constexpr auto UnitCast( Coulomb input, Time seconds) noexcept
-// -> ElectrCurrent {
-//   return ElectrCurrent(input.data / seconds);
-// }
-
 // Unit Cast for Unit Kelvin
 template <>
 [[nodiscard]] constexpr auto UnitCast(Temperature &&input) noexcept -> Kelvin {
@@ -675,41 +655,5 @@ constexpr auto operator""_cd(long double data) noexcept {
   return Unit<UnitBase<Exponents<0, 0, 0, 0, 0, 0, 1>, double>, "cd", double>(
       static_cast<double>(data));
 }
-
-// template <class DST, class SRC>
-// auto Cast(SRC /*input*/) -> DST;
-
-// template <>
-// auto Cast(Foo2 input) -> Foo1;
-
-// class Foo2 {
-//  public:
-//   constexpr explicit Foo2(double value = 0.0) noexcept : data(value) {}
-
-//   // constexpr Foo2(Foo1 thing) noexcept { data = Cast<Foo2>(thing).data; }
-
-//   double data;
-
-//   friend constexpr auto operator+(Foo2 lhs, Foo2 rhs) {
-//     return Foo2(Cast<Foo1>(lhs) + rhs);
-//   }
-// };
-
-// class Foo1 {
-//  public:
-//   constexpr explicit Foo1(double value = 0.0) noexcept : data(value) {}
-//   constexpr Foo1(Foo2 thing) noexcept { data = (Cast<Foo1>(thing).data); }
-
-//   double data;
-
-//   friend constexpr auto operator+(Foo1 lhs, Foo1 rhs) {
-//     return Foo1(lhs.data + rhs.data);
-//   }
-// };
-
-// template <>
-// auto Cast(Foo2 input) -> Foo1 {
-//   return Foo1(input);
-// }
 
 }  // namespace csm_units

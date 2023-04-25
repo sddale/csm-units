@@ -696,21 +696,6 @@ TEST_SUITE("Unit") {
   }
   // NOLINTEND(readability-identifier-length)
 }
-//   TEST_CASE("Idea Test") {
-//     const auto foo1 = Foo1(3.0);
-//     const auto foo2 = Foo2(4.0);
-
-//     const auto fooTest1 = foo1 + foo2;
-
-//     const auto fooTest2 = foo2 + foo2;
-
-//     CHECK_DBL_EQ(fooTest1.data,7.0);
-//     CHECK(std::is_same_v<std::remove_const_t<decltype(fooTest1)>, Foo1>);
-
-//     CHECK_DBL_EQ(fooTest2.data,8.0);
-//     CHECK(std::is_same_v<std::remove_const_t<decltype(fooTest2)>, Foo1>);
-//   }
-// }
 
 // NOLINTEND(modernize-use-trailing-return-type,misc-use-anonymous-namespace)
 

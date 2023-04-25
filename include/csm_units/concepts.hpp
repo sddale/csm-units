@@ -10,26 +10,6 @@ namespace csm_units {
 template <class T>
 concept Arithmetic = std::is_arithmetic_v<T>;
 
-// template <class T>
-// concept ConverterType = requires(T base) {
-//                           { T::ToBase(0.0, 1) } ->
-//                           std::convertible_to<double>;
-//                           {
-//                             T::FromBase(0.0, 1)
-//                             } -> std::convertible_to<double>;
-//                         };
-
-// template <class T>
-// concept BaseType = requires(T base) {
-//                      { base.data } -> std::convertible_to<double>;
-//                      {
-//                        std::remove_reference_t<T>::ToBase(0.0)
-//                        } -> std::convertible_to<decltype(base.data)>;
-//                      {
-//                        std::remove_reference_t<T>::FromBase(0.0)
-//                        } -> std::convertible_to<decltype(base.data)>;
-//                    };
-
 template <class T>
 concept ExpType = requires(T) {
                     { T::L::num } -> std::convertible_to<intmax_t>;

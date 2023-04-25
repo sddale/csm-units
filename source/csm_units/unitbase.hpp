@@ -31,11 +31,6 @@ class UnitBase {
   constexpr UnitBase(U convert) noexcept
       : data(UnitCast<UnitBase>(std::forward<U>(convert)).data) {}
 
-  // template <UnitType U>
-  //   requires std::same_as<typename U::SI, UnitBase>
-  // constexpr UnitBase(U convert) noexcept
-  //     : data(UnitCast<UnitBase>(convert).data) {}
-
   constexpr auto operator<=>(const UnitBase& other) const noexcept
       -> std::strong_ordering {
     return data <=> other.data;
@@ -64,7 +59,7 @@ class UnitBase {
 
   Data data;
 
-  // quick stab at Flip member function
+  // Flip function
   constexpr auto Flip() noexcept {
     return UnitBase<ExponentsFlip<Powers>, Data>(std::move(1 / data));
   }
@@ -109,6 +104,7 @@ class UnitBase {
   }
 
   // * operator overloads
+
   friend constexpr auto operator*(
       UnitBase lhs, UnitBase<ExponentsFlip<Powers>, Data> rhs) noexcept {
     return lhs.data * rhs.data;
@@ -164,6 +160,7 @@ class UnitBase {
   }
 
   // - operator overloads
+
   constexpr auto operator-=(const UnitBase& rhs) noexcept -> auto& {
     data -= rhs.data;
     return *this;
@@ -175,15 +172,6 @@ class UnitBase {
     return lhs;
   }
 };
-
-// constexpr auto UnitCast(
-//     Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg", double>
-//         convert_from,
-//     UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double> /*convert_to*/)
-//     -> UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double> {
-//   return UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>(convert_from.data *
-//                                                           1000);
-// }
 
 // NOLINTEND(bugprone-move-forwarding-reference)
 
