@@ -14,9 +14,7 @@ TEST_SUITE("Benchmarks") {
     double x = 3.4;
     double y = 5.7;
     ankerl::nanobench::Bench().minEpochIterations(50000000).run(
-        "Add doubles", [&]() constexpr {
-          ankerl::nanobench::doNotOptimizeAway(x + y);
-        });
+        "Add doubles", [&]() { ankerl::nanobench::doNotOptimizeAway(x + y); });
 
     // ankerl::nanobench::Rng rng;
     // ankerl::nanobench::ScopeGuard group1("asdf");
