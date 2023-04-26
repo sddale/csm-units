@@ -149,13 +149,11 @@ class UnitBase {
   // compound + compound
   friend constexpr auto operator+(UnitBase lhs, const UnitBase& rhs) noexcept {
     lhs.data = lhs.data + rhs.data;
-    // lhs += rhs; // <- this increased the time by 15,000 ns
     return lhs;
   }
 
   friend constexpr auto operator+(UnitBase lhs, UnitBase&& rhs) noexcept {
     lhs.data = lhs.data + rhs.data;
-    // lhs += rhs; // <- this increased the time by 15,000 ns
     return lhs;
   }
 
