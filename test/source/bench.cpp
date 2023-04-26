@@ -1,13 +1,13 @@
 #include <doctest/doctest.h>
 #include <nanobench.h>
-// #include <units/isq/si/length.h>
+#include <units/isq/si/length.h>
 
 #include <csm_units/units.hpp>
 
 namespace csm_units::test {
 
 // NOLINTBEGIN(modernize-use-trailing-return-type)
-// using namespace units::isq::si::references;
+using namespace units::isq::si::references;
 TEST_SUITE("Benchmarks") {
   TEST_CASE("Additions") {
     // do additions on double
@@ -21,12 +21,11 @@ TEST_SUITE("Benchmarks") {
     // a way to Add csm_units groups, but ScoeGuard not found in nanobench?? huh
 
     // competitor
-    // auto comp1 = units::isq::si::length<units::isq::si::metre>(3.4);
-    // auto comp2 = units::isq::si::length<units::isq::si::metre>(5.7);
-    // ankerl::nanobench::Bench().minEpochIterations(50000000).run(
-    //     "Add mpusz/units derived units", [&]()  {
-    //       ankerl::nanobench::doNotOptimizeAway(comp1 + comp2);
-    //     });
+    auto comp1 = units::isq::si::length<units::isq::si::metre>(3.4);
+    auto comp2 = units::isq::si::length<units::isq::si::metre>(5.7);
+    ankerl::nanobench::Bench().minEpochIterations(50000000).run(
+        "Add mpusz/units derived units",
+        [&]() { ankerl::nanobench::doNotOptimizeAway(comp1 + comp2); });
 
     auto b1 = Length(3.4);
     auto b2 = Length(5.7);
@@ -49,12 +48,11 @@ TEST_SUITE("Benchmarks") {
         [&]() { ankerl::nanobench::doNotOptimizeAway(x - y); });
 
     // competitor
-    // auto comp1 = units::isq::si::length<units::isq::si::metre>(3.4);
-    // auto comp2 = units::isq::si::length<units::isq::si::metre>(5.7);
-    // ankerl::nanobench::Bench().minEpochIterations(50000000).run(
-    //     "Subtract mpusz/units derived units", [&]()  {
-    //       ankerl::nanobench::doNotOptimizeAway(comp1 - comp2);
-    //     });
+    auto comp1 = units::isq::si::length<units::isq::si::metre>(3.4);
+    auto comp2 = units::isq::si::length<units::isq::si::metre>(5.7);
+    ankerl::nanobench::Bench().minEpochIterations(50000000).run(
+        "Subtract mpusz/units derived units",
+        [&]() { ankerl::nanobench::doNotOptimizeAway(comp1 - comp2); });
 
     auto b1 = Length(3.4);
     auto b2 = Length(5.7);
@@ -76,12 +74,11 @@ TEST_SUITE("Benchmarks") {
         [&]() { ankerl::nanobench::doNotOptimizeAway(x * y); });
 
     // competitor
-    // auto comp1 = units::isq::si::length<units::isq::si::metre>(3.4);
-    // auto comp2 = units::isq::si::length<units::isq::si::metre>(5.7);
-    // ankerl::nanobench::Bench().minEpochIterations(50000000).run(
-    //     "Multiply mpusz/units derived units", [&]()  {
-    //       ankerl::nanobench::doNotOptimizeAway(comp1 * comp2);
-    //     });
+    auto comp1 = units::isq::si::length<units::isq::si::metre>(3.4);
+    auto comp2 = units::isq::si::length<units::isq::si::metre>(5.7);
+    ankerl::nanobench::Bench().minEpochIterations(50000000).run(
+        "Multiply mpusz/units derived units",
+        [&]() { ankerl::nanobench::doNotOptimizeAway(comp1 * comp2); });
 
     auto b1 = Length(3.4);
     auto b2 = Length(5.7);
@@ -104,12 +101,11 @@ TEST_SUITE("Benchmarks") {
         [&]() { ankerl::nanobench::doNotOptimizeAway(x / y); });
 
     // competitor
-    // auto comp1 = units::isq::si::length<units::isq::si::metre>(3.4);
-    // auto comp2 = units::isq::si::length<units::isq::si::metre>(5.7);
-    // ankerl::nanobench::Bench().minEpochIterations(50000000).run(
-    //     "Divide mpusz/units derived units", [&]()  {
-    //       ankerl::nanobench::doNotOptimizeAway(comp1 / comp2);
-    //     });
+    auto comp1 = units::isq::si::length<units::isq::si::metre>(3.4);
+    auto comp2 = units::isq::si::length<units::isq::si::metre>(5.7);
+    ankerl::nanobench::Bench().minEpochIterations(50000000).run(
+        "Divide mpusz/units derived units",
+        [&]() { ankerl::nanobench::doNotOptimizeAway(comp1 / comp2); });
 
     auto b1 = Length(3.4);
     auto b2 = Length(5.7);
