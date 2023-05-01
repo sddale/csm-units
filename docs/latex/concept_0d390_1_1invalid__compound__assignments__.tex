@@ -1,0 +1,12 @@
+\hypertarget{concept_0d390_1_1invalid__compound__assignments__}{}\doxysection{@390\+::invalid\+\_\+compound\+\_\+assignments\+\_\+ Concept Reference}
+\label{concept_0d390_1_1invalid__compound__assignments__}\index{"@390::invalid\_compound\_assignments\_@{"@390::invalid\_compound\_assignments\_}}
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ PK,\ \textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Qx>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }@390::\mbox{\hyperlink{concept_0d390_1_1invalid__compound__assignments__}{invalid\_compound\_assignments\_}}\ =\ \ \textcolor{keyword}{requires}(\mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind<PK,\ U,\ int>}}\ x,\ Qx\ q)\ \{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ x\ +=\ q;\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ x\ -\/=\ q;\ \};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

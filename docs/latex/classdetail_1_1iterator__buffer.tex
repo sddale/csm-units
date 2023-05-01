@@ -1,0 +1,136 @@
+\hypertarget{classdetail_1_1iterator__buffer}{}\doxysection{detail\+::iterator\+\_\+buffer\texorpdfstring{$<$}{<} Output\+It, T, Traits \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classdetail_1_1iterator__buffer}\index{detail::iterator\_buffer$<$ OutputIt, T, Traits $>$@{detail::iterator\_buffer$<$ OutputIt, T, Traits $>$}}
+Inheritance diagram for detail\+::iterator\+\_\+buffer\texorpdfstring{$<$}{<} Output\+It, T, Traits \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdetail_1_1iterator__buffer}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdetail_1_1iterator__buffer_a6de3a78571f492f4504b116e3736e207}\label{classdetail_1_1iterator__buffer_a6de3a78571f492f4504b116e3736e207}} 
+{\bfseries iterator\+\_\+buffer} (Output\+It out, size\+\_\+t n=buffer\+\_\+size)
+\item 
+\mbox{\Hypertarget{classdetail_1_1iterator__buffer_a69a7ae75978c7773abd22d27d148832f}\label{classdetail_1_1iterator__buffer_a69a7ae75978c7773abd22d27d148832f}} 
+{\bfseries iterator\+\_\+buffer} (\mbox{\hyperlink{classdetail_1_1iterator__buffer}{iterator\+\_\+buffer}} \&\&other)
+\item 
+\mbox{\Hypertarget{classdetail_1_1iterator__buffer_ad469f278794de3f5198c874eef4f583c}\label{classdetail_1_1iterator__buffer_ad469f278794de3f5198c874eef4f583c}} 
+auto {\bfseries out} () -\/$>$ Output\+It
+\item 
+\mbox{\Hypertarget{classdetail_1_1iterator__buffer_a8c860c0e07099dace684b58e94c27ad2}\label{classdetail_1_1iterator__buffer_a8c860c0e07099dace684b58e94c27ad2}} 
+auto {\bfseries count} () const -\/$>$ size\+\_\+t
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{structdetail_1_1buffer__traits}{detail\+::buffer\+\_\+traits}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structdetail_1_1buffer__traits_afcfbda0c5fcd1483a5c0a76365f8bf5f}\label{structdetail_1_1buffer__traits_afcfbda0c5fcd1483a5c0a76365f8bf5f}} 
+{\bfseries buffer\+\_\+traits} (size\+\_\+t)
+\item 
+\mbox{\Hypertarget{structdetail_1_1buffer__traits_ad98ba17c5408a566c4f9b6c0cced9e55}\label{structdetail_1_1buffer__traits_ad98ba17c5408a566c4f9b6c0cced9e55}} 
+auto {\bfseries count} () const -\/$>$ size\+\_\+t
+\item 
+\mbox{\Hypertarget{structdetail_1_1buffer__traits_a9f27d4af37e82a680b294544adf9bd9b}\label{structdetail_1_1buffer__traits_a9f27d4af37e82a680b294544adf9bd9b}} 
+auto {\bfseries limit} (size\+\_\+t size) -\/$>$ size\+\_\+t
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{classdetail_1_1buffer}{detail\+::buffer$<$ T $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdetail_1_1buffer_ab0f4c5730a238421fd375ef0ca20fab1}\label{classdetail_1_1buffer_ab0f4c5730a238421fd375ef0ca20fab1}} 
+{\bfseries buffer} (const \mbox{\hyperlink{classdetail_1_1buffer}{buffer}} \&)=delete
+\item 
+\mbox{\Hypertarget{classdetail_1_1buffer_ae4f118f6f8c274d20bcfd85ecf889f13}\label{classdetail_1_1buffer_ae4f118f6f8c274d20bcfd85ecf889f13}} 
+void {\bfseries operator=} (const \mbox{\hyperlink{classdetail_1_1buffer}{buffer}} \&)=delete
+\item 
+\mbox{\Hypertarget{classdetail_1_1buffer_afbcac45acfd50f869d88dc7e5f93d31c}\label{classdetail_1_1buffer_afbcac45acfd50f869d88dc7e5f93d31c}} 
+FMT\+\_\+\+INLINE auto {\bfseries begin} () noexcept -\/$>$ T $\ast$
+\item 
+\mbox{\Hypertarget{classdetail_1_1buffer_a174b3a5e2fc3b66f12665796fd804b6b}\label{classdetail_1_1buffer_a174b3a5e2fc3b66f12665796fd804b6b}} 
+FMT\+\_\+\+INLINE auto {\bfseries end} () noexcept -\/$>$ T $\ast$
+\item 
+\mbox{\Hypertarget{classdetail_1_1buffer_a7e86eec8027a356fb05d9bdd9b2ad06c}\label{classdetail_1_1buffer_a7e86eec8027a356fb05d9bdd9b2ad06c}} 
+FMT\+\_\+\+INLINE auto {\bfseries begin} () const noexcept -\/$>$ const T $\ast$
+\item 
+\mbox{\Hypertarget{classdetail_1_1buffer_afe189c4e44f309ffd2c1ddbb769f98cf}\label{classdetail_1_1buffer_afe189c4e44f309ffd2c1ddbb769f98cf}} 
+FMT\+\_\+\+INLINE auto {\bfseries end} () const noexcept -\/$>$ const T $\ast$
+\item 
+constexpr auto \mbox{\hyperlink{classdetail_1_1buffer_a8685285932360c284d19003fc4ba3edc}{size}} () const noexcept -\/$>$ size\+\_\+t
+\item 
+constexpr auto \mbox{\hyperlink{classdetail_1_1buffer_ac7ff14268d6b32d3d878291445ff4dd3}{capacity}} () const noexcept -\/$>$ size\+\_\+t
+\item 
+FMT\+\_\+\+CONSTEXPR auto \mbox{\hyperlink{classdetail_1_1buffer_aeb33e0a2d2be2bbca9e0236c148089c8}{data}} () noexcept -\/$>$ T $\ast$
+\item 
+FMT\+\_\+\+CONSTEXPR auto \mbox{\hyperlink{classdetail_1_1buffer_a9236804846c0d435c8d7c7201da20c62}{data}} () const noexcept -\/$>$ const T $\ast$
+\item 
+void \mbox{\hyperlink{classdetail_1_1buffer_a8174757a0d86698229670044730dc59b}{clear}} ()
+\item 
+\mbox{\Hypertarget{classdetail_1_1buffer_a549bc583bc03ed34b32162948e2b80e8}\label{classdetail_1_1buffer_a549bc583bc03ed34b32162948e2b80e8}} 
+FMT\+\_\+\+CONSTEXPR20 void {\bfseries try\+\_\+resize} (size\+\_\+t count)
+\item 
+\mbox{\Hypertarget{classdetail_1_1buffer_a49f14bffd0dc654fc32dab0e00a5e0c6}\label{classdetail_1_1buffer_a49f14bffd0dc654fc32dab0e00a5e0c6}} 
+FMT\+\_\+\+CONSTEXPR20 void {\bfseries try\+\_\+reserve} (size\+\_\+t new\+\_\+capacity)
+\item 
+\mbox{\Hypertarget{classdetail_1_1buffer_a08e276fab23911bbf1ff0a6c121720cf}\label{classdetail_1_1buffer_a08e276fab23911bbf1ff0a6c121720cf}} 
+FMT\+\_\+\+CONSTEXPR20 void {\bfseries push\+\_\+back} (const T \&\mbox{\hyperlink{classdetail_1_1value}{value}})
+\item 
+{\footnotesize template$<$typename U $>$ }\\void \mbox{\hyperlink{classdetail_1_1buffer_a28f51acf32e61f37558f6c7b8d200c05}{append}} (const U $\ast$begin, const U $\ast$end)
+\item 
+\mbox{\Hypertarget{classdetail_1_1buffer_ae2c5fb40e845fc318a3d1a5f26f7ea0e}\label{classdetail_1_1buffer_ae2c5fb40e845fc318a3d1a5f26f7ea0e}} 
+{\footnotesize template$<$typename Idx $>$ }\\FMT\+\_\+\+CONSTEXPR auto {\bfseries operator\mbox{[}$\,$\mbox{]}} (Idx index) -\/$>$ T \&
+\item 
+\mbox{\Hypertarget{classdetail_1_1buffer_a69b47828a5083050dd64cb57c5519b96}\label{classdetail_1_1buffer_a69b47828a5083050dd64cb57c5519b96}} 
+{\footnotesize template$<$typename Idx $>$ }\\FMT\+\_\+\+CONSTEXPR auto {\bfseries operator\mbox{[}$\,$\mbox{]}} (Idx index) const -\/$>$ const T \&
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+FMT\+\_\+\+CONSTEXPR20 void \mbox{\hyperlink{classdetail_1_1iterator__buffer_a4da5a827afd749bc4687da24e5e91241}{grow}} (size\+\_\+t) override
+\item 
+\mbox{\Hypertarget{classdetail_1_1iterator__buffer_a279e0a3c65ff0368e8d5a3b153bcc9e3}\label{classdetail_1_1iterator__buffer_a279e0a3c65ff0368e8d5a3b153bcc9e3}} 
+void {\bfseries flush} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classdetail_1_1buffer}{detail\+::buffer$<$ T $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdetail_1_1buffer_a32e74a03fdd18c00406f4bfbc05822ed}\label{classdetail_1_1buffer_a32e74a03fdd18c00406f4bfbc05822ed}} 
+{\bfseries buffer} (size\+\_\+t sz) noexcept
+\item 
+\mbox{\Hypertarget{classdetail_1_1buffer_a1acdeb28498e6aa225cfeb65e3788c5c}\label{classdetail_1_1buffer_a1acdeb28498e6aa225cfeb65e3788c5c}} 
+FMT\+\_\+\+CONSTEXPR20 {\bfseries buffer} (T $\ast$p=nullptr, size\+\_\+t sz=0, size\+\_\+t cap=0) noexcept
+\item 
+\mbox{\Hypertarget{classdetail_1_1buffer_aefed81ffa13f02c169920c4e8c791414}\label{classdetail_1_1buffer_aefed81ffa13f02c169920c4e8c791414}} 
+{\bfseries buffer} (\mbox{\hyperlink{classdetail_1_1buffer}{buffer}} \&\&)=default
+\item 
+FMT\+\_\+\+CONSTEXPR void \mbox{\hyperlink{classdetail_1_1buffer_a5c82aec716b07079ac88194eb9aa7feb}{set}} (T $\ast$buf\+\_\+data, size\+\_\+t buf\+\_\+capacity) noexcept
+\item 
+virtual FMT\+\_\+\+CONSTEXPR20 void \mbox{\hyperlink{classdetail_1_1buffer_ae1afeec5148a94656c7deaaad19d7da6}{grow}} (size\+\_\+t \mbox{\hyperlink{classdetail_1_1buffer_ac7ff14268d6b32d3d878291445ff4dd3}{capacity}})=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{classdetail_1_1buffer}{detail\+::buffer$<$ T $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdetail_1_1buffer_a5924000772700e59f02fcfb81599e622}\label{classdetail_1_1buffer_a5924000772700e59f02fcfb81599e622}} 
+using {\bfseries value\+\_\+type} = T
+\item 
+\mbox{\Hypertarget{classdetail_1_1buffer_ae0c5b968a30278a20a93f125e5fcb6d7}\label{classdetail_1_1buffer_ae0c5b968a30278a20a93f125e5fcb6d7}} 
+using {\bfseries const\+\_\+reference} = const T \&
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdetail_1_1iterator__buffer_a4da5a827afd749bc4687da24e5e91241}\label{classdetail_1_1iterator__buffer_a4da5a827afd749bc4687da24e5e91241}} 
+\index{detail::iterator\_buffer$<$ OutputIt, T, Traits $>$@{detail::iterator\_buffer$<$ OutputIt, T, Traits $>$}!grow@{grow}}
+\index{grow@{grow}!detail::iterator\_buffer$<$ OutputIt, T, Traits $>$@{detail::iterator\_buffer$<$ OutputIt, T, Traits $>$}}
+\doxysubsubsection{\texorpdfstring{grow()}{grow()}}
+{\footnotesize\ttfamily template$<$typename Output\+It , typename T , typename Traits  = buffer\+\_\+traits$>$ \\
+FMT\+\_\+\+CONSTEXPR20 void \mbox{\hyperlink{classdetail_1_1iterator__buffer}{detail\+::iterator\+\_\+buffer}}$<$ Output\+It, T, Traits $>$\+::grow (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{capacity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Increases the buffer capacity to hold at least {\itshape capacity} elements. 
+
+Implements \mbox{\hyperlink{classdetail_1_1buffer_ae1afeec5148a94656c7deaaad19d7da6}{detail\+::buffer$<$ T $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+csm-\/units/fmt/include/fmt/core.\+h\end{DoxyCompactItemize}

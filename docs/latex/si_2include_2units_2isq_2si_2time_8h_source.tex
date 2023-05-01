@@ -1,0 +1,225 @@
+\hypertarget{si_2include_2units_2isq_2si_2time_8h_source}{}\doxysection{time.\+h}
+\label{si_2include_2units_2isq_2si_2time_8h_source}\index{csm-\/units/units/src/systems/si/include/units/isq/si/time.h@{csm-\/units/units/src/systems/si/include/units/isq/si/time.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ IWYU\ pragma:\ begin\_exports}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <units/quantity.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <units/reference.h>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <units/symbol\_text.h>}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ IWYU\ pragma:\ end\_exports}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <units/isq/dimensions/time.h>}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <units/isq/si/prefixes.h>}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <units/unit.h>}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{namespace\ }units::isq::si\ \{}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1second}{second}}\ :\ \mbox{\hyperlink{structunits_1_1named__unit}{named\_unit}}<second,\ "{}s"{}>\ \{\};}
+\DoxyCodeLine{00038\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1yoctosecond}{yoctosecond}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<yoctosecond,\ yocto,\ second>\ \{\};}
+\DoxyCodeLine{00039\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1zeptosecond}{zeptosecond}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<zeptosecond,\ zepto,\ second>\ \{\};}
+\DoxyCodeLine{00040\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1attosecond}{attosecond}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<attosecond,\ atto,\ second>\ \{\};}
+\DoxyCodeLine{00041\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1femtosecond}{femtosecond}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<femtosecond,\ femto,\ second>\ \{\};}
+\DoxyCodeLine{00042\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1picosecond}{picosecond}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<picosecond,\ pico,\ second>\ \{\};}
+\DoxyCodeLine{00043\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1nanosecond}{nanosecond}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<nanosecond,\ nano,\ second>\ \{\};}
+\DoxyCodeLine{00044\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1microsecond}{microsecond}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<microsecond,\ micro,\ second>\ \{\};}
+\DoxyCodeLine{00045\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1millisecond}{millisecond}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<millisecond,\ milli,\ second>\ \{\};}
+\DoxyCodeLine{00046\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1minute}{minute}}\ :\ \mbox{\hyperlink{structunits_1_1named__scaled__unit}{named\_scaled\_unit}}<minute,\ "{}min"{},\ mag<60>(),\ second>\ \{\};}
+\DoxyCodeLine{00047\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hour}{hour}}\ :\ \mbox{\hyperlink{structunits_1_1named__scaled__unit}{named\_scaled\_unit}}<hour,\ "{}h"{},\ mag<60>(),\ minute>\ \{\};}
+\DoxyCodeLine{00048\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1day}{day}}\ :\ \mbox{\hyperlink{structunits_1_1named__scaled__unit}{named\_scaled\_unit}}<day,\ "{}d"{},\ mag<24>(),\ hour>\ \{\};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1dim__time}{dim\_time}}\ :\ \mbox{\hyperlink{structunits_1_1isq_1_1dim__time}{isq::dim\_time}}<second>\ \{\};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{template}<UnitOf<dim\_time>\ U,\ Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00053\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{time}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{quantity<dim\_time,\ U,\ Rep>}};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_LITERALS}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{inline}\ \textcolor{keyword}{namespace\ }literals\ \{}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ ys}}
+\DoxyCodeLine{00060\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ys(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00061\ \{}
+\DoxyCodeLine{00062\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00063\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity}{time<yoctosecond,\ std::int64\_t>}}(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00064\ \}}
+\DoxyCodeLine{00065\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ys(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ time<yoctosecond,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{comment}{//\ zs}}
+\DoxyCodeLine{00068\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_zs(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00071\ \ \ \textcolor{keywordflow}{return}\ time<zeptosecond,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_zs(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ time<zeptosecond,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ as}}
+\DoxyCodeLine{00076\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_as(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00079\ \ \ \textcolor{keywordflow}{return}\ time<attosecond,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00080\ \}}
+\DoxyCodeLine{00081\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_as(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ time<attosecond,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{comment}{//\ fs}}
+\DoxyCodeLine{00084\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_fs(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00085\ \{}
+\DoxyCodeLine{00086\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00087\ \ \ \textcolor{keywordflow}{return}\ time<femtosecond,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00088\ \}}
+\DoxyCodeLine{00089\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_fs(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ time<femtosecond,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{comment}{//\ ps}}
+\DoxyCodeLine{00092\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ps(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00093\ \{}
+\DoxyCodeLine{00094\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00095\ \ \ \textcolor{keywordflow}{return}\ time<picosecond,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00096\ \}}
+\DoxyCodeLine{00097\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ps(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ time<picosecond,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{comment}{//\ ns}}
+\DoxyCodeLine{00100\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ns(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00101\ \{}
+\DoxyCodeLine{00102\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00103\ \ \ \textcolor{keywordflow}{return}\ time<nanosecond,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00104\ \}}
+\DoxyCodeLine{00105\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ns(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ time<nanosecond,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{comment}{//\ us}}
+\DoxyCodeLine{00108\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_us(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00109\ \{}
+\DoxyCodeLine{00110\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00111\ \ \ \textcolor{keywordflow}{return}\ time<microsecond,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00112\ \}}
+\DoxyCodeLine{00113\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_us(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ time<microsecond,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{comment}{//\ ms}}
+\DoxyCodeLine{00116\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ms(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00117\ \{}
+\DoxyCodeLine{00118\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00119\ \ \ \textcolor{keywordflow}{return}\ time<millisecond,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00120\ \}}
+\DoxyCodeLine{00121\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ms(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ time<millisecond,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{comment}{//\ s}}
+\DoxyCodeLine{00124\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_s(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00125\ \{}
+\DoxyCodeLine{00126\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00127\ \ \ \textcolor{keywordflow}{return}\ time<second,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00128\ \}}
+\DoxyCodeLine{00129\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_s(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ time<second,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{comment}{//\ min}}
+\DoxyCodeLine{00132\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_min(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00133\ \{}
+\DoxyCodeLine{00134\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00135\ \ \ \textcolor{keywordflow}{return}\ time<minute,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00136\ \}}
+\DoxyCodeLine{00137\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_min(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ time<minute,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{comment}{//\ h}}
+\DoxyCodeLine{00140\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_h(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00141\ \{}
+\DoxyCodeLine{00142\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00143\ \ \ \textcolor{keywordflow}{return}\ time<hour,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00144\ \}}
+\DoxyCodeLine{00145\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_h(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ time<hour,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{comment}{//\ d}}
+\DoxyCodeLine{00148\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_d(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00149\ \{}
+\DoxyCodeLine{00150\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00151\ \ \ \textcolor{keywordflow}{return}\ time<day,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00152\ \}}
+\DoxyCodeLine{00153\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_d(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ time<day,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \}\ \ \textcolor{comment}{//\ namespace\ literals}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_LITERALS}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_REFERENCES}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{keyword}{namespace\ }time\_references\ \{}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{ys}}\ =\ reference<dim\_time,\ yoctosecond>\{\};}
+\DoxyCodeLine{00164\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{zs}}\ =\ reference<dim\_time,\ zeptosecond>\{\};}
+\DoxyCodeLine{00165\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{as}}\ =\ reference<dim\_time,\ attosecond>\{\};}
+\DoxyCodeLine{00166\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{fs}}\ =\ reference<dim\_time,\ femtosecond>\{\};}
+\DoxyCodeLine{00167\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{ps}}\ =\ reference<dim\_time,\ picosecond>\{\};}
+\DoxyCodeLine{00168\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{ns}}\ =\ reference<dim\_time,\ nanosecond>\{\};}
+\DoxyCodeLine{00169\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{us}}\ =\ reference<dim\_time,\ microsecond>\{\};}
+\DoxyCodeLine{00170\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{ms}}\ =\ reference<dim\_time,\ millisecond>\{\};}
+\DoxyCodeLine{00171\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{s}}\ =\ reference<dim\_time,\ second>\{\};}
+\DoxyCodeLine{00172\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{min}}\ =\ reference<dim\_time,\ minute>\{\};}
+\DoxyCodeLine{00173\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{h}}\ =\ reference<dim\_time,\ hour>\{\};}
+\DoxyCodeLine{00174\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{d}}\ =\ reference<dim\_time,\ day>\{\};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \}\ \ \textcolor{comment}{//\ namespace\ time\_references}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \textcolor{keyword}{namespace\ }references\ \{}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{keyword}{using\ namespace\ }time\_references;}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \}\ \ \textcolor{comment}{//\ namespace\ references}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_REFERENCES}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \}\ \ \textcolor{comment}{//\ namespace\ units::isq::si}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_ALIASES}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \textcolor{keyword}{namespace\ }units::aliases::isq::si::inline\ time\ \{}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00193\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{ys}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::time<units::isq::si::yoctosecond,\ Rep>}};}
+\DoxyCodeLine{00194\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00195\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{zs}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::time<units::isq::si::zeptosecond,\ Rep>}};}
+\DoxyCodeLine{00196\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00197\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{as}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::time<units::isq::si::attosecond,\ Rep>}};}
+\DoxyCodeLine{00198\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00199\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{fs}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::time<units::isq::si::femtosecond,\ Rep>}};}
+\DoxyCodeLine{00200\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00201\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{ps}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::time<units::isq::si::picosecond,\ Rep>}};}
+\DoxyCodeLine{00202\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00203\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{ns}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::time<units::isq::si::nanosecond,\ Rep>}};}
+\DoxyCodeLine{00204\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00205\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{us}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::time<units::isq::si::microsecond,\ Rep>}};}
+\DoxyCodeLine{00206\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00207\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{ms}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::time<units::isq::si::millisecond,\ Rep>}};}
+\DoxyCodeLine{00208\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00209\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{s}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::time<units::isq::si::second,\ Rep>}};}
+\DoxyCodeLine{00210\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00211\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{min}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::time<units::isq::si::minute,\ Rep>}};}
+\DoxyCodeLine{00212\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00213\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{h}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::time<units::isq::si::hour,\ Rep>}};}
+\DoxyCodeLine{00214\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00215\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{d}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::time<units::isq::si::day,\ Rep>}};}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \}\ \ \textcolor{comment}{//\ namespace\ units::aliases::isq::si::inline\ time}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_ALIASES}}
+
+\end{DoxyCode}

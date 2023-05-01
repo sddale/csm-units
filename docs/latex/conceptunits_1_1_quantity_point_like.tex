@@ -1,0 +1,24 @@
+\hypertarget{conceptunits_1_1_quantity_point_like}{}\doxysection{units\+::Quantity\+Point\+Like Concept Reference}
+\label{conceptunits_1_1_quantity_point_like}\index{units::QuantityPointLike@{units::QuantityPointLike}}
+
+
+A concept matching all quantity point-\/like types (other than specialization of {\ttfamily quantity\+\_\+point})  
+
+
+
+
+{\ttfamily \#include $<$basic\+\_\+concepts.\+h$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1_quantity_point_like}{units::QuantityPointLike}}\ =\ \ detail::is\_quantity\_point\_like<T>}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+A concept matching all quantity point-\/like types (other than specialization of {\ttfamily quantity\+\_\+point}) 
+
+Satisfied by all types for which a correct specialization of {\ttfamily quantity\+\_\+point\+\_\+like\+\_\+traits} type trait is provided. 

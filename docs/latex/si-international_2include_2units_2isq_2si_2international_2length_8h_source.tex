@@ -1,0 +1,195 @@
+\hypertarget{si-international_2include_2units_2isq_2si_2international_2length_8h_source}{}\doxysection{length.\+h}
+\label{si-international_2include_2units_2isq_2si_2international_2length_8h_source}\index{csm-\/units/units/src/systems/si-\/international/include/units/isq/si/international/length.h@{csm-\/units/units/src/systems/si-\/international/include/units/isq/si/international/length.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ IWYU\ pragma:\ begin\_exports}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <units/isq/dimensions/length.h>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <units/quantity.h>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <units/reference.h>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <units/symbol\_text.h>}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ IWYU\ pragma:\ end\_exports}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <units/isq/si/length.h>}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <units/unit.h>}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{namespace\ }units::isq::si::international\ \{}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ si::international\ yard}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ https://en.wikipedia.org/wiki/International\_yard\_and\_pound}}
+\DoxyCodeLine{00040\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1international_1_1yard}{yard}}\ :\ \mbox{\hyperlink{structunits_1_1named__scaled__unit}{named\_scaled\_unit}}<yard,\ "{}yd"{},\ mag<ratio\{9'144,\ 10'000\}>(),\ si::metre>\ \{\};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ si::international\ foot}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ https://en.wikipedia.org/wiki/Foot\_(unit)\#International\_foot}}
+\DoxyCodeLine{00044\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1international_1_1foot}{foot}}\ :\ \mbox{\hyperlink{structunits_1_1named__scaled__unit}{named\_scaled\_unit}}<foot,\ "{}ft"{},\ mag<ratio(1,\ 3)>(),\ yard>\ \{\};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ https://en.wikipedia.org/wiki/Fathom\#International\_fathom}}
+\DoxyCodeLine{00047\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1international_1_1fathom}{fathom}}\ :\ \mbox{\hyperlink{structunits_1_1named__scaled__unit}{named\_scaled\_unit}}<fathom,\ "{}fathom"{},\ mag<2>(),\ yard>\ \{\};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ si::international\ inch}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ https://en.wikipedia.org/wiki/Inch\#Equivalences}}
+\DoxyCodeLine{00051\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1international_1_1inch}{inch}}\ :\ \mbox{\hyperlink{structunits_1_1named__scaled__unit}{named\_scaled\_unit}}<inch,\ "{}in"{},\ mag<ratio(1,\ 36)>(),\ yard>\ \{\};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ intrnational\ mile}}
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ https://en.wikipedia.org/wiki/Mile\#International\_mile}}
+\DoxyCodeLine{00055\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1international_1_1mile}{mile}}\ :\ \mbox{\hyperlink{structunits_1_1named__scaled__unit}{named\_scaled\_unit}}<mile,\ "{}mi"{},\ mag<ratio(25'146,\ 15'625)>(),\ si::kilometre>\ \{\};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ si::international\ nautical\ mile}}
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ https://en.wikipedia.org/wiki/Nautical\_mile}}
+\DoxyCodeLine{00059\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1international_1_1nautical__mile}{nautical\_mile}}\ :\ \mbox{\hyperlink{structunits_1_1named__scaled__unit}{named\_scaled\_unit}}<nautical\_mile,\ "{}mi(naut)"{},\ mag<1852>(),\ si::metre>\ \{\};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ thou}}
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ https://en.wikipedia.org/wiki/Thousandth\_of\_an\_inch}}
+\DoxyCodeLine{00063\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1international_1_1thou}{thou}}\ :\ \mbox{\hyperlink{structunits_1_1named__scaled__unit}{named\_scaled\_unit}}<thou,\ "{}thou"{},\ mag<ratio(1,\ 1000)>(),\ inch>\ \{\};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ mil\ -\/\ different\ name\ for\ thou}}
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ https://en.wikipedia.org/wiki/Thousandth\_of\_an\_inch}}
+\DoxyCodeLine{00067\ \textcolor{keyword}{using\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1international_1_1thou}{mil}}\ =\ \mbox{\hyperlink{structunits_1_1isq_1_1si_1_1international_1_1thou}{thou}};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_LITERALS}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{inline}\ \textcolor{keyword}{namespace\ }literals\ \{}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ yd}}
+\DoxyCodeLine{00074\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_yd(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00075\ \{}
+\DoxyCodeLine{00076\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00077\ \ \ \textcolor{keywordflow}{return}\ si::length<yard,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00078\ \}}
+\DoxyCodeLine{00079\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_yd(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ si::length<yard,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{comment}{//\ ft}}
+\DoxyCodeLine{00082\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ft(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00083\ \{}
+\DoxyCodeLine{00084\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00085\ \ \ \textcolor{keywordflow}{return}\ si::length<foot,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00086\ \}}
+\DoxyCodeLine{00087\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ft(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ si::length<foot,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{comment}{//\ fathom}}
+\DoxyCodeLine{00090\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_fathom(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00091\ \{}
+\DoxyCodeLine{00092\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00093\ \ \ \textcolor{keywordflow}{return}\ si::length<fathom,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00094\ \}}
+\DoxyCodeLine{00095\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_fathom(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ si::length<fathom,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{comment}{//\ in}}
+\DoxyCodeLine{00098\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_in(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00099\ \{}
+\DoxyCodeLine{00100\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00101\ \ \ \textcolor{keywordflow}{return}\ si::length<inch,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00102\ \}}
+\DoxyCodeLine{00103\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_in(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ si::length<inch,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{comment}{//\ mi}}
+\DoxyCodeLine{00106\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_mi(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00107\ \{}
+\DoxyCodeLine{00108\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00109\ \ \ \textcolor{keywordflow}{return}\ si::length<mile,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00110\ \}}
+\DoxyCodeLine{00111\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_mi(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ si::length<mile,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{comment}{//\ mi\_naut}}
+\DoxyCodeLine{00114\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_naut\_mi(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00115\ \{}
+\DoxyCodeLine{00116\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00117\ \ \ \textcolor{keywordflow}{return}\ si::length<nautical\_mile,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00118\ \}}
+\DoxyCodeLine{00119\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_naut\_mi(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ si::length<nautical\_mile,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{comment}{//\ thou}}
+\DoxyCodeLine{00122\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_thou(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00123\ \{}
+\DoxyCodeLine{00124\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00125\ \ \ \textcolor{keywordflow}{return}\ si::length<thou,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00126\ \}}
+\DoxyCodeLine{00127\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_thou(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ si::length<thou,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{comment}{//\ mil}}
+\DoxyCodeLine{00130\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_mil(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00131\ \{}
+\DoxyCodeLine{00132\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00133\ \ \ \textcolor{keywordflow}{return}\ si::length<mil,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00134\ \}}
+\DoxyCodeLine{00135\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_mil(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ si::length<mil,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \}\ \ \textcolor{comment}{//\ namespace\ literals}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_LITERALS}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_REFERENCES}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \textcolor{keyword}{namespace\ }length\_references\ \{}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ yd\ =\ reference<si::dim\_length,\ yard>\{\};}
+\DoxyCodeLine{00146\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ ft\ =\ reference<si::dim\_length,\ foot>\{\};}
+\DoxyCodeLine{00147\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ fathom\ =\ reference<si::dim\_length,\ international::fathom>\{\};}
+\DoxyCodeLine{00148\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ in\ =\ reference<si::dim\_length,\ inch>\{\};}
+\DoxyCodeLine{00149\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ mi\ =\ reference<si::dim\_length,\ mile>\{\};}
+\DoxyCodeLine{00150\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ mi\_naut\ =\ reference<si::dim\_length,\ nautical\_mile>\{\};}
+\DoxyCodeLine{00151\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ thou\ =\ reference<si::dim\_length,\ international::thou>\{\};}
+\DoxyCodeLine{00152\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ mil\ =\ reference<si::dim\_length,\ international::mil>\{\};}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \}\ \ \textcolor{comment}{//\ namespace\ length\_references}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{keyword}{namespace\ }references\ \{}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{keyword}{using\ namespace\ }length\_references;}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \}\ \ \textcolor{comment}{//\ namespace\ references}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_REFERENCES}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \}\ \ \textcolor{comment}{//\ namespace\ units::isq::si::international}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_ALIASES}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \textcolor{keyword}{namespace\ }units::aliases::isq::si::international::inline\ length\ \{}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00171\ \textcolor{keyword}{using\ }yd\ =\ units::isq::si::length<units::isq::si::international::yard,\ Rep>;}
+\DoxyCodeLine{00172\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00173\ \textcolor{keyword}{using\ }ft\ =\ units::isq::si::length<units::isq::si::international::foot,\ Rep>;}
+\DoxyCodeLine{00174\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00175\ \textcolor{keyword}{using\ }fathom\ =\ units::isq::si::length<units::isq::si::international::fathom,\ Rep>;}
+\DoxyCodeLine{00176\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00177\ \textcolor{keyword}{using\ }in\ =\ units::isq::si::length<units::isq::si::international::inch,\ Rep>;}
+\DoxyCodeLine{00178\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00179\ \textcolor{keyword}{using\ }mi\ =\ units::isq::si::length<units::isq::si::international::mile,\ Rep>;}
+\DoxyCodeLine{00180\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00181\ \textcolor{keyword}{using\ }mi\_naut\ =\ units::isq::si::length<units::isq::si::international::nautical\_mile,\ Rep>;}
+\DoxyCodeLine{00182\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00183\ \textcolor{keyword}{using\ }thou\ =\ units::isq::si::length<units::isq::si::international::thou,\ Rep>;}
+\DoxyCodeLine{00184\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00185\ \textcolor{keyword}{using\ }mil\ =\ units::isq::si::length<units::isq::si::international::mil,\ Rep>;}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \}\ \ \textcolor{comment}{//\ namespace\ units::aliases::isq::si::international::inline\ length}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_ALIASES}}
+
+\end{DoxyCode}

@@ -1,0 +1,9 @@
+\hypertarget{conceptcastable__to}{}\doxysection{castable\+\_\+to Concept Reference}
+\label{conceptcastable__to}\index{castable\_to@{castable\_to}}
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Q,\ \textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptcastable__to}{castable\_to}}\ =\ \ Quantity<Q>\ \&\&\ Unit<U>\ \&\&\ \textcolor{keyword}{requires}(Q\ q)\ \{\ quantity\_cast<U>(q);\ \}}
+
+\end{DoxyCode}

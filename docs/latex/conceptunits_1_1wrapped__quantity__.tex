@@ -1,0 +1,25 @@
+\hypertarget{conceptunits_1_1wrapped__quantity__}{}\doxysection{units\+::wrapped\+\_\+quantity\+\_\+ Concept Reference}
+\label{conceptunits_1_1wrapped__quantity__}\index{units::wrapped\_quantity\_@{units::wrapped\_quantity\_}}
+
+
+A concept matching types that wrap quantity objects.  
+
+
+
+
+{\ttfamily \#include $<$basic\+\_\+concepts.\+h$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1wrapped__quantity__}{units::wrapped\_quantity\_}}\ =\ \ \ }
+\DoxyCodeLine{\ \ detail::is\_wrapped\_quantity<T>}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+A concept matching types that wrap quantity objects. 
+
+Satisfied by all wrapper types that satisfy {\ttfamily Quantity\texorpdfstring{$<$}{<}typename T\+::value\+\_\+type\texorpdfstring{$>$}{>}} recursively (i.\+e. {\ttfamily std\+::optional\texorpdfstring{$<$}{<}si\+::length\texorpdfstring{$<$}{<}\mbox{\hyperlink{structsi_1_1metre}{si\+::metre}}\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}}). 

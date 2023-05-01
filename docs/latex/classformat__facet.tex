@@ -1,0 +1,50 @@
+\hypertarget{classformat__facet}{}\doxysection{format\+\_\+facet\texorpdfstring{$<$}{<} Locale \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classformat__facet}\index{format\_facet$<$ Locale $>$@{format\_facet$<$ Locale $>$}}
+Inheritance diagram for format\+\_\+facet\texorpdfstring{$<$}{<} Locale \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classformat__facet}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structformat__facet_1_1int__formatter}{int\+\_\+formatter}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classformat__facet_a935e0ac70f6cf9342ccb4bae09821a1a}\label{classformat__facet_a935e0ac70f6cf9342ccb4bae09821a1a}} 
+{\bfseries format\+\_\+facet} (Locale \&loc)
+\item 
+\mbox{\Hypertarget{classformat__facet_ab6ea53fcd9b03aa502d4fc5805844d52}\label{classformat__facet_ab6ea53fcd9b03aa502d4fc5805844d52}} 
+{\bfseries format\+\_\+facet} (\mbox{\hyperlink{classbasic__string__view}{string\+\_\+view}} sep=\char`\"{}\char`\"{}, std\+::initializer\+\_\+list$<$ unsigned char $>$ g=\{3\}, std\+::string decimal\+\_\+point=\char`\"{}.\char`\"{})
+\item 
+\mbox{\Hypertarget{classformat__facet_a0062be1a44a94f5224963162aed57148}\label{classformat__facet_a0062be1a44a94f5224963162aed57148}} 
+auto {\bfseries put} (\mbox{\hyperlink{classappender}{appender}} out, \mbox{\hyperlink{classloc__value}{loc\+\_\+value}} val, const \mbox{\hyperlink{structformat__specs}{format\+\_\+specs}}$<$$>$ \&specs) const -\/$>$ bool
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classformat__facet_a159e13fe25cc115eec41296ad6dc11d3}\label{classformat__facet_a159e13fe25cc115eec41296ad6dc11d3}} 
+static FMT\+\_\+\+API Locale\+::id {\bfseries id}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classformat__facet_a6c3caad266d99a1f1748885c423509f5}\label{classformat__facet_a6c3caad266d99a1f1748885c423509f5}} 
+virtual auto {\bfseries do\+\_\+put} (\mbox{\hyperlink{classappender}{appender}} out, \mbox{\hyperlink{classloc__value}{loc\+\_\+value}} val, const \mbox{\hyperlink{structformat__specs}{format\+\_\+specs}}$<$$>$ \&specs) const -\/$>$ bool
+\item 
+\mbox{\Hypertarget{classformat__facet_ae4c5ad436f57d554c2975ae512f544a0}\label{classformat__facet_ae4c5ad436f57d554c2975ae512f544a0}} 
+auto {\bfseries do\+\_\+put} (fmt\+::appender out, fmt\+::loc\+\_\+value val, const fmt\+::format\+\_\+specs$<$$>$ \&) const -\/$>$ bool override
+\item 
+\mbox{\Hypertarget{classformat__facet_a74a29e4c59663546761067fe473b65d6}\label{classformat__facet_a74a29e4c59663546761067fe473b65d6}} 
+FMT\+\_\+\+API FMT\+\_\+\+FUNC auto {\bfseries do\+\_\+put} (\mbox{\hyperlink{classappender}{appender}} out, \mbox{\hyperlink{classloc__value}{loc\+\_\+value}} val, const \mbox{\hyperlink{structformat__specs}{format\+\_\+specs}}$<$$>$ \&specs) const -\/$>$ bool
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+csm-\/units/fmt/include/fmt/format.\+h\item 
+csm-\/units/fmt/test/format-\/test.\+cc\item 
+csm-\/units/fmt/include/fmt/format-\/inl.\+h\end{DoxyCompactItemize}

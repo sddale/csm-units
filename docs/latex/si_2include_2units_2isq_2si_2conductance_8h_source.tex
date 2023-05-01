@@ -1,0 +1,286 @@
+\hypertarget{si_2include_2units_2isq_2si_2conductance_8h_source}{}\doxysection{conductance.\+h}
+\label{si_2include_2units_2isq_2si_2conductance_8h_source}\index{csm-\/units/units/src/systems/si/include/units/isq/si/conductance.h@{csm-\/units/units/src/systems/si/include/units/isq/si/conductance.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ IWYU\ pragma:\ begin\_exports}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <units/isq/dimensions/conductance.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <units/quantity.h>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <units/reference.h>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <units/symbol\_text.h>}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ IWYU\ pragma:\ end\_exports}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <units/isq/si/prefixes.h>}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <units/isq/si/resistance.h>}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <units/unit.h>}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{namespace\ }units::isq::si\ \{}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1siemens}{siemens}}\ :\ \mbox{\hyperlink{structunits_1_1named__unit}{named\_unit}}<siemens,\ "{}S"{}>\ \{\};}
+\DoxyCodeLine{00039\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1yoctosiemens}{yoctosiemens}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<yoctosiemens,\ yocto,\ siemens>\ \{\};}
+\DoxyCodeLine{00040\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1zeptosiemens}{zeptosiemens}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<zeptosiemens,\ zepto,\ siemens>\ \{\};}
+\DoxyCodeLine{00041\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1attosiemens}{attosiemens}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<attosiemens,\ atto,\ siemens>\ \{\};}
+\DoxyCodeLine{00042\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1femtosiemens}{femtosiemens}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<femtosiemens,\ femto,\ siemens>\ \{\};}
+\DoxyCodeLine{00043\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1picosiemens}{picosiemens}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<picosiemens,\ pico,\ siemens>\ \{\};}
+\DoxyCodeLine{00044\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1nanosiemens}{nanosiemens}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<nanosiemens,\ nano,\ siemens>\ \{\};}
+\DoxyCodeLine{00045\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1microsiemens}{microsiemens}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<microsiemens,\ micro,\ siemens>\ \{\};}
+\DoxyCodeLine{00046\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1millisiemens}{millisiemens}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<millisiemens,\ milli,\ siemens>\ \{\};}
+\DoxyCodeLine{00047\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1kilosiemens}{kilosiemens}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<kilosiemens,\ kilo,\ siemens>\ \{\};}
+\DoxyCodeLine{00048\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1megasiemens}{megasiemens}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<megasiemens,\ mega,\ siemens>\ \{\};}
+\DoxyCodeLine{00049\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1gigasiemens}{gigasiemens}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<gigasiemens,\ giga,\ siemens>\ \{\};}
+\DoxyCodeLine{00050\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1terasiemens}{terasiemens}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<terasiemens,\ tera,\ siemens>\ \{\};}
+\DoxyCodeLine{00051\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1petasiemens}{petasiemens}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<petasiemens,\ peta,\ siemens>\ \{\};}
+\DoxyCodeLine{00052\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1exasiemens}{exasiemens}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<exasiemens,\ exa,\ siemens>\ \{\};}
+\DoxyCodeLine{00053\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1zettasiemens}{zettasiemens}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<zettasiemens,\ zetta,\ siemens>\ \{\};}
+\DoxyCodeLine{00054\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1yottasiemens}{yottasiemens}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<yottasiemens,\ yotta,\ siemens>\ \{\};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1dim__conductance}{dim\_conductance}}\ :\ \mbox{\hyperlink{structunits_1_1isq_1_1dim__conductance}{isq::dim\_conductance}}<dim\_conductance,\ siemens,\ dim\_resistance>\ \{\};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{template}<UnitOf<dim\_conductance>\ U,\ Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00059\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{conductance}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{quantity<dim\_conductance,\ U,\ Rep>}};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_LITERALS}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{inline}\ \textcolor{keyword}{namespace\ }literals\ \{}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ R}}
+\DoxyCodeLine{00066\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_S(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00067\ \{}
+\DoxyCodeLine{00068\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00069\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity}{conductance<siemens,\ std::int64\_t>}}(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00070\ \}}
+\DoxyCodeLine{00071\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_S(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ conductance<siemens,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ yS}}
+\DoxyCodeLine{00074\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_yS(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00075\ \{}
+\DoxyCodeLine{00076\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00077\ \ \ \textcolor{keywordflow}{return}\ conductance<yoctosiemens,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00078\ \}}
+\DoxyCodeLine{00079\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_yS(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ conductance<yoctosiemens,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{comment}{//\ zS}}
+\DoxyCodeLine{00082\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_zS(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00083\ \{}
+\DoxyCodeLine{00084\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00085\ \ \ \textcolor{keywordflow}{return}\ conductance<zeptosiemens,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00086\ \}}
+\DoxyCodeLine{00087\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_zS(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ conductance<zeptosiemens,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{comment}{//\ aS}}
+\DoxyCodeLine{00090\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_aS(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00091\ \{}
+\DoxyCodeLine{00092\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00093\ \ \ \textcolor{keywordflow}{return}\ conductance<attosiemens,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00094\ \}}
+\DoxyCodeLine{00095\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_aS(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ conductance<attosiemens,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{comment}{//\ fS}}
+\DoxyCodeLine{00098\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_fS(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00099\ \{}
+\DoxyCodeLine{00100\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00101\ \ \ \textcolor{keywordflow}{return}\ conductance<femtosiemens,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00102\ \}}
+\DoxyCodeLine{00103\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_fS(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ conductance<femtosiemens,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{comment}{//\ pS}}
+\DoxyCodeLine{00106\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_pS(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00107\ \{}
+\DoxyCodeLine{00108\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00109\ \ \ \textcolor{keywordflow}{return}\ conductance<picosiemens,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00110\ \}}
+\DoxyCodeLine{00111\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_pS(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ conductance<picosiemens,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{comment}{//\ nS}}
+\DoxyCodeLine{00114\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_nS(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00115\ \{}
+\DoxyCodeLine{00116\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00117\ \ \ \textcolor{keywordflow}{return}\ conductance<nanosiemens,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00118\ \}}
+\DoxyCodeLine{00119\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_nS(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ conductance<nanosiemens,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{comment}{//\ µS}}
+\DoxyCodeLine{00122\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_uS(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00123\ \{}
+\DoxyCodeLine{00124\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00125\ \ \ \textcolor{keywordflow}{return}\ conductance<microsiemens,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00126\ \}}
+\DoxyCodeLine{00127\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_uS(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ conductance<microsiemens,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{comment}{//\ mS}}
+\DoxyCodeLine{00130\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_mS(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00131\ \{}
+\DoxyCodeLine{00132\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00133\ \ \ \textcolor{keywordflow}{return}\ conductance<millisiemens,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00134\ \}}
+\DoxyCodeLine{00135\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_mS(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ conductance<millisiemens,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{comment}{//\ kS}}
+\DoxyCodeLine{00138\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_kS(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00139\ \{}
+\DoxyCodeLine{00140\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00141\ \ \ \textcolor{keywordflow}{return}\ conductance<kilosiemens,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00142\ \}}
+\DoxyCodeLine{00143\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_kS(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ conductance<kilosiemens,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{comment}{//\ MS}}
+\DoxyCodeLine{00146\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_MS(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00147\ \{}
+\DoxyCodeLine{00148\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00149\ \ \ \textcolor{keywordflow}{return}\ conductance<megasiemens,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00150\ \}}
+\DoxyCodeLine{00151\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_MS(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ conductance<megasiemens,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{comment}{//\ GS}}
+\DoxyCodeLine{00154\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_GS(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00155\ \{}
+\DoxyCodeLine{00156\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00157\ \ \ \textcolor{keywordflow}{return}\ conductance<gigasiemens,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00158\ \}}
+\DoxyCodeLine{00159\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_GS(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ conductance<gigasiemens,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{comment}{//\ TS}}
+\DoxyCodeLine{00162\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_TS(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00163\ \{}
+\DoxyCodeLine{00164\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00165\ \ \ \textcolor{keywordflow}{return}\ conductance<terasiemens,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00166\ \}}
+\DoxyCodeLine{00167\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_TS(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ conductance<terasiemens,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{comment}{//\ PS}}
+\DoxyCodeLine{00170\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_PS(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00171\ \{}
+\DoxyCodeLine{00172\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00173\ \ \ \textcolor{keywordflow}{return}\ conductance<petasiemens,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00174\ \}}
+\DoxyCodeLine{00175\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_PS(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ conductance<petasiemens,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \textcolor{comment}{//\ ES}}
+\DoxyCodeLine{00178\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ES(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00179\ \{}
+\DoxyCodeLine{00180\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00181\ \ \ \textcolor{keywordflow}{return}\ conductance<exasiemens,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00182\ \}}
+\DoxyCodeLine{00183\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ES(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ conductance<exasiemens,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \textcolor{comment}{//\ ZS}}
+\DoxyCodeLine{00186\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ZS(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00187\ \{}
+\DoxyCodeLine{00188\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00189\ \ \ \textcolor{keywordflow}{return}\ conductance<zettasiemens,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00190\ \}}
+\DoxyCodeLine{00191\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ZS(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ conductance<zettasiemens,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \textcolor{comment}{//\ YS}}
+\DoxyCodeLine{00194\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_YS(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00195\ \{}
+\DoxyCodeLine{00196\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00197\ \ \ \textcolor{keywordflow}{return}\ conductance<yottasiemens,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00198\ \}}
+\DoxyCodeLine{00199\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_YS(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ conductance<yottasiemens,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \}\ \ \textcolor{comment}{//\ namespace\ literals}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_LITERALS}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_REFERENCES}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \textcolor{keyword}{namespace\ }conductance\_references\ \{}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{S}}\ =\ reference<dim\_conductance,\ siemens>\{\};}
+\DoxyCodeLine{00210\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{yS}}\ =\ reference<dim\_conductance,\ yoctosiemens>\{\};}
+\DoxyCodeLine{00211\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{zS}}\ =\ reference<dim\_conductance,\ zeptosiemens>\{\};}
+\DoxyCodeLine{00212\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{aS}}\ =\ reference<dim\_conductance,\ attosiemens>\{\};}
+\DoxyCodeLine{00213\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{fS}}\ =\ reference<dim\_conductance,\ femtosiemens>\{\};}
+\DoxyCodeLine{00214\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{pS}}\ =\ reference<dim\_conductance,\ picosiemens>\{\};}
+\DoxyCodeLine{00215\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{nS}}\ =\ reference<dim\_conductance,\ nanosiemens>\{\};}
+\DoxyCodeLine{00216\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{uS}}\ =\ reference<dim\_conductance,\ microsiemens>\{\};}
+\DoxyCodeLine{00217\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{mS}}\ =\ reference<dim\_conductance,\ millisiemens>\{\};}
+\DoxyCodeLine{00218\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{kS}}\ =\ reference<dim\_conductance,\ kilosiemens>\{\};}
+\DoxyCodeLine{00219\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{MS}}\ =\ reference<dim\_conductance,\ megasiemens>\{\};}
+\DoxyCodeLine{00220\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{GS}}\ =\ reference<dim\_conductance,\ gigasiemens>\{\};}
+\DoxyCodeLine{00221\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{TS}}\ =\ reference<dim\_conductance,\ terasiemens>\{\};}
+\DoxyCodeLine{00222\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{PS}}\ =\ reference<dim\_conductance,\ petasiemens>\{\};}
+\DoxyCodeLine{00223\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{ES}}\ =\ reference<dim\_conductance,\ exasiemens>\{\};}
+\DoxyCodeLine{00224\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{ZS}}\ =\ reference<dim\_conductance,\ zettasiemens>\{\};}
+\DoxyCodeLine{00225\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{YS}}\ =\ reference<dim\_conductance,\ yottasiemens>\{\};}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \}\ \ \textcolor{comment}{//\ namespace\ conductance\_references}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \textcolor{keyword}{namespace\ }references\ \{}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \textcolor{keyword}{using\ namespace\ }conductance\_references;}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \}\ \ \textcolor{comment}{//\ namespace\ references}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_REFERENCES}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \}\ \ \textcolor{comment}{//\ namespace\ units::isq::si}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_ALIASES}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \textcolor{keyword}{namespace\ }units::aliases::isq::si::inline\ conductance\ \{}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00244\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{S}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::conductance<units::isq::si::siemens,\ Rep>}};}
+\DoxyCodeLine{00245\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00246\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{yS}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::conductance<units::isq::si::yoctosiemens,\ Rep>}};}
+\DoxyCodeLine{00247\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00248\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{zS}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::conductance<units::isq::si::zeptosiemens,\ Rep>}};}
+\DoxyCodeLine{00249\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00250\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{aS}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::conductance<units::isq::si::attosiemens,\ Rep>}};}
+\DoxyCodeLine{00251\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00252\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{fS}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::conductance<units::isq::si::femtosiemens,\ Rep>}};}
+\DoxyCodeLine{00253\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00254\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{pS}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::conductance<units::isq::si::picosiemens,\ Rep>}};}
+\DoxyCodeLine{00255\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00256\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{nS}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::conductance<units::isq::si::nanosiemens,\ Rep>}};}
+\DoxyCodeLine{00257\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00258\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{uS}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::conductance<units::isq::si::microsiemens,\ Rep>}};}
+\DoxyCodeLine{00259\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00260\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{mS}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::conductance<units::isq::si::millisiemens,\ Rep>}};}
+\DoxyCodeLine{00261\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00262\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{kS}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::conductance<units::isq::si::kilosiemens,\ Rep>}};}
+\DoxyCodeLine{00263\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00264\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{MS}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::conductance<units::isq::si::megasiemens,\ Rep>}};}
+\DoxyCodeLine{00265\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00266\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{GS}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::conductance<units::isq::si::gigasiemens,\ Rep>}};}
+\DoxyCodeLine{00267\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00268\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{TS}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::conductance<units::isq::si::terasiemens,\ Rep>}};}
+\DoxyCodeLine{00269\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00270\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{PS}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::conductance<units::isq::si::petasiemens,\ Rep>}};}
+\DoxyCodeLine{00271\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00272\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{ES}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::conductance<units::isq::si::exasiemens,\ Rep>}};}
+\DoxyCodeLine{00273\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00274\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{ZS}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::conductance<units::isq::si::zettasiemens,\ Rep>}};}
+\DoxyCodeLine{00275\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00276\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{YS}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::conductance<units::isq::si::yottasiemens,\ Rep>}};}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \}\ \ \textcolor{comment}{//\ namespace\ units::aliases::isq::si::inline\ conductance}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_ALIASES}}
+
+\end{DoxyCode}

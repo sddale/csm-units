@@ -1,0 +1,333 @@
+\hypertarget{si_2include_2units_2isq_2si_2electric__current_8h_source}{}\doxysection{electric\+\_\+current.\+h}
+\label{si_2include_2units_2isq_2si_2electric__current_8h_source}\index{csm-\/units/units/src/systems/si/include/units/isq/si/electric\_current.h@{csm-\/units/units/src/systems/si/include/units/isq/si/electric\_current.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ IWYU\ pragma:\ begin\_exports}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <units/isq/dimensions/electric\_current.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <units/quantity.h>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <units/reference.h>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <units/symbol\_text.h>}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ IWYU\ pragma:\ end\_exports}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <units/isq/si/prefixes.h>}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <units/unit.h>}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{namespace\ }units::isq::si\ \{}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1ampere}{ampere}}\ :\ \mbox{\hyperlink{structunits_1_1named__unit}{named\_unit}}<ampere,\ "{}A"{}>\ \{\};}
+\DoxyCodeLine{00038\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1yoctoampere}{yoctoampere}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<yoctoampere,\ yocto,\ ampere>\ \{\};}
+\DoxyCodeLine{00039\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1zeptoampere}{zeptoampere}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<zeptoampere,\ zepto,\ ampere>\ \{\};}
+\DoxyCodeLine{00040\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1attoampere}{attoampere}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<attoampere,\ atto,\ ampere>\ \{\};}
+\DoxyCodeLine{00041\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1femtoampere}{femtoampere}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<femtoampere,\ femto,\ ampere>\ \{\};}
+\DoxyCodeLine{00042\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1picoampere}{picoampere}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<picoampere,\ pico,\ ampere>\ \{\};}
+\DoxyCodeLine{00043\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1nanoampere}{nanoampere}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<nanoampere,\ nano,\ ampere>\ \{\};}
+\DoxyCodeLine{00044\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1microampere}{microampere}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<microampere,\ micro,\ ampere>\ \{\};}
+\DoxyCodeLine{00045\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1milliampere}{milliampere}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<milliampere,\ milli,\ ampere>\ \{\};}
+\DoxyCodeLine{00046\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1centiampere}{centiampere}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<centiampere,\ centi,\ ampere>\ \{\};}
+\DoxyCodeLine{00047\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1deciampere}{deciampere}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<deciampere,\ deci,\ ampere>\ \{\};}
+\DoxyCodeLine{00048\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1decaampere}{decaampere}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<decaampere,\ deca,\ ampere>\ \{\};}
+\DoxyCodeLine{00049\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hectoampere}{hectoampere}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<hectoampere,\ hecto,\ ampere>\ \{\};}
+\DoxyCodeLine{00050\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1kiloampere}{kiloampere}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<kiloampere,\ kilo,\ ampere>\ \{\};}
+\DoxyCodeLine{00051\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1megaampere}{megaampere}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<megaampere,\ mega,\ ampere>\ \{\};}
+\DoxyCodeLine{00052\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1gigaampere}{gigaampere}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<gigaampere,\ giga,\ ampere>\ \{\};}
+\DoxyCodeLine{00053\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1teraampere}{teraampere}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<teraampere,\ tera,\ ampere>\ \{\};}
+\DoxyCodeLine{00054\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1petaampere}{petaampere}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<petaampere,\ peta,\ ampere>\ \{\};}
+\DoxyCodeLine{00055\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1exaampere}{exaampere}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<exaampere,\ exa,\ ampere>\ \{\};}
+\DoxyCodeLine{00056\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1zettaampere}{zettaampere}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<zettaampere,\ zetta,\ ampere>\ \{\};}
+\DoxyCodeLine{00057\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1yottaampere}{yottaampere}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<yottaampere,\ yotta,\ ampere>\ \{\};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1dim__electric__current}{dim\_electric\_current}}\ :\ \mbox{\hyperlink{structunits_1_1isq_1_1dim__electric__current}{isq::dim\_electric\_current}}<ampere>\ \{\};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{template}<UnitOf<dim\_electric\_current>\ U,\ Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00062\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{electric\_current}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{quantity<dim\_electric\_current,\ U,\ Rep>}};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_LITERALS}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{inline}\ \textcolor{keyword}{namespace\ }literals\ \{}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ A}}
+\DoxyCodeLine{00069\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_A(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00072\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity}{electric\_current<ampere,\ std::int64\_t>}}(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00073\ \}}
+\DoxyCodeLine{00074\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_A(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ electric\_current<ampere,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{comment}{//\ yA}}
+\DoxyCodeLine{00077\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_yA(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00078\ \{}
+\DoxyCodeLine{00079\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00080\ \ \ \textcolor{keywordflow}{return}\ electric\_current<yoctoampere,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00081\ \}}
+\DoxyCodeLine{00082\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_yA(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ electric\_current<yoctoampere,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{comment}{//\ zA}}
+\DoxyCodeLine{00085\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_zA(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00086\ \{}
+\DoxyCodeLine{00087\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00088\ \ \ \textcolor{keywordflow}{return}\ electric\_current<zeptoampere,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00089\ \}}
+\DoxyCodeLine{00090\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_zA(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ electric\_current<zeptoampere,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{comment}{//\ aA}}
+\DoxyCodeLine{00093\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_aA(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00094\ \{}
+\DoxyCodeLine{00095\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00096\ \ \ \textcolor{keywordflow}{return}\ electric\_current<attoampere,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00097\ \}}
+\DoxyCodeLine{00098\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_aA(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ electric\_current<attoampere,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{comment}{//\ fA}}
+\DoxyCodeLine{00101\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_fA(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00102\ \{}
+\DoxyCodeLine{00103\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00104\ \ \ \textcolor{keywordflow}{return}\ electric\_current<femtoampere,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00105\ \}}
+\DoxyCodeLine{00106\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_fA(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ electric\_current<femtoampere,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{comment}{//\ pA}}
+\DoxyCodeLine{00109\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_pA(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00110\ \{}
+\DoxyCodeLine{00111\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00112\ \ \ \textcolor{keywordflow}{return}\ electric\_current<picoampere,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00113\ \}}
+\DoxyCodeLine{00114\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_pA(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ electric\_current<picoampere,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{comment}{//\ nA}}
+\DoxyCodeLine{00117\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_nA(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00118\ \{}
+\DoxyCodeLine{00119\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00120\ \ \ \textcolor{keywordflow}{return}\ electric\_current<nanoampere,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00121\ \}}
+\DoxyCodeLine{00122\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_nA(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ electric\_current<nanoampere,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{comment}{//\ uA}}
+\DoxyCodeLine{00125\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_uA(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00126\ \{}
+\DoxyCodeLine{00127\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00128\ \ \ \textcolor{keywordflow}{return}\ electric\_current<microampere,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00129\ \}}
+\DoxyCodeLine{00130\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_uA(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ electric\_current<microampere,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{comment}{//\ mA}}
+\DoxyCodeLine{00133\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_mA(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00134\ \{}
+\DoxyCodeLine{00135\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00136\ \ \ \textcolor{keywordflow}{return}\ electric\_current<milliampere,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00137\ \}}
+\DoxyCodeLine{00138\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_mA(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ electric\_current<milliampere,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{comment}{//\ cA}}
+\DoxyCodeLine{00141\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_cA(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00142\ \{}
+\DoxyCodeLine{00143\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00144\ \ \ \textcolor{keywordflow}{return}\ electric\_current<centiampere,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00145\ \}}
+\DoxyCodeLine{00146\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_cA(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ electric\_current<centiampere,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{comment}{//\ dA}}
+\DoxyCodeLine{00149\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_dA(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00150\ \{}
+\DoxyCodeLine{00151\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00152\ \ \ \textcolor{keywordflow}{return}\ electric\_current<deciampere,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00153\ \}}
+\DoxyCodeLine{00154\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_dA(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ electric\_current<deciampere,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{comment}{//\ daA}}
+\DoxyCodeLine{00157\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_daA(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00158\ \{}
+\DoxyCodeLine{00159\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00160\ \ \ \textcolor{keywordflow}{return}\ electric\_current<decaampere,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00161\ \}}
+\DoxyCodeLine{00162\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_daA(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ electric\_current<decaampere,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{comment}{//\ hA}}
+\DoxyCodeLine{00165\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_hA(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00166\ \{}
+\DoxyCodeLine{00167\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00168\ \ \ \textcolor{keywordflow}{return}\ electric\_current<hectoampere,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00169\ \}}
+\DoxyCodeLine{00170\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_hA(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ electric\_current<hectoampere,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \textcolor{comment}{//\ kA}}
+\DoxyCodeLine{00173\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_kA(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00174\ \{}
+\DoxyCodeLine{00175\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00176\ \ \ \textcolor{keywordflow}{return}\ electric\_current<kiloampere,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00177\ \}}
+\DoxyCodeLine{00178\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_kA(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ electric\_current<kiloampere,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{comment}{//\ MA}}
+\DoxyCodeLine{00181\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_MA(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00182\ \{}
+\DoxyCodeLine{00183\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00184\ \ \ \textcolor{keywordflow}{return}\ electric\_current<megaampere,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00185\ \}}
+\DoxyCodeLine{00186\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_MA(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ electric\_current<megaampere,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{comment}{//\ GA}}
+\DoxyCodeLine{00189\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_GA(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00190\ \{}
+\DoxyCodeLine{00191\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00192\ \ \ \textcolor{keywordflow}{return}\ electric\_current<gigaampere,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00193\ \}}
+\DoxyCodeLine{00194\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_GA(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ electric\_current<gigaampere,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \textcolor{comment}{//\ TA}}
+\DoxyCodeLine{00197\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_TA(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00198\ \{}
+\DoxyCodeLine{00199\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00200\ \ \ \textcolor{keywordflow}{return}\ electric\_current<teraampere,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00201\ \}}
+\DoxyCodeLine{00202\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_TA(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ electric\_current<teraampere,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \textcolor{comment}{//\ PA}}
+\DoxyCodeLine{00205\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_PA(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00206\ \{}
+\DoxyCodeLine{00207\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00208\ \ \ \textcolor{keywordflow}{return}\ electric\_current<petaampere,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00209\ \}}
+\DoxyCodeLine{00210\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_PA(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ electric\_current<petaampere,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \textcolor{comment}{//\ EA}}
+\DoxyCodeLine{00213\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_EA(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00214\ \{}
+\DoxyCodeLine{00215\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00216\ \ \ \textcolor{keywordflow}{return}\ electric\_current<exaampere,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00217\ \}}
+\DoxyCodeLine{00218\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_EA(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ electric\_current<exaampere,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \textcolor{comment}{//\ ZA}}
+\DoxyCodeLine{00221\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ZA(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00222\ \{}
+\DoxyCodeLine{00223\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00224\ \ \ \textcolor{keywordflow}{return}\ electric\_current<zettaampere,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00225\ \}}
+\DoxyCodeLine{00226\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ZA(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ electric\_current<zettaampere,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \textcolor{comment}{//\ YA}}
+\DoxyCodeLine{00229\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_YA(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00230\ \{}
+\DoxyCodeLine{00231\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00232\ \ \ \textcolor{keywordflow}{return}\ electric\_current<yottaampere,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00233\ \}}
+\DoxyCodeLine{00234\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_YA(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ electric\_current<yottaampere,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \}\ \ \textcolor{comment}{//\ namespace\ literals}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_LITERALS}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_REFERENCES}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \textcolor{keyword}{namespace\ }electric\_current\_references\ \{}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{A}}\ =\ reference<dim\_electric\_current,\ ampere>\{\};}
+\DoxyCodeLine{00245\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{yA}}\ =\ reference<dim\_electric\_current,\ yoctoampere>\{\};}
+\DoxyCodeLine{00246\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{zA}}\ =\ reference<dim\_electric\_current,\ zeptoampere>\{\};}
+\DoxyCodeLine{00247\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{aA}}\ =\ reference<dim\_electric\_current,\ attoampere>\{\};}
+\DoxyCodeLine{00248\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{fA}}\ =\ reference<dim\_electric\_current,\ femtoampere>\{\};}
+\DoxyCodeLine{00249\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{pA}}\ =\ reference<dim\_electric\_current,\ picoampere>\{\};}
+\DoxyCodeLine{00250\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{nA}}\ =\ reference<dim\_electric\_current,\ nanoampere>\{\};}
+\DoxyCodeLine{00251\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{uA}}\ =\ reference<dim\_electric\_current,\ microampere>\{\};}
+\DoxyCodeLine{00252\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{mA}}\ =\ reference<dim\_electric\_current,\ milliampere>\{\};}
+\DoxyCodeLine{00253\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{cA}}\ =\ reference<dim\_electric\_current,\ centiampere>\{\};}
+\DoxyCodeLine{00254\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{dA}}\ =\ reference<dim\_electric\_current,\ deciampere>\{\};}
+\DoxyCodeLine{00255\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{daA}}\ =\ reference<dim\_electric\_current,\ decaampere>\{\};}
+\DoxyCodeLine{00256\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{hA}}\ =\ reference<dim\_electric\_current,\ hectoampere>\{\};}
+\DoxyCodeLine{00257\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{kA}}\ =\ reference<dim\_electric\_current,\ kiloampere>\{\};}
+\DoxyCodeLine{00258\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{MA}}\ =\ reference<dim\_electric\_current,\ megaampere>\{\};}
+\DoxyCodeLine{00259\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{GA}}\ =\ reference<dim\_electric\_current,\ gigaampere>\{\};}
+\DoxyCodeLine{00260\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{TA}}\ =\ reference<dim\_electric\_current,\ teraampere>\{\};}
+\DoxyCodeLine{00261\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{PA}}\ =\ reference<dim\_electric\_current,\ petaampere>\{\};}
+\DoxyCodeLine{00262\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{EA}}\ =\ reference<dim\_electric\_current,\ exaampere>\{\};}
+\DoxyCodeLine{00263\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{ZA}}\ =\ reference<dim\_electric\_current,\ zettaampere>\{\};}
+\DoxyCodeLine{00264\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{YA}}\ =\ reference<dim\_electric\_current,\ yottaampere>\{\};}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \}\ \ \textcolor{comment}{//\ namespace\ electric\_current\_references}}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \textcolor{keyword}{namespace\ }references\ \{}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \textcolor{keyword}{using\ namespace\ }electric\_current\_references;}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \}\ \ \textcolor{comment}{//\ namespace\ references}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_REFERENCES}}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \}\ \ \textcolor{comment}{//\ namespace\ units::isq::si}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_ALIASES}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \textcolor{keyword}{namespace\ }units::aliases::isq::si::inline\ electric\_current\ \{}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00283\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{A}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::electric\_current<units::isq::si::ampere,\ Rep>}};}
+\DoxyCodeLine{00284\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00285\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{yA}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::electric\_current<units::isq::si::yoctoampere,\ Rep>}};}
+\DoxyCodeLine{00286\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00287\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{zA}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::electric\_current<units::isq::si::zeptoampere,\ Rep>}};}
+\DoxyCodeLine{00288\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00289\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{aA}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::electric\_current<units::isq::si::attoampere,\ Rep>}};}
+\DoxyCodeLine{00290\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00291\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{fA}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::electric\_current<units::isq::si::femtoampere,\ Rep>}};}
+\DoxyCodeLine{00292\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00293\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{pA}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::electric\_current<units::isq::si::picoampere,\ Rep>}};}
+\DoxyCodeLine{00294\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00295\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{nA}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::electric\_current<units::isq::si::nanoampere,\ Rep>}};}
+\DoxyCodeLine{00296\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00297\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{uA}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::electric\_current<units::isq::si::microampere,\ Rep>}};}
+\DoxyCodeLine{00298\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00299\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{mA}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::electric\_current<units::isq::si::milliampere,\ Rep>}};}
+\DoxyCodeLine{00300\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00301\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{cA}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::electric\_current<units::isq::si::centiampere,\ Rep>}};}
+\DoxyCodeLine{00302\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00303\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{dA}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::electric\_current<units::isq::si::deciampere,\ Rep>}};}
+\DoxyCodeLine{00304\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00305\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{daA}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::electric\_current<units::isq::si::decaampere,\ Rep>}};}
+\DoxyCodeLine{00306\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00307\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{hA}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::electric\_current<units::isq::si::hectoampere,\ Rep>}};}
+\DoxyCodeLine{00308\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00309\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{kA}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::electric\_current<units::isq::si::kiloampere,\ Rep>}};}
+\DoxyCodeLine{00310\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00311\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{MA}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::electric\_current<units::isq::si::megaampere,\ Rep>}};}
+\DoxyCodeLine{00312\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00313\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{GA}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::electric\_current<units::isq::si::gigaampere,\ Rep>}};}
+\DoxyCodeLine{00314\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00315\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{TA}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::electric\_current<units::isq::si::teraampere,\ Rep>}};}
+\DoxyCodeLine{00316\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00317\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{PA}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::electric\_current<units::isq::si::petaampere,\ Rep>}};}
+\DoxyCodeLine{00318\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00319\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{EA}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::electric\_current<units::isq::si::exaampere,\ Rep>}};}
+\DoxyCodeLine{00320\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00321\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{ZA}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::electric\_current<units::isq::si::zettaampere,\ Rep>}};}
+\DoxyCodeLine{00322\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00323\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{YA}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::electric\_current<units::isq::si::yottaampere,\ Rep>}};}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \}\ \ \textcolor{comment}{//\ namespace\ units::aliases::isq::si::inline\ electric\_current}}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_ALIASES}}
+
+\end{DoxyCode}

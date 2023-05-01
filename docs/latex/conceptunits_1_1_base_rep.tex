@@ -1,0 +1,31 @@
+\hypertarget{conceptunits_1_1_base_rep}{}\doxysection{units\+::Base\+Rep Concept Reference}
+\label{conceptunits_1_1_base_rep}\index{units::BaseRep@{units::BaseRep}}
+
+
+Any type which can be used as a basis vector in a Base\+Power.  
+
+
+
+
+{\ttfamily \#include $<$magnitude.\+h$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1_base_rep}{units::BaseRep}}\ =\ }
+\DoxyCodeLine{\ \ std::is\_same\_v<T,\ std::intmax\_t>\ ||\ std::is\_same\_v<std::remove\_cvref\_t<\textcolor{keyword}{decltype}(T::value)>,\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}>}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+Any type which can be used as a basis vector in a Base\+Power. 
+
+We have two categories.
+
+The first is just an {\ttfamily std\+::intmax\+\_\+t}. This is for prime number bases. These can always be used directly as NTTPs.
+
+The second category is a {\itshape custom type}, which has a static member variable of type {\ttfamily long double} that holds its value. We choose {\ttfamily long double} to get the greatest degree of precision; users who need a different type can convert from this at compile time. This category is for any irrational base we admit into our representation (on which, more details below).
+
+The reason we can\textquotesingle{}t hold the value directly for floating point bases is so that we can support some compilers (e.\+g., GCC 10) which don\textquotesingle{}t yet permit floating point NTTPs. 

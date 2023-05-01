@@ -1,0 +1,261 @@
+\hypertarget{src_2core_2include_2units_2bits_2external_2hacks_8h_source}{}\doxysection{hacks.\+h}
+\label{src_2core_2include_2units_2bits_2external_2hacks_8h_source}\index{csm-\/units/units/src/core/include/units/bits/external/hacks.h@{csm-\/units/units/src/core/include/units/bits/external/hacks.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <version>}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#if\ \_\_clang\_\_}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ UNITS\_COMP\_CLANG\ \_\_clang\_major\_\_}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#elif\ \_\_GNUC\_\_}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ UNITS\_COMP\_GCC\ \_\_GNUC\_\_}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ UNITS\_COMP\_GCC\_MINOR\ \_\_GNUC\_MINOR\_\_}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#elif\ \_MSC\_VER}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ UNITS\_COMP\_MSVC\ \_MSC\_VER}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ Adapted\ from\ https://github.com/ericniebler/range-\/v3/blob/master/include/range/v3/detail/config.hpp\#L185.}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ UNITS\_PRAGMA(X)\ \_Pragma(\#X)}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#if\ !UNITS\_COMP\_MSVC}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_PUSH\ UNITS\_PRAGMA(GCC\ diagnostic\ push)}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_POP\ UNITS\_PRAGMA(GCC\ diagnostic\ pop)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_IGNORE\_PRAGMAS\ UNITS\_PRAGMA(GCC\ diagnostic\ ignored\ "{}-\/Wpragmas"{}})}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_IGNORE(X)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\ \ UNITS\_DIAGNOSTIC\_IGNORE\_PRAGMAS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\ \ UNITS\_PRAGMA(GCC\ diagnostic\ ignored\ "{}-\/Wunknown-\/pragmas"{}})\ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00045\ \ \ UNITS\_PRAGMA(GCC\ diagnostic\ ignored\ "{}-\/Wunknown-\/warning-\/option"{})\ \(\backslash\)}
+\DoxyCodeLine{00046\ \ \ UNITS\_PRAGMA(GCC\ diagnostic\ ignored\ X)}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_IGNORE\_EXPR\_ALWAYS\_TF}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_IGNORE\_FLOAT\_EQUAL\ UNITS\_DIAGNOSTIC\_IGNORE("{}-\/Wfloat-\/equal"{}})}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_IGNORE\_LOSS\_OF\_DATA}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_IGNORE\_MISSING\_BRACES\ UNITS\_DIAGNOSTIC\_IGNORE("{}-\/Wmissing-\/braces"{}})}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_IGNORE\_NON\_TEMPLATE\_FRIEND\ UNITS\_DIAGNOSTIC\_IGNORE("{}-\/Wnon-\/template-\/friend"{}})}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_IGNORE\_SHADOW\ UNITS\_DIAGNOSTIC\_IGNORE("{}-\/Wshadow"{}})}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_IGNORE\_UNREACHABLE}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_IGNORE\_ZERO\_AS\_NULLPOINTER\_CONSTANT\ UNITS\_DIAGNOSTIC\_IGNORE("{}-\/Wzero-\/as-\/nullpointer-\/constant"{}})}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_PUSH\ UNITS\_PRAGMA(warning(push))}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_POP\ UNITS\_PRAGMA(warning(pop))}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_IGNORE\_PRAGMAS\ UNITS\_PRAGMA(warning(disable\ :\ 4068))}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_IGNORE(X)\ UNITS\_DIAGNOSTIC\_IGNORE\_PRAGMAS\ UNITS\_PRAGMA(warning(disable\ :\ X))}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_IGNORE\_EXPR\_ALWAYS\_TF\ UNITS\_DIAGNOSTIC\_IGNORE(4296)}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_IGNORE\_FLOAT\_EQUAL}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_IGNORE\_LOSS\_OF\_DATA\ UNITS\_DIAGNOSTIC\_IGNORE(4244)}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_IGNORE\_MISSING\_BRACES}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_IGNORE\_NON\_TEMPLATE\_FRIEND}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_IGNORE\_SHADOW\ UNITS\_DIAGNOSTIC\_IGNORE(4459)}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_IGNORE\_UNREACHABLE\ UNITS\_DIAGNOSTIC\_IGNORE(4702)}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ UNITS\_DIAGNOSTIC\_IGNORE\_ZERO\_AS\_NULLPOINTER\_CONSTANT}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#if\ \_LIBCPP\_VERSION}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ UNITS\_LIBCXX\ \_LIBCPP\_VERSION}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#if\ UNITS\_LIBCXX}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#if\ UNITS\_LIBCXX\ <\ 13000}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#include\ <concepts/concepts.hpp>}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#include\ <range/v3/algorithm/lower\_bound.hpp>}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#include\ <range/v3/algorithm/transform.hpp>}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#include\ <range/v3/functional/comparisons.hpp>}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#include\ <range/v3/iterator.hpp>}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#include\ <range/v3/iterator/concepts.hpp>}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#include\ <range/v3/range/concepts.hpp>}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#elif\ UNITS\_LIBCXX\ <\ 14000}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#include\ <range/v3/functional/comparisons.hpp>}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#include\ <compare>}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#if\ UNITS\_COMP\_MSVC\ ||\ (UNITS\_COMP\_CLANG\ \&\&\ UNITS\_COMP\_CLANG\ <\ 16)}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ TYPENAME\ typename}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ TYPENAME}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#if\ UNITS\_COMP\_MSVC}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ UNITS\_CONSTRAINED\_AUTO\_WORKAROUND(X)}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#define\ UNITS\_CONSTRAINED\_AUTO\_WORKAROUND(X)\ X}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#if\ UNITS\_COMP\_MSVC\ ||\ (UNITS\_COMP\_GCC\ \&\&\ UNITS\_COMP\_GCC\ <\ 11)}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#define\ UNITS\_CONSTRAINED\_NTTP\_WORKAROUND(X)}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#define\ UNITS\_CONSTRAINED\_NTTP\_WORKAROUND(X)\ X}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{namespace\ }std\ \{}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#if\ UNITS\_COMP\_GCC}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00133\ \textcolor{keyword}{concept\ }default\_constructible\ =\ constructible\_from<T>;}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#elif\ UNITS\_LIBCXX}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#if\ UNITS\_LIBCXX\ <\ 13000}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{comment}{//\ concepts}}
+\DoxyCodeLine{00140\ \textcolor{keyword}{using\ }concepts::common\_with;}
+\DoxyCodeLine{00141\ \textcolor{keyword}{using\ }concepts::constructible\_from;}
+\DoxyCodeLine{00142\ \textcolor{keyword}{using\ }concepts::convertible\_to;}
+\DoxyCodeLine{00143\ \textcolor{keyword}{using\ }concepts::copy\_constructible;}
+\DoxyCodeLine{00144\ \textcolor{keyword}{using\ }concepts::derived\_from;}
+\DoxyCodeLine{00145\ \textcolor{keyword}{using\ }concepts::equality\_comparable;}
+\DoxyCodeLine{00146\ \textcolor{keyword}{using\ }concepts::equality\_comparable\_with;}
+\DoxyCodeLine{00147\ \textcolor{keyword}{using\ }concepts::integral;}
+\DoxyCodeLine{00148\ \textcolor{keyword}{using\ }concepts::move\_constructible;}
+\DoxyCodeLine{00149\ \textcolor{keyword}{using\ }concepts::regular;}
+\DoxyCodeLine{00150\ \textcolor{keyword}{using\ }concepts::three\_way\_comparable;}
+\DoxyCodeLine{00151\ \textcolor{keyword}{using\ }concepts::three\_way\_comparable\_with;}
+\DoxyCodeLine{00152\ \textcolor{keyword}{using\ }concepts::totally\_ordered;}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \textcolor{keyword}{using\ }ranges::compare\_three\_way;}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{keyword}{using\ }ranges::input\_iterator;}
+\DoxyCodeLine{00157\ \textcolor{keyword}{using\ }ranges::iter\_value\_t;}
+\DoxyCodeLine{00158\ \textcolor{keyword}{using\ }ranges::sentinel\_for;}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \textcolor{keyword}{namespace\ }ranges\ \{}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ using\ ::ranges::begin;}
+\DoxyCodeLine{00163\ using\ ::ranges::distance;}
+\DoxyCodeLine{00164\ using\ ::ranges::end;}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ using\ ::ranges::input\_range;}
+\DoxyCodeLine{00167\ using\ ::ranges::range\_value\_t;}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ using\ ::ranges::lower\_bound;}
+\DoxyCodeLine{00170\ using\ ::ranges::transform;}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \}\ \ \textcolor{comment}{//\ namespace\ ranges}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{comment}{//\ missing\ in\ Range-\/v3}}
+\DoxyCodeLine{00175\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00176\ \textcolor{keyword}{concept\ }floating\_point\ =\ std::is\_floating\_point\_v<T>;}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00179\ \textcolor{keyword}{concept\ }default\_initializable\ =}
+\DoxyCodeLine{00180\ \ \ std::constructible\_from<T>\ \&\&\ \textcolor{keyword}{requires}\ \{\ T\{\};\ \}\ \&\&\ \textcolor{keyword}{requires}\ \{\ ::new\ (\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}*\textcolor{keyword}{>}(\textcolor{keyword}{nullptr}))\ T;\ \};}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ template<class\ F,\ class...\ Args>}
+\DoxyCodeLine{00183\ concept\ invocable\ =\ requires(F\&\&\ f,\ Args\&\&...\ args)\ \{\ std::invoke(std::forward<F>(f),\ std::forward<Args>(args)...);\ \};}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \textcolor{keyword}{template}<\textcolor{keyword}{class\ }F,\ \textcolor{keyword}{class}...\ Args>}
+\DoxyCodeLine{00186\ \textcolor{keyword}{concept\ }regular\_invocable\ =\ invocable<F,\ Args...>;}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U>}
+\DoxyCodeLine{00189\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ cmp\_equal(T\ t,\ U\ u)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00190\ \{}
+\DoxyCodeLine{00191\ \ \ \textcolor{keyword}{using\ }UT\ =\ std::make\_unsigned\_t<T>;}
+\DoxyCodeLine{00192\ \ \ \textcolor{keyword}{using\ }UU\ =\ std::make\_unsigned\_t<U>;}
+\DoxyCodeLine{00193\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_signed\_v<T>\ ==\ std::is\_signed\_v<U>)}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordflow}{return}\ t\ ==\ u;}
+\DoxyCodeLine{00195\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_signed\_v<T>)}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordflow}{return}\ t\ <\ 0\ ?\ \textcolor{keyword}{false}\ :\ UT(t)\ ==\ u;}
+\DoxyCodeLine{00197\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordflow}{return}\ u\ <\ 0\ ?\ false\ :\ t\ ==\ UU(u);}
+\DoxyCodeLine{00199\ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U>}
+\DoxyCodeLine{00202\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ cmp\_not\_equal(T\ t,\ U\ u)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00203\ \{}
+\DoxyCodeLine{00204\ \ \ \textcolor{keywordflow}{return}\ !cmp\_equal(t,\ u);}
+\DoxyCodeLine{00205\ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U>}
+\DoxyCodeLine{00208\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ cmp\_less(T\ t,\ U\ u)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00209\ \{}
+\DoxyCodeLine{00210\ \ \ \textcolor{keyword}{using\ }UT\ =\ std::make\_unsigned\_t<T>;}
+\DoxyCodeLine{00211\ \ \ \textcolor{keyword}{using\ }UU\ =\ std::make\_unsigned\_t<U>;}
+\DoxyCodeLine{00212\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_signed\_v<T>\ ==\ std::is\_signed\_v<U>)}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordflow}{return}\ t\ <\ u;}
+\DoxyCodeLine{00214\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_signed\_v<T>)}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordflow}{return}\ t\ <\ 0\ ?\ \textcolor{keyword}{true}\ :\ UT(t)\ <\ u;}
+\DoxyCodeLine{00216\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordflow}{return}\ u\ <\ 0\ ?\ false\ :\ t\ <\ UU(u);}
+\DoxyCodeLine{00218\ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U>}
+\DoxyCodeLine{00221\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ cmp\_greater(T\ t,\ U\ u)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00222\ \{}
+\DoxyCodeLine{00223\ \ \ \textcolor{keywordflow}{return}\ cmp\_less(u,\ t);}
+\DoxyCodeLine{00224\ \}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U>}
+\DoxyCodeLine{00227\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ cmp\_less\_equal(T\ t,\ U\ u)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00228\ \{}
+\DoxyCodeLine{00229\ \ \ \textcolor{keywordflow}{return}\ !cmp\_greater(t,\ u);}
+\DoxyCodeLine{00230\ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ U>}
+\DoxyCodeLine{00233\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ cmp\_greater\_equal(T\ t,\ U\ u)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00234\ \{}
+\DoxyCodeLine{00235\ \ \ \textcolor{keywordflow}{return}\ !cmp\_less(t,\ u);}
+\DoxyCodeLine{00236\ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ R,\ \textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00239\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ in\_range(T\ t)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00240\ \{}
+\DoxyCodeLine{00241\ \ \ \textcolor{keywordflow}{return}\ std::cmp\_greater\_equal(t,\ std::numeric\_limits<R>::min())\ \&\&}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ std::cmp\_less\_equal(t,\ std::numeric\_limits<R>::max());}
+\DoxyCodeLine{00243\ \}}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \textcolor{preprocessor}{\#elif\ UNITS\_LIBCXX\ <\ 14000}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \textcolor{keyword}{using\ }concepts::three\_way\_comparable;}
+\DoxyCodeLine{00248\ \textcolor{keyword}{using\ }concepts::three\_way\_comparable\_with;}
+\DoxyCodeLine{00249\ using\ ::ranges::compare\_three\_way;}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \}\ \ \textcolor{comment}{//\ namespace\ std}}
+
+\end{DoxyCode}

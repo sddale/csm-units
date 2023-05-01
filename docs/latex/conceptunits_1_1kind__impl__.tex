@@ -1,0 +1,13 @@
+\hypertarget{conceptunits_1_1kind__impl__}{}\doxysection{units\+::kind\+\_\+impl\+\_\+ Concept Reference}
+\label{conceptunits_1_1kind__impl__}\index{units::kind\_impl\_@{units::kind\_impl\_}}
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{template}<\ \textcolor{keyword}{typename}...\ >\ \textcolor{keyword}{typename}\ Base>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1kind__impl__}{units::kind\_impl\_}}\ =\ \ \mbox{\hyperlink{conceptunits_1_1is__derived__from__specialization__of}{is\_derived\_from\_specialization\_of<T,\ Base>}}\ \&\&\ \textcolor{keyword}{requires}\ \{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{typename}\ T::base\_kind;}
+\DoxyCodeLine{\ \ \textcolor{keyword}{typename}\ T::dimension;}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptunits_1_1_dimension}{Dimension<typename\ T::dimension>}};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

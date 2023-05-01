@@ -1,0 +1,24 @@
+\hypertarget{conceptunits_1_1_dimension}{}\doxysection{units\+::Dimension Concept Reference}
+\label{conceptunits_1_1_dimension}\index{units::Dimension@{units::Dimension}}
+
+
+A concept matching all dimensions in the library.  
+
+
+
+
+{\ttfamily \#include $<$basic\+\_\+concepts.\+h$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1_dimension}{units::Dimension}}\ =\ \ \mbox{\hyperlink{conceptunits_1_1_base_dimension}{BaseDimension<T>}}\ ||\ \mbox{\hyperlink{conceptunits_1_1_derived_dimension}{DerivedDimension<T>}}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+A concept matching all dimensions in the library. 
+
+Satisfied by all dimension types for which either {\ttfamily Base\+Dimension\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} or {\ttfamily Derived\+Dimension\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}} is {\ttfamily true}. 

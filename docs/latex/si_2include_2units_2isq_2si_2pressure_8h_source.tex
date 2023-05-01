@@ -1,0 +1,335 @@
+\hypertarget{si_2include_2units_2isq_2si_2pressure_8h_source}{}\doxysection{pressure.\+h}
+\label{si_2include_2units_2isq_2si_2pressure_8h_source}\index{csm-\/units/units/src/systems/si/include/units/isq/si/pressure.h@{csm-\/units/units/src/systems/si/include/units/isq/si/pressure.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ IWYU\ pragma:\ begin\_exports}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <units/isq/dimensions/pressure.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <units/quantity.h>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <units/reference.h>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <units/symbol\_text.h>}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ IWYU\ pragma:\ end\_exports}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <units/isq/si/area.h>}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <units/isq/si/force.h>}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <units/isq/si/prefixes.h>}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ <units/unit.h>}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{namespace\ }units::isq::si\ \{}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1pascal}{pascal}}\ :\ \mbox{\hyperlink{structunits_1_1named__unit}{named\_unit}}<pascal,\ "{}Pa"{}>\ \{\};}
+\DoxyCodeLine{00040\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1yoctopascal}{yoctopascal}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<yoctopascal,\ yocto,\ pascal>\ \{\};}
+\DoxyCodeLine{00041\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1zeptopascal}{zeptopascal}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<zeptopascal,\ zepto,\ pascal>\ \{\};}
+\DoxyCodeLine{00042\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1attopascal}{attopascal}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<attopascal,\ atto,\ pascal>\ \{\};}
+\DoxyCodeLine{00043\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1femtopascal}{femtopascal}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<femtopascal,\ femto,\ pascal>\ \{\};}
+\DoxyCodeLine{00044\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1picopascal}{picopascal}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<picopascal,\ pico,\ pascal>\ \{\};}
+\DoxyCodeLine{00045\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1nanopascal}{nanopascal}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<nanopascal,\ nano,\ pascal>\ \{\};}
+\DoxyCodeLine{00046\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1micropascal}{micropascal}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<micropascal,\ micro,\ pascal>\ \{\};}
+\DoxyCodeLine{00047\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1millipascal}{millipascal}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<millipascal,\ milli,\ pascal>\ \{\};}
+\DoxyCodeLine{00048\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1centipascal}{centipascal}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<centipascal,\ centi,\ pascal>\ \{\};}
+\DoxyCodeLine{00049\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1decipascal}{decipascal}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<decipascal,\ deci,\ pascal>\ \{\};}
+\DoxyCodeLine{00050\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1decapascal}{decapascal}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<decapascal,\ deca,\ pascal>\ \{\};}
+\DoxyCodeLine{00051\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hectopascal}{hectopascal}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<hectopascal,\ hecto,\ pascal>\ \{\};}
+\DoxyCodeLine{00052\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1kilopascal}{kilopascal}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<kilopascal,\ kilo,\ pascal>\ \{\};}
+\DoxyCodeLine{00053\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1megapascal}{megapascal}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<megapascal,\ mega,\ pascal>\ \{\};}
+\DoxyCodeLine{00054\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1gigapascal}{gigapascal}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<gigapascal,\ giga,\ pascal>\ \{\};}
+\DoxyCodeLine{00055\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1terapascal}{terapascal}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<terapascal,\ tera,\ pascal>\ \{\};}
+\DoxyCodeLine{00056\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1petapascal}{petapascal}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<petapascal,\ peta,\ pascal>\ \{\};}
+\DoxyCodeLine{00057\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1exapascal}{exapascal}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<exapascal,\ exa,\ pascal>\ \{\};}
+\DoxyCodeLine{00058\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1zettapascal}{zettapascal}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<zettapascal,\ zetta,\ pascal>\ \{\};}
+\DoxyCodeLine{00059\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1yottapascal}{yottapascal}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<yottapascal,\ yotta,\ pascal>\ \{\};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1dim__pressure}{dim\_pressure}}\ :\ \mbox{\hyperlink{structunits_1_1isq_1_1dim__pressure}{isq::dim\_pressure}}<dim\_pressure,\ pascal,\ dim\_force,\ dim\_area>\ \{\};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{template}<UnitOf<dim\_pressure>\ U,\ Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00064\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{pressure}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{quantity<dim\_pressure,\ U,\ Rep>}};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_LITERALS}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{inline}\ \textcolor{keyword}{namespace\ }literals\ \{}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{comment}{//\ Pa}}
+\DoxyCodeLine{00071\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Pa(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00072\ \{}
+\DoxyCodeLine{00073\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00074\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity}{pressure<pascal,\ std::int64\_t>}}(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00075\ \}}
+\DoxyCodeLine{00076\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Pa(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ pressure<pascal,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{comment}{//\ yPa}}
+\DoxyCodeLine{00079\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_yPa(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00080\ \{}
+\DoxyCodeLine{00081\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00082\ \ \ \textcolor{keywordflow}{return}\ pressure<yoctopascal,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00083\ \}}
+\DoxyCodeLine{00084\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_yPa(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ pressure<yoctopascal,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{comment}{//\ zPa}}
+\DoxyCodeLine{00087\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_zPa(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00088\ \{}
+\DoxyCodeLine{00089\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00090\ \ \ \textcolor{keywordflow}{return}\ pressure<zeptopascal,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00091\ \}}
+\DoxyCodeLine{00092\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_zPa(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ pressure<zeptopascal,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{comment}{//\ aPa}}
+\DoxyCodeLine{00095\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_aPa(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00096\ \{}
+\DoxyCodeLine{00097\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00098\ \ \ \textcolor{keywordflow}{return}\ pressure<attopascal,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00099\ \}}
+\DoxyCodeLine{00100\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_aPa(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ pressure<attopascal,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{comment}{//\ fPa}}
+\DoxyCodeLine{00103\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_fPa(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00104\ \{}
+\DoxyCodeLine{00105\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00106\ \ \ \textcolor{keywordflow}{return}\ pressure<femtopascal,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00107\ \}}
+\DoxyCodeLine{00108\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_fPa(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ pressure<femtopascal,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{comment}{//\ pPa}}
+\DoxyCodeLine{00111\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_pPa(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00112\ \{}
+\DoxyCodeLine{00113\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00114\ \ \ \textcolor{keywordflow}{return}\ pressure<picopascal,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00115\ \}}
+\DoxyCodeLine{00116\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_pPa(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ pressure<picopascal,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{comment}{//\ nPa}}
+\DoxyCodeLine{00119\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_nPa(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00120\ \{}
+\DoxyCodeLine{00121\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00122\ \ \ \textcolor{keywordflow}{return}\ pressure<nanopascal,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00123\ \}}
+\DoxyCodeLine{00124\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_nPa(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ pressure<nanopascal,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{comment}{//\ uPa}}
+\DoxyCodeLine{00127\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_uPa(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00128\ \{}
+\DoxyCodeLine{00129\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00130\ \ \ \textcolor{keywordflow}{return}\ pressure<micropascal,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00131\ \}}
+\DoxyCodeLine{00132\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_uPa(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ pressure<micropascal,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{comment}{//\ mPa}}
+\DoxyCodeLine{00135\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_mPa(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00136\ \{}
+\DoxyCodeLine{00137\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00138\ \ \ \textcolor{keywordflow}{return}\ pressure<millipascal,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00139\ \}}
+\DoxyCodeLine{00140\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_mPa(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ pressure<millipascal,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{comment}{//\ cPa}}
+\DoxyCodeLine{00143\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_cPa(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00144\ \{}
+\DoxyCodeLine{00145\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00146\ \ \ \textcolor{keywordflow}{return}\ pressure<centipascal,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00147\ \}}
+\DoxyCodeLine{00148\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_cPa(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ pressure<centipascal,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{comment}{//\ dPa}}
+\DoxyCodeLine{00151\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_dPa(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00152\ \{}
+\DoxyCodeLine{00153\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00154\ \ \ \textcolor{keywordflow}{return}\ pressure<decipascal,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00155\ \}}
+\DoxyCodeLine{00156\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_dPa(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ pressure<decipascal,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{comment}{//\ daPa}}
+\DoxyCodeLine{00159\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_daPa(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00160\ \{}
+\DoxyCodeLine{00161\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00162\ \ \ \textcolor{keywordflow}{return}\ pressure<decapascal,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00163\ \}}
+\DoxyCodeLine{00164\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_daPa(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ pressure<decapascal,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \textcolor{comment}{//\ hPa}}
+\DoxyCodeLine{00167\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_hPa(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00168\ \{}
+\DoxyCodeLine{00169\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00170\ \ \ \textcolor{keywordflow}{return}\ pressure<hectopascal,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00171\ \}}
+\DoxyCodeLine{00172\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_hPa(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ pressure<hectopascal,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{comment}{//\ kPa}}
+\DoxyCodeLine{00175\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_kPa(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00176\ \{}
+\DoxyCodeLine{00177\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00178\ \ \ \textcolor{keywordflow}{return}\ pressure<kilopascal,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00179\ \}}
+\DoxyCodeLine{00180\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_kPa(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ pressure<kilopascal,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \textcolor{comment}{//\ MPa}}
+\DoxyCodeLine{00183\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_MPa(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00184\ \{}
+\DoxyCodeLine{00185\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00186\ \ \ \textcolor{keywordflow}{return}\ pressure<megapascal,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00187\ \}}
+\DoxyCodeLine{00188\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_MPa(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ pressure<megapascal,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \textcolor{comment}{//\ GPa}}
+\DoxyCodeLine{00191\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_GPa(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00192\ \{}
+\DoxyCodeLine{00193\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00194\ \ \ \textcolor{keywordflow}{return}\ pressure<gigapascal,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00195\ \}}
+\DoxyCodeLine{00196\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_GPa(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ pressure<gigapascal,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{comment}{//\ TPa}}
+\DoxyCodeLine{00199\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_TPa(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00200\ \{}
+\DoxyCodeLine{00201\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00202\ \ \ \textcolor{keywordflow}{return}\ pressure<terapascal,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00203\ \}}
+\DoxyCodeLine{00204\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_TPa(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ pressure<terapascal,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \textcolor{comment}{//\ PPa}}
+\DoxyCodeLine{00207\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_PPa(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00208\ \{}
+\DoxyCodeLine{00209\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00210\ \ \ \textcolor{keywordflow}{return}\ pressure<petapascal,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00211\ \}}
+\DoxyCodeLine{00212\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_PPa(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ pressure<petapascal,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \textcolor{comment}{//\ EPa}}
+\DoxyCodeLine{00215\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_EPa(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00216\ \{}
+\DoxyCodeLine{00217\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00218\ \ \ \textcolor{keywordflow}{return}\ pressure<exapascal,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00219\ \}}
+\DoxyCodeLine{00220\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_EPa(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ pressure<exapascal,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \textcolor{comment}{//\ ZPa}}
+\DoxyCodeLine{00223\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ZPa(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00224\ \{}
+\DoxyCodeLine{00225\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00226\ \ \ \textcolor{keywordflow}{return}\ pressure<zettapascal,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00227\ \}}
+\DoxyCodeLine{00228\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ZPa(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ pressure<zettapascal,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \textcolor{comment}{//\ YPa}}
+\DoxyCodeLine{00231\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_YPa(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00232\ \{}
+\DoxyCodeLine{00233\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00234\ \ \ \textcolor{keywordflow}{return}\ pressure<yottapascal,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00235\ \}}
+\DoxyCodeLine{00236\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_YPa(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ pressure<yottapascal,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \}\ \ \textcolor{comment}{//\ namespace\ literals}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_LITERALS}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_REFERENCES}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \textcolor{keyword}{namespace\ }pressure\_references\ \{}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Pa}}\ =\ reference<dim\_pressure,\ pascal>\{\};}
+\DoxyCodeLine{00247\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{yPa}}\ =\ reference<dim\_pressure,\ yoctopascal>\{\};}
+\DoxyCodeLine{00248\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{zPa}}\ =\ reference<dim\_pressure,\ zeptopascal>\{\};}
+\DoxyCodeLine{00249\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{aPa}}\ =\ reference<dim\_pressure,\ attopascal>\{\};}
+\DoxyCodeLine{00250\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{fPa}}\ =\ reference<dim\_pressure,\ femtopascal>\{\};}
+\DoxyCodeLine{00251\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{pPa}}\ =\ reference<dim\_pressure,\ picopascal>\{\};}
+\DoxyCodeLine{00252\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{nPa}}\ =\ reference<dim\_pressure,\ nanopascal>\{\};}
+\DoxyCodeLine{00253\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{uPa}}\ =\ reference<dim\_pressure,\ micropascal>\{\};}
+\DoxyCodeLine{00254\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{mPa}}\ =\ reference<dim\_pressure,\ millipascal>\{\};}
+\DoxyCodeLine{00255\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{cPa}}\ =\ reference<dim\_pressure,\ centipascal>\{\};}
+\DoxyCodeLine{00256\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{dPa}}\ =\ reference<dim\_pressure,\ decipascal>\{\};}
+\DoxyCodeLine{00257\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{daPa}}\ =\ reference<dim\_pressure,\ decapascal>\{\};}
+\DoxyCodeLine{00258\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{hPa}}\ =\ reference<dim\_pressure,\ hectopascal>\{\};}
+\DoxyCodeLine{00259\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{kPa}}\ =\ reference<dim\_pressure,\ kilopascal>\{\};}
+\DoxyCodeLine{00260\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{MPa}}\ =\ reference<dim\_pressure,\ megapascal>\{\};}
+\DoxyCodeLine{00261\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{GPa}}\ =\ reference<dim\_pressure,\ gigapascal>\{\};}
+\DoxyCodeLine{00262\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{TPa}}\ =\ reference<dim\_pressure,\ terapascal>\{\};}
+\DoxyCodeLine{00263\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{PPa}}\ =\ reference<dim\_pressure,\ petapascal>\{\};}
+\DoxyCodeLine{00264\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{EPa}}\ =\ reference<dim\_pressure,\ exapascal>\{\};}
+\DoxyCodeLine{00265\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{ZPa}}\ =\ reference<dim\_pressure,\ zettapascal>\{\};}
+\DoxyCodeLine{00266\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{YPa}}\ =\ reference<dim\_pressure,\ yottapascal>\{\};}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \}\ \ \textcolor{comment}{//\ namespace\ pressure\_references}}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \textcolor{keyword}{namespace\ }references\ \{}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \textcolor{keyword}{using\ namespace\ }pressure\_references;}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \}\ \ \textcolor{comment}{//\ namespace\ references}}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_REFERENCES}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \}\ \ \textcolor{comment}{//\ namespace\ units::isq::si}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_ALIASES}}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \textcolor{keyword}{namespace\ }units::aliases::isq::si::inline\ pressure\ \{}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00285\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Pa}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::pressure<units::isq::si::pascal,\ Rep>}};}
+\DoxyCodeLine{00286\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00287\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{yPa}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::pressure<units::isq::si::yoctopascal,\ Rep>}};}
+\DoxyCodeLine{00288\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00289\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{zPa}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::pressure<units::isq::si::zeptopascal,\ Rep>}};}
+\DoxyCodeLine{00290\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00291\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{aPa}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::pressure<units::isq::si::attopascal,\ Rep>}};}
+\DoxyCodeLine{00292\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00293\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{fPa}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::pressure<units::isq::si::femtopascal,\ Rep>}};}
+\DoxyCodeLine{00294\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00295\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{pPa}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::pressure<units::isq::si::picopascal,\ Rep>}};}
+\DoxyCodeLine{00296\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00297\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{nPa}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::pressure<units::isq::si::nanopascal,\ Rep>}};}
+\DoxyCodeLine{00298\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00299\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{uPa}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::pressure<units::isq::si::micropascal,\ Rep>}};}
+\DoxyCodeLine{00300\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00301\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{mPa}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::pressure<units::isq::si::millipascal,\ Rep>}};}
+\DoxyCodeLine{00302\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00303\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{cPa}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::pressure<units::isq::si::centipascal,\ Rep>}};}
+\DoxyCodeLine{00304\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00305\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{dPa}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::pressure<units::isq::si::decipascal,\ Rep>}};}
+\DoxyCodeLine{00306\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00307\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{daPa}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::pressure<units::isq::si::decapascal,\ Rep>}};}
+\DoxyCodeLine{00308\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00309\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{hPa}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::pressure<units::isq::si::hectopascal,\ Rep>}};}
+\DoxyCodeLine{00310\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00311\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{kPa}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::pressure<units::isq::si::kilopascal,\ Rep>}};}
+\DoxyCodeLine{00312\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00313\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{MPa}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::pressure<units::isq::si::megapascal,\ Rep>}};}
+\DoxyCodeLine{00314\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00315\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{GPa}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::pressure<units::isq::si::gigapascal,\ Rep>}};}
+\DoxyCodeLine{00316\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00317\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{TPa}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::pressure<units::isq::si::terapascal,\ Rep>}};}
+\DoxyCodeLine{00318\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00319\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{PPa}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::pressure<units::isq::si::petapascal,\ Rep>}};}
+\DoxyCodeLine{00320\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00321\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{EPa}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::pressure<units::isq::si::exapascal,\ Rep>}};}
+\DoxyCodeLine{00322\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00323\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{ZPa}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::pressure<units::isq::si::zettapascal,\ Rep>}};}
+\DoxyCodeLine{00324\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00325\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{YPa}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::pressure<units::isq::si::yottapascal,\ Rep>}};}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \}\ \ \textcolor{comment}{//\ namespace\ units::aliases::isq::si::inline\ pressure}}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_ALIASES}}
+
+\end{DoxyCode}

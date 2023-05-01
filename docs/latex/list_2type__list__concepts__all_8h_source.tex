@@ -1,0 +1,190 @@
+\hypertarget{list_2type__list__concepts__all_8h_source}{}\doxysection{type\+\_\+list\+\_\+concepts\+\_\+all.\+h}
+\label{list_2type__list__concepts__all_8h_source}\index{csm-\/units/units/test/metabench/list/type\_list\_concepts\_all.h@{csm-\/units/units/test/metabench/list/type\_list\_concepts\_all.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }units\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }detail\ \{}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}>}
+\DoxyCodeLine{00032\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1detail_1_1conditional}{conditional}}\ \{}
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00034\ \ \ \textcolor{keyword}{using\ }type\ =\ F;}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00038\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1detail_1_1conditional}{conditional}}<true>\ \{}
+\DoxyCodeLine{00039\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00040\ \ \ \textcolor{keyword}{using\ }type\ =\ T;}
+\DoxyCodeLine{00041\ \};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}<\textcolor{keywordtype}{bool}\ B,\ \textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ F>}
+\DoxyCodeLine{00044\ \textcolor{keyword}{using\ }conditional\_t\ =\ \mbox{\hyperlink{structunits_1_1detail_1_1conditional}{conditional<B>::template}}\ type<T,\ F>;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \}\ \ \textcolor{comment}{//\ namespace\ detail}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{namespace\ }detail\ \{}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00051\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ is\_type\_list\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{template}<\textcolor{keyword}{template}<\textcolor{keyword}{typename}...>\ \textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}...\ Types>}
+\DoxyCodeLine{00054\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ is\_type\_list<T<Types...>>\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \}\ \ \textcolor{comment}{//\ namespace\ detail}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00059\ \textcolor{keyword}{concept\ }TypeList\ =\ detail::is\_type\_list<T>;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ push\_front}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{template}<TypeList\ List,\ \textcolor{keyword}{typename}...\ Types>}
+\DoxyCodeLine{00064\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1type__list__push__front}{type\_list\_push\_front}};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{template}<\textcolor{keyword}{template}<\textcolor{keyword}{typename}...>\ \textcolor{keyword}{typename}\ List,\ \textcolor{keyword}{typename}...\ OldTypes,\ \textcolor{keyword}{typename}...\ NewTypes>}
+\DoxyCodeLine{00067\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1type__list__push__front}{type\_list\_push\_front}}<List<OldTypes...>,\ NewTypes...>\ \{}
+\DoxyCodeLine{00068\ \ \ \textcolor{keyword}{using\ }type\ =\ List<NewTypes...,\ OldTypes...>;}
+\DoxyCodeLine{00069\ \};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{template}<\mbox{\hyperlink{conceptunits_1_1_type_list}{TypeList}}\ List,\ \textcolor{keyword}{typename}...\ Types>}
+\DoxyCodeLine{00072\ \textcolor{keyword}{using\ }type\_list\_push\_front\_t\ =\ \mbox{\hyperlink{structunits_1_1type__list__push__front}{type\_list\_push\_front}}<List,\ Types...>::type;}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ push\_back}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{template}<\mbox{\hyperlink{conceptunits_1_1_type_list}{TypeList}}\ List,\ \textcolor{keyword}{typename}...\ Types>}
+\DoxyCodeLine{00077\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1type__list__push__back}{type\_list\_push\_back}};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{template}<\textcolor{keyword}{template}<\textcolor{keyword}{typename}...>\ \textcolor{keyword}{typename}\ List,\ \textcolor{keyword}{typename}...\ OldTypes,\ \textcolor{keyword}{typename}...\ NewTypes>}
+\DoxyCodeLine{00080\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1type__list__push__back}{type\_list\_push\_back}}<List<OldTypes...>,\ NewTypes...>\ \{}
+\DoxyCodeLine{00081\ \ \ \textcolor{keyword}{using\ }type\ =\ List<OldTypes...,\ NewTypes...>;}
+\DoxyCodeLine{00082\ \};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{template}<\mbox{\hyperlink{conceptunits_1_1_type_list}{TypeList}}\ List,\ \textcolor{keyword}{typename}...\ Types>}
+\DoxyCodeLine{00085\ \textcolor{keyword}{using\ }type\_list\_push\_back\_t\ =\ \mbox{\hyperlink{structunits_1_1type__list__push__back}{type\_list\_push\_back}}<List,\ Types...>::type;}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{comment}{//\ split}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{namespace\ }detail\ \{}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{template}<\textcolor{keyword}{template}<\textcolor{keyword}{typename}...>\ \textcolor{keyword}{typename}\ List,\ std::size\_t\ Idx,\ std::size\_t\ N,\ \textcolor{keyword}{typename}...\ Types>}
+\DoxyCodeLine{00092\ \textcolor{keyword}{struct\ }split\_impl;}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{keyword}{template}<\textcolor{keyword}{template}<\textcolor{keyword}{typename}...>\ \textcolor{keyword}{typename}\ List,\ std::size\_t\ Idx,\ std::size\_t\ N>}
+\DoxyCodeLine{00095\ \textcolor{keyword}{struct\ }split\_impl<List,\ Idx,\ N>\ \{}
+\DoxyCodeLine{00096\ \ \ \textcolor{keyword}{using\ }first\_list\ =\ List<>;}
+\DoxyCodeLine{00097\ \ \ \textcolor{keyword}{using\ }second\_list\ =\ List<>;}
+\DoxyCodeLine{00098\ \};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{keyword}{template}<\textcolor{keyword}{template}<\textcolor{keyword}{typename}...>\ \textcolor{keyword}{typename}\ List,\ std::size\_t\ Idx,\ std::size\_t\ N,\ \textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}...\ Rest>}
+\DoxyCodeLine{00101\ \textcolor{keyword}{struct\ }split\_impl<List,\ Idx,\ N,\ T,\ Rest...>\ :\ split\_impl<List,\ Idx\ +\ 1,\ N,\ Rest...>\ \{}
+\DoxyCodeLine{00102\ \ \ \textcolor{keyword}{using\ }base\ =\ split\_impl<List,\ Idx\ +\ 1,\ N,\ Rest...>;}
+\DoxyCodeLine{00103\ \ \ \textcolor{keyword}{using\ }base\_first\ =\ base::first\_list;}
+\DoxyCodeLine{00104\ \ \ \textcolor{keyword}{using\ }base\_second\ =\ base::second\_list;}
+\DoxyCodeLine{00105\ \ \ \textcolor{keyword}{using\ }first\_list\ =\ detail::conditional\_t\ <\ Idx<N,\ type\_list\_push\_front\_t<base\_first,\ T>,\ base\_first>;}
+\DoxyCodeLine{00106\ \ \ \textcolor{keyword}{using\ }second\_list\ =\ detail::conditional\_t\ <\ Idx<N,\ base\_second,\ type\_list\_push\_front\_t<base\_second,\ T>>;}
+\DoxyCodeLine{00107\ \};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \}\ \ \textcolor{comment}{//\ namespace\ detail}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{template}<TypeList\ List,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00112\ \textcolor{keyword}{struct\ }type\_list\_split;}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{template}<\textcolor{keyword}{template}<\textcolor{keyword}{typename}...>\ \textcolor{keyword}{typename}\ List,\ std::size\_t\ N,\ \textcolor{keyword}{typename}...\ Types>}
+\DoxyCodeLine{00115\ \textcolor{keyword}{struct\ }type\_list\_split<List<Types...>,\ N>\ \{}
+\DoxyCodeLine{00116\ \ \ \textcolor{keyword}{static\_assert}(N\ <=\ \textcolor{keyword}{sizeof}...(Types),\ \textcolor{stringliteral}{"{}Invalid\ index\ provided"{}});}
+\DoxyCodeLine{00117\ \ \ \textcolor{keyword}{using\ }split\ =\ detail::split\_impl<List,\ 0,\ N,\ Types...>;}
+\DoxyCodeLine{00118\ \ \ \textcolor{keyword}{using\ }first\_list\ =\ split::first\_list;}
+\DoxyCodeLine{00119\ \ \ \textcolor{keyword}{using\ }second\_list\ =\ split::second\_list;}
+\DoxyCodeLine{00120\ \};}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{comment}{//\ split\_half}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{keyword}{template}<TypeList\ List>}
+\DoxyCodeLine{00125\ \textcolor{keyword}{struct\ }type\_list\_split\_half;}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{template}<\textcolor{keyword}{template}<\textcolor{keyword}{typename}...>\ \textcolor{keyword}{typename}\ List,\ \textcolor{keyword}{typename}...\ Types>}
+\DoxyCodeLine{00128\ \textcolor{keyword}{struct\ }type\_list\_split\_half<List<Types...>>\ :\ type\_list\_split<List<Types...>,\ (sizeof...(Types)\ +\ 1)\ /\ 2>\ \{\};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{comment}{//\ merge\_sorted}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{template}<TypeList\ SortedList1,\ TypeList\ SortedList2,\ \textcolor{keyword}{template}<\textcolor{keyword}{typename},\ \textcolor{keyword}{typename}>\ \textcolor{keyword}{typename}\ Pred>}
+\DoxyCodeLine{00133\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1type__list__merge__sorted}{type\_list\_merge\_sorted}};}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{keyword}{template}<TypeList\ SortedList1,\ TypeList\ SortedList2,\ \textcolor{keyword}{template}<\textcolor{keyword}{typename},\ \textcolor{keyword}{typename}>\ \textcolor{keyword}{typename}\ Pred>}
+\DoxyCodeLine{00136\ \textcolor{keyword}{using\ }type\_list\_merge\_sorted\_t\ =\ \mbox{\hyperlink{structunits_1_1type__list__merge__sorted}{type\_list\_merge\_sorted<SortedList1,\ SortedList2,\ Pred>::type}};}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \textcolor{keyword}{template}<\textcolor{keyword}{template}<\textcolor{keyword}{typename}...>\ \textcolor{keyword}{typename}\ List,\ \textcolor{keyword}{typename}...\ Lhs,\ \textcolor{keyword}{template}<\textcolor{keyword}{typename},\ \textcolor{keyword}{typename}>\ \textcolor{keyword}{typename}\ Pred>}
+\DoxyCodeLine{00139\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1type__list__merge__sorted}{type\_list\_merge\_sorted}}<List<Lhs...>,\ List<>,\ Pred>\ \{}
+\DoxyCodeLine{00140\ \ \ \textcolor{keyword}{using\ }type\ =\ List<Lhs...>;}
+\DoxyCodeLine{00141\ \};}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \textcolor{keyword}{template}<\textcolor{keyword}{template}<\textcolor{keyword}{typename}...>\ \textcolor{keyword}{typename}\ List,\ \textcolor{keyword}{typename}...\ Rhs,\ \textcolor{keyword}{template}<\textcolor{keyword}{typename},\ \textcolor{keyword}{typename}>\ \textcolor{keyword}{typename}\ Pred>}
+\DoxyCodeLine{00144\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1type__list__merge__sorted}{type\_list\_merge\_sorted}}<List<>,\ List<Rhs...>,\ Pred>\ \{}
+\DoxyCodeLine{00145\ \ \ \textcolor{keyword}{using\ }type\ =\ List<Rhs...>;}
+\DoxyCodeLine{00146\ \};}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{keyword}{template}<\textcolor{keyword}{template}<\textcolor{keyword}{typename}...>\ \textcolor{keyword}{typename}\ List,\ \textcolor{keyword}{typename}\ Lhs1,\ \textcolor{keyword}{typename}...\ LhsRest,\ \textcolor{keyword}{typename}\ Rhs1,\ \textcolor{keyword}{typename}...\ RhsRest,}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename},\ \textcolor{keyword}{typename}>\ \textcolor{keyword}{typename}\ Pred>}
+\DoxyCodeLine{00150\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1type__list__merge__sorted}{type\_list\_merge\_sorted}}<List<Lhs1,\ LhsRest...>,\ List<Rhs1,\ RhsRest...>,\ Pred>\ \{}
+\DoxyCodeLine{00151\ \ \ \textcolor{keyword}{using\ }type\ =\ detail::conditional\_t<}
+\DoxyCodeLine{00152\ \ \ \ \ Pred<Lhs1,\ Rhs1>::value,}
+\DoxyCodeLine{00153\ \ \ \ \ type\_list\_push\_front\_t<type\_list\_merge\_sorted\_t<List<LhsRest...>,\ List<Rhs1,\ RhsRest...>,\ Pred>,\ Lhs1>,}
+\DoxyCodeLine{00154\ \ \ \ \ type\_list\_push\_front\_t<type\_list\_merge\_sorted\_t<List<Lhs1,\ LhsRest...>,\ List<RhsRest...>,\ Pred>,\ Rhs1>>;}
+\DoxyCodeLine{00155\ \};}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \textcolor{comment}{//\ sort}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{keyword}{template}<TypeList\ List,\ \textcolor{keyword}{template}<\textcolor{keyword}{typename},\ \textcolor{keyword}{typename}>\ \textcolor{keyword}{typename}\ Pred>}
+\DoxyCodeLine{00160\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1type__list__sort}{type\_list\_sort}};}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \textcolor{keyword}{template}<\textcolor{keyword}{template}<\textcolor{keyword}{typename}...>\ \textcolor{keyword}{typename}\ List,\ \textcolor{keyword}{template}<\textcolor{keyword}{typename},\ \textcolor{keyword}{typename}>\ \textcolor{keyword}{typename}\ Pred>}
+\DoxyCodeLine{00163\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1type__list__sort}{type\_list\_sort}}<List<>,\ Pred>\ \{}
+\DoxyCodeLine{00164\ \ \ \textcolor{keyword}{using\ }type\ =\ List<>;}
+\DoxyCodeLine{00165\ \};}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{keyword}{template}<\textcolor{keyword}{template}<\textcolor{keyword}{typename}...>\ \textcolor{keyword}{typename}\ List,\ \textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{template}<\textcolor{keyword}{typename},\ \textcolor{keyword}{typename}>\ \textcolor{keyword}{typename}\ Pred>}
+\DoxyCodeLine{00168\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1type__list__sort}{type\_list\_sort}}<List<T>,\ Pred>\ \{}
+\DoxyCodeLine{00169\ \ \ \textcolor{keyword}{using\ }type\ =\ List<T>;}
+\DoxyCodeLine{00170\ \};}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \textcolor{keyword}{template}<\textcolor{keyword}{template}<\textcolor{keyword}{typename}...>\ \textcolor{keyword}{typename}\ List,\ \textcolor{keyword}{typename}...\ Types,\ \textcolor{keyword}{template}<\textcolor{keyword}{typename},\ \textcolor{keyword}{typename}>\ \textcolor{keyword}{typename}\ Pred>}
+\DoxyCodeLine{00173\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1type__list__sort}{type\_list\_sort}}<List<Types...>,\ Pred>\ \{}
+\DoxyCodeLine{00174\ \ \ \textcolor{keyword}{using\ }types\ =\ List<Types...>;}
+\DoxyCodeLine{00175\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structunits_1_1type__list__split__half_3_01_list_3_01_types_8_8_8_01_4_01_4}{split}}\ =\ \mbox{\hyperlink{structunits_1_1type__list__split__half}{type\_list\_split\_half}}<List<Types...>>;}
+\DoxyCodeLine{00176\ \ \ \textcolor{keyword}{using\ }left\ =\ \mbox{\hyperlink{structunits_1_1type__list__sort}{type\_list\_sort<typename\ split::first\_list,\ Pred>::type}};}
+\DoxyCodeLine{00177\ \ \ \textcolor{keyword}{using\ }right\ =\ \mbox{\hyperlink{structunits_1_1type__list__sort}{type\_list\_sort<typename\ split::second\_list,\ Pred>::type}};}
+\DoxyCodeLine{00178\ \ \ \textcolor{keyword}{using\ }type\ =\ type\_list\_merge\_sorted\_t<left,\ right,\ Pred>;}
+\DoxyCodeLine{00179\ \};}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \textcolor{keyword}{template}<TypeList\ List,\ \textcolor{keyword}{template}<\textcolor{keyword}{typename},\ \textcolor{keyword}{typename}>\ \textcolor{keyword}{typename}\ Pred>}
+\DoxyCodeLine{00182\ \textcolor{keyword}{using\ }type\_list\_sort\_t\ =\ \mbox{\hyperlink{structunits_1_1type__list__sort}{type\_list\_sort<List,\ Pred>::type}};}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \}\ \ \textcolor{comment}{//\ namespace\ units}}
+
+\end{DoxyCode}

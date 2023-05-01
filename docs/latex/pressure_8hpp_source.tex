@@ -1,0 +1,74 @@
+\hypertarget{pressure_8hpp_source}{}\doxysection{pressure.\+hpp}
+\label{pressure_8hpp_source}\index{csm-\/units/source/csm\_units/pressure.hpp@{csm-\/units/source/csm\_units/pressure.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ READY\ TO\ BE\ DELETED\ -\/\ PENDING\ SETH\ APROOVAL}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \#pragma\ once}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ namespace\ csm\_units\ \{}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ //\ class\ DimPressure\ \{\};\ \ //\ should\ probably\ get\ rid\ of\ this}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ /*}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ //\ Converters\ to\ define\ relationship\ between\ various\ pressure\ units}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ class\ PascalsConverter\ \{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ \ public:}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ \ \ //\ do\ nothing\ in\ either\ of\ the\ below\ because\ we\ want\ it\ in\ pascals}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ \ \ [[nodiscard]]\ constexpr\ static\ auto\ ToBase(double\ paData)\ noexcept\ -\/>}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ \ \ double\ \{}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ \ \ \ \ return\ paData;}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ \ \ [[nodiscard]]\ constexpr\ static\ auto\ FromBase(double\ paData)\ noexcept}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ \ \ \ \ \ \ -\/>\ double\ \{}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ \ \ \ \ return\ paData;}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ \};}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ */\ \ //\ ***\ All\ of\ this\ shouldn't\ be\ needed\ anymore,\ but\ want\ to\ talk\ to\ Seth}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ \ \ \ \ //\ before\ deleting\ ***}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ class\ BarConverter\ \{}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ \ public:}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ \ \ //\ 1\ bar\ =\ 100,000\ pascals}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ \ \ [[nodiscard]]\ constexpr\ static\ auto\ ToBase(double\ barData)\ noexcept}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ \ \ \ \ \ \ -\/>\ double\ \{}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ \ \ \ \ return\ (barData\ *\ 100000);}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ \ \ [[nodiscard]]\ constexpr\ static\ auto\ FromBase(double\ paData)\ noexcept}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ \ \ \ \ \ \ -\/>\ double\ \{}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ \ \ \ \ return\ (paData\ /\ 100000);}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ \};}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ class\ AtmConverter\ \{}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ \ public:}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ \ \ //\ 1\ atm\ =\ 101,325\ Pa}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ \ \ [[nodiscard]]\ constexpr\ static\ auto\ ToBase(double\ atmData)\ noexcept}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ \ \ \ \ \ \ -\/>\ double\ \{}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ \ \ \ \ return\ (atmData\ *\ 101325);}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ \ \ [[nodiscard]]\ constexpr\ static\ auto\ FromBase(double\ paData)\ noexcept}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ \ \ \ \ \ \ -\/>\ double\ \{}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ \ \ \ \ return\ (paData\ /\ 101325);}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ \};}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ class\ PsiConverter\ \{}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ \ public:}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ \ \ //\ 1\ psi\ =\ 6894.76\ Pa}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ \ \ [[nodiscard]]\ constexpr\ static\ auto\ ToBase(double\ psiData)\ noexcept}}
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ \ \ \ \ \ \ -\/>\ double\ \{}}
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ \ \ \ \ return\ (psiData\ *\ 6894.7572931783);}}
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ \ \ [[nodiscard]]\ constexpr\ static\ auto\ FromBase(double\ paData)\ noexcept}}
+\DoxyCodeLine{00063\ \textcolor{comment}{//\ \ \ \ \ \ \ -\/>\ double\ \{}}
+\DoxyCodeLine{00064\ \textcolor{comment}{//\ \ \ \ \ return\ (paData\ /\ 6894.7572931783);}}
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ \};}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ \}\ \ //\ namespace\ csm\_units}}
+
+\end{DoxyCode}

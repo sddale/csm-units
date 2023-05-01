@@ -1,0 +1,47 @@
+\hypertarget{structunits_1_1prefixed__unit}{}\doxysection{units\+::prefixed\+\_\+unit\texorpdfstring{$<$}{<} Child, P, U \texorpdfstring{$>$}{>} Struct Template Reference}
+\label{structunits_1_1prefixed__unit}\index{units::prefixed\_unit$<$ Child, P, U $>$@{units::prefixed\_unit$<$ Child, P, U $>$}}
+
+
+A prefixed unit.  
+
+
+
+
+{\ttfamily \#include $<$unit.\+h$>$}
+
+Inheritance diagram for units\+::prefixed\+\_\+unit\texorpdfstring{$<$}{<} Child, P, U \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.976177cm]{structunits_1_1prefixed__unit}
+\end{center}
+\end{figure}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structunits_1_1prefixed__unit_a1f4f63506d32ec810d8efe51b689dd78}\label{structunits_1_1prefixed__unit_a1f4f63506d32ec810d8efe51b689dd78}} 
+static constexpr auto {\bfseries symbol} = P\+::symbol + U\+::symbol
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Child, Prefix P, Named\+Unit U$>$\newline
+requires detail\+::can\+\_\+be\+\_\+prefixed$<$U$>$\newline
+struct units\+::prefixed\+\_\+unit$<$ Child, P, U $>$}
+A prefixed unit. 
+
+Defines a new unit that is a scaled version of another unit by the provided prefix. It is only possible to create such a unit if the given prefix type matches the one defined in a reference unit.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Child} & inherited class type used by the downcasting facility (CRTP Idiom) \\
+\hline
+{\em P} & prefix to be appied to the reference unit \\
+\hline
+{\em U} & reference unit \\
+\hline
+\end{DoxyTemplParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+csm-\/units/units/src/core/include/units/unit.\+h\end{DoxyCompactItemize}

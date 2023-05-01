@@ -1,0 +1,130 @@
+\hypertarget{si-typographic_2include_2units_2isq_2si_2typographic_2length_8h_source}{}\doxysection{length.\+h}
+\label{si-typographic_2include_2units_2isq_2si_2typographic_2length_8h_source}\index{csm-\/units/units/src/systems/si-\/typographic/include/units/isq/si/typographic/length.h@{csm-\/units/units/src/systems/si-\/typographic/include/units/isq/si/typographic/length.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ IWYU\ pragma:\ begin\_exports}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <units/isq/dimensions/length.h>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <units/quantity.h>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <units/reference.h>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <units/symbol\_text.h>}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ IWYU\ pragma:\ end\_exports}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <units/isq/si/length.h>}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <units/unit.h>}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{namespace\ }units::isq::si::typographic\ \{}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ TODO\ Conflicts\ with\ (https://en.wikipedia.org/wiki/Pica\_(typography)),\ verify\ correctness\ of\ below\ conversion\ factors}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ and\ provide\ hyperlinks\ to\ definitions}}
+\DoxyCodeLine{00040\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1typographic_1_1pica__comp}{pica\_comp}}\ :\ \mbox{\hyperlink{structunits_1_1named__scaled__unit}{named\_scaled\_unit}}<pica\_comp,\ "{}pica(comp)"{},\ mag<4'233'333>()\ *\ mag\_power<10,\ -\/9>(),\ si::metre>\ \{\};}
+\DoxyCodeLine{00041\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1typographic_1_1pica__prn}{pica\_prn}}\ :}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{structunits_1_1named__scaled__unit}{named\_scaled\_unit}}<pica\_prn,\ "{}pica(prn)"{},\ mag<ratio(2108759,\ 500000)>()\ *\ mag\_power<10,\ -\/3>(),\ si::metre>\ \{\};}
+\DoxyCodeLine{00043\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1typographic_1_1point__comp}{point\_comp}}\ :}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{structunits_1_1named__scaled__unit}{named\_scaled\_unit}}<point\_comp,\ "{}point(comp)"{},\ mag<ratio(1763889,\ 500000)>()\ *\ mag\_power<10,\ -\/4>(),\ si::metre>\ \{\};}
+\DoxyCodeLine{00045\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1typographic_1_1point__prn}{point\_prn}}\ :}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{structunits_1_1named__scaled__unit}{named\_scaled\_unit}}<point\_prn,\ "{}point(prn)"{},\ mag<ratio(1757299,\ 500000)>()\ *\ mag\_power<10,\ -\/4>(),\ si::metre>\ \{\};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_LITERALS}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{inline}\ \textcolor{keyword}{namespace\ }literals\ \{}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ pica\ comp}}
+\DoxyCodeLine{00053\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_pica\_comp(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00054\ \{}
+\DoxyCodeLine{00055\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordflow}{return}\ si::length<pica\_comp,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_pica\_comp(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ si::length<pica\_comp,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ pica\ prn}}
+\DoxyCodeLine{00061\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_pica\_prn(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00064\ \ \ \textcolor{keywordflow}{return}\ si::length<pica\_prn,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00066\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_pica\_prn(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ si::length<pica\_prn,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ point\ comp}}
+\DoxyCodeLine{00069\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_point\_comp(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00072\ \ \ \textcolor{keywordflow}{return}\ si::length<point\_comp,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00073\ \}}
+\DoxyCodeLine{00074\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_point\_comp(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ si::length<point\_comp,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{comment}{//\ point\ prn}}
+\DoxyCodeLine{00077\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_point\_prn(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00078\ \{}
+\DoxyCodeLine{00079\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00080\ \ \ \textcolor{keywordflow}{return}\ si::length<point\_prn,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00081\ \}}
+\DoxyCodeLine{00082\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_point\_prn(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ si::length<point\_prn,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \}\ \ \textcolor{comment}{//\ namespace\ literals}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_LITERALS}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_REFERENCES}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{namespace\ }length\_references\ \{}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ pica\_comp\ =\ reference<si::dim\_length,\ typographic::pica\_comp>\{\};}
+\DoxyCodeLine{00093\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ pica\_prn\ =\ reference<si::dim\_length,\ typographic::pica\_prn>\{\};}
+\DoxyCodeLine{00094\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ point\_comp\ =\ reference<si::dim\_length,\ typographic::point\_comp>\{\};}
+\DoxyCodeLine{00095\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ point\_prn\ =\ reference<si::dim\_length,\ typographic::point\_prn>\{\};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \}\ \ \textcolor{comment}{//\ namespace\ length\_references}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{namespace\ }references\ \{}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{keyword}{using\ namespace\ }length\_references;}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \}\ \ \textcolor{comment}{//\ namespace\ references}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_REFERENCES}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \}\ \ \textcolor{comment}{//\ namespace\ units::isq::si::typographic}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_ALIASES}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{namespace\ }units::aliases::isq::si::typographic::inline\ length\ \{}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00114\ \textcolor{keyword}{using\ }pica\_comp\ =\ units::isq::si::length<units::isq::si::typographic::pica\_comp,\ Rep>;}
+\DoxyCodeLine{00115\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00116\ \textcolor{keyword}{using\ }pica\_prn\ =\ units::isq::si::length<units::isq::si::typographic::pica\_prn,\ Rep>;}
+\DoxyCodeLine{00117\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00118\ \textcolor{keyword}{using\ }point\_comp\ =\ units::isq::si::length<units::isq::si::typographic::point\_comp,\ Rep>;}
+\DoxyCodeLine{00119\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00120\ \textcolor{keyword}{using\ }point\_prn\ =\ units::isq::si::length<units::isq::si::typographic::point\_prn,\ Rep>;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \}\ \ \textcolor{comment}{//\ namespace\ units::aliases::isq::si::typographic::inline\ length}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_ALIASES}}
+
+\end{DoxyCode}

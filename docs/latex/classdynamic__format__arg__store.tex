@@ -1,0 +1,96 @@
+\hypertarget{classdynamic__format__arg__store}{}\doxysection{dynamic\+\_\+format\+\_\+arg\+\_\+store\texorpdfstring{$<$}{<} Context \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classdynamic__format__arg__store}\index{dynamic\_format\_arg\_store$<$ Context $>$@{dynamic\_format\_arg\_store$<$ Context $>$}}
+
+
+{\ttfamily \#include $<$args.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classdynamic__format__arg__store_a710e994685e69fd1cd4f56d29efc0d95}{push\+\_\+back}} (const T \&arg)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classdynamic__format__arg__store_ac58637a7965cbfeab47c2f50e923dc07}{push\+\_\+back}} (std\+::reference\+\_\+wrapper$<$ T $>$ arg)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classdynamic__format__arg__store_a14baaad39c59b82fdf86dc4276f7d7cc}{push\+\_\+back}} (const \mbox{\hyperlink{structdetail_1_1named__arg}{detail\+::named\+\_\+arg}}$<$ char\+\_\+type, T $>$ \&arg)
+\item 
+void \mbox{\hyperlink{classdynamic__format__arg__store_a94763fc905f02222d575f7c03161c212}{clear}} ()
+\item 
+void \mbox{\hyperlink{classdynamic__format__arg__store_a9c6983c46b69775b5066f6ad748be584}{reserve}} (size\+\_\+t new\+\_\+cap, size\+\_\+t new\+\_\+cap\+\_\+named)
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdynamic__format__arg__store_ab8e9e33cc7b78829001a86ef6110ebb6}\label{classdynamic__format__arg__store_ab8e9e33cc7b78829001a86ef6110ebb6}} 
+class {\bfseries basic\+\_\+format\+\_\+args$<$ Context $>$}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Context$>$\newline
+class dynamic\+\_\+format\+\_\+arg\+\_\+store$<$ Context $>$}
+\textbackslash{}rst A dynamic version of {\ttfamily fmt\+::format\+\_\+arg\+\_\+store}. It\textquotesingle{}s equipped with a storage to potentially temporary objects which lifetimes could be shorter than the format arguments object.
+
+It can be implicitly converted into {\ttfamily $\sim$fmt\mbox{\hyperlink{classbasic__format__args}{basic\+\_\+format\+\_\+args}}} for passing into type-\/erased formatting functions such as {\ttfamily $\sim$fmtvformat}. \textbackslash{}endrst 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdynamic__format__arg__store_a94763fc905f02222d575f7c03161c212}\label{classdynamic__format__arg__store_a94763fc905f02222d575f7c03161c212}} 
+\index{dynamic\_format\_arg\_store$<$ Context $>$@{dynamic\_format\_arg\_store$<$ Context $>$}!clear@{clear}}
+\index{clear@{clear}!dynamic\_format\_arg\_store$<$ Context $>$@{dynamic\_format\_arg\_store$<$ Context $>$}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily template$<$typename Context $>$ \\
+void \mbox{\hyperlink{classdynamic__format__arg__store}{dynamic\+\_\+format\+\_\+arg\+\_\+store}}$<$ Context $>$\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Erase all elements from the store \mbox{\Hypertarget{classdynamic__format__arg__store_a14baaad39c59b82fdf86dc4276f7d7cc}\label{classdynamic__format__arg__store_a14baaad39c59b82fdf86dc4276f7d7cc}} 
+\index{dynamic\_format\_arg\_store$<$ Context $>$@{dynamic\_format\_arg\_store$<$ Context $>$}!push\_back@{push\_back}}
+\index{push\_back@{push\_back}!dynamic\_format\_arg\_store$<$ Context $>$@{dynamic\_format\_arg\_store$<$ Context $>$}}
+\doxysubsubsection{\texorpdfstring{push\_back()}{push\_back()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Context $>$ \\
+template$<$typename T $>$ \\
+void \mbox{\hyperlink{classdynamic__format__arg__store}{dynamic\+\_\+format\+\_\+arg\+\_\+store}}$<$ Context $>$\+::push\+\_\+back (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structdetail_1_1named__arg}{detail\+::named\+\_\+arg}}$<$ char\+\_\+type, T $>$ \&}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Adds named argument into the dynamic store for later passing to a formatting function. {\ttfamily std\+::reference\+\_\+wrapper} is supported to avoid copying of the argument. The name is always copied into the store. \mbox{\Hypertarget{classdynamic__format__arg__store_a710e994685e69fd1cd4f56d29efc0d95}\label{classdynamic__format__arg__store_a710e994685e69fd1cd4f56d29efc0d95}} 
+\index{dynamic\_format\_arg\_store$<$ Context $>$@{dynamic\_format\_arg\_store$<$ Context $>$}!push\_back@{push\_back}}
+\index{push\_back@{push\_back}!dynamic\_format\_arg\_store$<$ Context $>$@{dynamic\_format\_arg\_store$<$ Context $>$}}
+\doxysubsubsection{\texorpdfstring{push\_back()}{push\_back()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Context $>$ \\
+template$<$typename T $>$ \\
+void \mbox{\hyperlink{classdynamic__format__arg__store}{dynamic\+\_\+format\+\_\+arg\+\_\+store}}$<$ Context $>$\+::push\+\_\+back (\begin{DoxyParamCaption}\item[{const T \&}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\textbackslash{}rst Adds an argument into the dynamic store for later passing to a formatting function.
+
+Note that custom types and string types (but not string views) are copied into the store dynamically allocating memory if necessary.
+
+Example$\ast$$\ast$\+::
+
+fmt\+::dynamic\+\_\+format\+\_\+arg\+\_\+store$<$fmt\+::format\+\_\+context$>$ store; store.\+push\+\_\+back(42); store.\+push\+\_\+back(\char`\"{}abc\char`\"{}); store.\+push\+\_\+back(1.\+5f); std\+::string result = fmt\+::vformat(\char`\"{}\{\} and \{\} and \{\}\char`\"{}, store); \textbackslash{}endrst \mbox{\Hypertarget{classdynamic__format__arg__store_ac58637a7965cbfeab47c2f50e923dc07}\label{classdynamic__format__arg__store_ac58637a7965cbfeab47c2f50e923dc07}} 
+\index{dynamic\_format\_arg\_store$<$ Context $>$@{dynamic\_format\_arg\_store$<$ Context $>$}!push\_back@{push\_back}}
+\index{push\_back@{push\_back}!dynamic\_format\_arg\_store$<$ Context $>$@{dynamic\_format\_arg\_store$<$ Context $>$}}
+\doxysubsubsection{\texorpdfstring{push\_back()}{push\_back()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Context $>$ \\
+template$<$typename T $>$ \\
+void \mbox{\hyperlink{classdynamic__format__arg__store}{dynamic\+\_\+format\+\_\+arg\+\_\+store}}$<$ Context $>$\+::push\+\_\+back (\begin{DoxyParamCaption}\item[{std\+::reference\+\_\+wrapper$<$ T $>$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyVerb}\rst
+Adds a reference to the argument into the dynamic store for later passing to
+a formatting function.
+
+  Example**::
+
+  fmt::dynamic_format_arg_store<fmt::format_context> store;
+  char band[] = "Rolling Stones";
+  store.push_back(std::cref(band));
+  band[9] = 'c'; // Changing str affects the output.
+  std::string result = fmt::vformat("{}", store);
+\end{DoxyVerb}
+ result == \char`\"{}\+Rolling Scones\char`\"{} \textbackslash{}endrst \mbox{\Hypertarget{classdynamic__format__arg__store_a9c6983c46b69775b5066f6ad748be584}\label{classdynamic__format__arg__store_a9c6983c46b69775b5066f6ad748be584}} 
+\index{dynamic\_format\_arg\_store$<$ Context $>$@{dynamic\_format\_arg\_store$<$ Context $>$}!reserve@{reserve}}
+\index{reserve@{reserve}!dynamic\_format\_arg\_store$<$ Context $>$@{dynamic\_format\_arg\_store$<$ Context $>$}}
+\doxysubsubsection{\texorpdfstring{reserve()}{reserve()}}
+{\footnotesize\ttfamily template$<$typename Context $>$ \\
+void \mbox{\hyperlink{classdynamic__format__arg__store}{dynamic\+\_\+format\+\_\+arg\+\_\+store}}$<$ Context $>$\+::reserve (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{new\+\_\+cap,  }\item[{size\+\_\+t}]{new\+\_\+cap\+\_\+named }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\textbackslash{}rst Reserves space to store at least {\itshape new\+\_\+cap} arguments including new\+\_\+cap\+\_\+named$\ast$ named arguments. \textbackslash{}endrst 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+csm-\/units/fmt/include/fmt/args.\+h\end{DoxyCompactItemize}

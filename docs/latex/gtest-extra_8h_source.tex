@@ -1,0 +1,176 @@
+\hypertarget{gtest-extra_8h_source}{}\doxysection{gtest-\/extra.h}
+\label{gtest-extra_8h_source}\index{csm-\/units/fmt/test/gtest-\/extra.h@{csm-\/units/fmt/test/gtest-\/extra.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Formatting\ library\ for\ C++\ -\/\ custom\ Google\ Test\ assertions}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2012\ -\/\ present,\ Victor\ Zverovich}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ All\ rights\ reserved.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ For\ the\ license\ information\ refer\ to\ format.h.}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ FMT\_GTEST\_EXTRA\_H\_}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ FMT\_GTEST\_EXTRA\_H\_}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdlib.h>}\ \ \textcolor{comment}{//\ \_invalid\_parameter\_handler}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#ifdef\ FMT\_MODULE\_TEST}}
+\DoxyCodeLine{00016\ \textcolor{keyword}{import}\ fmt;}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#\ \ include\ "{}fmt/os.h"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ FMG\_MODULE\_TEST}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}gmock/gmock.h"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ FMT\_TEST\_THROW\_(statement,\ expected\_exception,\ expected\_message,\ fail)\ \(\backslash\)}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\ \ GTEST\_AMBIGUOUS\_ELSE\_BLOCKER\_\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\ \ if\ (::testing::AssertionResult\ gtest\_ar\ =\ ::testing::AssertionSuccess())\ \{\ \ \ \(\backslash\)}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\ \ \ \ std::string\ gtest\_expected\_message\ =\ expected\_message;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\ \ \ \ bool\ gtest\_caught\_expected\ =\ false;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\ \ \ \ try\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\ \ \ \ \ \ GTEST\_SUPPRESS\_UNREACHABLE\_CODE\_WARNING\_BELOW\_(statement);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\ \ \ \ \}\ catch\ (expected\_exception\ const\&\ e)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\ \ \ \ \ \ if\ (gtest\_expected\_message\ !=\ e.what())\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ gtest\_ar\ <<\ \#statement\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ "{}\ throws\ an\ exception\ with\ a\ different\ message.\(\backslash\)n"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ "{}Expected:\ "{}\ <<\ gtest\_expected\_message\ <<\ "{}\(\backslash\)n"{}\ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ "{}\ \ Actual:\ "{}\ <<\ e.what();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ goto\ GTEST\_CONCAT\_TOKEN\_(gtest\_label\_testthrow\_,\ \_\_LINE\_\_);\ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ gtest\_caught\_expected\ =\ true;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00039\ \ \ \ \ \}\ catch\ (...)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ gtest\_ar\ <<\ "{}Expected:\ "{}\ \#statement\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}\ throws\ an\ exception\ of\ type\ "{}\ \#expected\_exception\ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}.\(\backslash\)n\ \ Actual:\ it\ throws\ a\ different\ type."{};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ goto\ GTEST\_CONCAT\_TOKEN\_(gtest\_label\_testthrow\_,\ \_\_LINE\_\_);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00044\ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00045\ \ \ \ \ if\ (!gtest\_caught\_expected)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ gtest\_ar\ <<\ "{}Expected:\ "{}\ \#statement\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}\ throws\ an\ exception\ of\ type\ "{}\ \#expected\_exception\ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}.\(\backslash\)n\ \ Actual:\ it\ throws\ nothing."{};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ goto\ GTEST\_CONCAT\_TOKEN\_(gtest\_label\_testthrow\_,\ \_\_LINE\_\_);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00050\ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00051\ \ \ \}\ else\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00052\ \ \ \ \ GTEST\_CONCAT\_TOKEN\_(gtest\_label\_testthrow\_,\ \_\_LINE\_\_)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ :\ fail(gtest\_ar.failure\_message())}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ Tests\ that\ the\ statement\ throws\ the\ expected\ exception\ and\ the\ exception's}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ what()\ method\ returns\ expected\ message.}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ EXPECT\_THROW\_MSG(statement,\ expected\_exception,\ expected\_message)\ \(\backslash\)}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\ \ FMT\_TEST\_THROW\_(statement,\ expected\_exception,\ expected\_message,\ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GTEST\_NONFATAL\_FAILURE\_)}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{inline}\ std::string\ system\_error\_message(\textcolor{keywordtype}{int}\ error\_code,}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ message)\ \{}
+\DoxyCodeLine{00063\ \ \ \textcolor{keyword}{auto}\ ec\ =\ std::error\_code(error\_code,\ std::generic\_category());}
+\DoxyCodeLine{00064\ \ \ \textcolor{keywordflow}{return}\ std::system\_error(ec,\ message).what();}
+\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ EXPECT\_SYSTEM\_ERROR(statement,\ error\_code,\ message)\ \(\backslash\)}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\ \ EXPECT\_THROW\_MSG(statement,\ std::system\_error,\ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ system\_error\_message(error\_code,\ message))}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#if\ FMT\_USE\_FCNTL}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ Captures\ file\ output\ by\ redirecting\ it\ to\ a\ pipe.}}
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ The\ output\ it\ can\ handle\ is\ limited\ by\ the\ pipe\ capacity.}}
+\DoxyCodeLine{00075\ \textcolor{keyword}{class\ }output\_redirect\ \{}
+\DoxyCodeLine{00076\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00077\ \ \ FILE*\ file\_;}
+\DoxyCodeLine{00078\ \ \ fmt::file\ original\_;\ \ \textcolor{comment}{//\ Original\ file\ passed\ to\ redirector.}}
+\DoxyCodeLine{00079\ \ \ fmt::file\ read\_end\_;\ \ \textcolor{comment}{//\ Read\ end\ of\ the\ pipe\ where\ the\ output\ is\ redirected.}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \textcolor{keywordtype}{void}\ flush();}
+\DoxyCodeLine{00082\ \ \ \textcolor{keywordtype}{void}\ restore();}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00085\ \ \ \textcolor{keyword}{explicit}\ output\_redirect(FILE*\ file);}
+\DoxyCodeLine{00086\ \ \ \string~output\_redirect()\ noexcept;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ output\_redirect(const\ output\_redirect\&)\ =\ delete;}
+\DoxyCodeLine{00089\ \ \ \textcolor{keywordtype}{void}\ operator=(const\ output\_redirect\&)\ =\ delete;}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \textcolor{comment}{//\ Restores\ the\ original\ file,\ reads\ output\ from\ the\ pipe\ into\ a\ string}}
+\DoxyCodeLine{00092\ \ \ \textcolor{comment}{//\ and\ returns\ it.}}
+\DoxyCodeLine{00093\ \ \ std::\textcolor{keywordtype}{string}\ restore\_and\_read();}
+\DoxyCodeLine{00094\ \};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#\ \ define\ FMT\_TEST\_WRITE\_(statement,\ expected\_output,\ file,\ fail)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\ \ \ \ GTEST\_AMBIGUOUS\_ELSE\_BLOCKER\_\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\ \ \ \ if\ (::testing::AssertionResult\ gtest\_ar\ =\ ::testing::AssertionSuccess())\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\ \ \ \ \ \ std::string\ gtest\_expected\_output\ =\ expected\_output;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\ \ \ \ \ \ output\_redirect\ gtest\_redir(file);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\ \ \ \ \ \ GTEST\_SUPPRESS\_UNREACHABLE\_CODE\_WARNING\_BELOW\_(statement);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\ \ \ \ \ \ std::string\ gtest\_output\ =\ gtest\_redir.restore\_and\_read();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\ \ \ \ \ \ if\ (gtest\_output\ !=\ gtest\_expected\_output)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ gtest\_ar\ <<\ \#statement\ "{}\ produces\ different\ output.\(\backslash\)n"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ "{}Expected:\ "{}\ <<\ gtest\_expected\_output\ <<\ "{}\(\backslash\)n"{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ "{}\ \ Actual:\ "{}\ <<\ gtest\_output;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ goto\ GTEST\_CONCAT\_TOKEN\_(gtest\_label\_testthrow\_,\ \_\_LINE\_\_);\ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00109\ \ \ \ \ \}\ else\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ GTEST\_CONCAT\_TOKEN\_(gtest\_label\_testthrow\_,\ \_\_LINE\_\_)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ :\ fail(gtest\_ar.failure\_message())}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{comment}{//\ Tests\ that\ the\ statement\ writes\ the\ expected\ output\ to\ file.}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#\ \ define\ EXPECT\_WRITE(file,\ statement,\ expected\_output)\ \(\backslash\)}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\ \ \ \ FMT\_TEST\_WRITE\_(statement,\ expected\_output,\ file,\ GTEST\_NONFATAL\_FAILURE\_)}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#\ \ ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{comment}{//\ Suppresses\ Windows\ assertions\ on\ invalid\ file\ descriptors,\ making}}
+\DoxyCodeLine{00120\ \textcolor{comment}{//\ POSIX\ functions\ return\ proper\ error\ codes\ instead\ of\ crashing\ on\ Windows.}}
+\DoxyCodeLine{00121\ \textcolor{keyword}{class\ }suppress\_assert\ \{}
+\DoxyCodeLine{00122\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00123\ \ \ \_invalid\_parameter\_handler\ original\_handler\_;}
+\DoxyCodeLine{00124\ \ \ \textcolor{keywordtype}{int}\ original\_report\_mode\_;}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ handle\_invalid\_parameter(\textcolor{keyword}{const}\ \textcolor{keywordtype}{wchar\_t}*,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{wchar\_t}*,}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{wchar\_t}*,\ \textcolor{keywordtype}{unsigned},\ uintptr\_t)\ \{\}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00130\ \ \ suppress\_assert()}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ :\ original\_handler\_(}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \_set\_invalid\_parameter\_handler(handle\_invalid\_parameter)),}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ original\_report\_mode\_(\_CrtSetReportMode(\_CRT\_ASSERT,\ 0))\ \{\}}
+\DoxyCodeLine{00134\ \ \ \string~suppress\_assert()\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \_set\_invalid\_parameter\_handler(original\_handler\_);}
+\DoxyCodeLine{00136\ \ \ \ \ \_CrtSetReportMode(\_CRT\_ASSERT,\ original\_report\_mode\_);}
+\DoxyCodeLine{00137\ \ \ \ \ (void)original\_report\_mode\_;}
+\DoxyCodeLine{00138\ \ \ \}}
+\DoxyCodeLine{00139\ \};}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#\ \ \ \ define\ SUPPRESS\_ASSERT(statement)\ \(\backslash\)}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ suppress\_assert\ sa;\ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ statement;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\ \ \ \ \ \ \}}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#\ \ else}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#\ \ \ \ define\ SUPPRESS\_ASSERT(statement)\ statement}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#\ \ endif\ \ }\textcolor{comment}{//\ \_MSC\_VER}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#\ \ define\ EXPECT\_SYSTEM\_ERROR\_NOASSERT(statement,\ error\_code,\ message)\ \(\backslash\)}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\ \ \ \ EXPECT\_SYSTEM\_ERROR(SUPPRESS\_ASSERT(statement),\ error\_code,\ message)}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{comment}{//\ Attempts\ to\ read\ count\ characters\ from\ a\ file.}}
+\DoxyCodeLine{00154\ std::string\ read(fmt::file\&\ f,\ \textcolor{keywordtype}{size\_t}\ count);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#\ \ define\ EXPECT\_READ(file,\ expected\_content)\ \(\backslash\)}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\ \ \ \ EXPECT\_EQ(expected\_content,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ read(file,\ fmt::string\_view(expected\_content).size()))}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#\ \ define\ EXPECT\_WRITE(file,\ statement,\ expected\_output)\ \(\backslash\)}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\ \ \ \ do\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\ \ \ \ \ \ (void)(file);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\ \ \ \ \ \ (void)(statement);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\ \ \ \ \ \ (void)(expected\_output);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\ \ \ \ \ \ SUCCEED();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\ \ \ \ \}\ while\ (false)}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ FMT\_USE\_FCNTL}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ FMT\_GTEST\_EXTRA\_H\_}}
+
+\end{DoxyCode}

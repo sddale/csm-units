@@ -1,0 +1,303 @@
+\hypertarget{si_2include_2units_2isq_2si_2magnetic__induction_8h_source}{}\doxysection{magnetic\+\_\+induction.\+h}
+\label{si_2include_2units_2isq_2si_2magnetic__induction_8h_source}\index{csm-\/units/units/src/systems/si/include/units/isq/si/magnetic\_induction.h@{csm-\/units/units/src/systems/si/include/units/isq/si/magnetic\_induction.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ IWYU\ pragma:\ begin\_exports}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <units/isq/dimensions/magnetic\_induction.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <units/quantity.h>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <units/reference.h>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <units/symbol\_text.h>}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ IWYU\ pragma:\ end\_exports}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <units/isq/si/length.h>}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <units/isq/si/prefixes.h>}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <units/isq/si/time.h>}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ <units/isq/si/voltage.h>}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ <units/unit.h>}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{namespace\ }units::isq::si\ \{}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1tesla}{tesla}}\ :\ \mbox{\hyperlink{structunits_1_1named__unit}{named\_unit}}<tesla,\ "{}T"{}>\ \{\};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1yoctotesla}{yoctotesla}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<yoctotesla,\ yocto,\ tesla>\ \{\};}
+\DoxyCodeLine{00043\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1zeptotesla}{zeptotesla}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<zeptotesla,\ zepto,\ tesla>\ \{\};}
+\DoxyCodeLine{00044\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1attotesla}{attotesla}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<attotesla,\ atto,\ tesla>\ \{\};}
+\DoxyCodeLine{00045\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1femtotesla}{femtotesla}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<femtotesla,\ femto,\ tesla>\ \{\};}
+\DoxyCodeLine{00046\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1picotesla}{picotesla}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<picotesla,\ pico,\ tesla>\ \{\};}
+\DoxyCodeLine{00047\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1nanotesla}{nanotesla}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<nanotesla,\ nano,\ tesla>\ \{\};}
+\DoxyCodeLine{00048\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1microtesla}{microtesla}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<microtesla,\ micro,\ tesla>\ \{\};}
+\DoxyCodeLine{00049\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1millitesla}{millitesla}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<millitesla,\ milli,\ tesla>\ \{\};}
+\DoxyCodeLine{00050\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1kilotesla}{kilotesla}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<kilotesla,\ kilo,\ tesla>\ \{\};}
+\DoxyCodeLine{00051\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1megatesla}{megatesla}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<megatesla,\ mega,\ tesla>\ \{\};}
+\DoxyCodeLine{00052\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1gigatesla}{gigatesla}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<gigatesla,\ giga,\ tesla>\ \{\};}
+\DoxyCodeLine{00053\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1teratesla}{teratesla}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<teratesla,\ tera,\ tesla>\ \{\};}
+\DoxyCodeLine{00054\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1petatesla}{petatesla}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<petatesla,\ peta,\ tesla>\ \{\};}
+\DoxyCodeLine{00055\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1exatesla}{exatesla}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<exatesla,\ exa,\ tesla>\ \{\};}
+\DoxyCodeLine{00056\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1zettatesla}{zettatesla}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<zettatesla,\ zetta,\ tesla>\ \{\};}
+\DoxyCodeLine{00057\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1yottatesla}{yottatesla}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<yottatesla,\ yotta,\ tesla>\ \{\};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{struct\ }gauss\ :\ \mbox{\hyperlink{structunits_1_1named__scaled__unit}{named\_scaled\_unit}}<gauss,\ "{}G"{},\ mag<ratio(1,\ 10'000)>(),\ tesla>\ \{\};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ struct\ dim\_magnetic\_induction\ :}
+\DoxyCodeLine{00062\ \ \ \ \ isq::dim\_magnetic\_induction<dim\_magnetic\_induction,\ tesla,\ dim\_voltage,\ dim\_time,\ dim\_length>\ \{\};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ template<UnitOf<dim\_magnetic\_induction>\ U,\ Representation\ Rep\ =\ double>}
+\DoxyCodeLine{00065\ using\ magnetic\_induction\ =\ quantity<dim\_magnetic\_induction,\ U,\ Rep>;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \#ifndef\ UNITS\_NO\_LITERALS}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ inline\ namespace\ literals\ \{}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ //\ T}
+\DoxyCodeLine{00072\ constexpr\ auto\ operator"{}"{}\ \_q\_T(unsigned\ long\ long\ l)}
+\DoxyCodeLine{00073\ \{}
+\DoxyCodeLine{00074\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00075\ \ \ return\ magnetic\_induction<tesla,\ std::int64\_t>(static\_cast<std::int64\_t>(l));}
+\DoxyCodeLine{00076\ \}}
+\DoxyCodeLine{00077\ constexpr\ auto\ operator"{}"{}\ \_q\_T(long\ double\ l)\ \{\ return\ magnetic\_induction<tesla,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ //\ yT}
+\DoxyCodeLine{00080\ constexpr\ auto\ operator"{}"{}\ \_q\_yT(unsigned\ long\ long\ l)}
+\DoxyCodeLine{00081\ \{}
+\DoxyCodeLine{00082\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00083\ \ \ return\ magnetic\_induction<yoctotesla,\ std::int64\_t>(static\_cast<std::int64\_t>(l));}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ constexpr\ auto\ operator"{}"{}\ \_q\_yT(long\ double\ l)\ \{\ return\ magnetic\_induction<yoctotesla,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ //\ zT}
+\DoxyCodeLine{00088\ constexpr\ auto\ operator"{}"{}\ \_q\_zT(unsigned\ long\ long\ l)}
+\DoxyCodeLine{00089\ \{}
+\DoxyCodeLine{00090\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00091\ \ \ return\ magnetic\_induction<zeptotesla,\ std::int64\_t>(static\_cast<std::int64\_t>(l));}
+\DoxyCodeLine{00092\ \}}
+\DoxyCodeLine{00093\ constexpr\ auto\ operator"{}"{}\ \_q\_zT(long\ double\ l)\ \{\ return\ magnetic\_induction<zeptotesla,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ //\ aT}
+\DoxyCodeLine{00096\ constexpr\ auto\ operator"{}"{}\ \_q\_aT(unsigned\ long\ long\ l)}
+\DoxyCodeLine{00097\ \{}
+\DoxyCodeLine{00098\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00099\ \ \ return\ magnetic\_induction<attotesla,\ std::int64\_t>(static\_cast<std::int64\_t>(l));}
+\DoxyCodeLine{00100\ \}}
+\DoxyCodeLine{00101\ constexpr\ auto\ operator"{}"{}\ \_q\_aT(long\ double\ l)\ \{\ return\ magnetic\_induction<attotesla,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ //\ fT}
+\DoxyCodeLine{00104\ constexpr\ auto\ operator"{}"{}\ \_q\_fT(unsigned\ long\ long\ l)}
+\DoxyCodeLine{00105\ \{}
+\DoxyCodeLine{00106\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00107\ \ \ return\ magnetic\_induction<femtotesla,\ std::int64\_t>(static\_cast<std::int64\_t>(l));}
+\DoxyCodeLine{00108\ \}}
+\DoxyCodeLine{00109\ constexpr\ auto\ operator"{}"{}\ \_q\_fT(long\ double\ l)\ \{\ return\ magnetic\_induction<femtotesla,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ //\ pT}
+\DoxyCodeLine{00112\ constexpr\ auto\ operator"{}"{}\ \_q\_pT(unsigned\ long\ long\ l)}
+\DoxyCodeLine{00113\ \{}
+\DoxyCodeLine{00114\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00115\ \ \ return\ magnetic\_induction<picotesla,\ std::int64\_t>(static\_cast<std::int64\_t>(l));}
+\DoxyCodeLine{00116\ \}}
+\DoxyCodeLine{00117\ constexpr\ auto\ operator"{}"{}\ \_q\_pT(long\ double\ l)\ \{\ return\ magnetic\_induction<picotesla,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ //\ nT}
+\DoxyCodeLine{00120\ constexpr\ auto\ operator"{}"{}\ \_q\_nT(unsigned\ long\ long\ l)}
+\DoxyCodeLine{00121\ \{}
+\DoxyCodeLine{00122\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00123\ \ \ return\ magnetic\_induction<nanotesla,\ std::int64\_t>(static\_cast<std::int64\_t>(l));}
+\DoxyCodeLine{00124\ \}}
+\DoxyCodeLine{00125\ constexpr\ auto\ operator"{}"{}\ \_q\_nT(long\ double\ l)\ \{\ return\ magnetic\_induction<nanotesla,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ //\ µT}
+\DoxyCodeLine{00128\ constexpr\ auto\ operator"{}"{}\ \_q\_uT(unsigned\ long\ long\ l)}
+\DoxyCodeLine{00129\ \{}
+\DoxyCodeLine{00130\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00131\ \ \ return\ magnetic\_induction<microtesla,\ std::int64\_t>(static\_cast<std::int64\_t>(l));}
+\DoxyCodeLine{00132\ \}}
+\DoxyCodeLine{00133\ constexpr\ auto\ operator"{}"{}\ \_q\_uT(long\ double\ l)\ \{\ return\ magnetic\_induction<microtesla,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ //\ mT}
+\DoxyCodeLine{00136\ constexpr\ auto\ operator"{}"{}\ \_q\_mT(unsigned\ long\ long\ l)}
+\DoxyCodeLine{00137\ \{}
+\DoxyCodeLine{00138\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00139\ \ \ return\ magnetic\_induction<millitesla,\ std::int64\_t>(static\_cast<std::int64\_t>(l));}
+\DoxyCodeLine{00140\ \}}
+\DoxyCodeLine{00141\ constexpr\ auto\ operator"{}"{}\ \_q\_mT(long\ double\ l)\ \{\ return\ magnetic\_induction<millitesla,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ //\ kT}
+\DoxyCodeLine{00144\ constexpr\ auto\ operator"{}"{}\ \_q\_kT(unsigned\ long\ long\ l)}
+\DoxyCodeLine{00145\ \{}
+\DoxyCodeLine{00146\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00147\ \ \ return\ magnetic\_induction<kilotesla,\ std::int64\_t>(static\_cast<std::int64\_t>(l));}
+\DoxyCodeLine{00148\ \}}
+\DoxyCodeLine{00149\ constexpr\ auto\ operator"{}"{}\ \_q\_kT(long\ double\ l)\ \{\ return\ magnetic\_induction<kilotesla,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ //\ MT}
+\DoxyCodeLine{00152\ constexpr\ auto\ operator"{}"{}\ \_q\_MT(unsigned\ long\ long\ l)}
+\DoxyCodeLine{00153\ \{}
+\DoxyCodeLine{00154\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00155\ \ \ return\ magnetic\_induction<megatesla,\ std::int64\_t>(static\_cast<std::int64\_t>(l));}
+\DoxyCodeLine{00156\ \}}
+\DoxyCodeLine{00157\ constexpr\ auto\ operator"{}"{}\ \_q\_MT(long\ double\ l)\ \{\ return\ magnetic\_induction<megatesla,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ //\ GT}
+\DoxyCodeLine{00160\ constexpr\ auto\ operator"{}"{}\ \_q\_GT(unsigned\ long\ long\ l)}
+\DoxyCodeLine{00161\ \{}
+\DoxyCodeLine{00162\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00163\ \ \ return\ magnetic\_induction<gigatesla,\ std::int64\_t>(static\_cast<std::int64\_t>(l));}
+\DoxyCodeLine{00164\ \}}
+\DoxyCodeLine{00165\ constexpr\ auto\ operator"{}"{}\ \_q\_GT(long\ double\ l)\ \{\ return\ magnetic\_induction<gigatesla,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ //\ TT}
+\DoxyCodeLine{00168\ constexpr\ auto\ operator"{}"{}\ \_q\_TT(unsigned\ long\ long\ l)}
+\DoxyCodeLine{00169\ \{}
+\DoxyCodeLine{00170\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00171\ \ \ return\ magnetic\_induction<teratesla,\ std::int64\_t>(static\_cast<std::int64\_t>(l));}
+\DoxyCodeLine{00172\ \}}
+\DoxyCodeLine{00173\ constexpr\ auto\ operator"{}"{}\ \_q\_TT(long\ double\ l)\ \{\ return\ magnetic\_induction<teratesla,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ //\ PT}
+\DoxyCodeLine{00176\ constexpr\ auto\ operator"{}"{}\ \_q\_PT(unsigned\ long\ long\ l)}
+\DoxyCodeLine{00177\ \{}
+\DoxyCodeLine{00178\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00179\ \ \ return\ magnetic\_induction<petatesla,\ std::int64\_t>(static\_cast<std::int64\_t>(l));}
+\DoxyCodeLine{00180\ \}}
+\DoxyCodeLine{00181\ constexpr\ auto\ operator"{}"{}\ \_q\_PT(long\ double\ l)\ \{\ return\ magnetic\_induction<petatesla,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ //\ ET}
+\DoxyCodeLine{00184\ constexpr\ auto\ operator"{}"{}\ \_q\_ET(unsigned\ long\ long\ l)}
+\DoxyCodeLine{00185\ \{}
+\DoxyCodeLine{00186\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00187\ \ \ return\ magnetic\_induction<exatesla,\ std::int64\_t>(static\_cast<std::int64\_t>(l));}
+\DoxyCodeLine{00188\ \}}
+\DoxyCodeLine{00189\ constexpr\ auto\ operator"{}"{}\ \_q\_ET(long\ double\ l)\ \{\ return\ magnetic\_induction<exatesla,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ //\ ZT}
+\DoxyCodeLine{00192\ constexpr\ auto\ operator"{}"{}\ \_q\_ZT(unsigned\ long\ long\ l)}
+\DoxyCodeLine{00193\ \{}
+\DoxyCodeLine{00194\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00195\ \ \ return\ magnetic\_induction<zettatesla,\ std::int64\_t>(static\_cast<std::int64\_t>(l));}
+\DoxyCodeLine{00196\ \}}
+\DoxyCodeLine{00197\ constexpr\ auto\ operator"{}"{}\ \_q\_ZT(long\ double\ l)\ \{\ return\ magnetic\_induction<zettatesla,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ //\ YT}
+\DoxyCodeLine{00200\ constexpr\ auto\ operator"{}"{}\ \_q\_YT(unsigned\ long\ long\ l)}
+\DoxyCodeLine{00201\ \{}
+\DoxyCodeLine{00202\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00203\ \ \ return\ magnetic\_induction<yottatesla,\ std::int64\_t>(static\_cast<std::int64\_t>(l));}
+\DoxyCodeLine{00204\ \}}
+\DoxyCodeLine{00205\ constexpr\ auto\ operator"{}"{}\ \_q\_YT(long\ double\ l)\ \{\ return\ magnetic\_induction<yottatesla,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ //\ G}
+\DoxyCodeLine{00208\ constexpr\ auto\ operator"{}"{}\ \_q\_G(unsigned\ long\ long\ l)}
+\DoxyCodeLine{00209\ \{}
+\DoxyCodeLine{00210\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00211\ \ \ return\ magnetic\_induction<gauss,\ std::int64\_t>(static\_cast<std::int64\_t>(l));}
+\DoxyCodeLine{00212\ \}}
+\DoxyCodeLine{00213\ constexpr\ auto\ operator"{}"{}\ \_q\_G(long\ double\ l)\ \{\ return\ magnetic\_induction<gauss,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \}\ \ //\ namespace\ literals}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \#endif\ \ //\ UNITS\_NO\_LITERALS}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \#ifndef\ UNITS\_NO\_REFERENCES}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ namespace\ magnetic\_induction\_references\ \{}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ inline\ constexpr\ auto\ T\ =\ reference<dim\_magnetic\_induction,\ tesla>\{\};}
+\DoxyCodeLine{00224\ inline\ constexpr\ auto\ yT\ =\ reference<dim\_magnetic\_induction,\ yoctotesla>\{\};}
+\DoxyCodeLine{00225\ inline\ constexpr\ auto\ zT\ =\ reference<dim\_magnetic\_induction,\ zeptotesla>\{\};}
+\DoxyCodeLine{00226\ inline\ constexpr\ auto\ aT\ =\ reference<dim\_magnetic\_induction,\ attotesla>\{\};}
+\DoxyCodeLine{00227\ inline\ constexpr\ auto\ fT\ =\ reference<dim\_magnetic\_induction,\ femtotesla>\{\};}
+\DoxyCodeLine{00228\ inline\ constexpr\ auto\ pT\ =\ reference<dim\_magnetic\_induction,\ picotesla>\{\};}
+\DoxyCodeLine{00229\ inline\ constexpr\ auto\ nT\ =\ reference<dim\_magnetic\_induction,\ nanotesla>\{\};}
+\DoxyCodeLine{00230\ inline\ constexpr\ auto\ uT\ =\ reference<dim\_magnetic\_induction,\ microtesla>\{\};}
+\DoxyCodeLine{00231\ inline\ constexpr\ auto\ mT\ =\ reference<dim\_magnetic\_induction,\ millitesla>\{\};}
+\DoxyCodeLine{00232\ inline\ constexpr\ auto\ kT\ =\ reference<dim\_magnetic\_induction,\ kilotesla>\{\};}
+\DoxyCodeLine{00233\ inline\ constexpr\ auto\ MT\ =\ reference<dim\_magnetic\_induction,\ megatesla>\{\};}
+\DoxyCodeLine{00234\ inline\ constexpr\ auto\ GT\ =\ reference<dim\_magnetic\_induction,\ gigatesla>\{\};}
+\DoxyCodeLine{00235\ inline\ constexpr\ auto\ TT\ =\ reference<dim\_magnetic\_induction,\ teratesla>\{\};}
+\DoxyCodeLine{00236\ inline\ constexpr\ auto\ PT\ =\ reference<dim\_magnetic\_induction,\ petatesla>\{\};}
+\DoxyCodeLine{00237\ inline\ constexpr\ auto\ ET\ =\ reference<dim\_magnetic\_induction,\ exatesla>\{\};}
+\DoxyCodeLine{00238\ inline\ constexpr\ auto\ ZT\ =\ reference<dim\_magnetic\_induction,\ zettatesla>\{\};}
+\DoxyCodeLine{00239\ inline\ constexpr\ auto\ YT\ =\ reference<dim\_magnetic\_induction,\ yottatesla>\{\};}
+\DoxyCodeLine{00240\ inline\ constexpr\ auto\ G\ =\ reference<dim\_magnetic\_induction,\ gauss>\{\};}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \}\ \ //\ namespace\ magnetic\_induction\_references}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ namespace\ references\ \{}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ using\ namespace\ magnetic\_induction\_references;}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \}\ \ //\ namespace\ references}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \#endif\ \ //\ UNITS\_NO\_REFERENCES}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \}\ \ //\ namespace\ units::isq::si}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \#ifndef\ UNITS\_NO\_ALIASES}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ namespace\ units::aliases::isq::si::inline\ magnetic\_induction\ \{}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ template<Representation\ Rep\ =\ double>}
+\DoxyCodeLine{00259\ using\ T\ =\ units::isq::si::magnetic\_induction<units::isq::si::tesla,\ Rep>;}
+\DoxyCodeLine{00260\ template<Representation\ Rep\ =\ double>}
+\DoxyCodeLine{00261\ using\ yT\ =\ units::isq::si::magnetic\_induction<units::isq::si::yoctotesla,\ Rep>;}
+\DoxyCodeLine{00262\ template<Representation\ Rep\ =\ double>}
+\DoxyCodeLine{00263\ using\ zT\ =\ units::isq::si::magnetic\_induction<units::isq::si::zeptotesla,\ Rep>;}
+\DoxyCodeLine{00264\ template<Representation\ Rep\ =\ double>}
+\DoxyCodeLine{00265\ using\ aT\ =\ units::isq::si::magnetic\_induction<units::isq::si::attotesla,\ Rep>;}
+\DoxyCodeLine{00266\ template<Representation\ Rep\ =\ double>}
+\DoxyCodeLine{00267\ using\ fT\ =\ units::isq::si::magnetic\_induction<units::isq::si::femtotesla,\ Rep>;}
+\DoxyCodeLine{00268\ template<Representation\ Rep\ =\ double>}
+\DoxyCodeLine{00269\ using\ pT\ =\ units::isq::si::magnetic\_induction<units::isq::si::picotesla,\ Rep>;}
+\DoxyCodeLine{00270\ template<Representation\ Rep\ =\ double>}
+\DoxyCodeLine{00271\ using\ nT\ =\ units::isq::si::magnetic\_induction<units::isq::si::nanotesla,\ Rep>;}
+\DoxyCodeLine{00272\ template<Representation\ Rep\ =\ double>}
+\DoxyCodeLine{00273\ using\ uT\ =\ units::isq::si::magnetic\_induction<units::isq::si::microtesla,\ Rep>;}
+\DoxyCodeLine{00274\ template<Representation\ Rep\ =\ double>}
+\DoxyCodeLine{00275\ using\ mT\ =\ units::isq::si::magnetic\_induction<units::isq::si::millitesla,\ Rep>;}
+\DoxyCodeLine{00276\ template<Representation\ Rep\ =\ double>}
+\DoxyCodeLine{00277\ using\ kT\ =\ units::isq::si::magnetic\_induction<units::isq::si::kilotesla,\ Rep>;}
+\DoxyCodeLine{00278\ template<Representation\ Rep\ =\ double>}
+\DoxyCodeLine{00279\ using\ MT\ =\ units::isq::si::magnetic\_induction<units::isq::si::megatesla,\ Rep>;}
+\DoxyCodeLine{00280\ template<Representation\ Rep\ =\ double>}
+\DoxyCodeLine{00281\ using\ GT\ =\ units::isq::si::magnetic\_induction<units::isq::si::gigatesla,\ Rep>;}
+\DoxyCodeLine{00282\ template<Representation\ Rep\ =\ double>}
+\DoxyCodeLine{00283\ using\ TT\ =\ units::isq::si::magnetic\_induction<units::isq::si::teratesla,\ Rep>;}
+\DoxyCodeLine{00284\ template<Representation\ Rep\ =\ double>}
+\DoxyCodeLine{00285\ using\ PT\ =\ units::isq::si::magnetic\_induction<units::isq::si::petatesla,\ Rep>;}
+\DoxyCodeLine{00286\ template<Representation\ Rep\ =\ double>}
+\DoxyCodeLine{00287\ using\ ET\ =\ units::isq::si::magnetic\_induction<units::isq::si::exatesla,\ Rep>;}
+\DoxyCodeLine{00288\ template<Representation\ Rep\ =\ double>}
+\DoxyCodeLine{00289\ using\ ZT\ =\ units::isq::si::magnetic\_induction<units::isq::si::zettatesla,\ Rep>;}
+\DoxyCodeLine{00290\ template<Representation\ Rep\ =\ double>}
+\DoxyCodeLine{00291\ using\ YT\ =\ units::isq::si::magnetic\_induction<units::isq::si::yottatesla,\ Rep>;}
+\DoxyCodeLine{00292\ template<Representation\ Rep\ =\ double>}
+\DoxyCodeLine{00293\ using\ G\ =\ units::isq::si::magnetic\_induction<units::isq::si::gauss,\ Rep>;}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \}\ \ //\ namespace\ units::aliases::isq::si::inline\ magnetic\_induction}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \#endif\ \ //\ UNITS\_NO\_ALIASES}
+
+\end{DoxyCode}

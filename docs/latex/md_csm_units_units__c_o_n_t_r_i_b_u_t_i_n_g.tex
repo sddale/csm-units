@@ -1,0 +1,44 @@
+👍🎉 First off, thanks for taking the time to contribute! 🎉👍\hypertarget{md_csm_units_units__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md17}{}\doxysection{Gitpod}\label{md_csm_units_units__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md17}
+The easiest way to start coding is to jump straight into \href{https://www.gitpod.io}{\texttt{ Gitpod}}. You can either click the button below or prefix any {\ttfamily mp-\/units} URL (main branch, other branches, issues, PRs, ...) in your web browser with {\ttfamily gitpod.\+io/\#} (i.\+e. \href{https://gitpod.io/\#https://github.com/mpusz/units}{\texttt{ https\+://gitpod.\+io/\#https\+://github.\+com/mpusz/units}}).
+
+\href{https://gitpod.io/\#https://github.com/mpusz/units}{\texttt{ }}
+
+The above environment provides you with\+:
+
+
+\begin{DoxyItemize}
+\item all supported compilers for Linux development ({\ttfamily g++-\/10}, {\ttfamily g++-\/11}, {\ttfamily g++12}, {\ttfamily clang-\/13}, {\ttfamily clang-\/14}, and {\ttfamily clang-\/15}) and the latest version of build tools like {\ttfamily cmake} and {\ttfamily conan}
+\item all Conan dependencies preinstalled on the machine
+\item all documentation generation tools ready to use
+\item completed prebuilds for all targets (Debug and Release builds for each compiler as well as a documentation)
+\item VSCode preconfigured to benefit from all the above
+\end{DoxyItemize}\hypertarget{md_csm_units_units__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md18}{}\doxysection{Download, Build, Install}\label{md_csm_units_units__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md18}
+Alternatively, please refer to our official docs for \href{https://mpusz.github.io/units/usage.html}{\texttt{ download, build, and install instructions}} if you want to setup a development environment on your local machine.\hypertarget{md_csm_units_units__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md19}{}\doxysection{Code Formatting}\label{md_csm_units_units__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md19}
+There is a formatting standard enforced with the {\ttfamily pre-\/commit} script. Before committing your changes please do the following\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{pip3\ install\ -\/U\ pre-\/commit}
+\DoxyCodeLine{pre-\/commit\ run\ -\/-\/all-\/files}
+
+\end{DoxyCode}
+
+
+This will run {\ttfamily clang-\/format} for code formatting with the {\ttfamily .clang-\/format} file provided in the repo, {\ttfamily cmake-\/format} to format the CMake files, and some other check as well. The script will run on all the files in the repo and will apply the changes in-\/place when needed. After the script is done please make sure to stage all those changes to git commit.\hypertarget{md_csm_units_units__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md20}{}\doxysection{Naming Conventions}\label{md_csm_units_units__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md20}
+Here are the main rules for naming things in this repo\+:
+
+
+\begin{DoxyItemize}
+\item types, functions, variables naming in a {\ttfamily standard\+\_\+case}
+\item template parameters in a {\ttfamily Pascal\+Case}
+\item C++20 concepts names for now in a {\ttfamily Pascal\+Case} but we plan to change it (see \href{https://github.com/mpusz/units/issues/93}{\texttt{ https\+://github.\+com/mpusz/units/issues/93}} for more details)
+\end{DoxyItemize}\hypertarget{md_csm_units_units__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md21}{}\doxysection{Backward Compatibility}\label{md_csm_units_units__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md21}
+Before submission, please remember to check if the code compiles fine on the supported compilers. The CI will check it anyway but it is good to check at least some of the configurations before pushing changes. Especially older compilers can be tricky as those do not support all the C++20 features well enough. The official list of supported compilers can be always found on our \href{https://mpusz.github.io/units/usage.html}{\texttt{ Usage page}}.\hypertarget{md_csm_units_units__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md22}{}\doxysection{Where to start?}\label{md_csm_units_units__c_o_n_t_r_i_b_u_t_i_n_g_autotoc_md22}
+If you are looking for a good issue to start with, please check the following\+:
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/mpusz/units/labels/good\%20first\%20issue}{\texttt{ good first issue}} -\/ issues that should be pretty simple to implement.
+\item \href{https://github.com/mpusz/units/labels/help\%20wanted}{\texttt{ help wanted}} -\/ issues that typically are a bit more involved than beginner issues.
+\item \href{https://github.com/mpusz/units/labels/high\%20priority}{\texttt{ high priority}} -\/ things to fix ASAP but often of higher complexity. 
+\end{DoxyItemize}

@@ -1,0 +1,10 @@
+\hypertarget{conceptunits_1_1_downcastable}{}\doxysection{units\+::Downcastable Concept Reference}
+\label{conceptunits_1_1_downcastable}\index{units::Downcastable@{units::Downcastable}}
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1_downcastable}{units::Downcastable}}\ =\ }
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ \{\ \textcolor{keyword}{typename}\ T::downcast\_base\_type;\ \}\ \&\&\ std::derived\_from<T,\ downcast\_base<typename\ T::downcast\_base\_type>>}
+
+\end{DoxyCode}

@@ -1,0 +1,562 @@
+\hypertarget{random_8h_source}{}\doxysection{random.\+h}
+\label{random_8h_source}\index{csm-\/units/units/src/core/include/units/random.h@{csm-\/units/units/src/core/include/units/random.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <units/concepts.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }units\ \{}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{namespace\ }detail\ \{}
+\DoxyCodeLine{00032\ \textcolor{keyword}{template}<Quantity\ Q,\ \textcolor{keyword}{typename}\ InputIt>}
+\DoxyCodeLine{00033\ \textcolor{keyword}{static}\ std::vector<typename\ Q::rep>\ i\_qty\_to\_rep(InputIt\ first,\ InputIt\ last)}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ std::vector<typename\ Q::rep>\ intervals\_rep;}
+\DoxyCodeLine{00036\ \ \ intervals\_rep.reserve(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(std::distance(first,\ last)));}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ itr\ =\ first;\ itr\ !=\ last;\ ++itr)\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ intervals\_rep.push\_back(itr-\/>number());}
+\DoxyCodeLine{00039\ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordflow}{return}\ intervals\_rep;}
+\DoxyCodeLine{00041\ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00044\ \textcolor{keyword}{static}\ std::vector<typename\ Q::rep>\ bl\_qty\_to\_rep(std::initializer\_list<Q>\&\ bl)}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ \ \ std::vector<typename\ Q::rep>\ bl\_rep;}
+\DoxyCodeLine{00047\ \ \ bl\_rep.reserve(bl.size());}
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ Q\&\ qty\ :\ bl)\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ bl\_rep.push\_back(qty.number());}
+\DoxyCodeLine{00050\ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \textcolor{keywordflow}{return}\ bl\_rep;}
+\DoxyCodeLine{00052\ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{template}<Quantity\ Q,\ \textcolor{keyword}{typename}\ UnaryOperation>}
+\DoxyCodeLine{00055\ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ std::vector<typename\ Q::rep>\ fw\_bl\_pwc(std::initializer\_list<Q>\&\ bl,\ UnaryOperation\ fw)}
+\DoxyCodeLine{00056\ \{}
+\DoxyCodeLine{00057\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00058\ \ \ std::vector<rep>\ w\_bl;}
+\DoxyCodeLine{00059\ \ \ w\_bl.reserve(bl.size());}
+\DoxyCodeLine{00060\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ Q\&\ qty\ :\ bl)\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ w\_bl.push\_back(fw(qty));}
+\DoxyCodeLine{00062\ \ \ \}}
+\DoxyCodeLine{00063\ \ \ std::vector<rep>\ weights;}
+\DoxyCodeLine{00064\ \ \ weights.reserve(bl.size());}
+\DoxyCodeLine{00065\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ bl.size()\ -\/\ 1;\ ++i)\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ weights.push\_back(w\_bl[i]\ +\ w\_bl[i\ +\ 1]);}
+\DoxyCodeLine{00067\ \ \ \}}
+\DoxyCodeLine{00068\ \ \ weights.push\_back(0);}
+\DoxyCodeLine{00069\ \ \ \textcolor{keywordflow}{return}\ weights;}
+\DoxyCodeLine{00070\ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{template}<Quantity\ Q,\ \textcolor{keyword}{typename}\ UnaryOperation>}
+\DoxyCodeLine{00073\ \textcolor{keyword}{static}\ std::vector<typename\ Q::rep>\ fw\_bl\_pwl(std::initializer\_list<Q>\&\ bl,\ UnaryOperation\ fw)}
+\DoxyCodeLine{00074\ \{}
+\DoxyCodeLine{00075\ \ \ std::vector<typename\ Q::rep>\ weights;}
+\DoxyCodeLine{00076\ \ \ weights.reserve(bl.size());}
+\DoxyCodeLine{00077\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ Q\&\ qty\ :\ bl)\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ weights.push\_back(fw(qty));}
+\DoxyCodeLine{00079\ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \textcolor{keywordflow}{return}\ weights;}
+\DoxyCodeLine{00081\ \}}
+\DoxyCodeLine{00082\ \}\ \ \textcolor{comment}{//\ namespace\ detail}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00085\ \ \ \textcolor{keyword}{requires}\ std::integral<typename\ Q::rep>}
+\DoxyCodeLine{00086\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1uniform__int__distribution}{uniform\_int\_distribution}}\ :\ \textcolor{keyword}{public}\ std::uniform\_int\_distribution<typename\ Q::rep>\ \{}
+\DoxyCodeLine{00087\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00088\ \ \ \textcolor{keyword}{using\ }base\ =\ TYPENAME\ std::uniform\_int\_distribution<rep>;}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \mbox{\hyperlink{structunits_1_1uniform__int__distribution}{uniform\_int\_distribution}}()\ :\ base()\ \{\}}
+\DoxyCodeLine{00091\ \ \ \mbox{\hyperlink{structunits_1_1uniform__int__distribution}{uniform\_int\_distribution}}(\textcolor{keyword}{const}\ Q\&\ a,\ \textcolor{keyword}{const}\ Q\&\ b)\ :\ base(a.number(),\ b.number())\ \{\}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Generator>}
+\DoxyCodeLine{00094\ \ \ Q\ operator()(Generator\&\ g)}
+\DoxyCodeLine{00095\ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{return}\ Q(base::operator()(g));}
+\DoxyCodeLine{00097\ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ Q\ a()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::a());\ \}}
+\DoxyCodeLine{00100\ \ \ Q\ b()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::b());\ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ Q\ min()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::min());\ \}}
+\DoxyCodeLine{00103\ \ \ Q\ max()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::max());\ \}}
+\DoxyCodeLine{00104\ \};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00107\ \ \ \textcolor{keyword}{requires}\ std::floating\_point<typename\ Q::rep>}
+\DoxyCodeLine{00108\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1uniform__real__distribution}{uniform\_real\_distribution}}\ :\ \textcolor{keyword}{public}\ std::uniform\_real\_distribution<typename\ Q::rep>\ \{}
+\DoxyCodeLine{00109\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00110\ \ \ \textcolor{keyword}{using\ }base\ =\ TYPENAME\ std::uniform\_real\_distribution<rep>;}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \mbox{\hyperlink{structunits_1_1uniform__real__distribution}{uniform\_real\_distribution}}()\ :\ base()\ \{\}}
+\DoxyCodeLine{00113\ \ \ \mbox{\hyperlink{structunits_1_1uniform__real__distribution}{uniform\_real\_distribution}}(\textcolor{keyword}{const}\ Q\&\ a,\ \textcolor{keyword}{const}\ Q\&\ b)\ :\ base(a.number(),\ b.number())\ \{\}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Generator>}
+\DoxyCodeLine{00116\ \ \ Q\ operator()(Generator\&\ g)}
+\DoxyCodeLine{00117\ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{return}\ Q(base::operator()(g));}
+\DoxyCodeLine{00119\ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ Q\ a()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::a());\ \}}
+\DoxyCodeLine{00122\ \ \ Q\ b()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::b());\ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ Q\ min()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::min());\ \}}
+\DoxyCodeLine{00125\ \ \ Q\ max()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::max());\ \}}
+\DoxyCodeLine{00126\ \};}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00129\ \ \ \textcolor{keyword}{requires}\ std::integral<typename\ Q::rep>}
+\DoxyCodeLine{00130\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1binomial__distribution}{binomial\_distribution}}\ :\ \textcolor{keyword}{public}\ std::binomial\_distribution<typename\ Q::rep>\ \{}
+\DoxyCodeLine{00131\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00132\ \ \ \textcolor{keyword}{using\ }base\ =\ TYPENAME\ std::binomial\_distribution<rep>;}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \mbox{\hyperlink{structunits_1_1binomial__distribution}{binomial\_distribution}}()\ :\ base()\ \{\}}
+\DoxyCodeLine{00135\ \ \ \mbox{\hyperlink{structunits_1_1binomial__distribution}{binomial\_distribution}}(\textcolor{keyword}{const}\ Q\&\ t,\ \textcolor{keywordtype}{double}\ p)\ :\ base(t.number(),\ p)\ \{\}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Generator>}
+\DoxyCodeLine{00138\ \ \ Q\ operator()(Generator\&\ g)}
+\DoxyCodeLine{00139\ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordflow}{return}\ Q(base::operator()(g));}
+\DoxyCodeLine{00141\ \ \ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ Q\ t()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::t());\ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ Q\ min()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::min());\ \}}
+\DoxyCodeLine{00146\ \ \ Q\ max()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::max());\ \}}
+\DoxyCodeLine{00147\ \};}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00150\ \ \ \textcolor{keyword}{requires}\ std::integral<typename\ Q::rep>}
+\DoxyCodeLine{00151\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1negative__binomial__distribution}{negative\_binomial\_distribution}}\ :\ \textcolor{keyword}{public}\ std::negative\_binomial\_distribution<typename\ Q::rep>\ \{}
+\DoxyCodeLine{00152\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00153\ \ \ \textcolor{keyword}{using\ }base\ =\ TYPENAME\ std::negative\_binomial\_distribution<rep>;}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \mbox{\hyperlink{structunits_1_1negative__binomial__distribution}{negative\_binomial\_distribution}}()\ :\ base()\ \{\}}
+\DoxyCodeLine{00156\ \ \ \mbox{\hyperlink{structunits_1_1negative__binomial__distribution}{negative\_binomial\_distribution}}(\textcolor{keyword}{const}\ Q\&\ k,\ \textcolor{keywordtype}{double}\ p)\ :\ base(k.number(),\ p)\ \{\}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Generator>}
+\DoxyCodeLine{00159\ \ \ Q\ operator()(Generator\&\ g)}
+\DoxyCodeLine{00160\ \ \ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{return}\ Q(base::operator()(g));}
+\DoxyCodeLine{00162\ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ Q\ k()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::k());\ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ Q\ min()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::min());\ \}}
+\DoxyCodeLine{00167\ \ \ Q\ max()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::max());\ \}}
+\DoxyCodeLine{00168\ \};}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00171\ \ \ \textcolor{keyword}{requires}\ std::integral<typename\ Q::rep>}
+\DoxyCodeLine{00172\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1geometric__distribution}{geometric\_distribution}}\ :\ \textcolor{keyword}{public}\ std::geometric\_distribution<typename\ Q::rep>\ \{}
+\DoxyCodeLine{00173\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00174\ \ \ \textcolor{keyword}{using\ }base\ =\ TYPENAME\ std::geometric\_distribution<rep>;}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \mbox{\hyperlink{structunits_1_1geometric__distribution}{geometric\_distribution}}()\ :\ base()\ \{\}}
+\DoxyCodeLine{00177\ \ \ \mbox{\hyperlink{structunits_1_1geometric__distribution}{geometric\_distribution}}(\textcolor{keywordtype}{double}\ p)\ :\ base(p)\ \{\}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Generator>}
+\DoxyCodeLine{00180\ \ \ Q\ operator()(Generator\&\ g)}
+\DoxyCodeLine{00181\ \ \ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordflow}{return}\ Q(base::operator()(g));}
+\DoxyCodeLine{00183\ \ \ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ Q\ min()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::min());\ \}}
+\DoxyCodeLine{00186\ \ \ Q\ max()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::max());\ \}}
+\DoxyCodeLine{00187\ \};}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00190\ \ \ \textcolor{keyword}{requires}\ std::integral<typename\ Q::rep>}
+\DoxyCodeLine{00191\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1poisson__distribution}{poisson\_distribution}}\ :\ \textcolor{keyword}{public}\ std::poisson\_distribution<typename\ Q::rep>\ \{}
+\DoxyCodeLine{00192\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00193\ \ \ \textcolor{keyword}{using\ }base\ =\ TYPENAME\ std::poisson\_distribution<rep>;}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \mbox{\hyperlink{structunits_1_1poisson__distribution}{poisson\_distribution}}()\ :\ base()\ \{\}}
+\DoxyCodeLine{00196\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{structunits_1_1poisson__distribution}{poisson\_distribution}}(\textcolor{keywordtype}{double}\ p)\ :\ base(p)\ \{\}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Generator>}
+\DoxyCodeLine{00199\ \ \ Q\ operator()(Generator\&\ g)}
+\DoxyCodeLine{00200\ \ \ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordflow}{return}\ Q(base::operator()(g));}
+\DoxyCodeLine{00202\ \ \ \}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ Q\ min()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::min());\ \}}
+\DoxyCodeLine{00205\ \ \ Q\ max()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::max());\ \}}
+\DoxyCodeLine{00206\ \};}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00209\ \ \ \textcolor{keyword}{requires}\ std::floating\_point<typename\ Q::rep>}
+\DoxyCodeLine{00210\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1exponential__distribution}{exponential\_distribution}}\ :\ \textcolor{keyword}{public}\ std::exponential\_distribution<typename\ Q::rep>\ \{}
+\DoxyCodeLine{00211\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00212\ \ \ \textcolor{keyword}{using\ }base\ =\ TYPENAME\ std::exponential\_distribution<rep>;}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \mbox{\hyperlink{structunits_1_1exponential__distribution}{exponential\_distribution}}()\ :\ base()\ \{\}}
+\DoxyCodeLine{00215\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{structunits_1_1exponential__distribution}{exponential\_distribution}}(\textcolor{keyword}{const}\ rep\&\ lambda)\ :\ base(lambda)\ \{\}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Generator>}
+\DoxyCodeLine{00218\ \ \ Q\ operator()(Generator\&\ g)}
+\DoxyCodeLine{00219\ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordflow}{return}\ Q(base::operator()(g));}
+\DoxyCodeLine{00221\ \ \ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ Q\ min()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::min());\ \}}
+\DoxyCodeLine{00224\ \ \ Q\ max()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::max());\ \}}
+\DoxyCodeLine{00225\ \};}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00228\ \ \ \textcolor{keyword}{requires}\ std::floating\_point<typename\ Q::rep>}
+\DoxyCodeLine{00229\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1gamma__distribution}{gamma\_distribution}}\ :\ \textcolor{keyword}{public}\ std::gamma\_distribution<typename\ Q::rep>\ \{}
+\DoxyCodeLine{00230\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00231\ \ \ \textcolor{keyword}{using\ }base\ =\ TYPENAME\ std::gamma\_distribution<rep>;}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \mbox{\hyperlink{structunits_1_1gamma__distribution}{gamma\_distribution}}()\ :\ base()\ \{\}}
+\DoxyCodeLine{00234\ \ \ \mbox{\hyperlink{structunits_1_1gamma__distribution}{gamma\_distribution}}(\textcolor{keyword}{const}\ rep\&\ alpha,\ \textcolor{keyword}{const}\ rep\&\ beta)\ :\ base(alpha,\ beta)\ \{\}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Generator>}
+\DoxyCodeLine{00237\ \ \ Q\ operator()(Generator\&\ g)}
+\DoxyCodeLine{00238\ \ \ \{}
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keywordflow}{return}\ Q(base::operator()(g));}
+\DoxyCodeLine{00240\ \ \ \}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ Q\ min()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::min());\ \}}
+\DoxyCodeLine{00243\ \ \ Q\ max()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::max());\ \}}
+\DoxyCodeLine{00244\ \};}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00247\ \ \ \textcolor{keyword}{requires}\ std::floating\_point<typename\ Q::rep>}
+\DoxyCodeLine{00248\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1weibull__distribution}{weibull\_distribution}}\ :\ \textcolor{keyword}{public}\ std::weibull\_distribution<typename\ Q::rep>\ \{}
+\DoxyCodeLine{00249\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00250\ \ \ \textcolor{keyword}{using\ }base\ =\ TYPENAME\ std::weibull\_distribution<rep>;}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ \ \mbox{\hyperlink{structunits_1_1weibull__distribution}{weibull\_distribution}}()\ :\ base()\ \{\}}
+\DoxyCodeLine{00253\ \ \ \mbox{\hyperlink{structunits_1_1weibull__distribution}{weibull\_distribution}}(\textcolor{keyword}{const}\ rep\&\ a,\ \textcolor{keyword}{const}\ rep\&\ b)\ :\ base(a,\ b)\ \{\}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Generator>}
+\DoxyCodeLine{00256\ \ \ Q\ operator()(Generator\&\ g)}
+\DoxyCodeLine{00257\ \ \ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordflow}{return}\ Q(base::operator()(g));}
+\DoxyCodeLine{00259\ \ \ \}}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ Q\ min()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::min());\ \}}
+\DoxyCodeLine{00262\ \ \ Q\ max()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::max());\ \}}
+\DoxyCodeLine{00263\ \};}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00266\ \ \ \textcolor{keyword}{requires}\ std::floating\_point<typename\ Q::rep>}
+\DoxyCodeLine{00267\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1extreme__value__distribution}{extreme\_value\_distribution}}\ :\ \textcolor{keyword}{public}\ std::extreme\_value\_distribution<typename\ Q::rep>\ \{}
+\DoxyCodeLine{00268\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00269\ \ \ \textcolor{keyword}{using\ }base\ =\ TYPENAME\ std::extreme\_value\_distribution<rep>;}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \mbox{\hyperlink{structunits_1_1extreme__value__distribution}{extreme\_value\_distribution}}()\ :\ base()\ \{\}}
+\DoxyCodeLine{00272\ \ \ \mbox{\hyperlink{structunits_1_1extreme__value__distribution}{extreme\_value\_distribution}}(\textcolor{keyword}{const}\ Q\&\ a,\ \textcolor{keyword}{const}\ rep\&\ b)\ :\ base(a.number(),\ b)\ \{\}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Generator>}
+\DoxyCodeLine{00275\ \ \ Q\ operator()(Generator\&\ g)}
+\DoxyCodeLine{00276\ \ \ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keywordflow}{return}\ Q(base::operator()(g));}
+\DoxyCodeLine{00278\ \ \ \}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ Q\ a()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::a());\ \}}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ Q\ min()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::min());\ \}}
+\DoxyCodeLine{00283\ \ \ Q\ max()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::max());\ \}}
+\DoxyCodeLine{00284\ \};}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00287\ \ \ \textcolor{keyword}{requires}\ std::floating\_point<typename\ Q::rep>}
+\DoxyCodeLine{00288\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1normal__distribution}{normal\_distribution}}\ :\ \textcolor{keyword}{public}\ std::normal\_distribution<typename\ Q::rep>\ \{}
+\DoxyCodeLine{00289\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00290\ \ \ \textcolor{keyword}{using\ }base\ =\ TYPENAME\ std::normal\_distribution<rep>;}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \ \ \mbox{\hyperlink{structunits_1_1normal__distribution}{normal\_distribution}}()\ :\ base()\ \{\}}
+\DoxyCodeLine{00293\ \ \ \mbox{\hyperlink{structunits_1_1normal__distribution}{normal\_distribution}}(\textcolor{keyword}{const}\ Q\&\ mean,\ \textcolor{keyword}{const}\ Q\&\ stddev)\ :\ base(mean.number(),\ stddev.number())\ \{\}}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Generator>}
+\DoxyCodeLine{00296\ \ \ Q\ operator()(Generator\&\ g)}
+\DoxyCodeLine{00297\ \ \ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keywordflow}{return}\ Q(base::operator()(g));}
+\DoxyCodeLine{00299\ \ \ \}}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \ \ Q\ mean()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::mean());\ \}}
+\DoxyCodeLine{00302\ \ \ Q\ stddev()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::stddev());\ \}}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ \ Q\ min()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::min());\ \}}
+\DoxyCodeLine{00305\ \ \ Q\ max()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::max());\ \}}
+\DoxyCodeLine{00306\ \};}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00309\ \ \ \textcolor{keyword}{requires}\ std::floating\_point<typename\ Q::rep>}
+\DoxyCodeLine{00310\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1lognormal__distribution}{lognormal\_distribution}}\ :\ \textcolor{keyword}{public}\ std::lognormal\_distribution<typename\ Q::rep>\ \{}
+\DoxyCodeLine{00311\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00312\ \ \ \textcolor{keyword}{using\ }base\ =\ TYPENAME\ std::lognormal\_distribution<rep>;}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \mbox{\hyperlink{structunits_1_1lognormal__distribution}{lognormal\_distribution}}()\ :\ base()\ \{\}}
+\DoxyCodeLine{00315\ \ \ \mbox{\hyperlink{structunits_1_1lognormal__distribution}{lognormal\_distribution}}(\textcolor{keyword}{const}\ Q\&\ m,\ \textcolor{keyword}{const}\ Q\&\ s)\ :\ base(m.number(),\ s.number())\ \{\}}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Generator>}
+\DoxyCodeLine{00318\ \ \ Q\ operator()(Generator\&\ g)}
+\DoxyCodeLine{00319\ \ \ \{}
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keywordflow}{return}\ Q(base::operator()(g));}
+\DoxyCodeLine{00321\ \ \ \}}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ \ \ Q\ m()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::m());\ \}}
+\DoxyCodeLine{00324\ \ \ Q\ s()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::s());\ \}}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \ \ Q\ min()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::min());\ \}}
+\DoxyCodeLine{00327\ \ \ Q\ max()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::max());\ \}}
+\DoxyCodeLine{00328\ \};}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00331\ \ \ \textcolor{keyword}{requires}\ std::floating\_point<typename\ Q::rep>}
+\DoxyCodeLine{00332\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1chi__squared__distribution}{chi\_squared\_distribution}}\ :\ \textcolor{keyword}{public}\ std::chi\_squared\_distribution<typename\ Q::rep>\ \{}
+\DoxyCodeLine{00333\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00334\ \ \ \textcolor{keyword}{using\ }base\ =\ TYPENAME\ std::chi\_squared\_distribution<rep>;}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \ \ \mbox{\hyperlink{structunits_1_1chi__squared__distribution}{chi\_squared\_distribution}}()\ :\ base()\ \{\}}
+\DoxyCodeLine{00337\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{structunits_1_1chi__squared__distribution}{chi\_squared\_distribution}}(\textcolor{keyword}{const}\ rep\&\ n)\ :\ base(n)\ \{\}}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Generator>}
+\DoxyCodeLine{00340\ \ \ Q\ operator()(Generator\&\ g)}
+\DoxyCodeLine{00341\ \ \ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \textcolor{keywordflow}{return}\ Q(base::operator()(g));}
+\DoxyCodeLine{00343\ \ \ \}}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \ \ Q\ min()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::min());\ \}}
+\DoxyCodeLine{00346\ \ \ Q\ max()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::max());\ \}}
+\DoxyCodeLine{00347\ \};}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00350\ \ \ \textcolor{keyword}{requires}\ std::floating\_point<typename\ Q::rep>}
+\DoxyCodeLine{00351\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1cauchy__distribution}{cauchy\_distribution}}\ :\ \textcolor{keyword}{public}\ std::cauchy\_distribution<typename\ Q::rep>\ \{}
+\DoxyCodeLine{00352\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00353\ \ \ \textcolor{keyword}{using\ }base\ =\ TYPENAME\ std::cauchy\_distribution<rep>;}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \ \ \mbox{\hyperlink{structunits_1_1cauchy__distribution}{cauchy\_distribution}}()\ :\ base()\ \{\}}
+\DoxyCodeLine{00356\ \ \ \mbox{\hyperlink{structunits_1_1cauchy__distribution}{cauchy\_distribution}}(\textcolor{keyword}{const}\ Q\&\ a,\ \textcolor{keyword}{const}\ Q\&\ b)\ :\ base(a.number(),\ b.number())\ \{\}}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Generator>}
+\DoxyCodeLine{00359\ \ \ Q\ operator()(Generator\&\ g)}
+\DoxyCodeLine{00360\ \ \ \{}
+\DoxyCodeLine{00361\ \ \ \ \ \textcolor{keywordflow}{return}\ Q(base::operator()(g));}
+\DoxyCodeLine{00362\ \ \ \}}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00364\ \ \ Q\ a()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::a());\ \}}
+\DoxyCodeLine{00365\ \ \ Q\ b()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::b());\ \}}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \ \ Q\ min()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::min());\ \}}
+\DoxyCodeLine{00368\ \ \ Q\ max()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::max());\ \}}
+\DoxyCodeLine{00369\ \};}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00372\ \ \ \textcolor{keyword}{requires}\ std::floating\_point<typename\ Q::rep>}
+\DoxyCodeLine{00373\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1fisher__f__distribution}{fisher\_f\_distribution}}\ :\ \textcolor{keyword}{public}\ std::fisher\_f\_distribution<typename\ Q::rep>\ \{}
+\DoxyCodeLine{00374\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00375\ \ \ \textcolor{keyword}{using\ }base\ =\ TYPENAME\ std::fisher\_f\_distribution<rep>;}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \ \ \mbox{\hyperlink{structunits_1_1fisher__f__distribution}{fisher\_f\_distribution}}()\ :\ base()\ \{\}}
+\DoxyCodeLine{00378\ \ \ \mbox{\hyperlink{structunits_1_1fisher__f__distribution}{fisher\_f\_distribution}}(\textcolor{keyword}{const}\ rep\&\ m,\ \textcolor{keyword}{const}\ rep\&\ n)\ :\ base(m,\ n)\ \{\}}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Generator>}
+\DoxyCodeLine{00381\ \ \ Q\ operator()(Generator\&\ g)}
+\DoxyCodeLine{00382\ \ \ \{}
+\DoxyCodeLine{00383\ \ \ \ \ \textcolor{keywordflow}{return}\ Q(base::operator()(g));}
+\DoxyCodeLine{00384\ \ \ \}}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ \ \ Q\ min()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::min());\ \}}
+\DoxyCodeLine{00387\ \ \ Q\ max()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::max());\ \}}
+\DoxyCodeLine{00388\ \};}
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00390\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00391\ \ \ \textcolor{keyword}{requires}\ std::floating\_point<typename\ Q::rep>}
+\DoxyCodeLine{00392\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1student__t__distribution}{student\_t\_distribution}}\ :\ \textcolor{keyword}{public}\ std::student\_t\_distribution<typename\ Q::rep>\ \{}
+\DoxyCodeLine{00393\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00394\ \ \ \textcolor{keyword}{using\ }base\ =\ TYPENAME\ std::student\_t\_distribution<rep>;}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00396\ \ \ \mbox{\hyperlink{structunits_1_1student__t__distribution}{student\_t\_distribution}}()\ :\ base()\ \{\}}
+\DoxyCodeLine{00397\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{structunits_1_1student__t__distribution}{student\_t\_distribution}}(\textcolor{keyword}{const}\ rep\&\ n)\ :\ base(n)\ \{\}}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00399\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Generator>}
+\DoxyCodeLine{00400\ \ \ Q\ operator()(Generator\&\ g)}
+\DoxyCodeLine{00401\ \ \ \{}
+\DoxyCodeLine{00402\ \ \ \ \ \textcolor{keywordflow}{return}\ Q(base::operator()(g));}
+\DoxyCodeLine{00403\ \ \ \}}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \ \ Q\ min()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::min());\ \}}
+\DoxyCodeLine{00406\ \ \ Q\ max()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::max());\ \}}
+\DoxyCodeLine{00407\ \};}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00409\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00410\ \ \ \textcolor{keyword}{requires}\ std::integral<typename\ Q::rep>}
+\DoxyCodeLine{00411\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1discrete__distribution}{discrete\_distribution}}\ :\ \textcolor{keyword}{public}\ std::discrete\_distribution<typename\ Q::rep>\ \{}
+\DoxyCodeLine{00412\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00413\ \ \ \textcolor{keyword}{using\ }base\ =\ TYPENAME\ std::discrete\_distribution<rep>;}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \ \ \mbox{\hyperlink{structunits_1_1discrete__distribution}{discrete\_distribution}}()\ :\ base()\ \{\}}
+\DoxyCodeLine{00416\ }
+\DoxyCodeLine{00417\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ InputIt>}
+\DoxyCodeLine{00418\ \ \ \mbox{\hyperlink{structunits_1_1discrete__distribution}{discrete\_distribution}}(InputIt\ first,\ InputIt\ last)\ :\ base(first,\ last)}
+\DoxyCodeLine{00419\ \ \ \{}
+\DoxyCodeLine{00420\ \ \ \}}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00422\ \ \ \mbox{\hyperlink{structunits_1_1discrete__distribution}{discrete\_distribution}}(std::initializer\_list<double>\ weights)\ :\ base(weights)\ \{\}}
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00424\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ UnaryOperation>}
+\DoxyCodeLine{00425\ \ \ \mbox{\hyperlink{structunits_1_1discrete__distribution}{discrete\_distribution}}(std::size\_t\ count,\ \textcolor{keywordtype}{double}\ xmin,\ \textcolor{keywordtype}{double}\ xmax,\ UnaryOperation\ unary\_op)\ :}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ base(count,\ xmin,\ xmax,\ unary\_op)}
+\DoxyCodeLine{00427\ \ \ \{}
+\DoxyCodeLine{00428\ \ \ \}}
+\DoxyCodeLine{00429\ }
+\DoxyCodeLine{00430\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Generator>}
+\DoxyCodeLine{00431\ \ \ Q\ operator()(Generator\&\ g)}
+\DoxyCodeLine{00432\ \ \ \{}
+\DoxyCodeLine{00433\ \ \ \ \ \textcolor{keywordflow}{return}\ Q(base::operator()(g));}
+\DoxyCodeLine{00434\ \ \ \}}
+\DoxyCodeLine{00435\ }
+\DoxyCodeLine{00436\ \ \ Q\ min()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::min());\ \}}
+\DoxyCodeLine{00437\ \ \ Q\ max()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::max());\ \}}
+\DoxyCodeLine{00438\ \};}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00440\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00441\ \ \ \textcolor{keyword}{requires}\ std::floating\_point<typename\ Q::rep>}
+\DoxyCodeLine{00442\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classunits_1_1piecewise__constant__distribution}{piecewise\_constant\_distribution}}\ :\ \textcolor{keyword}{public}\ std::piecewise\_constant\_distribution<typename\ Q::rep>\ \{}
+\DoxyCodeLine{00443\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00444\ \ \ \textcolor{keyword}{using\ }base\ =\ TYPENAME\ std::piecewise\_constant\_distribution<rep>;}
+\DoxyCodeLine{00445\ }
+\DoxyCodeLine{00446\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ InputIt>}
+\DoxyCodeLine{00447\ \ \ \mbox{\hyperlink{classunits_1_1piecewise__constant__distribution}{piecewise\_constant\_distribution}}(\textcolor{keyword}{const}\ std::vector<rep>\&\ i,\ InputIt\ first\_w)\ :\ base(i.cbegin(),\ i.cend(),\ first\_w)}
+\DoxyCodeLine{00448\ \ \ \{}
+\DoxyCodeLine{00449\ \ \ \}}
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00451\ \ \ \mbox{\hyperlink{classunits_1_1piecewise__constant__distribution}{piecewise\_constant\_distribution}}(\textcolor{keyword}{const}\ std::vector<rep>\&\ bl,\ \textcolor{keyword}{const}\ std::vector<rep>\&\ weights)\ :}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ base(bl.cbegin(),\ bl.cend(),\ weights.cbegin())}
+\DoxyCodeLine{00453\ \ \ \{}
+\DoxyCodeLine{00454\ \ \ \}}
+\DoxyCodeLine{00455\ }
+\DoxyCodeLine{00456\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00457\ \ \ \mbox{\hyperlink{classunits_1_1piecewise__constant__distribution}{piecewise\_constant\_distribution}}()\ :\ base()\ \{\}}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ InputIt1,\ \textcolor{keyword}{typename}\ InputIt2>}
+\DoxyCodeLine{00460\ \ \ \mbox{\hyperlink{classunits_1_1piecewise__constant__distribution}{piecewise\_constant\_distribution}}(InputIt1\ first\_i,\ InputIt1\ last\_i,\ InputIt2\ first\_w)\ :}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \mbox{\hyperlink{classunits_1_1piecewise__constant__distribution}{piecewise\_constant\_distribution}}(detail::i\_qty\_to\_rep<Q>(first\_i,\ last\_i),\ first\_w)}
+\DoxyCodeLine{00462\ \ \ \{}
+\DoxyCodeLine{00463\ \ \ \}}
+\DoxyCodeLine{00464\ }
+\DoxyCodeLine{00465\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ UnaryOperation>}
+\DoxyCodeLine{00466\ \ \ \mbox{\hyperlink{classunits_1_1piecewise__constant__distribution}{piecewise\_constant\_distribution}}(std::initializer\_list<Q>\ bl,\ UnaryOperation\ fw)\ :}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \mbox{\hyperlink{classunits_1_1piecewise__constant__distribution}{piecewise\_constant\_distribution}}(detail::bl\_qty\_to\_rep(bl),\ detail::fw\_bl\_pwc(bl,\ fw))}
+\DoxyCodeLine{00468\ \ \ \{}
+\DoxyCodeLine{00469\ \ \ \}}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00471\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ UnaryOperation>}
+\DoxyCodeLine{00472\ \ \ \mbox{\hyperlink{classunits_1_1piecewise__constant__distribution}{piecewise\_constant\_distribution}}(std::size\_t\ nw,\ \textcolor{keyword}{const}\ Q\&\ xmin,\ \textcolor{keyword}{const}\ Q\&\ xmax,\ UnaryOperation\ fw)\ :}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ base(nw,\ xmin.number(),\ xmax.number(),\ [fw](rep\ val)\ \{\ return\ fw(Q(val));\ \})}
+\DoxyCodeLine{00474\ \ \ \{}
+\DoxyCodeLine{00475\ \ \ \}}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00477\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Generator>}
+\DoxyCodeLine{00478\ \ \ Q\ operator()(Generator\&\ g)}
+\DoxyCodeLine{00479\ \ \ \{}
+\DoxyCodeLine{00480\ \ \ \ \ \textcolor{keywordflow}{return}\ Q(base::operator()(g));}
+\DoxyCodeLine{00481\ \ \ \}}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00483\ \ \ std::vector<Q>\ intervals()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00484\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00485\ \ \ \ \ std::vector<rep>\ intervals\_rep\ =\ base::intervals();}
+\DoxyCodeLine{00486\ \ \ \ \ std::vector<Q>\ intervals\_qty;}
+\DoxyCodeLine{00487\ \ \ \ \ intervals\_qty.reserve(intervals\_rep.size());}
+\DoxyCodeLine{00488\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ rep\&\ val\ :\ intervals\_rep)\ \{}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ intervals\_qty.push\_back(Q(val));}
+\DoxyCodeLine{00490\ \ \ \ \ \}}
+\DoxyCodeLine{00491\ \ \ \ \ \textcolor{keywordflow}{return}\ intervals\_qty;}
+\DoxyCodeLine{00492\ \ \ \}}
+\DoxyCodeLine{00493\ }
+\DoxyCodeLine{00494\ \ \ Q\ min()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::min());\ \}}
+\DoxyCodeLine{00495\ \ \ Q\ max()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::max());\ \}}
+\DoxyCodeLine{00496\ \};}
+\DoxyCodeLine{00497\ }
+\DoxyCodeLine{00498\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00499\ \ \ \textcolor{keyword}{requires}\ std::floating\_point<typename\ Q::rep>}
+\DoxyCodeLine{00500\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classunits_1_1piecewise__linear__distribution}{piecewise\_linear\_distribution}}\ :\ \textcolor{keyword}{public}\ std::piecewise\_linear\_distribution<typename\ Q::rep>\ \{}
+\DoxyCodeLine{00501\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00502\ \ \ \textcolor{keyword}{using\ }base\ =\ TYPENAME\ std::piecewise\_linear\_distribution<rep>;}
+\DoxyCodeLine{00503\ }
+\DoxyCodeLine{00504\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ InputIt>}
+\DoxyCodeLine{00505\ \ \ \mbox{\hyperlink{classunits_1_1piecewise__linear__distribution}{piecewise\_linear\_distribution}}(\textcolor{keyword}{const}\ std::vector<rep>\&\ i,\ InputIt\ first\_w)\ :\ base(i.cbegin(),\ i.cend(),\ first\_w)}
+\DoxyCodeLine{00506\ \ \ \{}
+\DoxyCodeLine{00507\ \ \ \}}
+\DoxyCodeLine{00508\ }
+\DoxyCodeLine{00509\ \ \ \mbox{\hyperlink{classunits_1_1piecewise__linear__distribution}{piecewise\_linear\_distribution}}(\textcolor{keyword}{const}\ std::vector<rep>\&\ bl,\ \textcolor{keyword}{const}\ std::vector<rep>\&\ weights)\ :}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ base(bl.cbegin(),\ bl.cend(),\ weights.cbegin())}
+\DoxyCodeLine{00511\ \ \ \{}
+\DoxyCodeLine{00512\ \ \ \}}
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00514\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00515\ \ \ \mbox{\hyperlink{classunits_1_1piecewise__linear__distribution}{piecewise\_linear\_distribution}}()\ :\ base()\ \{\}}
+\DoxyCodeLine{00516\ }
+\DoxyCodeLine{00517\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ InputIt1,\ \textcolor{keyword}{typename}\ InputIt2>}
+\DoxyCodeLine{00518\ \ \ \mbox{\hyperlink{classunits_1_1piecewise__linear__distribution}{piecewise\_linear\_distribution}}(InputIt1\ first\_i,\ InputIt1\ last\_i,\ InputIt2\ first\_w)\ :}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \mbox{\hyperlink{classunits_1_1piecewise__linear__distribution}{piecewise\_linear\_distribution}}(detail::i\_qty\_to\_rep<Q>(first\_i,\ last\_i),\ first\_w)}
+\DoxyCodeLine{00520\ \ \ \{}
+\DoxyCodeLine{00521\ \ \ \}}
+\DoxyCodeLine{00522\ }
+\DoxyCodeLine{00523\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ UnaryOperation>}
+\DoxyCodeLine{00524\ \ \ \mbox{\hyperlink{classunits_1_1piecewise__linear__distribution}{piecewise\_linear\_distribution}}(std::initializer\_list<Q>\ bl,\ UnaryOperation\ fw)\ :}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \mbox{\hyperlink{classunits_1_1piecewise__linear__distribution}{piecewise\_linear\_distribution}}(detail::bl\_qty\_to\_rep(bl),\ detail::fw\_bl\_pwl(bl,\ fw))}
+\DoxyCodeLine{00526\ \ \ \{}
+\DoxyCodeLine{00527\ \ \ \}}
+\DoxyCodeLine{00528\ }
+\DoxyCodeLine{00529\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ UnaryOperation>}
+\DoxyCodeLine{00530\ \ \ \mbox{\hyperlink{classunits_1_1piecewise__linear__distribution}{piecewise\_linear\_distribution}}(std::size\_t\ nw,\ \textcolor{keyword}{const}\ Q\&\ xmin,\ \textcolor{keyword}{const}\ Q\&\ xmax,\ UnaryOperation\ fw)\ :}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ base(nw,\ xmin.number(),\ xmax.number(),\ [fw](rep\ val)\ \{\ return\ fw(Q(val));\ \})}
+\DoxyCodeLine{00532\ \ \ \{}
+\DoxyCodeLine{00533\ \ \ \}}
+\DoxyCodeLine{00534\ }
+\DoxyCodeLine{00535\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Generator>}
+\DoxyCodeLine{00536\ \ \ Q\ operator()(Generator\&\ g)}
+\DoxyCodeLine{00537\ \ \ \{}
+\DoxyCodeLine{00538\ \ \ \ \ \textcolor{keywordflow}{return}\ Q(base::operator()(g));}
+\DoxyCodeLine{00539\ \ \ \}}
+\DoxyCodeLine{00540\ }
+\DoxyCodeLine{00541\ \ \ std::vector<Q>\ intervals()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00542\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00543\ \ \ \ \ std::vector<rep>\ intervals\_rep\ =\ base::intervals();}
+\DoxyCodeLine{00544\ \ \ \ \ std::vector<Q>\ intervals\_qty;}
+\DoxyCodeLine{00545\ \ \ \ \ intervals\_qty.reserve(intervals\_rep.size());}
+\DoxyCodeLine{00546\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ rep\&\ val\ :\ intervals\_rep)\ \{}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ intervals\_qty.push\_back(Q(val));}
+\DoxyCodeLine{00548\ \ \ \ \ \}}
+\DoxyCodeLine{00549\ \ \ \ \ \textcolor{keywordflow}{return}\ intervals\_qty;}
+\DoxyCodeLine{00550\ \ \ \}}
+\DoxyCodeLine{00551\ }
+\DoxyCodeLine{00552\ \ \ Q\ min()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::min());\ \}}
+\DoxyCodeLine{00553\ \ \ Q\ max()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ Q(base::max());\ \}}
+\DoxyCodeLine{00554\ \};}
+\DoxyCodeLine{00555\ }
+\DoxyCodeLine{00556\ \}\ \ \textcolor{comment}{//\ namespace\ units}}
+
+\end{DoxyCode}

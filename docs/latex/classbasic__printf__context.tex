@@ -1,0 +1,52 @@
+\hypertarget{classbasic__printf__context}{}\doxysection{basic\+\_\+printf\+\_\+context\texorpdfstring{$<$}{<} Output\+It, Char \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classbasic__printf__context}\index{basic\_printf\_context$<$ OutputIt, Char $>$@{basic\_printf\_context$<$ OutputIt, Char $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classbasic__printf__context_a5ceea5767a393451e5a82b2b75a6f63e}\label{classbasic__printf__context_a5ceea5767a393451e5a82b2b75a6f63e}} 
+using {\bfseries char\+\_\+type} = Char
+\item 
+\mbox{\Hypertarget{classbasic__printf__context_a3c272a010394b94844440423d86b176f}\label{classbasic__printf__context_a3c272a010394b94844440423d86b176f}} 
+using {\bfseries format\+\_\+arg} = \mbox{\hyperlink{classbasic__format__arg}{basic\+\_\+format\+\_\+arg}}$<$ \mbox{\hyperlink{classbasic__printf__context}{basic\+\_\+printf\+\_\+context}} $>$
+\item 
+\mbox{\Hypertarget{classbasic__printf__context_aea172cdf06a03ef2950fbff2de5ab3c8}\label{classbasic__printf__context_aea172cdf06a03ef2950fbff2de5ab3c8}} 
+using {\bfseries parse\+\_\+context\+\_\+type} = \mbox{\hyperlink{classbasic__printf__parse__context}{basic\+\_\+printf\+\_\+parse\+\_\+context}}$<$ Char $>$
+\item 
+\mbox{\Hypertarget{classbasic__printf__context_a3c239f1d7f73104a75165b2c415d7009}\label{classbasic__printf__context_a3c239f1d7f73104a75165b2c415d7009}} 
+{\footnotesize template$<$typename T $>$ }\\using {\bfseries formatter\+\_\+type} = \mbox{\hyperlink{structprintf__formatter}{printf\+\_\+formatter}}$<$ T $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbasic__printf__context_adfdcf4066bb737766d1d1905f7b3e320}{basic\+\_\+printf\+\_\+context}} (Output\+It out, \mbox{\hyperlink{classbasic__format__args}{basic\+\_\+format\+\_\+args}}$<$ \mbox{\hyperlink{classbasic__printf__context}{basic\+\_\+printf\+\_\+context}} $>$ args)
+\item 
+\mbox{\Hypertarget{classbasic__printf__context_a32ce7421f1cc208df2ddc815ee3701f4}\label{classbasic__printf__context_a32ce7421f1cc208df2ddc815ee3701f4}} 
+Output\+It {\bfseries out} ()
+\item 
+\mbox{\Hypertarget{classbasic__printf__context_af9b59dfcc9a9022bbd2e22eacbed7239}\label{classbasic__printf__context_af9b59dfcc9a9022bbd2e22eacbed7239}} 
+void {\bfseries advance\+\_\+to} (Output\+It it)
+\item 
+\mbox{\Hypertarget{classbasic__printf__context_abdf573051f8678653488f1a840db845b}\label{classbasic__printf__context_abdf573051f8678653488f1a840db845b}} 
+\mbox{\hyperlink{classdetail_1_1locale__ref}{detail\+::locale\+\_\+ref}} {\bfseries locale} ()
+\item 
+\mbox{\Hypertarget{classbasic__printf__context_a9d938bba34fe8dda4296a4942f0e5da4}\label{classbasic__printf__context_a9d938bba34fe8dda4296a4942f0e5da4}} 
+\mbox{\hyperlink{classbasic__format__arg}{format\+\_\+arg}} {\bfseries arg} (int id) const
+\item 
+\mbox{\Hypertarget{classbasic__printf__context_a738f65c97827f7d57534c87f5b71903d}\label{classbasic__printf__context_a738f65c97827f7d57534c87f5b71903d}} 
+FMT\+\_\+\+CONSTEXPR void {\bfseries on\+\_\+error} (const char $\ast$message)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classbasic__printf__context_adfdcf4066bb737766d1d1905f7b3e320}\label{classbasic__printf__context_adfdcf4066bb737766d1d1905f7b3e320}} 
+\index{basic\_printf\_context$<$ OutputIt, Char $>$@{basic\_printf\_context$<$ OutputIt, Char $>$}!basic\_printf\_context@{basic\_printf\_context}}
+\index{basic\_printf\_context@{basic\_printf\_context}!basic\_printf\_context$<$ OutputIt, Char $>$@{basic\_printf\_context$<$ OutputIt, Char $>$}}
+\doxysubsubsection{\texorpdfstring{basic\_printf\_context()}{basic\_printf\_context()}}
+{\footnotesize\ttfamily template$<$typename Output\+It , typename Char $>$ \\
+\mbox{\hyperlink{classbasic__printf__context}{basic\+\_\+printf\+\_\+context}}$<$ Output\+It, Char $>$\mbox{\hyperlink{classbasic__printf__context}{\+::basic\+\_\+printf\+\_\+context}} (\begin{DoxyParamCaption}\item[{Output\+It}]{out,  }\item[{\mbox{\hyperlink{classbasic__format__args}{basic\+\_\+format\+\_\+args}}$<$ \mbox{\hyperlink{classbasic__printf__context}{basic\+\_\+printf\+\_\+context}}$<$ Output\+It, Char $>$ $>$}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\textbackslash{}rst Constructs a {\ttfamily printf\+\_\+context} object. References to the arguments are stored in the context object so make sure they have appropriate lifetimes. \textbackslash{}endrst 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+csm-\/units/fmt/include/fmt/printf.\+h\end{DoxyCompactItemize}

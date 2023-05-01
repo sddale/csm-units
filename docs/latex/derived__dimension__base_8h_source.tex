@@ -1,0 +1,51 @@
+\hypertarget{derived__dimension__base_8h_source}{}\doxysection{derived\+\_\+dimension\+\_\+base.\+h}
+\label{derived__dimension__base_8h_source}\index{csm-\/units/units/src/core/include/units/bits/derived\_dimension\_base.h@{csm-\/units/units/src/core/include/units/bits/derived\_dimension\_base.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <units/base\_dimension.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <units/bits/external/downcasting.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <units/exponent.h>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }units::detail\ \{}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{template}<Exponent...\ Es>}
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{requires}(BaseDimension<typename\ Es::dimension>\ \&\&\ ...)}
+\DoxyCodeLine{00048\ struct\ \mbox{\hyperlink{structunits_1_1detail_1_1derived__dimension__base}{derived\_dimension\_base}}\ :\ \mbox{\hyperlink{structunits_1_1downcast__base}{downcast\_base}}<\mbox{\hyperlink{structunits_1_1detail_1_1derived__dimension__base}{derived\_dimension\_base}}<Es...>>\ \{}
+\DoxyCodeLine{00049\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structunits_1_1exponent__list}{exponents}}\ =\ \mbox{\hyperlink{structunits_1_1exponent__list}{exponent\_list}}<Es...>;}
+\DoxyCodeLine{00050\ \};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00053\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1detail_1_1to__derived__dimension__base}{to\_derived\_dimension\_base}};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{template}<\mbox{\hyperlink{conceptunits_1_1_exponent}{Exponent}}...\ Es>}
+\DoxyCodeLine{00056\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1detail_1_1to__derived__dimension__base}{to\_derived\_dimension\_base}}<\mbox{\hyperlink{structunits_1_1exponent__list}{exponent\_list}}<Es...>>\ \{}
+\DoxyCodeLine{00057\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{structunits_1_1detail_1_1derived__dimension__base}{type}}\ =\ \mbox{\hyperlink{structunits_1_1detail_1_1derived__dimension__base}{derived\_dimension\_base}}<Es...>;}
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \}\ \ \textcolor{comment}{//\ namespace\ units::detail}}
+
+\end{DoxyCode}

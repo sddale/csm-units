@@ -1,0 +1,199 @@
+\hypertarget{quantity__point__kind_8h_source}{}\doxysection{quantity\+\_\+point\+\_\+kind.\+h}
+\label{quantity__point__kind_8h_source}\index{csm-\/units/units/src/core/include/units/quantity\_point\_kind.h@{csm-\/units/units/src/core/include/units/quantity\_point\_kind.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ IWYU\ pragma:\ begin\_exports}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <units/quantity\_kind.h>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <units/quantity\_point.h>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <compare>}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ IWYU\ pragma:\ end\_exports}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{namespace\ }units\ \{}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}<Po\textcolor{keywordtype}{int}Kind\ PK,\ UnitOf<\textcolor{keyword}{typename}\ PK::dimension>\ U,\ Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00044\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}\ \{}
+\DoxyCodeLine{00045\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \textcolor{keyword}{using\ }point\_kind\_type\ =\ PK;}
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{using\ }kind\_type\ =\ \textcolor{keyword}{typename}\ PK::base\_kind;}
+\DoxyCodeLine{00048\ \ \ \textcolor{keyword}{using\ }origin\ =\ \textcolor{keyword}{typename}\ point\_kind\_type::origin;}
+\DoxyCodeLine{00049\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind\_type}}\ =\ \mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind<kind\_type,\ U,\ Rep>}};}
+\DoxyCodeLine{00050\ \ \ \textcolor{keyword}{using\ }quantity\_type\ =\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity\_kind\_type::quantity\_type}};}
+\DoxyCodeLine{00051\ \ \ \textcolor{keyword}{using\ }dimension\ =\ \textcolor{keyword}{typename}\ quantity\_type::dimension;}
+\DoxyCodeLine{00052\ \ \ \textcolor{keyword}{using\ }unit\ =\ \textcolor{keyword}{typename}\ quantity\_type::unit;}
+\DoxyCodeLine{00053\ \ \ \textcolor{keyword}{using\ }rep\ =\ \textcolor{keyword}{typename}\ quantity\_type::rep;}
+\DoxyCodeLine{00054\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structunits_1_1reference}{units::reference<dimension,\ unit>}}\ \mbox{\hyperlink{structunits_1_1reference}{reference}}\{\};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00057\ \ \ \mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind\_type}}\ qk\_;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00060\ \ \ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00061\ \ \ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00062\ \ \ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}(\mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{requires}\ std::constructible\_from<quantity\_kind\_type,\ T>}
+\DoxyCodeLine{00066\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}(T\&\&\ t)\ :\ qk\_(std::forward<T>(t))}
+\DoxyCodeLine{00067\ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity__point}{quantity\_point<origin,\ U,\ Rep>}}\&\ qp)\ :\ qk\_(qp.relative())\ \{\}}
+\DoxyCodeLine{00071\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}(\mbox{\hyperlink{classunits_1_1quantity__point}{quantity\_point<origin,\ U,\ Rep>}}\&\&\ qp)\ :\ qk\_(std::move(qp).relative())\ \{\}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \textcolor{keyword}{template}<QuantityPo\textcolor{keywordtype}{int}Like\ QP>}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{requires}(std::constructible\_from<quantity\_point<origin,\ U,\ Rep>,\ QP>)}
+\DoxyCodeLine{00075\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}(\textcolor{keyword}{const}\ QP\&\ qp)\ :\ qk\_(\mbox{\hyperlink{structunits_1_1quantity__point__like__traits}{quantity\_point\_like\_traits<QP>::relative}}(qp))}
+\DoxyCodeLine{00076\ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \textcolor{keyword}{template}<QuantityPo\textcolor{keywordtype}{int}KindOf<po\textcolor{keywordtype}{int}\_kind\_type>\ QPK2>}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{requires}\ std::convertible\_to<typename\ QPK2::quantity\_kind\_type,\ quantity\_kind\_type>}
+\DoxyCodeLine{00081\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}(\textcolor{keyword}{false})\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}(\textcolor{keyword}{const}\ QPK2\&\ qpk)\ :\ qk\_(qpk.relative())}
+\DoxyCodeLine{00082\ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00086\ \ \ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}\&\ operator=(\mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind\_type}}\&\ relative()\ \&\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ qk\_;\ \}}
+\DoxyCodeLine{00089\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind\_type}}\&\ relative()\ \textcolor{keyword}{const}\&\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ qk\_;\ \}}
+\DoxyCodeLine{00090\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind\_type}}\&\&\ relative()\ \&\&\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ std::move(qk\_);\ \}}
+\DoxyCodeLine{00091\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind\_type}}\&\&\ relative()\ \textcolor{keyword}{const}\&\&\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ std::move(qk\_);\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}\ min()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ quantity\_kind\_type::min();\ \}}
+\DoxyCodeLine{00095\ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}(quantity\_kind\_type::min());}
+\DoxyCodeLine{00097\ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}\ max()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ quantity\_kind\_type::max();\ \}}
+\DoxyCodeLine{00101\ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}(quantity\_kind\_type::max());}
+\DoxyCodeLine{00103\ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}\&\ operator++()}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind\_type}}\ qk)\ \{\ ++qk;\ \}}
+\DoxyCodeLine{00107\ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ ++qk\_;}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00110\ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}\ operator++(\textcolor{keywordtype}{int})}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind\_type}}\ qk)\ \{\ qk++;\ \}}
+\DoxyCodeLine{00114\ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}(qk\_++);}
+\DoxyCodeLine{00116\ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}\&\ operator-\/-\/()}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind\_type}}\ qk)\ \{\ -\/-\/qk;\ \}}
+\DoxyCodeLine{00120\ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ -\/-\/qk\_;}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00123\ \ \ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}\ operator-\/-\/(\textcolor{keywordtype}{int})}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind\_type}}\ qk)\ \{\ qk-\/-\/;\ \}}
+\DoxyCodeLine{00127\ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}(qk\_-\/-\/);}
+\DoxyCodeLine{00129\ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}\&\ operator+=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind\_type}}\&\ qk)}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind\_type}}\ qk1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind\_type}}\ qk2)\ \{\ qk1\ +=\ qk2;\ \}}
+\DoxyCodeLine{00133\ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ qk\_\ +=\ qk;}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00136\ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}\&\ operator-\/=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind\_type}}\&\ qk)}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind\_type}}\ qk1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind\_type}}\ qk2)\ \{\ qk1\ -\/=\ qk2;\ \}}
+\DoxyCodeLine{00140\ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ qk\_\ -\/=\ qk;}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00143\ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \textcolor{comment}{//\ Hidden\ Friends}}
+\DoxyCodeLine{00146\ \ \ \textcolor{comment}{//\ Below\ friend\ functions\ are\ to\ be\ found\ via\ argument-\/dependent\ lookup\ only}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \textcolor{keyword}{template}<QuantityKind\ QK>}
+\DoxyCodeLine{00149\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{conceptunits_1_1_quantity_point_kind}{QuantityPointKind}}\ \textcolor{keyword}{auto}\ operator+(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}\&\ lhs,\ \textcolor{keyword}{const}\ QK\&\ rhs)}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind\_type}}\ qk)\ \{\ qk\ +\ rhs;\ \}}
+\DoxyCodeLine{00151\ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{units::quantity\_point\_kind}}(lhs.relative()\ +\ rhs);}
+\DoxyCodeLine{00153\ \ \ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \textcolor{keyword}{template}<QuantityKind\ QK>}
+\DoxyCodeLine{00156\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{conceptunits_1_1_quantity_point_kind}{QuantityPointKind}}\ \textcolor{keyword}{auto}\ operator+(\textcolor{keyword}{const}\ QK\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}\&\ rhs)}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind\_type}}\ qk)\ \{\ lhs\ +\ qk;\ \}}
+\DoxyCodeLine{00158\ \ \ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{units::quantity\_point\_kind}}(lhs\ +\ rhs.relative());}
+\DoxyCodeLine{00160\ \ \ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \textcolor{keyword}{template}<QuantityKind\ QK>}
+\DoxyCodeLine{00163\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{conceptunits_1_1_quantity_point_kind}{QuantityPointKind}}\ \textcolor{keyword}{auto}\ operator-\/(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}\&\ lhs,\ \textcolor{keyword}{const}\ QK\&\ rhs)}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind\_type}}\ qk)\ \{\ qk\ -\/\ rhs;\ \}}
+\DoxyCodeLine{00165\ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{units::quantity\_point\_kind}}(lhs.relative()\ -\/\ rhs);}
+\DoxyCodeLine{00167\ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \textcolor{keyword}{template}<QuantityPo\textcolor{keywordtype}{int}KindOf<po\textcolor{keywordtype}{int}\_kind\_type>\ QPK>}
+\DoxyCodeLine{00170\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{conceptunits_1_1_quantity_kind}{QuantityKind}}\ \textcolor{keyword}{auto}\ operator-\/(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}\&\ lhs,\ \textcolor{keyword}{const}\ QPK\&\ rhs)}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind\_type}}\ qk)\ \{\ qk\ -\/\ qk;\ \}}
+\DoxyCodeLine{00172\ \ \ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.relative()\ -\/\ rhs.relative();}
+\DoxyCodeLine{00174\ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \textcolor{keyword}{template}<QuantityPo\textcolor{keywordtype}{int}KindOf<po\textcolor{keywordtype}{int}\_kind\_type>\ QPK>}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{requires}\ std::three\_way\_comparable\_with<quantity\_kind\_type,\ typename\ QPK::quantity\_kind\_type>}
+\DoxyCodeLine{00178\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ operator<=>(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}\&\ lhs,\ \textcolor{keyword}{const}\ QPK\&\ rhs)}
+\DoxyCodeLine{00179\ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.relative()\ <=>\ rhs.relative();}
+\DoxyCodeLine{00181\ \ \ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \textcolor{keyword}{template}<QuantityPo\textcolor{keywordtype}{int}KindOf<po\textcolor{keywordtype}{int}\_kind\_type>\ QPK>}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keyword}{requires}\ std::equality\_comparable\_with<quantity\_kind\_type,\ typename\ QPK::quantity\_kind\_type>}
+\DoxyCodeLine{00185\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator==(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}\&\ lhs,\ \textcolor{keyword}{const}\ QPK\&\ rhs)}
+\DoxyCodeLine{00186\ \ \ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.relative()\ ==\ rhs.relative();}
+\DoxyCodeLine{00188\ \ \ \}}
+\DoxyCodeLine{00189\ \};}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \textcolor{keyword}{template}<QuantityKind\ QK>}
+\DoxyCodeLine{00192\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind}}(QK)}
+\DoxyCodeLine{00193\ \ \ -\/>\ \mbox{\hyperlink{classunits_1_1quantity__point__kind}{quantity\_point\_kind<downcast\_point\_kind<typename\ QK::kind\_type>}},\ \textcolor{keyword}{typename}\ QK::unit,\ \textcolor{keyword}{typename}\ QK::rep>;}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \textcolor{keyword}{namespace\ }detail\ \{}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ PK,\ \textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00198\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ is\_quantity\_point\_kind<quantity\_point\_kind<PK,\ U,\ Rep>>\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \}\ \ \textcolor{comment}{//\ namespace\ detail}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \}\ \ \textcolor{comment}{//\ namespace\ units}}
+
+\end{DoxyCode}

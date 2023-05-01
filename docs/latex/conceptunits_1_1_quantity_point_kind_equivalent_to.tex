@@ -1,0 +1,25 @@
+\hypertarget{conceptunits_1_1_quantity_point_kind_equivalent_to}{}\doxysection{units\+::Quantity\+Point\+Kind\+Equivalent\+To Concept Reference}
+\label{conceptunits_1_1_quantity_point_kind_equivalent_to}\index{units::QuantityPointKindEquivalentTo@{units::QuantityPointKindEquivalentTo}}
+
+
+A concept matching two equivalent quantity point kinds.  
+
+
+
+
+{\ttfamily \#include $<$quantity\+\_\+of.\+h$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ QPK1,\ \textcolor{keyword}{typename}\ QPK2>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1_quantity_point_kind_equivalent_to}{units::QuantityPointKindEquivalentTo}}\ =\ }
+\DoxyCodeLine{\ \ \mbox{\hyperlink{conceptunits_1_1_quantity_point_kind}{QuantityPointKind<QPK1>}}\ \&\&\ \mbox{\hyperlink{conceptunits_1_1_quantity_point_kind_of}{QuantityPointKindOf<QPK2,\ typename\ QPK1::point\_kind\_type>}}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+A concept matching two equivalent quantity point kinds. 
+
+Satisfied by quantity point kinds having equivalent kinds. 

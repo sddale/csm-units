@@ -1,0 +1,70 @@
+\hypertarget{mock-allocator_8h_source}{}\doxysection{mock-\/allocator.h}
+\label{mock-allocator_8h_source}\index{csm-\/units/fmt/test/mock-\/allocator.h@{csm-\/units/fmt/test/mock-\/allocator.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Formatting\ library\ for\ C++\ -\/\ mock\ allocator}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2012\ -\/\ present,\ Victor\ Zverovich}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ All\ rights\ reserved.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ For\ the\ license\ information\ refer\ to\ format.h.}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ FMT\_MOCK\_ALLOCATOR\_H\_}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ FMT\_MOCK\_ALLOCATOR\_H\_}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <assert.h>}\ \ \textcolor{comment}{//\ assert}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <stddef.h>}\ \ \textcolor{comment}{//\ size\_t}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <memory>}\ \ \textcolor{comment}{//\ std::allocator\_traits}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}gmock/gmock.h"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classmock__allocator}{mock\_allocator}}\ \{}
+\DoxyCodeLine{00019\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \mbox{\hyperlink{classmock__allocator}{mock\_allocator}}()\ \{\}}
+\DoxyCodeLine{00021\ \ \ \mbox{\hyperlink{classmock__allocator}{mock\_allocator}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classmock__allocator}{mock\_allocator}}\&)\ \{\}}
+\DoxyCodeLine{00022\ \ \ \textcolor{keyword}{using\ }value\_type\ =\ T;}
+\DoxyCodeLine{00023\ \ \ MOCK\_METHOD(T*,\ allocate,\ (\textcolor{keywordtype}{size\_t}));}
+\DoxyCodeLine{00024\ \ \ MOCK\_METHOD(\textcolor{keywordtype}{void},\ deallocate,\ (T*,\ \textcolor{keywordtype}{size\_t}));}
+\DoxyCodeLine{00025\ \};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Allocator>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classallocator__ref}{allocator\_ref}}\ \{}
+\DoxyCodeLine{00028\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00029\ \ \ Allocator*\ alloc\_;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordtype}{void}\ move(\mbox{\hyperlink{classallocator__ref}{allocator\_ref}}\&\ other)\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ alloc\_\ =\ other.alloc\_;}
+\DoxyCodeLine{00033\ \ \ \ \ other.alloc\_\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00034\ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \textcolor{keyword}{using\ }value\_type\ =\ \textcolor{keyword}{typename}\ Allocator::value\_type;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classallocator__ref}{allocator\_ref}}(Allocator*\ alloc\ =\ \textcolor{keyword}{nullptr})\ :\ alloc\_(alloc)\ \{\}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \mbox{\hyperlink{classallocator__ref}{allocator\_ref}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classallocator__ref}{allocator\_ref}}\&\ other)\ :\ alloc\_(other.alloc\_)\ \{\}}
+\DoxyCodeLine{00042\ \ \ \mbox{\hyperlink{classallocator__ref}{allocator\_ref}}(\mbox{\hyperlink{classallocator__ref}{allocator\_ref}}\&\&\ other)\ \{\ move(other);\ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \mbox{\hyperlink{classallocator__ref}{allocator\_ref}}\&\ operator=(\mbox{\hyperlink{classallocator__ref}{allocator\_ref}}\&\&\ other)\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ assert(\textcolor{keyword}{this}\ !=\ \&other);}
+\DoxyCodeLine{00046\ \ \ \ \ move(other);}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00048\ \ \ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \mbox{\hyperlink{classallocator__ref}{allocator\_ref}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classallocator__ref}{allocator\_ref}}\&\ other)\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ alloc\_\ =\ other.alloc\_;}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00053\ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00056\ \ \ Allocator*\ get()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ alloc\_;\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ value\_type*\ allocate(\textcolor{keywordtype}{size\_t}\ n)\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{return}\ std::allocator\_traits<Allocator>::allocate(*alloc\_,\ n);}
+\DoxyCodeLine{00060\ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \textcolor{keywordtype}{void}\ deallocate(value\_type*\ p,\ \textcolor{keywordtype}{size\_t}\ n)\ \{\ alloc\_-\/>deallocate(p,\ n);\ \}}
+\DoxyCodeLine{00062\ \};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ FMT\_MOCK\_ALLOCATOR\_H\_}}
+
+\end{DoxyCode}

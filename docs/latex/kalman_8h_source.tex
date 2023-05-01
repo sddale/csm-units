@@ -1,0 +1,246 @@
+\hypertarget{kalman_8h_source}{}\doxysection{kalman.\+h}
+\label{kalman_8h_source}\index{csm-\/units/units/example/kalman\_filter/kalman.h@{csm-\/units/units/example/kalman\_filter/kalman.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <units/bits/fmt\_hacks.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <units/format.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <units/generic/dimensionless.h>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <units/isq/dimensions/time.h>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <units/math.h>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <units/quantity.h>}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <units/quantity\_point.h>}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <tuple>}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{namespace\ }kalman\ \{}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00037\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptkalman_1_1_quantity_or_quantity_point}{QuantityOrQuantityPoint}}\ =}
+\DoxyCodeLine{00038\ \ \ \mbox{\hyperlink{conceptunits_1_1_quantity}{units::Quantity<T>}}\ ||\ \mbox{\hyperlink{conceptunits_1_1_quantity_point}{units::QuantityPoint<T>}};\ \ \textcolor{comment}{//\ TODO\ Should\ it\ also\ account\ for\ `kinds`?}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ Qs>}
+\DoxyCodeLine{00041\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ are\_time\_derivatives\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Q>}
+\DoxyCodeLine{00044\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ are\_time\_derivatives<Q>\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Q1,\ \textcolor{keyword}{typename}\ Q2,\ \textcolor{keyword}{typename}...\ Qs>}
+\DoxyCodeLine{00047\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ are\_time\_derivatives<Q1,\ Q2,\ Qs...>\ =}
+\DoxyCodeLine{00048\ \ \ \mbox{\hyperlink{conceptunits_1_1_dimension_of_t}{units::DimensionOfT}}<\textcolor{keyword}{typename}\ \textcolor{keyword}{decltype}(Q1::reference\ /\ Q2::reference)::dimension,}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structunits_1_1isq_1_1dim__time}{units::isq::dim\_time}}>\ \&\&\ \ \textcolor{comment}{//\ TODO\ Think\ on\ how\ to\ simplify\ this}}
+\DoxyCodeLine{00050\ \ \ are\_time\_derivatives<Q2,\ Qs...>;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ state}}
+\DoxyCodeLine{00053\ \textcolor{keyword}{template}<\mbox{\hyperlink{conceptkalman_1_1_quantity_or_quantity_point}{QuantityOrQuantityPoint}}...\ QQPs>}
+\DoxyCodeLine{00054\ \ \ \textcolor{keyword}{requires}(\textcolor{keyword}{sizeof}...(QQPs)\ >\ 0)\ \&\&\ (\textcolor{keyword}{sizeof}...(QQPs)\ <=\ 3)\ \&\&\ are\_time\_derivatives<QQPs...>}
+\DoxyCodeLine{00055\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structkalman_1_1state}{state}}\ \{}
+\DoxyCodeLine{00056\ \ \ std::tuple<QQPs...>\ variables\_;}
+\DoxyCodeLine{00057\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structkalman_1_1state}{state}}(QQPs...\ qqps)\ :\ variables\_(std::move(qqps)...)\ \{\}}
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00061\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptkalman_1_1_state}{State}}\ =\ units::is\_specialization\_of<T,\ state>;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{template}<std::size\_t\ Idx,\ \textcolor{keyword}{typename}...\ Qs>}
+\DoxyCodeLine{00064\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\&\ get(state<Qs...>\&\ s)}
+\DoxyCodeLine{00065\ \{}
+\DoxyCodeLine{00066\ \ \ \textcolor{keywordflow}{return}\ get<Idx>(s.variables\_);}
+\DoxyCodeLine{00067\ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{template}<std::size\_t\ Idx,\ \textcolor{keyword}{typename}...\ Qs>}
+\DoxyCodeLine{00070\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ get(\textcolor{keyword}{const}\ \mbox{\hyperlink{structkalman_1_1state}{state<Qs...>}}\&\ s)}
+\DoxyCodeLine{00071\ \{}
+\DoxyCodeLine{00072\ \ \ \textcolor{keywordflow}{return}\ get<Idx>(s.variables\_);}
+\DoxyCodeLine{00073\ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ estimation}}
+\DoxyCodeLine{00076\ \textcolor{keyword}{template}<QuantityOrQuantityPoint\ QQP,\ QuantityOrQuantityPoint...\ QQPs>}
+\DoxyCodeLine{00077\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structkalman_1_1estimation}{estimation}}\ \{}
+\DoxyCodeLine{00078\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00079\ \ \ \textcolor{keyword}{using\ }uncertainty\_ref\ =\ \textcolor{keyword}{decltype}(QQP::reference\ *\ QQP::reference);}
+\DoxyCodeLine{00080\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{uncertainty\_type}}\ =}
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{classunits_1_1quantity}{units::quantity<typename\ uncertainty\_ref::dimension,\ typename\ uncertainty\_ref::unit,\ typename\ QQP::rep>}};}
+\DoxyCodeLine{00082\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00083\ \ \ \mbox{\hyperlink{structkalman_1_1state}{kalman::state}}<QQP,\ QQPs...>\ \mbox{\hyperlink{structkalman_1_1state}{state}};\ \ \textcolor{comment}{//\ TODO\ extend\ kalman\ functions\ to\ work\ with\ this\ variadic\ patermater\ list}}
+\DoxyCodeLine{00084\ \ \ \mbox{\hyperlink{classunits_1_1quantity}{uncertainty\_type}}\ uncertainty;}
+\DoxyCodeLine{00085\ \};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#if\ UNITS\_COMP\_MSVC\ ||\ (UNITS\_COMP\_CLANG\ \&\&\ UNITS\_COMP\_CLANG\ <=\ 16)}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{template}<QuantityOrQuantityPo\textcolor{keywordtype}{int}\ QQP,\ units::Quantity\ U>}
+\DoxyCodeLine{00090\ \mbox{\hyperlink{structkalman_1_1estimation}{estimation}}(\mbox{\hyperlink{structkalman_1_1state}{state<QQP>}},\ U)\ -\/>\ \mbox{\hyperlink{structkalman_1_1estimation}{estimation<QQP>}};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{comment}{//\ kalman\ gain}}
+\DoxyCodeLine{00095\ \textcolor{keyword}{template}<units::Quantity\ Q>}
+\DoxyCodeLine{00096\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity}{units::dimensionless<units::one>}}\ kalman\_gain(Q\ estimate\_uncertainty,\ Q\ measurement\_uncertainty)}
+\DoxyCodeLine{00097\ \{}
+\DoxyCodeLine{00098\ \ \ \textcolor{keywordflow}{return}\ estimate\_uncertainty\ /\ (estimate\_uncertainty\ +\ measurement\_uncertainty);}
+\DoxyCodeLine{00099\ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{comment}{//\ state\ update}}
+\DoxyCodeLine{00102\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Q,\ QuantityOrQuantityPo\textcolor{keywordtype}{int}\ QM,\ units::Dimensionless\ K>}
+\DoxyCodeLine{00103\ \ \ \textcolor{keyword}{requires}\ units::equivalent<typename\ Q::dimension,\ typename\ QM::dimension>}
+\DoxyCodeLine{00104\ \textcolor{keyword}{constexpr}\ state<Q>\ state\_update(\textcolor{keyword}{const}\ state<Q>\&\ predicted,\ QM\ measured,\ K\ gain)}
+\DoxyCodeLine{00105\ \{}
+\DoxyCodeLine{00106\ \ \ \textcolor{keywordflow}{return}\ \{get<0>(predicted)\ +\ gain\ *\ (measured\ -\/\ get<0>(predicted))\};}
+\DoxyCodeLine{00107\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Q1,\ \textcolor{keyword}{typename}\ Q2,\ QuantityOrQuantityPo\textcolor{keywordtype}{int}\ QM,\ units::Dimensionless\ K,\ units::isq::Time\ T>}
+\DoxyCodeLine{00110\ \ \ \textcolor{keyword}{requires}\ units::equivalent<typename\ Q1::dimension,\ typename\ QM::dimension>}
+\DoxyCodeLine{00111\ \textcolor{keyword}{constexpr}\ state<Q1,\ Q2>\ state\_update(\textcolor{keyword}{const}\ state<Q1,\ Q2>\&\ predicted,\ QM\ measured,\ std::array<K,\ 2>\ gain,\ T\ interval)}
+\DoxyCodeLine{00112\ \{}
+\DoxyCodeLine{00113\ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ q1\ =\ get<0>(predicted)\ +\ get<0>(gain)\ *\ (measured\ -\/\ get<0>(predicted));}
+\DoxyCodeLine{00114\ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ q2\ =\ get<1>(predicted)\ +\ get<1>(gain)\ *\ (measured\ -\/\ get<0>(predicted))\ /\ interval;}
+\DoxyCodeLine{00115\ \ \ \textcolor{keywordflow}{return}\ \{q1,\ q2\};}
+\DoxyCodeLine{00116\ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Q1,\ \textcolor{keyword}{typename}\ Q2,\ \textcolor{keyword}{typename}\ Q3,\ QuantityOrQuantityPo\textcolor{keywordtype}{int}\ QM,\ units::Dimensionless\ K,\ units::isq::Time\ T>}
+\DoxyCodeLine{00119\ \ \ \textcolor{keyword}{requires}\ units::equivalent<typename\ Q1::dimension,\ typename\ QM::dimension>}
+\DoxyCodeLine{00120\ \textcolor{keyword}{constexpr}\ state<Q1,\ Q2,\ Q3>\ state\_update(\textcolor{keyword}{const}\ state<Q1,\ Q2,\ Q3>\&\ predicted,\ QM\ measured,\ std::array<K,\ 3>\ gain,}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ T\ interval)}
+\DoxyCodeLine{00122\ \{}
+\DoxyCodeLine{00123\ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ q1\ =\ get<0>(predicted)\ +\ get<0>(gain)\ *\ (measured\ -\/\ get<0>(predicted));}
+\DoxyCodeLine{00124\ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ q2\ =\ get<1>(predicted)\ +\ get<1>(gain)\ *\ (measured\ -\/\ get<0>(predicted))\ /\ interval;}
+\DoxyCodeLine{00125\ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ q3\ =\ get<2>(predicted)\ +\ get<2>(gain)\ *\ (measured\ -\/\ get<0>(predicted))\ /\ (interval\ *\ interval\ /\ 2);}
+\DoxyCodeLine{00126\ \ \ \textcolor{keywordflow}{return}\ \{q1,\ q2,\ q3\};}
+\DoxyCodeLine{00127\ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{comment}{//\ covariance\ update}}
+\DoxyCodeLine{00130\ \textcolor{keyword}{template}<units::Quantity\ Q,\ units::Dimensionless\ K>}
+\DoxyCodeLine{00131\ \textcolor{keyword}{constexpr}\ Q\ covariance\_update(Q\ uncertainty,\ K\ gain)}
+\DoxyCodeLine{00132\ \{}
+\DoxyCodeLine{00133\ \ \ \textcolor{keywordflow}{return}\ (1\ -\/\ gain)\ *\ uncertainty;}
+\DoxyCodeLine{00134\ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{comment}{//\ state\ extrapolation}}
+\DoxyCodeLine{00137\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Q1,\ \textcolor{keyword}{typename}\ Q2,\ units::isq::Time\ T>}
+\DoxyCodeLine{00138\ \textcolor{keyword}{constexpr}\ state<Q1,\ Q2>\ state\_extrapolation(\textcolor{keyword}{const}\ state<Q1,\ Q2>\&\ estimated,\ T\ interval)}
+\DoxyCodeLine{00139\ \{}
+\DoxyCodeLine{00140\ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ q1\ =\ get<0>(estimated)\ +\ get<1>(estimated)\ *\ interval;}
+\DoxyCodeLine{00141\ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ q2\ =\ get<1>(estimated);}
+\DoxyCodeLine{00142\ \ \ \textcolor{keywordflow}{return}\ \{q1,\ q2\};}
+\DoxyCodeLine{00143\ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Q1,\ \textcolor{keyword}{typename}\ Q2,\ \textcolor{keyword}{typename}\ Q3,\ units::isq::Time\ T>}
+\DoxyCodeLine{00146\ \textcolor{keyword}{constexpr}\ state<Q1,\ Q2,\ Q3>\ state\_extrapolation(\textcolor{keyword}{const}\ state<Q1,\ Q2,\ Q3>\&\ estimated,\ T\ interval)}
+\DoxyCodeLine{00147\ \{}
+\DoxyCodeLine{00148\ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ q1\ =\ get<0>(estimated)\ +\ get<1>(estimated)\ *\ interval\ +\ get<2>(estimated)\ *\ pow<2>(interval)\ /\ 2;}
+\DoxyCodeLine{00149\ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ q2\ =\ get<1>(estimated)\ +\ get<2>(estimated)\ *\ interval;}
+\DoxyCodeLine{00150\ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ q3\ =\ get<2>(estimated);}
+\DoxyCodeLine{00151\ \ \ \textcolor{keywordflow}{return}\ \{q1,\ q2,\ q3\};}
+\DoxyCodeLine{00152\ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \textcolor{comment}{//\ covariance\ extrapolation}}
+\DoxyCodeLine{00155\ \textcolor{keyword}{template}<units::Quantity\ Q>}
+\DoxyCodeLine{00156\ \textcolor{keyword}{constexpr}\ Q\ covariance\_extrapolation(Q\ uncertainty,\ Q\ process\_noise\_variance)}
+\DoxyCodeLine{00157\ \{}
+\DoxyCodeLine{00158\ \ \ \textcolor{keywordflow}{return}\ uncertainty\ +\ process\_noise\_variance;}
+\DoxyCodeLine{00159\ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \}\ \ \textcolor{comment}{//\ namespace\ kalman}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}...\ Qs>}
+\DoxyCodeLine{00164\ \textcolor{keyword}{struct\ }UNITS\_STD\_FMT::formatter<kalman::state<Qs...>>\ \{}
+\DoxyCodeLine{00165\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ parse(\mbox{\hyperlink{classbasic__format__parse__context}{format\_parse\_context}}\&\ ctx)}
+\DoxyCodeLine{00166\ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \mbox{\hyperlink{classunits_1_1detail_1_1dynamic__specs__handler}{units::detail::dynamic\_specs\_handler}}\ handler(specs,\ ctx);}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordflow}{return}\ units::detail::parse\_format\_specs(ctx.\mbox{\hyperlink{classbasic__format__parse__context_afb21ddaa0d32b5430f99eed530666ea9}{begin}}(),\ ctx.\mbox{\hyperlink{classbasic__format__parse__context_a6a0fc217fe680a1b23eada2a53870c41}{end}}(),\ handler);}
+\DoxyCodeLine{00169\ \ \ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ FormatContext>}
+\DoxyCodeLine{00172\ \ \ \textcolor{keyword}{auto}\ format(\textcolor{keyword}{const}\ \mbox{\hyperlink{structkalman_1_1state}{kalman::state<Qs...>}}\&\ s,\ FormatContext\&\ ctx)}
+\DoxyCodeLine{00173\ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ std::string\ value\_buffer;}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{auto}\ to\_value\_buffer\ =\ std::back\_inserter(value\_buffer);}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordflow}{if}\ (specs.precision\ !=\ -\/1)\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\textcolor{keyword}{sizeof}...(Qs)\ ==\ 1)}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ UNITS\_STD\_FMT::format\_to(to\_value\_buffer,\ \textcolor{stringliteral}{"{}\{1:\%.\{0\}Q\ \%q\}"{}},\ specs.precision,\ kalman::get<0>(s));}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\textcolor{keyword}{sizeof}...(Qs)\ ==\ 2)}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ UNITS\_STD\_FMT::format\_to(to\_value\_buffer,\ \textcolor{stringliteral}{"{}\{\{\ \{1:\%.\{0\}Q\ \%q\},\ \{2:\%.\{0\}Q\ \%q\}\ \}\}"{}},\ specs.precision,}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ kalman::get<0>(s),\ kalman::get<1>(s));}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ UNITS\_STD\_FMT::format\_to(to\_value\_buffer,\ \textcolor{stringliteral}{"{}\{\{\ \{1:\%.\{0\}Q\ \%q\},\ \{2:\%.\{0\}Q\ \%q\},\ \{3:\%.\{0\}Q\ \%q\}\ \}\}"{}},\ specs.precision,}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ kalman::get<0>(s),\ kalman::get<1>(s),\ kalman::get<2>(s));}
+\DoxyCodeLine{00185\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\textcolor{keyword}{sizeof}...(Qs)\ ==\ 1)}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ UNITS\_STD\_FMT::format\_to(to\_value\_buffer,\ \textcolor{stringliteral}{"{}\{\}"{}},\ kalman::get<0>(s));}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\textcolor{keyword}{sizeof}...(Qs)\ ==\ 2)}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ UNITS\_STD\_FMT::format\_to(to\_value\_buffer,\ \textcolor{stringliteral}{"{}\{\{\ \{\},\ \{\}\ \}\}"{}},\ kalman::get<0>(s),\ kalman::get<1>(s));}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ UNITS\_STD\_FMT::format\_to(to\_value\_buffer,\ \textcolor{stringliteral}{"{}\{\{\ \{\},\ \{\},\ \{\}\ \}\}"{}},\ kalman::get<0>(s),\ kalman::get<1>(s),}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ kalman::get<2>(s));}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ std::string\ global\_format\_buffer;}
+\DoxyCodeLine{00196\ \ \ \ \ \mbox{\hyperlink{structunits_1_1detail_1_1quantity__global__format__specs}{units::detail::quantity\_global\_format\_specs<char>}}\ global\_specs\ =\ \{specs.fill,\ specs.align,\ specs.width\};}
+\DoxyCodeLine{00197\ \ \ \ \ units::detail::format\_global\_buffer(std::back\_inserter(global\_format\_buffer),\ global\_specs);}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordflow}{return}\ UNITS\_STD\_FMT::vformat\_to(ctx.out(),\ global\_format\_buffer,\ UNITS\_STD\_FMT::make\_format\_args(value\_buffer));}
+\DoxyCodeLine{00200\ \ \ \}}
+\DoxyCodeLine{00201\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00202\ \ \ \mbox{\hyperlink{structunits_1_1detail_1_1dynamic__format__specs}{units::detail::dynamic\_format\_specs<char>}}\ specs;}
+\DoxyCodeLine{00203\ \};}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Q>}
+\DoxyCodeLine{00206\ \textcolor{keyword}{struct\ }UNITS\_STD\_FMT::formatter<kalman::estimation<Q>>\ \{}
+\DoxyCodeLine{00207\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ parse(\mbox{\hyperlink{classbasic__format__parse__context}{format\_parse\_context}}\&\ ctx)}
+\DoxyCodeLine{00208\ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \mbox{\hyperlink{classunits_1_1detail_1_1dynamic__specs__handler}{units::detail::dynamic\_specs\_handler}}\ handler(specs,\ ctx);}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordflow}{return}\ units::detail::parse\_format\_specs(ctx.\mbox{\hyperlink{classbasic__format__parse__context_afb21ddaa0d32b5430f99eed530666ea9}{begin}}(),\ ctx.\mbox{\hyperlink{classbasic__format__parse__context_a6a0fc217fe680a1b23eada2a53870c41}{end}}(),\ handler);}
+\DoxyCodeLine{00211\ \ \ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ FormatContext>}
+\DoxyCodeLine{00214\ \ \ \textcolor{keyword}{auto}\ format(\mbox{\hyperlink{structkalman_1_1estimation}{kalman::estimation<Q>}}\ e,\ FormatContext\&\ ctx)}
+\DoxyCodeLine{00215\ \ \ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \mbox{\hyperlink{conceptunits_1_1_quantity}{units::Quantity}}\ \textcolor{keyword}{auto}\ q\ =\ [](\textcolor{keyword}{const}\ Q\&\ t)\ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\mbox{\hyperlink{conceptunits_1_1_quantity}{units::Quantity<Q>}})}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ t;}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ t.relative();}
+\DoxyCodeLine{00221\ \ \ \ \ \}(kalman::get<0>(e.state));}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ std::string\ value\_buffer;}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keyword}{auto}\ to\_value\_buffer\ =\ std::back\_inserter(value\_buffer);}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordflow}{if}\ (specs.precision\ !=\ -\/1)\ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ UNITS\_STD\_FMT::format\_to(to\_value\_buffer,\ \textcolor{stringliteral}{"{}\{0:\%.\{2\}Q\}\ ±\ \{1:\%.\{2\}Q\}\ \{0:\%q\}"{}},\ q,\ sqrt(e.uncertainty),}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ specs.precision);}
+\DoxyCodeLine{00228\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ UNITS\_STD\_FMT::format\_to(to\_value\_buffer,\ \textcolor{stringliteral}{"{}\{0:\%Q\}\ ±\ \{1:\%Q\}\ \{0:\%q\}"{}},\ q,\ sqrt(e.uncertainty));}
+\DoxyCodeLine{00230\ \ \ \ \ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ std::string\ global\_format\_buffer;}
+\DoxyCodeLine{00233\ \ \ \ \ \mbox{\hyperlink{structunits_1_1detail_1_1quantity__global__format__specs}{units::detail::quantity\_global\_format\_specs<char>}}\ global\_specs\ =\ \{specs.fill,\ specs.align,\ specs.width\};}
+\DoxyCodeLine{00234\ \ \ \ \ units::detail::format\_global\_buffer(std::back\_inserter(global\_format\_buffer),\ global\_specs);}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordflow}{return}\ UNITS\_STD\_FMT::vformat\_to(ctx.out(),\ global\_format\_buffer,\ UNITS\_STD\_FMT::make\_format\_args(value\_buffer));}
+\DoxyCodeLine{00237\ \ \ \}}
+\DoxyCodeLine{00238\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00239\ \ \ \mbox{\hyperlink{structunits_1_1detail_1_1dynamic__format__specs}{units::detail::dynamic\_format\_specs<char>}}\ specs;}
+\DoxyCodeLine{00240\ \};}
+
+\end{DoxyCode}

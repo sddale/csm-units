@@ -1,0 +1,23 @@
+There is a \href{build.sh}{\texttt{ helper script}} to build the fuzzers, which has only been tested on Debian and Ubuntu linux so far. There should be no problems fuzzing on Windows (using clang\texorpdfstring{$>$}{>}=8) or on Mac, but the script will probably not work out of the box.
+
+Something along 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mkdir\ build}
+\DoxyCodeLine{cd\ build}
+\DoxyCodeLine{export\ CXX=clang++}
+\DoxyCodeLine{export\ CXXFLAGS="{}-\/fsanitize=fuzzer-\/no-\/link\ -\/DFUZZING\_BUILD\_MODE\_UNSAFE\_FOR\_PRODUCTION=\ -\/g"{}}
+\DoxyCodeLine{cmake\ ..\ -\/DFMT\_SAFE\_DURATION\_CAST=On\ -\/DFMT\_FUZZ=On\ -\/DFMT\_FUZZ\_LINKMAIN=Off\ -\/DFMT\_FUZZ\_LDFLAGS="{}-\/fsanitize=fuzzer"{}}
+\DoxyCodeLine{cmake\ -\/-\/build\ .}
+
+\end{DoxyCode}
+ should work to build the fuzzers for all platforms which clang supports.
+
+Execute a fuzzer with for instance 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd\ build}
+\DoxyCodeLine{export\ UBSAN\_OPTIONS=halt\_on\_error=1}
+\DoxyCodeLine{mkdir\ out\_chrono}
+\DoxyCodeLine{bin/fuzzer\_chrono\_duration\ out\_chrono}
+
+\end{DoxyCode}
+ 

@@ -1,0 +1,114 @@
+\hypertarget{fixed__string_8h_source}{}\doxysection{fixed\+\_\+string.\+h}
+\label{fixed__string_8h_source}\index{csm-\/units/units/src/core/include/units/bits/external/fixed\_string.h@{csm-\/units/units/src/core/include/units/bits/external/fixed\_string.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <units/bits/external/hacks.h>}\ \ \textcolor{comment}{//\ IWYU\ pragma:\ keep}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ TODO\ use\ <algorithm>\ when\ moved\ to\ C++20\ modules\ (parsing\ takes\ too\ long\ for\ each\ translation\ unit)}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <units/bits/algorithm.h>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ IWYU\ pragma:\ begin\_exports}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <compare>}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ IWYU\ pragma:\ end\_exports}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{namespace\ }units\ \{}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ CharT,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00046\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\_fixed\_string}}\ \{}
+\DoxyCodeLine{00047\ \ \ CharT\ data\_[N\ +\ 1]\ =\ \{\};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \textcolor{keyword}{using\ }iterator\ =\ CharT*;}
+\DoxyCodeLine{00050\ \ \ \textcolor{keyword}{using\ }const\_iterator\ =\ \textcolor{keyword}{const}\ CharT*;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}(\textcolor{keyword}{false})\ \mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\_fixed\_string}}(CharT\ ch)\ \textcolor{keyword}{noexcept}\ \{\ data\_[0]\ =\ ch;\ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}(\textcolor{keyword}{false})\ \mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\_fixed\_string}}(\textcolor{keyword}{const}\ CharT\ (\&txt)[N\ +\ 1])\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00055\ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (N\ !=\ 0)}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)\ data\_[i]\ =\ txt[i];}
+\DoxyCodeLine{00058\ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ empty()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ N\ ==\ 0;\ \}}
+\DoxyCodeLine{00061\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ std::size\_t\ size()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ N;\ \}}
+\DoxyCodeLine{00062\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ CharT*\ \mbox{\hyperlink{structdata}{data}}()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ data\_;\ \}}
+\DoxyCodeLine{00063\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ CharT*\ c\_str()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structdata}{data}}();\ \}}
+\DoxyCodeLine{00064\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ CharT\&\ operator[](std::size\_t\ index)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structdata}{data}}()[index];\ \}}
+\DoxyCodeLine{00065\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ CharT\ operator[](std::size\_t\ index)\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structdata}{data}}()[index];\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ iterator\ begin()\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structdata}{data}}();\ \}}
+\DoxyCodeLine{00068\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ const\_iterator\ begin()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structdata}{data}}();\ \}}
+\DoxyCodeLine{00069\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ iterator\ end()\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structdata}{data}}()\ +\ size();\ \}}
+\DoxyCodeLine{00070\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ const\_iterator\ end()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structdata}{data}}()\ +\ size();\ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N2>}
+\DoxyCodeLine{00073\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{friend}\ \mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\_fixed\_string<CharT,\ N\ +\ N2>}}\ operator+(}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\_fixed\_string}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\_fixed\_string<CharT,\ N2>}}\&\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00075\ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ CharT\ txt[N\ +\ N2\ +\ 1]\ =\ \{\};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ !=\ N;\ ++i)\ txt[i]\ =\ lhs[i];}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ !=\ N2;\ ++i)\ txt[N\ +\ i]\ =\ rhs[i];}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\_fixed\_string<CharT,\ N\ +\ N2>}}(txt);}
+\DoxyCodeLine{00082\ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator==(\textcolor{keyword}{const}\ \mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\_fixed\_string}}\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00085\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{if}\ (size()\ !=\ other.size())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{return}\ detail::equal(begin(),\ end(),\ other.begin());\ \ \textcolor{comment}{//\ TODO\ std::ranges::equal(*this,\ other)}}
+\DoxyCodeLine{00088\ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N2>}
+\DoxyCodeLine{00091\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator==(\textcolor{keyword}{const}\ \mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\_fixed\_string}}\&,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\_fixed\_string<CharT,\ N2>}}\&)}
+\DoxyCodeLine{00092\ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00094\ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N2>}
+\DoxyCodeLine{00097\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ operator<=>(\textcolor{keyword}{const}\ \mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\_fixed\_string}}\&\ lhs,}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\_fixed\_string<CharT,\ N2>}}\&\ rhs)}
+\DoxyCodeLine{00099\ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{//\ TODO\ std::lexicographical\_compare\_three\_way(lhs.begin(),\ lhs.end(),\ rhs.begin(),\ rhs.end());}}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{return}\ detail::lexicographical\_compare\_three\_way(lhs.begin(),\ lhs.end(),\ rhs.begin(),\ rhs.end());}
+\DoxyCodeLine{00102\ \ \ \}}
+\DoxyCodeLine{00103\ \};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ CharT,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00106\ \mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\_fixed\_string}}(\textcolor{keyword}{const}\ CharT\ (\&str)[N])\ -\/>\ \mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\_fixed\_string}}<CharT,\ N\ -\/\ 1>;}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ CharT>}
+\DoxyCodeLine{00109\ \mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\_fixed\_string}}(CharT)\ -\/>\ \mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\_fixed\_string<CharT,\ 1>}};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00112\ \textcolor{keyword}{using\ }\mbox{\hyperlink{structunits_1_1basic__fixed__string}{fixed\_string}}\ =\ \mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\_fixed\_string<char,\ N>}};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \}\ \ \textcolor{comment}{//\ namespace\ units}}
+
+\end{DoxyCode}

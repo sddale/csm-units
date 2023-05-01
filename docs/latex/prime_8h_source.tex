@@ -1,0 +1,162 @@
+\hypertarget{prime_8h_source}{}\doxysection{prime.\+h}
+\label{prime_8h_source}\index{csm-\/units/units/src/core/include/units/bits/prime.h@{csm-\/units/units/src/core/include/units/bits/prime.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <units/bits/algorithm.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <numeric>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <tuple>}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{namespace\ }units::detail\ \{}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ is\_prime\_by\_trial\_division(std::uintmax\_t\ n)}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordflow}{for}\ (std::uintmax\_t\ f\ =\ 2;\ f\ *\ f\ <=\ n;\ f\ +=\ 1\ +\ (f\ \%\ 2))\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{if}\ (n\ \%\ f\ ==\ 0)\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ Return\ the\ first\ factor\ of\ n,\ as\ long\ as\ it\ is\ either\ k\ or\ n.}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ Precondition:\ no\ integer\ smaller\ than\ k\ evenly\ divides\ n.}}
+\DoxyCodeLine{00048\ \textcolor{keyword}{constexpr}\ std::optional<std::uintmax\_t>\ first\_factor\_maybe(std::uintmax\_t\ n,\ std::uintmax\_t\ k)}
+\DoxyCodeLine{00049\ \{}
+\DoxyCodeLine{00050\ \ \ \textcolor{keywordflow}{if}\ (n\ \%\ k\ ==\ 0)\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{return}\ k;}
+\DoxyCodeLine{00052\ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \textcolor{keywordflow}{if}\ (k\ *\ k\ >\ n)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{return}\ n;}
+\DoxyCodeLine{00055\ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordflow}{return}\ std::nullopt;}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00060\ \textcolor{keyword}{constexpr}\ std::array<std::uintmax\_t,\ N>\ first\_n\_primes()}
+\DoxyCodeLine{00061\ \{}
+\DoxyCodeLine{00062\ \ \ std::array<std::uintmax\_t,\ N>\ primes;}
+\DoxyCodeLine{00063\ \ \ primes[0]\ =\ 2;}
+\DoxyCodeLine{00064\ \ \ \textcolor{keywordflow}{for}\ (std::size\_t\ i\ =\ 1;\ i\ <\ N;\ ++i)\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ primes[i]\ =\ primes[i\ -\/\ 1]\ +\ 1;}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{while}\ (!is\_prime\_by\_trial\_division(primes[i]))\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ ++primes[i];}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+\DoxyCodeLine{00069\ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \textcolor{keywordflow}{return}\ primes;}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ Callable>}
+\DoxyCodeLine{00074\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ call\_for\_coprimes\_up\_to(std::uintmax\_t\ n,\ \textcolor{keyword}{const}\ std::array<std::uintmax\_t,\ N>\&\ basis,\ Callable\&\&\ call)}
+\DoxyCodeLine{00075\ \{}
+\DoxyCodeLine{00076\ \ \ \textcolor{keywordflow}{for}\ (std::uintmax\_t\ i\ =\ 0u;\ i\ <\ n;\ ++i)\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{if}\ (std::apply([\&i](\textcolor{keyword}{auto}...\ primes)\ \{\ \textcolor{keywordflow}{return}\ ((i\ \%\ primes\ !=\ 0)\ \&\&\ ...);\ \},\ basis))\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ call(i);}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \}}
+\DoxyCodeLine{00081\ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00084\ \textcolor{keyword}{constexpr}\ std::size\_t\ num\_coprimes\_up\_to(std::uintmax\_t\ n,\ \textcolor{keyword}{const}\ std::array<std::uintmax\_t,\ N>\&\ basis)}
+\DoxyCodeLine{00085\ \{}
+\DoxyCodeLine{00086\ \ \ std::size\_t\ count\ =\ 0u;}
+\DoxyCodeLine{00087\ \ \ call\_for\_coprimes\_up\_to(n,\ basis,\ [\&count](\textcolor{keyword}{auto})\ \{\ ++count;\ \});}
+\DoxyCodeLine{00088\ \ \ \textcolor{keywordflow}{return}\ count;}
+\DoxyCodeLine{00089\ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ ResultSize,\ std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00092\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ coprimes\_up\_to(std::size\_t\ n,\ \textcolor{keyword}{const}\ std::array<std::uintmax\_t,\ N>\&\ basis)}
+\DoxyCodeLine{00093\ \{}
+\DoxyCodeLine{00094\ \ \ std::array<std::uintmax\_t,\ ResultSize>\ coprimes;}
+\DoxyCodeLine{00095\ \ \ std::size\_t\ i\ =\ 0u;}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ call\_for\_coprimes\_up\_to(n,\ basis,\ [\&coprimes,\ \&i](std::uintmax\_t\ cp)\ \{\ coprimes[i++]\ =\ cp;\ \});}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \textcolor{keywordflow}{return}\ coprimes;}
+\DoxyCodeLine{00100\ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00103\ \textcolor{keyword}{constexpr}\ std::uintmax\_t\ product(\textcolor{keyword}{const}\ std::array<std::uintmax\_t,\ N>\&\ values)}
+\DoxyCodeLine{00104\ \{}
+\DoxyCodeLine{00105\ \ \ std::uintmax\_t\ product\ =\ 1;}
+\DoxyCodeLine{00106\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ v\ :\ values)\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ product\ *=\ v;}
+\DoxyCodeLine{00108\ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \textcolor{keywordflow}{return}\ product;}
+\DoxyCodeLine{00110\ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{comment}{//\ A\ configurable\ instantiation\ of\ the\ "{}wheel\ factorization"{}\ algorithm\ [1]\ for\ prime\ numbers.}}
+\DoxyCodeLine{00113\ \textcolor{comment}{//}}
+\DoxyCodeLine{00114\ \textcolor{comment}{//\ Instantiate\ with\ N\ to\ use\ a\ "{}basis"{}\ of\ the\ first\ N\ prime\ numbers.\ \ Higher\ values\ of\ N\ use\ fewer\ trial\ divisions,\ at}}
+\DoxyCodeLine{00115\ \textcolor{comment}{//\ the\ cost\ of\ additional\ space.\ \ The\ amount\ of\ space\ consumed\ is\ roughly\ the\ total\ number\ of\ numbers\ that\ are\ a)\ less}}
+\DoxyCodeLine{00116\ \textcolor{comment}{//\ than\ the\ \_product\_\ of\ the\ basis\ elements\ (first\ N\ primes),\ and\ b)\ coprime\ with\ every\ element\ of\ the\ basis.\ \ This}}
+\DoxyCodeLine{00117\ \textcolor{comment}{//\ means\ it\ grows\ rapidly\ with\ N.\ \ Consider\ this\ approximate\ chart:}}
+\DoxyCodeLine{00118\ \textcolor{comment}{//}}
+\DoxyCodeLine{00119\ \textcolor{comment}{//\ \ \ N\ |\ Num\ coprimes\ |\ Trial\ divisions\ needed}}
+\DoxyCodeLine{00120\ \textcolor{comment}{//\ \ \ -\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00121\ \textcolor{comment}{//\ \ \ 1\ |\ \ \ \ \ \ \ \ \ \ \ \ 1\ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 50.0\ \%}}
+\DoxyCodeLine{00122\ \textcolor{comment}{//\ \ \ 2\ |\ \ \ \ \ \ \ \ \ \ \ \ 2\ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 33.3\ \%}}
+\DoxyCodeLine{00123\ \textcolor{comment}{//\ \ \ 3\ |\ \ \ \ \ \ \ \ \ \ \ \ 8\ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 26.7\ \%}}
+\DoxyCodeLine{00124\ \textcolor{comment}{//\ \ \ 4\ |\ \ \ \ \ \ \ \ \ \ \ 48\ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 22.9\ \%}}
+\DoxyCodeLine{00125\ \textcolor{comment}{//\ \ \ 5\ |\ \ \ \ \ \ \ \ \ \ 480\ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 20.8\ \%}}
+\DoxyCodeLine{00126\ \textcolor{comment}{//}}
+\DoxyCodeLine{00127\ \textcolor{comment}{//\ Note\ the\ diminishing\ returns,\ and\ the\ rapidly\ escalating\ costs.\ \ Consider\ this\ behaviour\ when\ choosing\ the\ value\ of\ N}}
+\DoxyCodeLine{00128\ \textcolor{comment}{//\ most\ appropriate\ for\ your\ needs.}}
+\DoxyCodeLine{00129\ \textcolor{comment}{//}}
+\DoxyCodeLine{00130\ \textcolor{comment}{//\ [1]\ https://en.wikipedia.org/wiki/Wheel\_factorization}}
+\DoxyCodeLine{00131\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ BasisSize>}
+\DoxyCodeLine{00132\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1detail_1_1wheel__factorizer}{wheel\_factorizer}}\ \{}
+\DoxyCodeLine{00133\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ basis\ =\ first\_n\_primes<BasisSize>();}
+\DoxyCodeLine{00134\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ wheel\_size\ =\ product(basis);}
+\DoxyCodeLine{00135\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ coprimes\_in\_first\_wheel\ =}
+\DoxyCodeLine{00136\ \ \ \ \ coprimes\_up\_to<num\_coprimes\_up\_to(wheel\_size,\ basis)>(wheel\_size,\ basis);}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ std::uintmax\_t\ find\_first\_factor(std::uintmax\_t\ n)}
+\DoxyCodeLine{00139\ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ k\ =\ detail::get\_first\_of(basis,\ [\&](\textcolor{keyword}{auto}\ p)\ \{\ \textcolor{keywordflow}{return}\ first\_factor\_maybe(n,\ p);\ \}))\ \textcolor{keywordflow}{return}\ *k;}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ k\ =\ detail::get\_first\_of(std::next(begin(coprimes\_in\_first\_wheel)),\ end(coprimes\_in\_first\_wheel),}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\&](\textcolor{keyword}{auto}\ p)\ \{\ \textcolor{keywordflow}{return}\ first\_factor\_maybe(n,\ p);\ \}))}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *k;}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{for}\ (std::size\_t\ wheel\ =\ wheel\_size;\ wheel\ <\ n;\ wheel\ +=\ wheel\_size)}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ k\ =}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ detail::get\_first\_of(coprimes\_in\_first\_wheel,\ [\&](\textcolor{keyword}{auto}\ p)\ \{\ \textcolor{keywordflow}{return}\ first\_factor\_maybe(n,\ wheel\ +\ p);\ \}))}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *k;}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{return}\ n;}
+\DoxyCodeLine{00151\ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ is\_prime(std::size\_t\ n)\ \{\ \textcolor{keywordflow}{return}\ (n\ >\ 1)\ \&\&\ find\_first\_factor(n)\ ==\ n;\ \}}
+\DoxyCodeLine{00154\ \};}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \}\ \ \textcolor{comment}{//\ namespace\ units::detail}}
+
+\end{DoxyCode}

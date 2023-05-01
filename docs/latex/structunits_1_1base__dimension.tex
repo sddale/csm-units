@@ -1,0 +1,69 @@
+\hypertarget{structunits_1_1base__dimension}{}\doxysection{units\+::base\+\_\+dimension\texorpdfstring{$<$}{<} Symbol, U \texorpdfstring{$>$}{>} Struct Template Reference}
+\label{structunits_1_1base__dimension}\index{units::base\_dimension$<$ Symbol, U $>$@{units::base\_dimension$<$ Symbol, U $>$}}
+
+
+A dimension of a base quantity.  
+
+
+
+
+{\ttfamily \#include $<$base\+\_\+dimension.\+h$>$}
+
+Inheritance diagram for units\+::base\+\_\+dimension\texorpdfstring{$<$}{<} Symbol, U \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{structunits_1_1base__dimension}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structunits_1_1base__dimension_a947d70631336cd700a365fb2a2a18e14}\label{structunits_1_1base__dimension_a947d70631336cd700a365fb2a2a18e14}} 
+using {\bfseries base\+\_\+unit} = U
+\begin{DoxyCompactList}\small\item\em Base unit adopted for this dimension. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structunits_1_1base__dimension_ad329f78b3cc9dede5680122a1b1a7082}\label{structunits_1_1base__dimension_ad329f78b3cc9dede5680122a1b1a7082}} 
+static constexpr {\bfseries UNITS\+\_\+\+CONSTRAINED\+\_\+\+AUTO\+\_\+\+WORKAROUND} (Magnitude) auto mag
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structunits_1_1base__dimension_ad164f54218cd0300918571886594cb8e}\label{structunits_1_1base__dimension_ad164f54218cd0300918571886594cb8e}} 
+const char $\ast$ {\bfseries name}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structunits_1_1base__dimension_ac581aeda2beee394b3dab832467bd865}\label{structunits_1_1base__dimension_ac581aeda2beee394b3dab832467bd865}} 
+static constexpr auto {\bfseries symbol} = Symbol
+\begin{DoxyCompactList}\small\item\em Unique base dimension identifier. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$\mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\+\_\+fixed\+\_\+string}} Symbol, Named\+Unit U$>$\newline
+struct units\+::base\+\_\+dimension$<$ Symbol, U $>$}
+A dimension of a base quantity. 
+
+Base quantity is a quantity in a conventionally chosen subset of a given system of quantities, where no quantity in the subset can be expressed in terms of the other quantities within that subset. They are referred to as being mutually independent since a base quantity cannot be expressed as a product of powers of the other base quantities.
+
+Base unit is a measurement unit that is adopted by convention for a base quantity in a specific system of units.
+
+Pair of Symbol and Unit template parameters form an unique identifier of the base dimension. The same identifiers can be multiplied and divided which will result with an adjustment of its factor in an Exponent of a Derived\+Dimension (in case of zero the dimension will be simplified and removed from further analysis of current expresion). In case the Symbol is the same but the Unit differs (i.\+e. mixing SI and CGS length), there is no automatic simplification but is possible to force it with a quantity\+\_\+cast.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Symbol} & an unique identifier of the base dimension used to provide dimensional analysis support \\
+\hline
+{\em U} & a base unit to be used for this base dimension \\
+\hline
+\end{DoxyTemplParams}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+csm-\/units/units/src/core/include/units/base\+\_\+dimension.\+h\item 
+csm-\/units/units/test/metabench/make\+\_\+dimension/dimension\+\_\+concepts\+\_\+all.\+h\item 
+csm-\/units/units/test/metabench/make\+\_\+dimension/dimension\+\_\+concepts\+\_\+iface.\+h\item 
+csm-\/units/units/test/metabench/make\+\_\+dimension/dimension\+\_\+no\+\_\+concepts.\+h\end{DoxyCompactItemize}

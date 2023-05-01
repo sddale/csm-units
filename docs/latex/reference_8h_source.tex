@@ -1,0 +1,106 @@
+\hypertarget{reference_8h_source}{}\doxysection{reference.\+h}
+\label{reference_8h_source}\index{csm-\/units/units/src/core/include/units/reference.h@{csm-\/units/units/src/core/include/units/reference.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <units/bits/basic\_concepts.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <units/bits/dimension\_op.h>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }units\ \{}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{template}<Dimension\ D,\ UnitOf<D>\ U,\ Representation\ Rep>}
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }quantity;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{template}<Dimension\ D,\ UnitOf<D>\ U>}
+\DoxyCodeLine{00034\ \textcolor{keyword}{struct\ }reference;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{namespace\ }detail\ \{}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}<Dimension\ D,\ Reference\ R1,\ Reference\ R2>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{using\ }reference\_multiply\_impl\ =\ reference<D,\ downcast\_unit<D,\ R1::mag\ *\ R2::mag\ /\ D::mag>>;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ D,\ Reference\ R1,\ Reference\ R2>}
+\DoxyCodeLine{00042\ \textcolor{keyword}{using\ }reference\_divide\_impl\ =\ reference<D,\ downcast\_unit<D,\ R1::mag\ /\ R2::mag\ /\ D::mag>>;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \}\ \ \textcolor{comment}{//\ namespace\ detail}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{template}<Reference\ R1,\ Reference\ R2>}
+\DoxyCodeLine{00047\ \textcolor{keyword}{using\ }reference\_multiply\ =}
+\DoxyCodeLine{00048\ \ \ detail::reference\_multiply\_impl<dimension\_multiply<typename\ R1::dimension,\ typename\ R2::dimension>,\ R1,\ R2>;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{template}<Reference\ R1,\ Reference\ R2>}
+\DoxyCodeLine{00051\ \textcolor{keyword}{using\ }reference\_divide\ =}
+\DoxyCodeLine{00052\ \ \ detail::reference\_divide\_impl<dimension\_divide<typename\ R1::dimension,\ typename\ R2::dimension>,\ R1,\ R2>;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{template}<Dimension\ D,\ UnitOf<D>\ U>}
+\DoxyCodeLine{00094\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1reference}{reference}}\ \{}
+\DoxyCodeLine{00095\ \ \ \textcolor{keyword}{using\ }dimension\ =\ D;}
+\DoxyCodeLine{00096\ \ \ \textcolor{keyword}{using\ }unit\ =\ U;}
+\DoxyCodeLine{00097\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ UNITS\_CONSTRAINED\_AUTO\_WORKAROUND(\mbox{\hyperlink{conceptunits_1_1_magnitude}{Magnitude}})\ \textcolor{keyword}{auto}\ mag\ =\ dimension::mag\ *\ unit::mag;}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \textcolor{comment}{//\ Hidden\ Friends}}
+\DoxyCodeLine{00100\ \ \ \textcolor{comment}{//\ Below\ friend\ functions\ are\ to\ be\ found\ via\ argument-\/dependent\ lookup\ only}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \textcolor{keyword}{template}<Reference\ R2>}
+\DoxyCodeLine{00103\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structunits_1_1reference}{reference\_multiply<reference,\ R2>}}\ operator*(\mbox{\hyperlink{structunits_1_1reference}{reference}},\ R2)}
+\DoxyCodeLine{00104\ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00106\ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \textcolor{keyword}{template}<Reference\ R2>}
+\DoxyCodeLine{00109\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structunits_1_1reference}{reference\_divide<reference,\ R2>}}\ operator/(\mbox{\hyperlink{structunits_1_1reference}{reference}},\ R2)}
+\DoxyCodeLine{00110\ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00112\ \ \ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \textcolor{keyword}{template}<Representation\ Rep>}
+\DoxyCodeLine{00115\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity}}\ \textcolor{keyword}{auto}\ operator*(\textcolor{keyword}{const}\ Rep\&\ lhs,\ \mbox{\hyperlink{structunits_1_1reference}{reference}})}
+\DoxyCodeLine{00116\ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity<D,\ U,\ Rep>}}(lhs);}
+\DoxyCodeLine{00118\ \ \ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \textcolor{keyword}{friend}\ \textcolor{keywordtype}{void}\ \textcolor{comment}{/*Use\ `q\ *\ (1\ *\ r)`\ rather\ than\ `q\ *\ r`.*/}\ operator*(\mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity}}\ \textcolor{keyword}{auto},\ \mbox{\hyperlink{structunits_1_1reference}{reference}})\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \textcolor{keyword}{template}<Reference\ R2>}
+\DoxyCodeLine{00123\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator==(\mbox{\hyperlink{structunits_1_1reference}{reference}},\ R2)}
+\DoxyCodeLine{00124\ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00126\ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator==(\mbox{\hyperlink{structunits_1_1reference}{reference}},\ \mbox{\hyperlink{structunits_1_1reference}{reference}})\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00129\ \};}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{comment}{//\ type\ traits}}
+\DoxyCodeLine{00132\ \textcolor{keyword}{namespace\ }detail\ \{}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ D,\ \textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00135\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ is\_reference<reference<D,\ U>>\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \}\ \ \textcolor{comment}{//\ namespace\ detail}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \}\ \ \textcolor{comment}{//\ namespace\ units}}
+
+\end{DoxyCode}

@@ -1,0 +1,205 @@
+\hypertarget{classunits_1_1quantity}{}\doxysection{units\+::quantity\texorpdfstring{$<$}{<} D, U, Rep \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classunits_1_1quantity}\index{units::quantity$<$ D, U, Rep $>$@{units::quantity$<$ D, U, Rep $>$}}
+
+
+A quantity.  
+
+
+
+
+{\ttfamily \#include $<$quantity.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_aaf7366a5ef62d34b71d98dc13ae757dd}\label{classunits_1_1quantity_aaf7366a5ef62d34b71d98dc13ae757dd}} 
+using {\bfseries dimension} = D
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a6fd4a14989d2e598c9fcefb108cce883}\label{classunits_1_1quantity_a6fd4a14989d2e598c9fcefb108cce883}} 
+using {\bfseries unit} = U
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a6d0d03a149664d0e12b1bb9ba29c16d6}\label{classunits_1_1quantity_a6d0d03a149664d0e12b1bb9ba29c16d6}} 
+using {\bfseries rep} = Rep
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a88b294a9704f54c7a945f737b99bcf89}\label{classunits_1_1quantity_a88b294a9704f54c7a945f737b99bcf89}} 
+{\bfseries quantity} (const \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&)=default
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a3864a54713bfefd987a4cb1cb0d27bbe}\label{classunits_1_1quantity_a3864a54713bfefd987a4cb1cb0d27bbe}} 
+{\bfseries quantity} (\mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&\&)=default
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a014620a5825ea4fd638286ac9d3159bb}\label{classunits_1_1quantity_a014620a5825ea4fd638286ac9d3159bb}} 
+{\footnotesize template$<$typename Value $>$ \newline
+requires (safe\+\_\+convertible\+\_\+to\+\_\+$<$std\+::remove\+\_\+cvref\+\_\+t$<$Value$>$, rep$>$)}\\constexpr {\bfseries explicit} (!detail\+::quantity\+\_\+one$<$ \mbox{\hyperlink{classunits_1_1quantity}{quantity}} $>$) \mbox{\hyperlink{classunits_1_1quantity}{quantity}}(Value \&\&v)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a3be4e35ba5ce82e6d9009ad0015bb63a}\label{classunits_1_1quantity_a3be4e35ba5ce82e6d9009ad0015bb63a}} 
+{\footnotesize template$<$safe\+\_\+castable\+\_\+to\+\_\+$<$ \mbox{\hyperlink{classunits_1_1quantity}{quantity}} $>$ Q$>$ }\\constexpr {\bfseries explicit} (false) \mbox{\hyperlink{classunits_1_1quantity}{quantity}}(const Q \&q)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a00294020cf4c61410d41a4c03b0ca896}\label{classunits_1_1quantity_a00294020cf4c61410d41a4c03b0ca896}} 
+{\footnotesize template$<$Quantity\+Like Q$>$ \newline
+requires (safe\+\_\+castable\+\_\+to\+\_\+$<$\mbox{\hyperlink{classunits_1_1quantity}{quantity\+\_\+like\+\_\+type}}$<$Q$>$, \mbox{\hyperlink{classunits_1_1quantity}{quantity}}$>$)}\\constexpr {\bfseries quantity} (const Q \&q)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a3d369819b68fc8f8316bb02ea7b0cd86}\label{classunits_1_1quantity_a3d369819b68fc8f8316bb02ea7b0cd86}} 
+\mbox{\hyperlink{classunits_1_1quantity}{quantity}} \& {\bfseries operator=} (const \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&)=default
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a543b592a20e01d24b0840f92ba5895a6}\label{classunits_1_1quantity_a543b592a20e01d24b0840f92ba5895a6}} 
+\mbox{\hyperlink{classunits_1_1quantity}{quantity}} \& {\bfseries operator=} (\mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&\&)=default
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_aadc4630ebc3078a96935c30fa1385959}\label{classunits_1_1quantity_aadc4630ebc3078a96935c30fa1385959}} 
+constexpr rep \& {\bfseries number} () \&noexcept
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_adc5a3853da40d59f94ff51ccf76c9ce1}\label{classunits_1_1quantity_adc5a3853da40d59f94ff51ccf76c9ce1}} 
+constexpr const rep \& {\bfseries number} () const \&noexcept
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a4bddba383400a96bd2b028205f6121eb}\label{classunits_1_1quantity_a4bddba383400a96bd2b028205f6121eb}} 
+constexpr rep \&\& {\bfseries number} () \&\&noexcept
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a91e735f9c535ae4f1e77c1461137572f}\label{classunits_1_1quantity_a91e735f9c535ae4f1e77c1461137572f}} 
+constexpr const rep \&\& {\bfseries number} () const \&\&noexcept
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a9bb4d65b3b47b8001c6561710c2994ae}\label{classunits_1_1quantity_a9bb4d65b3b47b8001c6561710c2994ae}} 
+constexpr Quantity auto {\bfseries operator+} () const
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_adbff93a4a1a051f1d3d5d79ace33ade4}\label{classunits_1_1quantity_adbff93a4a1a051f1d3d5d79ace33ade4}} 
+constexpr Quantity auto {\bfseries operator-\/} () const
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a02015da008a0d44082659e2fecedbfa0}\label{classunits_1_1quantity_a02015da008a0d44082659e2fecedbfa0}} 
+constexpr \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \& {\bfseries operator++} ()
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a9b3a85379db581d9be1b4ed4e24644d5}\label{classunits_1_1quantity_a9b3a85379db581d9be1b4ed4e24644d5}} 
+constexpr \mbox{\hyperlink{classunits_1_1quantity}{quantity}} {\bfseries operator++} (int)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a518dd081e631c577ef938f7a6d86ce59}\label{classunits_1_1quantity_a518dd081e631c577ef938f7a6d86ce59}} 
+constexpr \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \& {\bfseries operator-\/-\/} ()
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a6af360f4188351ccd6216c2efb2dd3c4}\label{classunits_1_1quantity_a6af360f4188351ccd6216c2efb2dd3c4}} 
+constexpr \mbox{\hyperlink{classunits_1_1quantity}{quantity}} {\bfseries operator-\/-\/} (int)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_ab5be3ddf31fa5f8d141eebfec3d63bd9}\label{classunits_1_1quantity_ab5be3ddf31fa5f8d141eebfec3d63bd9}} 
+constexpr \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \& {\bfseries operator+=} (const \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&q)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_aebd8c5a191dc5371dc05f08b7328983f}\label{classunits_1_1quantity_aebd8c5a191dc5371dc05f08b7328983f}} 
+constexpr \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \& {\bfseries operator-\/=} (const \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&q)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a10cbbeacf08e76855071e4729148202a}\label{classunits_1_1quantity_a10cbbeacf08e76855071e4729148202a}} 
+{\footnotesize template$<$typename Rep2 $>$ \newline
+requires requires(rep a, const Rep2 b) \{ \{ a $\ast$= b \} -\/$>$ std\+::same\+\_\+as$<$rep\&$>$; \}}\\constexpr \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \& {\bfseries operator$\ast$=} (const Rep2 \&rhs)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a2bdb0a9f6014d0d1eed8ae509e87fbc5}\label{classunits_1_1quantity_a2bdb0a9f6014d0d1eed8ae509e87fbc5}} 
+{\footnotesize template$<$detail\+::quantity\+\_\+one Q$>$ \newline
+requires requires(rep a, const typename Q\+::rep b) \{ \{ a $\ast$= b \} -\/$>$ std\+::same\+\_\+as$<$rep\&$>$; \}}\\constexpr \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \& {\bfseries operator$\ast$=} (const Q \&rhs)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_ad72223f5723799c4644cba70af3378ea}\label{classunits_1_1quantity_ad72223f5723799c4644cba70af3378ea}} 
+{\footnotesize template$<$typename Rep2 $>$ \newline
+requires requires(rep a, const Rep2 b) \{ \{ a /= b \} -\/$>$ std\+::same\+\_\+as$<$rep\&$>$; \}}\\constexpr \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \& {\bfseries operator/=} (const Rep2 \&rhs)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a63eccafa8433108378473bed28e6e18a}\label{classunits_1_1quantity_a63eccafa8433108378473bed28e6e18a}} 
+{\footnotesize template$<$detail\+::quantity\+\_\+one Q$>$ \newline
+requires requires(rep a, const typename Q\+::rep b) \{ \{ a /= b \} -\/$>$ std\+::same\+\_\+as$<$rep\&$>$; \}}\\constexpr \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \& {\bfseries operator/=} (const Q \&rhs)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_ac59b89e35f559bd9225a94020da45bac}\label{classunits_1_1quantity_ac59b89e35f559bd9225a94020da45bac}} 
+{\footnotesize template$<$typename Rep2 $>$ \newline
+requires (!floating\+\_\+point\+\_\+$<$rep$>$) \&\& (!floating\+\_\+point\+\_\+$<$Rep2$>$) \&\& requires(rep a, const Rep2 b) \{ \{ a \%= b \} -\/$>$ std\+::same\+\_\+as$<$rep\&$>$; \}}\\constexpr \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \& {\bfseries operator\%=} (const Rep2 \&rhs)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a4d8d5da61557de2bb2ff817398862470}\label{classunits_1_1quantity_a4d8d5da61557de2bb2ff817398862470}} 
+{\footnotesize template$<$detail\+::quantity\+\_\+one Q$>$ \newline
+requires (!floating\+\_\+point\+\_\+$<$rep$>$) \&\& (!floating\+\_\+point\+\_\+$<$typename Q\+::rep$>$) \&\& requires(rep a, const typename Q\+::rep b) \{ \{ a \%= b \} -\/$>$ std\+::same\+\_\+as$<$rep\&$>$; \}}\\constexpr \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \& {\bfseries operator\%=} (const Q \&rhs)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a2731aa5e193c1e6ca25c2cd9cea08fa2}\label{classunits_1_1quantity_a2731aa5e193c1e6ca25c2cd9cea08fa2}} 
+constexpr \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \& {\bfseries operator\%=} (const \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&q)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_ada33c5c40d078d19cbcdb6bc06992e9d}\label{classunits_1_1quantity_ada33c5c40d078d19cbcdb6bc06992e9d}} 
+static constexpr \mbox{\hyperlink{classunits_1_1quantity}{quantity}} {\bfseries zero} () noexcept
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a74ffd47f75e375cb0fa50abfc886d9cf}\label{classunits_1_1quantity_a74ffd47f75e375cb0fa50abfc886d9cf}} 
+static constexpr \mbox{\hyperlink{classunits_1_1quantity}{quantity}} {\bfseries one} () noexcept
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_ad412b6adb847428979e4b0b827cbc1d8}\label{classunits_1_1quantity_ad412b6adb847428979e4b0b827cbc1d8}} 
+static constexpr \mbox{\hyperlink{classunits_1_1quantity}{quantity}} {\bfseries min} () noexcept
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a76f56515848aa64d44a3b4611bd5a99e}\label{classunits_1_1quantity_a76f56515848aa64d44a3b4611bd5a99e}} 
+static constexpr \mbox{\hyperlink{classunits_1_1quantity}{quantity}} {\bfseries max} () noexcept
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a0ca4cf14e04229faddcfd380ab3ba5ea}\label{classunits_1_1quantity_a0ca4cf14e04229faddcfd380ab3ba5ea}} 
+static constexpr \mbox{\hyperlink{structunits_1_1reference}{units\+::reference}}$<$ dimension, unit $>$ {\bfseries reference} \{\}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a46226e9397358cec41a6e250c61b43d6}\label{classunits_1_1quantity_a46226e9397358cec41a6e250c61b43d6}} 
+{\footnotesize template$<$typename Value $>$ \newline
+requires requires \{ requires !Quantity$<$Value$>$; requires is\+\_\+same\+\_\+v$<$unit, \mbox{\hyperlink{structunits_1_1one}{units\+::one}}$>$; requires invoke\+\_\+result\+\_\+convertible\+\_\+to\+\_\+$<$rep, std\+::plus$<$$>$, rep, Value$>$; \}}\\constexpr Quantity auto {\bfseries operator+} (const \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&lhs, const Value \&rhs)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a221a0423f53486538f91a34103eed636}\label{classunits_1_1quantity_a221a0423f53486538f91a34103eed636}} 
+{\footnotesize template$<$typename Value $>$ \newline
+requires requires \{ requires !Quantity$<$Value$>$; requires is\+\_\+same\+\_\+v$<$unit, \mbox{\hyperlink{structunits_1_1one}{units\+::one}}$>$; requires invoke\+\_\+result\+\_\+convertible\+\_\+to\+\_\+$<$rep, std\+::plus$<$$>$, Value, rep$>$; \}}\\constexpr Quantity auto {\bfseries operator+} (const Value \&lhs, const \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&rhs)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_ab18f07ef5b167b2693f8c6af04195b71}\label{classunits_1_1quantity_ab18f07ef5b167b2693f8c6af04195b71}} 
+{\footnotesize template$<$typename Value $>$ \newline
+requires requires \{ requires !Quantity$<$Value$>$; requires is\+\_\+same\+\_\+v$<$unit, \mbox{\hyperlink{structunits_1_1one}{units\+::one}}$>$; requires invoke\+\_\+result\+\_\+convertible\+\_\+to\+\_\+$<$rep, std\+::minus$<$$>$, rep, Value$>$; \}}\\constexpr Quantity auto {\bfseries operator-\/} (const \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&lhs, const Value \&rhs)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_ab44e2cf83b49995f57b59f939140524c}\label{classunits_1_1quantity_ab44e2cf83b49995f57b59f939140524c}} 
+{\footnotesize template$<$typename Value $>$ \newline
+requires requires \{ requires !Quantity$<$Value$>$; requires is\+\_\+same\+\_\+v$<$unit, \mbox{\hyperlink{structunits_1_1one}{units\+::one}}$>$; requires invoke\+\_\+result\+\_\+convertible\+\_\+to\+\_\+$<$rep, std\+::minus$<$$>$, Value, rep$>$; \}}\\constexpr Quantity auto {\bfseries operator-\/} (const Value \&lhs, const \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&rhs)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a8f5a160f9df5c2e0d8227fe0748cd620}\label{classunits_1_1quantity_a8f5a160f9df5c2e0d8227fe0748cd620}} 
+{\footnotesize template$<$Representation Value$>$ \newline
+requires (invoke\+\_\+result\+\_\+convertible\+\_\+to\+\_\+$<$rep, std\+::multiplies$<$$>$, rep, const Value\&$>$)}\\constexpr Quantity auto {\bfseries operator$\ast$} (const \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&q, const Value \&v)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_ade0c9e30960d44d565c4b427a73e93be}\label{classunits_1_1quantity_ade0c9e30960d44d565c4b427a73e93be}} 
+{\footnotesize template$<$Representation Value$>$ \newline
+requires (invoke\+\_\+result\+\_\+convertible\+\_\+to\+\_\+$<$rep, std\+::multiplies$<$$>$, const Value\&, rep$>$)}\\constexpr Quantity auto {\bfseries operator$\ast$} (const Value \&v, const \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&q)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_aa6dd3324e2b1efc8dcaa04e681c52f25}\label{classunits_1_1quantity_aa6dd3324e2b1efc8dcaa04e681c52f25}} 
+{\footnotesize template$<$Representation Value$>$ \newline
+requires (invoke\+\_\+result\+\_\+convertible\+\_\+to\+\_\+$<$rep, std\+::divides$<$$>$, rep, const Value\&$>$)}\\constexpr Quantity auto {\bfseries operator/} (const \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&q, const Value \&v)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a1e686535a3bd370c2370b30684271c3d}\label{classunits_1_1quantity_a1e686535a3bd370c2370b30684271c3d}} 
+{\footnotesize template$<$Representation Value$>$ \newline
+requires (invoke\+\_\+result\+\_\+convertible\+\_\+to\+\_\+$<$rep, std\+::divides$<$$>$, const Value\&, rep$>$)}\\constexpr Quantity auto {\bfseries operator/} (const Value \&v, const \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&q)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a89fc4aced0a2305cdfd61ccd5ea56cb2}\label{classunits_1_1quantity_a89fc4aced0a2305cdfd61ccd5ea56cb2}} 
+{\footnotesize template$<$typename Value $>$ \newline
+requires (!Quantity$<$Value$>$) \&\& (!floating\+\_\+point\+\_\+$<$rep$>$) \&\& (!floating\+\_\+point\+\_\+$<$Value$>$) \&\& (invoke\+\_\+result\+\_\+convertible\+\_\+to\+\_\+$<$rep, std\+::modulus$<$$>$, rep, const Value\&$>$)}\\constexpr Quantity auto {\bfseries operator\%} (const \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&q, const Value \&v)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a41ff5295bebc67b8e0c93f617d8b4eab}\label{classunits_1_1quantity_a41ff5295bebc67b8e0c93f617d8b4eab}} 
+constexpr Quantity auto {\bfseries operator\%} (const \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&lhs, const \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&rhs)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_a734a2c068108d78f4f90d6402fbbaaf6}\label{classunits_1_1quantity_a734a2c068108d78f4f90d6402fbbaaf6}} 
+constexpr auto {\bfseries operator$<$=$>$} (const \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&lhs, const \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&rhs)
+\item 
+\mbox{\Hypertarget{classunits_1_1quantity_ad055a33c957c85d9ccdbbb123237a148}\label{classunits_1_1quantity_ad055a33c957c85d9ccdbbb123237a148}} 
+constexpr bool {\bfseries operator==} (const \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&lhs, const \mbox{\hyperlink{classunits_1_1quantity}{quantity}} \&rhs)=default
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$Dimension D, Unit\+Of$<$ D $>$ U, Representation Rep = double$>$\newline
+class units\+::quantity$<$ D, U, Rep $>$}
+A quantity. 
+
+Property of a phenomenon, body, or substance, where the property has a magnitude that can be expressed by means of a number and a measurement unit.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em D} & a dimension of the quantity (can be either a Base\+Dimension or a Derived\+Dimension) \\
+\hline
+{\em U} & a measurement unit of the quantity \\
+\hline
+{\em Rep} & a type to be used to represent values of a quantity \\
+\hline
+\end{DoxyTemplParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+csm-\/units/units/src/core/include/units/bits/common\+\_\+type.\+h\item 
+csm-\/units/units/src/core/include/units/quantity.\+h\end{DoxyCompactItemize}

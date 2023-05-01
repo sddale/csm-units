@@ -1,0 +1,218 @@
+\hypertarget{si-hep_2include_2units_2isq_2si_2hep_2mass_8h_source}{}\doxysection{mass.\+h}
+\label{si-hep_2include_2units_2isq_2si_2hep_2mass_8h_source}\index{csm-\/units/units/src/systems/si-\/hep/include/units/isq/si/hep/mass.h@{csm-\/units/units/src/systems/si-\/hep/include/units/isq/si/hep/mass.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2021\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ IWYU\ pragma:\ begin\_exports}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <units/isq/dimensions/mass.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <units/quantity.h>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <units/reference.h>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <units/symbol\_text.h>}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ IWYU\ pragma:\ end\_exports}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <units/isq/si/mass.h>}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <units/unit.h>}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ Necessary\ to\ factor\ `1'672'621'923'695`,\ which\ appears\ in\ the\ proton\ mass.}}
+\DoxyCodeLine{00036\ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00037\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ std::optional<std::intmax\_t>\ units::known\_first\_factor<334'524'384'739>\ =\ 334'524'384'739;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ Necessary\ to\ factor\ `17'826'619'216'279`,\ which\ appears\ in\ the\ value\ for\ eV/c\string^2.}}
+\DoxyCodeLine{00040\ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00041\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ std::optional<std::intmax\_t>\ units::known\_first\_factor<225'653'407'801>\ =\ 225'653'407'801;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{namespace\ }units::isq::si::hep\ \{}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hep_1_1e_v__per__c2}{eV\_per\_c2}}\ :}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{structunits_1_1named__scaled__unit}{named\_scaled\_unit}}<eV\_per\_c2,\ basic\_symbol\_text\{"{}eV/c²"{},\ "{}eV/c\string^2"{}\},}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mag<ratio(17'826'619'216'279,\ 1'000'000'000'000)>()\ *\ mag\_power<10,\ -\/35>(),\ kilogram>\ \{\};}
+\DoxyCodeLine{00048\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hep_1_1fe_v__per__c2}{feV\_per\_c2}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<feV\_per\_c2,\ femto,\ eV\_per\_c2>\ \{\};}
+\DoxyCodeLine{00049\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hep_1_1pe_v__per__c2}{peV\_per\_c2}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<peV\_per\_c2,\ pico,\ eV\_per\_c2>\ \{\};}
+\DoxyCodeLine{00050\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hep_1_1ne_v__per__c2}{neV\_per\_c2}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<neV\_per\_c2,\ nano,\ eV\_per\_c2>\ \{\};}
+\DoxyCodeLine{00051\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hep_1_1ue_v__per__c2}{ueV\_per\_c2}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<ueV\_per\_c2,\ micro,\ eV\_per\_c2>\ \{\};}
+\DoxyCodeLine{00052\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hep_1_1me_v__per__c2}{meV\_per\_c2}}\ :}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<meV\_per\_c2,\ milli,\ eV\_per\_c2>\ \{\};\ \ \textcolor{comment}{//\ approximate\ mass\ of\ an\ electron/positron\ (0.511\ MeV/c2)}}
+\DoxyCodeLine{00054\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hep_1_1ke_v__per__c2}{keV\_per\_c2}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<keV\_per\_c2,\ kilo,\ eV\_per\_c2>\ \{\};}
+\DoxyCodeLine{00055\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hep_1_1_me_v__per__c2}{MeV\_per\_c2}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<MeV\_per\_c2,\ mega,\ eV\_per\_c2>\ \{\};}
+\DoxyCodeLine{00056\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hep_1_1_ge_v__per__c2}{GeV\_per\_c2}}\ :}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<GeV\_per\_c2,\ giga,\ eV\_per\_c2>\ \{\};\ \ \textcolor{comment}{//\ approximate\ mass\ of\ a\ proton\ (0.938\ GeV/c2)\ or\ neutron}}
+\DoxyCodeLine{00058\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hep_1_1_te_v__per__c2}{TeV\_per\_c2}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<TeV\_per\_c2,\ tera,\ eV\_per\_c2>\ \{\};}
+\DoxyCodeLine{00059\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hep_1_1_pe_v__per__c2}{PeV\_per\_c2}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<PeV\_per\_c2,\ peta,\ eV\_per\_c2>\ \{\};}
+\DoxyCodeLine{00060\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hep_1_1_ee_v__per__c2}{EeV\_per\_c2}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<EeV\_per\_c2,\ exa,\ eV\_per\_c2>\ \{\};}
+\DoxyCodeLine{00061\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hep_1_1_ye_v__per__c2}{YeV\_per\_c2}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<YeV\_per\_c2,\ yotta,\ eV\_per\_c2>\ \{\};}
+\DoxyCodeLine{00062\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hep_1_1electron__mass}{electron\_mass}}\ :}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{structunits_1_1named__scaled__unit}{named\_scaled\_unit}}<eV\_per\_c2,\ "{}m\_e"{},\ mag<ratio(9'109'383'701'528,\ 1'000'000'000'000)>()\ *\ mag\_power<10,\ -\/31>(),}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ kilogram>\ \{\};}
+\DoxyCodeLine{00065\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hep_1_1proton__mass}{proton\_mass}}\ :}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{structunits_1_1named__scaled__unit}{named\_scaled\_unit}}<eV\_per\_c2,\ "{}m\_p"{},\ mag<ratio(1'672'621'923'695,\ 1'000'000'000'000)>()\ *\ mag\_power<10,\ -\/27>(),}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ kilogram>\ \{\};}
+\DoxyCodeLine{00068\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hep_1_1neutron__mass}{neutron\_mass}}\ :}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{structunits_1_1named__scaled__unit}{named\_scaled\_unit}}<eV\_per\_c2,\ "{}m\_n"{},\ mag<ratio(1'674'927'498'049,\ 1'000'000'000'000)>()\ *\ mag\_power<10,\ -\/27>(),}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ kilogram>\ \{\};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hep_1_1dim__mass}{dim\_mass}}\ :\ \mbox{\hyperlink{structunits_1_1isq_1_1dim__mass}{isq::dim\_mass}}<eV\_per\_c2>\ \{\};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{template}<UnitOf<dim\_mass>\ U,\ Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00075\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{mass}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{quantity<dim\_mass,\ U,\ Rep>}};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_LITERALS}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{inline}\ \textcolor{keyword}{namespace\ }literals\ \{}
+\DoxyCodeLine{00080\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_feV\_per\_c2(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00081\ \{}
+\DoxyCodeLine{00082\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00083\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity}{mass<feV\_per\_c2,\ std::int64\_t>}}(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_feV\_per\_c2(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity}{mass<feV\_per\_c2,\ long\ double>}}(l);\ \}}
+\DoxyCodeLine{00086\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_peV\_per\_c2(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00087\ \{}
+\DoxyCodeLine{00088\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00089\ \ \ \textcolor{keywordflow}{return}\ mass<peV\_per\_c2,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00090\ \}}
+\DoxyCodeLine{00091\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_peV\_per\_c2(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<peV\_per\_c2,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00092\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_neV\_per\_c2(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00093\ \{}
+\DoxyCodeLine{00094\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00095\ \ \ \textcolor{keywordflow}{return}\ mass<neV\_per\_c2,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00096\ \}}
+\DoxyCodeLine{00097\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_neV\_per\_c2(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<neV\_per\_c2,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00098\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ueV\_per\_c2(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00099\ \{}
+\DoxyCodeLine{00100\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00101\ \ \ \textcolor{keywordflow}{return}\ mass<ueV\_per\_c2,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00102\ \}}
+\DoxyCodeLine{00103\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ueV\_per\_c2(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<ueV\_per\_c2,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00104\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_meV\_per\_c2(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00105\ \{}
+\DoxyCodeLine{00106\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00107\ \ \ \textcolor{keywordflow}{return}\ mass<meV\_per\_c2,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00108\ \}}
+\DoxyCodeLine{00109\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_meV\_per\_c2(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<meV\_per\_c2,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{comment}{//\ eV\_per\_c2}}
+\DoxyCodeLine{00112\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_eV\_per\_c2(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00113\ \{}
+\DoxyCodeLine{00114\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00115\ \ \ \textcolor{keywordflow}{return}\ mass<eV\_per\_c2,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00116\ \}}
+\DoxyCodeLine{00117\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_eV\_per\_c2(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<eV\_per\_c2,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_keV\_per\_c2(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00120\ \{}
+\DoxyCodeLine{00121\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00122\ \ \ \textcolor{keywordflow}{return}\ mass<keV\_per\_c2,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00123\ \}}
+\DoxyCodeLine{00124\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_keV\_per\_c2(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<keV\_per\_c2,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00125\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_MeV\_per\_c2(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00126\ \{}
+\DoxyCodeLine{00127\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00128\ \ \ \textcolor{keywordflow}{return}\ mass<MeV\_per\_c2,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00129\ \}}
+\DoxyCodeLine{00130\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_MeV\_per\_c2(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<MeV\_per\_c2,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00131\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_GeV\_per\_c2(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00132\ \{}
+\DoxyCodeLine{00133\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00134\ \ \ \textcolor{keywordflow}{return}\ mass<GeV\_per\_c2,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00135\ \}}
+\DoxyCodeLine{00136\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_GeV\_per\_c2(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<GeV\_per\_c2,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00137\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_TeV\_per\_c2(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00138\ \{}
+\DoxyCodeLine{00139\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00140\ \ \ \textcolor{keywordflow}{return}\ mass<TeV\_per\_c2,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00141\ \}}
+\DoxyCodeLine{00142\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_TeV\_per\_c2(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<TeV\_per\_c2,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00143\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_PeV\_per\_c2(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00144\ \{}
+\DoxyCodeLine{00145\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00146\ \ \ \textcolor{keywordflow}{return}\ mass<PeV\_per\_c2,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00147\ \}}
+\DoxyCodeLine{00148\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_PeV\_per\_c2(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<PeV\_per\_c2,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00149\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_EeV\_per\_c2(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00150\ \{}
+\DoxyCodeLine{00151\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00152\ \ \ \textcolor{keywordflow}{return}\ mass<EeV\_per\_c2,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00153\ \}}
+\DoxyCodeLine{00154\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_EeV\_per\_c2(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<EeV\_per\_c2,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00155\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_YeV\_per\_c2(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00156\ \{}
+\DoxyCodeLine{00157\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00158\ \ \ \textcolor{keywordflow}{return}\ mass<YeV\_per\_c2,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00159\ \}}
+\DoxyCodeLine{00160\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_YeV\_per\_c2(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<YeV\_per\_c2,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \textcolor{comment}{//\ special\ HEP\ masses}}
+\DoxyCodeLine{00163\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_electron\_mass(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00164\ \{}
+\DoxyCodeLine{00165\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00166\ \ \ \textcolor{keywordflow}{return}\ mass<electron\_mass,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00167\ \}}
+\DoxyCodeLine{00168\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_electron\_mass(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<electron\_mass,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00169\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_proton\_mass(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00170\ \{}
+\DoxyCodeLine{00171\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00172\ \ \ \textcolor{keywordflow}{return}\ mass<proton\_mass,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00173\ \}}
+\DoxyCodeLine{00174\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_proton\_mass(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<proton\_mass,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00175\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_neutron\_mass(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00176\ \{}
+\DoxyCodeLine{00177\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00178\ \ \ \textcolor{keywordflow}{return}\ mass<neutron\_mass,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00179\ \}}
+\DoxyCodeLine{00180\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_neutron\_mass(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<neutron\_mass,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00181\ \}\ \ \textcolor{comment}{//\ namespace\ literals}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_LITERALS}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_REFERENCES}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \textcolor{keyword}{namespace\ }mass\_references\ \{}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ eV\_per\_c2\ =\ reference<dim\_mass,\ ::units::isq::si::hep::eV\_per\_c2>\{\};}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \}\ \ \textcolor{comment}{//\ namespace\ mass\_references}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \textcolor{keyword}{namespace\ }references\ \{}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \textcolor{keyword}{using\ namespace\ }mass\_references;}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \}\ \ \textcolor{comment}{//\ namespace\ references}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_REFERENCES}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \}\ \ \textcolor{comment}{//\ namespace\ units::isq::si::hep}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_ALIASES}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \textcolor{keyword}{namespace\ }units::aliases::isq::si::hep::inline\ mass\ \{}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00208\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{eV\_per\_c2g}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::hep::mass<units::isq::si::hep::eV\_per\_c2,\ Rep>}};}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \}\ \ \textcolor{comment}{//\ namespace\ units::aliases::isq::si::hep::inline\ mass}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_ALIASES}}
+
+\end{DoxyCode}

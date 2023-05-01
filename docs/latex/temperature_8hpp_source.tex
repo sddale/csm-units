@@ -1,0 +1,41 @@
+\hypertarget{temperature_8hpp_source}{}\doxysection{temperature.\+hpp}
+\label{temperature_8hpp_source}\index{csm-\/units/source/csm\_units/temperature.hpp@{csm-\/units/source/csm\_units/temperature.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ READY\ TO\ BE\ DELETED\ -\/\ PENDING\ SETH\ APROOVAL}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \#pragma\ once}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ namespace\ csm\_units\ \{}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ class\ DimTemperature\ \{\};}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ class\ CelsiusConverter\ \{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ \ public:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ \ \ [[nodiscard]]\ constexpr\ static\ auto\ ToBase(double\ value)\ noexcept\ -\/>\ double}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ \ \ \{}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ \ \ \ \ return\ value\ +\ 273.15;}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ \ \ [[nodiscard]]\ constexpr\ static\ auto\ FromBase(double\ dataKelvin)\ noexcept}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \ \ \ \ \ \ -\/>\ double\ \{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ \ \ \ \ return\ dataKelvin\ -\/\ 273.15;}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ \};}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ class\ FahrenheitConverter\ \{}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ \ public:}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ \ \ [[nodiscard]]\ constexpr\ static\ auto\ ToBase(double\ value)\ noexcept\ -\/>\ double}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ \ \ \{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ \ \ \ \ return\ (value\ -\/\ 32)\ /\ 1.8\ +\ 273.15;}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ \ \ [[nodiscard]]\ constexpr\ static\ auto\ FromBase(double\ dataKelvin)\ noexcept}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ \ \ \ \ \ \ -\/>\ double\ \{}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ \ \ \ \ return\ (dataKelvin\ -\/\ 273.15)\ *\ 1.8\ +\ 32;}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ \};}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ \}\ \ //\ namespace\ csm\_units}}
+
+\end{DoxyCode}

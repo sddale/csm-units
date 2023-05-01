@@ -1,0 +1,70 @@
+\hypertarget{classformat__int}{}\doxysection{format\+\_\+int Class Reference}
+\label{classformat__int}\index{format\_int@{format\_int}}
+
+
+{\ttfamily \#include $<$format.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classformat__int_a3664fa2bb28b1636eb2ceb8f2a28c5d3}\label{classformat__int_a3664fa2bb28b1636eb2ceb8f2a28c5d3}} 
+{\bfseries format\+\_\+int} (int value)
+\item 
+\mbox{\Hypertarget{classformat__int_a473c02889ad9139f7b6c008de5be9224}\label{classformat__int_a473c02889ad9139f7b6c008de5be9224}} 
+{\bfseries format\+\_\+int} (long value)
+\item 
+\mbox{\Hypertarget{classformat__int_a72e64eccbef3c56539074d790c4f5811}\label{classformat__int_a72e64eccbef3c56539074d790c4f5811}} 
+{\bfseries format\+\_\+int} (long long value)
+\item 
+\mbox{\Hypertarget{classformat__int_ad474137ee4a9d0545f0c8a2b3f6f6cf8}\label{classformat__int_ad474137ee4a9d0545f0c8a2b3f6f6cf8}} 
+{\bfseries format\+\_\+int} (unsigned value)
+\item 
+\mbox{\Hypertarget{classformat__int_affccebfca726a18d469e726655401d35}\label{classformat__int_affccebfca726a18d469e726655401d35}} 
+{\bfseries format\+\_\+int} (unsigned long value)
+\item 
+\mbox{\Hypertarget{classformat__int_a04c207f578ee7611d897c77ab4a34ff0}\label{classformat__int_a04c207f578ee7611d897c77ab4a34ff0}} 
+{\bfseries format\+\_\+int} (unsigned long long value)
+\item 
+auto \mbox{\hyperlink{classformat__int_a2f1870d4b535ead8699717fdcb25e997}{size}} () const -\/$>$ size\+\_\+t
+\item 
+auto \mbox{\hyperlink{classformat__int_ac8f7ea8ed9a0d5bdfa5cb0661e8851b8}{data}} () const -\/$>$ const char $\ast$
+\item 
+auto \mbox{\hyperlink{classformat__int_aadfe4e08e0007018df9c78863ad13d23}{c\+\_\+str}} () const -\/$>$ const char $\ast$
+\item 
+auto \mbox{\hyperlink{classformat__int_a0f1b5493b06b98edb747737ba864f86f}{str}} () const -\/$>$ std\+::string
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Fast integer formatter. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classformat__int_aadfe4e08e0007018df9c78863ad13d23}\label{classformat__int_aadfe4e08e0007018df9c78863ad13d23}} 
+\index{format\_int@{format\_int}!c\_str@{c\_str}}
+\index{c\_str@{c\_str}!format\_int@{format\_int}}
+\doxysubsubsection{\texorpdfstring{c\_str()}{c\_str()}}
+{\footnotesize\ttfamily auto format\+\_\+int\+::c\+\_\+str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const -\/$>$ const char$\ast$ \hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns a pointer to the output buffer content with terminating null character appended. \mbox{\Hypertarget{classformat__int_ac8f7ea8ed9a0d5bdfa5cb0661e8851b8}\label{classformat__int_ac8f7ea8ed9a0d5bdfa5cb0661e8851b8}} 
+\index{format\_int@{format\_int}!data@{data}}
+\index{data@{data}!format\_int@{format\_int}}
+\doxysubsubsection{\texorpdfstring{data()}{data()}}
+{\footnotesize\ttfamily auto format\+\_\+int\+::data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const -\/$>$ const char$\ast$ \hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns a pointer to the output buffer content. No terminating null character is appended. \mbox{\Hypertarget{classformat__int_a2f1870d4b535ead8699717fdcb25e997}\label{classformat__int_a2f1870d4b535ead8699717fdcb25e997}} 
+\index{format\_int@{format\_int}!size@{size}}
+\index{size@{size}!format\_int@{format\_int}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily auto format\+\_\+int\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const -\/$>$ size\+\_\+t \hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the number of characters written to the output buffer. \mbox{\Hypertarget{classformat__int_a0f1b5493b06b98edb747737ba864f86f}\label{classformat__int_a0f1b5493b06b98edb747737ba864f86f}} 
+\index{format\_int@{format\_int}!str@{str}}
+\index{str@{str}!format\_int@{format\_int}}
+\doxysubsubsection{\texorpdfstring{str()}{str()}}
+{\footnotesize\ttfamily auto format\+\_\+int\+::str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const -\/$>$ std\+::string \hspace{0.3cm}{\ttfamily [inline]}}
+
+\textbackslash{}rst Returns the content of the output buffer as an {\ttfamily std\+::string}. \textbackslash{}endrst 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+csm-\/units/fmt/include/fmt/format.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,27 @@
+\hypertarget{concept_0d389_1_1invalid__equality}{}\doxysection{@389\+::invalid\+\_\+equality Concept Reference}
+\label{concept_0d389_1_1invalid__equality}\index{"@389::invalid\_equality@{"@389::invalid\_equality}}
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ W\textcolor{keywordtype}{id}th>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }@389::\mbox{\hyperlink{concept_0d389_1_1invalid__equality}{invalid\_equality}}\ =\ \ \textcolor{keyword}{requires}(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind<Width,\ metre,\ int>}}\ w)\ \{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ w\ ==\ 1;\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ w\ !=\ 1.0;\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ w\ ==\ 1\ *\ m;\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ w\ !=\ 1.0\ *\ cgs\_cm;\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ w\ ==\ 1\ *\ km;\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ w\ !=\ m;\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ w\ ==\ km;\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ w\ !=\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}(1);\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ w\ ==\ \mbox{\hyperlink{classunits_1_1quantity}{dimensionless<percent>}}(1.0);\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ w\ !=\ height<metre,\ int>(1\ *\ m);\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ w\ ==\ height<kilometre,\ double>(1.0\ *\ km);\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ w\ !=\ horizontal\_area<square\_metre,\ int>(1\ *\ (m\ *\ m));\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ w\ ==\ rate\_of\_climb<kilometre\_per\_hour,\ double>(1.0\ *\ (km\ /\ h));\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ w\ !=\ \mbox{\hyperlink{classunits_1_1quantity__point}{quantity\_point}}(1\ *\ m);\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ w\ ==\ \mbox{\hyperlink{classunits_1_1quantity__point}{quantity\_point}}(1.0\ *\ mm);\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ w\ !=\ \mbox{\hyperlink{classunits_1_1quantity__point}{quantity\_point}}(\mbox{\hyperlink{classunits_1_1quantity}{quantity}}(1));\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ w\ ==\ \mbox{\hyperlink{classunits_1_1quantity__point}{quantity\_point}}(\mbox{\hyperlink{classunits_1_1quantity}{dimensionless<percent>}}(1.0));\ \};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

@@ -1,0 +1,30 @@
+\hypertarget{conceptunits_1_1_quantity_kind_of}{}\doxysection{units\+::Quantity\+Kind\+Of Concept Reference}
+\label{conceptunits_1_1_quantity_kind_of}\index{units::QuantityKindOf@{units::QuantityKindOf}}
+
+
+A concept matching only quantity kinds of a specific kind.  
+
+
+
+
+{\ttfamily \#include $<$quantity\+\_\+of.\+h$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ QK,\ \textcolor{keyword}{typename}\ K>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1_quantity_kind_of}{units::QuantityKindOf}}\ =\ \ \mbox{\hyperlink{conceptunits_1_1_quantity_kind}{QuantityKind<QK>}}\ \&\&\ \mbox{\hyperlink{conceptunits_1_1_kind}{Kind<K>}}\ \&\&\ equivalent<typename\ QK::kind\_type,\ K>}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+A concept matching only quantity kinds of a specific kind. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em QK} & Quantity kind to verify. \\
+\hline
+{\em K} & Kind type to use for verification. \\
+\hline
+\end{DoxyTemplParams}

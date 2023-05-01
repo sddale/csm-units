@@ -1,0 +1,32 @@
+\hypertarget{conceptunits_1_1_unit_of}{}\doxysection{units\+::Unit\+Of Concept Reference}
+\label{conceptunits_1_1_unit_of}\index{units::UnitOf@{units::UnitOf}}
+
+
+A concept matching only units of a specified dimension.  
+
+
+
+
+{\ttfamily \#include $<$basic\+\_\+concepts.\+h$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ D>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1_unit_of}{units::UnitOf}}\ =\ \ \mbox{\hyperlink{conceptunits_1_1_unit}{Unit<U>}}\ \&\&\ \mbox{\hyperlink{conceptunits_1_1_dimension}{Dimension<D>}}\ \&\&\ std::same\_as<typename\ U::reference,\ typename\ dimension\_unit<D>::reference>}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+A concept matching only units of a specified dimension. 
+
+Satisfied by all unit types that satisfy {\ttfamily Unit\texorpdfstring{$<$}{<}U\texorpdfstring{$>$}{>}}, {\ttfamily Dimension\texorpdfstring{$<$}{<}D\texorpdfstring{$>$}{>}}, and for which {\ttfamily U\+::reference} and {\ttfamily dimension\+\_\+unit$<$\+D$>$\+::reference} denote the same unit type.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em U} & Type to verify. \\
+\hline
+{\em D} & Dimension type to use for verification. \\
+\hline
+\end{DoxyTemplParams}

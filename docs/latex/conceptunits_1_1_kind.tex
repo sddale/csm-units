@@ -1,0 +1,25 @@
+\hypertarget{conceptunits_1_1_kind}{}\doxysection{units\+::Kind Concept Reference}
+\label{conceptunits_1_1_kind}\index{units::Kind@{units::Kind}}
+
+
+A concept matching all kind types.  
+
+
+
+
+{\ttfamily \#include $<$basic\+\_\+concepts.\+h$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1_kind}{units::Kind}}\ =\ \ \mbox{\hyperlink{conceptunits_1_1kind__impl__}{kind\_impl\_<T,\ detail::\_kind\_base>}}\ \&\&\ \mbox{\hyperlink{conceptunits_1_1kind__impl__}{kind\_impl\_<typename\ T::base\_kind,\ detail::\_kind\_base>}}\ \&\&}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::same\_as<typename\ T::base\_kind,\ typename\ T::base\_kind::base\_kind>}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+A concept matching all kind types. 
+
+Satisfied by all kind types derived from an specialization of {\ttfamily kind}. 

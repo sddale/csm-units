@@ -1,0 +1,36 @@
+\hypertarget{concept_0d389_1_1invalid__cast}{}\doxysection{@389\+::invalid\+\_\+cast Concept Reference}
+\label{concept_0d389_1_1invalid__cast}\index{"@389::invalid\_cast@{"@389::invalid\_cast}}
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ W\textcolor{keywordtype}{id}th>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }@389::\mbox{\hyperlink{concept_0d389_1_1invalid__cast}{invalid\_cast}}\ =\ \ \textcolor{keyword}{requires}\ \{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ quantity\_kind\_cast<apples<one,\ int>>(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind<Width,\ metre,\ int>}}(1\ *\ m));\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{}
+\DoxyCodeLine{\ \ \ \ quantity\_kind\_cast<horizontal\_area<square\_metre,\ int>>(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind<Width,\ metre,\ int>}}(1\ *\ m));}
+\DoxyCodeLine{\ \ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{}
+\DoxyCodeLine{\ \ \ \ quantity\_kind\_cast<rate\_of\_climb<metre\_per\_second,\ int>>(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind<Width,\ metre,\ int>}}(1\ *\ m));}
+\DoxyCodeLine{\ \ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ quantity\_kind\_cast<apple>(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind<Width,\ metre,\ int>}}(1\ *\ m));\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ quantity\_kind\_cast<horizontal\_area\_kind>(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind<Width,\ metre,\ int>}}(1\ *\ m));\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ quantity\_kind\_cast<rate\_of\_climb\_kind>(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind<Width,\ metre,\ int>}}(1\ *\ m));\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ quantity\_kind\_cast<apple,\ one>(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind<Width,\ metre,\ int>}}(1\ *\ m));\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{}
+\DoxyCodeLine{\ \ \ \ quantity\_kind\_cast<horizontal\_area\_kind,\ square\_metre>(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind<Width,\ metre,\ int>}}(1\ *\ m));}
+\DoxyCodeLine{\ \ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{}
+\DoxyCodeLine{\ \ \ \ quantity\_kind\_cast<rate\_of\_climb\_kind,\ metre\_per\_second>(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind<Width,\ metre,\ int>}}(1\ *\ m));}
+\DoxyCodeLine{\ \ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ quantity\_kind\_cast<dimensionless<one>>(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind<Width,\ metre,\ int>}}(1\ *\ m));\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ quantity\_kind\_cast<square\_metre>(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind<Width,\ metre,\ int>}}(1\ *\ m));\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ quantity\_kind\_cast<second>(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind<Width,\ metre,\ int>}}(1\ *\ m));\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{}
+\DoxyCodeLine{\ \ \ \ quantity\_kind\_cast<quantity\_point<dynamic\_origin<dim\_length>,\ \mbox{\hyperlink{structsi_1_1metre}{metre}},\ \textcolor{keywordtype}{int}>>(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind<Width,\ metre,\ int>}}(1\ *\ m));}
+\DoxyCodeLine{\ \ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{}
+\DoxyCodeLine{\ \ \ \ quantity\_kind\_cast<quantity\_point<dynamic\_origin<dim\_one>,\ \mbox{\hyperlink{structunits_1_1one}{one}},\ \textcolor{keywordtype}{int}>>(\mbox{\hyperlink{classunits_1_1quantity__kind}{quantity\_kind<Width,\ metre,\ int>}}(1\ *\ m));}
+\DoxyCodeLine{\ \ \};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

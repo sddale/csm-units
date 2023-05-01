@@ -1,0 +1,47 @@
+\hypertarget{structunits_1_1base__power}{}\doxysection{units\+::base\+\_\+power\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Struct Template Reference}
+\label{structunits_1_1base__power}\index{units::base\_power$<$ T $>$@{units::base\_power$<$ T $>$}}
+
+
+A basis vector in our magnitude representation, raised to some rational power.  
+
+
+
+
+{\ttfamily \#include $<$magnitude.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structunits_1_1base__power_a6ada460126c725cbdcdcb90479e858a9}\label{structunits_1_1base__power_a6ada460126c725cbdcdcb90479e858a9}} 
+constexpr long double {\bfseries get\+\_\+base} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structunits_1_1base__power_a5e6adf1559d0fe1eca7e22047f7817d8}\label{structunits_1_1base__power_a5e6adf1559d0fe1eca7e22047f7817d8}} 
+\mbox{\hyperlink{structunits_1_1ratio}{ratio}} {\bfseries power} \{1\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$Base\+Rep T$>$\newline
+struct units\+::base\+\_\+power$<$ T $>$}
+A basis vector in our magnitude representation, raised to some rational power. 
+
+The public API is that there is a {\ttfamily power} member variable (of type {\ttfamily ratio}), and a {\ttfamily get\+\_\+base()} member function (of type either {\ttfamily std\+::intmax\+\_\+t} or {\ttfamily long double}, as appropriate), for any specialization.
+
+These types exist to be used as NTTPs for the variadic {\ttfamily magnitude\texorpdfstring{$<$}{<}...\texorpdfstring{$>$}{>}} template. We represent a magnitude (which is a positive real number) as the product of rational powers of \char`\"{}basis vectors\char`\"{}, where each \char`\"{}basis vector\char`\"{} is a positive real number. \char`\"{}\+Addition\char`\"{} in this vector space corresponds to {\itshape multiplying} two real numbers. \char`\"{}\+Scalar multiplication\char`\"{} corresponds to {\itshape raising} a real number to a {\itshape rational power}. Thus, this representation of positive real numbers maps them onto a vector space over the rationals, supporting the operations of products and rational powers.
+
+(Note that this is the same representation we already use for dimensions.)
+
+As in any vector space, the set of basis vectors must be linearly independent\+: that is, no product of basis powers can ever give the null vector (which in this case represents the number 1), unless all scalars (again, in this case, {\itshape powers}) are zero. To achieve this, we use the following kinds of basis vectors.
+\begin{DoxyItemize}
+\item Prime numbers. (These are the only allowable values for {\ttfamily std\+::intmax\+\_\+t} base.)
+\item Certain selected irrational numbers, such as pi.
+\end{DoxyItemize}
+
+Before allowing a new irrational base, make sure that it {\itshape cannot} be represented as the product of rational powers of {\itshape existing} bases, including both prime numbers and any other irrational bases. For example, even though {\ttfamily sqrt(2)} is irrational, we must not ever use it as a base; instead, we would use {\ttfamily \mbox{\hyperlink{structunits_1_1base__power}{base\+\_\+power}}\{2, ratio\{1, 2\}\}}. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+csm-\/units/units/src/core/include/units/magnitude.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,164 @@
+\hypertarget{modulation__rate_8h_source}{}\doxysection{modulation\+\_\+rate.\+h}
+\label{modulation__rate_8h_source}\index{csm-\/units/units/src/systems/isq-\/iec80000/include/units/isq/iec80000/modulation\_rate.h@{csm-\/units/units/src/systems/isq-\/iec80000/include/units/isq/iec80000/modulation\_rate.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <units/isq/si/frequency.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <units/isq/si/prefixes.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <units/unit.h>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ IWYU\ pragma:\ begin\_exports}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <units/quantity.h>}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <units/reference.h>}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <units/symbol\_text.h>}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ IWYU\ pragma:\ end\_exports}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{namespace\ }units::isq::iec80000\ \{}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1baud}{baud}}\ :\ \mbox{\hyperlink{structunits_1_1alias__unit}{alias\_unit}}<si::hertz,\ "{}Bd"{}>\ \{\};}
+\DoxyCodeLine{00038\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1kilobaud}{kilobaud}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<si::kilohertz,\ si::kilo,\ baud>\ \{\};}
+\DoxyCodeLine{00039\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1megabaud}{megabaud}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<si::megahertz,\ si::mega,\ baud>\ \{\};}
+\DoxyCodeLine{00040\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1gigabaud}{gigabaud}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<si::gigahertz,\ si::giga,\ baud>\ \{\};}
+\DoxyCodeLine{00041\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1terabaud}{terabaud}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<si::terahertz,\ si::tera,\ baud>\ \{\};}
+\DoxyCodeLine{00042\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1petabaud}{petabaud}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<si::petahertz,\ si::peta,\ baud>\ \{\};}
+\DoxyCodeLine{00043\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1exabaud}{exabaud}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<si::exahertz,\ si::exa,\ baud>\ \{\};}
+\DoxyCodeLine{00044\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1zettabaud}{zettabaud}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<si::zettahertz,\ si::zetta,\ baud>\ \{\};}
+\DoxyCodeLine{00045\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1yottabaud}{yottabaud}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<si::yottahertz,\ si::yotta,\ baud>\ \{\};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ TODO\ alias\_dimension}}
+\DoxyCodeLine{00048\ \textcolor{keyword}{using\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1dim__frequency}{dim\_modulation\_rate}}\ =\ \mbox{\hyperlink{structunits_1_1isq_1_1si_1_1dim__frequency}{si::dim\_frequency}};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{template}<UnitOf<dim\_modulation\_rate>\ U,\ Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00051\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{modulation\_rate}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{quantity<dim\_modulation\_rate,\ U,\ Rep>}};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_LITERALS}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{inline}\ \textcolor{keyword}{namespace\ }literals\ \{}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Bd(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00058\ \{}
+\DoxyCodeLine{00059\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00060\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity}{modulation\_rate<baud,\ std::int64\_t>}}(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00061\ \}}
+\DoxyCodeLine{00062\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_kBd(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00063\ \{}
+\DoxyCodeLine{00064\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00065\ \ \ \textcolor{keywordflow}{return}\ modulation\_rate<kilobaud,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00067\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_MBd(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00068\ \{}
+\DoxyCodeLine{00069\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00070\ \ \ \textcolor{keywordflow}{return}\ modulation\_rate<megabaud,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_GBd(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00073\ \{}
+\DoxyCodeLine{00074\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00075\ \ \ \textcolor{keywordflow}{return}\ modulation\_rate<gigabaud,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00076\ \}}
+\DoxyCodeLine{00077\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_TBd(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00078\ \{}
+\DoxyCodeLine{00079\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00080\ \ \ \textcolor{keywordflow}{return}\ modulation\_rate<terabaud,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00081\ \}}
+\DoxyCodeLine{00082\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_PBd(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00083\ \{}
+\DoxyCodeLine{00084\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00085\ \ \ \textcolor{keywordflow}{return}\ modulation\_rate<petabaud,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00086\ \}}
+\DoxyCodeLine{00087\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_EBd(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00088\ \{}
+\DoxyCodeLine{00089\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00090\ \ \ \textcolor{keywordflow}{return}\ modulation\_rate<exabaud,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00091\ \}}
+\DoxyCodeLine{00092\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ZBd(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00093\ \{}
+\DoxyCodeLine{00094\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00095\ \ \ \textcolor{keywordflow}{return}\ modulation\_rate<zettabaud,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00096\ \}}
+\DoxyCodeLine{00097\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_YBd(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00098\ \{}
+\DoxyCodeLine{00099\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00100\ \ \ \textcolor{keywordflow}{return}\ modulation\_rate<yottabaud,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00101\ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \}\ \ \textcolor{comment}{//\ namespace\ literals}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_LITERALS}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_REFERENCES}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{namespace\ }modulation\_rate\_references\ \{}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Bd}}\ =\ reference<dim\_modulation\_rate,\ baud>\{\};}
+\DoxyCodeLine{00112\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{kBd}}\ =\ reference<dim\_modulation\_rate,\ kilobaud>\{\};}
+\DoxyCodeLine{00113\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{MBd}}\ =\ reference<dim\_modulation\_rate,\ megabaud>\{\};}
+\DoxyCodeLine{00114\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{GBd}}\ =\ reference<dim\_modulation\_rate,\ gigabaud>\{\};}
+\DoxyCodeLine{00115\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{TBd}}\ =\ reference<dim\_modulation\_rate,\ terabaud>\{\};}
+\DoxyCodeLine{00116\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{PBd}}\ =\ reference<dim\_modulation\_rate,\ petabaud>\{\};}
+\DoxyCodeLine{00117\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{EBd}}\ =\ reference<dim\_modulation\_rate,\ exabaud>\{\};}
+\DoxyCodeLine{00118\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{ZBd}}\ =\ reference<dim\_modulation\_rate,\ zettabaud>\{\};}
+\DoxyCodeLine{00119\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{YBd}}\ =\ reference<dim\_modulation\_rate,\ yottabaud>\{\};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \}\ \ \textcolor{comment}{//\ namespace\ modulation\_rate\_references}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{keyword}{namespace\ }references\ \{}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{keyword}{using\ namespace\ }modulation\_rate\_references;}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \}\ \ \textcolor{comment}{//\ namespace\ references}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_REFERENCES}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \}\ \ \textcolor{comment}{//\ namespace\ units::isq::iec80000}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_ALIASES}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{keyword}{namespace\ }units::aliases::isq::iec80000::inline\ modulation\_rate\ \{}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00138\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Bd}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::modulation\_rate<units::isq::iec80000::baud,\ Rep>}};}
+\DoxyCodeLine{00139\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00140\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{kBd}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::modulation\_rate<units::isq::iec80000::kilobaud,\ Rep>}};}
+\DoxyCodeLine{00141\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00142\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{MBd}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::modulation\_rate<units::isq::iec80000::megabaud,\ Rep>}};}
+\DoxyCodeLine{00143\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00144\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{GBd}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::modulation\_rate<units::isq::iec80000::gigabaud,\ Rep>}};}
+\DoxyCodeLine{00145\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00146\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{TBd}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::modulation\_rate<units::isq::iec80000::terabaud,\ Rep>}};}
+\DoxyCodeLine{00147\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00148\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{PBd}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::modulation\_rate<units::isq::iec80000::petabaud,\ Rep>}};}
+\DoxyCodeLine{00149\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00150\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{EBd}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::modulation\_rate<units::isq::iec80000::exabaud,\ Rep>}};}
+\DoxyCodeLine{00151\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00152\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{ZBd}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::modulation\_rate<units::isq::iec80000::zettabaud,\ Rep>}};}
+\DoxyCodeLine{00153\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00154\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{YBd}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::modulation\_rate<units::isq::iec80000::yottabaud,\ Rep>}};}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \}\ \ \textcolor{comment}{//\ namespace\ units::aliases::isq::iec80000::inline\ modulation\_rate}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_ALIASES}}
+
+\end{DoxyCode}

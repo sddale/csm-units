@@ -1,0 +1,24 @@
+\hypertarget{conceptunits_1_1_reference}{}\doxysection{units\+::Reference Concept Reference}
+\label{conceptunits_1_1_reference}\index{units::Reference@{units::Reference}}
+
+
+A concept matching all references in the library.  
+
+
+
+
+{\ttfamily \#include $<$basic\+\_\+concepts.\+h$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1_reference}{units::Reference}}\ =\ \ detail::is\_reference<T>}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+A concept matching all references in the library. 
+
+Satisfied by all specializations of {\ttfamily reference}. 

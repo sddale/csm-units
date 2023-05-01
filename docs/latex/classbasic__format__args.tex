@@ -1,0 +1,82 @@
+\hypertarget{classbasic__format__args}{}\doxysection{basic\+\_\+format\+\_\+args\texorpdfstring{$<$}{<} Context \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classbasic__format__args}\index{basic\_format\_args$<$ Context $>$@{basic\_format\_args$<$ Context $>$}}
+
+
+{\ttfamily \#include $<$core.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classbasic__format__args_a7569a8c7f913b1f906619701ab3150e6}\label{classbasic__format__args_a7569a8c7f913b1f906619701ab3150e6}} 
+using {\bfseries size\+\_\+type} = int
+\item 
+\mbox{\Hypertarget{classbasic__format__args_af22c7ecd69cc9c3dc2a9a113b5ff5088}\label{classbasic__format__args_af22c7ecd69cc9c3dc2a9a113b5ff5088}} 
+using {\bfseries format\+\_\+arg} = \mbox{\hyperlink{classbasic__format__arg}{basic\+\_\+format\+\_\+arg}}$<$ Context $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename... Args$>$ }\\constexpr FMT\+\_\+\+INLINE \mbox{\hyperlink{classbasic__format__args_ac40bdd2deb4a1000df76553387588775}{basic\+\_\+format\+\_\+args}} (const \mbox{\hyperlink{classformat__arg__store}{format\+\_\+arg\+\_\+store}}$<$ Context, Args... $>$ \&store)
+\item 
+constexpr FMT\+\_\+\+INLINE \mbox{\hyperlink{classbasic__format__args_a69dd0f6fb0e95f42f57cc3bfb095a397}{basic\+\_\+format\+\_\+args}} (const \mbox{\hyperlink{classdynamic__format__arg__store}{dynamic\+\_\+format\+\_\+arg\+\_\+store}}$<$ Context $>$ \&store)
+\item 
+constexpr \mbox{\hyperlink{classbasic__format__args_a1b6a098d11577f454964b51c2d7f9027}{basic\+\_\+format\+\_\+args}} (const \mbox{\hyperlink{classbasic__format__arg}{format\+\_\+arg}} $\ast$args, int count)
+\item 
+FMT\+\_\+\+CONSTEXPR auto \mbox{\hyperlink{classbasic__format__args_a3339d3a4e4daaf7bb0de1a8084e7f086}{get}} (int id) const -\/$>$ \mbox{\hyperlink{classbasic__format__arg}{format\+\_\+arg}}
+\item 
+\mbox{\Hypertarget{classbasic__format__args_abb2e1c3f297bf50f1bd260133495a024}\label{classbasic__format__args_abb2e1c3f297bf50f1bd260133495a024}} 
+{\footnotesize template$<$typename Char $>$ }\\auto {\bfseries get} (\mbox{\hyperlink{classbasic__string__view}{basic\+\_\+string\+\_\+view}}$<$ Char $>$ name) const -\/$>$ \mbox{\hyperlink{classbasic__format__arg}{format\+\_\+arg}}
+\item 
+\mbox{\Hypertarget{classbasic__format__args_af905444f26ff942a669662b0ae34b136}\label{classbasic__format__args_af905444f26ff942a669662b0ae34b136}} 
+{\footnotesize template$<$typename Char $>$ }\\auto {\bfseries get\+\_\+id} (\mbox{\hyperlink{classbasic__string__view}{basic\+\_\+string\+\_\+view}}$<$ Char $>$ name) const -\/$>$ int
+\item 
+\mbox{\Hypertarget{classbasic__format__args_a7747894fe7c14fb78260b53ca7702782}\label{classbasic__format__args_a7747894fe7c14fb78260b53ca7702782}} 
+auto {\bfseries max\+\_\+size} () const -\/$>$ int
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Context$>$\newline
+class basic\+\_\+format\+\_\+args$<$ Context $>$}
+\textbackslash{}rst A view of a collection of formatting arguments. To avoid lifetime issues it should only be used as a parameter type in type-\/erased functions such as {\ttfamily vformat}\+::
+
+void vlog(string\+\_\+view format\+\_\+str, format\+\_\+args args); // OK format\+\_\+args args = make\+\_\+format\+\_\+args(42); // Error\+: dangling reference \textbackslash{}endrst 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classbasic__format__args_ac40bdd2deb4a1000df76553387588775}\label{classbasic__format__args_ac40bdd2deb4a1000df76553387588775}} 
+\index{basic\_format\_args$<$ Context $>$@{basic\_format\_args$<$ Context $>$}!basic\_format\_args@{basic\_format\_args}}
+\index{basic\_format\_args@{basic\_format\_args}!basic\_format\_args$<$ Context $>$@{basic\_format\_args$<$ Context $>$}}
+\doxysubsubsection{\texorpdfstring{basic\_format\_args()}{basic\_format\_args()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Context $>$ \\
+template$<$typename... Args$>$ \\
+constexpr FMT\+\_\+\+INLINE \mbox{\hyperlink{classbasic__format__args}{basic\+\_\+format\+\_\+args}}$<$ Context $>$\mbox{\hyperlink{classbasic__format__args}{\+::basic\+\_\+format\+\_\+args}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classformat__arg__store}{format\+\_\+arg\+\_\+store}}$<$ Context, Args... $>$ \&}]{store }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\textbackslash{}rst Constructs a {\ttfamily \mbox{\hyperlink{classbasic__format__args}{basic\+\_\+format\+\_\+args}}} object from {\ttfamily $\sim$fmt\mbox{\hyperlink{classformat__arg__store}{format\+\_\+arg\+\_\+store}}}. \textbackslash{}endrst \mbox{\Hypertarget{classbasic__format__args_a69dd0f6fb0e95f42f57cc3bfb095a397}\label{classbasic__format__args_a69dd0f6fb0e95f42f57cc3bfb095a397}} 
+\index{basic\_format\_args$<$ Context $>$@{basic\_format\_args$<$ Context $>$}!basic\_format\_args@{basic\_format\_args}}
+\index{basic\_format\_args@{basic\_format\_args}!basic\_format\_args$<$ Context $>$@{basic\_format\_args$<$ Context $>$}}
+\doxysubsubsection{\texorpdfstring{basic\_format\_args()}{basic\_format\_args()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Context $>$ \\
+constexpr FMT\+\_\+\+INLINE \mbox{\hyperlink{classbasic__format__args}{basic\+\_\+format\+\_\+args}}$<$ Context $>$\mbox{\hyperlink{classbasic__format__args}{\+::basic\+\_\+format\+\_\+args}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classdynamic__format__arg__store}{dynamic\+\_\+format\+\_\+arg\+\_\+store}}$<$ Context $>$ \&}]{store }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\textbackslash{}rst Constructs a {\ttfamily \mbox{\hyperlink{classbasic__format__args}{basic\+\_\+format\+\_\+args}}} object from {\ttfamily $\sim$fmt\mbox{\hyperlink{classdynamic__format__arg__store}{dynamic\+\_\+format\+\_\+arg\+\_\+store}}}. \textbackslash{}endrst \mbox{\Hypertarget{classbasic__format__args_a1b6a098d11577f454964b51c2d7f9027}\label{classbasic__format__args_a1b6a098d11577f454964b51c2d7f9027}} 
+\index{basic\_format\_args$<$ Context $>$@{basic\_format\_args$<$ Context $>$}!basic\_format\_args@{basic\_format\_args}}
+\index{basic\_format\_args@{basic\_format\_args}!basic\_format\_args$<$ Context $>$@{basic\_format\_args$<$ Context $>$}}
+\doxysubsubsection{\texorpdfstring{basic\_format\_args()}{basic\_format\_args()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Context $>$ \\
+constexpr \mbox{\hyperlink{classbasic__format__args}{basic\+\_\+format\+\_\+args}}$<$ Context $>$\mbox{\hyperlink{classbasic__format__args}{\+::basic\+\_\+format\+\_\+args}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbasic__format__arg}{format\+\_\+arg}} $\ast$}]{args,  }\item[{int}]{count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\textbackslash{}rst Constructs a {\ttfamily \mbox{\hyperlink{classbasic__format__args}{basic\+\_\+format\+\_\+args}}} object from a dynamic set of arguments. \textbackslash{}endrst 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classbasic__format__args_a3339d3a4e4daaf7bb0de1a8084e7f086}\label{classbasic__format__args_a3339d3a4e4daaf7bb0de1a8084e7f086}} 
+\index{basic\_format\_args$<$ Context $>$@{basic\_format\_args$<$ Context $>$}!get@{get}}
+\index{get@{get}!basic\_format\_args$<$ Context $>$@{basic\_format\_args$<$ Context $>$}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily template$<$typename Context $>$ \\
+FMT\+\_\+\+CONSTEXPR auto \mbox{\hyperlink{classbasic__format__args}{basic\+\_\+format\+\_\+args}}$<$ Context $>$\+::get (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption}) const -\/$>$ \mbox{\hyperlink{classbasic__format__arg}{format\+\_\+arg}} \hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the argument with the specified id. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+csm-\/units/fmt/include/fmt/core.\+h\end{DoxyCompactItemize}

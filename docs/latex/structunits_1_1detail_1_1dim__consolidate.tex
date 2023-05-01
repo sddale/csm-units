@@ -1,0 +1,26 @@
+\hypertarget{structunits_1_1detail_1_1dim__consolidate}{}\doxysection{units\+::detail\+::dim\+\_\+consolidate\texorpdfstring{$<$}{<} Exp\+List \texorpdfstring{$>$}{>} Struct Template Reference}
+\label{structunits_1_1detail_1_1dim__consolidate}\index{units::detail::dim\_consolidate$<$ ExpList $>$@{units::detail::dim\_consolidate$<$ ExpList $>$}}
+
+
+Consolidates contiguous ranges of exponents of the same dimension.  
+
+
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Exp\+List$>$\newline
+struct units\+::detail\+::dim\+\_\+consolidate$<$ Exp\+List $>$}
+Consolidates contiguous ranges of exponents of the same dimension. 
+
+If there is more than one exponent with the same dimension they are aggregated into one exponent by adding their exponents. If this accumulation will result with 0, such a dimension is removed from the list.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em D} & derived dimension to consolidate \\
+\hline
+\end{DoxyTemplParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+csm-\/units/units/src/core/include/units/bits/dim\+\_\+consolidate.\+h\end{DoxyCompactItemize}

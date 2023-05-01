@@ -1,0 +1,22 @@
+\hypertarget{structunits_1_1detail_1_1dim__consolidate_3_01exponent__list_3_01exponent_3_01_dim_00_01_num1_007b1f3b8a417d0e2edc16bdac9969b158}{}\doxysection{units\+::detail\+::dim\+\_\+consolidate\texorpdfstring{$<$}{<} exponent\+\_\+list\texorpdfstring{$<$}{<} exponent\texorpdfstring{$<$}{<} Dim, Num1, Den1 \texorpdfstring{$>$}{>}, exponent\texorpdfstring{$<$}{<} Dim, Num2, Den2 \texorpdfstring{$>$}{>}, ERest... \texorpdfstring{$>$}{>} \texorpdfstring{$>$}{>} Struct Template Reference}
+\label{structunits_1_1detail_1_1dim__consolidate_3_01exponent__list_3_01exponent_3_01_dim_00_01_num1_007b1f3b8a417d0e2edc16bdac9969b158}\index{units::detail::dim\_consolidate$<$ exponent\_list$<$ exponent$<$ Dim, Num1, Den1 $>$, exponent$<$ Dim, Num2, Den2 $>$, ERest... $>$ $>$@{units::detail::dim\_consolidate$<$ exponent\_list$<$ exponent$<$ Dim, Num1, Den1 $>$, exponent$<$ Dim, Num2, Den2 $>$, ERest... $>$ $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structunits_1_1detail_1_1dim__consolidate_3_01exponent__list_3_01exponent_3_01_dim_00_01_num1_007b1f3b8a417d0e2edc16bdac9969b158_ac29c294bb12c895fa3949c5b85326a94}\label{structunits_1_1detail_1_1dim__consolidate_3_01exponent__list_3_01exponent_3_01_dim_00_01_num1_007b1f3b8a417d0e2edc16bdac9969b158_ac29c294bb12c895fa3949c5b85326a94}} 
+using {\bfseries r1} = std\+::ratio$<$ Num1, Den1 $>$
+\item 
+\mbox{\Hypertarget{structunits_1_1detail_1_1dim__consolidate_3_01exponent__list_3_01exponent_3_01_dim_00_01_num1_007b1f3b8a417d0e2edc16bdac9969b158_acfdc0e05dfa75c970636c764aa7d905b}\label{structunits_1_1detail_1_1dim__consolidate_3_01exponent__list_3_01exponent_3_01_dim_00_01_num1_007b1f3b8a417d0e2edc16bdac9969b158_acfdc0e05dfa75c970636c764aa7d905b}} 
+using {\bfseries r2} = std\+::ratio$<$ Num2, Den2 $>$
+\item 
+\mbox{\Hypertarget{structunits_1_1detail_1_1dim__consolidate_3_01exponent__list_3_01exponent_3_01_dim_00_01_num1_007b1f3b8a417d0e2edc16bdac9969b158_ac14fab282f04fb58c1540a6064c5528f}\label{structunits_1_1detail_1_1dim__consolidate_3_01exponent__list_3_01exponent_3_01_dim_00_01_num1_007b1f3b8a417d0e2edc16bdac9969b158_ac14fab282f04fb58c1540a6064c5528f}} 
+using {\bfseries r} = std\+::ratio\+\_\+add$<$ r1, r2 $>$
+\item 
+\mbox{\Hypertarget{structunits_1_1detail_1_1dim__consolidate_3_01exponent__list_3_01exponent_3_01_dim_00_01_num1_007b1f3b8a417d0e2edc16bdac9969b158_a5a23a39b56dd403faad57a58ea861c0f}\label{structunits_1_1detail_1_1dim__consolidate_3_01exponent__list_3_01exponent_3_01_dim_00_01_num1_007b1f3b8a417d0e2edc16bdac9969b158_a5a23a39b56dd403faad57a58ea861c0f}} 
+using {\bfseries type} = \mbox{\hyperlink{structunits_1_1detail_1_1conditional}{conditional}}$<$ r\+::num==0, typename \mbox{\hyperlink{structunits_1_1detail_1_1dim__consolidate}{dim\+\_\+consolidate}}$<$ \mbox{\hyperlink{structunits_1_1exponent__list}{exponent\+\_\+list}}$<$ ERest... $>$ $>$\+::type, typename \mbox{\hyperlink{structunits_1_1detail_1_1dim__consolidate}{dim\+\_\+consolidate}}$<$ \mbox{\hyperlink{structunits_1_1exponent__list}{exponent\+\_\+list}}$<$ \mbox{\hyperlink{structunits_1_1exponent}{exponent}}$<$ Dim, r\+::num, r\+::den $>$, ERest... $>$ $>$\+::type $>$
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+csm-\/units/units/src/core/include/units/bits/dim\+\_\+consolidate.\+h\end{DoxyCompactItemize}

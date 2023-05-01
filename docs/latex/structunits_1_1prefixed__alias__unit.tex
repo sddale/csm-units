@@ -1,0 +1,47 @@
+\hypertarget{structunits_1_1prefixed__alias__unit}{}\doxysection{units\+::prefixed\+\_\+alias\+\_\+unit\texorpdfstring{$<$}{<} U, P, AU \texorpdfstring{$>$}{>} Struct Template Reference}
+\label{structunits_1_1prefixed__alias__unit}\index{units::prefixed\_alias\_unit$<$ U, P, AU $>$@{units::prefixed\_alias\_unit$<$ U, P, AU $>$}}
+
+
+A prefixed alias unit.  
+
+
+
+
+{\ttfamily \#include $<$unit.\+h$>$}
+
+Inheritance diagram for units\+::prefixed\+\_\+alias\+\_\+unit\texorpdfstring{$<$}{<} U, P, AU \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{structunits_1_1prefixed__alias__unit}
+\end{center}
+\end{figure}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structunits_1_1prefixed__alias__unit_a08b91ef1fd823e71668fbc7df3e3b536}\label{structunits_1_1prefixed__alias__unit_a08b91ef1fd823e71668fbc7df3e3b536}} 
+static constexpr auto {\bfseries symbol} = P\+::symbol + AU\+::symbol
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$Unit U, Prefix P, Alias\+Unit AU$>$\newline
+requires (!Alias\+Unit$<$U$>$)\newline
+struct units\+::prefixed\+\_\+alias\+\_\+unit$<$ U, P, AU $>$}
+A prefixed alias unit. 
+
+Defines a new unit that is an alias for a scaled version of another unit by the provided prefix. It is only possible to create such a unit if the given prefix type matches the one defined in a reference unit.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em U} & Unit for which an alias is defined \\
+\hline
+{\em P} & prefix to be appied to the reference unit \\
+\hline
+{\em AU} & reference alias unit \\
+\hline
+\end{DoxyTemplParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+csm-\/units/units/src/core/include/units/unit.\+h\end{DoxyCompactItemize}

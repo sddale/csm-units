@@ -1,0 +1,224 @@
+
+\begin{DoxyItemize}
+\item {\bfseries{0.\+8.\+0 WIP}}
+\begin{DoxyItemize}
+\item (!) refactor\+: {\ttfamily common\+\_\+quantity}, {\ttfamily common\+\_\+quantity\+\_\+for}, {\ttfamily common\+\_\+quantity\+\_\+point}, {\ttfamily common\+\_\+quantity\+\_\+kind}, and {\ttfamily common\+\_\+quantity\+\_\+point\+\_\+kind} removed
+\item (!) refactor\+: {\ttfamily named\+\_\+derived\+\_\+unit} removed as it was not used
+\item (!) refactor\+: {\ttfamily derived\+\_\+unit} renamed to {\ttfamily derived\+\_\+scaled\+\_\+unit}
+\item (!) refactor\+: {\ttfamily unit} renamed to {\ttfamily derived\+\_\+unit}
+\item (!) refactor\+: {\ttfamily U\+::is\+\_\+named} removed from the unit types and replaced with {\ttfamily Named\+Unit} concept
+\item (!) refactor\+: {\ttfamily Prefix\+Family} support removed
+\item (!) refactor\+: {\ttfamily mi(naut)} renamed to {\ttfamily nmi}
+\item (!) refactor\+: {\ttfamily knot} unit helper renamed to {\ttfamily kn} in FPS
+\item (!) refactor\+: {\ttfamily knot} text symbol changed from {\ttfamily \char`\"{}knot\char`\"{}} to {\ttfamily \char`\"{}kn\char`\"{}}
+\item refactor\+: {\ttfamily quantity} {\ttfamily op+()} and {\ttfamily op-\/()} reimplemented in terms of {\ttfamily reference} rather then {\ttfamily quantity} types
+\item refactor(example)\+: {\ttfamily glide\+\_\+computer} now use dimensionless quantities with {\ttfamily \mbox{\hyperlink{classranged__representation}{ranged\+\_\+representation}}} as {\ttfamily rep}
+\item feat\+: HEP system support added (thanks \href{https://github.com/RalphSteinhagen}{\texttt{ @\+Ralph\+Steinhagen}})
+\item feat\+: {\ttfamily floor()}, {\ttfamily ceil()}, and {\ttfamily round()} support added (thanks \href{https://github.com/hofbi}{\texttt{ @hofbi}})
+\item feat\+: {\ttfamily std\+::format} support for compliant compilers added
+\item feat\+: conversion helpers from {\ttfamily mp-\/units} to {\ttfamily std\+::chrono} types added
+\item feat\+: math functions can now be safely used with user-\/defined types
+\item feat\+: conversion from {\ttfamily quantity\+\_\+point} to {\ttfamily std\+::chrono\+::time\+\_\+point} added
+\item feat\+: {\ttfamily nautical\+\_\+mile\+\_\+per\+\_\+hour} and {\ttfamily knot} added to {\ttfamily si\+::international} system
+\item (!) fix\+: add {\ttfamily quantity\+\_\+point\+::origin}, like {\ttfamily std\+::chrono\+::time\+\_\+point\+::clock}
+\item fix\+: enable any prefixes for most of the named units (beside those that use prefixes already)
+\item fix\+: {\ttfamily hectare} definition fixed to be a prefixed version of {\ttfamily are} + other units
+\item fix\+: account for different dimensions in {\ttfamily quantity\+\_\+point\+\_\+cast}\textquotesingle{}s constraint
+\item fix\+: output stream operator now properly handles state
+\item fix\+: {\ttfamily fmt} algorithms were overconstrained with {\ttfamily forward\+\_\+iterator}
+\item fix\+: CTAD for aliases fixed
+\item fix\+: {\ttfamily derived\+\_\+ratio} calculation
+\item fix\+: {\ttfamily fill\+\_\+t} assignment operator fixed
+\item fix\+: improve downcast mode off
+\item fix\+: {\ttfamily radioactivity} header compilation fixed
+\item fix\+: {\ttfamily si\+::hep\+::dim\+\_\+momentum} duplicated definition fixed
+\item fix\+: {\ttfamily fps} can now coexist with {\ttfamily international} system
+\item fix\+: public headers fixed to be standalone
+\item test\+: standalone public headers tests added
+\item (!) build\+: CMake generator in Conan is no longer obtained from an environment variable
+\item (!) build\+: Required Conan version bumped to 1.\+48
+\item (!) build\+: Conan 1.\+48 does not set {\ttfamily CMAKE\+\_\+\+BUILD\+\_\+\+TYPE} in the {\ttfamily conan\+\_\+toolchain.\+cmake} anymore
+\item build\+: Apple\+Clang 13 support added (thanks \href{https://github.com/fdischner}{\texttt{ @fdischner}})
+\item build\+: most of the {\ttfamily conanfile.\+py} refactored to be Conan 2.\+0 ready
+\item build\+: {\ttfamily validate()} replaced with {\ttfamily configure()} to raise errors during {\ttfamily conan install} in Conan 1.\+X
+\item build\+: minimum Conan version changed to 1.\+40
+\item build\+: {\ttfamily linear-\/algebra} Conan repo is no needed anymore
+\item build\+: Gitpod support added
+\item build\+: clang-\/format-\/15 support added
+\item build\+: export config to local build (\#322)
+\item build\+: fix export name of {\ttfamily mp-\/units-\/system}
+\item build\+: fmt updated to 8.\+0.\+1
+\item build\+: gsl-\/lite updated to 0.\+40.\+0
+\item build\+: catch2 updated to 2.\+13.\+9
+\item build\+: doxygen updated to 1.\+9.\+4
+\item build\+: linear\+\_\+algebra/0.\+7.\+0 switched to wg21-\/linear\+\_\+algebra/0.\+7.\+2
+\item ci\+: VS2022, gcc-\/11, clang-\/13, clang-\/14, and Apple\+Clang 13 support added
+\item ci\+: pre-\/commit support added (thanks \href{https://github.com/hofbi}{\texttt{ @hofbi}})
+\item docs\+: Project documentation updated
+\item docs\+: {\ttfamily CITATION.\+cff} file added
+\item docs\+: {\ttfamily CONTRIBUTING.\+md} updated
+\end{DoxyItemize}
+\item {\bfseries{0.\+7.\+0 May 11, 2021}}
+\begin{DoxyItemize}
+\item (!) refactor\+: {\ttfamily Scalable\+Number} renamed to {\ttfamily Representation}
+\item (!) refactor\+: output stream operators moved to the {\ttfamily \mbox{\hyperlink{quantity__io_8h_source}{units/quantity\+\_\+io.\+h}}} header file
+\item (!) refactor\+: Refactored the library file tree
+\item (!) refactor\+: {\ttfamily quantity\+::count()} renamed to {\ttfamily quantity\+::number()}
+\item (!) refactor\+: {\ttfamily data} system renamed to {\ttfamily isq\+::iec80000} (quantity names renamed too)
+\item (!) refactor\+: {\ttfamily $\ast$deduced\+\_\+unit} renamed to {\ttfamily $\ast$derived\+\_\+unit}
+\item (!) refactor\+: got rid of a {\ttfamily noble\+\_\+derived\+\_\+unit}
+\item refactor\+: quantity (kind) point updated to reflect latest changes to {\ttfamily quantity}
+\item refactor\+: basic concepts, {\ttfamily quantity} and {\ttfamily quantity\+\_\+cast} refactored
+\item refactor\+: {\ttfamily abs()} definition refactored to be more explicit about the return type
+\item feat\+: quantity (point) kind support added (thanks \href{https://github.com/johelegp}{\texttt{ @johelegp}})
+\item feat\+: quantity references support added (thanks \href{https://github.com/johelegp}{\texttt{ @johelegp}})
+\item feat\+: quantity aliases support addded
+\item feat\+: interoperability with {\ttfamily std\+::chrono\+::duration} and other units libraries
+\item feat\+: CTAD for dimensionless quantity added
+\item feat\+: {\ttfamily modulation\+\_\+rate} support added (thanks \href{https://github.com/go2sh}{\texttt{ @go2sh}})
+\item feat\+: SI prefixes for {\ttfamily isq\+::iec80000} support added (thanks \href{https://github.com/go2sh}{\texttt{ @go2sh}})
+\item feat\+: a possibility to disable quantity UDLs support with {\ttfamily UNITS\+\_\+\+NO\+\_\+\+LITERALS} preprocessor define
+\item feat\+: a support to define ISQ derived dimensions in terms of different number or order of components
+\item perf\+: preconditions check do not influence the runtime performance of a Release build
+\item perf\+: {\ttfamily quantity\+\_\+cast()} generates less assembly instructions
+\item perf\+: temporary string creation removed from {\ttfamily quantity\+::op\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}()}
+\item perf\+: value initialization for quantity value removed (left with a default initialization)
+\item perf\+: limited the {\ttfamily equivalent} trait usage
+\item perf\+: limited the C++ Standard Library headers usage
+\item perf\+: rvalue references support added for constructors and getters
+\item (!) fix\+: {\ttfamily exp()} has sense only for dimensionless quantities
+\item (!) fix\+: {\ttfamily dim\+\_\+torque} now properly divides by an angle (instead of multiply) + default unit name change
+\item fix\+: quantity\textquotesingle{}s operators fixed to behave like the underlying types do
+\item fix\+: {\ttfamily quantity\+\_\+cast()} fixed to work correctly with representation types not convertible from {\ttfamily std\+::intmax\+\_\+t}
+\item fix\+: ambiguous case for empty type list resolved
+\item fix\+: downcasting facility for non-\/default-\/constructible types
+\item fix\+: restore user-\/warnings within the library implementation
+\item fix\+: the text symbol of {\ttfamily foot\+\_\+pound\+\_\+force} and {\ttfamily foot\+\_\+pound\+\_\+force\+\_\+per\+\_\+second}
+\item fix\+: quantity modulo arithmetics fixed
+\item (!) build\+: Conan testing version is now hosted on \href{https://mpusz.jfrog.io/ui/packages/conan:\%2F\%2Fmp-units}{\texttt{ Artifactory}}
+\item (!) build\+: Linear Algebra is now hosted on its \href{https://twonington.jfrog.io/artifactory/api/conan/conan-oss}{\texttt{ Artifactory}}
+\item (!) build\+: {\ttfamily BUILD\+\_\+\+DOCS} CMake option renamed to {\ttfamily UNITS\+\_\+\+BUILD\+\_\+\+DOCS}
+\item build\+: doxygen updated to 1.\+8.\+20
+\item build\+: catch2 updated to 2.\+13.\+4
+\item build\+: fmt updated to 7.\+1.\+3
+\item build\+: ms-\/gsl replaced with gsl-\/lite/0.\+38.\+0
+\item build\+: Conan generator switched to {\ttfamily cmake\+\_\+find\+\_\+package\+\_\+multi}
+\item build\+: Conan CMake\+Toolchain support added
+\item build\+: CMake scripts cleanup
+\item build\+: ccache support added
+\item ci\+: CI switched from Travis CI to Git\+Hub Actions
+\end{DoxyItemize}
+\item {\bfseries{0.\+6.\+0 September 13, 2020}}
+\begin{DoxyItemize}
+\item feat\+: {\ttfamily quantity\+\_\+point} support added (thanks \href{https://github.com/johelegp}{\texttt{ @johelegp}})
+\item feat\+: Added angle as SI base dimension (thanks \href{https://github.com/kwikius}{\texttt{ @kwikius}})
+\item feat\+: {\ttfamily si\+::angular\+\_\+velocity} support added (thanks \href{https://github.com/mikeford3}{\texttt{ @mikeford3}})
+\item feat\+: FPS system added (thanks \href{https://github.com/mikeford3}{\texttt{ @mikeford3}})
+\item feat\+: Added support for mathematical function {\ttfamily exp(quantity)}
+\item feat\+: Localization support for text output added (thanks \href{https://github.com/rbrugo}{\texttt{ @rbrugo}})
+\item feat\+: Added STL random number distribution wrappers (thanks \href{https://github.com/yasamoka}{\texttt{ @yasamoka}})
+\item (!) refactor\+: Refactored and cleaned up the library file tree
+\item (!) refactor\+: {\ttfamily q\+\_\+$\ast$} UDL renamed to {\ttfamily \+\_\+q\+\_\+$\ast$}
+\item (!) refactor\+: UDLs with \char`\"{}per\char`\"{} in name renamed from {\ttfamily $\ast$p$\ast$} to {\ttfamily $\ast$\+\_\+per\+\_\+$\ast$}
+\item (!) refactor\+: {\ttfamily ratio} changed to the NTTP kind
+\item (!) refactor\+: {\ttfamily exp} and {\ttfamily Exp} renamed to {\ttfamily exponent} and {\ttfamily Exponent}
+\item (!) refactor\+: {\ttfamily Scalar} concept renamed to {\ttfamily Scalable\+Number}
+\item (!) refactor\+: Dimensionless quantities redesigned to be of a {\ttfamily quantity} type
+\item refactor\+: {\ttfamily \mbox{\hyperlink{math_8h_source}{math.\+h}}} function signatures refactored to use a {\ttfamily Quantity} concept (thanks \href{https://github.com/kwikius}{\texttt{ @kwikius}})
+\item refactor\+: {\ttfamily \mbox{[}\mbox{[}nodiscard\mbox{]}\mbox{]}} added to many functions
+\item fix\+: {\ttfamily si\+::day} unit symbol fixed to {\ttfamily d} (thanks \href{https://github.com/komputerwiz}{\texttt{ @komputerwiz}})
+\item fix\+: {\ttfamily si\+::mole} unit symbol fixed to {\ttfamily mol} (thanks \href{https://github.com/mikeford3}{\texttt{ @mikeford3}})
+\item (!) build\+: gcc-\/9 is no longer supported (at least gcc-\/10 is required)
+\item build\+: Visual Studio 16.\+7 support added
+\item build\+: linear\+\_\+algebra updated to 0.\+7.\+0/stable
+\item build\+: fmt updated to 7.\+0.\+3
+\item build\+: range-\/v3 updated to 0.\+11.\+0
+\item build\+: catch2 updated to 2.\+13.\+0
+\item build\+: doxygen updated to 1.\+8.\+18
+\item build\+: ms-\/gsl 3.\+1.\+0 dependency added
+\item build\+: Removed the dependency on a git submodule with common CMake scripts
+\end{DoxyItemize}
+\item {\bfseries{0.\+5.\+0 May 17, 2020}}
+\begin{DoxyItemize}
+\item Major refactoring and rewrite of the library
+\item Units are now independent from dimensions
+\item Dimensions now depend on units (base or coherent units are provided in a class template)
+\item Quantity gets a Dimension template parameter again (as unit does not provide information about its dimension anymore)
+\item Spaceship operator support added
+\item Added official CGS system support
+\item Added official data information system support
+\item Repository file tree cleanup
+\item {\ttfamily ratio} refactored to contain {\ttfamily Exp} template parameter (thanks a lot \href{https://github.com/oschonrock}{\texttt{ @oschonrock}}!)
+\item SI fundamental constants added
+\item {\ttfamily q\+\_\+} prefix applied to all the UDLs (thanks \href{https://github.com/kwikius}{\texttt{ @kwikius}})
+\item {\ttfamily unknown\+\_\+unit} renamed to {\ttfamily unknown\+\_\+coherent\+\_\+unit}
+\item Project documentation greatly extended and switched to Sphinx
+\item A few more usage examples added
+\item ASCII-\/only output support added (thanks \href{https://github.com/yasamoka}{\texttt{ @yasamoka}})
+\item Representation values formatting extended (thanks \href{https://github.com/rbrugo}{\texttt{ @rbrugo}})
+\item Output streams formatting support added
+\item Linear algebra from {\ttfamily std\+::experimental\+::math} support added
+\item Named SI units and their dimensions added (thanks \href{https://github.com/rbrugo}{\texttt{ @rbrugo}}
+\item libfmt updated to 6.\+2.\+0
+\item Added absolute functions and epsilon to \mbox{\hyperlink{math_8h_source}{math.\+h}} (thanks \href{https://github.com/mikeford3}{\texttt{ @mikeford3}})
+\item Added a lot of prefixes to named units and introduced {\ttfamily alias\+\_\+unit} (thanks \href{https://github.com/yasamoka}{\texttt{ @yasamoka}})
+\item Linking with Conan targets only when they exists (\href{https://github.com/mpusz/units/issues/98}{\texttt{ \#98}})
+\item All physical dimensions and units put into {\ttfamily physical} namespace
+\item CMake improvements
+\item Velocity renamed to speed
+\end{DoxyItemize}
+
+Many thanks to Git\+Hub users \href{https://github.com/oschonrock}{\texttt{ @oschonrock}}, \href{https://github.com/kwikius}{\texttt{ @kwikius}}, and \href{https://github.com/i-ky}{\texttt{ @i-\/ky}} for their support in drafting a new library design.
+\item {\bfseries{0.\+4.\+0 Nov 17, 2019}}
+\begin{DoxyItemize}
+\item Support for derived dimensions in {\ttfamily exp} added
+\item Added {\ttfamily pow()} and {\ttfamily sqrt()} operations on quantities
+\item {\ttfamily units} removed from a {\ttfamily std\+::experimental} namespace
+\item Downcasting facility refactored so the user does not have to write the boilerplate code anymore
+\item From now on base dimensions should inherit from {\ttfamily base\+\_\+dimension} class template
+\item Added unit symbols definitions to {\ttfamily base\+\_\+dimension} and derived units
+\item Added support for {\ttfamily operator\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}} on {\ttfamily quantity}
+\item {\ttfamily fmt} support added
+\item Derived unit factory helpers refactored
+\item Refactored the way prefixed units are defined
+\end{DoxyItemize}
+\item {\bfseries{0.\+3.\+1 Sep 18, 2019}}
+\begin{DoxyItemize}
+\item cmcstl2 dependency changed to range-\/v3 0.\+9.\+1
+\end{DoxyItemize}
+\item {\bfseries{0.\+3.\+0 Sep 16, 2019 (Cpp\+Con 2019 design)}}
+\begin{DoxyItemize}
+\item The design as described on Cpp\+Con 2019 talk (\href{https://youtu.be/0YW6yxkdhlU}{\texttt{ https\+://youtu.\+be/0\+YW6yxkdhlU}})
+\item Applied the feedback from the Cologne evening session
+\begin{DoxyItemize}
+\item {\ttfamily upcasting\+\_\+traits} renamed to {\ttfamily downcasting\+\_\+traits}
+\item {\ttfamily Dimension} template parameter removed from quantity
+\end{DoxyItemize}
+\item {\ttfamily units} moved to a {\ttfamily std\+::experimental} namespace
+\item Leading underscore prefix removed from UDLs
+\item Added a few more derived dimensions
+\item {\ttfamily meter} renamed to {\ttfamily metre}
+\item Missing {\ttfamily operator$\ast$} added
+\item Predefined dimensions moved to a dedicated directory
+\item {\ttfamily dimension\+\_\+} prefix removed from names of derived dimensions
+\item cmcstl2 library updated to 2019.\+09.\+19
+\item {\ttfamily base\+\_\+dimension} is a value provided as {\ttfamily const\&} to the {\ttfamily exp} type
+\item integrated with Compiler Explorer
+\item gsl-\/lite dependency removed
+\item Fractional dimension exponents support added
+\item {\ttfamily Quantity\+Of} concept introduced
+\item {\ttfamily quantity\+\_\+cast\texorpdfstring{$<$}{<}U, Rep\texorpdfstring{$>$}{>}()} support added
+\end{DoxyItemize}
+\item {\bfseries{0.\+2.\+0 July 18, 2019 (C++\+Now 2019 design)}}
+\begin{DoxyItemize}
+\item The design as described on C++\+Now 2019 talk (\href{https://youtu.be/wKchCktZPHU}{\texttt{ https\+://youtu.\+be/w\+Kch\+Ckt\+ZPHU}})
+\item Added C++20 features supported by gcc-\/9.\+1 ({\ttfamily std\+::remove\+\_\+cvref\+\_\+t}, down with typename, {\ttfamily std\+::type\+\_\+identity})
+\item Compile-\/time performance optimizations ({\ttfamily type\+\_\+list}, {\ttfamily common\+\_\+ratio}, {\ttfamily ratio}, {\ttfamily conditional\+\_\+t})
+\end{DoxyItemize}
+\item {\bfseries{0.\+1.\+0 May 18, 2019}}
+\begin{DoxyItemize}
+\item Initial library release
+\item Begin semantic versioning
+\item The last version to work with gcc-\/8 
+\end{DoxyItemize}
+\end{DoxyItemize}

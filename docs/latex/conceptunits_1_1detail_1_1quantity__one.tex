@@ -1,0 +1,12 @@
+\hypertarget{conceptunits_1_1detail_1_1quantity__one}{}\doxysection{units\+::detail\+::quantity\+\_\+one Concept Reference}
+\label{conceptunits_1_1detail_1_1quantity__one}\index{units::detail::quantity\_one@{units::detail::quantity\_one}}
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1detail_1_1quantity__one}{units::detail::quantity\_one}}\ =\ }
+\DoxyCodeLine{\ \ \mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity<T>}}\ \&\&}
+\DoxyCodeLine{\ \ (std::same\_as<typename\ T::dimension,\ dim\_one>\ ||\ std::same\_as<typename\ T::dimension,\ unknown\_dimension<>>)\&\&detail::}
+\DoxyCodeLine{\ \ \ \ equivalent\_unit<typename\ T::unit,\ typename\ T::dimension,\ ::units::one,\ typename\ T::dimension>::value}
+
+\end{DoxyCode}

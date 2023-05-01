@@ -1,0 +1,601 @@
+\hypertarget{si_2include_2units_2isq_2si_2mass_8h_source}{}\doxysection{mass.\+h}
+\label{si_2include_2units_2isq_2si_2mass_8h_source}\index{csm-\/units/units/src/systems/si/include/units/isq/si/mass.h@{csm-\/units/units/src/systems/si/include/units/isq/si/mass.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ IWYU\ pragma:\ begin\_exports}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <units/isq/dimensions/mass.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <units/quantity.h>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <units/reference.h>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <units/symbol\_text.h>}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ IWYU\ pragma:\ end\_exports}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <units/isq/si/prefixes.h>}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <units/unit.h>}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{namespace\ }units::isq::si\ \{}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1gram}{gram}}\ :\ \mbox{\hyperlink{structunits_1_1named__unit}{named\_unit}}<gram,\ "{}g"{}>\ \{\};}
+\DoxyCodeLine{00038\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1yoctogram}{yoctogram}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<yoctogram,\ yocto,\ gram>\ \{\};}
+\DoxyCodeLine{00039\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1zeptogram}{zeptogram}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<zeptogram,\ zepto,\ gram>\ \{\};}
+\DoxyCodeLine{00040\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1attogram}{attogram}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<attogram,\ atto,\ gram>\ \{\};}
+\DoxyCodeLine{00041\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1femtogram}{femtogram}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<femtogram,\ femto,\ gram>\ \{\};}
+\DoxyCodeLine{00042\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1picogram}{picogram}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<picogram,\ pico,\ gram>\ \{\};}
+\DoxyCodeLine{00043\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1nanogram}{nanogram}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<nanogram,\ nano,\ gram>\ \{\};}
+\DoxyCodeLine{00044\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1microgram}{microgram}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<microgram,\ micro,\ gram>\ \{\};}
+\DoxyCodeLine{00045\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1milligram}{milligram}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<milligram,\ milli,\ gram>\ \{\};}
+\DoxyCodeLine{00046\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1centigram}{centigram}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<centigram,\ centi,\ gram>\ \{\};}
+\DoxyCodeLine{00047\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1decigram}{decigram}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<decigram,\ deci,\ gram>\ \{\};}
+\DoxyCodeLine{00048\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1decagram}{decagram}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<decagram,\ deca,\ gram>\ \{\};}
+\DoxyCodeLine{00049\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hectogram}{hectogram}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<hectogram,\ hecto,\ gram>\ \{\};}
+\DoxyCodeLine{00050\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1kilogram}{kilogram}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<kilogram,\ kilo,\ gram>\ \{\};}
+\DoxyCodeLine{00051\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1megagram}{megagram}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<megagram,\ mega,\ gram>\ \{\};}
+\DoxyCodeLine{00052\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1gigagram}{gigagram}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<gigagram,\ giga,\ gram>\ \{\};}
+\DoxyCodeLine{00053\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1teragram}{teragram}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<teragram,\ tera,\ gram>\ \{\};}
+\DoxyCodeLine{00054\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1petagram}{petagram}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<petagram,\ peta,\ gram>\ \{\};}
+\DoxyCodeLine{00055\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1exagram}{exagram}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<exagram,\ exa,\ gram>\ \{\};}
+\DoxyCodeLine{00056\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1zettagram}{zettagram}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<zettagram,\ zetta,\ gram>\ \{\};}
+\DoxyCodeLine{00057\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1yottagram}{yottagram}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<yottagram,\ yotta,\ gram>\ \{\};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1tonne}{tonne}}\ :\ \mbox{\hyperlink{structunits_1_1alias__unit}{alias\_unit}}<megagram,\ "{}t"{}>\ \{\};}
+\DoxyCodeLine{00060\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1yoctotonne}{yoctotonne}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<attogram,\ yocto,\ tonne>\ \{\};}
+\DoxyCodeLine{00061\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1zeptotonne}{zeptotonne}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<femtogram,\ zepto,\ tonne>\ \{\};}
+\DoxyCodeLine{00062\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1attotonne}{attotonne}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<picogram,\ atto,\ tonne>\ \{\};}
+\DoxyCodeLine{00063\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1femtotonne}{femtotonne}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<nanogram,\ femto,\ tonne>\ \{\};}
+\DoxyCodeLine{00064\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1picotonne}{picotonne}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<microgram,\ pico,\ tonne>\ \{\};}
+\DoxyCodeLine{00065\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1nanotonne}{nanotonne}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<milligram,\ nano,\ tonne>\ \{\};}
+\DoxyCodeLine{00066\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1microtonne}{microtonne}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<gram,\ micro,\ tonne>\ \{\};}
+\DoxyCodeLine{00067\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1millitonne}{millitonne}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<kilogram,\ milli,\ tonne>\ \{\};}
+\DoxyCodeLine{00068\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1centitonne}{centitonne}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<centitonne,\ centi,\ tonne>\ \{\};}
+\DoxyCodeLine{00069\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1decitonne}{decitonne}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<decitonne,\ deci,\ tonne>\ \{\};}
+\DoxyCodeLine{00070\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1decatonne}{decatonne}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<decatonne,\ deca,\ tonne>\ \{\};}
+\DoxyCodeLine{00071\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1hectotonne}{hectotonne}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<hectotonne,\ hecto,\ tonne>\ \{\};}
+\DoxyCodeLine{00072\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1kilotonne}{kilotonne}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<gigagram,\ kilo,\ tonne>\ \{\};}
+\DoxyCodeLine{00073\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1megatonne}{megatonne}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<teragram,\ mega,\ tonne>\ \{\};}
+\DoxyCodeLine{00074\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1gigatonne}{gigatonne}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<petagram,\ giga,\ tonne>\ \{\};}
+\DoxyCodeLine{00075\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1teratonne}{teratonne}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<exagram,\ tera,\ tonne>\ \{\};}
+\DoxyCodeLine{00076\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1petatonne}{petatonne}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<zettagram,\ peta,\ tonne>\ \{\};}
+\DoxyCodeLine{00077\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1exatonne}{exatonne}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__alias__unit}{prefixed\_alias\_unit}}<yottagram,\ exa,\ tonne>\ \{\};}
+\DoxyCodeLine{00078\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1zettatonne}{zettatonne}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<zettatonne,\ zetta,\ tonne>\ \{\};}
+\DoxyCodeLine{00079\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1yottatonne}{yottatonne}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<yottatonne,\ yotta,\ tonne>\ \{\};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1dalton}{dalton}}\ :}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{structunits_1_1named__scaled__unit}{named\_scaled\_unit}}<dalton,\ "{}Da"{},\ mag<ratio(16'605'390'666'050,\ 10'000'000'000'000)>()\ *\ mag\_power<10,\ -\/27>(),}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ kilogram>\ \{\};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1si_1_1dim__mass}{dim\_mass}}\ :\ \mbox{\hyperlink{structunits_1_1isq_1_1dim__mass}{isq::dim\_mass}}<kilogram>\ \{\};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{template}<UnitOf<dim\_mass>\ U,\ Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00088\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{mass}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{quantity<dim\_mass,\ U,\ Rep>}};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_LITERALS}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{inline}\ \textcolor{keyword}{namespace\ }literals\ \{}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{comment}{//\ g}}
+\DoxyCodeLine{00095\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_g(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00096\ \{}
+\DoxyCodeLine{00097\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00098\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity}{mass<gram,\ std::int64\_t>}}(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00099\ \}}
+\DoxyCodeLine{00100\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_g(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<gram,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{comment}{//\ yg}}
+\DoxyCodeLine{00103\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_yg(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00104\ \{}
+\DoxyCodeLine{00105\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00106\ \ \ \textcolor{keywordflow}{return}\ mass<yoctogram,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00107\ \}}
+\DoxyCodeLine{00108\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_yg(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<yoctogram,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{comment}{//\ zg}}
+\DoxyCodeLine{00111\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_zg(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00112\ \{}
+\DoxyCodeLine{00113\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00114\ \ \ \textcolor{keywordflow}{return}\ mass<zeptogram,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00115\ \}}
+\DoxyCodeLine{00116\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_zg(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<zeptogram,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{comment}{//\ ag}}
+\DoxyCodeLine{00119\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ag(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00120\ \{}
+\DoxyCodeLine{00121\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00122\ \ \ \textcolor{keywordflow}{return}\ mass<attogram,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00123\ \}}
+\DoxyCodeLine{00124\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ag(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<attogram,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{comment}{//\ fg}}
+\DoxyCodeLine{00127\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_fg(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00128\ \{}
+\DoxyCodeLine{00129\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00130\ \ \ \textcolor{keywordflow}{return}\ mass<femtogram,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00131\ \}}
+\DoxyCodeLine{00132\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_fg(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<femtogram,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{comment}{//\ pg}}
+\DoxyCodeLine{00135\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_pg(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00136\ \{}
+\DoxyCodeLine{00137\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00138\ \ \ \textcolor{keywordflow}{return}\ mass<picogram,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00139\ \}}
+\DoxyCodeLine{00140\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_pg(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<picogram,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{comment}{//\ ng}}
+\DoxyCodeLine{00143\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ng(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00144\ \{}
+\DoxyCodeLine{00145\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00146\ \ \ \textcolor{keywordflow}{return}\ mass<nanogram,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00147\ \}}
+\DoxyCodeLine{00148\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ng(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<nanogram,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{comment}{//\ ug}}
+\DoxyCodeLine{00151\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ug(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00152\ \{}
+\DoxyCodeLine{00153\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00154\ \ \ \textcolor{keywordflow}{return}\ mass<microgram,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00155\ \}}
+\DoxyCodeLine{00156\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ug(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<microgram,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{comment}{//\ mg}}
+\DoxyCodeLine{00159\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_mg(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00160\ \{}
+\DoxyCodeLine{00161\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00162\ \ \ \textcolor{keywordflow}{return}\ mass<milligram,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00163\ \}}
+\DoxyCodeLine{00164\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_mg(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<milligram,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \textcolor{comment}{//\ cg}}
+\DoxyCodeLine{00167\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_cg(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00168\ \{}
+\DoxyCodeLine{00169\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00170\ \ \ \textcolor{keywordflow}{return}\ mass<centigram,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00171\ \}}
+\DoxyCodeLine{00172\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_cg(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<centigram,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{comment}{//\ dg}}
+\DoxyCodeLine{00175\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_dg(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00176\ \{}
+\DoxyCodeLine{00177\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00178\ \ \ \textcolor{keywordflow}{return}\ mass<decigram,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00179\ \}}
+\DoxyCodeLine{00180\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_dg(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<decigram,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \textcolor{comment}{//\ dag}}
+\DoxyCodeLine{00183\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_dag(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00184\ \{}
+\DoxyCodeLine{00185\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00186\ \ \ \textcolor{keywordflow}{return}\ mass<decagram,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00187\ \}}
+\DoxyCodeLine{00188\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_dag(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<decagram,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \textcolor{comment}{//\ hg}}
+\DoxyCodeLine{00191\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_hg(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00192\ \{}
+\DoxyCodeLine{00193\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00194\ \ \ \textcolor{keywordflow}{return}\ mass<hectogram,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00195\ \}}
+\DoxyCodeLine{00196\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_hg(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<hectogram,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{comment}{//\ kg}}
+\DoxyCodeLine{00199\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_kg(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00200\ \{}
+\DoxyCodeLine{00201\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00202\ \ \ \textcolor{keywordflow}{return}\ mass<kilogram,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00203\ \}}
+\DoxyCodeLine{00204\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_kg(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<kilogram,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \textcolor{comment}{//\ Mg}}
+\DoxyCodeLine{00207\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Mg(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00208\ \{}
+\DoxyCodeLine{00209\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00210\ \ \ \textcolor{keywordflow}{return}\ mass<megagram,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00211\ \}}
+\DoxyCodeLine{00212\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Mg(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<megagram,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \textcolor{comment}{//\ Gg}}
+\DoxyCodeLine{00215\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Gg(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00216\ \{}
+\DoxyCodeLine{00217\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00218\ \ \ \textcolor{keywordflow}{return}\ mass<gigagram,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00219\ \}}
+\DoxyCodeLine{00220\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Gg(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<gigagram,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \textcolor{comment}{//\ Tg}}
+\DoxyCodeLine{00223\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Tg(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00224\ \{}
+\DoxyCodeLine{00225\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00226\ \ \ \textcolor{keywordflow}{return}\ mass<teragram,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00227\ \}}
+\DoxyCodeLine{00228\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Tg(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<teragram,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \textcolor{comment}{//\ Pg}}
+\DoxyCodeLine{00231\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Pg(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00232\ \{}
+\DoxyCodeLine{00233\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00234\ \ \ \textcolor{keywordflow}{return}\ mass<petagram,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00235\ \}}
+\DoxyCodeLine{00236\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Pg(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<petagram,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \textcolor{comment}{//\ Eg}}
+\DoxyCodeLine{00239\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Eg(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00240\ \{}
+\DoxyCodeLine{00241\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00242\ \ \ \textcolor{keywordflow}{return}\ mass<exagram,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00243\ \}}
+\DoxyCodeLine{00244\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Eg(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<exagram,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \textcolor{comment}{//\ Zg}}
+\DoxyCodeLine{00247\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Zg(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00248\ \{}
+\DoxyCodeLine{00249\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00250\ \ \ \textcolor{keywordflow}{return}\ mass<zettagram,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00251\ \}}
+\DoxyCodeLine{00252\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Zg(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<zettagram,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \textcolor{comment}{//\ Yg}}
+\DoxyCodeLine{00255\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Yg(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00256\ \{}
+\DoxyCodeLine{00257\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00258\ \ \ \textcolor{keywordflow}{return}\ mass<yottagram,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00259\ \}}
+\DoxyCodeLine{00260\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Yg(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<yottagram,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \textcolor{comment}{//\ t}}
+\DoxyCodeLine{00263\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_t(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00264\ \{}
+\DoxyCodeLine{00265\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00266\ \ \ \textcolor{keywordflow}{return}\ mass<tonne,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00267\ \}}
+\DoxyCodeLine{00268\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_t(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<tonne,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \textcolor{comment}{//\ yt}}
+\DoxyCodeLine{00271\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_yt(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00272\ \{}
+\DoxyCodeLine{00273\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00274\ \ \ \textcolor{keywordflow}{return}\ mass<yoctotonne,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00275\ \}}
+\DoxyCodeLine{00276\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_yt(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<yoctotonne,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \textcolor{comment}{//\ zt}}
+\DoxyCodeLine{00279\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_zt(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00280\ \{}
+\DoxyCodeLine{00281\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00282\ \ \ \textcolor{keywordflow}{return}\ mass<zeptotonne,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00283\ \}}
+\DoxyCodeLine{00284\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_zt(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<zeptotonne,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \textcolor{comment}{//\ at}}
+\DoxyCodeLine{00287\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_at(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00288\ \{}
+\DoxyCodeLine{00289\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00290\ \ \ \textcolor{keywordflow}{return}\ mass<attotonne,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00291\ \}}
+\DoxyCodeLine{00292\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_at(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<attotonne,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \textcolor{comment}{//\ TODO\ Collides\ with\ foot}}
+\DoxyCodeLine{00295\ \textcolor{comment}{//\ ft}}
+\DoxyCodeLine{00296\ \textcolor{comment}{//\ constexpr\ auto\ operator"{}"{}\ \_q\_ft(unsigned\ long\ long\ l)\ \{\ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));\ return}}
+\DoxyCodeLine{00297\ \textcolor{comment}{//\ mass<femtotonne,\ std::int64\_t>(static\_cast<std::int64\_t>(l));\ \}\ constexpr\ auto\ operator"{}"{}\ \_q\_ft(long\ double\ l)\ \{}}
+\DoxyCodeLine{00298\ \textcolor{comment}{//\ return\ mass<femtotonne,\ long\ double>(l);\ \}}}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \textcolor{comment}{//\ pt}}
+\DoxyCodeLine{00301\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_pt(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00302\ \{}
+\DoxyCodeLine{00303\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00304\ \ \ \textcolor{keywordflow}{return}\ mass<picotonne,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00305\ \}}
+\DoxyCodeLine{00306\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_pt(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<picotonne,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \textcolor{comment}{//\ nt}}
+\DoxyCodeLine{00309\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_nt(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00310\ \{}
+\DoxyCodeLine{00311\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00312\ \ \ \textcolor{keywordflow}{return}\ mass<nanotonne,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00313\ \}}
+\DoxyCodeLine{00314\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_nt(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<nanotonne,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \textcolor{comment}{//\ ut}}
+\DoxyCodeLine{00317\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ut(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00318\ \{}
+\DoxyCodeLine{00319\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00320\ \ \ \textcolor{keywordflow}{return}\ mass<microtonne,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00321\ \}}
+\DoxyCodeLine{00322\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ut(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<microtonne,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \textcolor{comment}{//\ mt}}
+\DoxyCodeLine{00325\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_mt(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00326\ \{}
+\DoxyCodeLine{00327\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00328\ \ \ \textcolor{keywordflow}{return}\ mass<millitonne,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00329\ \}}
+\DoxyCodeLine{00330\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_mt(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<millitonne,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \textcolor{comment}{//\ ct}}
+\DoxyCodeLine{00333\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ct(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00334\ \{}
+\DoxyCodeLine{00335\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00336\ \ \ \textcolor{keywordflow}{return}\ mass<centitonne,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00337\ \}}
+\DoxyCodeLine{00338\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ct(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<centitonne,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \textcolor{comment}{//\ dt}}
+\DoxyCodeLine{00341\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_dt(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00342\ \{}
+\DoxyCodeLine{00343\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00344\ \ \ \textcolor{keywordflow}{return}\ mass<decitonne,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00345\ \}}
+\DoxyCodeLine{00346\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_dt(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<decitonne,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \textcolor{comment}{//\ dat}}
+\DoxyCodeLine{00349\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_dat(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00350\ \{}
+\DoxyCodeLine{00351\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00352\ \ \ \textcolor{keywordflow}{return}\ mass<decatonne,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00353\ \}}
+\DoxyCodeLine{00354\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_dat(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<decatonne,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \textcolor{comment}{//\ ht}}
+\DoxyCodeLine{00357\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ht(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00358\ \{}
+\DoxyCodeLine{00359\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00360\ \ \ \textcolor{keywordflow}{return}\ mass<hectotonne,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00361\ \}}
+\DoxyCodeLine{00362\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ht(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<hectotonne,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00364\ \textcolor{comment}{//\ kt}}
+\DoxyCodeLine{00365\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_kt(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00366\ \{}
+\DoxyCodeLine{00367\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00368\ \ \ \textcolor{keywordflow}{return}\ mass<kilotonne,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00369\ \}}
+\DoxyCodeLine{00370\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_kt(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<kilotonne,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ \textcolor{comment}{//\ Mt}}
+\DoxyCodeLine{00373\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Mt(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00374\ \{}
+\DoxyCodeLine{00375\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00376\ \ \ \textcolor{keywordflow}{return}\ mass<megatonne,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00377\ \}}
+\DoxyCodeLine{00378\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Mt(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<megatonne,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \textcolor{comment}{//\ Gt}}
+\DoxyCodeLine{00381\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Gt(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00382\ \{}
+\DoxyCodeLine{00383\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00384\ \ \ \textcolor{keywordflow}{return}\ mass<gigatonne,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00385\ \}}
+\DoxyCodeLine{00386\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Gt(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<gigatonne,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \textcolor{comment}{//\ Tt}}
+\DoxyCodeLine{00389\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Tt(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00390\ \{}
+\DoxyCodeLine{00391\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00392\ \ \ \textcolor{keywordflow}{return}\ mass<teratonne,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00393\ \}}
+\DoxyCodeLine{00394\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Tt(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<teratonne,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00396\ \textcolor{comment}{//\ Pt}}
+\DoxyCodeLine{00397\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Pt(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00398\ \{}
+\DoxyCodeLine{00399\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00400\ \ \ \textcolor{keywordflow}{return}\ mass<petatonne,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00401\ \}}
+\DoxyCodeLine{00402\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Pt(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<petatonne,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \textcolor{comment}{//\ Et}}
+\DoxyCodeLine{00405\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Et(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00406\ \{}
+\DoxyCodeLine{00407\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00408\ \ \ \textcolor{keywordflow}{return}\ mass<exatonne,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00409\ \}}
+\DoxyCodeLine{00410\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Et(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<exatonne,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00411\ }
+\DoxyCodeLine{00412\ \textcolor{comment}{//\ Zt}}
+\DoxyCodeLine{00413\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Zt(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00414\ \{}
+\DoxyCodeLine{00415\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00416\ \ \ \textcolor{keywordflow}{return}\ mass<zettatonne,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00417\ \}}
+\DoxyCodeLine{00418\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Zt(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<zettatonne,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \textcolor{comment}{//\ Yt}}
+\DoxyCodeLine{00421\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Yt(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00422\ \{}
+\DoxyCodeLine{00423\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00424\ \ \ \textcolor{keywordflow}{return}\ mass<yottatonne,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00425\ \}}
+\DoxyCodeLine{00426\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Yt(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<yottatonne,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00427\ }
+\DoxyCodeLine{00428\ \textcolor{comment}{//\ Da}}
+\DoxyCodeLine{00429\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Da(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00430\ \{}
+\DoxyCodeLine{00431\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00432\ \ \ \textcolor{keywordflow}{return}\ mass<dalton,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00433\ \}}
+\DoxyCodeLine{00434\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Da(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ l)\ \{\ \textcolor{keywordflow}{return}\ mass<dalton,\ long\ double>(l);\ \}}
+\DoxyCodeLine{00435\ }
+\DoxyCodeLine{00436\ \}\ \ \textcolor{comment}{//\ namespace\ literals}}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00438\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_LITERALS}}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00440\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_REFERENCES}}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00442\ \textcolor{keyword}{namespace\ }mass\_references\ \{}
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00444\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{g}}\ =\ reference<dim\_mass,\ gram>\{\};}
+\DoxyCodeLine{00445\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{yg}}\ =\ reference<dim\_mass,\ yoctogram>\{\};}
+\DoxyCodeLine{00446\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{zg}}\ =\ reference<dim\_mass,\ zeptogram>\{\};}
+\DoxyCodeLine{00447\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{ag}}\ =\ reference<dim\_mass,\ attogram>\{\};}
+\DoxyCodeLine{00448\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{fg}}\ =\ reference<dim\_mass,\ femtogram>\{\};}
+\DoxyCodeLine{00449\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{pg}}\ =\ reference<dim\_mass,\ picogram>\{\};}
+\DoxyCodeLine{00450\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{ng}}\ =\ reference<dim\_mass,\ nanogram>\{\};}
+\DoxyCodeLine{00451\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{ug}}\ =\ reference<dim\_mass,\ microgram>\{\};}
+\DoxyCodeLine{00452\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{mg}}\ =\ reference<dim\_mass,\ milligram>\{\};}
+\DoxyCodeLine{00453\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{cg}}\ =\ reference<dim\_mass,\ centigram>\{\};}
+\DoxyCodeLine{00454\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{dg}}\ =\ reference<dim\_mass,\ decigram>\{\};}
+\DoxyCodeLine{00455\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{dag}}\ =\ reference<dim\_mass,\ decagram>\{\};}
+\DoxyCodeLine{00456\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{hg}}\ =\ reference<dim\_mass,\ hectogram>\{\};}
+\DoxyCodeLine{00457\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{kg}}\ =\ reference<dim\_mass,\ kilogram>\{\};}
+\DoxyCodeLine{00458\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Mg}}\ =\ reference<dim\_mass,\ megagram>\{\};}
+\DoxyCodeLine{00459\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Gg}}\ =\ reference<dim\_mass,\ gigagram>\{\};}
+\DoxyCodeLine{00460\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Tg}}\ =\ reference<dim\_mass,\ teragram>\{\};}
+\DoxyCodeLine{00461\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Pg}}\ =\ reference<dim\_mass,\ petagram>\{\};}
+\DoxyCodeLine{00462\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Eg}}\ =\ reference<dim\_mass,\ exagram>\{\};}
+\DoxyCodeLine{00463\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Zg}}\ =\ reference<dim\_mass,\ zettagram>\{\};}
+\DoxyCodeLine{00464\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Yg}}\ =\ reference<dim\_mass,\ yottagram>\{\};}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{t}}\ =\ reference<dim\_mass,\ tonne>\{\};}
+\DoxyCodeLine{00467\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{yt}}\ =\ reference<dim\_mass,\ yoctotonne>\{\};}
+\DoxyCodeLine{00468\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{zt}}\ =\ reference<dim\_mass,\ zeptotonne>\{\};}
+\DoxyCodeLine{00469\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{at}}\ =\ reference<dim\_mass,\ attotonne>\{\};}
+\DoxyCodeLine{00470\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{ft}}\ =\ reference<dim\_mass,\ femtotonne>\{\};}
+\DoxyCodeLine{00471\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{pt}}\ =\ reference<dim\_mass,\ picotonne>\{\};}
+\DoxyCodeLine{00472\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{nt}}\ =\ reference<dim\_mass,\ nanotonne>\{\};}
+\DoxyCodeLine{00473\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{ut}}\ =\ reference<dim\_mass,\ microtonne>\{\};}
+\DoxyCodeLine{00474\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{mt}}\ =\ reference<dim\_mass,\ millitonne>\{\};}
+\DoxyCodeLine{00475\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{ct}}\ =\ reference<dim\_mass,\ centitonne>\{\};}
+\DoxyCodeLine{00476\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{dt}}\ =\ reference<dim\_mass,\ decitonne>\{\};}
+\DoxyCodeLine{00477\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{dat}}\ =\ reference<dim\_mass,\ decatonne>\{\};}
+\DoxyCodeLine{00478\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{ht}}\ =\ reference<dim\_mass,\ hectotonne>\{\};}
+\DoxyCodeLine{00479\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{kt}}\ =\ reference<dim\_mass,\ kilotonne>\{\};}
+\DoxyCodeLine{00480\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Mt}}\ =\ reference<dim\_mass,\ megatonne>\{\};}
+\DoxyCodeLine{00481\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Gt}}\ =\ reference<dim\_mass,\ gigatonne>\{\};}
+\DoxyCodeLine{00482\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Tt}}\ =\ reference<dim\_mass,\ teratonne>\{\};}
+\DoxyCodeLine{00483\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Pt}}\ =\ reference<dim\_mass,\ petatonne>\{\};}
+\DoxyCodeLine{00484\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Et}}\ =\ reference<dim\_mass,\ exatonne>\{\};}
+\DoxyCodeLine{00485\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Zt}}\ =\ reference<dim\_mass,\ zettatonne>\{\};}
+\DoxyCodeLine{00486\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Yt}}\ =\ reference<dim\_mass,\ yottatonne>\{\};}
+\DoxyCodeLine{00487\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Da}}\ =\ reference<dim\_mass,\ dalton>\{\};}
+\DoxyCodeLine{00488\ }
+\DoxyCodeLine{00489\ \}\ \ \textcolor{comment}{//\ namespace\ mass\_references}}
+\DoxyCodeLine{00490\ }
+\DoxyCodeLine{00491\ \textcolor{keyword}{namespace\ }references\ \{}
+\DoxyCodeLine{00492\ }
+\DoxyCodeLine{00493\ \textcolor{keyword}{using\ namespace\ }mass\_references;}
+\DoxyCodeLine{00494\ }
+\DoxyCodeLine{00495\ \}\ \ \textcolor{comment}{//\ namespace\ references}}
+\DoxyCodeLine{00496\ }
+\DoxyCodeLine{00497\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_REFERENCES}}
+\DoxyCodeLine{00498\ }
+\DoxyCodeLine{00499\ \}\ \ \textcolor{comment}{//\ namespace\ units::isq::si}}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00501\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_ALIASES}}
+\DoxyCodeLine{00502\ }
+\DoxyCodeLine{00503\ \textcolor{keyword}{namespace\ }units::aliases::isq::si::inline\ mass\ \{}
+\DoxyCodeLine{00504\ }
+\DoxyCodeLine{00505\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00506\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{g}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::gram,\ Rep>}};}
+\DoxyCodeLine{00507\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00508\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{yg}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::yoctogram,\ Rep>}};}
+\DoxyCodeLine{00509\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00510\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{zg}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::zeptogram,\ Rep>}};}
+\DoxyCodeLine{00511\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00512\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{ag}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::attogram,\ Rep>}};}
+\DoxyCodeLine{00513\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00514\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{fg}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::femtogram,\ Rep>}};}
+\DoxyCodeLine{00515\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00516\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{pg}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::picogram,\ Rep>}};}
+\DoxyCodeLine{00517\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00518\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{ng}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::nanogram,\ Rep>}};}
+\DoxyCodeLine{00519\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00520\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{ug}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::microgram,\ Rep>}};}
+\DoxyCodeLine{00521\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00522\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{mg}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::milligram,\ Rep>}};}
+\DoxyCodeLine{00523\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00524\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{cg}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::centigram,\ Rep>}};}
+\DoxyCodeLine{00525\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00526\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{dg}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::decigram,\ Rep>}};}
+\DoxyCodeLine{00527\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00528\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{dag}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::decagram,\ Rep>}};}
+\DoxyCodeLine{00529\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00530\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{hg}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::hectogram,\ Rep>}};}
+\DoxyCodeLine{00531\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00532\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{kg}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::kilogram,\ Rep>}};}
+\DoxyCodeLine{00533\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00534\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Mg}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::megagram,\ Rep>}};}
+\DoxyCodeLine{00535\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00536\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Gg}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::gigagram,\ Rep>}};}
+\DoxyCodeLine{00537\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00538\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Tg}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::teragram,\ Rep>}};}
+\DoxyCodeLine{00539\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00540\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Pg}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::petagram,\ Rep>}};}
+\DoxyCodeLine{00541\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00542\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Eg}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::exagram,\ Rep>}};}
+\DoxyCodeLine{00543\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00544\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Zg}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::zettagram,\ Rep>}};}
+\DoxyCodeLine{00545\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00546\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Yg}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::yottagram,\ Rep>}};}
+\DoxyCodeLine{00547\ }
+\DoxyCodeLine{00548\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00549\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{t}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::tonne,\ Rep>}};}
+\DoxyCodeLine{00550\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00551\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{yt}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::yoctotonne,\ Rep>}};}
+\DoxyCodeLine{00552\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00553\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{zt}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::zeptotonne,\ Rep>}};}
+\DoxyCodeLine{00554\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00555\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{at}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::attotonne,\ Rep>}};}
+\DoxyCodeLine{00556\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00557\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{ft}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::femtotonne,\ Rep>}};}
+\DoxyCodeLine{00558\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00559\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{pt}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::picotonne,\ Rep>}};}
+\DoxyCodeLine{00560\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00561\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{nt}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::nanotonne,\ Rep>}};}
+\DoxyCodeLine{00562\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00563\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{ut}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::microtonne,\ Rep>}};}
+\DoxyCodeLine{00564\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00565\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{mt}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::millitonne,\ Rep>}};}
+\DoxyCodeLine{00566\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00567\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{ct}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::centitonne,\ Rep>}};}
+\DoxyCodeLine{00568\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00569\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{dt}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::decitonne,\ Rep>}};}
+\DoxyCodeLine{00570\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00571\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{dat}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::decatonne,\ Rep>}};}
+\DoxyCodeLine{00572\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00573\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{ht}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::hectotonne,\ Rep>}};}
+\DoxyCodeLine{00574\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00575\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{kt}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::kilotonne,\ Rep>}};}
+\DoxyCodeLine{00576\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00577\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Mt}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::megatonne,\ Rep>}};}
+\DoxyCodeLine{00578\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00579\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Gt}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::gigatonne,\ Rep>}};}
+\DoxyCodeLine{00580\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00581\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Tt}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::teratonne,\ Rep>}};}
+\DoxyCodeLine{00582\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00583\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Pt}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::petatonne,\ Rep>}};}
+\DoxyCodeLine{00584\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00585\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Et}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::exatonne,\ Rep>}};}
+\DoxyCodeLine{00586\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00587\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Zt}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::zettatonne,\ Rep>}};}
+\DoxyCodeLine{00588\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00589\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Yt}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::yottatonne,\ Rep>}};}
+\DoxyCodeLine{00590\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00591\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Da}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::si::mass<units::isq::si::dalton,\ Rep>}};}
+\DoxyCodeLine{00592\ }
+\DoxyCodeLine{00593\ \}\ \ \textcolor{comment}{//\ namespace\ units::aliases::isq::si::inline\ mass}}
+\DoxyCodeLine{00594\ }
+\DoxyCodeLine{00595\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_ALIASES}}
+
+\end{DoxyCode}

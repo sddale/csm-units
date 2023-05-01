@@ -1,0 +1,105 @@
+\hypertarget{validated__type_8h_source}{}\doxysection{validated\+\_\+type.\+h}
+\label{validated__type_8h_source}\index{csm-\/units/units/example/include/validated\_type.h@{csm-\/units/units/example/include/validated\_type.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <gsl/gsl-\/lite.hpp>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <units/bits/external/hacks.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structvalidated__tag}{validated\_tag}}\ \{}
+\DoxyCodeLine{00030\ \}\ validated;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{template}<std::movable\ T,\ std::predicate<T>\ Val\textcolor{keywordtype}{id}ator>}
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvalidated__type}{validated\_type}}\ \{}
+\DoxyCodeLine{00034\ \ \ T\ value\_;}
+\DoxyCodeLine{00035\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \textcolor{keyword}{using\ }value\_type\ =\ T;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ validate(\textcolor{keyword}{const}\ T\&\ value)\ \{\ \textcolor{keywordflow}{return}\ Validator()(value);\ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classvalidated__type}{validated\_type}}(\textcolor{keyword}{const}\ T\&\ value)\ \textcolor{keyword}{noexcept}(std::is\_nothrow\_copy\_constructible\_v<T>)}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{requires}\ std::copyable<T>}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ :\ value\_(value)}
+\DoxyCodeLine{00043\ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ gsl\_Expects(validate(value\_));}
+\DoxyCodeLine{00045\ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classvalidated__type}{validated\_type}}(T\&\&\ value)\ \textcolor{keyword}{noexcept}(std::is\_nothrow\_move\_constructible\_v<T>)\ :}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ value\_(std::move(value))}
+\DoxyCodeLine{00049\ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ gsl\_Expects(validate(value\_));}
+\DoxyCodeLine{00051\ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classvalidated__type}{validated\_type}}(\textcolor{keyword}{const}\ T\&\ value,\ \mbox{\hyperlink{structvalidated__tag}{validated\_tag}})\ \textcolor{keyword}{noexcept}(std::is\_nothrow\_copy\_constructible\_v<T>)}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{requires}\ std::copyable<T>}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ :\ value\_(value)}
+\DoxyCodeLine{00056\ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classvalidated__type}{validated\_type}}(T\&\&\ value,\ \mbox{\hyperlink{structvalidated__tag}{validated\_tag}})\ \textcolor{keyword}{noexcept}(std::is\_nothrow\_move\_constructible\_v<T>)\ :}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ value\_(std::move(value))}
+\DoxyCodeLine{00061\ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#if\ UNITS\_COMP\_MSVC\ \&\&\ UNITS\_COMP\_MSVC\ <\ 1930}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}(\textcolor{keyword}{false})\ \textcolor{keyword}{operator}\ T()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}(std::is\_nothrow\_copy\_constructible\_v<T>)}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{requires}\ std::copyable<T>}
+\DoxyCodeLine{00069\ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{return}\ value\_;}
+\DoxyCodeLine{00071\ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}(\textcolor{keyword}{false})\ \textcolor{keyword}{operator}\ T()\ \textcolor{keyword}{const}\&\ \textcolor{keyword}{noexcept}(std::is\_nothrow\_copy\_constructible\_v<T>)}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{requires}\ std::copyable<T>}
+\DoxyCodeLine{00077\ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{return}\ value\_;}
+\DoxyCodeLine{00079\ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}(\textcolor{keyword}{false})\ \textcolor{keyword}{operator}\ T()\ \&\&\ \textcolor{keyword}{noexcept}(std::is\_nothrow\_move\_constructible\_v<T>)}
+\DoxyCodeLine{00082\ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{return}\ std::move(value\_);}
+\DoxyCodeLine{00084\ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \textcolor{keyword}{constexpr}\ T\&\ value()\ \&\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00089\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ T\&\ value()\ \textcolor{keyword}{const}\&\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ value\_;\ \}}
+\DoxyCodeLine{00090\ \ \ \textcolor{keyword}{constexpr}\ T\&\&\ value()\ \&\&\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ std::move(value\_);\ \}}
+\DoxyCodeLine{00091\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ T\&\&\ value()\ \textcolor{keyword}{const}\&\&\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ std::move(value\_);\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \textcolor{keywordtype}{bool}\ operator==(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvalidated__type}{validated\_type}}\&)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{requires}\ std::equality\_comparable<T>}
+\DoxyCodeLine{00095\ \ \ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00096\ \ \ \textcolor{keyword}{auto}\ operator<=>(\textcolor{keyword}{const}\ \mbox{\hyperlink{classvalidated__type}{validated\_type}}\&)\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{requires}\ std::three\_way\_comparable<T>}
+\DoxyCodeLine{00098\ \ \ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00099\ \};}
+
+\end{DoxyCode}

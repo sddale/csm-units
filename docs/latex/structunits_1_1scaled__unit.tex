@@ -1,0 +1,68 @@
+\hypertarget{structunits_1_1scaled__unit}{}\doxysection{units\+::scaled\+\_\+unit\texorpdfstring{$<$}{<} M, U \texorpdfstring{$>$}{>} Struct Template Reference}
+\label{structunits_1_1scaled__unit}\index{units::scaled\_unit$<$ M, U $>$@{units::scaled\_unit$<$ M, U $>$}}
+
+
+A common point for a hierarchy of units.  
+
+
+
+
+{\ttfamily \#include $<$unit.\+h$>$}
+
+Inheritance diagram for units\+::scaled\+\_\+unit\texorpdfstring{$<$}{<} M, U \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{structunits_1_1scaled__unit}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structunits_1_1scaled__unit_a8c63b71f52a60c446c99bfb3cd1337cf}\label{structunits_1_1scaled__unit_a8c63b71f52a60c446c99bfb3cd1337cf}} 
+using {\bfseries reference} = U
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{structunits_1_1downcast__base}{units\+::downcast\+\_\+base$<$ scaled\+\_\+unit$<$ M, U $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structunits_1_1downcast__base_a2f24f8f93706aec6047096627462b917}\label{structunits_1_1downcast__base_a2f24f8f93706aec6047096627462b917}} 
+using {\bfseries downcast\+\_\+base\+\_\+type} = \mbox{\hyperlink{structunits_1_1scaled__unit}{scaled\+\_\+unit}}$<$ M, U $>$
+\item 
+\mbox{\Hypertarget{structunits_1_1downcast__base_a2f24f8f93706aec6047096627462b917}\label{structunits_1_1downcast__base_a2f24f8f93706aec6047096627462b917}} 
+using {\bfseries downcast\+\_\+base\+\_\+type} = \mbox{\hyperlink{structunits_1_1scaled__unit}{scaled\+\_\+unit}}$<$ M, U $>$
+\item 
+\mbox{\Hypertarget{structunits_1_1downcast__base_a2f24f8f93706aec6047096627462b917}\label{structunits_1_1downcast__base_a2f24f8f93706aec6047096627462b917}} 
+using {\bfseries downcast\+\_\+base\+\_\+type} = \mbox{\hyperlink{structunits_1_1scaled__unit}{scaled\+\_\+unit}}$<$ M, U $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structunits_1_1scaled__unit_a8439ed8d1d1ab3ac12edb9262b8d6a8b}\label{structunits_1_1scaled__unit_a8439ed8d1d1ab3ac12edb9262b8d6a8b}} 
+static constexpr {\bfseries UNITS\+\_\+\+CONSTRAINED\+\_\+\+AUTO\+\_\+\+WORKAROUND} (Magnitude) auto mag
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$Magnitude auto M, typename U$>$\newline
+struct units\+::scaled\+\_\+unit$<$ M, U $>$}
+A common point for a hierarchy of units. 
+
+A unit is an entity defined and adopted by convention, with which any other quantity of the same kind can be compared to express the ratio of the second quantity to the first one as a number.
+
+All units of the same dimension can be convereted between each other. To allow this all of them are expressed as different ratios of the same one proprietary chosen reference unit (i.\+e. all length units are expressed in terms of meter, all mass units are expressed in terms of gram, ...)
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em M} & a Magnitude representing the (relative) size of this unit \\
+\hline
+{\em U} & a unit to use as a reference for this dimension\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyNote}{Note}
+U cannot be constrained with Unit as for some specializations (i.\+e. \mbox{\hyperlink{structunits_1_1named__unit}{named\+\_\+unit}}) it gets the incomplete child\textquotesingle{}s type with the CRTP idiom. 
+\end{DoxyNote}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+csm-\/units/units/src/core/include/units/bits/basic\+\_\+concepts.\+h\item 
+csm-\/units/units/src/core/include/units/unit.\+h\end{DoxyCompactItemize}

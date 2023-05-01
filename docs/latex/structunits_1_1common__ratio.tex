@@ -1,0 +1,19 @@
+\hypertarget{structunits_1_1common__ratio}{}\doxysection{units\+::common\+\_\+ratio\texorpdfstring{$<$}{<} R1, R2 \texorpdfstring{$>$}{>} Struct Template Reference}
+\label{structunits_1_1common__ratio}\index{units::common\_ratio$<$ R1, R2 $>$@{units::common\_ratio$<$ R1, R2 $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structunits_1_1common__ratio_a85b29186de46010e93d0d1bbfc122248}\label{structunits_1_1common__ratio_a85b29186de46010e93d0d1bbfc122248}} 
+using {\bfseries gcd\+\_\+num} = \mbox{\hyperlink{structunits_1_1static__gcd}{static\+\_\+gcd}}$<$ R1\+::num, R2\+::num $>$
+\item 
+\mbox{\Hypertarget{structunits_1_1common__ratio_a4323f84848dec3e35445d08aa8f6053f}\label{structunits_1_1common__ratio_a4323f84848dec3e35445d08aa8f6053f}} 
+using {\bfseries gcd\+\_\+den} = \mbox{\hyperlink{structunits_1_1static__gcd}{static\+\_\+gcd}}$<$ R1\+::den, R2\+::den $>$
+\item 
+\mbox{\Hypertarget{structunits_1_1common__ratio_a19d34f8781d0cc0bad4e052e693265f2}\label{structunits_1_1common__ratio_a19d34f8781d0cc0bad4e052e693265f2}} 
+using {\bfseries type} = std\+::ratio$<$ gcd\+\_\+num\+::value,(R1\+::den/gcd\+\_\+den\+::value) $\ast$R2\+::den $>$
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+csm-\/units/units/test/metabench/ratio/std\+\_\+ratio.\+h\end{DoxyCompactItemize}

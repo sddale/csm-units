@@ -1,0 +1,130 @@
+\hypertarget{classtm__writer}{}\doxysection{tm\+\_\+writer\texorpdfstring{$<$}{<} Output\+It, Char, Duration \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classtm__writer}\index{tm\_writer$<$ OutputIt, Char, Duration $>$@{tm\_writer$<$ OutputIt, Char, Duration $>$}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtm__writer_a018a106636b8d464768615040a58c489}\label{classtm__writer_a018a106636b8d464768615040a58c489}} 
+{\bfseries tm\+\_\+writer} (const std\+::locale \&loc, Output\+It out, const std\+::tm \&tm, const Duration $\ast$subsecs=nullptr)
+\item 
+\mbox{\Hypertarget{classtm__writer_a8ffa4673d16443a11de3798bf9acc238}\label{classtm__writer_a8ffa4673d16443a11de3798bf9acc238}} 
+Output\+It {\bfseries out} () const
+\item 
+\mbox{\Hypertarget{classtm__writer_ae73315aacda389394b3b8e2faeb3e93c}\label{classtm__writer_ae73315aacda389394b3b8e2faeb3e93c}} 
+const std\+::locale \& {\bfseries locale} () const
+\item 
+\mbox{\Hypertarget{classtm__writer_a36cf17d2823c309129f45ddc9250af47}\label{classtm__writer_a36cf17d2823c309129f45ddc9250af47}} 
+FMT\+\_\+\+CONSTEXPR void {\bfseries on\+\_\+text} (const Char $\ast$begin, const Char $\ast$end)
+\item 
+\mbox{\Hypertarget{classtm__writer_a78b585471f320147a4bd267ad19b2b0e}\label{classtm__writer_a78b585471f320147a4bd267ad19b2b0e}} 
+void {\bfseries on\+\_\+abbr\+\_\+weekday} ()
+\item 
+\mbox{\Hypertarget{classtm__writer_a56176154972a41ce69a151b4e4d424a0}\label{classtm__writer_a56176154972a41ce69a151b4e4d424a0}} 
+void {\bfseries on\+\_\+full\+\_\+weekday} ()
+\item 
+\mbox{\Hypertarget{classtm__writer_aa4ecbac0393a2e1f6f2ffc664ec43d10}\label{classtm__writer_aa4ecbac0393a2e1f6f2ffc664ec43d10}} 
+void {\bfseries on\+\_\+dec0\+\_\+weekday} (numeric\+\_\+system ns)
+\item 
+\mbox{\Hypertarget{classtm__writer_ad4cb7714f58a5bb1248b1dbbcd40d3a0}\label{classtm__writer_ad4cb7714f58a5bb1248b1dbbcd40d3a0}} 
+void {\bfseries on\+\_\+dec1\+\_\+weekday} (numeric\+\_\+system ns)
+\item 
+\mbox{\Hypertarget{classtm__writer_a5612fb8022c5cca56c86763749cef27b}\label{classtm__writer_a5612fb8022c5cca56c86763749cef27b}} 
+void {\bfseries on\+\_\+abbr\+\_\+month} ()
+\item 
+\mbox{\Hypertarget{classtm__writer_a4fdb1e443a74e7426fb5e05bc1a7323b}\label{classtm__writer_a4fdb1e443a74e7426fb5e05bc1a7323b}} 
+void {\bfseries on\+\_\+full\+\_\+month} ()
+\item 
+\mbox{\Hypertarget{classtm__writer_a0d182573870b30c2f0eca2f4e777dda9}\label{classtm__writer_a0d182573870b30c2f0eca2f4e777dda9}} 
+void {\bfseries on\+\_\+datetime} (numeric\+\_\+system ns)
+\item 
+\mbox{\Hypertarget{classtm__writer_aa4c9304e327f1e32dae5f55d803d7b5f}\label{classtm__writer_aa4c9304e327f1e32dae5f55d803d7b5f}} 
+void {\bfseries on\+\_\+loc\+\_\+date} (numeric\+\_\+system ns)
+\item 
+\mbox{\Hypertarget{classtm__writer_ad81403528e75d6b6e9c8cb1766f0201e}\label{classtm__writer_ad81403528e75d6b6e9c8cb1766f0201e}} 
+void {\bfseries on\+\_\+loc\+\_\+time} (numeric\+\_\+system ns)
+\item 
+\mbox{\Hypertarget{classtm__writer_a5589a869e1cc341096b9b5ef13810eff}\label{classtm__writer_a5589a869e1cc341096b9b5ef13810eff}} 
+void {\bfseries on\+\_\+us\+\_\+date} ()
+\item 
+\mbox{\Hypertarget{classtm__writer_a689ea792fe5735580737fc131446ddb5}\label{classtm__writer_a689ea792fe5735580737fc131446ddb5}} 
+void {\bfseries on\+\_\+iso\+\_\+date} ()
+\item 
+\mbox{\Hypertarget{classtm__writer_a1512dc0d0ab02163f1f293518d0f8109}\label{classtm__writer_a1512dc0d0ab02163f1f293518d0f8109}} 
+void {\bfseries on\+\_\+utc\+\_\+offset} (numeric\+\_\+system ns)
+\item 
+\mbox{\Hypertarget{classtm__writer_a7072df806a71d236b46876aaf8a32d90}\label{classtm__writer_a7072df806a71d236b46876aaf8a32d90}} 
+void {\bfseries on\+\_\+tz\+\_\+name} ()
+\item 
+\mbox{\Hypertarget{classtm__writer_ae16d7d293dc64486a52cd399336753d4}\label{classtm__writer_ae16d7d293dc64486a52cd399336753d4}} 
+void {\bfseries on\+\_\+year} (numeric\+\_\+system ns)
+\item 
+\mbox{\Hypertarget{classtm__writer_ac2e88572d6302075801c4dc4796706b5}\label{classtm__writer_ac2e88572d6302075801c4dc4796706b5}} 
+void {\bfseries on\+\_\+short\+\_\+year} (numeric\+\_\+system ns)
+\item 
+\mbox{\Hypertarget{classtm__writer_a852a2c692dbb7f26983d417907132d78}\label{classtm__writer_a852a2c692dbb7f26983d417907132d78}} 
+void {\bfseries on\+\_\+offset\+\_\+year} ()
+\item 
+\mbox{\Hypertarget{classtm__writer_a9b7416a404e50d166c5bd408902895ff}\label{classtm__writer_a9b7416a404e50d166c5bd408902895ff}} 
+void {\bfseries on\+\_\+century} (numeric\+\_\+system ns)
+\item 
+\mbox{\Hypertarget{classtm__writer_a09f3ccb47048c9c8265a1899e1afce0e}\label{classtm__writer_a09f3ccb47048c9c8265a1899e1afce0e}} 
+void {\bfseries on\+\_\+dec\+\_\+month} (numeric\+\_\+system ns)
+\item 
+\mbox{\Hypertarget{classtm__writer_ab2da02733687339ba4d4ee401514c7fc}\label{classtm__writer_ab2da02733687339ba4d4ee401514c7fc}} 
+void {\bfseries on\+\_\+dec0\+\_\+week\+\_\+of\+\_\+year} (numeric\+\_\+system ns)
+\item 
+\mbox{\Hypertarget{classtm__writer_addaa87fc91b705cea42146c0cadc2496}\label{classtm__writer_addaa87fc91b705cea42146c0cadc2496}} 
+void {\bfseries on\+\_\+dec1\+\_\+week\+\_\+of\+\_\+year} (numeric\+\_\+system ns)
+\item 
+\mbox{\Hypertarget{classtm__writer_aed978bafa33f56a49d4964abbb0d4d2a}\label{classtm__writer_aed978bafa33f56a49d4964abbb0d4d2a}} 
+void {\bfseries on\+\_\+iso\+\_\+week\+\_\+of\+\_\+year} (numeric\+\_\+system ns)
+\item 
+\mbox{\Hypertarget{classtm__writer_a458d8abf735caa61fa34b21eabc8eca9}\label{classtm__writer_a458d8abf735caa61fa34b21eabc8eca9}} 
+void {\bfseries on\+\_\+iso\+\_\+week\+\_\+based\+\_\+year} ()
+\item 
+\mbox{\Hypertarget{classtm__writer_a99eac88111ef96a1a20f405b2e4dc582}\label{classtm__writer_a99eac88111ef96a1a20f405b2e4dc582}} 
+void {\bfseries on\+\_\+iso\+\_\+week\+\_\+based\+\_\+short\+\_\+year} ()
+\item 
+\mbox{\Hypertarget{classtm__writer_aa5aa8da133c78f853a2f6eab22b62fcd}\label{classtm__writer_aa5aa8da133c78f853a2f6eab22b62fcd}} 
+void {\bfseries on\+\_\+day\+\_\+of\+\_\+year} ()
+\item 
+\mbox{\Hypertarget{classtm__writer_ab2662b6efdf03366ddceacd80045dce2}\label{classtm__writer_ab2662b6efdf03366ddceacd80045dce2}} 
+void {\bfseries on\+\_\+day\+\_\+of\+\_\+month} (numeric\+\_\+system ns)
+\item 
+\mbox{\Hypertarget{classtm__writer_a10d16a4a029cb10183432fef2e819cdb}\label{classtm__writer_a10d16a4a029cb10183432fef2e819cdb}} 
+void {\bfseries on\+\_\+day\+\_\+of\+\_\+month\+\_\+space} (numeric\+\_\+system ns)
+\item 
+\mbox{\Hypertarget{classtm__writer_a51d5e7e9caa56854e4e85ab562a87a07}\label{classtm__writer_a51d5e7e9caa56854e4e85ab562a87a07}} 
+void {\bfseries on\+\_\+24\+\_\+hour} (numeric\+\_\+system ns, pad\+\_\+type pad)
+\item 
+\mbox{\Hypertarget{classtm__writer_a64ac83082e7a2ccb97aa6adce5a0fa9c}\label{classtm__writer_a64ac83082e7a2ccb97aa6adce5a0fa9c}} 
+void {\bfseries on\+\_\+12\+\_\+hour} (numeric\+\_\+system ns, pad\+\_\+type pad)
+\item 
+\mbox{\Hypertarget{classtm__writer_a23645b91d903ea402d151c8d685b1f8a}\label{classtm__writer_a23645b91d903ea402d151c8d685b1f8a}} 
+void {\bfseries on\+\_\+minute} (numeric\+\_\+system ns, pad\+\_\+type pad)
+\item 
+\mbox{\Hypertarget{classtm__writer_ab19415e2e70080bb60c0cccd3586f624}\label{classtm__writer_ab19415e2e70080bb60c0cccd3586f624}} 
+void {\bfseries on\+\_\+second} (numeric\+\_\+system ns, pad\+\_\+type pad)
+\item 
+\mbox{\Hypertarget{classtm__writer_a79221bf6d1e62c90266927391777f5f4}\label{classtm__writer_a79221bf6d1e62c90266927391777f5f4}} 
+void {\bfseries on\+\_\+12\+\_\+hour\+\_\+time} ()
+\item 
+\mbox{\Hypertarget{classtm__writer_a1d64b36accb31f0391484c468e08eca9}\label{classtm__writer_a1d64b36accb31f0391484c468e08eca9}} 
+void {\bfseries on\+\_\+24\+\_\+hour\+\_\+time} ()
+\item 
+\mbox{\Hypertarget{classtm__writer_afaf2499bf131e01374f6ca81bcbcb8e6}\label{classtm__writer_afaf2499bf131e01374f6ca81bcbcb8e6}} 
+void {\bfseries on\+\_\+iso\+\_\+time} ()
+\item 
+\mbox{\Hypertarget{classtm__writer_a98a48a97e1a1e239159afa555e02c9ff}\label{classtm__writer_a98a48a97e1a1e239159afa555e02c9ff}} 
+void {\bfseries on\+\_\+am\+\_\+pm} ()
+\item 
+\mbox{\Hypertarget{classtm__writer_a12a0fec251220b7487cd97c921430375}\label{classtm__writer_a12a0fec251220b7487cd97c921430375}} 
+void {\bfseries on\+\_\+duration\+\_\+value} ()
+\item 
+\mbox{\Hypertarget{classtm__writer_a7a160c96af5e1d0c725cbe3d5e3aff9b}\label{classtm__writer_a7a160c96af5e1d0c725cbe3d5e3aff9b}} 
+void {\bfseries on\+\_\+duration\+\_\+unit} ()
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+csm-\/units/fmt/include/fmt/chrono.\+h\end{DoxyCompactItemize}

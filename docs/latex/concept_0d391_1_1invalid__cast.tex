@@ -1,0 +1,17 @@
+\hypertarget{concept_0d391_1_1invalid__cast}{}\doxysection{@391\+::invalid\+\_\+cast Concept Reference}
+\label{concept_0d391_1_1invalid__cast}\index{"@391::invalid\_cast@{"@391::invalid\_cast}}
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Int>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }@391::\mbox{\hyperlink{concept_0d391_1_1invalid__cast}{invalid\_cast}}\ =\ \ \textcolor{keyword}{requires}(Int\ i)\ \{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{}
+\DoxyCodeLine{\ \ \ \ quantity\_point\_cast<quantity\_point<dynamic\_origin<dim\_time>,\ \mbox{\hyperlink{structunits_1_1isq_1_1si_1_1second}{second}},\ Int>>(\mbox{\hyperlink{classunits_1_1quantity__point}{quantity\_point}}(i\ *\ m));}
+\DoxyCodeLine{\ \ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{}
+\DoxyCodeLine{\ \ \ \ quantity\_point\_cast<quantity\_point<dynamic\_origin<dim\_length>,\ \mbox{\hyperlink{structunits_1_1isq_1_1si_1_1metre}{metre}},\ Int>>(}
+\DoxyCodeLine{\ \ \ \ \ \ \mbox{\hyperlink{classunits_1_1quantity__point}{quantity\_point<sea\_level\_origin,\ metre,\ Int>}}(i\ *\ m));}
+\DoxyCodeLine{\ \ \};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

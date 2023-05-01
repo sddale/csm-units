@@ -1,0 +1,309 @@
+\hypertarget{math_8h_source}{}\doxysection{math.\+h}
+\label{math_8h_source}\index{csm-\/units/units/src/core/include/units/math.h@{csm-\/units/units/src/core/include/units/math.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <units/bits/dimension\_op.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <units/bits/external/hacks.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <units/generic/angle.h>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <units/generic/dimensionless.h>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <units/quantity.h>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <units/unit.h>}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ IWYU\ pragma:\ begin\_exports}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ IWYU\ pragma:\ end\_exports}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{namespace\ }units\ \{}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{int}max\_t\ Num,\ std::\textcolor{keywordtype}{int}max\_t\ Den\ =\ 1,\ Quantity\ Q>}
+\DoxyCodeLine{00052\ \ \ \textcolor{keyword}{requires}\ detail::non\_zero<Den>}
+\DoxyCodeLine{00053\ [[nodiscard]]\ \textcolor{keyword}{inline}\ \textcolor{keyword}{auto}\ pow(\textcolor{keyword}{const}\ Q\&\ q)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00054\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ pow(q.number(),\ 1.0);\ \}\ ||\ \textcolor{keyword}{requires}\ \{\ std::pow(q.number(),\ 1.0);\ \}}
+\DoxyCodeLine{00055\ \{}
+\DoxyCodeLine{00056\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00057\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (Num\ ==\ 0)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{return}\ rep(1);}
+\DoxyCodeLine{00059\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{using\ }dim\ =\ dimension\_pow<typename\ Q::dimension,\ Num,\ Den>;}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{using\ }unit\ =\ downcast\_unit<dim,\ pow<ratio\{Num,\ Den\}>(Q::reference.mag)\ /\ dim::mag>;}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{using\ }std::pow;}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{return}\ quantity<dim,\ unit,\ rep>(}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}rep\textcolor{keyword}{>}(pow(q.number(),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(Num)\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(Den))));}
+\DoxyCodeLine{00065\ \ \ \}}
+\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00077\ [[nodiscard]]\ \textcolor{keyword}{inline}\ Quantity\ \textcolor{keyword}{auto}\ sqrt(\textcolor{keyword}{const}\ Q\&\ q)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00078\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ sqrt(q.number());\ \}\ ||\ \textcolor{keyword}{requires}\ \{\ std::sqrt(q.number());\ \}}
+\DoxyCodeLine{00079\ \{}
+\DoxyCodeLine{00080\ \ \ \textcolor{keyword}{using\ }dim\ =\ dimension\_pow<typename\ Q::dimension,\ 1,\ 2>;}
+\DoxyCodeLine{00081\ \ \ \textcolor{keyword}{using\ }unit\ =\ downcast\_unit<dim,\ pow<ratio\{1,\ 2\}>(Q::reference.mag)\ /\ dim::mag>;}
+\DoxyCodeLine{00082\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00083\ \ \ \textcolor{keyword}{using\ }std::sqrt;}
+\DoxyCodeLine{00084\ \ \ \textcolor{keywordflow}{return}\ quantity<dim,\ unit,\ rep>(\textcolor{keyword}{static\_cast<}rep\textcolor{keyword}{>}(sqrt(q.number())));}
+\DoxyCodeLine{00085\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00096\ [[nodiscard]]\ \textcolor{keyword}{inline}\ Quantity\ \textcolor{keyword}{auto}\ cbrt(\textcolor{keyword}{const}\ Q\&\ q)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00097\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ cbrt(q.number());\ \}\ ||\ \textcolor{keyword}{requires}\ \{\ std::cbrt(q.number());\ \}}
+\DoxyCodeLine{00098\ \{}
+\DoxyCodeLine{00099\ \ \ \textcolor{keyword}{using\ }dim\ =\ dimension\_pow<typename\ Q::dimension,\ 1,\ 3>;}
+\DoxyCodeLine{00100\ \ \ \textcolor{keyword}{using\ }unit\ =\ downcast\_unit<dim,\ pow<ratio\{1,\ 3\}>(Q::reference.mag)\ /\ dim::mag>;}
+\DoxyCodeLine{00101\ \ \ \textcolor{keyword}{using\ }rep\ =\ TYPENAME\ Q::rep;}
+\DoxyCodeLine{00102\ \ \ \textcolor{keyword}{using\ }std::cbrt;}
+\DoxyCodeLine{00103\ \ \ \textcolor{keywordflow}{return}\ quantity<dim,\ unit,\ rep>(\textcolor{keyword}{static\_cast<}rep\textcolor{keyword}{>}(cbrt(q.number())));}
+\DoxyCodeLine{00104\ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00115\ [[nodiscard]]\ \textcolor{keyword}{inline}\ dimensionless<U,\ Rep>\ exp(\textcolor{keyword}{const}\ dimensionless<U,\ Rep>\&\ q)}
+\DoxyCodeLine{00116\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ exp(q.number());\ \}\ ||\ \textcolor{keyword}{requires}\ \{\ std::exp(q.number());\ \}}
+\DoxyCodeLine{00117\ \{}
+\DoxyCodeLine{00118\ \ \ \textcolor{keyword}{using\ }std::exp;}
+\DoxyCodeLine{00119\ \ \ \textcolor{keywordflow}{return}\ quantity\_cast<U>(dimensionless<one,\ Rep>(exp(quantity\_cast<one>(q).number())));}
+\DoxyCodeLine{00120\ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ D,\ \textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00129\ [[nodiscard]]\ \textcolor{keyword}{inline}\ quantity<D,\ U,\ Rep>\ abs(\textcolor{keyword}{const}\ quantity<D,\ U,\ Rep>\&\ q)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00130\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ abs(q.number());\ \}\ ||\ \textcolor{keyword}{requires}\ \{\ std::abs(q.number());\ \}}
+\DoxyCodeLine{00131\ \{}
+\DoxyCodeLine{00132\ \ \ \textcolor{keyword}{using\ }std::abs;}
+\DoxyCodeLine{00133\ \ \ \textcolor{keywordflow}{return}\ quantity<D,\ U,\ Rep>(abs(q.number()));}
+\DoxyCodeLine{00134\ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00144\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00145\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ std::numeric\_limits<typename\ Q::rep>::epsilon();\ \}}
+\DoxyCodeLine{00146\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ Quantity\ \textcolor{keyword}{auto}\ epsilon()\ noexcept}
+\DoxyCodeLine{00147\ \{}
+\DoxyCodeLine{00148\ \ \ \textcolor{keywordflow}{return}\ Q(std::numeric\_limits<typename\ Q::rep>::epsilon());}
+\DoxyCodeLine{00149\ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00157\ \textcolor{keyword}{template}<Unit\ To,\ \textcolor{keyword}{typename}\ D,\ \textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00158\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ quantity<D,\ To,\ Rep>\ floor(\textcolor{keyword}{const}\ quantity<D,\ U,\ Rep>\&\ q)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00159\ \ \ \textcolor{keyword}{requires}((!treat\_as\_floating\_point<Rep>)\ ||\ \textcolor{keyword}{requires}\ \{\ floor(q.number());\ \}\ ||}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \{\ std::floor(q.number());\ \})\ \&\&}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ (std::same\_as<To,\ U>\ ||\ \textcolor{keyword}{requires}\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ ::units::quantity\_cast<To>(q);}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ quantity<D,\ To,\ Rep>::one();}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{00165\ \{}
+\DoxyCodeLine{00166\ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ handle\_signed\_results\ =\ [\&]<\textcolor{keyword}{typename}\ T>(\textcolor{keyword}{const}\ T\&\ res)\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordflow}{if}\ (res\ >\ q)\ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res\ -\/\ T::one();}
+\DoxyCodeLine{00169\ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00171\ \ \ \};}
+\DoxyCodeLine{00172\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (treat\_as\_floating\_point<Rep>)\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{using\ }std::floor;}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_same\_v<To,\ U>)\ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ quantity<D,\ To,\ Rep>(floor(q.number()));}
+\DoxyCodeLine{00176\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ handle\_signed\_results(quantity<D,\ To,\ Rep>(floor(quantity\_cast<To>(q).number())));}
+\DoxyCodeLine{00178\ \ \ \ \ \}}
+\DoxyCodeLine{00179\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_same\_v<To,\ U>)\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ q;}
+\DoxyCodeLine{00182\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ handle\_signed\_results(quantity\_cast<To>(q));}
+\DoxyCodeLine{00184\ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \ \ \}}
+\DoxyCodeLine{00186\ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00194\ \textcolor{keyword}{template}<Quantity\ To,\ std::same\_as<\textcolor{keyword}{typename}\ To::dimension>\ D,\ \textcolor{keyword}{typename}\ U,\ std::same\_as<\textcolor{keyword}{typename}\ To::rep>\ Rep>}
+\DoxyCodeLine{00195\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ quantity<D,\ typename\ To::unit,\ Rep>\ floor(\textcolor{keyword}{const}\ quantity<D,\ U,\ Rep>\&\ q)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00196\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ ::units::floor<typename\ To::unit>(q);\ \}}
+\DoxyCodeLine{00197\ \{}
+\DoxyCodeLine{00198\ \ \ return\ ::units::floor<typename\ To::unit>(q);}
+\DoxyCodeLine{00199\ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00207\ \textcolor{keyword}{template}<Unit\ To,\ \textcolor{keyword}{typename}\ D,\ \textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00208\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ quantity<D,\ To,\ Rep>\ ceil(\textcolor{keyword}{const}\ quantity<D,\ U,\ Rep>\&\ q)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00209\ \ \ \textcolor{keyword}{requires}((!treat\_as\_floating\_point<Rep>)\ ||\ \textcolor{keyword}{requires}\ \{\ ceil(q.number());\ \}\ ||\ \textcolor{keyword}{requires}\ \{\ std::ceil(q.number());\ \})\ \&\&}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ (std::same\_as<To,\ U>\ ||\ \textcolor{keyword}{requires}\ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ ::units::quantity\_cast<To>(q);}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ quantity<D,\ To,\ Rep>::one();}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{00214\ \{}
+\DoxyCodeLine{00215\ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ handle\_signed\_results\ =\ [\&]<\textcolor{keyword}{typename}\ T>(\textcolor{keyword}{const}\ T\&\ res)\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keywordflow}{if}\ (res\ <\ q)\ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res\ +\ T::one();}
+\DoxyCodeLine{00218\ \ \ \ \ \}}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00220\ \ \ \};}
+\DoxyCodeLine{00221\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (treat\_as\_floating\_point<Rep>)\ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keyword}{using\ }std::ceil;}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_same\_v<To,\ U>)\ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ quantity<D,\ To,\ Rep>(ceil(q.number()));}
+\DoxyCodeLine{00225\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ handle\_signed\_results(quantity<D,\ To,\ Rep>(ceil(quantity\_cast<To>(q).number())));}
+\DoxyCodeLine{00227\ \ \ \ \ \}}
+\DoxyCodeLine{00228\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_same\_v<To,\ U>)\ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ q;}
+\DoxyCodeLine{00231\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ handle\_signed\_results(quantity\_cast<To>(q));}
+\DoxyCodeLine{00233\ \ \ \ \ \}}
+\DoxyCodeLine{00234\ \ \ \}}
+\DoxyCodeLine{00235\ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00243\ \textcolor{keyword}{template}<Quantity\ To,\ std::same\_as<\textcolor{keyword}{typename}\ To::dimension>\ D,\ \textcolor{keyword}{typename}\ U,\ std::same\_as<\textcolor{keyword}{typename}\ To::rep>\ Rep>}
+\DoxyCodeLine{00244\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ quantity<D,\ typename\ To::unit,\ Rep>\ ceil(\textcolor{keyword}{const}\ quantity<D,\ U,\ Rep>\&\ q)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00245\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ ::units::ceil<typename\ To::unit>(q);\ \}}
+\DoxyCodeLine{00246\ \{}
+\DoxyCodeLine{00247\ \ \ return\ ::units::ceil<typename\ To::unit>(q);}
+\DoxyCodeLine{00248\ \}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00258\ \textcolor{keyword}{template}<Unit\ To,\ \textcolor{keyword}{typename}\ D,\ \textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00259\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ quantity<D,\ To,\ Rep>\ round(\textcolor{keyword}{const}\ quantity<D,\ U,\ Rep>\&\ q)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00260\ \ \ \textcolor{keyword}{requires}((!treat\_as\_floating\_point<Rep>)\ ||\ \textcolor{keyword}{requires}\ \{\ round(q.number());\ \}\ ||}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \{\ std::round(q.number());\ \})\ \&\&}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ (std::same\_as<To,\ U>\ ||\ \textcolor{keyword}{requires}\ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ ::units::floor<To>(q);}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ quantity<D,\ To,\ Rep>::one();}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{00266\ \{}
+\DoxyCodeLine{00267\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_same\_v<To,\ U>)\ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (treat\_as\_floating\_point<Rep>)\ \{}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \textcolor{keyword}{using\ }std::round;}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ quantity<D,\ To,\ Rep>(round(q.number()));}
+\DoxyCodeLine{00271\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ q;}
+\DoxyCodeLine{00273\ \ \ \ \ \}}
+\DoxyCodeLine{00274\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ res\_low\ =\ units::floor<To>(q);}
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ res\_high\ =\ res\_low\ +\ \textcolor{keyword}{decltype}(res\_low)::one();}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ diff0\ =\ q\ -\/\ res\_low;}
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ diff1\ =\ res\_high\ -\/\ q;}
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keywordflow}{if}\ (diff0\ ==\ diff1)\ \{}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(res\_low.number())\ \&\ 1)\ \{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res\_high;}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res\_low;}
+\DoxyCodeLine{00284\ \ \ \ \ \}}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordflow}{if}\ (diff0\ <\ diff1)\ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res\_low;}
+\DoxyCodeLine{00287\ \ \ \ \ \}}
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{keywordflow}{return}\ res\_high;}
+\DoxyCodeLine{00289\ \ \ \}}
+\DoxyCodeLine{00290\ \}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00298\ \textcolor{keyword}{template}<Quantity\ To,\ std::same\_as<\textcolor{keyword}{typename}\ To::dimension>\ D,\ \textcolor{keyword}{typename}\ U,\ std::same\_as<\textcolor{keyword}{typename}\ To::rep>\ Rep>}
+\DoxyCodeLine{00299\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ quantity<D,\ typename\ To::unit,\ Rep>\ round(\textcolor{keyword}{const}\ quantity<D,\ U,\ Rep>\&\ q)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00300\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ ::units::round<typename\ To::unit>(q);\ \}}
+\DoxyCodeLine{00301\ \{}
+\DoxyCodeLine{00302\ \ \ return\ ::units::round<typename\ To::unit>(q);}
+\DoxyCodeLine{00303\ \}}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00309\ \textcolor{keyword}{template}<Quantity\ Q1,\ Quantity\ Q2>}
+\DoxyCodeLine{00310\ [[nodiscard]]\ \textcolor{keyword}{inline}\ std::common\_type\_t<Q1,\ Q2>\ hypot(\textcolor{keyword}{const}\ Q1\&\ x,\ \textcolor{keyword}{const}\ Q2\&\ y)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00311\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ \textcolor{keyword}{typename}\ std::common\_type\_t<Q1,\ Q2>;\ \}\ \&\&\ \textcolor{keyword}{requires}(std::common\_type\_t<Q1,\ Q2>\ q)\ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ hypot(q.number(),\ q.number());\ \}\ ||\ \textcolor{keyword}{requires}\ \{\ std::hypot(q.number(),\ q.number());\ \};}
+\DoxyCodeLine{00313\ \ \ \}}
+\DoxyCodeLine{00314\ \{}
+\DoxyCodeLine{00315\ \ \ \textcolor{keyword}{using\ }type\ =\ std::common\_type\_t<Q1,\ Q2>;}
+\DoxyCodeLine{00316\ \ \ type\ xx\ =\ x;}
+\DoxyCodeLine{00317\ \ \ type\ yy\ =\ y;}
+\DoxyCodeLine{00318\ \ \ \textcolor{keyword}{using\ }std::hypot;}
+\DoxyCodeLine{00319\ \ \ \textcolor{keywordflow}{return}\ type(hypot(xx.number(),\ yy.number()));}
+\DoxyCodeLine{00320\ \}}
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00326\ \textcolor{keyword}{template}<Quantity\ Q1,\ Quantity\ Q2,\ Quantity\ Q3>}
+\DoxyCodeLine{00327\ [[nodiscard]]\ \textcolor{keyword}{inline}\ std::common\_type\_t<Q1,\ Q2,\ Q3>\ hypot(\textcolor{keyword}{const}\ Q1\&\ x,\ \textcolor{keyword}{const}\ Q2\&\ y,\ \textcolor{keyword}{const}\ Q3\&\ z)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00328\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ \textcolor{keyword}{typename}\ std::common\_type\_t<Q1,\ Q2,\ Q3>;\ \}\ \&\&\ \textcolor{keyword}{requires}(std::common\_type\_t<Q1,\ Q2,\ Q3>\ q)\ \{}
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ hypot(q.number(),\ q.number(),\ q.number());\ \}\ ||}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \{\ std::hypot(q.number(),\ q.number(),\ q.number());\ \};}
+\DoxyCodeLine{00331\ \ \ \}}
+\DoxyCodeLine{00332\ \{}
+\DoxyCodeLine{00333\ \ \ \textcolor{keyword}{using\ }type\ =\ std::common\_type\_t<Q1,\ Q2,\ Q3>;}
+\DoxyCodeLine{00334\ \ \ type\ xx\ =\ x;}
+\DoxyCodeLine{00335\ \ \ type\ yy\ =\ y;}
+\DoxyCodeLine{00336\ \ \ type\ zz\ =\ z;}
+\DoxyCodeLine{00337\ \ \ \textcolor{keyword}{using\ }std::hypot;}
+\DoxyCodeLine{00338\ \ \ \textcolor{keywordflow}{return}\ type(hypot(xx.number(),\ yy.number(),\ zz.number()));}
+\DoxyCodeLine{00339\ \}}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00343\ \ \ \textcolor{keyword}{requires}\ treat\_as\_floating\_point<Rep>}
+\DoxyCodeLine{00344\ [[nodiscard]]\ \textcolor{keyword}{inline}\ dimensionless<one,\ Rep>\ sin(\textcolor{keyword}{const}\ angle<U,\ Rep>\&\ q)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00345\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ sin(q.number());\ \}\ ||\ \textcolor{keyword}{requires}\ \{\ std::sin(q.number());\ \}}
+\DoxyCodeLine{00346\ \{}
+\DoxyCodeLine{00347\ \ \ \textcolor{keyword}{using\ }std::sin;}
+\DoxyCodeLine{00348\ \ \ \textcolor{keywordflow}{return}\ sin(quantity\_cast<radian>(q).number());}
+\DoxyCodeLine{00349\ \}}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00351\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00352\ \ \ \textcolor{keyword}{requires}\ treat\_as\_floating\_point<Rep>}
+\DoxyCodeLine{00353\ [[nodiscard]]\ \textcolor{keyword}{inline}\ dimensionless<one,\ Rep>\ cos(\textcolor{keyword}{const}\ angle<U,\ Rep>\&\ q)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00354\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ cos(q.number());\ \}\ ||\ \textcolor{keyword}{requires}\ \{\ std::cos(q.number());\ \}}
+\DoxyCodeLine{00355\ \{}
+\DoxyCodeLine{00356\ \ \ \textcolor{keyword}{using\ }std::cos;}
+\DoxyCodeLine{00357\ \ \ \textcolor{keywordflow}{return}\ cos(quantity\_cast<radian>(q).number());}
+\DoxyCodeLine{00358\ \}}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00361\ \ \ \textcolor{keyword}{requires}\ treat\_as\_floating\_point<Rep>}
+\DoxyCodeLine{00362\ [[nodiscard]]\ \textcolor{keyword}{inline}\ dimensionless<one,\ Rep>\ tan(\textcolor{keyword}{const}\ angle<U,\ Rep>\&\ q)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00363\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ tan(q.number());\ \}\ ||\ \textcolor{keyword}{requires}\ \{\ std::tan(q.number());\ \}}
+\DoxyCodeLine{00364\ \{}
+\DoxyCodeLine{00365\ \ \ \textcolor{keyword}{using\ }std::tan;}
+\DoxyCodeLine{00366\ \ \ \textcolor{keywordflow}{return}\ tan(quantity\_cast<radian>(q).number());}
+\DoxyCodeLine{00367\ \}}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00371\ \ \ \textcolor{keyword}{requires}\ treat\_as\_floating\_point<Rep>}
+\DoxyCodeLine{00372\ [[nodiscard]]\ \textcolor{keyword}{inline}\ angle<radian,\ Rep>\ asin(\textcolor{keyword}{const}\ dimensionless<U,\ Rep>\&\ q)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00373\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ asin(q.number());\ \}\ ||\ \textcolor{keyword}{requires}\ \{\ std::asin(q.number());\ \}}
+\DoxyCodeLine{00374\ \{}
+\DoxyCodeLine{00375\ \ \ \textcolor{keyword}{using\ }std::asin;}
+\DoxyCodeLine{00376\ \ \ \textcolor{keywordflow}{return}\ angle<radian,\ Rep>(asin(quantity\_cast<one>(q).number()));}
+\DoxyCodeLine{00377\ \}}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00380\ \ \ \textcolor{keyword}{requires}\ treat\_as\_floating\_point<Rep>}
+\DoxyCodeLine{00381\ [[nodiscard]]\ \textcolor{keyword}{inline}\ angle<radian,\ Rep>\ acos(\textcolor{keyword}{const}\ dimensionless<U,\ Rep>\&\ q)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00382\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ acos(q.number());\ \}\ ||\ \textcolor{keyword}{requires}\ \{\ std::acos(q.number());\ \}}
+\DoxyCodeLine{00383\ \{}
+\DoxyCodeLine{00384\ \ \ \textcolor{keyword}{using\ }std::acos;}
+\DoxyCodeLine{00385\ \ \ \textcolor{keywordflow}{return}\ angle<radian,\ Rep>(acos(quantity\_cast<one>(q).number()));}
+\DoxyCodeLine{00386\ \}}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00389\ \ \ \textcolor{keyword}{requires}\ treat\_as\_floating\_point<Rep>}
+\DoxyCodeLine{00390\ [[nodiscard]]\ \textcolor{keyword}{inline}\ angle<radian,\ Rep>\ atan(\textcolor{keyword}{const}\ dimensionless<U,\ Rep>\&\ q)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00391\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ atan(q.number());\ \}\ ||\ \textcolor{keyword}{requires}\ \{\ std::atan(q.number());\ \}}
+\DoxyCodeLine{00392\ \{}
+\DoxyCodeLine{00393\ \ \ \textcolor{keyword}{using\ }std::atan;}
+\DoxyCodeLine{00394\ \ \ \textcolor{keywordflow}{return}\ angle<radian,\ Rep>(atan(quantity\_cast<one>(q).number()));}
+\DoxyCodeLine{00395\ \}}
+\DoxyCodeLine{00396\ }
+\DoxyCodeLine{00397\ \}\ \ \textcolor{comment}{//\ namespace\ units}}
+
+\end{DoxyCode}

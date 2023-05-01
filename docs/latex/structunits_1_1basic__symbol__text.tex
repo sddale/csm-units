@@ -1,0 +1,106 @@
+\hypertarget{structunits_1_1basic__symbol__text}{}\doxysection{units\+::basic\+\_\+symbol\+\_\+text\texorpdfstring{$<$}{<} Standard\+CharT, N, M \texorpdfstring{$>$}{>} Struct Template Reference}
+\label{structunits_1_1basic__symbol__text}\index{units::basic\_symbol\_text$<$ StandardCharT, N, M $>$@{units::basic\_symbol\_text$<$ StandardCharT, N, M $>$}}
+
+
+A symbol text representation.  
+
+
+
+
+{\ttfamily \#include $<$symbol\+\_\+text.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structunits_1_1basic__symbol__text_a256665200368eafdbbe7c0ffa3581b14}\label{structunits_1_1basic__symbol__text_a256665200368eafdbbe7c0ffa3581b14}} 
+constexpr {\bfseries basic\+\_\+symbol\+\_\+text} (char std) noexcept
+\item 
+\mbox{\Hypertarget{structunits_1_1basic__symbol__text_a15654ae1cf25e58f21965dd94ad0ec02}\label{structunits_1_1basic__symbol__text_a15654ae1cf25e58f21965dd94ad0ec02}} 
+constexpr {\bfseries basic\+\_\+symbol\+\_\+text} (Standard\+CharT std, char a) noexcept
+\item 
+\mbox{\Hypertarget{structunits_1_1basic__symbol__text_a24d377f43f43ade97423d49bdad093be}\label{structunits_1_1basic__symbol__text_a24d377f43f43ade97423d49bdad093be}} 
+constexpr {\bfseries basic\+\_\+symbol\+\_\+text} (const char(\&std)\mbox{[}N+1\mbox{]}) noexcept
+\item 
+\mbox{\Hypertarget{structunits_1_1basic__symbol__text_aed0e3df75eb0ae8a1920ad79258408c3}\label{structunits_1_1basic__symbol__text_aed0e3df75eb0ae8a1920ad79258408c3}} 
+constexpr {\bfseries basic\+\_\+symbol\+\_\+text} (const \mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\+\_\+fixed\+\_\+string}}$<$ char, N $>$ \&std) noexcept
+\item 
+\mbox{\Hypertarget{structunits_1_1basic__symbol__text_a92788b20da290e6827fb85c7c20c6450}\label{structunits_1_1basic__symbol__text_a92788b20da290e6827fb85c7c20c6450}} 
+constexpr {\bfseries basic\+\_\+symbol\+\_\+text} (const Standard\+CharT(\&std)\mbox{[}N+1\mbox{]}, const char(\&ascii)\mbox{[}M+1\mbox{]}) noexcept
+\item 
+\mbox{\Hypertarget{structunits_1_1basic__symbol__text_a74c340ef5edbd47d5639a4c51b838662}\label{structunits_1_1basic__symbol__text_a74c340ef5edbd47d5639a4c51b838662}} 
+constexpr {\bfseries basic\+\_\+symbol\+\_\+text} (const \mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\+\_\+fixed\+\_\+string}}$<$ Standard\+CharT, N $>$ \&std, const \mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\+\_\+fixed\+\_\+string}}$<$ char, M $>$ \&ascii) noexcept
+\item 
+\mbox{\Hypertarget{structunits_1_1basic__symbol__text_a44e125a7f26596e09a086d777ec7c544}\label{structunits_1_1basic__symbol__text_a44e125a7f26596e09a086d777ec7c544}} 
+constexpr auto \& {\bfseries standard} ()
+\item 
+\mbox{\Hypertarget{structunits_1_1basic__symbol__text_a2bdfaf54a8d4323e1eb41546f223442a}\label{structunits_1_1basic__symbol__text_a2bdfaf54a8d4323e1eb41546f223442a}} 
+constexpr const auto \& {\bfseries standard} () const
+\item 
+\mbox{\Hypertarget{structunits_1_1basic__symbol__text_a0cbeb1d5ed771a993bfe922800d40887}\label{structunits_1_1basic__symbol__text_a0cbeb1d5ed771a993bfe922800d40887}} 
+constexpr auto \& {\bfseries ascii} ()
+\item 
+\mbox{\Hypertarget{structunits_1_1basic__symbol__text_a9a51ad5d7afb5fc86908f142df390e93}\label{structunits_1_1basic__symbol__text_a9a51ad5d7afb5fc86908f142df390e93}} 
+constexpr const auto \& {\bfseries ascii} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structunits_1_1basic__symbol__text_a1c1deb9945be12809e8dd2970dc6b8fe}\label{structunits_1_1basic__symbol__text_a1c1deb9945be12809e8dd2970dc6b8fe}} 
+\mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\+\_\+fixed\+\_\+string}}$<$ Standard\+CharT, N $>$ {\bfseries standard\+\_\+}
+\item 
+\mbox{\Hypertarget{structunits_1_1basic__symbol__text_a62c3da2946f8bb2efbd1c6b795b57ee5}\label{structunits_1_1basic__symbol__text_a62c3da2946f8bb2efbd1c6b795b57ee5}} 
+\mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\+\_\+fixed\+\_\+string}}$<$ char, M $>$ {\bfseries ascii\+\_\+}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structunits_1_1basic__symbol__text_aa5fe50cf9c89709dd478722afd586937}\label{structunits_1_1basic__symbol__text_aa5fe50cf9c89709dd478722afd586937}} 
+{\footnotesize template$<$std\+::size\+\_\+t N2, std\+::size\+\_\+t M2$>$ }\\constexpr friend \mbox{\hyperlink{structunits_1_1basic__symbol__text}{basic\+\_\+symbol\+\_\+text}}$<$ Standard\+CharT, N+N2, M+M2 $>$ {\bfseries operator+} (const \mbox{\hyperlink{structunits_1_1basic__symbol__text}{basic\+\_\+symbol\+\_\+text}} \&lhs, const \mbox{\hyperlink{structunits_1_1basic__symbol__text}{basic\+\_\+symbol\+\_\+text}}$<$ Standard\+CharT, N2, M2 $>$ \&rhs) noexcept
+\item 
+\mbox{\Hypertarget{structunits_1_1basic__symbol__text_a80f655089ecb7f9d2e5d00bb3f2225a6}\label{structunits_1_1basic__symbol__text_a80f655089ecb7f9d2e5d00bb3f2225a6}} 
+{\footnotesize template$<$std\+::size\+\_\+t N2$>$ }\\constexpr friend \mbox{\hyperlink{structunits_1_1basic__symbol__text}{basic\+\_\+symbol\+\_\+text}}$<$ Standard\+CharT, N+N2, M+N2 $>$ {\bfseries operator+} (const \mbox{\hyperlink{structunits_1_1basic__symbol__text}{basic\+\_\+symbol\+\_\+text}} \&lhs, const \mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\+\_\+fixed\+\_\+string}}$<$ Standard\+CharT, N2 $>$ \&rhs) noexcept
+\item 
+\mbox{\Hypertarget{structunits_1_1basic__symbol__text_a95264dea2d58c44afbcdf1d6adfb28fe}\label{structunits_1_1basic__symbol__text_a95264dea2d58c44afbcdf1d6adfb28fe}} 
+{\footnotesize template$<$std\+::size\+\_\+t N2$>$ }\\constexpr friend \mbox{\hyperlink{structunits_1_1basic__symbol__text}{basic\+\_\+symbol\+\_\+text}}$<$ Standard\+CharT, N+N2, M+N2 $>$ {\bfseries operator+} (const \mbox{\hyperlink{structunits_1_1basic__fixed__string}{basic\+\_\+fixed\+\_\+string}}$<$ Standard\+CharT, N2 $>$ \&lhs, const \mbox{\hyperlink{structunits_1_1basic__symbol__text}{basic\+\_\+symbol\+\_\+text}} \&rhs) noexcept
+\item 
+\mbox{\Hypertarget{structunits_1_1basic__symbol__text_a542028a0e73509ab69011e6c02ef13df}\label{structunits_1_1basic__symbol__text_a542028a0e73509ab69011e6c02ef13df}} 
+{\footnotesize template$<$std\+::size\+\_\+t N2$>$ }\\constexpr friend \mbox{\hyperlink{structunits_1_1basic__symbol__text}{basic\+\_\+symbol\+\_\+text}}$<$ Standard\+CharT, N+N2 -\/ 1, M+N2 -\/ 1 $>$ {\bfseries operator+} (const \mbox{\hyperlink{structunits_1_1basic__symbol__text}{basic\+\_\+symbol\+\_\+text}} \&lhs, const Standard\+CharT(\&rhs)\mbox{[}N2\mbox{]}) noexcept
+\item 
+\mbox{\Hypertarget{structunits_1_1basic__symbol__text_ad917437a47e180726db8a2f7d99f0c09}\label{structunits_1_1basic__symbol__text_ad917437a47e180726db8a2f7d99f0c09}} 
+{\footnotesize template$<$std\+::size\+\_\+t N2$>$ }\\constexpr friend \mbox{\hyperlink{structunits_1_1basic__symbol__text}{basic\+\_\+symbol\+\_\+text}}$<$ Standard\+CharT, N+N2 -\/ 1, M+N2 -\/ 1 $>$ {\bfseries operator+} (const Standard\+CharT(\&lhs)\mbox{[}N2\mbox{]}, const \mbox{\hyperlink{structunits_1_1basic__symbol__text}{basic\+\_\+symbol\+\_\+text}} \&rhs) noexcept
+\item 
+\mbox{\Hypertarget{structunits_1_1basic__symbol__text_ac5b2941416b5465a2aa24d1e7bee49a4}\label{structunits_1_1basic__symbol__text_ac5b2941416b5465a2aa24d1e7bee49a4}} 
+constexpr friend \mbox{\hyperlink{structunits_1_1basic__symbol__text}{basic\+\_\+symbol\+\_\+text}}$<$ Standard\+CharT, N+1, M+1 $>$ {\bfseries operator+} (const \mbox{\hyperlink{structunits_1_1basic__symbol__text}{basic\+\_\+symbol\+\_\+text}} \&lhs, Standard\+CharT rhs) noexcept
+\item 
+\mbox{\Hypertarget{structunits_1_1basic__symbol__text_a41220e6bc8dee6e5340673863bfbb24d}\label{structunits_1_1basic__symbol__text_a41220e6bc8dee6e5340673863bfbb24d}} 
+constexpr friend \mbox{\hyperlink{structunits_1_1basic__symbol__text}{basic\+\_\+symbol\+\_\+text}}$<$ Standard\+CharT, N+1, M+1 $>$ {\bfseries operator+} (Standard\+CharT lhs, const \mbox{\hyperlink{structunits_1_1basic__symbol__text}{basic\+\_\+symbol\+\_\+text}} \&rhs) noexcept
+\item 
+\mbox{\Hypertarget{structunits_1_1basic__symbol__text_abda4faf94f92c3ca135038027a410d87}\label{structunits_1_1basic__symbol__text_abda4faf94f92c3ca135038027a410d87}} 
+{\footnotesize template$<$typename Standard\+Char\+T2 , std\+::size\+\_\+t N2, std\+::size\+\_\+t M2$>$ }\\constexpr auto {\bfseries operator$<$=$>$} (const \mbox{\hyperlink{structunits_1_1basic__symbol__text}{basic\+\_\+symbol\+\_\+text}} \&lhs, const \mbox{\hyperlink{structunits_1_1basic__symbol__text}{basic\+\_\+symbol\+\_\+text}}$<$ Standard\+Char\+T2, N2, M2 $>$ \&rhs) noexcept
+\item 
+\mbox{\Hypertarget{structunits_1_1basic__symbol__text_a1137a50676d9bbfd7f717b5cd0b0221b}\label{structunits_1_1basic__symbol__text_a1137a50676d9bbfd7f717b5cd0b0221b}} 
+{\footnotesize template$<$typename Standard\+Char\+T2 , std\+::size\+\_\+t N2, std\+::size\+\_\+t M2$>$ }\\constexpr bool {\bfseries operator==} (const \mbox{\hyperlink{structunits_1_1basic__symbol__text}{basic\+\_\+symbol\+\_\+text}} \&lhs, const \mbox{\hyperlink{structunits_1_1basic__symbol__text}{basic\+\_\+symbol\+\_\+text}}$<$ Standard\+Char\+T2, N2, M2 $>$ \&rhs) noexcept
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Standard\+CharT, std\+::size\+\_\+t N, std\+::size\+\_\+t M$>$\newline
+struct units\+::basic\+\_\+symbol\+\_\+text$<$ Standard\+Char\+T, N, M $>$}
+A symbol text representation. 
+
+This class template is responsible for definition and handling of a symbol text representation. In the libary it is used to define symbols of units and prefixes. Each symbol can have two versions\+: Unicode and ASCI-\/only.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Standard\+CharT} & Character type to be used for a Unicode representation \\
+\hline
+{\em N} & The size of a Unicode symbol \\
+\hline
+{\em M} & The size of the ASCII-\/only symbol \\
+\hline
+\end{DoxyTemplParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+csm-\/units/units/src/core/include/units/symbol\+\_\+text.\+h\end{DoxyCompactItemize}

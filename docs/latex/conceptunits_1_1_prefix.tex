@@ -1,0 +1,24 @@
+\hypertarget{conceptunits_1_1_prefix}{}\doxysection{units\+::Prefix Concept Reference}
+\label{conceptunits_1_1_prefix}\index{units::Prefix@{units::Prefix}}
+
+
+A concept matching a symbol prefix.  
+
+
+
+
+{\ttfamily \#include $<$basic\+\_\+concepts.\+h$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1_prefix}{units::Prefix}}\ =\ \ \textcolor{keyword}{requires}(T*\ t)\ \{\ detail::to\_prefix\_base(t);\ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+A concept matching a symbol prefix. 
+
+Satisfied by all specializations of {\ttfamily prefix}. 

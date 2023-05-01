@@ -1,0 +1,24 @@
+\hypertarget{conceptunits_1_1_quantity_equivalent_to}{}\doxysection{units\+::Quantity\+Equivalent\+To Concept Reference}
+\label{conceptunits_1_1_quantity_equivalent_to}\index{units::QuantityEquivalentTo@{units::QuantityEquivalentTo}}
+
+
+A concept matching two equivalent quantities.  
+
+
+
+
+{\ttfamily \#include $<$quantity\+\_\+of.\+h$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Q1,\ \textcolor{keyword}{typename}\ Q2>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1_quantity_equivalent_to}{units::QuantityEquivalentTo}}\ =\ \ \mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity<Q1>}}\ \&\&\ \mbox{\hyperlink{conceptunits_1_1_quantity_of}{QuantityOf<Q2,\ typename\ Q1::dimension>}}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+A concept matching two equivalent quantities. 
+
+Satisfied by quantities having equivalent dimensions. 

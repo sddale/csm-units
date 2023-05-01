@@ -1,0 +1,142 @@
+\hypertarget{test__tools_8h_source}{}\doxysection{test\+\_\+tools.\+h}
+\label{test__tools_8h_source}\index{csm-\/units/units/test/unit\_test/static/test\_tools.h@{csm-\/units/units/test/unit\_test/static/test\_tools.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <units/bits/equivalent.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00031\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ compare\_impl\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00034\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ compare\_impl<T,\ T>\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00037\ \ \ \textcolor{keyword}{requires}(UNITS\_DOWNCAST\_MODE\ ==\ 0)}
+\DoxyCodeLine{00038\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ compare\_impl<T,\ U>\ =\ units::equivalent<T,\ U>;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00041\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ compare\ =\ compare\_impl<std::remove\_cvref\_t<T>,\ std::remove\_cvref\_t<U>>;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}...\ Us,\ \textcolor{keyword}{typename}...\ Vs>}
+\DoxyCodeLine{00044\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ constructible\_from(Vs...)}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordflow}{return}\ std::constructible\_from<T,\ Us...,\ Vs...>;}
+\DoxyCodeLine{00047\ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00050\ \textcolor{keywordtype}{void}\ convertible\_from\_\_(T);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}...\ Us>}
+\DoxyCodeLine{00053\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptconvertible__from__}{convertible\_from\_}}\ =\ \textcolor{keyword}{requires}(Us...\ us)\ \{\ convertible\_from\_\_<T>(\{us...\});\ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}...\ Us,\ \textcolor{keyword}{typename}...\ Vs>}
+\DoxyCodeLine{00056\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ convertible\_from(Vs...)}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\textcolor{keyword}{sizeof}...(Us)\ +\ \textcolor{keyword}{sizeof}...(Vs)\ ==\ 1)}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{return}\ std::is\_convertible\_v<Us...,\ Vs...,\ T>;}
+\DoxyCodeLine{00060\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{conceptconvertible__from__}{convertible\_from\_}}<T,\ Us...,\ Vs...>;}
+\DoxyCodeLine{00062\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}...\ Us,\ \textcolor{keyword}{typename}...\ Vs>}
+\DoxyCodeLine{00065\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ constructible\_or\_convertible\_from(Vs...)}
+\DoxyCodeLine{00066\ \{}
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordflow}{return}\ constructible\_from<T,\ Us...,\ Vs...>()\ ||\ convertible\_from<T,\ Us...,\ Vs...>();}
+\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}...\ Us,\ \textcolor{keyword}{typename}...\ Vs>}
+\DoxyCodeLine{00071\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ constructible\_and\_convertible\_from(Vs...)}
+\DoxyCodeLine{00072\ \{}
+\DoxyCodeLine{00073\ \ \ \textcolor{keywordflow}{return}\ constructible\_from<T,\ Us...,\ Vs...>()\ \&\&\ convertible\_from<T,\ Us...,\ Vs...>();}
+\DoxyCodeLine{00074\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}...\ Us>}
+\DoxyCodeLine{00077\ \ \ \textcolor{keyword}{requires}(constructible\_from<T,\ Us...>())}
+\DoxyCodeLine{00078\ constexpr\ T\ construct\_from(Us...\ us)}
+\DoxyCodeLine{00079\ \{}
+\DoxyCodeLine{00080\ \ \ \textcolor{keywordflow}{return}\ T(us...);}
+\DoxyCodeLine{00081\ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}...\ Us>}
+\DoxyCodeLine{00084\ \ \ \textcolor{keyword}{requires}(convertible\_from<T,\ Us...>())}
+\DoxyCodeLine{00085\ constexpr\ T\ convert\_from(Us...\ us)}
+\DoxyCodeLine{00086\ \{}
+\DoxyCodeLine{00087\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (\textcolor{keyword}{sizeof}...(Us)\ ==\ 1)}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{return}\ [](T\ t)\ \{\ \textcolor{keywordflow}{return}\ t;\ \}(us...);}
+\DoxyCodeLine{00089\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{return}\ \{us...\};}
+\DoxyCodeLine{00091\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{template}<std::equality\_comparable\ T,\ \textcolor{keyword}{typename}...\ Us>}
+\DoxyCodeLine{00094\ \ \ \textcolor{keyword}{requires}(constructible\_from<T,\ Us...>()\ \&\&\ convertible\_from<T,\ Us...>())}
+\DoxyCodeLine{00095\ \textcolor{keyword}{constexpr}\ T\ construct\_and\_convert\_from(Us...\ us)}
+\DoxyCodeLine{00096\ \{}
+\DoxyCodeLine{00097\ \ \ T\ t\{construct\_from<T>(us...)\};}
+\DoxyCodeLine{00098\ \ \ assert(t\ ==\ convert\_from<T>(us...));}
+\DoxyCodeLine{00099\ \ \ \textcolor{keywordflow}{return}\ t;}
+\DoxyCodeLine{00100\ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}...\ Us>}
+\DoxyCodeLine{00103\ \ \ \textcolor{keyword}{requires}(constructible\_from<T,\ Us...>()\ \&\&\ !convertible\_from<T,\ Us...>())}
+\DoxyCodeLine{00104\ \textcolor{keyword}{constexpr}\ T\ construct\_from\_only(Us...\ us)}
+\DoxyCodeLine{00105\ \{}
+\DoxyCodeLine{00106\ \ \ \textcolor{keywordflow}{return}\ construct\_from<T>(us...);}
+\DoxyCodeLine{00107\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#if\ !defined(UNITS\_COMP\_GCC)}}
+\DoxyCodeLine{00110\ \textcolor{keyword}{template}<\textcolor{keyword}{template}<\textcolor{keyword}{typename}...>\ \textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ =\ std::void\_t<>,\ \textcolor{keyword}{typename}...\ Us>}
+\DoxyCodeLine{00111\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptctad__constructible__from__}{ctad\_constructible\_from\_}}\ =\ \textcolor{keyword}{requires}(Us...\ us)\ \{\ T(us...);\ \};}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00113\ \textcolor{keyword}{template}<\textcolor{keyword}{template}<\textcolor{keyword}{typename}...>\ \textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ =\ std::void\_t<>,\ \textcolor{keyword}{typename}...\ Us>}
+\DoxyCodeLine{00114\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{conceptctad__constructible__from__}{ctad\_constructible\_from\_}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{template}<\textcolor{keyword}{template}<\textcolor{keyword}{typename}...>\ \textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}...\ Us>}
+\DoxyCodeLine{00117\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{conceptctad__constructible__from__}{ctad\_constructible\_from\_}}<T,\ std::void\_t<\textcolor{keyword}{decltype}(T(Us\{\}...))>,\ Us...>\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00118\ \#endif}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{template}<template<typename...>\ \textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}...\ Us,\ \textcolor{keyword}{typename}...\ Vs>}
+\DoxyCodeLine{00121\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ ctad\_constructible\_from(Vs...)}
+\DoxyCodeLine{00122\ \{}
+\DoxyCodeLine{00123\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{conceptctad__constructible__from__}{ctad\_constructible\_from\_}}<T,\ void,\ Us...,\ Vs...>;}
+\DoxyCodeLine{00124\ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ same\ =\ []<std::equality\_comparable\ T>(T\ l,\ T\ r)\ \{\ \textcolor{keywordflow}{return}\ l\ ==\ r;\ \};}
+\DoxyCodeLine{00127\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ comp\ =\ \ \textcolor{comment}{//\ TODO:\ Fix\ \#205\ to\ use\ `std::equality\_comparable\_with<T>\ U`.}}
+\DoxyCodeLine{00128\ \ \ []<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ U>(T\ l,\ U\ r)}
+\DoxyCodeLine{00129\ \ \ \textcolor{keyword}{requires}\ compare<T,\ U>}
+\DoxyCodeLine{00130\ \{}
+\DoxyCodeLine{00131\ \ \ \textcolor{keywordflow}{return}\ l\ ==\ r;}
+\DoxyCodeLine{00132\ \};}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{keyword}{template}<auto\ F>}
+\DoxyCodeLine{00135\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ F();\ \}}
+\DoxyCodeLine{00136\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ require\_constant\_invocation\ =\ \textcolor{keyword}{requires}\ \{\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{int}[1][(F(),\ 1)];\ \};}
+
+\end{DoxyCode}

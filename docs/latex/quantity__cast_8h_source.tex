@@ -1,0 +1,215 @@
+\hypertarget{quantity__cast_8h_source}{}\doxysection{quantity\+\_\+cast.\+h}
+\label{quantity__cast_8h_source}\index{csm-\/units/units/src/core/include/units/quantity\_cast.h@{csm-\/units/units/src/core/include/units/quantity\_cast.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <units/bits/dimension\_op.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <units/bits/external/type\_traits.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <units/concepts.h>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <units/customization\_points.h>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <units/magnitude.h>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <units/reference.h>}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ UNITS\_DIAGNOSTIC\_PUSH}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ warning\ C4244:\ 'argument':\ conversion\ from\ 'intmax\_t'\ to\ 'T',\ possible\ loss\ of\ data\ with\ T=int}}
+\DoxyCodeLine{00034\ UNITS\_DIAGNOSTIC\_IGNORE\_LOSS\_OF\_DATA}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{namespace\ }units\ \{}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}<Dimension\ D,\ UnitOf<D>\ U,\ Representation\ Rep>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }quantity;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{template}<Po\textcolor{keywordtype}{int}Origin\ O,\ UnitOf<\textcolor{keyword}{typename}\ O::dimension>\ U,\ Representation\ Rep>}
+\DoxyCodeLine{00042\ \textcolor{keyword}{class\ }quantity\_point;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{template}<Kind\ K,\ UnitOf<\textcolor{keyword}{typename}\ K::dimension>\ U,\ Representation\ Rep>}
+\DoxyCodeLine{00045\ \textcolor{keyword}{class\ }quantity\_kind;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{template}<Po\textcolor{keywordtype}{int}Kind\ PK,\ UnitOf<\textcolor{keyword}{typename}\ PK::dimension>\ U,\ Representation\ Rep>}
+\DoxyCodeLine{00048\ \textcolor{keyword}{class\ }quantity\_point\_kind;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{namespace\ }detail\ \{}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{template}<Quantity\ Q>}
+\DoxyCodeLine{00053\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ Magnitude\ \textcolor{keyword}{auto}\ quantity\_magnitude\ =\ \textcolor{keyword}{decltype}(Q::reference)::mag;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ QFrom,\ \textcolor{keyword}{typename}\ QTo>}
+\DoxyCodeLine{00056\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ Magnitude\ \textcolor{keyword}{auto}\ cast\_magnitude\ =\ []\ \{}
+\DoxyCodeLine{00057\ \ \ \textcolor{keyword}{using\ }FromU\ =\ TYPENAME\ QFrom::unit;}
+\DoxyCodeLine{00058\ \ \ \textcolor{keyword}{using\ }ToU\ =\ TYPENAME\ QTo::unit;}
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (same\_unit\_reference<FromU,\ ToU>::value)\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{return}\ FromU::mag\ /\ ToU::mag;}
+\DoxyCodeLine{00061\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{return}\ quantity\_magnitude<QFrom>\ /\ quantity\_magnitude<QTo>;}
+\DoxyCodeLine{00063\ \ \ \}}
+\DoxyCodeLine{00064\ \}();}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ From,\ \textcolor{keyword}{typename}\ To>}
+\DoxyCodeLine{00067\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1detail_1_1cast__traits}{cast\_traits}};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ From,\ \textcolor{keyword}{typename}\ To>}
+\DoxyCodeLine{00070\ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptunits_1_1common__type__with__}{common\_type\_with\_<std::common\_type\_t<From,\ To>}},\ std::intmax\_t>}
+\DoxyCodeLine{00071\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1detail_1_1cast__traits}{cast\_traits}}<From,\ To>\ \{}
+\DoxyCodeLine{00072\ \ \ \textcolor{keyword}{using\ }ratio\_type\ =\ std::common\_type\_t<std::common\_type\_t<From,\ To>,\ std::intmax\_t>;}
+\DoxyCodeLine{00073\ \ \ \textcolor{keyword}{using\ }rep\_type\ =\ ratio\_type;}
+\DoxyCodeLine{00074\ \};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ From,\ \textcolor{keyword}{typename}\ To>}
+\DoxyCodeLine{00077\ \ \ \textcolor{keyword}{requires}(!\mbox{\hyperlink{conceptunits_1_1common__type__with__}{common\_type\_with\_<std::common\_type\_t<From,\ To>}},\ std::intmax\_t>\ \&\&}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{conceptunits_1_1scalable__number__}{scalable\_number\_<std::common\_type\_t<From,\ To>}},\ std::intmax\_t>\ \&\&}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \{\ \textcolor{keyword}{typename}\ std::common\_type\_t<From,\ To>::value\_type;\ \}\ \&\&}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{conceptunits_1_1common__type__with__}{common\_type\_with\_<typename\ std::common\_type\_t<From,\ To>::value\_type}},\ std::intmax\_t>)}
+\DoxyCodeLine{00081\ \textcolor{keyword}{struct}\ cast\_traits<From,\ To>\ \{}
+\DoxyCodeLine{00082\ \ \ \textcolor{keyword}{using\ }ratio\_type\ =\ std::common\_type\_t<typename\ std::common\_type\_t<From,\ To>::value\_type,\ std::intmax\_t>;}
+\DoxyCodeLine{00083\ \ \ \textcolor{keyword}{using\ }rep\_type\ =\ std::common\_type\_t<From,\ To>;}
+\DoxyCodeLine{00084\ \};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \}\ \ \textcolor{comment}{//\ namespace\ detail}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00100\ \textcolor{keyword}{template}<Quantity\ To,\ \textcolor{keyword}{typename}\ D,\ \textcolor{keyword}{typename}\ U,\ scalable\_with\_<\textcolor{keyword}{typename}\ To::rep>\ Rep>}
+\DoxyCodeLine{00101\ \ \ \textcolor{keyword}{requires}\ QuantityOf<To,\ D>\ \&\&\ (std::constructible\_from<typename\ To::rep,\ std::common\_type\_t<typename\ To::rep,\ Rep>>)}
+\DoxyCodeLine{00102\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ quantity\_cast(\textcolor{keyword}{const}\ quantity<D,\ U,\ Rep>\&\ q)}
+\DoxyCodeLine{00103\ \{}
+\DoxyCodeLine{00104\ \ \ \textcolor{keyword}{using\ }traits\ =\ detail::cast\_traits<Rep,\ typename\ To::rep>;}
+\DoxyCodeLine{00105\ \ \ \textcolor{keyword}{using\ }ratio\_type\ =\ TYPENAME\ traits::ratio\_type;}
+\DoxyCodeLine{00106\ \ \ \textcolor{keyword}{using\ }rep\_type\ =\ TYPENAME\ traits::rep\_type;}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \textcolor{keyword}{constexpr}\ Magnitude\ \textcolor{keyword}{auto}\ c\_mag\ =\ detail::cast\_magnitude<quantity<D,\ U,\ Rep>,\ To>;}
+\DoxyCodeLine{00109\ \ \ \textcolor{keyword}{constexpr}\ Magnitude\ \textcolor{keyword}{auto}\ num\ =\ numerator(c\_mag);}
+\DoxyCodeLine{00110\ \ \ \textcolor{keyword}{constexpr}\ Magnitude\ \textcolor{keyword}{auto}\ den\ =\ denominator(c\_mag);}
+\DoxyCodeLine{00111\ \ \ \textcolor{keyword}{constexpr}\ Magnitude\ \textcolor{keyword}{auto}\ irr\ =\ c\_mag\ *\ (den\ /\ num);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ val\ =\ [](Magnitude\ \textcolor{keyword}{auto}\ m)\ \{\ \textcolor{keywordflow}{return}\ get\_value<ratio\_type>(m);\ \};}
+\DoxyCodeLine{00114\ \ \ \textcolor{keywordflow}{return}\ To(\textcolor{keyword}{static\_cast<}TYPENAME\ To::rep\textcolor{keyword}{>}(\textcolor{keyword}{static\_cast<}rep\_type\textcolor{keyword}{>}(q.number())\ *\ val(num)\ /\ val(den)\ *\ val(irr)));}
+\DoxyCodeLine{00115\ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00129\ \textcolor{keyword}{template}<Dimension\ ToD,\ \textcolor{keyword}{typename}\ D,\ \textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00130\ \ \ \textcolor{keyword}{requires}\ equivalent<ToD,\ D>}
+\DoxyCodeLine{00131\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ quantity\_cast(\textcolor{keyword}{const}\ quantity<D,\ U,\ Rep>\&\ q)}
+\DoxyCodeLine{00132\ \{}
+\DoxyCodeLine{00133\ \ \ \textcolor{keywordflow}{return}\ quantity\_cast<quantity<ToD,\ downcast\_unit<ToD,\ U::mag>,\ Rep>>(q);}
+\DoxyCodeLine{00134\ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00148\ \textcolor{keyword}{template}<Unit\ ToU,\ \textcolor{keyword}{typename}\ D,\ \textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00149\ \ \ \textcolor{keyword}{requires}\ UnitOf<ToU,\ D>}
+\DoxyCodeLine{00150\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ quantity\_cast(\textcolor{keyword}{const}\ quantity<D,\ U,\ Rep>\&\ q)}
+\DoxyCodeLine{00151\ \{}
+\DoxyCodeLine{00152\ \ \ \textcolor{keywordflow}{return}\ quantity\_cast<quantity<D,\ ToU,\ Rep>>(q);}
+\DoxyCodeLine{00153\ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00171\ \textcolor{keyword}{template}<Dimension\ ToD,\ Unit\ ToU,\ \textcolor{keyword}{typename}\ D,\ \textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00172\ \ \ \textcolor{keyword}{requires}\ equivalent<ToD,\ D>\ \&\&\ UnitOf<ToU,\ ToD>}
+\DoxyCodeLine{00173\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ quantity\_cast(\textcolor{keyword}{const}\ quantity<D,\ U,\ Rep>\&\ q)}
+\DoxyCodeLine{00174\ \{}
+\DoxyCodeLine{00175\ \ \ \textcolor{keywordflow}{return}\ quantity\_cast<quantity<ToD,\ ToU,\ Rep>>(q);}
+\DoxyCodeLine{00176\ \}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00190\ \textcolor{keyword}{template}<Representation\ ToRep,\ \textcolor{keyword}{typename}\ D,\ \textcolor{keyword}{typename}\ U,\ scalable\_with\_<ToRep>\ Rep>}
+\DoxyCodeLine{00191\ \ \ \textcolor{keyword}{requires}(std::constructible\_from<ToRep,\ std::common\_type\_t<ToRep,\ Rep>>)}
+\DoxyCodeLine{00192\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ quantity\_cast(\textcolor{keyword}{const}\ quantity<D,\ U,\ Rep>\&\ q)}
+\DoxyCodeLine{00193\ \{}
+\DoxyCodeLine{00194\ \ \ \textcolor{keywordflow}{return}\ quantity\_cast<quantity<D,\ U,\ ToRep>>(q);}
+\DoxyCodeLine{00195\ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00213\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ CastSpec,\ \textcolor{keyword}{typename}\ O,\ \textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00214\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ quantity\_point\_cast(\textcolor{keyword}{const}\ quantity\_point<O,\ U,\ Rep>\&\ qp)}
+\DoxyCodeLine{00215\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{requires}\ is\_specialization\_of<CastSpec,\ quantity\_point>;}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ quantity\_cast<typename\ CastSpec::quantity\_type>(qp.relative());\ \};}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keyword}{requires}\ equivalent<O,\ typename\ CastSpec::origin>;}
+\DoxyCodeLine{00219\ \ \ \}\ ||\ \ \textcolor{comment}{//\ TODO:\ Simplify\ when\ Clang\ catches\ up.}}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \{\ quantity\_cast<CastSpec>(qp.relative());\ \}}
+\DoxyCodeLine{00221\ \{}
+\DoxyCodeLine{00222\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (is\_specialization\_of<CastSpec,\ quantity\_point>)}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordflow}{return}\ quantity\_point(quantity\_cast<typename\ CastSpec::quantity\_type>(qp.relative()));}
+\DoxyCodeLine{00224\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordflow}{return}\ quantity\_point(quantity\_cast<CastSpec>(qp.relative()));}
+\DoxyCodeLine{00226\ \}}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00244\ \textcolor{keyword}{template}<Dimension\ ToD,\ Unit\ ToU,\ \textcolor{keyword}{typename}\ O,\ \textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00245\ \ \ \textcolor{keyword}{requires}\ equivalent<ToD,\ typename\ O::dimension>\ \&\&\ UnitOf<ToU,\ ToD>\ \&\&\ RebindablePointOriginFor<O,\ ToD>}
+\DoxyCodeLine{00246\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ quantity\_point\_cast(\textcolor{keyword}{const}\ quantity\_point<O,\ U,\ Rep>\&\ q)}
+\DoxyCodeLine{00247\ \{}
+\DoxyCodeLine{00248\ \ \ \textcolor{keywordflow}{return}\ quantity\_point\_cast<quantity\_point<rebind\_point\_origin\_dimension<O,\ ToD>,\ ToU,\ Rep>>(q);}
+\DoxyCodeLine{00249\ \}}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00268\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ CastSpec,\ \textcolor{keyword}{typename}\ K,\ \textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00269\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ QuantityKind\ \textcolor{keyword}{auto}\ quantity\_kind\_cast(\textcolor{keyword}{const}\ quantity\_kind<K,\ U,\ Rep>\&\ qk)}
+\DoxyCodeLine{00270\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keyword}{requires}\ is\_specialization\_of<CastSpec,\ quantity\_kind>;}
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ quantity\_cast<typename\ CastSpec::quantity\_type>(qk.common());\ \};}
+\DoxyCodeLine{00273\ \ \ \}\ ||\ \textcolor{keyword}{requires}\ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keyword}{requires}\ Kind<CastSpec>;}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keyword}{requires}\ UnitOf<U,\ typename\ CastSpec::dimension>;}
+\DoxyCodeLine{00276\ \ \ \}\ ||\ \textcolor{keyword}{requires}\ \{\ quantity\_cast<CastSpec>(qk.common());\ \}\ \ \textcolor{comment}{//\ TODO:\ Simplify\ when\ Clang\ catches\ up.}}
+\DoxyCodeLine{00277\ \{}
+\DoxyCodeLine{00278\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (is\_specialization\_of<CastSpec,\ quantity\_kind>)}
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keywordflow}{return}\ CastSpec(quantity\_cast<typename\ CastSpec::quantity\_type>(qk.common()));}
+\DoxyCodeLine{00280\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (Kind<CastSpec>)}
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{keywordflow}{return}\ quantity\_kind<CastSpec,\ U,\ Rep>(qk.common());}
+\DoxyCodeLine{00282\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keyword}{auto}\ q\{quantity\_cast<CastSpec>(qk.common())\};}
+\DoxyCodeLine{00284\ \ \ \ \ \textcolor{keyword}{using\ }Q\ =\ \textcolor{keyword}{decltype}(q);}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordflow}{return}\ quantity\_kind<K,\ typename\ Q::unit,\ typename\ Q::rep>(\textcolor{keyword}{static\_cast<}Q\&\&\textcolor{keyword}{>}(q));}
+\DoxyCodeLine{00286\ \ \ \}}
+\DoxyCodeLine{00287\ \}}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00304\ \textcolor{keyword}{template}<Kind\ ToK,\ Unit\ ToU,\ \textcolor{keyword}{typename}\ K,\ \textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00305\ \ \ \textcolor{keyword}{requires}\ equivalent<typename\ ToK::dimension,\ typename\ K::dimension>\ \&\&\ UnitOf<ToU,\ typename\ ToK::dimension>}
+\DoxyCodeLine{00306\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ QuantityKind\ \textcolor{keyword}{auto}\ quantity\_kind\_cast(\textcolor{keyword}{const}\ quantity\_kind<K,\ U,\ Rep>\&\ qk)}
+\DoxyCodeLine{00307\ \{}
+\DoxyCodeLine{00308\ \ \ \textcolor{keywordflow}{return}\ quantity\_kind\_cast<quantity\_kind<ToK,\ ToU,\ Rep>>(qk);}
+\DoxyCodeLine{00309\ \}}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00331\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ CastSpec,\ \textcolor{keyword}{typename}\ PK,\ \textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00332\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ QuantityPointKind\ \textcolor{keyword}{auto}\ quantity\_point\_kind\_cast(\textcolor{keyword}{const}\ quantity\_point\_kind<PK,\ U,\ Rep>\&\ qpk)}
+\DoxyCodeLine{00333\ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{}
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{keyword}{requires}\ is\_specialization\_of<CastSpec,\ quantity\_point\_kind>;}
+\DoxyCodeLine{00335\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ quantity\_kind\_cast<typename\ CastSpec::quantity\_kind\_type>(qpk.relative());\ \};}
+\DoxyCodeLine{00336\ \ \ \ \ \textcolor{keyword}{requires}\ equivalent<typename\ PK::origin,\ typename\ CastSpec::point\_kind\_type::origin>;}
+\DoxyCodeLine{00337\ \ \ \}\ ||\ \textcolor{keyword}{requires}\ \{\ \textcolor{keyword}{requires}\ PointKind<CastSpec>\ \&\&\ UnitOf<U,\ typename\ CastSpec::dimension>;\ \}\ ||}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \{\ quantity\_kind\_cast<CastSpec>(qpk.relative());\ \}\ \ \textcolor{comment}{//\ TODO:\ Simplify\ when\ Clang\ catches\ up.}}
+\DoxyCodeLine{00339\ \{}
+\DoxyCodeLine{00340\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (is\_specialization\_of<CastSpec,\ quantity\_point\_kind>)}
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keywordflow}{return}\ CastSpec(quantity\_kind\_cast<typename\ CastSpec::quantity\_kind\_type>(qpk.relative()));}
+\DoxyCodeLine{00342\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (PointKind<CastSpec>)}
+\DoxyCodeLine{00343\ \ \ \ \ \textcolor{keywordflow}{return}\ quantity\_point\_kind(quantity\_kind\_cast<typename\ CastSpec::base\_kind>(qpk.relative()));}
+\DoxyCodeLine{00344\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keywordflow}{return}\ quantity\_point\_kind(quantity\_kind\_cast<CastSpec>(qpk.relative()));}
+\DoxyCodeLine{00346\ \}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00363\ \textcolor{keyword}{template}<Po\textcolor{keywordtype}{int}Kind\ ToPK,\ Unit\ ToU,\ \textcolor{keyword}{typename}\ PK,\ \textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00364\ \ \ \textcolor{keyword}{requires}\ equivalent<typename\ ToPK::dimension,\ typename\ PK::dimension>\ \&\&\ UnitOf<ToU,\ typename\ ToPK::dimension>}
+\DoxyCodeLine{00365\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ QuantityPointKind\ \textcolor{keyword}{auto}\ quantity\_point\_kind\_cast(\textcolor{keyword}{const}\ quantity\_point\_kind<PK,\ U,\ Rep>\&\ qpk)}
+\DoxyCodeLine{00366\ \{}
+\DoxyCodeLine{00367\ \ \ \textcolor{keywordflow}{return}\ quantity\_point\_kind\_cast<quantity\_point\_kind<ToPK,\ ToU,\ Rep>>(qpk);}
+\DoxyCodeLine{00368\ \}}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ \}\ \ \textcolor{comment}{//\ namespace\ units}}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ UNITS\_DIAGNOSTIC\_POP}
+
+\end{DoxyCode}

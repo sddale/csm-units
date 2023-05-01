@@ -1,0 +1,531 @@
+\hypertarget{quantity_8h_source}{}\doxysection{quantity.\+h}
+\label{quantity_8h_source}\index{csm-\/units/units/src/core/include/units/quantity.h@{csm-\/units/units/src/core/include/units/quantity.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <units/bits/common\_type.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <units/generic/dimensionless.h>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ IWYU\ pragma:\ begin\_exports}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <units/quantity\_cast.h>}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <units/ratio.h>}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <compare>}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ IWYU\ pragma:\ end\_exports}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ <units/reference.h>}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{namespace\ }units\ \{}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{namespace\ }detail\ \{}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{template}<Reference\ auto\ R>\ \ \textcolor{comment}{//\ TODO:\ Replace\ with\ `v\ *\ R`\ pending\ https://github.com/BobSteagall/wg21/issues/58.}}
+\DoxyCodeLine{00043\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ make\_quantity\ =\ [](\textcolor{keyword}{auto}\&\&\ v)\ \{}
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{using\ }Rep\ =\ std::remove\_cvref\_t<\textcolor{keyword}{decltype}(v)>;}
+\DoxyCodeLine{00045\ \ \ \textcolor{keyword}{using\ }ref\_type\ =\ \textcolor{keyword}{decltype}(R);}
+\DoxyCodeLine{00046\ \ \ \textcolor{keyword}{using\ }dimension\ =\ TYPENAME\ ref\_type::dimension;}
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{using\ }unit\ =\ TYPENAME\ ref\_type::unit;}
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordflow}{return}\ quantity<dimension,\ unit,\ Rep>(std::forward<\textcolor{keyword}{decltype}(v)>(v));}
+\DoxyCodeLine{00049\ \};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00052\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1detail_1_1quantity__one}{quantity\_one}}\ =}
+\DoxyCodeLine{00053\ \ \ \mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity<T>}}\ \&\&}
+\DoxyCodeLine{00054\ \ \ (std::same\_as<typename\ T::dimension,\ dim\_one>\ ||\ std::same\_as<typename\ T::dimension,\ unknown\_dimension<>>)\&\&detail::}
+\DoxyCodeLine{00055\ \ \ \ \ equivalent\_unit<typename\ T::unit,\ typename\ T::dimension,\ ::units::one,\ typename\ T::dimension>::value;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \}\ \ \textcolor{comment}{//\ namespace\ detail}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00060\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1floating__point__}{floating\_point\_}}\ =\ \ \textcolor{comment}{//\ exposition\ only}}
+\DoxyCodeLine{00061\ \ \ (\mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity<T>}}\ \&\&\ treat\_as\_floating\_point<typename\ T::rep>)\ ||\ (!\mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity<T>}}\ \&\&\ treat\_as\_floating\_point<T>);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ From,\ \textcolor{keyword}{typename}\ To>}
+\DoxyCodeLine{00064\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1safe__convertible__to__}{safe\_convertible\_to\_}}\ =\ \ \textcolor{comment}{//\ exposition\ only}}
+\DoxyCodeLine{00065\ \ \ (!\mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity<From>}})\&\&(!\mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity<To>}})\&\&std::convertible\_to<From,\ To>\ \&\&}
+\DoxyCodeLine{00066\ \ \ (\mbox{\hyperlink{conceptunits_1_1floating__point__}{floating\_point\_<To>}}\ ||\ (!\mbox{\hyperlink{conceptunits_1_1floating__point__}{floating\_point\_<From>}}));}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ QFrom\ ratio\ is\ an\ exact\ multiple\ of\ QTo}}
+\DoxyCodeLine{00069\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ QFrom,\ \textcolor{keyword}{typename}\ QTo>}
+\DoxyCodeLine{00070\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1harmonic__}{harmonic\_}}\ =\ \ \textcolor{comment}{//\ exposition\ only}}
+\DoxyCodeLine{00071\ \ \ \mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity<QFrom>}}\ \&\&\ \mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity<QTo>}}\ \&\&\ is\_integral(detail::quantity\_magnitude<QFrom>\ /\ detail::quantity\_magnitude<QTo>);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ QFrom,\ \textcolor{keyword}{typename}\ QTo>}
+\DoxyCodeLine{00074\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1safe__castable__to__}{safe\_castable\_to\_}}\ =\ \ \textcolor{comment}{//\ exposition\ only}}
+\DoxyCodeLine{00075\ \ \ \mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity<QFrom>}}\ \&\&\ \mbox{\hyperlink{conceptunits_1_1_quantity_of}{QuantityOf<QTo,\ typename\ QFrom::dimension>}}\ \&\&}
+\DoxyCodeLine{00076\ \ \ \mbox{\hyperlink{conceptunits_1_1scalable__with__}{scalable\_with\_<typename\ QFrom::rep,\ typename\ QTo::rep>}}\ \&\&}
+\DoxyCodeLine{00077\ \ \ (\mbox{\hyperlink{conceptunits_1_1floating__point__}{floating\_point\_<QTo>}}\ ||\ (!\mbox{\hyperlink{conceptunits_1_1floating__point__}{floating\_point\_<QFrom>}}\ \&\&\ \mbox{\hyperlink{conceptunits_1_1harmonic__}{harmonic\_<QFrom,\ QTo>}}));}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func,\ \textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{00080\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1quantity__value__for__}{quantity\_value\_for\_}}\ =\ std::regular\_invocable<Func,\ T,\ U>\ \&\&\ \mbox{\hyperlink{conceptunits_1_1_representation}{Representation<std::invoke\_result\_t<Func,\ T,\ U>}}>;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Func,\ \textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ V>}
+\DoxyCodeLine{00083\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1invoke__result__convertible__to__}{invoke\_result\_convertible\_to\_}}\ =}
+\DoxyCodeLine{00084\ \ \ \mbox{\hyperlink{conceptunits_1_1_representation}{Representation<T>}}\ \&\&\ \mbox{\hyperlink{conceptunits_1_1quantity__value__for__}{quantity\_value\_for\_<Func,\ U,\ V>}}\ \&\&\ \mbox{\hyperlink{conceptunits_1_1safe__convertible__to__}{safe\_convertible\_to\_<T,\ std::invoke\_result\_t<Func,\ U,\ V>}}>;}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func,\ \textcolor{keyword}{typename}\ Q,\ \textcolor{keyword}{typename}\ V>}
+\DoxyCodeLine{00087\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1have__quantity__for__}{have\_quantity\_for\_}}\ =\ \mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity<Q>}}\ \&\&\ (!\mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity<V>}})\&\&\mbox{\hyperlink{conceptunits_1_1quantity__value__for__}{quantity\_value\_for\_<Func,\ typename\ Q::rep,\ V>}};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{template}<QuantityLike\ Q>}
+\DoxyCodeLine{00090\ \textcolor{keyword}{using\ }quantity\_like\_type\ =\ quantity<typename\ quantity\_like\_traits<Q>::dimension,\ \textcolor{keyword}{typename}\ quantity\_like\_traits<Q>::unit,}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ quantity\_like\_traits<Q>::rep>;}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{template}<Dimension\ D,\ UnitOf<D>\ U,\ Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00104\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classunits_1_1quantity}{quantity}}\ \{}
+\DoxyCodeLine{00105\ \ \ Rep\ number\_;}
+\DoxyCodeLine{00106\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00107\ \ \ \textcolor{comment}{//\ member\ types\ and\ values}}
+\DoxyCodeLine{00108\ \ \ \textcolor{keyword}{using\ }dimension\ =\ D;}
+\DoxyCodeLine{00109\ \ \ \textcolor{keyword}{using\ }unit\ =\ U;}
+\DoxyCodeLine{00110\ \ \ \textcolor{keyword}{using\ }rep\ =\ Rep;}
+\DoxyCodeLine{00111\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structunits_1_1reference}{units::reference<dimension,\ unit>}}\ \mbox{\hyperlink{structunits_1_1reference}{reference}}\{\};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \textcolor{comment}{//\ static\ member\ functions}}
+\DoxyCodeLine{00114\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\ zero()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ \mbox{\hyperlink{structunits_1_1quantity__values}{quantity\_values<rep>::zero}}();\ \}}
+\DoxyCodeLine{00116\ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}(\mbox{\hyperlink{structunits_1_1quantity__values}{quantity\_values<rep>::zero}}());}
+\DoxyCodeLine{00118\ \ \ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\ \mbox{\hyperlink{structunits_1_1one}{one}}()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ \mbox{\hyperlink{structunits_1_1quantity__values}{quantity\_values<rep>::one}}();\ \}}
+\DoxyCodeLine{00122\ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}(\mbox{\hyperlink{structunits_1_1quantity__values}{quantity\_values<rep>::one}}());}
+\DoxyCodeLine{00124\ \ \ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\ min()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ \mbox{\hyperlink{structunits_1_1quantity__values}{quantity\_values<rep>::min}}();\ \}}
+\DoxyCodeLine{00128\ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}(\mbox{\hyperlink{structunits_1_1quantity__values}{quantity\_values<rep>::min}}());}
+\DoxyCodeLine{00130\ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\ max()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ \mbox{\hyperlink{structunits_1_1quantity__values}{quantity\_values<rep>::max}}();\ \}}
+\DoxyCodeLine{00134\ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}(\mbox{\hyperlink{structunits_1_1quantity__values}{quantity\_values<rep>::max}}());}
+\DoxyCodeLine{00136\ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \textcolor{comment}{//\ construction,\ assignment,\ destruction}}
+\DoxyCodeLine{00139\ \ \ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00140\ \ \ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00141\ \ \ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}(\mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Value>}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{requires}(\mbox{\hyperlink{conceptunits_1_1safe__convertible__to__}{safe\_convertible\_to\_<std::remove\_cvref\_t<Value>}},\ rep>)}
+\DoxyCodeLine{00145\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}(!\mbox{\hyperlink{conceptunits_1_1detail_1_1quantity__one}{detail::quantity\_one<quantity>}})\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}(Value\&\&\ v)\ :\ number\_(std::forward<Value>(v))}
+\DoxyCodeLine{00146\ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \textcolor{keyword}{template}<safe\_castable\_to\_<quantity>\ Q>}
+\DoxyCodeLine{00150\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}(\textcolor{keyword}{false})\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}(\textcolor{keyword}{const}\ Q\&\ q)\ :\ number\_(quantity\_cast<quantity>(q).number())}
+\DoxyCodeLine{00151\ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \textcolor{keyword}{template}<QuantityLike\ Q>}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{requires}(\mbox{\hyperlink{conceptunits_1_1safe__castable__to__}{safe\_castable\_to\_<quantity\_like\_type<Q>}},\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}>)}
+\DoxyCodeLine{00156\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}(\textcolor{keyword}{const}\ Q\&\ q)\ :\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}(\mbox{\hyperlink{classunits_1_1quantity}{quantity\_like\_type<Q>}}(\mbox{\hyperlink{structunits_1_1quantity__like__traits}{quantity\_like\_traits<Q>::number}}(q)))}
+\DoxyCodeLine{00157\ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00161\ \ \ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ operator=(\mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \textcolor{comment}{//\ data\ access}}
+\DoxyCodeLine{00164\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ rep\&\ number()\ \&\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ number\_;\ \}}
+\DoxyCodeLine{00165\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ rep\&\ number()\ \textcolor{keyword}{const}\&\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ number\_;\ \}}
+\DoxyCodeLine{00166\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ rep\&\&\ number()\ \&\&\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ std::move(number\_);\ \}}
+\DoxyCodeLine{00167\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ rep\&\&\ number()\ \textcolor{keyword}{const}\&\&\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ std::move(number\_);\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \textcolor{comment}{//\ member\ unary\ operators}}
+\DoxyCodeLine{00170\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity}}\ \textcolor{keyword}{auto}\ operator+()\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}(rep\ v)\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ +v}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \}\ -\/>\ std::common\_with<rep>;}
+\DoxyCodeLine{00175\ \ \ \ \ \}}
+\DoxyCodeLine{00176\ \ \ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{using\ }ret\ =\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}<D,\ U,\ \textcolor{keyword}{decltype}(+number())>;}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordflow}{return}\ ret(+number());}
+\DoxyCodeLine{00179\ \ \ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity}}\ \textcolor{keyword}{auto}\ operator-\/()\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{requires}(std::regular\_invocable<std::negate<>,\ rep>)}
+\DoxyCodeLine{00183\ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keyword}{using\ }ret\ =\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}<D,\ U,\ \textcolor{keyword}{decltype}(-\/number())>;}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordflow}{return}\ ret(-\/number());}
+\DoxyCodeLine{00186\ \ \ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ operator++()}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}(rep\ v)\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ ++v}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \}\ -\/>\ std::same\_as<rep\&>;}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \ \ \{}
+\DoxyCodeLine{00195\ \ \ \ \ ++number\_;}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00197\ \ \ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\ operator++(\textcolor{keywordtype}{int})}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}(rep\ v)\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ v++}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \}\ -\/>\ std::same\_as<rep>;}
+\DoxyCodeLine{00204\ \ \ \ \ \}}
+\DoxyCodeLine{00205\ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}(number\_++);}
+\DoxyCodeLine{00207\ \ \ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ operator-\/-\/()}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}(rep\ v)\ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ -\/-\/v}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \}\ -\/>\ std::same\_as<rep\&>;}
+\DoxyCodeLine{00214\ \ \ \ \ \}}
+\DoxyCodeLine{00215\ \ \ \{}
+\DoxyCodeLine{00216\ \ \ \ \ -\/-\/number\_;}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00218\ \ \ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\ operator-\/-\/(\textcolor{keywordtype}{int})}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}(rep\ v)\ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ v-\/-\/}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \}\ -\/>\ std::same\_as<rep>;}
+\DoxyCodeLine{00225\ \ \ \ \ \}}
+\DoxyCodeLine{00226\ \ \ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}(number\_-\/-\/);}
+\DoxyCodeLine{00228\ \ \ \}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ operator+=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ q)}
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}(rep\ a,\ rep\ b)\ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ a\ +=\ b}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \}\ -\/>\ std::same\_as<rep\&>;}
+\DoxyCodeLine{00235\ \ \ \ \ \}}
+\DoxyCodeLine{00236\ \ \ \{}
+\DoxyCodeLine{00237\ \ \ \ \ number\_\ +=\ q.number();}
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00239\ \ \ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ operator-\/=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ q)}
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}(rep\ a,\ rep\ b)\ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ a\ -\/=\ b}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \}\ -\/>\ std::same\_as<rep\&>;}
+\DoxyCodeLine{00246\ \ \ \ \ \}}
+\DoxyCodeLine{00247\ \ \ \{}
+\DoxyCodeLine{00248\ \ \ \ \ number\_\ -\/=\ q.number();}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00250\ \ \ \}}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Rep2>}
+\DoxyCodeLine{00253\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ operator*=(\textcolor{keyword}{const}\ Rep2\&\ rhs)}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}(rep\ a,\ \textcolor{keyword}{const}\ Rep2\ b)\ \{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ a\ *=\ b}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \}\ -\/>\ std::same\_as<rep\&>;}
+\DoxyCodeLine{00258\ \ \ \ \ \}}
+\DoxyCodeLine{00259\ \ \ \{}
+\DoxyCodeLine{00260\ \ \ \ \ number\_\ *=\ rhs;}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00262\ \ \ \}}
+\DoxyCodeLine{00263\ \ \ \textcolor{keyword}{template}<detail::quantity\_one\ Q>}
+\DoxyCodeLine{00264\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ operator*=(\textcolor{keyword}{const}\ Q\&\ rhs)}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}(rep\ a,\ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ Q::rep\ b)\ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ a\ *=\ b}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \}\ -\/>\ std::same\_as<rep\&>;}
+\DoxyCodeLine{00269\ \ \ \ \ \}}
+\DoxyCodeLine{00270\ \ \ \{}
+\DoxyCodeLine{00271\ \ \ \ \ number\_\ *=\ rhs.number();}
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00273\ \ \ \}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Rep2>}
+\DoxyCodeLine{00276\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ operator/=(\textcolor{keyword}{const}\ Rep2\&\ rhs)}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}(rep\ a,\ \textcolor{keyword}{const}\ Rep2\ b)\ \{}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ a\ /=\ b}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \}\ -\/>\ std::same\_as<rep\&>;}
+\DoxyCodeLine{00281\ \ \ \ \ \}}
+\DoxyCodeLine{00282\ \ \ \{}
+\DoxyCodeLine{00283\ \ \ \ \ gsl\_ExpectsAudit(rhs\ !=\ \mbox{\hyperlink{structunits_1_1quantity__values}{quantity\_values<Rep2>::zero}}());}
+\DoxyCodeLine{00284\ \ \ \ \ number\_\ /=\ rhs;}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00286\ \ \ \}}
+\DoxyCodeLine{00287\ \ \ \textcolor{keyword}{template}<detail::quantity\_one\ Q>}
+\DoxyCodeLine{00288\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ operator/=(\textcolor{keyword}{const}\ Q\&\ rhs)}
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}(rep\ a,\ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ Q::rep\ b)\ \{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ a\ /=\ b}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \}\ -\/>\ std::same\_as<rep\&>;}
+\DoxyCodeLine{00293\ \ \ \ \ \}}
+\DoxyCodeLine{00294\ \ \ \{}
+\DoxyCodeLine{00295\ \ \ \ \ gsl\_ExpectsAudit(rhs.number()\ !=\ \mbox{\hyperlink{structunits_1_1quantity__values}{quantity\_values<typename\ Q::rep>::zero}}());}
+\DoxyCodeLine{00296\ \ \ \ \ number\_\ /=\ rhs.number();}
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00298\ \ \ \}}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Rep2>}
+\DoxyCodeLine{00301\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ operator\%=(\textcolor{keyword}{const}\ Rep2\&\ rhs)}
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keyword}{requires}(!\mbox{\hyperlink{conceptunits_1_1floating__point__}{floating\_point\_<rep>}})\ \&\&\ (!\mbox{\hyperlink{conceptunits_1_1floating__point__}{floating\_point\_<Rep2>}})\ \&\&\ \textcolor{keyword}{requires}(rep\ a,\ \textcolor{keyword}{const}\ Rep2\ b)\ \{}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ a\ \%=\ b}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \}\ -\/>\ std::same\_as<rep\&>;}
+\DoxyCodeLine{00306\ \ \ \ \ \}}
+\DoxyCodeLine{00307\ \ \ \{}
+\DoxyCodeLine{00308\ \ \ \ \ gsl\_ExpectsAudit(rhs\ !=\ \mbox{\hyperlink{structunits_1_1quantity__values}{quantity\_values<Rep2>::zero}}());}
+\DoxyCodeLine{00309\ \ \ \ \ number\_\ \%=\ rhs;}
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00311\ \ \ \}}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \ \ \textcolor{keyword}{template}<detail::quantity\_one\ Q>}
+\DoxyCodeLine{00314\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ operator\%=(\textcolor{keyword}{const}\ Q\&\ rhs)}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keyword}{requires}(!\mbox{\hyperlink{conceptunits_1_1floating__point__}{floating\_point\_<rep>}})\ \&\&\ (!\mbox{\hyperlink{conceptunits_1_1floating__point__}{floating\_point\_<typename\ Q::rep>}})\ \&\&\ \textcolor{keyword}{requires}(rep\ a,\ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ Q::rep\ b)\ \{}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ a\ \%=\ b}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \}\ -\/>\ std::same\_as<rep\&>;}
+\DoxyCodeLine{00319\ \ \ \ \ \}}
+\DoxyCodeLine{00320\ \ \ \{}
+\DoxyCodeLine{00321\ \ \ \ \ gsl\_ExpectsAudit(rhs.number()\ !=\ \mbox{\hyperlink{structunits_1_1quantity__values}{quantity\_values<typename\ Q::rep>::zero}}());}
+\DoxyCodeLine{00322\ \ \ \ \ number\_\ \%=\ rhs.number();}
+\DoxyCodeLine{00323\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00324\ \ \ \}}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ operator\%=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ q)}
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keyword}{requires}(!\mbox{\hyperlink{conceptunits_1_1floating__point__}{floating\_point\_<rep>}})\ \&\&\ \textcolor{keyword}{requires}(rep\ a,\ rep\ b)\ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ a\ \%=\ b}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \}\ -\/>\ std::same\_as<rep\&>;}
+\DoxyCodeLine{00331\ \ \ \ \ \}}
+\DoxyCodeLine{00332\ \ \ \{}
+\DoxyCodeLine{00333\ \ \ \ \ gsl\_ExpectsAudit(q.number()\ !=\ \mbox{\hyperlink{structunits_1_1quantity__values}{quantity\_values<rep>::zero}}());}
+\DoxyCodeLine{00334\ \ \ \ \ number\_\ \%=\ q.number();}
+\DoxyCodeLine{00335\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00336\ \ \ \}}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \ \ \textcolor{comment}{//\ Hidden\ Friends}}
+\DoxyCodeLine{00339\ \ \ \textcolor{comment}{//\ Below\ friend\ functions\ are\ to\ be\ found\ via\ argument-\/dependent\ lookup\ only}}
+\DoxyCodeLine{00340\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Value>}
+\DoxyCodeLine{00341\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity}}\ \textcolor{keyword}{auto}\ operator+(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ lhs,\ \textcolor{keyword}{const}\ Value\&\ rhs)}
+\DoxyCodeLine{00342\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ \ \textcolor{comment}{//\ TODO:\ Simplify\ when\ Clang\ catches\ up.}}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ !\mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity<Value>}};}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ is\_same\_v<unit,\ units::one>;}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptunits_1_1invoke__result__convertible__to__}{invoke\_result\_convertible\_to\_<rep,\ std::plus<>}},\ rep,\ Value>;}
+\DoxyCodeLine{00346\ \ \ \ \ \}}
+\DoxyCodeLine{00347\ \ \ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity}{units::quantity}}(lhs.number()\ +\ rhs);}
+\DoxyCodeLine{00349\ \ \ \}}
+\DoxyCodeLine{00350\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Value>}
+\DoxyCodeLine{00351\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity}}\ \textcolor{keyword}{auto}\ operator+(\textcolor{keyword}{const}\ Value\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ rhs)}
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ \ \textcolor{comment}{//\ TODO:\ Simplify\ when\ Clang\ catches\ up.}}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ !\mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity<Value>}};}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ is\_same\_v<unit,\ units::one>;}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptunits_1_1invoke__result__convertible__to__}{invoke\_result\_convertible\_to\_<rep,\ std::plus<>}},\ Value,\ rep>;}
+\DoxyCodeLine{00356\ \ \ \ \ \}}
+\DoxyCodeLine{00357\ \ \ \{}
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity}{units::quantity}}(lhs\ +\ rhs.number());}
+\DoxyCodeLine{00359\ \ \ \}}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Value>}
+\DoxyCodeLine{00362\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity}}\ \textcolor{keyword}{auto}\ operator-\/(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ lhs,\ \textcolor{keyword}{const}\ Value\&\ rhs)}
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ \ \textcolor{comment}{//\ TODO:\ Simplify\ when\ Clang\ catches\ up.}}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ !\mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity<Value>}};}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ is\_same\_v<unit,\ units::one>;}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptunits_1_1invoke__result__convertible__to__}{invoke\_result\_convertible\_to\_<rep,\ std::minus<>}},\ rep,\ Value>;}
+\DoxyCodeLine{00367\ \ \ \ \ \}}
+\DoxyCodeLine{00368\ \ \ \{}
+\DoxyCodeLine{00369\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity}{units::quantity}}(lhs.number()\ -\/\ rhs);}
+\DoxyCodeLine{00370\ \ \ \}}
+\DoxyCodeLine{00371\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Value>}
+\DoxyCodeLine{00372\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity}}\ \textcolor{keyword}{auto}\ operator-\/(\textcolor{keyword}{const}\ Value\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ rhs)}
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{keyword}{requires}\ \textcolor{keyword}{requires}\ \{\ \ \textcolor{comment}{//\ TODO:\ Simplify\ when\ Clang\ catches\ up.}}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ !\mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity<Value>}};}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ is\_same\_v<unit,\ units::one>;}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptunits_1_1invoke__result__convertible__to__}{invoke\_result\_convertible\_to\_<rep,\ std::minus<>}},\ Value,\ rep>;}
+\DoxyCodeLine{00377\ \ \ \ \ \}}
+\DoxyCodeLine{00378\ \ \ \{}
+\DoxyCodeLine{00379\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classunits_1_1quantity}{units::quantity}}(lhs\ -\/\ rhs.number());}
+\DoxyCodeLine{00380\ \ \ \}}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00382\ \ \ \textcolor{keyword}{template}<Representation\ Value>}
+\DoxyCodeLine{00383\ \ \ \ \ \textcolor{keyword}{requires}(\mbox{\hyperlink{conceptunits_1_1invoke__result__convertible__to__}{invoke\_result\_convertible\_to\_<rep,\ std::multiplies<>}},\ rep,\ \textcolor{keyword}{const}\ Value\&>)}
+\DoxyCodeLine{00384\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity}}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}*(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ q,\ \textcolor{keyword}{const}\ Value\&\ v)}
+\DoxyCodeLine{00385\ \ \ \{}
+\DoxyCodeLine{00386\ \ \ \ \ \textcolor{keyword}{using\ }ret\ =\ \mbox{\hyperlink{classunits_1_1quantity}{quantity<D,\ U,\ std::invoke\_result\_t<std::multiplies<>}},\ rep,\ Value>>;}
+\DoxyCodeLine{00387\ \ \ \ \ \textcolor{keywordflow}{return}\ ret(q.number()\ *\ v);}
+\DoxyCodeLine{00388\ \ \ \}}
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00390\ \ \ \textcolor{keyword}{template}<Representation\ Value>}
+\DoxyCodeLine{00391\ \ \ \ \ \textcolor{keyword}{requires}(\mbox{\hyperlink{conceptunits_1_1invoke__result__convertible__to__}{invoke\_result\_convertible\_to\_<rep,\ std::multiplies<>}},\ \textcolor{keyword}{const}\ Value\&,\ rep>)}
+\DoxyCodeLine{00392\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity}}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}*(\textcolor{keyword}{const}\ Value\&\ v,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ q)}
+\DoxyCodeLine{00393\ \ \ \{}
+\DoxyCodeLine{00394\ \ \ \ \ \textcolor{keyword}{using\ }ret\ =\ \mbox{\hyperlink{classunits_1_1quantity}{quantity<D,\ U,\ std::invoke\_result\_t<std::multiplies<>}},\ Value,\ rep>>;}
+\DoxyCodeLine{00395\ \ \ \ \ \textcolor{keywordflow}{return}\ ret(v\ *\ q.number());}
+\DoxyCodeLine{00396\ \ \ \}}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ \ \ \textcolor{keyword}{template}<Representation\ Value>}
+\DoxyCodeLine{00399\ \ \ \ \ \textcolor{keyword}{requires}(\mbox{\hyperlink{conceptunits_1_1invoke__result__convertible__to__}{invoke\_result\_convertible\_to\_<rep,\ std::divides<>}},\ rep,\ \textcolor{keyword}{const}\ Value\&>)}
+\DoxyCodeLine{00400\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity}}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}/(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ q,\ \textcolor{keyword}{const}\ Value\&\ v)}
+\DoxyCodeLine{00401\ \ \ \{}
+\DoxyCodeLine{00402\ \ \ \ \ gsl\_ExpectsAudit(v\ !=\ \mbox{\hyperlink{structunits_1_1quantity__values}{quantity\_values<Value>::zero}}());}
+\DoxyCodeLine{00403\ \ \ \ \ \textcolor{keyword}{using\ }ret\ =\ \mbox{\hyperlink{classunits_1_1quantity}{quantity<D,\ U,\ std::invoke\_result\_t<std::divides<>}},\ rep,\ Value>>;}
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keywordflow}{return}\ ret(q.number()\ /\ v);}
+\DoxyCodeLine{00405\ \ \ \}}
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00407\ \ \ \textcolor{keyword}{template}<Representation\ Value>}
+\DoxyCodeLine{00408\ \ \ \ \ \textcolor{keyword}{requires}(\mbox{\hyperlink{conceptunits_1_1invoke__result__convertible__to__}{invoke\_result\_convertible\_to\_<rep,\ std::divides<>}},\ \textcolor{keyword}{const}\ Value\&,\ rep>)}
+\DoxyCodeLine{00409\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity}}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}/(\textcolor{keyword}{const}\ Value\&\ v,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ q)}
+\DoxyCodeLine{00410\ \ \ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \textcolor{keywordflow}{return}\ detail::make\_quantity<::units::reference<dim\_one,\ ::units::one>\{\}\ /\ \mbox{\hyperlink{structunits_1_1reference}{reference}}>(v\ /\ q.number());}
+\DoxyCodeLine{00412\ \ \ \}}
+\DoxyCodeLine{00413\ }
+\DoxyCodeLine{00414\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Value>}
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keyword}{requires}(!\mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity<Value>}})\ \&\&\ (!\mbox{\hyperlink{conceptunits_1_1floating__point__}{floating\_point\_<rep>}})\ \&\&\ (!\mbox{\hyperlink{conceptunits_1_1floating__point__}{floating\_point\_<Value>}})\ \&\&}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{conceptunits_1_1invoke__result__convertible__to__}{invoke\_result\_convertible\_to\_}}<rep,\ std::modulus<>,\ rep,\ \textcolor{keyword}{const}\ Value\&>)}
+\DoxyCodeLine{00417\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity}}\ \textcolor{keyword}{auto}\ operator\%(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ q,\ \textcolor{keyword}{const}\ Value\&\ v)}
+\DoxyCodeLine{00418\ \ \ \{}
+\DoxyCodeLine{00419\ \ \ \ \ gsl\_ExpectsAudit(v\ !=\ \mbox{\hyperlink{structunits_1_1quantity__values}{quantity\_values<Value>::zero}}());}
+\DoxyCodeLine{00420\ \ \ \ \ \textcolor{keyword}{using\ }ret\ =\ \mbox{\hyperlink{classunits_1_1quantity}{quantity<D,\ U,\ std::invoke\_result\_t<std::modulus<>}},\ rep,\ Value>>;}
+\DoxyCodeLine{00421\ \ \ \ \ \textcolor{keywordflow}{return}\ ret(q.number()\ \%\ v);}
+\DoxyCodeLine{00422\ \ \ \}}
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00424\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity}}\ \textcolor{keyword}{auto}\ operator\%(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ rhs)}
+\DoxyCodeLine{00425\ \ \ \ \ \textcolor{keyword}{requires}(!\mbox{\hyperlink{conceptunits_1_1floating__point__}{floating\_point\_<rep>}})\ \&\&\ (\mbox{\hyperlink{conceptunits_1_1invoke__result__convertible__to__}{invoke\_result\_convertible\_to\_}}<rep,\ std::modulus<>,\ rep,\ rep>)}
+\DoxyCodeLine{00426\ \ \ \{}
+\DoxyCodeLine{00427\ \ \ \ \ gsl\_ExpectsAudit(rhs.number()\ !=\ \mbox{\hyperlink{structunits_1_1quantity__values}{quantity\_values<rep>::zero}}());}
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{keyword}{using\ }ret\ =\ \mbox{\hyperlink{classunits_1_1quantity}{quantity<D,\ U,\ std::invoke\_result\_t<std::modulus<>}},\ rep,\ rep>>;}
+\DoxyCodeLine{00429\ \ \ \ \ \textcolor{keywordflow}{return}\ ret(lhs.number()\ \%\ rhs.number());}
+\DoxyCodeLine{00430\ \ \ \}}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ operator<=>(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ rhs)}
+\DoxyCodeLine{00433\ \ \ \ \ \textcolor{keyword}{requires}\ std::three\_way\_comparable<rep>}
+\DoxyCodeLine{00434\ \textcolor{preprocessor}{\#if\ UNITS\_COMP\_GCC\ ==\ 10\ \&\&\ UNITS\_COMP\_GCC\_MINOR\ >=\ 2}}
+\DoxyCodeLine{00435\ \ \ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00436\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00437\ \ \ \{}
+\DoxyCodeLine{00438\ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.number()\ <=>\ rhs.number();}
+\DoxyCodeLine{00439\ \ \ \}}
+\DoxyCodeLine{00440\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00442\ \ \ [[nodiscard]]\ \textcolor{keyword}{friend}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator==(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ lhs,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ rhs)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00443\ \};}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00445\ \textcolor{comment}{//\ CTAD}}
+\DoxyCodeLine{00446\ \textcolor{preprocessor}{\#if\ !UNITS\_COMP\_CLANG\ ||\ UNITS\_COMP\_CLANG\ >\ 17}}
+\DoxyCodeLine{00447\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ D,\ \textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00448\ \textcolor{keyword}{explicit}(\textcolor{keyword}{false})\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}(Rep\&\&)\ -\/>\ \mbox{\hyperlink{classunits_1_1quantity}{quantity<D,\ U,\ Rep>}};}
+\DoxyCodeLine{00449\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00451\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ D,\ \textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00452\ \textcolor{keyword}{explicit}(\textcolor{keyword}{false})\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}(\mbox{\hyperlink{classunits_1_1quantity}{quantity<D,\ U,\ Rep>}})\ -\/>\ \mbox{\hyperlink{classunits_1_1quantity}{quantity<D,\ U,\ Rep>}};}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00454\ \textcolor{keyword}{template}<Representation\ Rep>}
+\DoxyCodeLine{00455\ \textcolor{keyword}{explicit}(\textcolor{keyword}{false})\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}(Rep)\ -\/>\ \mbox{\hyperlink{classunits_1_1quantity}{quantity<dim\_one,\ one,\ Rep>}};}
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00457\ \textcolor{keyword}{template}<QuantityLike\ Q>}
+\DoxyCodeLine{00458\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}(Q)\ -\/>\ \mbox{\hyperlink{classunits_1_1quantity}{quantity<typename\ quantity\_like\_traits<Q>::dimension}},\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{structunits_1_1quantity__like__traits}{quantity\_like\_traits<Q>::unit}},}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{structunits_1_1quantity__like__traits}{quantity\_like\_traits<Q>::rep}}>;}
+\DoxyCodeLine{00460\ }
+\DoxyCodeLine{00461\ \textcolor{comment}{//\ non-\/member\ binary\ operators}}
+\DoxyCodeLine{00462\ \textcolor{keyword}{template}<Quantity\ Q1,\ QuantityEquivalentTo<Q1>\ Q2>}
+\DoxyCodeLine{00463\ \ \ \textcolor{keyword}{requires}(\mbox{\hyperlink{conceptunits_1_1quantity__value__for__}{quantity\_value\_for\_<std::plus<>}},\ \textcolor{keyword}{typename}\ Q1::rep,\ \textcolor{keyword}{typename}\ Q2::rep>)}
+\DoxyCodeLine{00464\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{conceptunits_1_1_quantity}{Quantity}}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}+(\textcolor{keyword}{const}\ Q1\&\ lhs,\ \textcolor{keyword}{const}\ Q2\&\ rhs)}
+\DoxyCodeLine{00465\ \{}
+\DoxyCodeLine{00466\ \ \ \textcolor{keyword}{using\ }ref\ =\ detail::common\_quantity\_reference<Q1,\ Q2>;}
+\DoxyCodeLine{00467\ \ \ \textcolor{keyword}{using\ }ret\ =\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}<\textcolor{keyword}{typename}\ ref::dimension,\ \textcolor{keyword}{typename}\ ref::unit,\ \textcolor{keyword}{decltype}(lhs.number()\ +\ rhs.number())>;}
+\DoxyCodeLine{00468\ \ \ \textcolor{keywordflow}{return}\ ret(ret(lhs).number()\ +\ ret(rhs).number());}
+\DoxyCodeLine{00469\ \}}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00471\ \textcolor{keyword}{template}<Quantity\ Q1,\ QuantityEquivalentTo<Q1>\ Q2>}
+\DoxyCodeLine{00472\ \ \ \textcolor{keyword}{requires}(quantity\_value\_for\_<std::minus<>,\ \textcolor{keyword}{typename}\ Q1::rep,\ \textcolor{keyword}{typename}\ Q2::rep>)}
+\DoxyCodeLine{00473\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ Quantity\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}-\/(\textcolor{keyword}{const}\ Q1\&\ lhs,\ \textcolor{keyword}{const}\ Q2\&\ rhs)}
+\DoxyCodeLine{00474\ \{}
+\DoxyCodeLine{00475\ \ \ \textcolor{keyword}{using\ }ref\ =\ detail::common\_quantity\_reference<Q1,\ Q2>;}
+\DoxyCodeLine{00476\ \ \ \textcolor{keyword}{using\ }ret\ =\ quantity<\textcolor{keyword}{typename}\ ref::dimension,\ \textcolor{keyword}{typename}\ ref::unit,\ \textcolor{keyword}{decltype}(lhs.number()\ -\/\ rhs.number())>;}
+\DoxyCodeLine{00477\ \ \ \textcolor{keywordflow}{return}\ ret(ret(lhs).number()\ -\/\ ret(rhs).number());}
+\DoxyCodeLine{00478\ \}}
+\DoxyCodeLine{00479\ }
+\DoxyCodeLine{00480\ \textcolor{keyword}{template}<Quantity\ Q1,\ Quantity\ Q2>}
+\DoxyCodeLine{00481\ \ \ \textcolor{keyword}{requires}(quantity\_value\_for\_<std::multiplies<>,\ \textcolor{keyword}{typename}\ Q1::rep,\ \textcolor{keyword}{typename}\ Q2::rep>)}
+\DoxyCodeLine{00482\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ Quantity\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}*(\textcolor{keyword}{const}\ Q1\&\ lhs,\ \textcolor{keyword}{const}\ Q2\&\ rhs)}
+\DoxyCodeLine{00483\ \{}
+\DoxyCodeLine{00484\ \ \ \textcolor{keywordflow}{return}\ detail::make\_quantity<Q1::reference\ *\ Q2::reference>(lhs.number()\ *\ rhs.number());}
+\DoxyCodeLine{00485\ \}}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00487\ \textcolor{keyword}{template}<Quantity\ Q1,\ Quantity\ Q2>}
+\DoxyCodeLine{00488\ \ \ \textcolor{keyword}{requires}(quantity\_value\_for\_<std::divides<>,\ \textcolor{keyword}{typename}\ Q1::rep,\ \textcolor{keyword}{typename}\ Q2::rep>)}
+\DoxyCodeLine{00489\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ Quantity\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}/(\textcolor{keyword}{const}\ Q1\&\ lhs,\ \textcolor{keyword}{const}\ Q2\&\ rhs)}
+\DoxyCodeLine{00490\ \{}
+\DoxyCodeLine{00491\ \ \ gsl\_ExpectsAudit(rhs.number()\ !=\ quantity\_values<typename\ Q2::rep>::zero());}
+\DoxyCodeLine{00492\ \ \ \textcolor{keywordflow}{return}\ detail::make\_quantity<Q1::reference\ /\ Q2::reference>(lhs.number()\ /\ rhs.number());}
+\DoxyCodeLine{00493\ \}}
+\DoxyCodeLine{00494\ }
+\DoxyCodeLine{00495\ \textcolor{keyword}{template}<Quantity\ Q1,\ Quantity\ Q2>}
+\DoxyCodeLine{00496\ \ \ \textcolor{keyword}{requires}(!floating\_point\_<typename\ Q1::rep>)\ \&\&\ (!floating\_point\_<typename\ Q2::rep>)\ \&\&}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \ \ (QuantityEquivalentTo<Q2,\ Q1>\ ||\ Dimensionless<Q2>)\ \&\&}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \ \ (quantity\_value\_for\_<std::modulus<>,\ \textcolor{keyword}{typename}\ Q1::rep,\ \textcolor{keyword}{typename}\ Q2::rep>)}
+\DoxyCodeLine{00499\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ Quantity\ \textcolor{keyword}{auto}\ operator\%(\textcolor{keyword}{const}\ Q1\&\ lhs,\ \textcolor{keyword}{const}\ Q2\&\ rhs)}
+\DoxyCodeLine{00500\ \{}
+\DoxyCodeLine{00501\ \ \ gsl\_ExpectsAudit(rhs.number()\ !=\ quantity\_values<typename\ Q2::rep>::zero());}
+\DoxyCodeLine{00502\ \ \ \textcolor{keyword}{using\ }ret\ =\ quantity<\textcolor{keyword}{typename}\ Q1::dimension,\ \textcolor{keyword}{typename}\ Q1::unit,}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::invoke\_result\_t<std::modulus<>,\ \textcolor{keyword}{typename}\ Q1::rep,\ \textcolor{keyword}{typename}\ Q2::rep>>;}
+\DoxyCodeLine{00504\ \ \ \textcolor{keywordflow}{return}\ ret(lhs.number()\ \%\ rhs.number());}
+\DoxyCodeLine{00505\ \}}
+\DoxyCodeLine{00506\ }
+\DoxyCodeLine{00507\ \textcolor{keyword}{template}<Quantity\ Q1,\ QuantityEquivalentTo<Q1>\ Q2>}
+\DoxyCodeLine{00508\ \ \ \textcolor{keyword}{requires}\ std::three\_way\_comparable\_with<typename\ Q1::rep,\ typename\ Q2::rep>}
+\DoxyCodeLine{00509\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ operator<=>(\textcolor{keyword}{const}\ Q1\&\ lhs,\ \textcolor{keyword}{const}\ Q2\&\ rhs)}
+\DoxyCodeLine{00510\ \{}
+\DoxyCodeLine{00511\ \ \ \textcolor{keyword}{using\ }cq\ =\ std::common\_type\_t<Q1,\ Q2>;}
+\DoxyCodeLine{00512\ \ \ \textcolor{keywordflow}{return}\ cq(lhs).number()\ <=>\ cq(rhs).number();}
+\DoxyCodeLine{00513\ \}}
+\DoxyCodeLine{00514\ }
+\DoxyCodeLine{00515\ \textcolor{keyword}{template}<Quantity\ Q1,\ QuantityEquivalentTo<Q1>\ Q2>}
+\DoxyCodeLine{00516\ \ \ \textcolor{keyword}{requires}\ std::equality\_comparable\_with<typename\ Q1::rep,\ typename\ Q2::rep>}
+\DoxyCodeLine{00517\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator==(\textcolor{keyword}{const}\ Q1\&\ lhs,\ \textcolor{keyword}{const}\ Q2\&\ rhs)}
+\DoxyCodeLine{00518\ \{}
+\DoxyCodeLine{00519\ \ \ \textcolor{keyword}{using\ }cq\ =\ std::common\_type\_t<Q1,\ Q2>;}
+\DoxyCodeLine{00520\ \ \ \textcolor{keywordflow}{return}\ cq(lhs).number()\ ==\ cq(rhs).number();}
+\DoxyCodeLine{00521\ \}}
+\DoxyCodeLine{00522\ }
+\DoxyCodeLine{00523\ \textcolor{comment}{//\ type\ traits}}
+\DoxyCodeLine{00524\ \textcolor{keyword}{namespace\ }detail\ \{}
+\DoxyCodeLine{00525\ }
+\DoxyCodeLine{00526\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ D,\ \textcolor{keyword}{typename}\ U,\ \textcolor{keyword}{typename}\ Rep>}
+\DoxyCodeLine{00527\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ is\_quantity<quantity<D,\ U,\ Rep>>\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00528\ }
+\DoxyCodeLine{00529\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00530\ \ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptunits_1_1is__derived__from__specialization__of}{units::is\_derived\_from\_specialization\_of<T,\ units::quantity>}}}
+\DoxyCodeLine{00531\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ is\_quantity<T>\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00532\ }
+\DoxyCodeLine{00533\ \}\ \ \textcolor{comment}{//\ namespace\ detail}}
+\DoxyCodeLine{00534\ }
+\DoxyCodeLine{00535\ \}\ \ \textcolor{comment}{//\ namespace\ units}}
+
+\end{DoxyCode}

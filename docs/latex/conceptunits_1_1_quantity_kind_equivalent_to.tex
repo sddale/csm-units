@@ -1,0 +1,24 @@
+\hypertarget{conceptunits_1_1_quantity_kind_equivalent_to}{}\doxysection{units\+::Quantity\+Kind\+Equivalent\+To Concept Reference}
+\label{conceptunits_1_1_quantity_kind_equivalent_to}\index{units::QuantityKindEquivalentTo@{units::QuantityKindEquivalentTo}}
+
+
+A concept matching two equivalent quantity kinds.  
+
+
+
+
+{\ttfamily \#include $<$quantity\+\_\+of.\+h$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ QK1,\ \textcolor{keyword}{typename}\ QK2>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1_quantity_kind_equivalent_to}{units::QuantityKindEquivalentTo}}\ =\ \ \mbox{\hyperlink{conceptunits_1_1_quantity_kind}{QuantityKind<QK1>}}\ \&\&\ \mbox{\hyperlink{conceptunits_1_1_quantity_kind_of}{QuantityKindOf<QK2,\ typename\ QK1::kind\_type>}}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+A concept matching two equivalent quantity kinds. 
+
+Satisfied by quantity kinds having equivalent kinds. 

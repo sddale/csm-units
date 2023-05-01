@@ -1,0 +1,9 @@
+\hypertarget{conceptunits_1_1quantity__value__for__}{}\doxysection{units\+::quantity\+\_\+value\+\_\+for\+\_\+ Concept Reference}
+\label{conceptunits_1_1quantity__value__for__}\index{units::quantity\_value\_for\_@{units::quantity\_value\_for\_}}
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Func,\ \textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ U>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1quantity__value__for__}{units::quantity\_value\_for\_}}\ =\ \ std::regular\_invocable<Func,\ T,\ U>\ \&\&\ \mbox{\hyperlink{conceptunits_1_1_representation}{Representation<std::invoke\_result\_t<Func,\ T,\ U>}}>}
+
+\end{DoxyCode}

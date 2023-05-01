@@ -1,0 +1,478 @@
+\hypertarget{units_2src_2core-fmt_2include_2units_2format_8h_source}{}\doxysection{format.\+h}
+\label{units_2src_2core-fmt_2include_2units_2format_8h_source}\index{csm-\/units/units/src/core-\/fmt/include/units/format.h@{csm-\/units/units/src/core-\/fmt/include/units/format.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <units/bits/fmt.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <units/customization\_points.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <units/quantity.h>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ IWYU\ pragma:\ begin\_exports}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <units/bits/unit\_text.h>}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ IWYU\ pragma:\ end\_exports}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ Grammar}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ units-\/format-\/spec\ \ \ ::=\ \ [fill-\/and-\/align]\ [width]\ [units-\/specs]}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ units-\/specs\ \ \ \ \ \ \ \ \ ::=\ \ conversion-\/spec}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ units-\/specs\ conversion-\/spec}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ units-\/specs\ literal-\/char}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ literal-\/char\ \ \ \ \ \ \ \ ::=\ \ any\ character\ other\ than\ '\{'\ or\ '\}'}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ conversion-\/spec\ \ \ \ \ ::=\ \ '\%'\ units-\/type}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ units-\/type\ \ \ \ \ \ \ \ \ \ ::=\ \ [units-\/rep-\/modifier]\ 'Q'}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [units-\/unit-\/modifier]\ 'q'}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ one\ of\ "{}nt\%"{}}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ units-\/rep-\/modifier\ \ ::=\ \ [sign]\ [\#]\ [precision]\ [L]\ [units-\/rep-\/type]}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ units-\/rep-\/type\ \ \ \ \ \ ::=\ \ one\ of\ "{}aAbBdeEfFgGoxX"{}}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ units-\/unit-\/modifier\ ::=\ \ 'A'}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ Guide\ for\ editing}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ If\ you\ want\ to\ add\ a\ new\ `units-\/type`\ terminal\ character\ (e.g.\ 'Q',\ 'q'):}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ -\/\ \ \ If\ needed,\ write\ a\ new\ `specs`\ class\ (e.g.\ `global\_format\_specs`)}}
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ -\/\ \ \ Add\ the\ new\ symbol\ in\ the\ `units\_types`\ variable\ in\ the\ `parse\_units\_format`\ function}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ -\/\ \ \ Add\ a\ new\ case\ in\ the\ `if`\ following\ the\ format\_error\ in\ `parse\_units\_format`\ function;}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ \ \ \ \ this\ should\ invoke\ `handler.on\_[...]`}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ -\/\ \ \ Edit\ `UNITS\_STD\_FMT::formatter`:}}
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ \ \ \ \ -\/\ Add\ a\ new\ field\ for\ the\ flag/specs}}
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ \ \ \ \ -\/\ Add\ to\ the\ `UNITS\_STD\_FMT::formatter::spec\_handler`\ a\ `on\_[...]`\ function\ that\ set\ the\ flag/specs\ if\ needed}}
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ -\/\ \ \ Edit\ `quantity\_formatter`:}}
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ \ \ \ \ -\/\ Add\ a\ new\ field\ for\ the\ flag/specs}}
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ \ \ \ \ -\/\ write\ a\ `on\_[...]`\ function\ that\ writes\ to\ the\ `out`\ iterator\ the\ correct\ output}}
+\DoxyCodeLine{00063\ \textcolor{comment}{//}}
+\DoxyCodeLine{00064\ \textcolor{comment}{//\ If\ you\ want\ to\ add\ a\ new\ `units-\/rep-\/type`:}}
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ -\/\ \ \ Add\ the\ new\ symbol\ in\ the\ `valid\_rep\_types`\ variable\ (which\ is\ in\ the}}
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ UNITS\_STD\_FMT::formatter::spec\_handler::on\_type\ member\ function)}}
+\DoxyCodeLine{00067\ \textcolor{comment}{//\ \ \ \ \ NB:\ currently\ this\ function\ forward\ the\ modifier\ to\ the\ value\ that\ must\ be\ formatted;}}
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ if\ the\ symbol\ has\ no\ meaning\ for\ UNITS\_STD\_FMT::formatter<Rep>,\ this\ behavior\ should\ be\ disabled\ manually}}
+\DoxyCodeLine{00069\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ (as\ is\ done\ for\ '\(\backslash\)0')}}
+\DoxyCodeLine{00070\ \textcolor{comment}{//\ -\/\ \ \ Implement\ the\ effect\ of\ the\ new\ flag\ in\ `format\_units\_quantity\_value`}}
+\DoxyCodeLine{00071\ \textcolor{comment}{//}}
+\DoxyCodeLine{00072\ \textcolor{comment}{//\ If\ you\ want\ to\ add\ a\ new\ `units-\/unit-\/modifier`:}}
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ -\/\ \ \ Add\ the\ new\ symbol\ in\ the\ `valid\_modifiers`\ variable\ (which\ is\ in\ the}}
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ UNITS\_STD\_FMT::formatter::spec\_handler::on\_unit\_modifier\ member\ function)}}
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ -\/\ \ \ Implement\ the\ effect\ of\ the\ new\ flag\ in\ the\ `quantity\_formatter::on\_quantity\_unit`\ member\ function}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{namespace\ }units::detail\ \{}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{comment}{//\ Holds\ specs\ about\ the\ whole\ object}}
+\DoxyCodeLine{00080\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ CharT>}
+\DoxyCodeLine{00081\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1detail_1_1quantity__global__format__specs}{quantity\_global\_format\_specs}}\ \{}
+\DoxyCodeLine{00082\ \ \ \mbox{\hyperlink{structunits_1_1detail_1_1fill__t}{fill\_t<CharT>}}\ fill;}
+\DoxyCodeLine{00083\ \ \ fmt\_align\ align\ =\ fmt\_align::none;}
+\DoxyCodeLine{00084\ \ \ \textcolor{keywordtype}{int}\ width\ =\ 0;}
+\DoxyCodeLine{00085\ \ \ \textcolor{keywordtype}{int}\ dynamic\_width\_index\ =\ -\/1;}
+\DoxyCodeLine{00086\ \};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{comment}{//\ Holds\ specs\ about\ the\ representation\ (\%[specs]Q)}}
+\DoxyCodeLine{00089\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1detail_1_1quantity__rep__format__specs}{quantity\_rep\_format\_specs}}\ \{}
+\DoxyCodeLine{00090\ \ \ fmt\_sign\ sign\ =\ fmt\_sign::none;}
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordtype}{int}\ precision\ =\ -\/1;}
+\DoxyCodeLine{00092\ \ \ \textcolor{keywordtype}{int}\ dynamic\_precision\_index\ =\ -\/1;}
+\DoxyCodeLine{00093\ \ \ \textcolor{keywordtype}{char}\ type\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00094\ \ \ \textcolor{keywordtype}{bool}\ alt\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00095\ \ \ \textcolor{keywordtype}{bool}\ localized\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00096\ \};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{comment}{//\ Holds\ specs\ about\ the\ unit\ (\%[specs]q)}}
+\DoxyCodeLine{00099\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1detail_1_1quantity__unit__format__specs}{quantity\_unit\_format\_specs}}\ \{}
+\DoxyCodeLine{00100\ \ \ \textcolor{keywordtype}{bool}\ ascii\_only\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00101\ \};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ CharT>}
+\DoxyCodeLine{00104\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1detail_1_1quantity__format__specs}{quantity\_format\_specs}}\ \{}
+\DoxyCodeLine{00105\ \ \ \mbox{\hyperlink{structunits_1_1detail_1_1quantity__global__format__specs}{quantity\_global\_format\_specs<CharT>}}\ global;}
+\DoxyCodeLine{00106\ \ \ \mbox{\hyperlink{structunits_1_1detail_1_1quantity__rep__format__specs}{quantity\_rep\_format\_specs}}\ rep;}
+\DoxyCodeLine{00107\ \ \ \mbox{\hyperlink{structunits_1_1detail_1_1quantity__unit__format__specs}{quantity\_unit\_format\_specs}}\ unit;}
+\DoxyCodeLine{00108\ \};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{comment}{//\ Parse\ a\ `units-\/rep-\/modifier`}}
+\DoxyCodeLine{00111\ \textcolor{keyword}{template}<std::input\_iterator\ It,\ std::sentinel\_for<It>\ S,\ \textcolor{keyword}{typename}\ Handler>}
+\DoxyCodeLine{00112\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ It\ parse\_units\_rep(It\ begin,\ S\ end,\ Handler\&\&\ handler,\ \textcolor{keywordtype}{bool}\ treat\_as\_floating\_point)}
+\DoxyCodeLine{00113\ \{}
+\DoxyCodeLine{00114\ \ \ \textcolor{comment}{//\ parse\ sign}}
+\DoxyCodeLine{00115\ \ \ begin\ =\ parse\_sign(begin,\ end,\ handler);}
+\DoxyCodeLine{00116\ \ \ \textcolor{keywordflow}{if}\ (begin\ ==\ end)\ \textcolor{keywordflow}{return}\ begin;}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \textcolor{comment}{//\ parse\ \#}}
+\DoxyCodeLine{00119\ \ \ \textcolor{keywordflow}{if}\ (*begin\ ==\ \textcolor{charliteral}{'\#'})\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ handler.on\_hash();}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordflow}{if}\ (++begin\ ==\ end)\ \textcolor{keywordflow}{return}\ begin;}
+\DoxyCodeLine{00122\ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \textcolor{comment}{//\ parse\ precision\ if\ a\ floating\ point}}
+\DoxyCodeLine{00125\ \ \ \textcolor{keywordflow}{if}\ (*begin\ ==\ \textcolor{charliteral}{'.'})\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{if}\ (treat\_as\_floating\_point)\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ begin\ =\ parse\_precision(begin,\ end,\ handler);}
+\DoxyCodeLine{00128\ \ \ \ \ \}\ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ UNITS\_THROW(UNITS\_STD\_FMT::format\_error(\textcolor{stringliteral}{"{}precision\ not\ allowed\ for\ integral\ quantity\ representation"{}}));}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{if}\ (begin\ ==\ end)\ \textcolor{keywordflow}{return}\ begin;}
+\DoxyCodeLine{00131\ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \textcolor{comment}{//\ parse\ L\ to\ enable\ the\ locale-\/specific\ form}}
+\DoxyCodeLine{00134\ \ \ \textcolor{keywordflow}{if}\ (*begin\ ==\ \textcolor{charliteral}{'L'})\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ handler.on\_localized();}
+\DoxyCodeLine{00136\ \ \ \ \ ++begin;}
+\DoxyCodeLine{00137\ \ \ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \textcolor{keywordflow}{if}\ (begin\ !=\ end\ \&\&\ *begin\ !=\ \textcolor{charliteral}{'\}'}\ \&\&\ *begin\ !=\ \textcolor{charliteral}{'\%'})\ \{}
+\DoxyCodeLine{00140\ \ \ \ \ handler.on\_type(*begin++);}
+\DoxyCodeLine{00141\ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \textcolor{keywordflow}{return}\ begin;}
+\DoxyCodeLine{00143\ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{comment}{//\ parse\ units-\/specs}}
+\DoxyCodeLine{00146\ \textcolor{keyword}{template}<std::input\_iterator\ It,\ std::sentinel\_for<It>\ S,\ \textcolor{keyword}{typename}\ Handler>}
+\DoxyCodeLine{00147\ \textcolor{keyword}{constexpr}\ It\ parse\_units\_format(It\ begin,\ S\ end,\ Handler\&\&\ handler)}
+\DoxyCodeLine{00148\ \{}
+\DoxyCodeLine{00149\ \ \ \textcolor{keyword}{auto}\ ptr\ =\ begin;}
+\DoxyCodeLine{00150\ \ \ \textcolor{keywordflow}{while}\ (ptr\ !=\ end)\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{auto}\ c\ =\ *ptr;}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ ==\ \textcolor{charliteral}{'\}'})\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ !=\ \textcolor{charliteral}{'\%'})\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ ++ptr;}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00156\ \ \ \ \ \}}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordflow}{if}\ (begin\ !=\ ptr)\ handler.on\_text(begin,\ ptr);}
+\DoxyCodeLine{00158\ \ \ \ \ begin\ =\ ++ptr;\ \ \textcolor{comment}{//\ consume\ '\%'}}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordflow}{if}\ (ptr\ ==\ end)\ UNITS\_THROW(UNITS\_STD\_FMT::format\_error(\textcolor{stringliteral}{"{}invalid\ format"{}}));}
+\DoxyCodeLine{00160\ \ \ \ \ c\ =\ *ptr++;}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{switch}\ (c)\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \textcolor{comment}{//\ units-\/type}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'\%'}:}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ handler.on\_text(ptr\ -\/\ 1,\ ptr);}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'n'}:\ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ newline[]\ =\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ handler.on\_text(newline,\ newline\ +\ 1);}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'t'}:\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ tab[]\ =\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}};}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ handler.on\_text(tab,\ tab\ +\ 1);}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ units\_types\ =\ std::string\_view\{\textcolor{stringliteral}{"{}Qq"{}}\};}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ new\_end\ =\ std::find\_first\_of(begin,\ end,\ units\_types.begin(),\ units\_types.end());}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (new\_end\ ==\ end)\ UNITS\_THROW(UNITS\_STD\_FMT::format\_error(\textcolor{stringliteral}{"{}invalid\ format"{}}));}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (*new\_end\ ==\ \textcolor{charliteral}{'Q'})\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ handler.on\_quantity\_value(begin,\ new\_end);\ \ \textcolor{comment}{//\ Edit\ `on\_quantity\_value`\ to\ add\ rep\ modifiers}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ handler.on\_quantity\_unit(*begin);\ \ \textcolor{comment}{//\ Edit\ `on\_quantity\_unit`\ to\ add\ an\ unit\ modifier}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ ptr\ =\ new\_end\ +\ 1;}
+\DoxyCodeLine{00187\ \ \ \ \ \}}
+\DoxyCodeLine{00188\ \ \ \ \ begin\ =\ ptr;}
+\DoxyCodeLine{00189\ \ \ \}}
+\DoxyCodeLine{00190\ \ \ \textcolor{keywordflow}{if}\ (begin\ !=\ ptr)\ handler.on\_text(begin,\ ptr);}
+\DoxyCodeLine{00191\ \ \ \textcolor{keywordflow}{return}\ ptr;}
+\DoxyCodeLine{00192\ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \textcolor{comment}{//\ build\ the\ 'representation'\ as\ requested\ in\ the\ format\ string,\ applying\ only\ units-\/rep-\/modifiers}}
+\DoxyCodeLine{00195\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ CharT,\ \textcolor{keyword}{typename}\ Rep,\ \textcolor{keyword}{typename}\ OutputIt,\ \textcolor{keyword}{typename}\ Locale>}
+\DoxyCodeLine{00196\ [[nodiscard]]\ OutputIt\ format\_units\_quantity\_value(OutputIt\ out,\ \textcolor{keyword}{const}\ Rep\&\ val,}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ quantity\_rep\_format\_specs\&\ rep\_specs,\ \textcolor{keyword}{const}\ Locale\&\ loc)}
+\DoxyCodeLine{00198\ \{}
+\DoxyCodeLine{00199\ \ \ std::basic\_string<CharT>\ buffer;}
+\DoxyCodeLine{00200\ \ \ \textcolor{keyword}{auto}\ to\_buffer\ =\ std::back\_inserter(buffer);}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ UNITS\_STD\_FMT::format\_to(to\_buffer,\ \textcolor{stringliteral}{"{}\{\{:"{}});}
+\DoxyCodeLine{00203\ \ \ \textcolor{keywordflow}{switch}\ (rep\_specs.sign)\ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordflow}{case}\ fmt\_sign::none:}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordflow}{case}\ fmt\_sign::plus:}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ UNITS\_STD\_FMT::format\_to(to\_buffer,\ \textcolor{stringliteral}{"{}+"{}});}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordflow}{case}\ fmt\_sign::minus:}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ UNITS\_STD\_FMT::format\_to(to\_buffer,\ \textcolor{stringliteral}{"{}-\/"{}});}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordflow}{case}\ fmt\_sign::space:}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ UNITS\_STD\_FMT::format\_to(to\_buffer,\ \textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00215\ \ \ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \textcolor{keywordflow}{if}\ (rep\_specs.alt)\ \{}
+\DoxyCodeLine{00218\ \ \ \ \ UNITS\_STD\_FMT::format\_to(to\_buffer,\ \textcolor{stringliteral}{"{}\#"{}});}
+\DoxyCodeLine{00219\ \ \ \}}
+\DoxyCodeLine{00220\ \ \ \textcolor{keyword}{auto}\ type\ =\ rep\_specs.type;}
+\DoxyCodeLine{00221\ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{auto}\ precision\ =\ rep\_specs.precision;\ precision\ >=\ 0)\ \{}
+\DoxyCodeLine{00222\ \ \ \ \ UNITS\_STD\_FMT::format\_to(to\_buffer,\ \textcolor{stringliteral}{"{}.\{\}\{\}"{}},\ precision,\ type\ ==\ \textcolor{charliteral}{'\(\backslash\)0'}\ ?\ \textcolor{charliteral}{'f'}\ :\ type);}
+\DoxyCodeLine{00223\ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (treat\_as\_floating\_point<Rep>)\ \{}
+\DoxyCodeLine{00224\ \ \ \ \ UNITS\_STD\_FMT::format\_to(to\_buffer,\ \textcolor{stringliteral}{"{}\{\}"{}},\ type\ ==\ \textcolor{charliteral}{'\(\backslash\)0'}\ ?\ \textcolor{charliteral}{'g'}\ :\ type);}
+\DoxyCodeLine{00225\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordflow}{if}\ (type\ !=\ \textcolor{charliteral}{'\(\backslash\)0'})\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ UNITS\_STD\_FMT::format\_to(to\_buffer,\ \textcolor{stringliteral}{"{}\{\}"{}},\ type);}
+\DoxyCodeLine{00228\ \ \ \ \ \}}
+\DoxyCodeLine{00229\ \ \ \}}
+\DoxyCodeLine{00230\ \ \ \textcolor{keywordflow}{if}\ (rep\_specs.localized)\ \{}
+\DoxyCodeLine{00231\ \ \ \ \ UNITS\_STD\_FMT::format\_to(to\_buffer,\ \textcolor{stringliteral}{"{}L"{}});}
+\DoxyCodeLine{00232\ \ \ \}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ UNITS\_STD\_FMT::format\_to(to\_buffer,\ \textcolor{stringliteral}{"{}\}\}"{}});}
+\DoxyCodeLine{00235\ \ \ \textcolor{keywordflow}{if}\ (rep\_specs.localized)\ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordflow}{return}\ UNITS\_STD\_FMT::vformat\_to(out,\ UNITS\_FMT\_LOCALE(loc),\ buffer,\ UNITS\_STD\_FMT::make\_format\_args(val));}
+\DoxyCodeLine{00237\ \ \ \}}
+\DoxyCodeLine{00238\ \ \ \textcolor{keywordflow}{return}\ UNITS\_STD\_FMT::vformat\_to(out,\ buffer,\ UNITS\_STD\_FMT::make\_format\_args(val));}
+\DoxyCodeLine{00239\ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \textcolor{comment}{//\ Creates\ a\ global\ format\ string}}
+\DoxyCodeLine{00242\ \textcolor{comment}{//\ \ e.g.\ "{}\{:*\string^10\%.1Q\_\%q\},\ 1.23\_q\_m"{}\ =>\ "{}\{:*\string^10\}"{}}}
+\DoxyCodeLine{00243\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ CharT,\ \textcolor{keyword}{typename}\ OutputIt>}
+\DoxyCodeLine{00244\ OutputIt\ format\_global\_buffer(OutputIt\ out,\ \textcolor{keyword}{const}\ quantity\_global\_format\_specs<CharT>\&\ specs)}
+\DoxyCodeLine{00245\ \{}
+\DoxyCodeLine{00246\ \ \ UNITS\_STD\_FMT::format\_to(out,\ \textcolor{stringliteral}{"{}\{\{:"{}});}
+\DoxyCodeLine{00247\ \ \ \textcolor{keywordflow}{if}\ (specs.fill.size()\ !=\ 1\ ||\ specs.fill[0]\ !=\ \textcolor{charliteral}{'\ '})\ \{}
+\DoxyCodeLine{00248\ \ \ \ \ UNITS\_STD\_FMT::format\_to(out,\ \textcolor{stringliteral}{"{}\{\}"{}},\ specs.fill.data());}
+\DoxyCodeLine{00249\ \ \ \}}
+\DoxyCodeLine{00250\ \ \ \textcolor{keywordflow}{switch}\ (specs.align)\ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{keywordflow}{case}\ fmt\_align::left:}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ UNITS\_STD\_FMT::format\_to(out,\ \textcolor{stringliteral}{"{}<"{}});}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordflow}{case}\ fmt\_align::right:}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ UNITS\_STD\_FMT::format\_to(out,\ \textcolor{stringliteral}{"{}>"{}});}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keywordflow}{case}\ fmt\_align::center:}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ UNITS\_STD\_FMT::format\_to(out,\ \textcolor{stringliteral}{"{}\string^"{}});}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00262\ \ \ \}}
+\DoxyCodeLine{00263\ \ \ \textcolor{keywordflow}{if}\ (specs.width\ >=\ 1)\ UNITS\_STD\_FMT::format\_to(out,\ \textcolor{stringliteral}{"{}\{\}"{}},\ specs.width);}
+\DoxyCodeLine{00264\ \ \ \textcolor{keywordflow}{return}\ UNITS\_STD\_FMT::format\_to(out,\ \textcolor{stringliteral}{"{}\}\}"{}});}
+\DoxyCodeLine{00265\ \}}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Dimension,\ \textcolor{keyword}{typename}\ Unit,\ \textcolor{keyword}{typename}\ Rep,\ \textcolor{keyword}{typename}\ Locale,\ \textcolor{keyword}{typename}\ CharT,\ \textcolor{keyword}{typename}\ OutputIt>}
+\DoxyCodeLine{00268\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1detail_1_1quantity__formatter}{quantity\_formatter}}\ \{}
+\DoxyCodeLine{00269\ \ \ OutputIt\ out;}
+\DoxyCodeLine{00270\ \ \ Rep\ val;}
+\DoxyCodeLine{00271\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structunits_1_1detail_1_1quantity__format__specs}{quantity\_format\_specs<CharT>}}\&\ specs;}
+\DoxyCodeLine{00272\ \ \ Locale\ loc;}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{structunits_1_1detail_1_1quantity__formatter}{quantity\_formatter}}(OutputIt\ o,\ \mbox{\hyperlink{classunits_1_1quantity}{quantity<Dimension,\ Unit,\ Rep>}}\ q,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structunits_1_1detail_1_1quantity__format__specs}{quantity\_format\_specs<CharT>}}\&\ fspecs,}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Locale\ lc)\ :}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ out(o),\ val(std::move(q).number()),\ specs(fspecs),\ loc(std::move(lc))}
+\DoxyCodeLine{00277\ \ \ \{}
+\DoxyCodeLine{00278\ \ \ \}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \textcolor{keyword}{template}<std::input\_iterator\ It,\ std::sentinel\_for<It>\ S>}
+\DoxyCodeLine{00281\ \ \ \textcolor{keywordtype}{void}\ on\_text(It\ begin,\ S\ end)}
+\DoxyCodeLine{00282\ \ \ \{}
+\DoxyCodeLine{00283\ \ \ \ \ std::copy(begin,\ end,\ out);}
+\DoxyCodeLine{00284\ \ \ \}}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \ \ \textcolor{keyword}{template}<std::input\_iterator\ It,\ std::sentinel\_for<It>\ S>}
+\DoxyCodeLine{00287\ \ \ \textcolor{keywordtype}{void}\ on\_quantity\_value([[maybe\_unused]]\ It,\ [[maybe\_unused]]\ S)}
+\DoxyCodeLine{00288\ \ \ \{}
+\DoxyCodeLine{00289\ \ \ \ \ out\ =\ format\_units\_quantity\_value<CharT>(out,\ val,\ specs.rep,\ loc);}
+\DoxyCodeLine{00290\ \ \ \}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \ \ \textcolor{keywordtype}{void}\ on\_quantity\_unit([[maybe\_unused]]\ CharT)}
+\DoxyCodeLine{00293\ \ \ \{}
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{keyword}{auto}\ txt\ =\ unit\_text<Dimension,\ Unit>();}
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keywordflow}{if}\ (specs.unit.ascii\_only)\ \{}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ UNITS\_STD\_FMT::format\_to(out,\ \textcolor{stringliteral}{"{}\{\}"{}},\ txt.ascii().c\_str());}
+\DoxyCodeLine{00297\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ UNITS\_STD\_FMT::format\_to(out,\ \textcolor{stringliteral}{"{}\{\}"{}},\ txt.standard().c\_str());}
+\DoxyCodeLine{00299\ \ \ \ \ \}}
+\DoxyCodeLine{00300\ \ \ \}}
+\DoxyCodeLine{00301\ \};}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \}\ \ \textcolor{comment}{//\ namespace\ units::detail}}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Dimension,\ \textcolor{keyword}{typename}\ Unit,\ \textcolor{keyword}{typename}\ Rep,\ \textcolor{keyword}{typename}\ CharT>}
+\DoxyCodeLine{00306\ \textcolor{keyword}{struct\ }UNITS\_STD\_FMT::formatter<units::\mbox{\hyperlink{classunits_1_1quantity}{quantity}}<Dimension,\ Unit,\ Rep>,\ CharT>\ \{}
+\DoxyCodeLine{00307\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00308\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{quantity}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::quantity<Dimension,\ Unit,\ Rep>}};}
+\DoxyCodeLine{00309\ \ \ \textcolor{keyword}{using\ }iterator\ =\ TYPENAME\ UNITS\_STD\_FMT::basic\_format\_parse\_context<CharT>::iterator;}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \ \ \textcolor{keywordtype}{bool}\ quantity\_value\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00312\ \ \ \textcolor{keywordtype}{bool}\ quantity\_unit\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00313\ \ \ \mbox{\hyperlink{structunits_1_1detail_1_1quantity__format__specs}{units::detail::quantity\_format\_specs<CharT>}}\ specs;}
+\DoxyCodeLine{00314\ \ \ std::basic\_string\_view<CharT>\ format\_str;}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \ \ \textcolor{keyword}{struct\ }spec\_handler\ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \mbox{\hyperlink{structformatter}{formatter}}\&\ f;}
+\DoxyCodeLine{00318\ \ \ \ \ UNITS\_STD\_FMT::basic\_format\_parse\_context<CharT>\&\ context;}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ on\_fill(std::basic\_string\_view<CharT>\ fill)\ \{\ f.specs.global.fill\ =\ fill;\ \}}
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ on\_align(units::detail::fmt\_align\ align)\ \{\ f.specs.global.align\ =\ align;\ \}}
+\DoxyCodeLine{00322\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ on\_width(\textcolor{keywordtype}{int}\ width)\ \{\ f.specs.global.width\ =\ width;\ \}}
+\DoxyCodeLine{00323\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ on\_sign(units::detail::fmt\_sign\ sign)\ \{\ f.specs.rep.sign\ =\ sign;\ \}}
+\DoxyCodeLine{00324\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ on\_hash()\ \{\ f.specs.rep.alt\ =\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ on\_precision(\textcolor{keywordtype}{int}\ precision)\ \{\ f.specs.rep.precision\ =\ precision;\ \}}
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ on\_localized()\ \{\ f.specs.rep.localized\ =\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ on\_type(\textcolor{keywordtype}{char}\ type)}
+\DoxyCodeLine{00329\ \ \ \ \ \{}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ valid\_rep\_types\ =\ std::string\_view\{\textcolor{stringliteral}{"{}aAbBdeEfFgGoxX"{}}\};}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (valid\_rep\_types.find(type)\ !=\ std::string\_view::npos)\ \{}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ f.specs.rep.type\ =\ type;}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ UNITS\_THROW(UNITS\_STD\_FMT::format\_error(\textcolor{stringliteral}{"{}invalid\ quantity\ type\ specifier"{}}));}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00336\ \ \ \ \ \}}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ on\_unit\_modifier(\textcolor{keywordtype}{char}\ mod)}
+\DoxyCodeLine{00339\ \ \ \ \ \{}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ valid\_modifiers\ =\ std::string\_view\{\textcolor{stringliteral}{"{}A"{}}\};}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (valid\_modifiers.find(mod)\ !=\ std::string\_view::npos)\ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ f.specs.unit.ascii\_only\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ UNITS\_THROW(UNITS\_STD\_FMT::format\_error(\textcolor{stringliteral}{"{}invalid\ unit\ modifier\ specified"{}}));}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00346\ \ \ \ \ \}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ on\_dynamic\_width(T\ t)}
+\DoxyCodeLine{00350\ \ \ \ \ \{}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ f.specs.global.dynamic\_width\_index\ =\ units::detail::on\_dynamic\_arg(t,\ context);}
+\DoxyCodeLine{00352\ \ \ \ \ \}}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ on\_dynamic\_precision(T\ t)}
+\DoxyCodeLine{00356\ \ \ \ \ \{}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ f.specs.rep.dynamic\_precision\_index\ =\ units::detail::on\_dynamic\_arg(t,\ context);}
+\DoxyCodeLine{00358\ \ \ \ \ \}}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \ \ \ \ \textcolor{keyword}{template}<std::input\_iterator\ It,\ std::sentinel\_for<It>\ S>}
+\DoxyCodeLine{00361\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ on\_text(It,\ S)}
+\DoxyCodeLine{00362\ \ \ \ \ \{}
+\DoxyCodeLine{00363\ \ \ \ \ \}}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \ \ \ \ \textcolor{keyword}{template}<std::input\_iterator\ It,\ std::sentinel\_for<It>\ S>}
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ on\_quantity\_value(It\ begin,\ S\ end)}
+\DoxyCodeLine{00367\ \ \ \ \ \{}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (begin\ !=\ end)\ units::detail::parse\_units\_rep(begin,\ end,\ *\textcolor{keyword}{this},\ units::treat\_as\_floating\_point<Rep>);}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ f.quantity\_value\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00370\ \ \ \ \ \}}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{void}\ on\_quantity\_unit(CharT\ mod)}
+\DoxyCodeLine{00373\ \ \ \ \ \{}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mod\ !=\ \textcolor{charliteral}{'q'})\ on\_unit\_modifier(mod);}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ f.quantity\_unit\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00376\ \ \ \ \ \}}
+\DoxyCodeLine{00377\ \ \ \};}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ std::pair<iterator,\ iterator>\ do\_parse(UNITS\_STD\_FMT::basic\_format\_parse\_context<CharT>\&\ ctx)}
+\DoxyCodeLine{00380\ \ \ \{}
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{keyword}{auto}\ begin\ =\ ctx.begin();}
+\DoxyCodeLine{00382\ \ \ \ \ \textcolor{keyword}{auto}\ end\ =\ ctx.end();}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ \ \ \ \ \textcolor{keywordflow}{if}\ (begin\ ==\ end\ ||\ *begin\ ==\ \textcolor{charliteral}{'\}'})\ \textcolor{keywordflow}{return}\ \{begin,\ begin\};}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ \ \ \ \ \textcolor{comment}{//\ handler\ to\ assign\ parsed\ data\ to\ formatter\ data\ members}}
+\DoxyCodeLine{00387\ \ \ \ \ spec\_handler\ handler\{*\textcolor{keyword}{this},\ ctx\};}
+\DoxyCodeLine{00388\ }
+\DoxyCodeLine{00389\ \ \ \ \ \textcolor{comment}{//\ parse\ alignment}}
+\DoxyCodeLine{00390\ \ \ \ \ begin\ =\ units::detail::parse\_align(begin,\ end,\ handler);}
+\DoxyCodeLine{00391\ \ \ \ \ \textcolor{keywordflow}{if}\ (begin\ ==\ end)\ \textcolor{keywordflow}{return}\ \{begin,\ begin\};}
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00393\ \ \ \ \ \textcolor{comment}{//\ parse\ width}}
+\DoxyCodeLine{00394\ \ \ \ \ begin\ =\ units::detail::parse\_width(begin,\ end,\ handler);}
+\DoxyCodeLine{00395\ \ \ \ \ \textcolor{keywordflow}{if}\ (begin\ ==\ end)\ \textcolor{keywordflow}{return}\ \{begin,\ begin\};}
+\DoxyCodeLine{00396\ }
+\DoxyCodeLine{00397\ \ \ \ \ \textcolor{comment}{//\ parse\ units-\/specific\ specification}}
+\DoxyCodeLine{00398\ \ \ \ \ end\ =\ units::detail::parse\_units\_format(begin,\ end,\ handler);}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ \ \ \ \ \textcolor{keywordflow}{if}\ (specs.global.align\ ==\ units::detail::fmt\_align::none\ \&\&\ (!quantity\_unit\ ||\ quantity\_value))}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \textcolor{comment}{//\ quantity\ values\ should\ behave\ like\ numbers\ (by\ default\ aligned\ to\ right)}}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ specs.global.align\ =\ units::detail::fmt\_align::right;}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keywordflow}{return}\ \{begin,\ end\};}
+\DoxyCodeLine{00405\ \ \ \}}
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00407\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ OutputIt,\ \textcolor{keyword}{typename}\ FormatContext>}
+\DoxyCodeLine{00408\ \ \ OutputIt\ format\_quantity\_content(OutputIt\ out,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ q,\ FormatContext\&\ ctx)}
+\DoxyCodeLine{00409\ \ \ \{}
+\DoxyCodeLine{00410\ \ \ \ \ \textcolor{keyword}{auto}\ begin\ =\ format\_str.begin();}
+\DoxyCodeLine{00411\ \ \ \ \ \textcolor{keyword}{auto}\ end\ =\ format\_str.end();}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00413\ \ \ \ \ \textcolor{keywordflow}{if}\ (begin\ ==\ end\ ||\ *begin\ ==\ \textcolor{charliteral}{'\}'})\ \{}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \textcolor{comment}{//\ default\ format\ should\ print\ value\ followed\ by\ the\ unit\ separated\ with\ 1\ space}}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ out\ =\ units::detail::format\_units\_quantity\_value<CharT>(out,\ q.number(),\ specs.rep,\ ctx.locale());}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ symbol\ =\ units::detail::unit\_text<Dimension,\ Unit>();}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (symbol.standard().size()\ >\ 0)\ \{}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ *out++\ =\ CharT(\textcolor{charliteral}{'\ '});}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ UNITS\_STD\_FMT::format\_to(out,\ \textcolor{stringliteral}{"{}\{\}"{}},\ symbol.standard().c\_str());}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00421\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \textcolor{comment}{//\ user\ provided\ format}}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \mbox{\hyperlink{structunits_1_1detail_1_1quantity__formatter}{units::detail::quantity\_formatter}}\ f(out,\ q,\ specs,\ ctx.locale());}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ units::detail::parse\_units\_format(begin,\ end,\ f);}
+\DoxyCodeLine{00425\ \ \ \ \ \}}
+\DoxyCodeLine{00426\ \ \ \ \ \textcolor{keywordflow}{return}\ out;}
+\DoxyCodeLine{00427\ \ \ \}}
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00429\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00430\ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ parse(UNITS\_STD\_FMT::basic\_format\_parse\_context<CharT>\&\ ctx)}
+\DoxyCodeLine{00431\ \ \ \{}
+\DoxyCodeLine{00432\ \ \ \ \ \textcolor{keyword}{auto}\ range\ =\ do\_parse(ctx);}
+\DoxyCodeLine{00433\ \ \ \ \ \textcolor{keywordflow}{if}\ (range.first\ !=\ range.second)}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ format\_str\ =\ std::basic\_string\_view<CharT>(\&*range.first,\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(range.second\ -\/\ range.first));}
+\DoxyCodeLine{00435\ \ \ \ \ \textcolor{keywordflow}{return}\ range.second;}
+\DoxyCodeLine{00436\ \ \ \}}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00438\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ FormatContext>}
+\DoxyCodeLine{00439\ \ \ \textcolor{keyword}{auto}\ format(\textcolor{keyword}{const}\ \mbox{\hyperlink{classunits_1_1quantity}{quantity}}\&\ q,\ FormatContext\&\ ctx)}
+\DoxyCodeLine{00440\ \ \ \{}
+\DoxyCodeLine{00441\ \ \ \ \ \textcolor{comment}{//\ process\ dynamic\ width\ and\ precision}}
+\DoxyCodeLine{00442\ \ \ \ \ \textcolor{keywordflow}{if}\ (specs.global.dynamic\_width\_index\ >=\ 0)}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ specs.global.width\ =}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ units::detail::get\_dynamic\_spec<units::detail::width\_checker>(specs.global.dynamic\_width\_index,\ ctx);}
+\DoxyCodeLine{00445\ \ \ \ \ \textcolor{keywordflow}{if}\ (specs.rep.dynamic\_precision\_index\ >=\ 0)}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ specs.rep.precision\ =}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ units::detail::get\_dynamic\_spec<units::detail::precision\_checker>(specs.rep.dynamic\_precision\_index,\ ctx);}
+\DoxyCodeLine{00448\ }
+\DoxyCodeLine{00449\ \ \ \ \ \textcolor{keywordflow}{if}\ (specs.global.width\ ==\ 0)\ \{}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \textcolor{comment}{//\ Avoid\ extra\ copying\ if\ width\ is\ not\ specified}}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ format\_quantity\_content(ctx.out(),\ q,\ ctx);}
+\DoxyCodeLine{00452\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \textcolor{comment}{//\ In\ `quantity\_buffer`\ we\ will\ have\ the\ representation\ and\ the\ unit\ formatted\ according\ to\ their}}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \textcolor{comment}{//\ \ specification,\ ignoring\ global\ specifiers}}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \textcolor{comment}{//\ \ e.g.\ "{}\{:*\string^10\%.1Q\_\%q\},\ 1.23\_q\_m"{}\ =>\ "{}1.2\_m"{}}}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ std::basic\_string<CharT>\ quantity\_buffer;}
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \textcolor{comment}{//\ deal\ with\ quantity\ content}}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ format\_quantity\_content(std::back\_inserter(quantity\_buffer),\ q,\ ctx);}
+\DoxyCodeLine{00460\ }
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \textcolor{comment}{//\ In\ `global\_format\_buffer`\ we\ will\ create\ a\ global\ format\ string}}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \textcolor{comment}{//\ \ e.g.\ "{}\{:*\string^10\%.1Q\_\%q\},\ 1.23\_q\_m"{}\ =>\ "{}\{:*\string^10\}"{}}}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ std::basic\_string<CharT>\ global\_format\_buffer;}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ units::detail::format\_global\_buffer<CharT>(std::back\_inserter(global\_format\_buffer),\ specs.global);}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \textcolor{comment}{//\ Format\ the\ `quantity\ buffer`\ using\ specs\ from\ `global\_format\_buffer`}}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \textcolor{comment}{//\ In\ the\ example,\ equivalent\ to\ UNITS\_STD\_FMT::format("{}\{:*\string^10\}"{},\ "{}1.2\_m"{})}}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ UNITS\_STD\_FMT::vformat\_to(ctx.out(),\ global\_format\_buffer,}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UNITS\_STD\_FMT::make\_format\_args(quantity\_buffer));}
+\DoxyCodeLine{00470\ \ \ \ \ \}}
+\DoxyCodeLine{00471\ \ \ \}}
+\DoxyCodeLine{00472\ \};}
+
+\end{DoxyCode}

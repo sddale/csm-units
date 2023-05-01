@@ -1,0 +1,110 @@
+\hypertarget{classcsm__units_1_1_unit_base}{}\doxysection{csm\+\_\+units\+::Unit\+Base\texorpdfstring{$<$}{<} Powers, Data \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classcsm__units_1_1_unit_base}\index{csm\_units::UnitBase$<$ Powers, Data $>$@{csm\_units::UnitBase$<$ Powers, Data $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_a60ecb30d1a100bfd09dd6bc68ee33969}\label{classcsm__units_1_1_unit_base_a60ecb30d1a100bfd09dd6bc68ee33969}} 
+using {\bfseries Dimensions} = Powers
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_a9c47796e599f5f443882729247d7ce24}\label{classcsm__units_1_1_unit_base_a9c47796e599f5f443882729247d7ce24}} 
+constexpr {\bfseries Unit\+Base} (Data value=0) noexcept
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_a1df5ebed1eecfbc95412948258bdb8f3}\label{classcsm__units_1_1_unit_base_a1df5ebed1eecfbc95412948258bdb8f3}} 
+{\footnotesize template$<$Unit\+Type U$>$ \newline
+requires std\+::is\+\_\+same\+\_\+v$<$typename U\+::\+SI, \mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}}$>$}\\constexpr {\bfseries Unit\+Base} (U convert) noexcept
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_ae80dfab3b215a529da3ba4e6b76a7bf5}\label{classcsm__units_1_1_unit_base_ae80dfab3b215a529da3ba4e6b76a7bf5}} 
+constexpr auto {\bfseries operator$<$=$>$} (const \mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} \&other) const noexcept -\/$>$ std\+::strong\+\_\+ordering
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_ae2d113e7c2fe9935d1f81d53327e155c}\label{classcsm__units_1_1_unit_base_ae2d113e7c2fe9935d1f81d53327e155c}} 
+constexpr auto {\bfseries operator==} (const \mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} \&other) const -\/$>$ bool=default
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_a569ee2c9ded3949ed49470a950bf6b03}\label{classcsm__units_1_1_unit_base_a569ee2c9ded3949ed49470a950bf6b03}} 
+constexpr {\bfseries Unit\+Base} (const \mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} \&other) noexcept=default
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_a35f8ffa68c8fac12ef7bbb379db9eefc}\label{classcsm__units_1_1_unit_base_a35f8ffa68c8fac12ef7bbb379db9eefc}} 
+constexpr {\bfseries Unit\+Base} (\mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} \&\&other) noexcept=default
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_a5946b20c45e420ac114ed5515fbd98f6}\label{classcsm__units_1_1_unit_base_a5946b20c45e420ac114ed5515fbd98f6}} 
+constexpr auto {\bfseries operator=} (const \mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} \&) noexcept -\/$>$ \mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} \&=default
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_ac2b0c2781973ae92fb5b8049c2e355aa}\label{classcsm__units_1_1_unit_base_ac2b0c2781973ae92fb5b8049c2e355aa}} 
+constexpr auto {\bfseries operator=} (\mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} \&\&) noexcept -\/$>$ \mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} \&=default
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_a59429a043c6a3390edeb719f890fd2de}\label{classcsm__units_1_1_unit_base_a59429a043c6a3390edeb719f890fd2de}} 
+constexpr auto {\bfseries Flip} () noexcept
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_af36fbe44a2760295d1537e891981b66b}\label{classcsm__units_1_1_unit_base_af36fbe44a2760295d1537e891981b66b}} 
+constexpr auto {\bfseries operator/=} (Arithmetic auto rhs) noexcept -\/$>$ auto \&
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_a614211b50b51fd5b2e2328cdebdcf317}\label{classcsm__units_1_1_unit_base_a614211b50b51fd5b2e2328cdebdcf317}} 
+constexpr auto {\bfseries operator$\ast$=} (Arithmetic auto rhs) noexcept -\/$>$ auto \&
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_a33fef8cb17e9b8bc5472003ed01398cc}\label{classcsm__units_1_1_unit_base_a33fef8cb17e9b8bc5472003ed01398cc}} 
+constexpr auto {\bfseries operator+=} (const \mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} \&rhs) noexcept -\/$>$ auto \&
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_a005258a87dd8a75b93fd5008626934b8}\label{classcsm__units_1_1_unit_base_a005258a87dd8a75b93fd5008626934b8}} 
+constexpr auto {\bfseries operator-\/=} (const \mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} \&rhs) noexcept -\/$>$ auto \&
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_abdaeaf0ad7357455f4c541f18577ebf9}\label{classcsm__units_1_1_unit_base_abdaeaf0ad7357455f4c541f18577ebf9}} 
+Data {\bfseries data}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_affeddacea0df9869fb24a600877db6b5}\label{classcsm__units_1_1_unit_base_affeddacea0df9869fb24a600877db6b5}} 
+{\footnotesize template$<$Unit\+Type U$>$ }\\constexpr auto {\bfseries operator$<$=$>$} (const \mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} \&lhs, const U \&rhs) noexcept -\/$>$ bool
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_ab65c7bc625cf02fee634bf156810f604}\label{classcsm__units_1_1_unit_base_ab65c7bc625cf02fee634bf156810f604}} 
+{\footnotesize template$<$Unit\+Type U$>$ }\\constexpr auto {\bfseries operator==} (const \mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} \&lhs, const U \&rhs) -\/$>$ bool
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_a637cc5eb04a30bb881b8ff246fb7ae17}\label{classcsm__units_1_1_unit_base_a637cc5eb04a30bb881b8ff246fb7ae17}} 
+constexpr auto {\bfseries operator/} (\mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} lhs, \mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} rhs) noexcept
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_a6b0f38b4e24547b872c1ac1c063e8904}\label{classcsm__units_1_1_unit_base_a6b0f38b4e24547b872c1ac1c063e8904}} 
+{\footnotesize template$<$Exp\+Type Powers2$>$ }\\constexpr auto {\bfseries operator/} (\mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} lhs, \mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}}$<$ Powers2, Data $>$ rhs) noexcept
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_a0bef13b467d85d9177297f7011e65d99}\label{classcsm__units_1_1_unit_base_a0bef13b467d85d9177297f7011e65d99}} 
+{\footnotesize template$<$Unit\+Type Other$>$ }\\constexpr auto {\bfseries operator/} (\mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} lhs, Other rhs) noexcept
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_acee438cbd88ed802b57dd73ccbbe2f42}\label{classcsm__units_1_1_unit_base_acee438cbd88ed802b57dd73ccbbe2f42}} 
+constexpr auto {\bfseries operator/} (\mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} lhs, Arithmetic auto rhs) noexcept
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_ab928706393ef7de96394abf57d220884}\label{classcsm__units_1_1_unit_base_ab928706393ef7de96394abf57d220884}} 
+constexpr auto {\bfseries operator/} (Arithmetic auto lhs, \mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} rhs) noexcept
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_a25148372acb72aefbac5b902afd40ec7}\label{classcsm__units_1_1_unit_base_a25148372acb72aefbac5b902afd40ec7}} 
+constexpr auto {\bfseries operator$\ast$} (\mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} lhs, \mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}}$<$ \mbox{\hyperlink{structcsm__units_1_1_exponents}{Exponents\+Flip}}$<$ Powers $>$, Data $>$ rhs) noexcept
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_aa6b3618816384dbc5be6f514cf451ee7}\label{classcsm__units_1_1_unit_base_aa6b3618816384dbc5be6f514cf451ee7}} 
+{\footnotesize template$<$Exp\+Type Powers2$>$ }\\constexpr auto {\bfseries operator$\ast$} (\mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} lhs, \mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}}$<$ Powers2, Data $>$ rhs) noexcept
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_a19f322dee519a6268bbd8395c7ba46a9}\label{classcsm__units_1_1_unit_base_a19f322dee519a6268bbd8395c7ba46a9}} 
+{\footnotesize template$<$Unit\+Type Other$>$ }\\constexpr auto {\bfseries operator$\ast$} (\mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} lhs, Other rhs) noexcept
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_a0b3537550aa7651fbd306a04b912e878}\label{classcsm__units_1_1_unit_base_a0b3537550aa7651fbd306a04b912e878}} 
+constexpr auto {\bfseries operator$\ast$} (\mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} lhs, Arithmetic auto rhs) noexcept
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_a8d3d93322b8be6d3ca8a73fddd353c34}\label{classcsm__units_1_1_unit_base_a8d3d93322b8be6d3ca8a73fddd353c34}} 
+constexpr auto {\bfseries operator$\ast$} (Arithmetic auto lhs, \mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} rhs) noexcept
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_aac661725840c408bda15310f5fd7d933}\label{classcsm__units_1_1_unit_base_aac661725840c408bda15310f5fd7d933}} 
+constexpr auto {\bfseries operator+} (\mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} lhs, const \mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} \&rhs) noexcept
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_a4173ac47f9dcaba091869dc64775e856}\label{classcsm__units_1_1_unit_base_a4173ac47f9dcaba091869dc64775e856}} 
+constexpr auto {\bfseries operator+} (\mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} lhs, \mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} \&\&rhs) noexcept
+\item 
+\mbox{\Hypertarget{classcsm__units_1_1_unit_base_ab2127b8d5029bc12243bc48a926ad4c1}\label{classcsm__units_1_1_unit_base_ab2127b8d5029bc12243bc48a926ad4c1}} 
+constexpr auto {\bfseries operator-\/} (\mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} lhs, const \mbox{\hyperlink{classcsm__units_1_1_unit_base}{Unit\+Base}} \&rhs) noexcept
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/sanderschott/\+CSMGem-\/workspace/csm-\/units/source/csm\+\_\+units/unitbase.\+hpp\end{DoxyCompactItemize}

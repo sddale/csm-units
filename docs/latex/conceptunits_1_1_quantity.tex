@@ -1,0 +1,24 @@
+\hypertarget{conceptunits_1_1_quantity}{}\doxysection{units\+::Quantity Concept Reference}
+\label{conceptunits_1_1_quantity}\index{units::Quantity@{units::Quantity}}
+
+
+A concept matching all quantities in the library.  
+
+
+
+
+{\ttfamily \#include $<$basic\+\_\+concepts.\+h$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1_quantity}{units::Quantity}}\ =\ \ detail::is\_quantity<T>}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+A concept matching all quantities in the library. 
+
+Satisfied by all specializations of {\ttfamily quantity}. 

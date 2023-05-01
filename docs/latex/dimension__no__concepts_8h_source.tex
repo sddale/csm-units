@@ -1,0 +1,190 @@
+\hypertarget{dimension__no__concepts_8h_source}{}\doxysection{dimension\+\_\+no\+\_\+concepts.\+h}
+\label{dimension__no__concepts_8h_source}\index{csm-\/units/units/test/metabench/make\_dimension/dimension\_no\_concepts.h@{csm-\/units/units/test/metabench/make\_dimension/dimension\_no\_concepts.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}downcasting\_no\_concepts.h"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}ratio\_no\_concepts.h"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}type\_list\_no\_concepts.h"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <ratio>}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }units\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{struct\ }base\_dimension\ \{}
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name;}
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator==(\textcolor{keyword}{const}\ base\_dimension\&\ lhs,\ \textcolor{keyword}{const}\ base\_dimension\&\ rhs)}
+\DoxyCodeLine{00037\ \{}
+\DoxyCodeLine{00038\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ p1\ =\ lhs.name;}
+\DoxyCodeLine{00039\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ p2\ =\ rhs.name;}
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordflow}{for}\ (;\ (*p1\ !=\ \textcolor{charliteral}{'\(\backslash\)0'})\ \&\&\ (*p2\ !=\ \textcolor{charliteral}{'\(\backslash\)0'});\ ++p1,\ (void)++p2)\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{if}\ (*p1\ !=\ *p2)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00042\ \ \ \}}
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordflow}{return}\ *p1\ ==\ *p2;}
+\DoxyCodeLine{00044\ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ operator<(\textcolor{keyword}{const}\ base\_dimension\&\ lhs,\ \textcolor{keyword}{const}\ base\_dimension\&\ rhs)}
+\DoxyCodeLine{00047\ \{}
+\DoxyCodeLine{00048\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ p1\ =\ lhs.name;}
+\DoxyCodeLine{00049\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ p2\ =\ rhs.name;}
+\DoxyCodeLine{00050\ \ \ \textcolor{keywordflow}{for}\ (;\ (*p1\ !=\ \textcolor{charliteral}{'\(\backslash\)0'})\ \&\&\ (*p2\ !=\ \textcolor{charliteral}{'\(\backslash\)0'});\ ++p1,\ (void)++p2)\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{if}\ (*p1\ <\ *p2)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{if}\ (*p2\ <\ *p1)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00053\ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordflow}{return}\ (*p1\ ==\ \textcolor{charliteral}{'\(\backslash\)0'})\ \&\&\ (*p2\ !=\ \textcolor{charliteral}{'\(\backslash\)0'});}
+\DoxyCodeLine{00055\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ base\_dimension\_less}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{template}<const\ base\_dimension\&\ D1,\ const\ base\_dimension\&\ D2>}
+\DoxyCodeLine{00060\ \ \ \textcolor{keyword}{struct\ }base\_dimension\_less\ :\ std::bool\_constant\ <\ D1<D2>\ \{\};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ exponent}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ template<const\ base\_dimension\&\ BaseDimension,\ std::intmax\_t\ Num,\ std::intmax\_t\ Den\ =\ 1>}
+\DoxyCodeLine{00065\ struct\ exponent\ \{}
+\DoxyCodeLine{00066\ \ \ static\ constexpr\ const\ base\_dimension\&\ dimension\ =\ BaseDimension;}
+\DoxyCodeLine{00067\ \ \ static\ constexpr\ std::intmax\_t\ num\ =\ Num;}
+\DoxyCodeLine{00068\ \ \ static\ constexpr\ std::intmax\_t\ den\ =\ Den;}
+\DoxyCodeLine{00069\ \};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{comment}{//\ exp\_dim\_id\_less}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ template<typename\ E1,\ typename\ E2>}
+\DoxyCodeLine{00074\ struct\ exponent\_less\ :\ base\_dimension\_less<E1::dimension,\ E2::dimension>\ \{\};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{comment}{//\ exponent\_invert}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ template<typename\ E>}
+\DoxyCodeLine{00079\ struct\ exponent\_invert;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ template<const\ base\_dimension\&\ BaseDimension,\ std::intmax\_t\ Num,\ std::intmax\_t\ Den>}
+\DoxyCodeLine{00082\ struct\ exponent\_invert<exponent<BaseDimension,\ Num,\ Den>>\ \{}
+\DoxyCodeLine{00083\ \ \ using\ type\ =\ exponent<BaseDimension,\ -\/Num,\ Den>;}
+\DoxyCodeLine{00084\ \};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ template<typename\ E>}
+\DoxyCodeLine{00087\ using\ exponent\_invert\_t\ =\ exponent\_invert<E>::type;}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{comment}{//\ dimension}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ template<typename...\ Es>}
+\DoxyCodeLine{00092\ struct\ dimension\ :\ downcast\_base<dimension<Es...>>\ \{\};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{comment}{//\ dim\_invert}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ template<typename\ E>}
+\DoxyCodeLine{00097\ struct\ dim\_invert;}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ template<typename...\ Es>}
+\DoxyCodeLine{00100\ struct\ dim\_invert<dimension<Es...>>\ :\ std::type\_identity<downcast\_traits\_t<dimension<exponent\_invert\_t<Es>...>>>\ \{\};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ template<typename\ D>}
+\DoxyCodeLine{00103\ using\ dim\_invert\_t\ =\ dim\_invert<typename\ D::downcast\_base\_type>::type;}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{comment}{//\ make\_dimension}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ namespace\ detail\ \{}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ template<typename\ D>}
+\DoxyCodeLine{00111\ struct\ dim\_consolidate;}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ template<typename\ D>}
+\DoxyCodeLine{00114\ using\ dim\_consolidate\_t\ =\ dim\_consolidate<D>::type;}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ template<>}
+\DoxyCodeLine{00117\ struct\ dim\_consolidate<dimension<>>\ \{}
+\DoxyCodeLine{00118\ \ \ using\ type\ =\ dimension<>;}
+\DoxyCodeLine{00119\ \};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ template<typename\ E>}
+\DoxyCodeLine{00122\ struct\ dim\_consolidate<dimension<E>>\ \{}
+\DoxyCodeLine{00123\ \ \ using\ type\ =\ dimension<E>;}
+\DoxyCodeLine{00124\ \};}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ template<typename\ E1,\ typename...\ ERest>}
+\DoxyCodeLine{00127\ struct\ dim\_consolidate<dimension<E1,\ ERest...>>\ \{}
+\DoxyCodeLine{00128\ \ \ using\ rest\ =\ dim\_consolidate\_t<dimension<ERest...>>;}
+\DoxyCodeLine{00129\ \ \ using\ type\ =\ conditional<is\_same\_v<rest,\ dimension<>>,\ dimension<E1>,\ type\_list\_push\_front<rest,\ E1>>;}
+\DoxyCodeLine{00130\ \};}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ template<const\ base\_dimension\&\ D,\ std::intmax\_t\ Num1,\ std::intmax\_t\ Den1,\ std::intmax\_t\ Num2,\ std::intmax\_t\ Den2,}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ typename...\ ERest>}
+\DoxyCodeLine{00134\ struct\ dim\_consolidate<dimension<exponent<D,\ Num1,\ Den1>,\ exponent<D,\ Num2,\ Den2>,\ ERest...>>\ \{}
+\DoxyCodeLine{00135\ \ \ using\ r1\ =\ std::ratio<Num1,\ Den1>;}
+\DoxyCodeLine{00136\ \ \ using\ r2\ =\ std::ratio<Num2,\ Den2>;}
+\DoxyCodeLine{00137\ \ \ using\ r\ =\ std::ratio\_add<r1,\ r2>;}
+\DoxyCodeLine{00138\ \ \ using\ type\ =\ conditional<r::num\ ==\ 0,\ dim\_consolidate\_t<dimension<ERest...>>,}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dim\_consolidate\_t<dimension<exponent<D,\ r::num,\ r::den>,\ ERest...>>>;}
+\DoxyCodeLine{00140\ \};}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \}\ \ \textcolor{comment}{//\ namespace\ detail}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ template<typename...\ Es>}
+\DoxyCodeLine{00145\ struct\ make\_dimension\ \{}
+\DoxyCodeLine{00146\ \ \ using\ type\ =\ detail::dim\_consolidate\_t<type\_list\_sort<dimension<Es...>,\ exponent\_less>>;}
+\DoxyCodeLine{00147\ \};}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ template<typename...\ Es>}
+\DoxyCodeLine{00150\ using\ make\_dimension\_t\ =\ make\_dimension<Es...>::type;}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ template<typename\ D1,\ typename\ D2>}
+\DoxyCodeLine{00153\ struct\ merge\_dimension\ \{}
+\DoxyCodeLine{00154\ \ \ using\ type\ =\ detail::dim\_consolidate\_t<type\_list\_merge\_sorted<D1,\ D2,\ exponent\_less>>;}
+\DoxyCodeLine{00155\ \};}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ template<typename\ D1,\ typename\ D2>}
+\DoxyCodeLine{00158\ using\ merge\_dimension\_t\ =\ merge\_dimension<D1,\ D2>::type;}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \textcolor{comment}{//\ dimension\_multiply}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ template<typename\ D1,\ typename\ D2>}
+\DoxyCodeLine{00163\ struct\ dimension\_multiply;}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ template<typename...\ E1,\ typename...\ E2>}
+\DoxyCodeLine{00166\ struct\ dimension\_multiply<dimension<E1...>,\ dimension<E2...>>\ :}
+\DoxyCodeLine{00167\ \ \ \ \ std::type\_identity<downcast\_traits\_t<merge\_dimension\_t<dimension<E1...>,\ dimension<E2...>>>>\ \{\};}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ template<typename\ D1,\ typename\ D2>}
+\DoxyCodeLine{00170\ using\ dimension\_multiply\_t\ =\ dimension\_multiply<typename\ D1::downcast\_base\_type,\ typename\ D2::downcast\_base\_type>::type;}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \textcolor{comment}{//\ dimension\_divide}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ template<typename\ D1,\ typename\ D2>}
+\DoxyCodeLine{00175\ struct\ dimension\_divide;}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ template<typename...\ E1,\ typename...\ E2>}
+\DoxyCodeLine{00178\ struct\ dimension\_divide<dimension<E1...>,\ dimension<E2...>>\ :}
+\DoxyCodeLine{00179\ \ \ \ \ dimension\_multiply<dimension<E1...>,\ dimension<exponent\_invert\_t<E2>...>>\ \{\};}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ template<typename\ D1,\ typename\ D2>}
+\DoxyCodeLine{00182\ using\ dimension\_divide\_t\ =\ dimension\_divide<typename\ D1::downcast\_base\_type,\ typename\ D2::downcast\_base\_type>::type;}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \}\ \ \textcolor{comment}{//\ namespace\ units}}
+
+\end{DoxyCode}

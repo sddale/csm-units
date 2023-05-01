@@ -1,0 +1,379 @@
+\hypertarget{storage__capacity_8h_source}{}\doxysection{storage\+\_\+capacity.\+h}
+\label{storage__capacity_8h_source}\index{csm-\/units/units/src/systems/isq-\/iec80000/include/units/isq/iec80000/storage\_capacity.h@{csm-\/units/units/src/systems/isq-\/iec80000/include/units/isq/iec80000/storage\_capacity.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <units/base\_dimension.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <units/isq/iec80000/binary\_prefixes.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <units/isq/si/prefixes.h>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <units/unit.h>}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ IWYU\ pragma:\ begin\_exports}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <units/quantity.h>}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <units/reference.h>}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <units/symbol\_text.h>}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ IWYU\ pragma:\ end\_exports}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{namespace\ }units::isq::iec80000\ \{}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1bit}{bit}}\ :\ \mbox{\hyperlink{structunits_1_1named__unit}{named\_unit}}<bit,\ "{}bit"{}>\ \{\};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1kilobit}{kilobit}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<kilobit,\ si::kilo,\ bit>\ \{\};}
+\DoxyCodeLine{00041\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1megabit}{megabit}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<megabit,\ si::mega,\ bit>\ \{\};}
+\DoxyCodeLine{00042\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1gigabit}{gigabit}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<gigabit,\ si::giga,\ bit>\ \{\};}
+\DoxyCodeLine{00043\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1terabit}{terabit}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<terabit,\ si::tera,\ bit>\ \{\};}
+\DoxyCodeLine{00044\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1petabit}{petabit}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<petabit,\ si::peta,\ bit>\ \{\};}
+\DoxyCodeLine{00045\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1exabit}{exabit}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<exabit,\ si::exa,\ bit>\ \{\};}
+\DoxyCodeLine{00046\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1zettabit}{zettabit}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<zettabit,\ si::zetta,\ bit>\ \{\};}
+\DoxyCodeLine{00047\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1yottabit}{yottabit}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<yottabit,\ si::yotta,\ bit>\ \{\};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1kibibit}{kibibit}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<kibibit,\ kibi,\ bit>\ \{\};}
+\DoxyCodeLine{00050\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1mebibit}{mebibit}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<mebibit,\ mebi,\ bit>\ \{\};}
+\DoxyCodeLine{00051\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1gibibit}{gibibit}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<gibibit,\ gibi,\ bit>\ \{\};}
+\DoxyCodeLine{00052\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1tebibit}{tebibit}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<tebibit,\ tebi,\ bit>\ \{\};}
+\DoxyCodeLine{00053\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1pebibit}{pebibit}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<pebibit,\ pebi,\ bit>\ \{\};}
+\DoxyCodeLine{00054\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1exbibit}{exbibit}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<exbibit,\ exbi,\ bit>\ \{\};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1byte}{byte}}\ :\ \mbox{\hyperlink{structunits_1_1named__scaled__unit}{named\_scaled\_unit}}<byte,\ "{}B"{},\ mag<8>(),\ bit>\ \{\};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1kilobyte}{kilobyte}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<kilobyte,\ si::kilo,\ byte>\ \{\};}
+\DoxyCodeLine{00059\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1megabyte}{megabyte}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<megabyte,\ si::mega,\ byte>\ \{\};}
+\DoxyCodeLine{00060\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1gigabyte}{gigabyte}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<gigabyte,\ si::giga,\ byte>\ \{\};}
+\DoxyCodeLine{00061\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1terabyte}{terabyte}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<terabyte,\ si::tera,\ byte>\ \{\};}
+\DoxyCodeLine{00062\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1petabyte}{petabyte}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<petabyte,\ si::peta,\ byte>\ \{\};}
+\DoxyCodeLine{00063\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1exabyte}{exabyte}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<exabyte,\ si::exa,\ byte>\ \{\};}
+\DoxyCodeLine{00064\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1zettabyte}{zettabyte}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<zettabyte,\ si::zetta,\ byte>\ \{\};}
+\DoxyCodeLine{00065\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1yottabyte}{yottabyte}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<yottabyte,\ si::yotta,\ byte>\ \{\};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1kibibyte}{kibibyte}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<kibibyte,\ kibi,\ byte>\ \{\};}
+\DoxyCodeLine{00068\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1mebibyte}{mebibyte}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<mebibyte,\ mebi,\ byte>\ \{\};}
+\DoxyCodeLine{00069\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1gibibyte}{gibibyte}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<gibibyte,\ gibi,\ byte>\ \{\};}
+\DoxyCodeLine{00070\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1tebibyte}{tebibyte}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<tebibyte,\ tebi,\ byte>\ \{\};}
+\DoxyCodeLine{00071\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1pebibyte}{pebibyte}}\ :\ \mbox{\hyperlink{structunits_1_1prefixed__unit}{prefixed\_unit}}<pebibyte,\ pebi,\ byte>\ \{\};}
+\DoxyCodeLine{00072\ \textcolor{comment}{//\ struct\ exbibyte\ :\ prefixed\_unit<exbibyte,\ exbi,\ byte>\ \{\};}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1dim__storage__capacity}{dim\_storage\_capacity}}\ :\ \mbox{\hyperlink{structunits_1_1base__dimension}{base\_dimension}}<"{}M"{},\ byte>\ \{\};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00077\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1isq_1_1iec80000_1_1_storage_capacity}{StorageCapacity}}\ =\ \mbox{\hyperlink{conceptunits_1_1_quantity_of}{QuantityOf<T,\ dim\_storage\_capacity>}};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{template}<UnitOf<dim\_storage\_capacity>\ U,\ Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00080\ \textcolor{keyword}{using\ }storage\_capacity\ =\ quantity<dim\_storage\_capacity,\ U,\ Rep>;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_LITERALS}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{inline}\ \textcolor{keyword}{namespace\ }literals\ \{}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{comment}{//\ bits}}
+\DoxyCodeLine{00087\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_bit(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00088\ \{}
+\DoxyCodeLine{00089\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00090\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<bit,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00091\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_kbit(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00094\ \{}
+\DoxyCodeLine{00095\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00096\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<kilobit,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00097\ \}}
+\DoxyCodeLine{00098\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Mbit(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00099\ \{}
+\DoxyCodeLine{00100\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00101\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<megabit,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00102\ \}}
+\DoxyCodeLine{00103\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Gbit(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00104\ \{}
+\DoxyCodeLine{00105\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00106\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<gigabit,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00107\ \}}
+\DoxyCodeLine{00108\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Tbit(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00109\ \{}
+\DoxyCodeLine{00110\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00111\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<terabit,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00112\ \}}
+\DoxyCodeLine{00113\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Pbit(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00114\ \{}
+\DoxyCodeLine{00115\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00116\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<petabit,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00117\ \}}
+\DoxyCodeLine{00118\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Ebit(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00119\ \{}
+\DoxyCodeLine{00120\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00121\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<exabit,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00122\ \}}
+\DoxyCodeLine{00123\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Zbit(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00124\ \{}
+\DoxyCodeLine{00125\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00126\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<zettabit,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00127\ \}}
+\DoxyCodeLine{00128\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Ybit(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00129\ \{}
+\DoxyCodeLine{00130\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00131\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<yottabit,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00132\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Kibit(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00135\ \{}
+\DoxyCodeLine{00136\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00137\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<kibibit,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00138\ \}}
+\DoxyCodeLine{00139\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Mibit(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00140\ \{}
+\DoxyCodeLine{00141\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00142\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<mebibit,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00143\ \}}
+\DoxyCodeLine{00144\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Gibit(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00145\ \{}
+\DoxyCodeLine{00146\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00147\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<gibibit,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00148\ \}}
+\DoxyCodeLine{00149\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Tibit(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00150\ \{}
+\DoxyCodeLine{00151\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00152\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<tebibit,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00153\ \}}
+\DoxyCodeLine{00154\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Pibit(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00155\ \{}
+\DoxyCodeLine{00156\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00157\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<pebibit,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00158\ \}}
+\DoxyCodeLine{00159\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_Eibit(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00160\ \{}
+\DoxyCodeLine{00161\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00162\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<exbibit,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00163\ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{comment}{//\ bytes}}
+\DoxyCodeLine{00166\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_B(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00167\ \{}
+\DoxyCodeLine{00168\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00169\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<byte,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00170\ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_kB(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00173\ \{}
+\DoxyCodeLine{00174\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00175\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<kilobyte,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00176\ \}}
+\DoxyCodeLine{00177\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_MB(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00178\ \{}
+\DoxyCodeLine{00179\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00180\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<megabyte,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00181\ \}}
+\DoxyCodeLine{00182\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_GB(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00183\ \{}
+\DoxyCodeLine{00184\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00185\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<gigabyte,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00186\ \}}
+\DoxyCodeLine{00187\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_TB(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00188\ \{}
+\DoxyCodeLine{00189\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00190\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<terabyte,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00191\ \}}
+\DoxyCodeLine{00192\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_PB(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00193\ \{}
+\DoxyCodeLine{00194\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00195\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<petabyte,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00196\ \}}
+\DoxyCodeLine{00197\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_EB(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00198\ \{}
+\DoxyCodeLine{00199\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00200\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<exabyte,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00201\ \}}
+\DoxyCodeLine{00202\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_ZB(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00203\ \{}
+\DoxyCodeLine{00204\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00205\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<zettabyte,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00206\ \}}
+\DoxyCodeLine{00207\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_YB(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00208\ \{}
+\DoxyCodeLine{00209\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00210\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<yottabyte,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00211\ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_KiB(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00214\ \{}
+\DoxyCodeLine{00215\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00216\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<kibibyte,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00217\ \}}
+\DoxyCodeLine{00218\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_MiB(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00219\ \{}
+\DoxyCodeLine{00220\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00221\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<mebibyte,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00222\ \}}
+\DoxyCodeLine{00223\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_GiB(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00224\ \{}
+\DoxyCodeLine{00225\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00226\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<gibibyte,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00227\ \}}
+\DoxyCodeLine{00228\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_TiB(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00229\ \{}
+\DoxyCodeLine{00230\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00231\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<tebibyte,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00232\ \}}
+\DoxyCodeLine{00233\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}}\ \_q\_PiB(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ l)}
+\DoxyCodeLine{00234\ \{}
+\DoxyCodeLine{00235\ \ \ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));}
+\DoxyCodeLine{00236\ \ \ \textcolor{keywordflow}{return}\ storage\_capacity<pebibyte,\ std::int64\_t>(\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(l));}
+\DoxyCodeLine{00237\ \}}
+\DoxyCodeLine{00238\ \textcolor{comment}{//\ constexpr\ auto\ operator"{}"{}\ \_q\_EiB(unsigned\ long\ long\ l)\ \{\ gsl\_ExpectsAudit(std::in\_range<std::int64\_t>(l));\ return}}
+\DoxyCodeLine{00239\ \textcolor{comment}{//\ storage\_capacity<exbibyte,\ std::int64\_t>(static\_cast<std::int64\_t>(l));\ \}}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \}\ \ \textcolor{comment}{//\ namespace\ literals}}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_LITERALS}}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_REFERENCES}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \textcolor{keyword}{namespace\ }storage\_capacity\_references\ \{}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \textcolor{comment}{//\ bits}}
+\DoxyCodeLine{00250\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{structunits_1_1isq_1_1iec80000_1_1bit}{bit}}\ =\ \mbox{\hyperlink{structunits_1_1reference}{reference<dim\_storage\_capacity,\ iec80000::bit>}}\{\};}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{kbit}}\ =\ \mbox{\hyperlink{structunits_1_1reference}{reference<dim\_storage\_capacity,\ kilobit>}}\{\};}
+\DoxyCodeLine{00253\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Mbit}}\ =\ \mbox{\hyperlink{structunits_1_1reference}{reference<dim\_storage\_capacity,\ megabit>}}\{\};}
+\DoxyCodeLine{00254\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Gbit}}\ =\ reference<dim\_storage\_capacity,\ gigabit>\{\};}
+\DoxyCodeLine{00255\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Tbit}}\ =\ reference<dim\_storage\_capacity,\ terabit>\{\};}
+\DoxyCodeLine{00256\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Pbit}}\ =\ reference<dim\_storage\_capacity,\ petabit>\{\};}
+\DoxyCodeLine{00257\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Ebit}}\ =\ reference<dim\_storage\_capacity,\ exabit>\{\};}
+\DoxyCodeLine{00258\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Zbit}}\ =\ reference<dim\_storage\_capacity,\ zettabit>\{\};}
+\DoxyCodeLine{00259\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Ybit}}\ =\ reference<dim\_storage\_capacity,\ yottabit>\{\};}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Kibit}}\ =\ reference<dim\_storage\_capacity,\ kibibit>\{\};}
+\DoxyCodeLine{00262\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Mibit}}\ =\ reference<dim\_storage\_capacity,\ mebibit>\{\};}
+\DoxyCodeLine{00263\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Gibit}}\ =\ reference<dim\_storage\_capacity,\ gibibit>\{\};}
+\DoxyCodeLine{00264\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Tibit}}\ =\ reference<dim\_storage\_capacity,\ tebibit>\{\};}
+\DoxyCodeLine{00265\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Pibit}}\ =\ reference<dim\_storage\_capacity,\ pebibit>\{\};}
+\DoxyCodeLine{00266\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{Eibit}}\ =\ reference<dim\_storage\_capacity,\ exbibit>\{\};}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \textcolor{comment}{//\ bytes}}
+\DoxyCodeLine{00269\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{B}}\ =\ reference<dim\_storage\_capacity,\ byte>\{\};}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{kB}}\ =\ reference<dim\_storage\_capacity,\ kilobyte>\{\};}
+\DoxyCodeLine{00272\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{MB}}\ =\ reference<dim\_storage\_capacity,\ megabyte>\{\};}
+\DoxyCodeLine{00273\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{GB}}\ =\ reference<dim\_storage\_capacity,\ gigabyte>\{\};}
+\DoxyCodeLine{00274\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{TB}}\ =\ reference<dim\_storage\_capacity,\ terabyte>\{\};}
+\DoxyCodeLine{00275\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{PB}}\ =\ reference<dim\_storage\_capacity,\ petabyte>\{\};}
+\DoxyCodeLine{00276\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{EB}}\ =\ reference<dim\_storage\_capacity,\ exabyte>\{\};}
+\DoxyCodeLine{00277\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{ZB}}\ =\ reference<dim\_storage\_capacity,\ zettabyte>\{\};}
+\DoxyCodeLine{00278\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{YB}}\ =\ reference<dim\_storage\_capacity,\ yottabyte>\{\};}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{KiB}}\ =\ reference<dim\_storage\_capacity,\ kibibyte>\{\};}
+\DoxyCodeLine{00281\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{MiB}}\ =\ reference<dim\_storage\_capacity,\ mebibyte>\{\};}
+\DoxyCodeLine{00282\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{GiB}}\ =\ reference<dim\_storage\_capacity,\ gibibyte>\{\};}
+\DoxyCodeLine{00283\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{TiB}}\ =\ reference<dim\_storage\_capacity,\ tebibyte>\{\};}
+\DoxyCodeLine{00284\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classunits_1_1quantity}{PiB}}\ =\ reference<dim\_storage\_capacity,\ pebibyte>\{\};}
+\DoxyCodeLine{00285\ \textcolor{comment}{//\ inline\ constexpr\ auto\ EiB\ =\ reference<dim\_storage\_capacity,\ exbibyte>\{\};}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \}\ \ \textcolor{comment}{//\ namespace\ storage\_capacity\_references}}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \textcolor{keyword}{namespace\ }references\ \{}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \textcolor{keyword}{using\ namespace\ }storage\_capacity\_references;}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \}\ \ \textcolor{comment}{//\ namespace\ references}}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_REFERENCES}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \}\ \ \textcolor{comment}{//\ namespace\ units::isq::iec80000}}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \textcolor{preprocessor}{\#ifndef\ UNITS\_NO\_ALIASES}}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \textcolor{keyword}{namespace\ }units::aliases::isq::iec80000::inline\ storage\_capacity\ \{}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \textcolor{comment}{//\ bits}}
+\DoxyCodeLine{00304\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00305\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{bit}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::bit,\ Rep>}};}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00308\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{kbit}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::kilobit,\ Rep>}};}
+\DoxyCodeLine{00309\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00310\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Mbit}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::megabit,\ Rep>}};}
+\DoxyCodeLine{00311\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00312\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Gbit}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::gigabit,\ Rep>}};}
+\DoxyCodeLine{00313\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00314\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Tbit}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::terabit,\ Rep>}};}
+\DoxyCodeLine{00315\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00316\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Pbit}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::petabit,\ Rep>}};}
+\DoxyCodeLine{00317\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00318\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Ebit}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::exabit,\ Rep>}};}
+\DoxyCodeLine{00319\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00320\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Zbit}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::zettabit,\ Rep>}};}
+\DoxyCodeLine{00321\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00322\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Ybit}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::yottabit,\ Rep>}};}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00325\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Kibit}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::kibibit,\ Rep>}};}
+\DoxyCodeLine{00326\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00327\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Mibit}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::mebibit,\ Rep>}};}
+\DoxyCodeLine{00328\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00329\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Gibit}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::gibibit,\ Rep>}};}
+\DoxyCodeLine{00330\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00331\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Tibit}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::tebibit,\ Rep>}};}
+\DoxyCodeLine{00332\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00333\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Pibit}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::pebibit,\ Rep>}};}
+\DoxyCodeLine{00334\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00335\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{Eibit}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::exbibit,\ Rep>}};}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ \textcolor{comment}{//\ bytes}}
+\DoxyCodeLine{00338\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00339\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{B}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::byte,\ Rep>}};}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00342\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{kB}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::kilobyte,\ Rep>}};}
+\DoxyCodeLine{00343\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00344\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{MB}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::megabyte,\ Rep>}};}
+\DoxyCodeLine{00345\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00346\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{GB}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::gigabyte,\ Rep>}};}
+\DoxyCodeLine{00347\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00348\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{TB}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::terabyte,\ Rep>}};}
+\DoxyCodeLine{00349\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00350\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{PB}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::petabyte,\ Rep>}};}
+\DoxyCodeLine{00351\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00352\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{EB}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::exabyte,\ Rep>}};}
+\DoxyCodeLine{00353\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00354\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{ZB}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::zettabyte,\ Rep>}};}
+\DoxyCodeLine{00355\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00356\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{YB}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::yottabyte,\ Rep>}};}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00359\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{KiB}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::kibibyte,\ Rep>}};}
+\DoxyCodeLine{00360\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00361\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{MiB}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::mebibyte,\ Rep>}};}
+\DoxyCodeLine{00362\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00363\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{GiB}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::gibibyte,\ Rep>}};}
+\DoxyCodeLine{00364\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00365\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{TiB}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::tebibyte,\ Rep>}};}
+\DoxyCodeLine{00366\ \textcolor{keyword}{template}<Representation\ Rep\ =\ \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{00367\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classunits_1_1quantity}{PiB}}\ =\ \mbox{\hyperlink{classunits_1_1quantity}{units::isq::iec80000::storage\_capacity<units::isq::iec80000::pebibyte,\ Rep>}};}
+\DoxyCodeLine{00368\ \textcolor{comment}{//\ template<Representation\ Rep\ =\ double>\ using\ EiB\ =}}
+\DoxyCodeLine{00369\ \textcolor{comment}{//\ units::isq::iec80000::storage\_capacity<units::isq::iec80000::exbibyte,\ Rep>;}}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \}\ \ \textcolor{comment}{//\ namespace\ units::aliases::isq::iec80000::inline\ storage\_capacity}}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UNITS\_NO\_ALIASES}}
+
+\end{DoxyCode}

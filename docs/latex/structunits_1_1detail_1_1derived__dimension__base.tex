@@ -1,0 +1,61 @@
+\hypertarget{structunits_1_1detail_1_1derived__dimension__base}{}\doxysection{units\+::detail\+::derived\+\_\+dimension\+\_\+base\texorpdfstring{$<$}{<} Es \texorpdfstring{$>$}{>} Struct Template Reference}
+\label{structunits_1_1detail_1_1derived__dimension__base}\index{units::detail::derived\_dimension\_base$<$ Es $>$@{units::detail::derived\_dimension\_base$<$ Es $>$}}
+
+
+A dimension of a derived quantity.  
+
+
+
+
+{\ttfamily \#include $<$derived\+\_\+dimension\+\_\+base.\+h$>$}
+
+Inheritance diagram for units\+::detail\+::derived\+\_\+dimension\+\_\+base\texorpdfstring{$<$}{<} Es \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{structunits_1_1detail_1_1derived__dimension__base}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structunits_1_1detail_1_1derived__dimension__base_ad6407f3186192f5f7dcfbce23ab8ab3c}\label{structunits_1_1detail_1_1derived__dimension__base_ad6407f3186192f5f7dcfbce23ab8ab3c}} 
+using {\bfseries exponents} = \mbox{\hyperlink{structunits_1_1exponent__list}{exponent\+\_\+list}}$<$ Es... $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types inherited from \mbox{\hyperlink{structunits_1_1downcast__base}{units\+::downcast\+\_\+base$<$ derived\+\_\+dimension\+\_\+base$<$ Es... $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structunits_1_1downcast__base_a2f24f8f93706aec6047096627462b917}\label{structunits_1_1downcast__base_a2f24f8f93706aec6047096627462b917}} 
+using {\bfseries downcast\+\_\+base\+\_\+type} = derived\+\_\+dimension\+\_\+base$<$ Es... $>$
+\item 
+\mbox{\Hypertarget{structunits_1_1downcast__base_a2f24f8f93706aec6047096627462b917}\label{structunits_1_1downcast__base_a2f24f8f93706aec6047096627462b917}} 
+using {\bfseries downcast\+\_\+base\+\_\+type} = derived\+\_\+dimension\+\_\+base$<$ Es... $>$
+\item 
+\mbox{\Hypertarget{structunits_1_1downcast__base_a2f24f8f93706aec6047096627462b917}\label{structunits_1_1downcast__base_a2f24f8f93706aec6047096627462b917}} 
+using {\bfseries downcast\+\_\+base\+\_\+type} = derived\+\_\+dimension\+\_\+base$<$ Es... $>$
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$Exponent... Es$>$\newline
+requires (Base\+Dimension$<$typename Es\+::dimension$>$ \&\& ...)\newline
+struct units\+::detail\+::derived\+\_\+dimension\+\_\+base$<$ Es $>$}
+A dimension of a derived quantity. 
+
+Expression of the dependence of a quantity on the base quantities (and their base dimensions) of a system of quantities as a product of powers of factors corresponding to the base quantities, omitting any numerical factors. A power of a factor is the factor raised to an exponent.
+
+A derived dimension can be formed from multiple exponents (i.\+e. speed is represented as \char`\"{}exponent$<$\+L, 1$>$, exponent$<$\+T, -\/1$>$\char`\"{}). It is also possible to form a derived dimension with only one exponent (i.\+e. frequency is represented as just \char`\"{}exponent$<$\+T, -\/1$>$\char`\"{}).
+
+\begin{DoxyNote}{Note}
+This class template is used by the library engine and should not be directly instantiated by the user.
+\end{DoxyNote}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Es} & zero or more exponents of a derived dimension \\
+\hline
+\end{DoxyTemplParams}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+csm-\/units/units/src/core/include/units/bits/basic\+\_\+concepts.\+h\item 
+csm-\/units/units/src/core/include/units/bits/derived\+\_\+dimension\+\_\+base.\+h\end{DoxyCompactItemize}

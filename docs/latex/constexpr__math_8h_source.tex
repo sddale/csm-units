@@ -1,0 +1,250 @@
+\hypertarget{constexpr__math_8h_source}{}\doxysection{constexpr\+\_\+math.\+h}
+\label{constexpr__math_8h_source}\index{csm-\/units/units/src/core/include/units/bits/constexpr\_math.h@{csm-\/units/units/src/core/include/units/bits/constexpr\_math.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <gsl/gsl-\/lite.hpp>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <units/bits/external/hacks.h>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <units/bits/math\_concepts.h>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <units/bits/ratio\_maths.h>}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }units::detail\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1detail_1_1decimal__fp}{decimal\_fp}}\ \{}
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordtype}{double}\ significant;}
+\DoxyCodeLine{00034\ \ \ std::intmax\_t\ \mbox{\hyperlink{structunits_1_1exponent}{exponent}};}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structunits_1_1detail_1_1decimal__fp}{decimal\_fp}}\ to\_decimal(\textcolor{keywordtype}{double}\ v)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ UNITS\_DIAGNOSTIC\_PUSH}
+\DoxyCodeLine{00040\ \ \ UNITS\_DIAGNOSTIC\_IGNORE\_FLOAT\_EQUAL}
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordflow}{if}\ (v\ ==\ 0)\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{return}\ \{.significant\ =\ 0.0,\ .exponent\ =\ 0\};}
+\DoxyCodeLine{00043\ \ \ \}}
+\DoxyCodeLine{00044\ \ \ UNITS\_DIAGNOSTIC\_POP}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordtype}{double}\ significant\ =\ abs(v);}
+\DoxyCodeLine{00047\ \ \ std::intmax\_t\ exponent\ =\ 0;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordflow}{while}\ (significant\ <\ 1)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ significant\ *=\ 10.0;}
+\DoxyCodeLine{00051\ \ \ \ \ -\/-\/exponent;}
+\DoxyCodeLine{00052\ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordflow}{while}\ (significant\ >=\ 10)\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ significant\ /=\ 10.0;}
+\DoxyCodeLine{00056\ \ \ \ \ ++exponent;}
+\DoxyCodeLine{00057\ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordflow}{if}\ (v\ <\ 0)\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ significant\ =\ -\/significant;}
+\DoxyCodeLine{00061\ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \textcolor{keywordflow}{return}\ \{.significant\ =\ significant,\ .exponent\ =\ exponent\};}
+\DoxyCodeLine{00064\ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{comment}{/*\ approximate\ natural\ log\ as\ https://math.stackexchange.com/a/977836}}
+\DoxyCodeLine{00067\ \textcolor{comment}{\ far\ slower\ than\ std::log\ but\ works\ at\ compile\ time\ with\ similar\ accuracy}}
+\DoxyCodeLine{00068\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00069\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ constexpr\_log(\textcolor{keywordtype}{double}\ v)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \ \ gsl\_Expects(v\ >\ 0);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \textcolor{comment}{//\ lookup\ table\ to\ speed\ up\ convergence\ for\ all\ significant\ values}}
+\DoxyCodeLine{00074\ \ \ \textcolor{comment}{//\ significant\ values\ of\ 7\ and\ greater\ benefit\ mostly\ as\ they\ now\ converge\ in\ 5\ terms\ compared\ to\ O(10)-\/O(100)}}
+\DoxyCodeLine{00075\ \ \ \textcolor{comment}{//\ required\ without\ the\ table}}
+\DoxyCodeLine{00076\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00077\ \ \ \textcolor{comment}{//\ using\ python:}}
+\DoxyCodeLine{00078\ \ \ \textcolor{comment}{//\ >>>\ import\ math}}
+\DoxyCodeLine{00079\ \ \ \textcolor{comment}{//\ >>>\ for\ i\ in\ range(1,\ 100):}}
+\DoxyCodeLine{00080\ \ \ \textcolor{comment}{//\ ...\ \ \ \ \ print(f"{}/*\ log(\{i:>2d\})\ =\ */\ \{math.log(i):.16f\},"{})}}
+\DoxyCodeLine{00081\ \ \ \textcolor{keyword}{constexpr}\ std::array<double,\ 99>\ log\_table\{}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{/*\ log(\ 1)\ =\ */}\ 0.0000000000000000,}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{/*\ log(\ 2)\ =\ */}\ 0.6931471805599453,}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{comment}{/*\ log(\ 3)\ =\ */}\ 1.0986122886681098,}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{comment}{/*\ log(\ 4)\ =\ */}\ 1.3862943611198906,}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{/*\ log(\ 5)\ =\ */}\ 1.6094379124341003,}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{/*\ log(\ 6)\ =\ */}\ 1.7917594692280550,}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{/*\ log(\ 7)\ =\ */}\ 1.9459101490553132,}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{comment}{/*\ log(\ 8)\ =\ */}\ 2.0794415416798357,}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{/*\ log(\ 9)\ =\ */}\ 2.1972245773362196,}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{/*\ log(10)\ =\ */}\ 2.3025850929940459,}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{/*\ log(11)\ =\ */}\ 2.3978952727983707,}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{/*\ log(12)\ =\ */}\ 2.4849066497880004,}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{/*\ log(13)\ =\ */}\ 2.5649493574615367,}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{/*\ log(14)\ =\ */}\ 2.6390573296152584,}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{/*\ log(15)\ =\ */}\ 2.7080502011022101,}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{/*\ log(16)\ =\ */}\ 2.7725887222397811,}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{/*\ log(17)\ =\ */}\ 2.8332133440562162,}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{/*\ log(18)\ =\ */}\ 2.8903717578961645,}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{/*\ log(19)\ =\ */}\ 2.9444389791664403,}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{/*\ log(20)\ =\ */}\ 2.9957322735539909,}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{/*\ log(21)\ =\ */}\ 3.0445224377234230,}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{comment}{/*\ log(22)\ =\ */}\ 3.0910424533583161,}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{/*\ log(23)\ =\ */}\ 3.1354942159291497,}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{/*\ log(24)\ =\ */}\ 3.1780538303479458,}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{comment}{/*\ log(25)\ =\ */}\ 3.2188758248682006,}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{/*\ log(26)\ =\ */}\ 3.2580965380214821,}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{/*\ log(27)\ =\ */}\ 3.2958368660043291,}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{/*\ log(28)\ =\ */}\ 3.3322045101752038,}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{/*\ log(29)\ =\ */}\ 3.3672958299864741,}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{/*\ log(30)\ =\ */}\ 3.4011973816621555,}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{/*\ log(31)\ =\ */}\ 3.4339872044851463,}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{/*\ log(32)\ =\ */}\ 3.4657359027997265,}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{/*\ log(33)\ =\ */}\ 3.4965075614664802,}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{comment}{/*\ log(34)\ =\ */}\ 3.5263605246161616,}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{comment}{/*\ log(35)\ =\ */}\ 3.5553480614894135,}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{comment}{/*\ log(36)\ =\ */}\ 3.5835189384561099,}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{comment}{/*\ log(37)\ =\ */}\ 3.6109179126442243,}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{/*\ log(38)\ =\ */}\ 3.6375861597263857,}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{comment}{/*\ log(39)\ =\ */}\ 3.6635616461296463,}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{comment}{/*\ log(40)\ =\ */}\ 3.6888794541139363,}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{comment}{/*\ log(41)\ =\ */}\ 3.7135720667043080,}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{comment}{/*\ log(42)\ =\ */}\ 3.7376696182833684,}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{comment}{/*\ log(43)\ =\ */}\ 3.7612001156935624,}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{comment}{/*\ log(44)\ =\ */}\ 3.7841896339182610,}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{comment}{/*\ log(45)\ =\ */}\ 3.8066624897703196,}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{comment}{/*\ log(46)\ =\ */}\ 3.8286413964890951,}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{comment}{/*\ log(47)\ =\ */}\ 3.8501476017100584,}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{comment}{/*\ log(48)\ =\ */}\ 3.8712010109078911,}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{comment}{/*\ log(49)\ =\ */}\ 3.8918202981106265,}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{comment}{/*\ log(50)\ =\ */}\ 3.9120230054281460,}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{/*\ log(51)\ =\ */}\ 3.9318256327243257,}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{comment}{/*\ log(52)\ =\ */}\ 3.9512437185814275,}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{comment}{/*\ log(53)\ =\ */}\ 3.9702919135521220,}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{/*\ log(54)\ =\ */}\ 3.9889840465642745,}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{comment}{/*\ log(55)\ =\ */}\ 4.0073331852324712,}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{/*\ log(56)\ =\ */}\ 4.0253516907351496,}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{comment}{/*\ log(57)\ =\ */}\ 4.0430512678345503,}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{comment}{/*\ log(58)\ =\ */}\ 4.0604430105464191,}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{comment}{/*\ log(59)\ =\ */}\ 4.0775374439057197,}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{comment}{/*\ log(60)\ =\ */}\ 4.0943445622221004,}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{comment}{/*\ log(61)\ =\ */}\ 4.1108738641733114,}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{comment}{/*\ log(62)\ =\ */}\ 4.1271343850450917,}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{comment}{/*\ log(63)\ =\ */}\ 4.1431347263915326,}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{comment}{/*\ log(64)\ =\ */}\ 4.1588830833596715,}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{comment}{/*\ log(65)\ =\ */}\ 4.1743872698956368,}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{comment}{/*\ log(66)\ =\ */}\ 4.1896547420264252,}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{comment}{/*\ log(67)\ =\ */}\ 4.2046926193909657,}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{/*\ log(68)\ =\ */}\ 4.2195077051761070,}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{/*\ log(69)\ =\ */}\ 4.2341065045972597,}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{comment}{/*\ log(70)\ =\ */}\ 4.2484952420493594,}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{comment}{/*\ log(71)\ =\ */}\ 4.2626798770413155,}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{comment}{/*\ log(72)\ =\ */}\ 4.2766661190160553,}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{comment}{/*\ log(73)\ =\ */}\ 4.2904594411483910,}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{comment}{/*\ log(74)\ =\ */}\ 4.3040650932041702,}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{comment}{/*\ log(75)\ =\ */}\ 4.3174881135363101,}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{comment}{/*\ log(76)\ =\ */}\ 4.3307333402863311,}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{comment}{/*\ log(77)\ =\ */}\ 4.3438054218536841,}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{comment}{/*\ log(78)\ =\ */}\ 4.3567088266895917,}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{comment}{/*\ log(79)\ =\ */}\ 4.3694478524670215,}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{comment}{/*\ log(80)\ =\ */}\ 4.3820266346738812,}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{comment}{/*\ log(81)\ =\ */}\ 4.3944491546724391,}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{comment}{/*\ log(82)\ =\ */}\ 4.4067192472642533,}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{comment}{/*\ log(83)\ =\ */}\ 4.4188406077965983,}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{comment}{/*\ log(84)\ =\ */}\ 4.4308167988433134,}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{comment}{/*\ log(85)\ =\ */}\ 4.4426512564903167,}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{comment}{/*\ log(86)\ =\ */}\ 4.4543472962535073,}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{comment}{/*\ log(87)\ =\ */}\ 4.4659081186545837,}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{comment}{/*\ log(88)\ =\ */}\ 4.4773368144782069,}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{comment}{/*\ log(89)\ =\ */}\ 4.4886363697321396,}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{comment}{/*\ log(90)\ =\ */}\ 4.4998096703302650,}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{comment}{/*\ log(91)\ =\ */}\ 4.5108595065168497,}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{comment}{/*\ log(92)\ =\ */}\ 4.5217885770490405,}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{comment}{/*\ log(93)\ =\ */}\ 4.5325994931532563,}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{comment}{/*\ log(94)\ =\ */}\ 4.5432947822700038,}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{comment}{/*\ log(95)\ =\ */}\ 4.5538768916005408,}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{comment}{/*\ log(96)\ =\ */}\ 4.5643481914678361,}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{comment}{/*\ log(97)\ =\ */}\ 4.5747109785033828,}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{comment}{/*\ log(98)\ =\ */}\ 4.5849674786705723,}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{comment}{/*\ log(99)\ =\ */}\ 4.5951198501345898,}
+\DoxyCodeLine{00181\ \ \ \};}
+\DoxyCodeLine{00182\ \ \ decimal\_fp\ x\ =\ to\_decimal(v);}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \textcolor{comment}{//\ dividing\ the\ significant\ by\ nearest\ lower\ value\ in\ [1.0,\ 1.1,\ 1.2,\ ...,\ 9.9]\ will\ greatly\ improve\ convergence}}
+\DoxyCodeLine{00185\ \ \ x.significant\ *=\ 10;}
+\DoxyCodeLine{00186\ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ isignificant\ =\ \textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(x.significant);}
+\DoxyCodeLine{00187\ \ \ x.significant\ /=\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(isignificant);}
+\DoxyCodeLine{00188\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ result\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(x.exponent\ -\/\ 1)\ *\ log\_table[9]\ +\ log\_table[isignificant\ -\/\ 1];}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \textcolor{comment}{//\ 1.0\ <=\ significant\ <\ 1.1\ converges\ rapidly}}
+\DoxyCodeLine{00191\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ y\ =\ (x.significant\ -\/\ 1)\ /\ (x.significant\ +\ 1);}
+\DoxyCodeLine{00192\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ y\_squared\ =\ y\ *\ y;}
+\DoxyCodeLine{00193\ \ \ \textcolor{keywordtype}{double}\ sum\ =\ 0;}
+\DoxyCodeLine{00194\ \ \ \textcolor{comment}{//\ 5\ terms\ are\ needed\ for\ convergence\ to\ machine\ precision\ in\ the\ worst\ case\ scenario}}
+\DoxyCodeLine{00195\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ 4;\ k\ >\ 0;\ -\/-\/k)\ \{}
+\DoxyCodeLine{00196\ \ \ \ \ sum\ =\ y\_squared\ *\ (1\ /\ (2\ *\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(k)\ +\ 1)\ +\ sum);}
+\DoxyCodeLine{00197\ \ \ \}}
+\DoxyCodeLine{00198\ \ \ sum\ =\ 2\ *\ y\ *\ (1\ +\ sum);\ \ \textcolor{comment}{//\ k\ =\ 0\ term}}
+\DoxyCodeLine{00199\ \ \ \textcolor{keywordflow}{return}\ result\ +\ sum;}
+\DoxyCodeLine{00200\ \}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \textcolor{comment}{/*\ approximate\ e\string^x\ as\ Taylor\ series\ e\string^x\ =\ 1\ +\ x/1!\ +\ x\string^2/2!\ +\ x\string^3/3!\ +...\ where\ N\ is\ the\ order\ of\ the\ Taylor\ series}}
+\DoxyCodeLine{00203\ \textcolor{comment}{\ use\ https://math.stackexchange.com/a/1988927\ to\ improve\ convergence\ for\ large\ values}}
+\DoxyCodeLine{00204\ \textcolor{comment}{}}
+\DoxyCodeLine{00205\ \textcolor{comment}{\ larger\ Factor\ values\ improve\ convergence\ for\ all\ values\ but\ reduce\ the\ precision}}
+\DoxyCodeLine{00206\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00207\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ N,\ std::\textcolor{keywordtype}{int}max\_t\ Factor\ =\ 256>}
+\DoxyCodeLine{00208\ \ \ \textcolor{keyword}{requires}\ gt\_zero<Factor>}
+\DoxyCodeLine{00209\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ constexpr\_exp(\textcolor{keywordtype}{double}\ v)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00210\ \{}
+\DoxyCodeLine{00211\ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (N\ ==\ 0)\ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordflow}{return}\ 1.0;}
+\DoxyCodeLine{00213\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ coefficients\ =\ []()\ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ std::array<double,\ N>\ coeffs;}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ std::size\_t\ factorial\ =\ 1;}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (std::size\_t\ i\ =\ 0;\ i\ <\ N;\ ++i)\ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ factorial\ *=\ i\ +\ 1;}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ coeffs[i]\ =\ 1.0\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(factorial);}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ coeffs;}
+\DoxyCodeLine{00222\ \ \ \ \ \}();}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ x\ =\ v\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(Factor);}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordtype}{double}\ result\ =\ 0;}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ i\ =\ \textcolor{keyword}{static\_cast<}std::intmax\_t\textcolor{keyword}{>}(N\ -\/\ 1);\ i\ >=\ 0;\ -\/-\/i)\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ result\ =\ x\ *\ (coefficients[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(i)]\ +\ result);}
+\DoxyCodeLine{00228\ \ \ \ \ \}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{comment}{//\ for\ factors\ of\ power\ of\ 2\ this\ should\ be\ replaced\ by\ log2(Factor)\ multiplications\ by\ the\ compiler}}
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keywordflow}{return}\ pow\_impl<Factor>(1\ +\ result);}
+\DoxyCodeLine{00232\ \ \ \}}
+\DoxyCodeLine{00233\ \}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \textcolor{comment}{//\ default\ template\ arguments\ provide\ reasonable\ precision\ even\ for\ fairly\ large\ exponents}}
+\DoxyCodeLine{00236\ \textcolor{comment}{//\ see\ constexpr\_exp\ for\ template\ arguments}}
+\DoxyCodeLine{00237\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{size\_t}\ ExpOrder\ =\ 10,\ std::\textcolor{keywordtype}{int}max\_t\ Factor\ =\ 128>}
+\DoxyCodeLine{00238\ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ constexpr\_pow(\textcolor{keywordtype}{double}\ v,\ \textcolor{keywordtype}{double}\ exponent)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00239\ \{}
+\DoxyCodeLine{00240\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ x\ =\ exponent\ *\ constexpr\_log(v);}
+\DoxyCodeLine{00241\ \ \ \textcolor{keywordflow}{return}\ constexpr\_exp<ExpOrder,\ Factor>(x);}
+\DoxyCodeLine{00242\ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \}\ \ \textcolor{comment}{//\ namespace\ units::detail}}
+
+\end{DoxyCode}

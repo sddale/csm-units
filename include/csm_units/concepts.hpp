@@ -14,7 +14,7 @@
 namespace csm_units {
 
 /**
- * This concept controls arithmetics
+ * \brief This concept controls arithmetics
  */
 template <class T>
 concept Arithmetic = std::is_arithmetic_v<T>;

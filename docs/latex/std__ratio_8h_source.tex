@@ -1,0 +1,69 @@
+\hypertarget{std__ratio_8h_source}{}\doxysection{std\+\_\+ratio.\+h}
+\label{std__ratio_8h_source}\index{csm-\/units/units/test/metabench/ratio/std\_ratio.h@{csm-\/units/units/test/metabench/ratio/std\_ratio.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2018\ Mateusz\ Pusz}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ SOFTWARE.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <ratio>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }units\ \{}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ static\_sign}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{int}max\_t\ Pn>}
+\DoxyCodeLine{00033\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structunits_1_1static__sign}{static\_sign}}\ :\ std::integral\_constant<std::intmax\_t,\ (Pn\ <\ 0)\ ?\ -\/1\ :\ 1>\ \{\};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ static\_abs}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ template<std::intmax\_t\ Pn>}
+\DoxyCodeLine{00038\ struct\ static\_abs\ :\ std::integral\_constant<std::intmax\_t,\ Pn\ *\ static\_sign<Pn>::value>\ \{\};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ static\_gcd}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ template<std::intmax\_t\ Pn,\ std::intmax\_t\ Qn>}
+\DoxyCodeLine{00043\ struct\ static\_gcd\ :\ static\_gcd<Qn,\ (Pn\ \%\ Qn)>\ \{\};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ template<std::intmax\_t\ Pn>}
+\DoxyCodeLine{00046\ struct\ static\_gcd<Pn,\ 0>\ :\ std::integral\_constant<std::intmax\_t,\ static\_abs<Pn>::value>\ \{\};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ template<std::intmax\_t\ Qn>}
+\DoxyCodeLine{00049\ struct\ static\_gcd<0,\ Qn>\ :\ std::integral\_constant<std::intmax\_t,\ static\_abs<Qn>::value>\ \{\};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ common\_ratio}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ template<typename\ R1,\ typename\ R2>}
+\DoxyCodeLine{00054\ struct\ common\_ratio\ \{}
+\DoxyCodeLine{00055\ \ \ using\ gcd\_num\ =\ static\_gcd<R1::num,\ R2::num>;}
+\DoxyCodeLine{00056\ \ \ using\ gcd\_den\ =\ static\_gcd<R1::den,\ R2::den>;}
+\DoxyCodeLine{00057\ \ \ using\ type\ =\ std::ratio<gcd\_num::value,\ (R1::den\ /\ gcd\_den::value)\ *\ R2::den>;}
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ template<typename\ R1,\ typename\ R2>}
+\DoxyCodeLine{00061\ using\ common\_ratio\_t\ =\ typename\ common\_ratio<R1,\ R2>::type;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \}\ \ \textcolor{comment}{//\ namespace\ units}}
+
+\end{DoxyCode}

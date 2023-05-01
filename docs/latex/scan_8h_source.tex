@@ -1,0 +1,252 @@
+\hypertarget{scan_8h_source}{}\doxysection{scan.\+h}
+\label{scan_8h_source}\index{csm-\/units/fmt/test/scan.h@{csm-\/units/fmt/test/scan.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Formatting\ library\ for\ C++\ -\/\ scanning\ API\ proof\ of\ concept}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ (c)\ 2019\ -\/\ present,\ Victor\ Zverovich}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ All\ rights\ reserved.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ For\ the\ license\ information\ refer\ to\ format.h.}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <climits>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}fmt/format.h"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ FMT\_BEGIN\_NAMESPACE}
+\DoxyCodeLine{00015\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Char\ =\ \textcolor{keywordtype}{char}>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structscanner}{scanner}}\ \{}
+\DoxyCodeLine{00016\ \ \ \textcolor{comment}{//\ A\ deleted\ default\ constructor\ indicates\ a\ disabled\ scanner.}}
+\DoxyCodeLine{00017\ \ \ \mbox{\hyperlink{structscanner}{scanner}}()\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00018\ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classscan__parse__context}{scan\_parse\_context}}\ \{}
+\DoxyCodeLine{00021\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00022\ \ \ \mbox{\hyperlink{classbasic__string__view}{string\_view}}\ format\_;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \textcolor{keyword}{using\ }iterator\ =\ string\_view::iterator;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \textcolor{keyword}{explicit}\ FMT\_CONSTEXPR\ \mbox{\hyperlink{classscan__parse__context}{scan\_parse\_context}}(\mbox{\hyperlink{classbasic__string__view}{string\_view}}\ format)}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ :\ format\_(format)\ \{\}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ FMT\_CONSTEXPR\ iterator\ begin()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ format\_.begin();\ \}}
+\DoxyCodeLine{00031\ \ \ FMT\_CONSTEXPR\ iterator\ end()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ format\_.end();\ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordtype}{void}\ advance\_to(iterator\ it)\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ format\_.remove\_prefix(detail::to\_unsigned(it\ -\/\ begin()));}
+\DoxyCodeLine{00035\ \ \ \}}
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structscan__context}{scan\_context}}\ \{}
+\DoxyCodeLine{00039\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00040\ \ \ \mbox{\hyperlink{classbasic__string__view}{string\_view}}\ input\_;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \textcolor{keyword}{using\ }iterator\ =\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \textcolor{keyword}{explicit}\ FMT\_CONSTEXPR\ \mbox{\hyperlink{structscan__context}{scan\_context}}(\mbox{\hyperlink{classbasic__string__view}{string\_view}}\ input)\ :\ input\_(input)\ \{\}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ iterator\ begin()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ input\_.\mbox{\hyperlink{classbasic__string__view_a39cdfe061dc6d64a3adc230b62d8a026}{data}}();\ \}}
+\DoxyCodeLine{00048\ \ \ iterator\ end()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ begin()\ +\ input\_.\mbox{\hyperlink{classbasic__string__view_a216bbe1b012b590698d7bb4e96d1af3f}{size}}();\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \textcolor{keywordtype}{void}\ advance\_to(iterator\ it)\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ input\_.remove\_prefix(detail::to\_unsigned(it\ -\/\ begin()));}
+\DoxyCodeLine{00052\ \ \ \}}
+\DoxyCodeLine{00053\ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{namespace\ }detail\ \{}
+\DoxyCodeLine{00056\ \textcolor{keyword}{enum\ class}\ scan\_type\ \{}
+\DoxyCodeLine{00057\ \ \ none\_type,}
+\DoxyCodeLine{00058\ \ \ int\_type,}
+\DoxyCodeLine{00059\ \ \ uint\_type,}
+\DoxyCodeLine{00060\ \ \ long\_long\_type,}
+\DoxyCodeLine{00061\ \ \ ulong\_long\_type,}
+\DoxyCodeLine{00062\ \ \ string\_type,}
+\DoxyCodeLine{00063\ \ \ string\_view\_type,}
+\DoxyCodeLine{00064\ \ \ \mbox{\hyperlink{structcustom__type}{custom\_type}}}
+\DoxyCodeLine{00065\ \};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structdetail_1_1custom__scan__arg}{custom\_scan\_arg}}\ \{}
+\DoxyCodeLine{00068\ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{classdetail_1_1value}{value}};}
+\DoxyCodeLine{00069\ \ \ void\ (*scan)(\textcolor{keywordtype}{void}*\ arg,\ \mbox{\hyperlink{classscan__parse__context}{scan\_parse\_context}}\&\ parse\_ctx,\ \mbox{\hyperlink{structscan__context}{scan\_context}}\&\ ctx);}
+\DoxyCodeLine{00070\ \};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classdetail_1_1scan__arg}{scan\_arg}}\ \{}
+\DoxyCodeLine{00073\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00074\ \ \ scan\_type\ type;}
+\DoxyCodeLine{00075\ \ \ \textcolor{keyword}{union\ }\{}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{int}*\ int\_value;}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{unsigned}*\ uint\_value;}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}*\ long\_long\_value;}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}*\ ulong\_long\_value;}
+\DoxyCodeLine{00080\ \ \ \ \ std::string*\ string;}
+\DoxyCodeLine{00081\ \ \ \ \ fmt::string\_view*\ \mbox{\hyperlink{classbasic__string__view}{string\_view}};}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{structdetail_1_1custom__scan__arg}{custom\_scan\_arg}}\ custom;}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//\ TODO:\ more\ types}}
+\DoxyCodeLine{00084\ \ \ \};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ FMT\_CONSTEXPR\ \mbox{\hyperlink{classdetail_1_1scan__arg}{scan\_arg}}()\ :\ type(scan\_type::none\_type),\ int\_value(\textcolor{keyword}{nullptr})\ \{\}}
+\DoxyCodeLine{00087\ \ \ FMT\_CONSTEXPR\ \mbox{\hyperlink{classdetail_1_1scan__arg}{scan\_arg}}(\textcolor{keywordtype}{int}\&\ \mbox{\hyperlink{classdetail_1_1value}{value}})}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ :\ type(scan\_type::int\_type),\ int\_value(\&\mbox{\hyperlink{classdetail_1_1value}{value}})\ \{\}}
+\DoxyCodeLine{00089\ \ \ FMT\_CONSTEXPR\ \mbox{\hyperlink{classdetail_1_1scan__arg}{scan\_arg}}(\textcolor{keywordtype}{unsigned}\&\ \mbox{\hyperlink{classdetail_1_1value}{value}})}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ :\ type(scan\_type::uint\_type),\ uint\_value(\&\mbox{\hyperlink{classdetail_1_1value}{value}})\ \{\}}
+\DoxyCodeLine{00091\ \ \ FMT\_CONSTEXPR\ \mbox{\hyperlink{classdetail_1_1scan__arg}{scan\_arg}}(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\&\ \mbox{\hyperlink{classdetail_1_1value}{value}})}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ :\ type(scan\_type::long\_long\_type),\ long\_long\_value(\&\mbox{\hyperlink{classdetail_1_1value}{value}})\ \{\}}
+\DoxyCodeLine{00093\ \ \ FMT\_CONSTEXPR\ \mbox{\hyperlink{classdetail_1_1scan__arg}{scan\_arg}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\&\ \mbox{\hyperlink{classdetail_1_1value}{value}})}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ :\ type(scan\_type::ulong\_long\_type),\ ulong\_long\_value(\&\mbox{\hyperlink{classdetail_1_1value}{value}})\ \{\}}
+\DoxyCodeLine{00095\ \ \ FMT\_CONSTEXPR\ \mbox{\hyperlink{classdetail_1_1scan__arg}{scan\_arg}}(std::string\&\ \mbox{\hyperlink{classdetail_1_1value}{value}})}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ :\ type(scan\_type::string\_type),\ string(\&\mbox{\hyperlink{classdetail_1_1value}{value}})\ \{\}}
+\DoxyCodeLine{00097\ \ \ FMT\_CONSTEXPR\ \mbox{\hyperlink{classdetail_1_1scan__arg}{scan\_arg}}(fmt::string\_view\&\ \mbox{\hyperlink{classdetail_1_1value}{value}})}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ :\ type(scan\_type::string\_view\_type),\ \mbox{\hyperlink{classbasic__string__view}{string\_view}}(\&\mbox{\hyperlink{classdetail_1_1value}{value}})\ \{\}}
+\DoxyCodeLine{00099\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00100\ \ \ FMT\_CONSTEXPR\ \mbox{\hyperlink{classdetail_1_1scan__arg}{scan\_arg}}(T\&\ \mbox{\hyperlink{classdetail_1_1value}{value}})\ :\ type(scan\_type::custom\_type)\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ custom.value\ =\ \&\mbox{\hyperlink{classdetail_1_1value}{value}};}
+\DoxyCodeLine{00102\ \ \ \ \ custom.scan\ =\ scan\_custom\_arg<T>;}
+\DoxyCodeLine{00103\ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00106\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00107\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ scan\_custom\_arg(\textcolor{keywordtype}{void}*\ arg,\ \mbox{\hyperlink{classscan__parse__context}{scan\_parse\_context}}\&\ parse\_ctx,}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structscan__context}{scan\_context}}\&\ ctx)\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{structscanner}{scanner<T>}}\ s;}
+\DoxyCodeLine{00110\ \ \ \ \ parse\_ctx.advance\_to(s.parse(parse\_ctx));}
+\DoxyCodeLine{00111\ \ \ \ \ ctx.advance\_to(s.scan(*\textcolor{keyword}{static\_cast<}T*\textcolor{keyword}{>}(arg),\ ctx));}
+\DoxyCodeLine{00112\ \ \ \}}
+\DoxyCodeLine{00113\ \};}
+\DoxyCodeLine{00114\ \}\ \ \textcolor{comment}{//\ namespace\ detail}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structscan__args}{scan\_args}}\ \{}
+\DoxyCodeLine{00117\ \ \ \textcolor{keywordtype}{int}\ size;}
+\DoxyCodeLine{00118\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdetail_1_1scan__arg}{detail::scan\_arg}}*\ \mbox{\hyperlink{structdata}{data}};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00121\ \ \ FMT\_CONSTEXPR\ \mbox{\hyperlink{structscan__args}{scan\_args}}(\textcolor{keyword}{const}\ std::array<detail::scan\_arg,\ N>\&\ store)}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ :\ size(N),\ \mbox{\hyperlink{structdata}{data}}(store.data())\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{static\_assert}(N\ <\ INT\_MAX,\ \textcolor{stringliteral}{"{}too\ many\ arguments"{}});}
+\DoxyCodeLine{00124\ \ \ \}}
+\DoxyCodeLine{00125\ \};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{namespace\ }detail\ \{}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structdetail_1_1scan__handler}{scan\_handler}}\ :\ \mbox{\hyperlink{structdetail_1_1error__handler}{error\_handler}}\ \{}
+\DoxyCodeLine{00130\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00131\ \ \ \mbox{\hyperlink{classscan__parse__context}{scan\_parse\_context}}\ parse\_ctx\_;}
+\DoxyCodeLine{00132\ \ \ \mbox{\hyperlink{structscan__context}{scan\_context}}\ scan\_ctx\_;}
+\DoxyCodeLine{00133\ \ \ \mbox{\hyperlink{structscan__args}{scan\_args}}\ args\_;}
+\DoxyCodeLine{00134\ \ \ \textcolor{keywordtype}{int}\ next\_arg\_id\_;}
+\DoxyCodeLine{00135\ \ \ \mbox{\hyperlink{classdetail_1_1scan__arg}{scan\_arg}}\ arg\_;}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T\ =\ \textcolor{keywordtype}{unsigned}>\ T\ read\_uint()\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ T\ \mbox{\hyperlink{classdetail_1_1value}{value}}\ =\ 0;}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ scan\_ctx\_.begin(),\ end\ =\ scan\_ctx\_.end();}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordflow}{while}\ (it\ !=\ end)\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ c\ =\ *it++;}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ <\ \textcolor{charliteral}{'0'}\ ||\ c\ >\ \textcolor{charliteral}{'9'})\ on\_error(\textcolor{stringliteral}{"{}invalid\ input"{}});}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ check\ overflow}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \mbox{\hyperlink{classdetail_1_1value}{value}}\ =\ \mbox{\hyperlink{classdetail_1_1value}{value}}\ *\ 10\ +\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\textcolor{keyword}{>}(c\ -\/\ \textcolor{charliteral}{'0'});}
+\DoxyCodeLine{00145\ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ scan\_ctx\_.advance\_to(it);}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdetail_1_1value}{value}};}
+\DoxyCodeLine{00148\ \ \ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T\ =\ \textcolor{keywordtype}{int}>\ T\ read\_int()\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ scan\_ctx\_.begin(),\ end\ =\ scan\_ctx\_.end();}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordtype}{bool}\ negative\ =\ it\ !=\ end\ \&\&\ *it\ ==\ \textcolor{charliteral}{'-\/'};}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{if}\ (negative)\ ++it;}
+\DoxyCodeLine{00154\ \ \ \ \ scan\_ctx\_.advance\_to(it);}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classdetail_1_1value}{value}}\ =\ read\_uint<typename\ std::make\_unsigned<T>::type>();}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordflow}{if}\ (negative)\ \textcolor{keywordflow}{return}\ -\/\textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(\mbox{\hyperlink{classdetail_1_1value}{value}});}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(\mbox{\hyperlink{classdetail_1_1value}{value}});}
+\DoxyCodeLine{00158\ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00161\ \ \ FMT\_CONSTEXPR\ \mbox{\hyperlink{structdetail_1_1scan__handler}{scan\_handler}}(\mbox{\hyperlink{classbasic__string__view}{string\_view}}\ format,\ \mbox{\hyperlink{classbasic__string__view}{string\_view}}\ input,}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structscan__args}{scan\_args}}\ args)}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ :\ parse\_ctx\_(format),\ scan\_ctx\_(input),\ args\_(args),\ next\_arg\_id\_(0)\ \{\}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ pos()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ scan\_ctx\_.begin();\ \}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \textcolor{keywordtype}{void}\ on\_text(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ begin,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ end)\ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{auto}\ size\ =\ to\_unsigned(end\ -\/\ begin);}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ scan\_ctx\_.begin();}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ +\ size\ >\ scan\_ctx\_.end()\ ||}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ !std::equal(begin,\ end,\ make\_checked(it,\ size)))\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ on\_error(\textcolor{stringliteral}{"{}invalid\ input"{}});}
+\DoxyCodeLine{00173\ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \ \ \ \ scan\_ctx\_.advance\_to(it\ +\ size);}
+\DoxyCodeLine{00175\ \ \ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ FMT\_CONSTEXPR\ \textcolor{keywordtype}{int}\ on\_arg\_id()\ \{\ \textcolor{keywordflow}{return}\ on\_arg\_id(next\_arg\_id\_++);\ \}}
+\DoxyCodeLine{00178\ \ \ FMT\_CONSTEXPR\ \textcolor{keywordtype}{int}\ on\_arg\_id(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ >=\ args\_.size)\ on\_error(\textcolor{stringliteral}{"{}argument\ index\ out\ of\ range"{}});}
+\DoxyCodeLine{00180\ \ \ \ \ arg\_\ =\ args\_.data[id];}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordflow}{return}\ id;}
+\DoxyCodeLine{00182\ \ \ \}}
+\DoxyCodeLine{00183\ \ \ FMT\_CONSTEXPR\ \textcolor{keywordtype}{int}\ on\_arg\_id(\mbox{\hyperlink{classbasic__string__view}{string\_view}}\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}.\mbox{\hyperlink{structdata}{data}}())\ on\_error(\textcolor{stringliteral}{"{}invalid\ format"{}});}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00186\ \ \ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \textcolor{keywordtype}{void}\ on\_replacement\_field(\textcolor{keywordtype}{int},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*)\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ scan\_ctx\_.begin(),\ end\ =\ scan\_ctx\_.end();}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordflow}{switch}\ (arg\_.type)\ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordflow}{case}\ scan\_type::int\_type:}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ *arg\_.int\_value\ =\ read\_int();}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordflow}{case}\ scan\_type::uint\_type:}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ *arg\_.uint\_value\ =\ read\_uint();}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordflow}{case}\ scan\_type::long\_long\_type:}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ *arg\_.long\_long\_value\ =\ read\_int<long\ long>();}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordflow}{case}\ scan\_type::ulong\_long\_type:}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ *arg\_.ulong\_long\_value\ =\ read\_uint<unsigned\ long\ long>();}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordflow}{case}\ scan\_type::string\_type:}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (it\ !=\ end\ \&\&\ *it\ !=\ \textcolor{charliteral}{'\ '})\ arg\_.string-\/>push\_back(*it++);}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ scan\_ctx\_.advance\_to(it);}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordflow}{case}\ scan\_type::string\_view\_type:\ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ s\ =\ it;}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (it\ !=\ end\ \&\&\ *it\ !=\ \textcolor{charliteral}{'\ '})\ ++it;}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ *arg\_.string\_view\ =\ fmt::string\_view(s,\ to\_unsigned(it\ -\/\ s));}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ scan\_ctx\_.advance\_to(it);}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00213\ \ \ \ \ \}}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordflow}{case}\ scan\_type::none\_type:}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordflow}{case}\ scan\_type::custom\_type:}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ assert(\textcolor{keyword}{false});}
+\DoxyCodeLine{00217\ \ \ \ \ \}}
+\DoxyCodeLine{00218\ \ \ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ on\_format\_specs(\textcolor{keywordtype}{int},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ begin,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*)\ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordflow}{if}\ (arg\_.type\ !=\ scan\_type::custom\_type)\ \textcolor{keywordflow}{return}\ begin;}
+\DoxyCodeLine{00222\ \ \ \ \ parse\_ctx\_.advance\_to(begin);}
+\DoxyCodeLine{00223\ \ \ \ \ arg\_.custom.scan(arg\_.custom.value,\ parse\_ctx\_,\ scan\_ctx\_);}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keywordflow}{return}\ parse\_ctx\_.begin();}
+\DoxyCodeLine{00225\ \ \ \}}
+\DoxyCodeLine{00226\ \};}
+\DoxyCodeLine{00227\ \}\ \ \textcolor{comment}{//\ namespace\ detail}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}...\ Args>}
+\DoxyCodeLine{00230\ std::array<\mbox{\hyperlink{classdetail_1_1scan__arg}{detail::scan\_arg}},\ \textcolor{keyword}{sizeof}...(Args)>\ make\_scan\_args(Args\&...\ args)\ \{}
+\DoxyCodeLine{00231\ \ \ \textcolor{keywordflow}{return}\ \{\{args...\}\};}
+\DoxyCodeLine{00232\ \}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ string\_view::iterator\ vscan(\mbox{\hyperlink{classbasic__string__view}{string\_view}}\ input,\ \mbox{\hyperlink{classbasic__string__view}{string\_view}}\ format\_str,}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structscan__args}{scan\_args}}\ args)\ \{}
+\DoxyCodeLine{00236\ \ \ \mbox{\hyperlink{structdetail_1_1scan__handler}{detail::scan\_handler}}\ h(format\_str,\ input,\ args);}
+\DoxyCodeLine{00237\ \ \ detail::parse\_format\_string<false>(format\_str,\ h);}
+\DoxyCodeLine{00238\ \ \ \textcolor{keywordflow}{return}\ input.begin()\ +\ (h.pos()\ -\/\ \&*input.begin());}
+\DoxyCodeLine{00239\ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}...\ Args>}
+\DoxyCodeLine{00242\ string\_view::iterator\ scan(\mbox{\hyperlink{classbasic__string__view}{string\_view}}\ input,\ \mbox{\hyperlink{classbasic__string__view}{string\_view}}\ format\_str,}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Args\&...\ args)\ \{}
+\DoxyCodeLine{00244\ \ \ \textcolor{keywordflow}{return}\ vscan(input,\ format\_str,\ make\_scan\_args(args...));}
+\DoxyCodeLine{00245\ \}}
+\DoxyCodeLine{00246\ FMT\_END\_NAMESPACE}
+
+\end{DoxyCode}

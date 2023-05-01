@@ -1,0 +1,30 @@
+\hypertarget{conceptunits_1_1_point_origin}{}\doxysection{units\+::Point\+Origin Concept Reference}
+\label{conceptunits_1_1_point_origin}\index{units::PointOrigin@{units::PointOrigin}}
+
+
+A concept matching a point origin.  
+
+
+
+
+{\ttfamily \#include $<$basic\+\_\+concepts.\+h$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1_point_origin}{units::PointOrigin}}\ =\ \ \mbox{\hyperlink{conceptunits_1_1is__derived__from__specialization__of}{is\_derived\_from\_specialization\_of<T,\ point\_origin>}}\ \&\&\ \textcolor{keyword}{requires}\ \{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{typename}\ T::dimension;}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ \mbox{\hyperlink{conceptunits_1_1_dimension}{Dimension<typename\ T::dimension>}};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{typename}\ T::point\_origin;}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ std::same\_as<typename\ T::point\_origin,\ point\_origin<typename\ T::dimension>>;}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !std::same\_as<T,\ point\_origin<typename\ T::dimension>>;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+A concept matching a point origin. 
+
+Satisfied by types derived from an specialization of {\ttfamily point\+\_\+origin}. 

@@ -1,0 +1,29 @@
+\hypertarget{concept_0d392_1_1invalid__binary__operations}{}\doxysection{@392\+::invalid\+\_\+binary\+\_\+operations Concept Reference}
+\label{concept_0d392_1_1invalid__binary__operations}\index{"@392::invalid\_binary\_operations@{"@392::invalid\_binary\_operations}}
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Metre>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }@392::\mbox{\hyperlink{concept_0d392_1_1invalid__binary__operations}{invalid\_binary\_operations}}\ =\ \ \textcolor{keyword}{requires}\ \{}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ 1\_q\_s\ +\ \mbox{\hyperlink{classunits_1_1quantity}{length<Metre,\ int>}}(1);\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ 1\_q\_s\ -\/\ \mbox{\hyperlink{classunits_1_1quantity}{length<Metre,\ int>}}(1);\ \};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}(\mbox{\hyperlink{classunits_1_1quantity}{length<Metre,\ double>}}\ a)\ \{\ a\ \%\ 2\_q\_m;\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}(\mbox{\hyperlink{classunits_1_1quantity}{length<Metre,\ double>}}\ a)\ \{\ 2\_q\_m\ \%\ a;\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}(\mbox{\hyperlink{classunits_1_1quantity}{length<Metre,\ double>}}\ a)\ \{\ a\ \%\ 2;\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}(\mbox{\hyperlink{classunits_1_1quantity}{length<Metre,\ double>}}\ a,\ \mbox{\hyperlink{classunits_1_1quantity}{length<Metre,\ double>}}\ b)\ \{\ a\ \%\ b;\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}(\mbox{\hyperlink{classunits_1_1quantity}{length<Metre,\ double>}}\ a,\ \mbox{\hyperlink{classunits_1_1quantity}{length<Metre,\ int>}}\ b)\ \{\ a\ \%\ b;\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}(\mbox{\hyperlink{classunits_1_1quantity}{length<Metre,\ double>}}\ a,\ \mbox{\hyperlink{classunits_1_1quantity}{length<Metre,\ int>}}\ b)\ \{\ b\ \%\ a;\ \};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ \mbox{\hyperlink{classunits_1_1quantity}{length<Metre,\ int>}}(1)\ +\ m;\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ \mbox{\hyperlink{classunits_1_1quantity}{length<Metre,\ int>}}(1)\ -\/\ m;\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ \mbox{\hyperlink{classunits_1_1quantity}{length<Metre,\ int>}}(1)\ \%\ m;\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ m\ +\ \mbox{\hyperlink{classunits_1_1quantity}{length<Metre,\ int>}}(1);\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ m\ -\/\ \mbox{\hyperlink{classunits_1_1quantity}{length<Metre,\ int>}}(1);\ \};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ m\ \%\ \mbox{\hyperlink{classunits_1_1quantity}{length<Metre,\ int>}}(1);\ \};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

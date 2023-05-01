@@ -1,0 +1,22 @@
+\hypertarget{concept_0d391_1_1invalid__types}{}\doxysection{@391\+::invalid\+\_\+types Concept Reference}
+\label{concept_0d391_1_1invalid__types}\index{"@391::invalid\_types@{"@391::invalid\_types}}
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ DimLength>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }@391::\mbox{\hyperlink{concept_0d391_1_1invalid__types}{invalid\_types}}\ =\ \ \textcolor{keyword}{requires}\ \{}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classunits_1_1quantity__point}{quantity\_point<dynamic\_origin<DimLength>}},\ \mbox{\hyperlink{structunits_1_1isq_1_1si_1_1second}{second}},\ \textcolor{keywordtype}{int}>;\ \};}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classunits_1_1quantity__point}{quantity\_point<dynamic\_origin<DimLength>}},\ \mbox{\hyperlink{structunits_1_1isq_1_1si_1_1metre}{metre}},\ \mbox{\hyperlink{classunits_1_1quantity}{quantity<DimLength,\ metre,\ int>}}>;\ \};}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classunits_1_1quantity__point}{quantity\_point<dynamic\_origin<DimLength>}},\ \mbox{\hyperlink{structunits_1_1isq_1_1si_1_1metre}{metre}},\ \mbox{\hyperlink{classunits_1_1quantity__point}{quantity\_point<dynamic\_origin<DimLength>}},\ \mbox{\hyperlink{structunits_1_1isq_1_1si_1_1metre}{metre}},\ \textcolor{keywordtype}{int}>>;}
+\DoxyCodeLine{\ \ \};}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classunits_1_1quantity__point}{quantity\_point<metre,\ dynamic\_origin<DimLength>}},\ \textcolor{keywordtype}{double}>;\ \};}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ !\textcolor{keyword}{requires}\ \{\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classunits_1_1quantity__point}{quantity\_point<DimLength,\ second,\ int>}};\ \};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

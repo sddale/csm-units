@@ -1,0 +1,26 @@
+\hypertarget{conceptunits_1_1_rebindable_point_origin_for}{}\doxysection{units\+::Rebindable\+Point\+Origin\+For Concept Reference}
+\label{conceptunits_1_1_rebindable_point_origin_for}\index{units::RebindablePointOriginFor@{units::RebindablePointOriginFor}}
+
+
+A concept predicating the possibility of changing an origin\textquotesingle{}s dimension.  
+
+
+
+
+{\ttfamily \#include $<$basic\+\_\+concepts.\+h$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ D>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptunits_1_1_rebindable_point_origin_for}{units::RebindablePointOriginFor}}\ =\ }
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ \{\ \textcolor{keyword}{typename}\ rebind\_point\_origin\_dimension<T,\ D>;\ \}\ \&\&\ \mbox{\hyperlink{conceptunits_1_1_point_origin}{PointOrigin<rebind\_point\_origin\_dimension<T,\ D>}}>\ \&\&}
+\DoxyCodeLine{\ \ std::same\_as<D,\ typename\ rebind\_point\_origin\_dimension<T,\ D>::dimension>}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+A concept predicating the possibility of changing an origin\textquotesingle{}s dimension. 
+
+Satisfied by point origins whose dimension can be made to be {\ttfamily D}. 

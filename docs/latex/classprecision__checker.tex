@@ -1,0 +1,19 @@
+\hypertarget{classprecision__checker}{}\doxysection{precision\+\_\+checker\texorpdfstring{$<$}{<} Error\+Handler \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classprecision__checker}\index{precision\_checker$<$ ErrorHandler $>$@{precision\_checker$<$ ErrorHandler $>$}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classprecision__checker_a958b58398c6e46b50af8e44294ffc6a9}\label{classprecision__checker_a958b58398c6e46b50af8e44294ffc6a9}} 
+FMT\+\_\+\+CONSTEXPR {\bfseries precision\+\_\+checker} (Error\+Handler \&eh)
+\item 
+\mbox{\Hypertarget{classprecision__checker_ad9b7375b79558b6f510f0d8c45e03eb8}\label{classprecision__checker_ad9b7375b79558b6f510f0d8c45e03eb8}} 
+{\footnotesize template$<$typename T , FMT\+\_\+\+ENABLE\+\_\+\+IF(is\+\_\+integer$<$ T $>$\+::value) $>$ }\\FMT\+\_\+\+CONSTEXPR auto {\bfseries operator()} (T value) -\/$>$ unsigned long long
+\item 
+\mbox{\Hypertarget{classprecision__checker_a86a60f46953ef469cf6a932570cedf32}\label{classprecision__checker_a86a60f46953ef469cf6a932570cedf32}} 
+{\footnotesize template$<$typename T , FMT\+\_\+\+ENABLE\+\_\+\+IF(!is\+\_\+integer$<$ T $>$\+::value) $>$ }\\FMT\+\_\+\+CONSTEXPR auto {\bfseries operator()} (T) -\/$>$ unsigned long long
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+csm-\/units/fmt/include/fmt/format.\+h\end{DoxyCompactItemize}
