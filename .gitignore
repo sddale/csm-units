@@ -5,5 +5,7 @@
 CMakeCache.txt
 CMakeFiles/
 .cache
-./fmt/*
-./units/*
+./fmt*
+./units*
+./docs/html*
+./docs/latex*
