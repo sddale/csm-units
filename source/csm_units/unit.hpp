@@ -14,11 +14,11 @@ class Unit {
   using SI = Base;
   constexpr explicit Unit(Data value = 0.0) noexcept : data(value) {}
 
-  constexpr Unit(SI new_base) noexcept
+  constexpr explicit(false) Unit(SI new_base) noexcept
       : data(UnitCast<Unit>(std::forward<SI>(new_base)).data) {}
 
   template <StringLiteral UN, Arithmetic D>
-  constexpr Unit(Unit<SI, UN, D> new_unit) noexcept
+  constexpr explicit(false) Unit(Unit<SI, UN, D> new_unit) noexcept
       : data(UnitCast<Unit>(
                  UnitCast<SI>(std::forward<decltype(new_unit)>(new_unit)))
                  .data) {}

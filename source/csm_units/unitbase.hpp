@@ -28,7 +28,7 @@ class UnitBase {
 
   template <UnitType U>
     requires std::is_same_v<typename U::SI, UnitBase>
-  constexpr UnitBase(U convert) noexcept
+  constexpr explicit(false) UnitBase(U convert) noexcept
       : data(UnitCast<UnitBase>(std::forward<U>(convert)).data) {}
 
   constexpr auto operator<=>(const UnitBase& other) const noexcept
@@ -42,10 +42,12 @@ class UnitBase {
     return lhs <=> UnitBase(rhs);
   }
 
-  constexpr auto operator==(const UnitBase& other) const -> bool = default;
+  constexpr auto operator==(const UnitBase& other) const noexcept
+      -> bool = default;
 
   template <UnitType U>
-  friend constexpr auto operator==(const UnitBase& lhs, const U& rhs) -> bool {
+  friend constexpr auto operator==(const UnitBase& lhs, const U& rhs) noexcept
+      -> bool {
     return lhs == UnitBase(rhs);
   }
   // copy constructor

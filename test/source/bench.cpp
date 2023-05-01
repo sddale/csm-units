@@ -6,7 +6,7 @@
 
 namespace csm_units::test {
 
-// NOLINTBEGIN(modernize-use-trailing-return-type)
+// NOLINTBEGIN(modernize-use-trailing-return-type,readability-identifier-length)
 using namespace units::isq::si::references;
 TEST_SUITE("Benchmarks") {
   TEST_CASE("Additions") {
@@ -121,6 +121,6 @@ TEST_SUITE("Benchmarks") {
   }
 }
 
-// NOLINTEND(modernize-use-trailing-return-type)
+// NOLINTEND(modernize-use-trailing-return-type,readability-identifier-length)
 
 }  // namespace csm_units::test
