@@ -1,3 +1,9 @@
+/**  \file concepts.hpp
+ *   \brief this file does this and that.
+ *
+ *   Typings more things.
+ */
+
 #pragma once
 
 #include <concepts>
@@ -7,6 +13,9 @@
 
 namespace csm_units {
 
+/**
+ * This concept controls arithmetics
+ */
 template <class T>
 concept Arithmetic = std::is_arithmetic_v<T>;
 
