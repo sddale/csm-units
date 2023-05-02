@@ -2,7 +2,8 @@
  *   \brief This file defines a more verbose version of user defined literals.
  *
  * Allows for the combination of user defined literal with different binary
- * arithmetic operators to create a unit from scratch.
+ * arithmetic operators to create a unit from scratch. Then defining a decimal
+ * number with that unit.
  */
 
 #pragma once

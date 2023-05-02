@@ -1,3 +1,15 @@
+/**  \file units.hpp
+ *   \brief This file defines a derived unit of any dimension and any system.
+ *
+ * The system refers to what standard the data is in. For example, the
+ * International System of Units (SI) is a system in this sense. This file
+ * contains many using statements for common units. As well as Unit Casting so
+ * that a any defined unit is able to convert to a base unit in SI and back to
+ * derived unit when needed. To define a new unit all that needs to be done is
+ * the creation of two UnitCast functions that cast from that unit to the base
+ * and from the base to that unit.
+ */
+
 #pragma once
 
 #include <csm_units/concepts.hpp>

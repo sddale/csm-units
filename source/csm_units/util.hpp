@@ -1,3 +1,7 @@
+/**  \file util.hpp
+ *   \brief This file holds the utility function for different classes.
+ */
+
 #pragma once
 
 #include <algorithm>

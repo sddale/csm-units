@@ -1,3 +1,12 @@
+/**  \file unitbase.hpp
+ *   \brief This file defines a base unit in SI for the dimension given by the
+ * powers template. The powers template is derived from the exponents class.
+ *
+ * For arithmetic to be able to be applied to a derived unit a conversion from a
+ * to the SI version of the unit needs to be defined as explained in the
+ * unit.hpp file.
+ */
+
 #pragma once
 
 #include <compare>

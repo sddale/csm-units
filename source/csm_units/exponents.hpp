@@ -1,3 +1,13 @@
+/**  \file exponents.hpp
+ *   \brief This file defines what SI dimension a unit will be.
+ *
+ * The first seven parameters are the numerator for the Length, Mass, Time,
+ * Electrical Current, Thermodynamic Temperature, Amount of a Substance, and
+ * the Luminous Intensity in that order. Then the next seven are the denominator
+ * allowing for decimal powers for each unit. The decimal is default to be one
+ * if not give a value.
+ */
+
 #pragma once
 
 #include <concepts>
