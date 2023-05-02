@@ -1,3 +1,7 @@
+/**  \file units.hpp
+ *   \brief This file is the main include for the entire project.
+ */
+
 #pragma once
 
 #include "source/csm_units/exponents.hpp"
