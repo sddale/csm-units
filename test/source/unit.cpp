@@ -1,6 +1,9 @@
+
 #include "source/csm_units/unit.hpp"
 
 #include <doctest/doctest.h>
+
+#include <csm_units/length.hpp>
 
 #include "source/csm_units/exponents.hpp"
 #include "source/csm_units/literal/literal.hpp"

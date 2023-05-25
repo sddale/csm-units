@@ -47,6 +47,4 @@ constexpr auto FromSymbols(double in) {
   return in <<= L;
 }
 
-// auto mps = 1.0 <<= (m / s);
-// auto g0 = 0.0328084 <<= (ft/s/s);
 }  // namespace csm_units::literals

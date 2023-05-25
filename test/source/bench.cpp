@@ -16,10 +16,6 @@ TEST_SUITE("Benchmarks") {
     ankerl::nanobench::Bench().minEpochIterations(50000000).run(
         "Add doubles", [&]() { ankerl::nanobench::doNotOptimizeAway(x + y); });
 
-    // ankerl::nanobench::Rng rng;
-    // ankerl::nanobench::ScopeGuard group1("asdf");
-    // a way to Add csm_units groups, but ScoeGuard not found in nanobench?? huh
-
     // competitor
     auto comp1 = units::isq::si::length<units::isq::si::metre>(3.4);
     auto comp2 = units::isq::si::length<units::isq::si::metre>(5.7);

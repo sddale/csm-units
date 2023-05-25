@@ -53,7 +53,7 @@ class Unit {
 };
 
 // Base Dimensions
-using Length = UnitBase<Exponents<1, 0, 0, 0, 0, 0, 0>, double>;
+// using Length = UnitBase<Exponents<1, 0, 0, 0, 0, 0, 0>, double>;
 using Mass = UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>;
 using Time = UnitBase<Exponents<0, 0, 1, 0, 0, 0, 0>, double>;
 using ElectrCurrent = UnitBase<Exponents<0, 0, 0, 1, 0, 0, 0>, double>;
@@ -62,7 +62,7 @@ using Amount = UnitBase<Exponents<0, 0, 0, 0, 0, 1, 0>, double>;
 using Luminosity = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 1>, double>;
 
 // Derived Dimensions
-using InvLength = UnitBase<Exponents<-1, 0, 0, 0, 0, 0, 0>, double>;
+// using InvLength = UnitBase<Exponents<-1, 0, 0, 0, 0, 0, 0>, double>;
 using Pressure = UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>;
 using Force = UnitBase<Exponents<1, 1, -2, 0, 0, 0, 0>, double>;
 using Area = UnitBase<Exponents<2, 0, 0, 0, 0, 0, 0>, double>;
@@ -76,13 +76,13 @@ using SqrLuminosity = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 2>, double>;
 using Luminance = UnitBase<Exponents<-2, 0, 0, 0, 0, 0, 1>, double>;
 
 // SI Units
-using Meter = Unit<Length, "m", double>;  // ---- Length
+// using Meter = Unit<Length, "m", double>;  // ---- Length
 using SqMeter = Unit<Area, "m2", double>;
 using CubeMeter = Unit<Volume, "m3", double>;
-using CentiMeter = Unit<Length, "cm", double>;
-using MilliMeter = Unit<Length, "mm", double>;
-using KiloMeter = Unit<Length, "km", double>;
-using InvMeter = Unit<InvLength, "inv_m", double>;
+// using CentiMeter = Unit<Length, "cm", double>;
+// using MilliMeter = Unit<Length, "mm", double>;
+// using KiloMeter = Unit<Length, "km", double>;
+// using InvMeter = Unit<InvLength, "inv_m", double>;
 using Gram = Unit<Mass, "g", double>;  // ---- Mass
 using Kilogram = Unit<Mass, "kg", double>;
 using Second = Unit<Time, "s", double>;           // ---- Time
@@ -110,10 +110,10 @@ using Atm = Unit<Pressure, "Atm", double>;
 using MPerS2 = Unit<Accel, "m/s2", double>;
 using KgPerM3 = Unit<Density, "kg/m3", double>;
 using KgPerL = Unit<Density, "kg/L", double>;
-using Inch = Unit<Length, "in", double>;
-using Feet = Unit<Length, "ft", double>;
-using Yard = Unit<Length, "yd", double>;
-using Miles = Unit<Length, "miles", double>;
+// using Inch = Unit<Length, "in", double>;
+// using Feet = Unit<Length, "ft", double>;
+// using Yard = Unit<Length, "yd", double>;
+// using Miles = Unit<Length, "miles", double>;
 using SqFt = Unit<Area, "ft2", double>;
 using Liter = Unit<Volume, "L", double>;
 using Minutes = Unit<Time, "min", double>;
@@ -182,127 +182,133 @@ template <>
   return Hours(input.data / 3600);
 }
 
-// Unit cast for Base m to Unit m
-template <>
-[[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> Meter {
-  return Meter(input.data);
-}
+// // Unit cast for Base m to Unit m
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> Meter {
+//   return Meter(input.data);
+// }
 
-// Unit Cast for Unit m to Base m
-template <>
-[[nodiscard]] constexpr auto UnitCast(Meter &&input) noexcept -> Length {
-  return Length(input.data);
-}
+// // Unit Cast for Unit m to Base m
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Meter &&input) noexcept -> Length {
+//   return Length(input.data);
+// }
 
-// Unit cast for Base m to Unit cm
-// Conversion Equation: 1 m = 100 cm
-template <>
-[[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> CentiMeter {
-  return CentiMeter(input.data * 100);
-}
+// // Unit cast for Base m to Unit cm
+// // Conversion Equation: 1 m = 100 cm
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> CentiMeter
+// {
+//   return CentiMeter(input.data * 100);
+// }
 
-// Unit Cast for Unit cm to Base m
-// Conversion Equation: 1 m = 100 cm
-template <>
-[[nodiscard]] constexpr auto UnitCast(CentiMeter &&input) noexcept -> Length {
-  return Length(input.data / 100);
-}
+// // Unit Cast for Unit cm to Base m
+// // Conversion Equation: 1 m = 100 cm
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(CentiMeter &&input) noexcept -> Length
+// {
+//   return Length(input.data / 100);
+// }
 
-// Unit cast for Base m to Unit mm
-// Conversion Equation: 1 m = 1000 mm
-template <>
-[[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> MilliMeter {
-  return MilliMeter(input.data * 1000);
-}
+// // Unit cast for Base m to Unit mm
+// // Conversion Equation: 1 m = 1000 mm
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> MilliMeter
+// {
+//   return MilliMeter(input.data * 1000);
+// }
 
-// Unit Cast for Unit mm to Base m
-// Conversion Equation: 1 m = 1000 mm
-template <>
-[[nodiscard]] constexpr auto UnitCast(MilliMeter &&input) noexcept -> Length {
-  return Length(input.data / 1000);
-}
+// // Unit Cast for Unit mm to Base m
+// // Conversion Equation: 1 m = 1000 mm
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(MilliMeter &&input) noexcept -> Length
+// {
+//   return Length(input.data / 1000);
+// }
 
-// Unit cast for Base m to Unit km
-// Conversion Equation: 1000 m = 1 km
-template <>
-[[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> KiloMeter {
-  return KiloMeter(input.data / 1000);
-}
+// // Unit cast for Base m to Unit km
+// // Conversion Equation: 1000 m = 1 km
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> KiloMeter {
+//   return KiloMeter(input.data / 1000);
+// }
 
-// Unit Cast for Unit km to Base m
-// Conversion Equation: 1000 m = 1 km
-template <>
-[[nodiscard]] constexpr auto UnitCast(KiloMeter &&input) noexcept -> Length {
-  return Length(input.data * 1000);
-}
+// // Unit Cast for Unit km to Base m
+// // Conversion Equation: 1000 m = 1 km
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(KiloMeter &&input) noexcept -> Length {
+//   return Length(input.data * 1000);
+// }
 
-// Unit Cast for Base m to Unit in
-// Conversion Equation: 1 m = 39.3701 in
-template <>
-[[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> Inch {
-  return Inch(input.data * 39.3701);
-}
+// // Unit Cast for Base m to Unit in
+// // Conversion Equation: 1 m = 39.3701 in
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> Inch {
+//   return Inch(input.data * 39.3701);
+// }
 
-// Unit Cast for Unit in to Base m
-// Conversion Equation: 1 m = 39.3701 in
-template <>
-[[nodiscard]] constexpr auto UnitCast(Inch &&input) noexcept -> Length {
-  return Length(input.data / 39.3701);
-}
+// // Unit Cast for Unit in to Base m
+// // Conversion Equation: 1 m = 39.3701 in
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Inch &&input) noexcept -> Length {
+//   return Length(input.data / 39.3701);
+// }
 
-// Unit Cast for Base m to Unit ft
-// Conversion Equation: 1 m = 3.28084 ft
-template <>
-[[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> Feet {
-  return Feet(input.data * 3.28084);
-}
+// // Unit Cast for Base m to Unit ft
+// // Conversion Equation: 1 m = 3.28084 ft
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> Feet {
+//   return Feet(input.data * 3.28084);
+// }
 
-// Unit Cast for Unit ft to Base m
-// Conversion Equation: 1 m = 3.28084 ft
-template <>
-[[nodiscard]] constexpr auto UnitCast(Feet &&input) noexcept -> Length {
-  return Length(input.data / 3.28084);
-}
+// // Unit Cast for Unit ft to Base m
+// // Conversion Equation: 1 m = 3.28084 ft
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Feet &&input) noexcept -> Length {
+//   return Length(input.data / 3.28084);
+// }
 
-// Unit Cast for Base m to Unit yard
-// Conversion Equation: 1 m = 1.09361 yard
-template <>
-[[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> Yard {
-  return Yard(input.data * 1.09361);
-}
+// // Unit Cast for Base m to Unit yard
+// // Conversion Equation: 1 m = 1.09361 yard
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> Yard {
+//   return Yard(input.data * 1.09361);
+// }
 
-// Unit Cast for Unit yard to Base m
-// Conversion Equation: 1 m = 1.09361 yard
-template <>
-[[nodiscard]] constexpr auto UnitCast(Yard &&input) noexcept -> Length {
-  return Length(input.data / 1.09361);
-}
+// // Unit Cast for Unit yard to Base m
+// // Conversion Equation: 1 m = 1.09361 yard
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Yard &&input) noexcept -> Length {
+//   return Length(input.data / 1.09361);
+// }
 
-// Unit Cast for Base m to Unit miles
-// Conversion Equation: 1609.34 m = 1 miles
-template <>
-[[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> Miles {
-  return Miles(input.data / 1609.34);
-}
+// // Unit Cast for Base m to Unit miles
+// // Conversion Equation: 1609.34 m = 1 miles
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> Miles {
+//   return Miles(input.data / 1609.34);
+// }
 
-// Unit Cast for Unit miles to Base m
-// Conversion Equation: 1609.34 m = 1 miles
-template <>
-[[nodiscard]] constexpr auto UnitCast(Miles &&input) noexcept -> Length {
-  return Length(input.data * 1609.34);
-}
+// // Unit Cast for Unit miles to Base m
+// // Conversion Equation: 1609.34 m = 1 miles
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Miles &&input) noexcept -> Length {
+//   return Length(input.data * 1609.34);
+// }
 
-// Unit Cast for Base invlength to Unit invm
-template <>
-[[nodiscard]] constexpr auto UnitCast(InvLength &&input) noexcept -> InvMeter {
-  return InvMeter(input.data);
-}
+// // Unit Cast for Base invlength to Unit invm
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(InvLength &&input) noexcept -> InvMeter
+// {
+//   return InvMeter(input.data);
+// }
 
-// Unit Cast for Unit invm to Base invlength
-template <>
-[[nodiscard]] constexpr auto UnitCast(InvMeter &&input) noexcept -> InvLength {
-  return InvLength(input.data);
-}
+// // Unit Cast for Unit invm to Base invlength
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(InvMeter &&input) noexcept -> InvLength
+// {
+//   return InvLength(input.data);
+// }
 
 // Unit Cast for Base Pascals to Unit Pascals
 // Conversion Equation: Pascals = Pascals
