@@ -3,9 +3,7 @@
 
 #include <doctest/doctest.h>
 
-#include <csm_units/length.hpp>
-#include <csm_units/mass.hpp>
-#include <csm_units/time.hpp>
+#include <csm_units/units.hpp>
 
 #include "source/csm_units/exponents.hpp"
 #include "source/csm_units/literal/literal.hpp"

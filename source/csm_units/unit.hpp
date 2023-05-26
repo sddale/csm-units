@@ -56,8 +56,8 @@ class Unit {
 // using Length = UnitBase<Exponents<1, 0, 0, 0, 0, 0, 0>, double>;
 // using Mass = UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>;
 // using Time = UnitBase<Exponents<0, 0, 1, 0, 0, 0, 0>, double>;
-using ElectrCurrent = UnitBase<Exponents<0, 0, 0, 1, 0, 0, 0>, double>;
-using Temperature = UnitBase<Exponents<0, 0, 0, 0, 1, 0, 0>, double>;
+// using ElectrCurrent = UnitBase<Exponents<0, 0, 0, 1, 0, 0, 0>, double>;
+// using Temperature = UnitBase<Exponents<0, 0, 0, 0, 1, 0, 0>, double>;
 using Amount = UnitBase<Exponents<0, 0, 0, 0, 0, 1, 0>, double>;
 using Luminosity = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 1>, double>;
 
@@ -70,7 +70,7 @@ using Volume = UnitBase<Exponents<3, 0, 0, 0, 0, 0, 0>, double>;
 using Accel = UnitBase<Exponents<1, 0, -2, 0, 0, 0, 0>, double>;
 using Density = UnitBase<Exponents<-3, 1, 0, 0, 0, 0, 0>, double>;
 using Energy = UnitBase<Exponents<2, 1, -2, 0, 0, 0, 0>, double>;
-using SqrElectrCurrent = UnitBase<Exponents<0, 0, 0, 2, 0, 0, 0>, double>;
+// using SqrElectrCurrent = UnitBase<Exponents<0, 0, 0, 2, 0, 0, 0>, double>;
 using SqrAmount = UnitBase<Exponents<0, 0, 0, 0, 0, 2, 0>, double>;
 using SqrLuminosity = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 2>, double>;
 using Luminance = UnitBase<Exponents<-2, 0, 0, 0, 0, 0, 1>, double>;
@@ -86,14 +86,14 @@ using CubeMeter = Unit<Volume, "m3", double>;
 // using Gram = Unit<Mass, "g", double>;  // ---- Mass
 // using Kilogram = Unit<Mass, "kg", double>;
 // using Second = Unit<Time, "s", double>;           // ---- Time
-using Ampere = Unit<ElectrCurrent, "A", double>;  // ---- ElectrCurrent
-using Coulomb = Unit<ElectrCurrent, "C", double>;
-using Milliampere = Unit<ElectrCurrent, "mA", double>;
-using SqrAmpere = Unit<SqrElectrCurrent, "A2", double>;
-using SqrMilliamp = Unit<SqrElectrCurrent, "mA2", double>;
-using Kelvin = Unit<Temperature, "K", double>;  // ---- Temperature
-using Fahrenheit = Unit<Temperature, "F", double>;
-using Celsius = Unit<Temperature, "C", double>;
+// using Ampere = Unit<ElectrCurrent, "A", double>;  // ---- ElectrCurrent
+// using Coulomb = Unit<ElectrCurrent, "C", double>;
+// using Milliampere = Unit<ElectrCurrent, "mA", double>;
+// using SqrAmpere = Unit<SqrElectrCurrent, "A2", double>;
+// using SqrMilliamp = Unit<SqrElectrCurrent, "mA2", double>;
+// using Kelvin = Unit<Temperature, "K", double>;  // ---- Temperature
+// using Fahrenheit = Unit<Temperature, "F", double>;
+// using Celsius = Unit<Temperature, "C", double>;
 using Mole = Unit<Amount, "mol", double>;  // ---- Amount
 using Kilomole = Unit<Amount, "kmol", double>;
 using SqrMole = Unit<SqrAmount, "mol2", double>;
@@ -436,95 +436,99 @@ template <>
   return Accel(input.data);
 }
 
-// Unit Cast for Unit Ampere
-template <>
-[[nodiscard]] constexpr auto UnitCast(ElectrCurrent &&input) noexcept
-    -> Ampere {
-  return Ampere(input.data);
-}
+// // Unit Cast for Unit Ampere
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(ElectrCurrent &&input) noexcept
+//     -> Ampere {
+//   return Ampere(input.data);
+// }
 
-// Unit Cast for Unit Ampere
-template <>
-[[nodiscard]] constexpr auto UnitCast(Ampere &&input) noexcept
-    -> ElectrCurrent {
-  return ElectrCurrent(input.data);
-}
+// // Unit Cast for Unit Ampere
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Ampere &&input) noexcept
+//     -> ElectrCurrent {
+//   return ElectrCurrent(input.data);
+// }
 
-// base A -> Unit mA
-template <>
-[[nodiscard]] constexpr auto UnitCast(ElectrCurrent &&input) noexcept
-    -> Milliampere {
-  return Milliampere(input.data * 1000);
-}
+// // base A -> Unit mA
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(ElectrCurrent &&input) noexcept
+//     -> Milliampere {
+//   return Milliampere(input.data * 1000);
+// }
 
-// Unit mA -> Base A
-template <>
-[[nodiscard]] constexpr auto UnitCast(Milliampere &&input) noexcept
-    -> ElectrCurrent {
-  return ElectrCurrent(input.data / 1000);
-}
+// // Unit mA -> Base A
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Milliampere &&input) noexcept
+//     -> ElectrCurrent {
+//   return ElectrCurrent(input.data / 1000);
+// }
 
-template <>
-[[nodiscard]] constexpr auto UnitCast(SqrElectrCurrent &&input) noexcept
-    -> SqrAmpere {
-  return SqrAmpere(input.data);
-}
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(SqrElectrCurrent &&input) noexcept
+//     -> SqrAmpere {
+//   return SqrAmpere(input.data);
+// }
 
-template <>
-[[nodiscard]] constexpr auto UnitCast(SqrAmpere &&input) noexcept
-    -> SqrElectrCurrent {
-  return SqrElectrCurrent(input.data);
-}
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(SqrAmpere &&input) noexcept
+//     -> SqrElectrCurrent {
+//   return SqrElectrCurrent(input.data);
+// }
 
-template <>
-[[nodiscard]] constexpr auto UnitCast(SqrElectrCurrent &&input) noexcept
-    -> SqrMilliamp {
-  return SqrMilliamp(input.data * 1000000);
-}
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(SqrElectrCurrent &&input) noexcept
+//     -> SqrMilliamp {
+//   return SqrMilliamp(input.data * 1000000);
+// }
 
-template <>
-[[nodiscard]] constexpr auto UnitCast(SqrMilliamp &&input) noexcept
-    -> SqrElectrCurrent {
-  return SqrElectrCurrent(input.data / 1000000);
-}
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(SqrMilliamp &&input) noexcept
+//     -> SqrElectrCurrent {
+//   return SqrElectrCurrent(input.data / 1000000);
+// }
 
-// Unit Cast for Unit Kelvin
-template <>
-[[nodiscard]] constexpr auto UnitCast(Temperature &&input) noexcept -> Kelvin {
-  return Kelvin(input.data);
-}
+// // Unit Cast for Unit Kelvin
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Temperature &&input) noexcept -> Kelvin
+// {
+//   return Kelvin(input.data);
+// }
 
-// Unit Cast for Unit Kelvin
-template <>
-[[nodiscard]] constexpr auto UnitCast(Kelvin &&input) noexcept -> Temperature {
-  return Temperature(input.data);
-}
+// // Unit Cast for Unit Kelvin
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Kelvin &&input) noexcept -> Temperature
+// {
+//   return Temperature(input.data);
+// }
 
-// Unit Cast for Base K to Unit F
-template <>
-[[nodiscard]] constexpr auto UnitCast(Temperature &&input) noexcept
-    -> Fahrenheit {
-  return Fahrenheit((input.data - 273.15) * 1.8 + 32);
-}
+// // Unit Cast for Base K to Unit F
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Temperature &&input) noexcept
+//     -> Fahrenheit {
+//   return Fahrenheit((input.data - 273.15) * 1.8 + 32);
+// }
 
-// Unit Cast for Unit F to Base K
-template <>
-[[nodiscard]] constexpr auto UnitCast(Fahrenheit &&input) noexcept
-    -> Temperature {
-  return Temperature((input.data - 32) * 5 / 9 + 273.15);
-}
+// // Unit Cast for Unit F to Base K
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Fahrenheit &&input) noexcept
+//     -> Temperature {
+//   return Temperature((input.data - 32) * 5 / 9 + 273.15);
+// }
 
-// Base K -> Unit C
-template <>
-[[nodiscard]] constexpr auto UnitCast(Temperature &&input) noexcept -> Celsius {
-  return Celsius(input.data - 273.15);
-}
+// // Base K -> Unit C
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Temperature &&input) noexcept ->
+// Celsius {
+//   return Celsius(input.data - 273.15);
+// }
 
-// Unit C -> Base K
-template <>
-[[nodiscard]] constexpr auto UnitCast(Celsius &&input) noexcept -> Temperature {
-  return Temperature(input.data + 273.15);
-}
+// // Unit C -> Base K
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Celsius &&input) noexcept ->
+// Temperature {
+//   return Temperature(input.data + 273.15);
+// }
 
 // Unit Cast for Unit Mol
 template <>
