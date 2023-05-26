@@ -54,8 +54,8 @@ class Unit {
 
 // Base Dimensions
 // using Length = UnitBase<Exponents<1, 0, 0, 0, 0, 0, 0>, double>;
-using Mass = UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>;
-using Time = UnitBase<Exponents<0, 0, 1, 0, 0, 0, 0>, double>;
+// using Mass = UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>;
+// using Time = UnitBase<Exponents<0, 0, 1, 0, 0, 0, 0>, double>;
 using ElectrCurrent = UnitBase<Exponents<0, 0, 0, 1, 0, 0, 0>, double>;
 using Temperature = UnitBase<Exponents<0, 0, 0, 0, 1, 0, 0>, double>;
 using Amount = UnitBase<Exponents<0, 0, 0, 0, 0, 1, 0>, double>;
@@ -83,9 +83,9 @@ using CubeMeter = Unit<Volume, "m3", double>;
 // using MilliMeter = Unit<Length, "mm", double>;
 // using KiloMeter = Unit<Length, "km", double>;
 // using InvMeter = Unit<InvLength, "inv_m", double>;
-using Gram = Unit<Mass, "g", double>;  // ---- Mass
-using Kilogram = Unit<Mass, "kg", double>;
-using Second = Unit<Time, "s", double>;           // ---- Time
+// using Gram = Unit<Mass, "g", double>;  // ---- Mass
+// using Kilogram = Unit<Mass, "kg", double>;
+// using Second = Unit<Time, "s", double>;           // ---- Time
 using Ampere = Unit<ElectrCurrent, "A", double>;  // ---- ElectrCurrent
 using Coulomb = Unit<ElectrCurrent, "C", double>;
 using Milliampere = Unit<ElectrCurrent, "mA", double>;
@@ -116,71 +116,71 @@ using KgPerL = Unit<Density, "kg/L", double>;
 // using Miles = Unit<Length, "miles", double>;
 using SqFt = Unit<Area, "ft2", double>;
 using Liter = Unit<Volume, "L", double>;
-using Minutes = Unit<Time, "min", double>;
-using Hours = Unit<Time, "hour", double>;
+// using Minutes = Unit<Time, "min", double>;
+// using Hours = Unit<Time, "hour", double>;
 using CdPerM2 = Unit<Luminance, "cd/m2", double>;
 
-// Unit Cast for Base g to Unit kg
-// Conversion Equation: 1000 g = 1 kg
-template <>
-[[nodiscard]] constexpr auto UnitCast(Mass &&input) noexcept -> Kilogram {
-  return Kilogram(input.data);
-}
+// // Unit Cast for Base g to Unit kg
+// // Conversion Equation: 1000 g = 1 kg
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Mass &&input) noexcept -> Kilogram {
+//   return Kilogram(input.data);
+// }
 
-// Unit Cast for Unit kg to Base g
-// Conversion Equation: 1000 g = 1 kg
-template <>
-[[nodiscard]] constexpr auto UnitCast(Kilogram &&input) noexcept -> Mass {
-  return Mass(input.data);
-}
+// // Unit Cast for Unit kg to Base g
+// // Conversion Equation: 1000 g = 1 kg
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Kilogram &&input) noexcept -> Mass {
+//   return Mass(input.data);
+// }
 
-// Unit Cast for Base g to Unit g
-template <>
-[[nodiscard]] constexpr auto UnitCast(Mass &&input) noexcept -> Gram {
-  return Gram(input.data * 1000);
-}
+// // Unit Cast for Base g to Unit g
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Mass &&input) noexcept -> Gram {
+//   return Gram(input.data * 1000);
+// }
 
-// Unit Cast for Unit g to Base g
-template <>
-[[nodiscard]] constexpr auto UnitCast(Gram &&input) noexcept -> Mass {
-  return Mass(input.data / 1000);
-}
+// // Unit Cast for Unit g to Base g
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Gram &&input) noexcept -> Mass {
+//   return Mass(input.data / 1000);
+// }
 
-// Unit Cast for Unit s to Base s
-template <>
-[[nodiscard]] constexpr auto UnitCast(Second &&input) noexcept -> Time {
-  return Time(input.data);
-}
+// // Unit Cast for Unit s to Base s
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Second &&input) noexcept -> Time {
+//   return Time(input.data);
+// }
 
-// Unit Cast for Base s to Unit s
-template <>
-[[nodiscard]] constexpr auto UnitCast(Time &&input) noexcept -> Second {
-  return Second(input.data);
-}
+// // Unit Cast for Base s to Unit s
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Time &&input) noexcept -> Second {
+//   return Second(input.data);
+// }
 
-// Unit Cast for Unit min to Base s
-template <>
-[[nodiscard]] constexpr auto UnitCast(Minutes &&input) noexcept -> Time {
-  return Time(input.data * 60);
-}
+// // Unit Cast for Unit min to Base s
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Minutes &&input) noexcept -> Time {
+//   return Time(input.data * 60);
+// }
 
-// Unit Cast for Base s to Unit min
-template <>
-[[nodiscard]] constexpr auto UnitCast(Time &&input) noexcept -> Minutes {
-  return Minutes(input.data / 60);
-}
+// // Unit Cast for Base s to Unit min
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Time &&input) noexcept -> Minutes {
+//   return Minutes(input.data / 60);
+// }
 
-// Unit Cast for Unit min to Base s
-template <>
-[[nodiscard]] constexpr auto UnitCast(Hours &&input) noexcept -> Time {
-  return Time(input.data * 3600);
-}
+// // Unit Cast for Unit min to Base s
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Hours &&input) noexcept -> Time {
+//   return Time(input.data * 3600);
+// }
 
-// Unit Cast for Base s to Unit min
-template <>
-[[nodiscard]] constexpr auto UnitCast(Time &&input) noexcept -> Hours {
-  return Hours(input.data / 3600);
-}
+// // Unit Cast for Base s to Unit min
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Time &&input) noexcept -> Hours {
+//   return Hours(input.data / 3600);
+// }
 
 // // Unit cast for Base m to Unit m
 // template <>
