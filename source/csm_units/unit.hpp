@@ -58,27 +58,27 @@ class Unit {
 // using Time = UnitBase<Exponents<0, 0, 1, 0, 0, 0, 0>, double>;
 // using ElectrCurrent = UnitBase<Exponents<0, 0, 0, 1, 0, 0, 0>, double>;
 // using Temperature = UnitBase<Exponents<0, 0, 0, 0, 1, 0, 0>, double>;
-using Amount = UnitBase<Exponents<0, 0, 0, 0, 0, 1, 0>, double>;
-using Luminosity = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 1>, double>;
+// using Amount = UnitBase<Exponents<0, 0, 0, 0, 0, 1, 0>, double>;
+// using Luminosity = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 1>, double>;
 
 // Derived Dimensions
 // using InvLength = UnitBase<Exponents<-1, 0, 0, 0, 0, 0, 0>, double>;
-using Pressure = UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>;
-using Force = UnitBase<Exponents<1, 1, -2, 0, 0, 0, 0>, double>;
-using Area = UnitBase<Exponents<2, 0, 0, 0, 0, 0, 0>, double>;
-using Volume = UnitBase<Exponents<3, 0, 0, 0, 0, 0, 0>, double>;
-using Accel = UnitBase<Exponents<1, 0, -2, 0, 0, 0, 0>, double>;
-using Density = UnitBase<Exponents<-3, 1, 0, 0, 0, 0, 0>, double>;
-using Energy = UnitBase<Exponents<2, 1, -2, 0, 0, 0, 0>, double>;
+// using Pressure = UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>;
+// using Force = UnitBase<Exponents<1, 1, -2, 0, 0, 0, 0>, double>;
+// using Area = UnitBase<Exponents<2, 0, 0, 0, 0, 0, 0>, double>;
+// using Volume = UnitBase<Exponents<3, 0, 0, 0, 0, 0, 0>, double>;
+// using Accel = UnitBase<Exponents<1, 0, -2, 0, 0, 0, 0>, double>;
+// using Density = UnitBase<Exponents<-3, 1, 0, 0, 0, 0, 0>, double>;
+// using Energy = UnitBase<Exponents<2, 1, -2, 0, 0, 0, 0>, double>;
 // using SqrElectrCurrent = UnitBase<Exponents<0, 0, 0, 2, 0, 0, 0>, double>;
-using SqrAmount = UnitBase<Exponents<0, 0, 0, 0, 0, 2, 0>, double>;
-using SqrLuminosity = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 2>, double>;
-using Luminance = UnitBase<Exponents<-2, 0, 0, 0, 0, 0, 1>, double>;
+// using SqrAmount = UnitBase<Exponents<0, 0, 0, 0, 0, 2, 0>, double>;
+// using SqrLuminosity = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 2>, double>;
+// using Luminance = UnitBase<Exponents<-2, 0, 0, 0, 0, 0, 1>, double>;
 
 // SI Units
 // using Meter = Unit<Length, "m", double>;  // ---- Length
-using SqMeter = Unit<Area, "m2", double>;
-using CubeMeter = Unit<Volume, "m3", double>;
+// using SqMeter = Unit<Area, "m2", double>;
+// using CubeMeter = Unit<Volume, "m3", double>;
 // using CentiMeter = Unit<Length, "cm", double>;
 // using MilliMeter = Unit<Length, "mm", double>;
 // using KiloMeter = Unit<Length, "km", double>;
@@ -94,31 +94,31 @@ using CubeMeter = Unit<Volume, "m3", double>;
 // using Kelvin = Unit<Temperature, "K", double>;  // ---- Temperature
 // using Fahrenheit = Unit<Temperature, "F", double>;
 // using Celsius = Unit<Temperature, "C", double>;
-using Mole = Unit<Amount, "mol", double>;  // ---- Amount
-using Kilomole = Unit<Amount, "kmol", double>;
-using SqrMole = Unit<SqrAmount, "mol2", double>;
-using SqrKilomole = Unit<SqrAmount, "kmol2", double>;
-using Candela = Unit<Luminosity, "cd", double>;  // ---- Luminosity
-using SqrCandela = Unit<SqrLuminosity, "cd2", double>;
+// using Mole = Unit<Amount, "mol", double>;  // ---- Amount
+// using Kilomole = Unit<Amount, "kmol", double>;
+// using SqrMole = Unit<SqrAmount, "mol2", double>;
+// using SqrKilomole = Unit<SqrAmount, "kmol2", double>;
+// using Candela = Unit<Luminosity, "cd", double>;  // ---- Luminosity
+// using SqrCandela = Unit<SqrLuminosity, "cd2", double>;
 
 // Other Units
-using Pascal = Unit<Pressure, "Pa", double>;  // ---- Misc.
-using Newton = Unit<Force, "N", double>;
-using Psi = Unit<Pressure, "psi", double>;
-using Bar = Unit<Pressure, "bar", double>;
-using Atm = Unit<Pressure, "Atm", double>;
-using MPerS2 = Unit<Accel, "m/s2", double>;
-using KgPerM3 = Unit<Density, "kg/m3", double>;
-using KgPerL = Unit<Density, "kg/L", double>;
+// using Pascal = Unit<Pressure, "Pa", double>;  // ---- Misc.
+// using Newton = Unit<Force, "N", double>;
+// using Psi = Unit<Pressure, "psi", double>;
+// using Bar = Unit<Pressure, "bar", double>;
+// using Atm = Unit<Pressure, "Atm", double>;
+// using MPerS2 = Unit<Accel, "m/s2", double>;
+// using KgPerM3 = Unit<Density, "kg/m3", double>;
+// using KgPerL = Unit<Density, "kg/L", double>;
 // using Inch = Unit<Length, "in", double>;
 // using Feet = Unit<Length, "ft", double>;
 // using Yard = Unit<Length, "yd", double>;
 // using Miles = Unit<Length, "miles", double>;
-using SqFt = Unit<Area, "ft2", double>;
-using Liter = Unit<Volume, "L", double>;
+// using SqFt = Unit<Area, "ft2", double>;
+// using Liter = Unit<Volume, "L", double>;
 // using Minutes = Unit<Time, "min", double>;
 // using Hours = Unit<Time, "hour", double>;
-using CdPerM2 = Unit<Luminance, "cd/m2", double>;
+// using CdPerM2 = Unit<Luminance, "cd/m2", double>;
 
 // // Unit Cast for Base g to Unit kg
 // // Conversion Equation: 1000 g = 1 kg
@@ -310,131 +310,131 @@ using CdPerM2 = Unit<Luminance, "cd/m2", double>;
 //   return InvLength(input.data);
 // }
 
-// Unit Cast for Base Pascals to Unit Pascals
-// Conversion Equation: Pascals = Pascals
-template <>
-[[nodiscard]] constexpr auto UnitCast(Pressure &&input) noexcept -> Pascal {
-  return Pascal(input.data);
-}
+// // Unit Cast for Base Pascals to Unit Pascals
+// // Conversion Equation: Pascals = Pascals
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Pressure &&input) noexcept -> Pascal {
+//   return Pascal(input.data);
+// }
 
-// Unit Cast for Unit Pascals to Base Pascals
-// Conversion Equation: Pascals = Pascals
-template <>
-[[nodiscard]] constexpr auto UnitCast(Pascal &&input) noexcept -> Pressure {
-  return Pressure(input.data);
-}
+// // Unit Cast for Unit Pascals to Base Pascals
+// // Conversion Equation: Pascals = Pascals
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Pascal &&input) noexcept -> Pressure {
+//   return Pressure(input.data);
+// }
 
-// Unit Cast for Base Pascals to Unit psi
-// Conversion Equation: 1 psi = 6894.76 pascals
-template <>
-[[nodiscard]] constexpr auto UnitCast(Pressure &&input) noexcept -> Psi {
-  return Psi(input.data / 6894.76);
-}
+// // Unit Cast for Base Pascals to Unit psi
+// // Conversion Equation: 1 psi = 6894.76 pascals
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Pressure &&input) noexcept -> Psi {
+//   return Psi(input.data / 6894.76);
+// }
 
-// Unit Cast for Unit psi to Base Pascals
-// Conversion Equation: 1 psi = 6894.76 pascals
-template <>
-[[nodiscard]] constexpr auto UnitCast(Psi &&input) noexcept -> Pressure {
-  return Pressure(input.data * 6894.76);
-}
+// // Unit Cast for Unit psi to Base Pascals
+// // Conversion Equation: 1 psi = 6894.76 pascals
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Psi &&input) noexcept -> Pressure {
+//   return Pressure(input.data * 6894.76);
+// }
 
-// Unit Cast for Base Pascals to Unit Bar
-// Conversion Equation: 1 bar = 100,000 pascals
-template <>
-[[nodiscard]] constexpr auto UnitCast(Pressure &&input) noexcept -> Bar {
-  return Bar(input.data / 100000);
-}
+// // Unit Cast for Base Pascals to Unit Bar
+// // Conversion Equation: 1 bar = 100,000 pascals
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Pressure &&input) noexcept -> Bar {
+//   return Bar(input.data / 100000);
+// }
 
-// Unit Cast for Unit Bar to Base Pascals
-// Conversion Equation: 1 bar = 100,000 pascals
-template <>
-[[nodiscard]] constexpr auto UnitCast(Bar &&input) noexcept -> Pressure {
-  return Pressure(input.data * 100000);
-}
+// // Unit Cast for Unit Bar to Base Pascals
+// // Conversion Equation: 1 bar = 100,000 pascals
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Bar &&input) noexcept -> Pressure {
+//   return Pressure(input.data * 100000);
+// }
 
-// Unit Cast for Base Pascals to Unit Atm
-// Conversion Equation: 1 atm = 101,325 pascals
-template <>
-[[nodiscard]] constexpr auto UnitCast(Pressure &&input) noexcept -> Atm {
-  return Atm(input.data / 101325);
-}
+// // Unit Cast for Base Pascals to Unit Atm
+// // Conversion Equation: 1 atm = 101,325 pascals
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Pressure &&input) noexcept -> Atm {
+//   return Atm(input.data / 101325);
+// }
 
-// Unit Cast for Unit Bar to Base Pascals
-// Conversion Equation: 1 bar = 101,325 pascals
-template <>
-[[nodiscard]] constexpr auto UnitCast(Atm &&input) noexcept -> Pressure {
-  return Pressure(input.data * 101325);
-}
+// // Unit Cast for Unit Bar to Base Pascals
+// // Conversion Equation: 1 bar = 101,325 pascals
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Atm &&input) noexcept -> Pressure {
+//   return Pressure(input.data * 101325);
+// }
 
-// Unit Cast for Base Newton
-template <>
-[[nodiscard]] constexpr auto UnitCast(Force &&input) noexcept -> Newton {
-  return Newton(input.data);
-}
-template <>
-[[nodiscard]] constexpr auto UnitCast(Newton &&input) noexcept -> Force {
-  return Force(input.data);
-}
+// // Unit Cast for Base Newton
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Force &&input) noexcept -> Newton {
+//   return Newton(input.data);
+// }
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Newton &&input) noexcept -> Force {
+//   return Force(input.data);
+// }
 
-// Unit Cast for Base m2
-template <>
-[[nodiscard]] constexpr auto UnitCast(Area &&input) noexcept -> SqMeter {
-  return SqMeter(input.data);
-}
+// // Unit Cast for Base m2
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Area &&input) noexcept -> SqMeter {
+//   return SqMeter(input.data);
+// }
 
-// Unit Cast for Unit m2
-template <>
-[[nodiscard]] constexpr auto UnitCast(SqMeter &&input) noexcept -> Area {
-  return Area(input.data);
-}
+// // Unit Cast for Unit m2
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(SqMeter &&input) noexcept -> Area {
+//   return Area(input.data);
+// }
 
-// Unit Cast for Base area to ft2
-template <>
-[[nodiscard]] constexpr auto UnitCast(Area &&input) noexcept -> SqFt {
-  return SqFt(input.data * 10.764);
-}
+// // Unit Cast for Base area to ft2
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Area &&input) noexcept -> SqFt {
+//   return SqFt(input.data * 10.764);
+// }
 
-// Unit Cast for Unit ft2 to base area
-template <>
-[[nodiscard]] constexpr auto UnitCast(SqFt &&input) noexcept -> Area {
-  return Area(input.data / 10.764);
-}
+// // Unit Cast for Unit ft2 to base area
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(SqFt &&input) noexcept -> Area {
+//   return Area(input.data / 10.764);
+// }
 
-// Unit Cast for base m3
-template <>
-[[nodiscard]] constexpr auto UnitCast(Volume &&input) noexcept -> CubeMeter {
-  return CubeMeter(input.data);
-}
+// // Unit Cast for base m3
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Volume &&input) noexcept -> CubeMeter {
+//   return CubeMeter(input.data);
+// }
 
-// Unit Cast for Unit m3
-template <>
-[[nodiscard]] constexpr auto UnitCast(CubeMeter &&input) noexcept -> Volume {
-  return Volume(input.data);
-}
+// // Unit Cast for Unit m3
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(CubeMeter &&input) noexcept -> Volume {
+//   return Volume(input.data);
+// }
 
-// Unit Cast for base
-template <>
-[[nodiscard]] constexpr auto UnitCast(Volume &&input) noexcept -> Liter {
-  return Liter(input.data * 1000);
-}
+// // Unit Cast for base
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Volume &&input) noexcept -> Liter {
+//   return Liter(input.data * 1000);
+// }
 
-// Unit Cast for Unit Liter
-template <>
-[[nodiscard]] constexpr auto UnitCast(Liter &&input) noexcept -> Volume {
-  return Volume(input.data / 1000);
-}
+// // Unit Cast for Unit Liter
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Liter &&input) noexcept -> Volume {
+//   return Volume(input.data / 1000);
+// }
 
-// Unit Cast for Base mps2
-template <>
-[[nodiscard]] constexpr auto UnitCast(Accel &&input) noexcept -> MPerS2 {
-  return MPerS2(input.data);
-}
+// // Unit Cast for Base mps2
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Accel &&input) noexcept -> MPerS2 {
+//   return MPerS2(input.data);
+// }
 
-// Unit Cast for Unit Newton
-template <>
-[[nodiscard]] constexpr auto UnitCast(MPerS2 &&input) noexcept -> Accel {
-  return Accel(input.data);
-}
+// // Unit Cast for Unit Newton
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(MPerS2 &&input) noexcept -> Accel {
+//   return Accel(input.data);
+// }
 
 // // Unit Cast for Unit Ampere
 // template <>
@@ -530,110 +530,116 @@ template <>
 //   return Temperature(input.data + 273.15);
 // }
 
-// Unit Cast for Unit Mol
-template <>
-[[nodiscard]] constexpr auto UnitCast(Amount &&input) noexcept -> Mole {
-  return Mole(input.data);
-}
+// // Unit Cast for Unit Mol
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Amount &&input) noexcept -> Mole {
+//   return Mole(input.data);
+// }
 
-// Unit Cast for Unit Mole
-template <>
-[[nodiscard]] constexpr auto UnitCast(Mole &&input) noexcept -> Amount {
-  return Amount(input.data);
-}
+// // Unit Cast for Unit Mole
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Mole &&input) noexcept -> Amount {
+//   return Amount(input.data);
+// }
 
-// Base Mole -> Kilomole unit
-template <>
-[[nodiscard]] constexpr auto UnitCast(Amount &&input) noexcept -> Kilomole {
-  return Kilomole(input.data / 1000);
-}
+// // Base Mole -> Kilomole unit
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Amount &&input) noexcept -> Kilomole {
+//   return Kilomole(input.data / 1000);
+// }
 
-// unit kmol -> Base Mol
-template <>
-[[nodiscard]] constexpr auto UnitCast(Kilomole &&input) noexcept -> Amount {
-  return Amount(input.data * 1000);
-}
+// // unit kmol -> Base Mol
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Kilomole &&input) noexcept -> Amount {
+//   return Amount(input.data * 1000);
+// }
 
-template <>
-[[nodiscard]] constexpr auto UnitCast(SqrAmount &&input) noexcept -> SqrMole {
-  return SqrMole(input.data);
-}
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(SqrAmount &&input) noexcept -> SqrMole
+// {
+//   return SqrMole(input.data);
+// }
 
-template <>
-[[nodiscard]] constexpr auto UnitCast(SqrMole &&input) noexcept -> SqrAmount {
-  return SqrAmount(input.data);
-}
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(SqrMole &&input) noexcept -> SqrAmount
+// {
+//   return SqrAmount(input.data);
+// }
 
-template <>
-[[nodiscard]] constexpr auto UnitCast(SqrAmount &&input) noexcept
-    -> SqrKilomole {
-  return SqrKilomole(input.data / 1000000);
-}
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(SqrAmount &&input) noexcept
+//     -> SqrKilomole {
+//   return SqrKilomole(input.data / 1000000);
+// }
 
-template <>
-[[nodiscard]] constexpr auto UnitCast(SqrKilomole &&input) noexcept
-    -> SqrAmount {
-  return SqrAmount(input.data * 1000000);
-}
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(SqrKilomole &&input) noexcept
+//     -> SqrAmount {
+//   return SqrAmount(input.data * 1000000);
+// }
 
-// Unit Cast for Unit Candela
-template <>
-[[nodiscard]] constexpr auto UnitCast(Luminosity &&input) noexcept -> Candela {
-  return Candela(input.data);
-}
+// // Unit Cast for Unit Candela
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Luminosity &&input) noexcept -> Candela
+// {
+//   return Candela(input.data);
+// }
 
-// Unit Cast for Unit Candela
-template <>
-[[nodiscard]] constexpr auto UnitCast(Candela &&input) noexcept -> Luminosity {
-  return Luminosity(input.data);
-}
+// // Unit Cast for Unit Candela
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Candela &&input) noexcept -> Luminosity
+// {
+//   return Luminosity(input.data);
+// }
 
-template <>
-[[nodiscard]] constexpr auto UnitCast(Luminance &&input) noexcept -> CdPerM2 {
-  return CdPerM2(input.data);
-}
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Luminance &&input) noexcept -> CdPerM2
+// {
+//   return CdPerM2(input.data);
+// }
 
-// Unit Cast for Unit Newton
-template <>
-[[nodiscard]] constexpr auto UnitCast(CdPerM2 &&input) noexcept -> Luminance {
-  return Luminance(input.data);
-}
+// // Unit Cast for Unit Newton
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(CdPerM2 &&input) noexcept -> Luminance
+// {
+//   return Luminance(input.data);
+// }
 
-template <>
-[[nodiscard]] constexpr auto UnitCast(SqrLuminosity &&input) noexcept
-    -> SqrCandela {
-  return SqrCandela(input.data);
-}
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(SqrLuminosity &&input) noexcept
+//     -> SqrCandela {
+//   return SqrCandela(input.data);
+// }
 
-template <>
-[[nodiscard]] constexpr auto UnitCast(SqrCandela &&input) noexcept
-    -> SqrLuminosity {
-  return SqrLuminosity(input.data);
-}
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(SqrCandela &&input) noexcept
+//     -> SqrLuminosity {
+//   return SqrLuminosity(input.data);
+// }
 
-// Unit Cast for Unit kg/m^3
-template <>
-[[nodiscard]] constexpr auto UnitCast(Density &&input) noexcept -> KgPerM3 {
-  return KgPerM3(input.data);
-}
+// // Unit Cast for Unit kg/m^3
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Density &&input) noexcept -> KgPerM3 {
+//   return KgPerM3(input.data);
+// }
 
-// Unit Cast for Unit kg/m^3
-template <>
-[[nodiscard]] constexpr auto UnitCast(KgPerM3 &&input) noexcept -> Density {
-  return Density(input.data);
-}
+// // Unit Cast for Unit kg/m^3
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(KgPerM3 &&input) noexcept -> Density {
+//   return Density(input.data);
+// }
 
-// Unit Cast for Unit kg/L
-template <>
-[[nodiscard]] constexpr auto UnitCast(Density &&input) noexcept -> KgPerL {
-  return KgPerL(input.data / 1000);
-}
+// // Unit Cast for Unit kg/L
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Density &&input) noexcept -> KgPerL {
+//   return KgPerL(input.data / 1000);
+// }
 
-// Unit Cast for Unit kg/L
-template <>
-[[nodiscard]] constexpr auto UnitCast(KgPerL &&input) noexcept -> Density {
-  return Density(input.data * 1000);
-}
+// // Unit Cast for Unit kg/L
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(KgPerL &&input) noexcept -> Density {
+//   return Density(input.data * 1000);
+// }
 
 // String Literal Operators
 // length - meter
