@@ -17,7 +17,8 @@ template <>
 
 // Unit Cast for Unit m/s
 template <>
-[[nodiscard]] constexpr auto UnitCast(MeterPerSecond &&input) noexcept -> Velocity {
+[[nodiscard]] constexpr auto UnitCast(MeterPerSecond &&input) noexcept
+    -> Velocity {
   return Velocity(input.data);
 }
 
