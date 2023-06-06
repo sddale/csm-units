@@ -66,15 +66,15 @@ constexpr void UseIG() {
 
 |               ns/op |                op/s |    err% |     total | benchmark
 |--------------------:|--------------------:|--------:|----------:|:----------
-|           27,952.91 |           35,774.45 |    3.0% |      1.72 | `add doubles`
-|           40,300.55 |           24,813.56 |    0.6% |      2.42 | `add base units`
-|          121,969.87 |            8,198.75 |    1.0% |      7.32 | `add derived units`
-|           26,740.07 |           37,397.06 |    0.5% |      1.61 | `subtract doubles`
-|           38,402.03 |           26,040.29 |    1.5% |      2.33 | `subtract base units`
-|          104,437.66 |            9,575.09 |    0.4% |      6.31 | `subtract derived units`
-|           26,739.71 |           37,397.56 |    0.4% |      1.63 | `multiply doubles`
-|           49,031.65 |           20,394.99 |    0.9% |      2.95 | `multiply base units`
-|          121,122.91 |            8,256.08 |    1.1% |      7.25 | `multiply derived units`
-|           27,327.16 |           36,593.63 |    0.9% |      1.67 | `divide doubles`
-|           36,950.23 |           27,063.43 |    0.7% |      2.25 | `divide base units`
-|          116,889.74 |            8,555.07 |    2.7% |      7.15 | `divide derived units`
+|                0.54 |    1,867,367,608.26 |    2.7% |      0.32 | `Add doubles`
+|                0.52 |    1,923,414,224.98 |    0.4% |      0.32 | `Add csm_units base units`
+|                0.52 |    1,915,263,728.78 |    0.5% |      0.32 | `Add csm_units derived units`
+|                0.53 |    1,883,753,636.19 |    2.3% |      0.32 | `Subtract doubles`
+|                0.53 |    1,895,742,883.89 |    1.6% |      0.32 | `Subtract csm_units base units`
+|                0.52 |    1,914,325,480.01 |    1.1% |      0.32 | `Subtract csm_units derived units`
+|                0.52 |    1,927,784,843.88 |    0.5% |      0.32 | `Multiply doubles`
+|                0.52 |    1,914,542,860.57 |    0.9% |      0.32 | `Multiply csm_units base units`
+|                0.52 |    1,924,046,509.83 |    0.5% |      0.31 | `Multiply csm_units derived units`
+|                1.04 |      961,168,397.17 |    0.6% |      0.63 | `Divide doubles`
+|                1.04 |      962,724,107.07 |    0.2% |      0.62 | `Divide csm_units base units`
+|                1.04 |      964,780,415.08 |    0.4% |      0.62 | `Divide csm_units derived units`
