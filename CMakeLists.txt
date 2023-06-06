@@ -65,8 +65,7 @@ target_include_directories(${PROJECT_NAME}_test PRIVATE "test" "include" ".")
 # ${CMAKE_CURRENT_LIST_DIR})
 
 set_property(
-  TARGET ${PROJECT_NAME}_test
-  # PROPERTY CMAKE_BUILD_TYPE Debug
+  TARGET ${PROJECT_NAME}_test # PROPERTY CMAKE_BUILD_TYPE Debug
   PROPERTY CMAKE_EXPORT_COMPILE_COMMANDS ON
 )
 
