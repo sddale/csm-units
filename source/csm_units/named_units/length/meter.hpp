@@ -20,4 +20,10 @@ template <>
   return Length(input.data);
 }
 
+// length - meter
+constexpr auto operator""_m(long double data) noexcept {
+  return Unit<UnitBase<Exponents<1, 0, 0, 0, 0, 0, 0>, double>, "m", double>(
+      static_cast<double>(data));
+}
+
 }  // namespace csm_units

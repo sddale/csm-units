@@ -643,45 +643,48 @@ class Unit {
 
 // String Literal Operators
 // length - meter
-constexpr auto operator""_m(long double data) noexcept {
-  return Unit<UnitBase<Exponents<1, 0, 0, 0, 0, 0, 0>, double>, "m", double>(
-      static_cast<double>(data));
-}
+// constexpr auto operator""_m(long double data) noexcept {
+//   return Unit<UnitBase<Exponents<1, 0, 0, 0, 0, 0, 0>, double>, "m", double>(
+//       static_cast<double>(data));
+// }
 
-// mass - kilogram
-constexpr auto operator""_kg(long double data) noexcept {
-  return Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg", double>(
-      static_cast<double>(data));
-}
+// // mass - kilogram
+// constexpr auto operator""_kg(long double data) noexcept {
+//   return Unit<UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>, "kg",
+//   double>(
+//       static_cast<double>(data));
+// }
 
-// time - second
-constexpr auto operator""_s(long double data) noexcept {
-  return Unit<UnitBase<Exponents<0, 0, 1, 0, 0, 0, 0>, double>, "s", double>(
-      static_cast<double>(data));
-}
+// // time - second
+// constexpr auto operator""_s(long double data) noexcept {
+//   return Unit<UnitBase<Exponents<0, 0, 1, 0, 0, 0, 0>, double>, "s", double>(
+//       static_cast<double>(data));
+// }
 
-// current - ampere
-constexpr auto operator""_A(long double data) noexcept {
-  return Unit<UnitBase<Exponents<0, 0, 0, 1, 0, 0, 0>, double>, "A", double>(
-      static_cast<double>(data));
-}
+// // current - ampere
+// constexpr auto operator""_A(long double data) noexcept {
+//   return Unit<UnitBase<Exponents<0, 0, 0, 1, 0, 0, 0>, double>, "A", double>(
+//       static_cast<double>(data));
+// }
 
-// temperature - kelvin
-constexpr auto operator""_K(long double data) noexcept {
-  return Unit<UnitBase<Exponents<0, 0, 0, 0, 1, 0, 0>, double>, "K", double>(
-      static_cast<double>(data));
-}
+// // temperature - kelvin
+// constexpr auto operator""_K(long double data) noexcept {
+//   return Unit<UnitBase<Exponents<0, 0, 0, 0, 1, 0, 0>, double>, "K", double>(
+//       static_cast<double>(data));
+// }
 
-// amount - mole
-constexpr auto operator""_mol(long double data) noexcept {
-  return Unit<UnitBase<Exponents<0, 0, 0, 0, 0, 1, 0>, double>, "mol", double>(
-      static_cast<double>(data));
-}
+// // amount - mole
+// constexpr auto operator""_mol(long double data) noexcept {
+//   return Unit<UnitBase<Exponents<0, 0, 0, 0, 0, 1, 0>, double>, "mol",
+//   double>(
+//       static_cast<double>(data));
+// }
 
-// luminosity - candela
-constexpr auto operator""_cd(long double data) noexcept {
-  return Unit<UnitBase<Exponents<0, 0, 0, 0, 0, 0, 1>, double>, "cd", double>(
-      static_cast<double>(data));
-}
+// // luminosity - candela
+// constexpr auto operator""_cd(long double data) noexcept {
+//   return Unit<UnitBase<Exponents<0, 0, 0, 0, 0, 0, 1>, double>, "cd",
+//   double>(
+//       static_cast<double>(data));
+// }
 
 }  // namespace csm_units
