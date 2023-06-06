@@ -1,3 +1,7 @@
+/**  \file acceleration.hpp
+ *   \brief This file provides an easy include for only acceleration units.
+ */
+
 #pragma once
 
 #include "source/csm_units/named_units/acceleration/dimension.hpp"

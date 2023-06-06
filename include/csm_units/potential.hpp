@@ -1,3 +1,7 @@
+/**  \file potential.hpp
+ *   \brief This file provides an easy include for only potential units.
+ */
+
 #pragma once
 
 #include "source/csm_units/named_units/potential/dimension.hpp"

@@ -27,12 +27,10 @@
 #include <csm_units/magnetic_flux.hpp>
 #include <csm_units/magnetic_flux_density.hpp>
 #include <csm_units/mass.hpp>
-#include <csm_units/plane_angle.hpp>
 #include <csm_units/potential.hpp>
 #include <csm_units/power.hpp>
 #include <csm_units/pressure.hpp>
 #include <csm_units/resistance.hpp>
-#include <csm_units/solid_angle.hpp>
 #include <csm_units/temperature.hpp>
 #include <csm_units/time.hpp>
 #include <csm_units/velocity.hpp>

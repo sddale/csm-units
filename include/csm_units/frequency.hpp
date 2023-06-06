@@ -1,3 +1,7 @@
+/**  \file frequency.hpp
+ *   \brief This file provides an easy include for only frequency units.
+ */
+
 #pragma once
 
 #include "source/csm_units/named_units/frequency/dimension.hpp"

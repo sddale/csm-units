@@ -1,3 +1,7 @@
+/**  \file length.hpp
+ *   \brief This file provides an easy include for only length units.
+ */
+
 #pragma once
 
 #include "source/csm_units/named_units/length/centimeter.hpp"

@@ -1,3 +1,7 @@
+/**  \file mass.hpp
+ *   \brief This file provides an easy include for only mass units.
+ */
+
 #pragma once
 
 #include "source/csm_units/named_units/mass/dimension.hpp"

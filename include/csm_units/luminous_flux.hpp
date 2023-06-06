@@ -1,3 +1,7 @@
+/**  \file luminous_flux.hpp
+ *   \brief This file provides an easy include for only luminous flux units.
+ */
+
 #pragma once
 
 #include "source/csm_units/named_units/luminous_flux/dimension.hpp"

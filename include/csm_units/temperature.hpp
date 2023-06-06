@@ -1,3 +1,7 @@
+/**  \file temperature.hpp
+ *   \brief This file provides an easy include for only temperature units.
+ */
+
 #pragma once
 
 #include "source/csm_units/named_units/thermodynamic_temperature/celsius.hpp"

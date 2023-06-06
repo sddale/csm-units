@@ -1,3 +1,7 @@
+/**  \file density.hpp
+ *   \brief This file provides an easy include for only density units.
+ */
+
 #pragma once
 
 #include "source/csm_units/named_units/density/dimension.hpp"

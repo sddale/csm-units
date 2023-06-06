@@ -1,3 +1,7 @@
+/**  \file velocity.hpp
+ *   \brief This file provides an easy include for only velocity units.
+ */
+
 #pragma once
 
 #include "source/csm_units/named_units/velocity/dimension.hpp"
