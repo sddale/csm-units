@@ -18,4 +18,8 @@ template <>
   return Energy(input.data);
 }
 
+constexpr auto operator""_J(long double data) noexcept {
+  return Joule(static_cast<double>(data));
+}
+
 }  // namespace csm_units

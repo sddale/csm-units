@@ -18,4 +18,8 @@ template <>
   return Resistance(input.data);
 }
 
+constexpr auto operator""_ohm(long double data) noexcept {
+  return Ohm(static_cast<double>(data));
+}
+
 }  // namespace csm_units

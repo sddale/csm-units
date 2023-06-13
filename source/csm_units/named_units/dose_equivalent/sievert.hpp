@@ -20,4 +20,8 @@ template <>
   return DoseEquivalent(input.data);
 }
 
+constexpr auto operator""_Sv(long double data) noexcept {
+  return Sievert(static_cast<double>(data));
+}
+
 }  // namespace csm_units

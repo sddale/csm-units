@@ -6,7 +6,7 @@
 
 namespace csm_units {
 
-using Volt = Unit<Potential, "W", double>;
+using Volt = Unit<Potential, "V", double>;
 
 // Unit Cast for Base Volt
 template <>
@@ -16,6 +16,10 @@ template <>
 template <>
 [[nodiscard]] constexpr auto UnitCast(Volt &&input) noexcept -> Potential {
   return Potential(input.data);
+}
+
+constexpr auto operator""_V(long double data) noexcept {
+  return Volt(static_cast<double>(data));
 }
 
 }  // namespace csm_units

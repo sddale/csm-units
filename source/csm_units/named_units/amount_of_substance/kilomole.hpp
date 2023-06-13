@@ -20,4 +20,8 @@ template <>
   return Amount(input.data * 1000);
 }
 
+constexpr auto operator""_kmol(long double data) noexcept {
+  return Kilomole(static_cast<double>(data));
+}
+
 }  // namespace csm_units

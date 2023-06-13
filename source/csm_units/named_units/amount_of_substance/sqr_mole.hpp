@@ -18,4 +18,8 @@ template <>
   return SqrAmount(input.data);
 }
 
+constexpr auto operator""_mol2(long double data) noexcept {
+  return SqrMole(static_cast<double>(data));
+}
+
 }  // namespace csm_units

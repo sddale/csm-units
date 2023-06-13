@@ -20,4 +20,8 @@ template <>
   return Area(input.data);
 }
 
+constexpr auto operator""_m2(long double data) noexcept {
+  return SqMeter(static_cast<double>(data));
+}
+
 }  // namespace csm_units

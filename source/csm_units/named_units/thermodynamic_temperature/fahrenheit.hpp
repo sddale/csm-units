@@ -6,7 +6,7 @@
 
 namespace csm_units {
 
-using Fahrenheit = Unit<Temperature, "F", double>;
+using Fahrenheit = Unit<Temperature, "degF", double>;
 
 // Unit Cast for Base K to Unit F
 template <>
@@ -20,6 +20,10 @@ template <>
 [[nodiscard]] constexpr auto UnitCast(Fahrenheit &&input) noexcept
     -> Temperature {
   return Temperature((input.data - 32) * 5 / 9 + 273.15);
+}
+
+constexpr auto operator""_degF(long double data) noexcept {
+  return Fahrenheit(static_cast<double>(data));
 }
 
 }  // namespace csm_units

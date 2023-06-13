@@ -22,4 +22,8 @@ template <>
   return Length(input.data / 100);
 }
 
+constexpr auto operator""_cm(long double data) noexcept {
+  return CentiMeter(static_cast<double>(data));
+}
+
 }  // namespace csm_units

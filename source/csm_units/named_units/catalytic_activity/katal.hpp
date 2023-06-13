@@ -22,4 +22,8 @@ template <>
   return CatalyticActivity(input.data);
 }
 
+constexpr auto operator""_kat(long double data) noexcept {
+  return Katal(static_cast<double>(data));
+}
+
 }  // namespace csm_units

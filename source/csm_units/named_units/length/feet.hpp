@@ -22,4 +22,8 @@ template <>
   return Length(input.data / 3.28084);
 }
 
+constexpr auto operator""_ft(long double data) noexcept {
+  return Feet(static_cast<double>(data));
+}
+
 }  // namespace csm_units

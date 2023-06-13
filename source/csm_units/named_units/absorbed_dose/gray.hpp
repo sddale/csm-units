@@ -18,4 +18,8 @@ template <>
   return AbsorbedDose(input.data);
 }
 
+constexpr auto operator""_Gy(long double data) noexcept {
+  return Gray(static_cast<double>(data));
+}
+
 }  // namespace csm_units

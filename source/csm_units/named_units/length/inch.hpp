@@ -22,4 +22,8 @@ template <>
   return Length(input.data / 39.3701);
 }
 
+constexpr auto operator""_in(long double data) noexcept {
+  return Inch(static_cast<double>(data));
+}
+
 }  // namespace csm_units

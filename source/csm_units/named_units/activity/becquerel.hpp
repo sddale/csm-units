@@ -20,4 +20,8 @@ template <>
   return Activity(input.data);
 }
 
+constexpr auto operator""_Bq(long double data) noexcept {
+  return Becquerel(static_cast<double>(data));
+}
+
 }  // namespace csm_units

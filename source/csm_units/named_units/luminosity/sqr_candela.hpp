@@ -20,4 +20,8 @@ template <>
   return SqrLuminosity(input.data);
 }
 
+constexpr auto operator""_cd2(long double data) noexcept {
+  return SqrCandela(static_cast<double>(data));
+}
+
 }  // namespace csm_units

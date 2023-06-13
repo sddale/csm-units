@@ -20,4 +20,8 @@ template <>
   return SqrElectrCurrent(input.data / 1000000);
 }
 
+constexpr auto operator""_mA2(long double data) noexcept {
+  return SqrMilliamp(static_cast<double>(data));
+}
+
 }  // namespace csm_units

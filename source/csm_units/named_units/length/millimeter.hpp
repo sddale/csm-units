@@ -22,4 +22,8 @@ template <>
   return Length(input.data / 1000);
 }
 
+constexpr auto operator""_mm(long double data) noexcept {
+  return MilliMeter(static_cast<double>(data));
+}
+
 }  // namespace csm_units

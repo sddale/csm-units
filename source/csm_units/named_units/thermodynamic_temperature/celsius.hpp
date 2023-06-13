@@ -6,7 +6,7 @@
 
 namespace csm_units {
 
-using Celsius = Unit<Temperature, "C", double>;
+using Celsius = Unit<Temperature, "degC", double>;
 
 // Base K -> Unit C
 template <>
@@ -18,6 +18,10 @@ template <>
 template <>
 [[nodiscard]] constexpr auto UnitCast(Celsius &&input) noexcept -> Temperature {
   return Temperature(input.data + 273.15);
+}
+
+constexpr auto operator""_degC(long double data) noexcept {
+  return Celsius(static_cast<double>(data));
 }
 
 }  // namespace csm_units

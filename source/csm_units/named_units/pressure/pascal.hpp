@@ -22,4 +22,8 @@ template <>
   return Pressure(input.data);
 }
 
+constexpr auto operator""_Pa(long double data) noexcept {
+  return Pascal(static_cast<double>(data));
+}
+
 }  // namespace csm_units

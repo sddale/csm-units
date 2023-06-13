@@ -22,8 +22,7 @@ template <>
 
 // time - second
 constexpr auto operator""_s(long double data) noexcept {
-  return Unit<UnitBase<Exponents<0, 0, 1, 0, 0, 0, 0>, double>, "s", double>(
-      static_cast<double>(data));
+  return Second(static_cast<double>(data));
 }
 
 }  // namespace csm_units

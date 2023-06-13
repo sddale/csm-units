@@ -22,4 +22,8 @@ template <>
   return Pressure(input.data * 100000);
 }
 
+constexpr auto operator""_bar(long double data) noexcept {
+  return Bar(static_cast<double>(data));
+}
+
 }  // namespace csm_units

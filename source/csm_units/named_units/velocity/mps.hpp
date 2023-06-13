@@ -22,4 +22,8 @@ template <>
   return Velocity(input.data);
 }
 
+constexpr auto operator""_mps(long double data) noexcept {
+  return MeterPerSecond(static_cast<double>(data));
+}
+
 }  // namespace csm_units

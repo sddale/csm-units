@@ -20,4 +20,8 @@ template <>
   return Accel(input.data);
 }
 
+constexpr auto operator""_mps2(long double data) noexcept {
+  return MPerS2(static_cast<double>(data));
+}
+
 }  // namespace csm_units

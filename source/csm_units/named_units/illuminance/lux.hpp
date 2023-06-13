@@ -19,4 +19,8 @@ template <>
   return Illuminance(input.data);
 }
 
+constexpr auto operator""_lx(long double data) noexcept {
+  return Lux(static_cast<double>(data));
+}
+
 }  // namespace csm_units

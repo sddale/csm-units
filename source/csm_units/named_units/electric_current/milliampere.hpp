@@ -22,4 +22,8 @@ template <>
   return ElectrCurrent(input.data / 1000);
 }
 
+constexpr auto operator""_mA(long double data) noexcept {
+  return Milliampere(static_cast<double>(data));
+}
+
 }  // namespace csm_units

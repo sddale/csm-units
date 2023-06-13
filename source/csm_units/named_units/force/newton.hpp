@@ -18,4 +18,8 @@ template <>
   return Force(input.data);
 }
 
+constexpr auto operator""_N(long double data) noexcept {
+  return Newton(static_cast<double>(data));
+}
+
 }  // namespace csm_units

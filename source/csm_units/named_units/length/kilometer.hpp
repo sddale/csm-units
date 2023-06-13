@@ -22,4 +22,8 @@ template <>
   return Length(input.data * 1000);
 }
 
+constexpr auto operator""_km(long double data) noexcept {
+  return KiloMeter(static_cast<double>(data));
+}
+
 }  // namespace csm_units

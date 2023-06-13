@@ -6,7 +6,7 @@
 
 namespace csm_units {
 
-using Lumen = Unit<LuminousFlux, "lx", double>;
+using Lumen = Unit<LuminousFlux, "lm", double>;
 
 template <>
 [[nodiscard]] constexpr auto UnitCast(LuminousFlux &&input) noexcept -> Lumen {
@@ -17,6 +17,10 @@ template <>
 template <>
 [[nodiscard]] constexpr auto UnitCast(Lumen &&input) noexcept -> LuminousFlux {
   return LuminousFlux(input.data);
+}
+
+constexpr auto operator""_lm(long double data) noexcept {
+  return Lumen(static_cast<double>(data));
 }
 
 }  // namespace csm_units

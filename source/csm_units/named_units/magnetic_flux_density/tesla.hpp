@@ -22,4 +22,8 @@ template <>
   return MagneticFluxDensity(input.data);
 }
 
+constexpr auto operator""_T(long double data) noexcept {
+  return Tesla(static_cast<double>(data));
+}
+
 }  // namespace csm_units

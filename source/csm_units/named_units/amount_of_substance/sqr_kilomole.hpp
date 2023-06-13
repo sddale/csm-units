@@ -20,4 +20,8 @@ template <>
   return SqrAmount(input.data * 1000000);
 }
 
+constexpr auto operator""_kmol2(long double data) noexcept {
+  return SqrKilomole(static_cast<double>(data));
+}
+
 }  // namespace csm_units

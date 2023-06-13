@@ -20,4 +20,8 @@ template <>
   return Hours(input.data / 3600);
 }
 
+constexpr auto operator""_hour(long double data) noexcept {
+  return Hours(static_cast<double>(data));
+}
+
 }  // namespace csm_units

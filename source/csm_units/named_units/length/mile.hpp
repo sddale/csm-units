@@ -22,4 +22,8 @@ template <>
   return Length(input.data * 1609.34);
 }
 
+constexpr auto operator""_miles(long double data) noexcept {
+  return Miles(static_cast<double>(data));
+}
+
 }  // namespace csm_units

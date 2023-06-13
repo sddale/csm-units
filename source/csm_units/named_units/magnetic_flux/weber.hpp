@@ -20,4 +20,8 @@ template <>
   return MagneticFlux(input.data);
 }
 
+constexpr auto operator""_Wb(long double data) noexcept {
+  return Weber(static_cast<double>(data));
+}
+
 }  // namespace csm_units

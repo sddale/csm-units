@@ -22,4 +22,8 @@ template <>
   return ElectrCharge(input.data);
 }
 
+constexpr auto operator""_C(long double data) noexcept {
+  return Coulomb(static_cast<double>(data));
+}
+
 }  // namespace csm_units

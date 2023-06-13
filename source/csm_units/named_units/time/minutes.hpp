@@ -20,4 +20,8 @@ template <>
   return Minutes(input.data / 60);
 }
 
+constexpr auto operator""_min(long double data) noexcept {
+  return Minutes(static_cast<double>(data));
+}
+
 }  // namespace csm_units

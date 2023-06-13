@@ -20,4 +20,8 @@ template <>
   return Area(input.data / 10.764);
 }
 
+constexpr auto operator""_ft2(long double data) noexcept {
+  return SqFt(static_cast<double>(data));
+}
+
 }  // namespace csm_units

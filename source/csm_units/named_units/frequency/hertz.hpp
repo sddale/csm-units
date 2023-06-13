@@ -20,4 +20,8 @@ template <>
   return Frequency(input.data);
 }
 
+constexpr auto operator""_Hz(long double data) noexcept {
+  return Hertz(static_cast<double>(data));
+}
+
 }  // namespace csm_units

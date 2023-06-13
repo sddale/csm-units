@@ -20,4 +20,8 @@ template <>
   return Mass(input.data / 1000);
 }
 
+constexpr auto operator""_g(long double data) noexcept {
+  return Gram(static_cast<double>(data));
+}
+
 }  // namespace csm_units

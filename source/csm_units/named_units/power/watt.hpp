@@ -18,4 +18,8 @@ template <>
   return Power(input.data);
 }
 
+constexpr auto operator""_W(long double data) noexcept {
+  return Watt(static_cast<double>(data));
+}
+
 }  // namespace csm_units

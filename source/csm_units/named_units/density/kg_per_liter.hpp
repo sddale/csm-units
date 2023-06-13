@@ -20,4 +20,8 @@ template <>
   return Density(input.data * 1000);
 }
 
+constexpr auto operator""_kgperL(long double data) noexcept {
+  return KgPerL(static_cast<double>(data));
+}
+
 }  // namespace csm_units

@@ -20,4 +20,8 @@ template <>
   return SqrElectrCurrent(input.data);
 }
 
+constexpr auto operator""_A2(long double data) noexcept {
+  return SqrAmpere(static_cast<double>(data));
+}
+
 }  // namespace csm_units

@@ -20,4 +20,8 @@ template <>
   return Capacitance(input.data);
 }
 
+constexpr auto operator""_F(long double data) noexcept {
+  return Farad(static_cast<double>(data));
+}
+
 }  // namespace csm_units
