@@ -43,19 +43,19 @@ constexpr void UseIG() {
 ```cpp
 using Units::Mol;
 using Units::CubicCm;
-using Units::Kelving;
+using Units::Kelvin;
 using Units::Bar;
 
 constexpr auto IdealGas(Mol n, CubicCm V, Kelvin T) -> Bar {
-  const auto R = Units::IdealGasConst<Mol, CubicCm, Kelvin, Bar>(); 
+  const auto R = Units::IdealGasConst<Mol, CubicCm, Kelvin, Bar>();
   const Bar P = n * R * T / V;
   return P;
 }
 
 constexpr void UseIG() {
   const Mol n = 2;
-  const Kelvin T = 300.0; 
-  const auto V = 10.1_cm3; // string literal operators 
+  const Kelvin T = 300.0;
+  const auto V = 10.1_cm3; // string literal operators
   // const auto pres = IdealGas(n,T,V); // Does not compile
   const auto pres = IdealGas(n,V,T);
 }
