@@ -47,7 +47,8 @@ using Units::Kelvin;
 using Units::Bar;
 
 constexpr auto IdealGas(Mol n, CubicCm V, Kelvin T) -> Bar {
-  const auto R = Units::IdealGasConst<Mol, CubicCm, Kelvin, Bar>();
+  const auto R = Units::IdealGasConst<Mol, CubicCm, Kelvin, Bar>(); // build R using literals. Use a different R so that we show auto changing
+  // Write a comment about auto changing
   const Bar P = n * R * T / V;
   return P;
 }
@@ -64,17 +65,17 @@ constexpr void UseIG() {
 
 ### Benchmarking Results
 
-|               ns/op |                op/s |    err% |     total | benchmark
-|--------------------:|--------------------:|--------:|----------:|:----------
-|                0.54 |    1,867,367,608.26 |    2.7% |      0.32 | `Add doubles`
-|                0.52 |    1,923,414,224.98 |    0.4% |      0.32 | `Add csm_units base units`
-|                0.52 |    1,915,263,728.78 |    0.5% |      0.32 | `Add csm_units derived units`
-|                0.53 |    1,883,753,636.19 |    2.3% |      0.32 | `Subtract doubles`
-|                0.53 |    1,895,742,883.89 |    1.6% |      0.32 | `Subtract csm_units base units`
-|                0.52 |    1,914,325,480.01 |    1.1% |      0.32 | `Subtract csm_units derived units`
-|                0.52 |    1,927,784,843.88 |    0.5% |      0.32 | `Multiply doubles`
-|                0.52 |    1,914,542,860.57 |    0.9% |      0.32 | `Multiply csm_units base units`
-|                0.52 |    1,924,046,509.83 |    0.5% |      0.31 | `Multiply csm_units derived units`
-|                1.04 |      961,168,397.17 |    0.6% |      0.63 | `Divide doubles`
-|                1.04 |      962,724,107.07 |    0.2% |      0.62 | `Divide csm_units base units`
-|                1.04 |      964,780,415.08 |    0.4% |      0.62 | `Divide csm_units derived units`
+|               ns/op | benchmark
+|--------------------:|:----------
+|                0.54 | `Add doubles`
+|                0.52 | `Add csm_units base units`
+|                0.52 | `Add csm_units derived units`
+|                0.53 | `Subtract doubles`
+|                0.53 | `Subtract csm_units base units`
+|                0.52 | `Subtract csm_units derived units`
+|                0.52 | `Multiply doubles`
+|                0.52 | `Multiply csm_units base units`
+|                0.52 | `Multiply csm_units derived units`
+|                1.04 | `Divide doubles`
+|                1.04 | `Divide csm_units base units`
+|                1.04 | `Divide csm_units derived units`
