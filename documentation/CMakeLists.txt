@@ -28,12 +28,12 @@ configure_file(
 add_custom_target(
   GenerateDocs
   ${CMAKE_COMMAND} -E make_directory "${DOXYGEN_OUTPUT_DIRECTORY}"
-  COMMAND cp "${CMAKE_CURRENT_BINARY_DIR}/doxygen-awesome-sidebar-only.css"
+  COMMAND cp "${PROJECT_SOURCE_DIR}/doxygen-awesome-sidebar-only.css"
           "${m.css_SOURCE_DIR}/documentation/"
-  COMMAND cp "${CMAKE_CURRENT_BINARY_DIR}/doxygen-awesome.css"
+  COMMAND cp "${PROJECT_SOURCE_DIR}/doxygen-awesome.css"
           "${m.css_SOURCE_DIR}/documentation/"
   COMMAND "${m.css_SOURCE_DIR}/documentation/doxygen.py"
-          "${CMAKE_CURRENT_BINARY_DIR}/conf.py"
+          "${PROJECT_SOURCE_DIR}/conf.py"
   COMMAND echo "Docs written to: ${DOXYGEN_OUTPUT_DIRECTORY}"
   WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
 )
