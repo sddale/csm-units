@@ -681,10 +681,10 @@ TEST_SUITE("Unit") {
 
       const auto n = 13.0_mol;
       const auto R = 8.31446 <<= J / mol / K;  // 8.3145 J/mol K
-      const auto T = 293.15_K;
-      const auto V = 30.0 <<= m3;
+      const auto temp = 293.15_K;
+      const auto volume = 30.0 <<= m3;
 
-      const Pascal P = IdealGasLaw(T, V, n, R);
+      const Pascal P = IdealGasLaw(temp, volume, n, R);
       CHECK_DBL_EQ(P.data, 1056.2);
     }
 
@@ -694,13 +694,13 @@ TEST_SUITE("Unit") {
       const auto n = 13.0_mol;
       const auto R =
           Liter(0.083144626) * Bar(1) / Kelvin(1) / Mole(1);  // 8.3145 J/mol K
-      const auto T = 293.15_K;
-      const auto V = 30.0 <<= m3;
+      const auto temp = 293.15_K;
+      const auto volume = 30.0 <<= m3;
 
-      const Pascal P = IdealGasLaw(T, V, n, R);
+      const Pascal P = IdealGasLaw(temp, volume, n, R);
       CHECK_DBL_EQ(P.data, 1056.2);
 
-      const Psi P2 = IdealGasLaw(T, V, n, R);
+      const Psi P2 = IdealGasLaw(temp, volume, n, R);
       CHECK_DBL_EQ(P2.data, 0.153188859);
     }
   }
