@@ -27,6 +27,7 @@
 #include <csm_units/magnetic_flux.hpp>
 #include <csm_units/magnetic_flux_density.hpp>
 #include <csm_units/mass.hpp>
+#include <csm_units/molar_mass.hpp>
 #include <csm_units/potential.hpp>
 #include <csm_units/power.hpp>
 #include <csm_units/pressure.hpp>
