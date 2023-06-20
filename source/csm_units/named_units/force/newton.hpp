@@ -18,8 +18,12 @@ template <>
   return Force(input.data);
 }
 
+namespace literals {
+
 constexpr auto operator""_N(long double data) noexcept {
   return Newton(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

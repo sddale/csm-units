@@ -22,8 +22,12 @@ template <>
   return Length(input.data / 1.09361);
 }
 
+namespace literals {
+
 constexpr auto operator""_yd(long double data) noexcept {
   return Yard(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

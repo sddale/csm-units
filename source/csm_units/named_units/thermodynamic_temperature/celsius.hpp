@@ -20,8 +20,12 @@ template <>
   return Temperature(input.data + 273.15);
 }
 
+namespace literals {
+
 constexpr auto operator""_degC(long double data) noexcept {
   return Celsius(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

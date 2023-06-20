@@ -19,8 +19,12 @@ template <>
   return LuminousFlux(input.data);
 }
 
+namespace literals {
+
 constexpr auto operator""_lm(long double data) noexcept {
   return Lumen(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

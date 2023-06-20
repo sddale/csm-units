@@ -20,8 +20,12 @@ template <>
   return DoseEquivalent(input.data);
 }
 
+namespace literals {
+
 constexpr auto operator""_Sv(long double data) noexcept {
   return Sievert(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

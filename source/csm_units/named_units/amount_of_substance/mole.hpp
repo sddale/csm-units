@@ -20,9 +20,13 @@ template <>
   return Amount(input.data);
 }
 
+namespace literals {
+
 // amount - mole
 constexpr auto operator""_mol(long double data) noexcept {
   return Mole(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

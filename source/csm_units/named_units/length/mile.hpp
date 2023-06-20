@@ -22,8 +22,12 @@ template <>
   return Length(input.data * 1609.34);
 }
 
+namespace literals {
+
 constexpr auto operator""_miles(long double data) noexcept {
   return Miles(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

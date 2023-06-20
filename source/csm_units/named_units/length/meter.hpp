@@ -20,9 +20,13 @@ template <>
   return Length(input.data);
 }
 
+namespace literals {
+
 // length - meter
 constexpr auto operator""_m(long double data) noexcept {
   return Meter(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

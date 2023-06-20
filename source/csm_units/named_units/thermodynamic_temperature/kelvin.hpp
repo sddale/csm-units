@@ -20,9 +20,13 @@ template <>
   return Temperature(input.data);
 }
 
+namespace literals {
+
 // temperature - kelvin
 constexpr auto operator""_K(long double data) noexcept {
   return Kelvin(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

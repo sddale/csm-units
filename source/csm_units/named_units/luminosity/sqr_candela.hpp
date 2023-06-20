@@ -20,8 +20,12 @@ template <>
   return SqrLuminosity(input.data);
 }
 
+namespace literals {
+
 constexpr auto operator""_cd2(long double data) noexcept {
   return SqrCandela(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

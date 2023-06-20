@@ -22,8 +22,12 @@ template <>
   return Pressure(input.data * 6894.76);
 }
 
+namespace literals {
+
 constexpr auto operator""_psi(long double data) noexcept {
   return Psi(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

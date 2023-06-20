@@ -20,8 +20,12 @@ template <>
   return Mass(input.data / 1000);
 }
 
+namespace literals {
+
 constexpr auto operator""_g(long double data) noexcept {
   return Gram(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

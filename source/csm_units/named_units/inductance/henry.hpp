@@ -20,8 +20,12 @@ template <>
   return Inductance(input.data);
 }
 
+namespace literals {
+
 constexpr auto operator""_H(long double data) noexcept {
   return Henry(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

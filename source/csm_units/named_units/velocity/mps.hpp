@@ -22,8 +22,12 @@ template <>
   return Velocity(input.data);
 }
 
+namespace literals {
+
 constexpr auto operator""_mps(long double data) noexcept {
   return MeterPerSecond(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

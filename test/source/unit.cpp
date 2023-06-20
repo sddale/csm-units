@@ -4,6 +4,7 @@
 #include <doctest/doctest.h>
 
 #include <csm_units/units.hpp>
+#include <ratio>
 
 #include "source/csm_units/exponents.hpp"
 #include "source/csm_units/literal/literal.hpp"
@@ -616,6 +617,8 @@ TEST_SUITE("Unit") {
       }
 
       SUBCASE("Create a pascal from distance, time, and mass") {
+        using namespace csm_units::literals;
+
         const auto dist = 3.0_m;
         const auto time = 2.0_s;
 
@@ -674,6 +677,8 @@ TEST_SUITE("Unit") {
     };
 
     SUBCASE("R - Correct Units") {
+      using namespace csm_units::literals;
+
       const auto n = 13.0_mol;
       const auto R = 8.31446 <<= J / mol / K;  // 8.3145 J/mol K
       const auto T = 293.15_K;
@@ -684,6 +689,8 @@ TEST_SUITE("Unit") {
     }
 
     SUBCASE("R - Correct Units") {
+      using namespace csm_units::literals;
+
       const auto n = 13.0_mol;
       const auto R =
           Liter(0.083144626) * Bar(1) / Kelvin(1) / Mole(1);  // 8.3145 J/mol K

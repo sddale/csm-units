@@ -20,8 +20,12 @@ template <>
   return Frequency(input.data);
 }
 
+namespace literals {
+
 constexpr auto operator""_Hz(long double data) noexcept {
   return Hertz(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

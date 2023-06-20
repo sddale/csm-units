@@ -22,9 +22,13 @@ template <>
   return ElectrCurrent(input.data);
 }
 
+namespace literals {
+
 // current - ampere
 constexpr auto operator""_A(long double data) noexcept {
   return Ampere(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

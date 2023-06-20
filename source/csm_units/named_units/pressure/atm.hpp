@@ -22,8 +22,12 @@ template <>
   return Pressure(input.data * 101325);
 }
 
+namespace literals {
+
 constexpr auto operator""_Atm(long double data) noexcept {
   return Atm(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

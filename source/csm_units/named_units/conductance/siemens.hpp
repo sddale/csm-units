@@ -18,8 +18,12 @@ template <>
   return Conductance(input.data);
 }
 
+namespace literals {
+
 constexpr auto operator""_S(long double data) noexcept {
   return Siemens(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

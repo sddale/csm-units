@@ -22,9 +22,13 @@ template <>
   return Mass(input.data);
 }
 
+namespace literals {
+
 // mass - kilogram
 constexpr auto operator""_kg(long double data) noexcept {
   return Kilogram(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

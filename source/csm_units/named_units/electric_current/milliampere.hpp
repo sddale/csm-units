@@ -22,8 +22,12 @@ template <>
   return ElectrCurrent(input.data / 1000);
 }
 
+namespace literals {
+
 constexpr auto operator""_mA(long double data) noexcept {
   return Milliampere(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

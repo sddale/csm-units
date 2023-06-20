@@ -22,8 +22,12 @@ template <>
   return Length(input.data / 100);
 }
 
+namespace literals {
+
 constexpr auto operator""_cm(long double data) noexcept {
   return CentiMeter(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

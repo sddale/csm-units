@@ -22,8 +22,12 @@ template <>
   return Length(input.data / 1000);
 }
 
+namespace literals {
+
 constexpr auto operator""_mm(long double data) noexcept {
   return MilliMeter(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

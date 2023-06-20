@@ -22,8 +22,12 @@ template <>
   return Temperature((input.data - 32) * 5 / 9 + 273.15);
 }
 
+namespace literals {
+
 constexpr auto operator""_degF(long double data) noexcept {
   return Fahrenheit(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

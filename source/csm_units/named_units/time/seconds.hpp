@@ -20,9 +20,13 @@ template <>
   return Second(input.data);
 }
 
+namespace literals {
+
 // time - second
 constexpr auto operator""_s(long double data) noexcept {
   return Second(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

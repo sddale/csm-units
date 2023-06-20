@@ -20,8 +20,12 @@ template <>
   return Hours(input.data / 3600);
 }
 
+namespace literals {
+
 constexpr auto operator""_hour(long double data) noexcept {
   return Hours(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

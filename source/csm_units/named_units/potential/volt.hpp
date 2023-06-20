@@ -18,8 +18,12 @@ template <>
   return Potential(input.data);
 }
 
+namespace literals {
+
 constexpr auto operator""_V(long double data) noexcept {
   return Volt(static_cast<double>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units
