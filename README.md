@@ -43,16 +43,9 @@ constexpr void UseIG() {
 ```cpp
 #include <csm_units/units.hpp>
 
-using csm_units::Bar;
-using csm_units::Celsius;
-using csm_units::Fahrenheit;
-using csm_units::Kilomole;
-using csm_units::Liter;
-using csm_units::Mole;
-
 using namespace csm_units::literals;
 
-constexpr auto IdealGas(Kilomole n, Liter V, Fahrenheit T) -> Bar {
+constexpr auto IdealGas(csm_units::Kilomole n, csm_units::Liter V, csm_units::Fahrenheit T) -> csm_units::Bar {
   const auto R = 8.31446261815324 <<= m3 * Pa / K / mol;
   // Using literals we can build what units the ideal gas constant R is using
   // and assign that to the double.
@@ -63,13 +56,13 @@ constexpr auto IdealGas(Kilomole n, Liter V, Fahrenheit T) -> Bar {
   // moles of the gas (n), volume, and temperature are in Kilomole, Liter, and
   // Fahrenheit respectively. As well the answer is looking for Bar. All of the
   // conversion happens behind the scene to ensure the answer is correct to Bar.
-  const Bar P = n * R * T / V;
+  const csm_units::Bar P = n * R * T / V;
   return P;
 }
 
 constexpr void UseIG() {
-  const auto n = Mole(2);
-  const auto T = Celsius(100.0);
+  const auto n = csm_units::Mole(2);
+  const auto T = csm_units::Celsius(100.0);
   const auto V = 10.1_m3; // string literal operators
   // const auto pres = IdealGas(n,T,V); // Does not compile
   const auto pres = IdealGas(n,V,T);
