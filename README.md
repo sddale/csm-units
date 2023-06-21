@@ -50,11 +50,6 @@ using csm_units::Kilomole;
 using csm_units::Liter;
 using csm_units::Mole;
 
-using csm_units::literals::K;
-using csm_units::literals::m3;
-using csm_units::literals::mol;
-using csm_units::literals::Pa;
-
 using namespace csm_units::literals;
 
 constexpr auto IdealGas(Kilomole n, Liter V, Fahrenheit T) -> Bar {
@@ -73,8 +68,8 @@ constexpr auto IdealGas(Kilomole n, Liter V, Fahrenheit T) -> Bar {
 }
 
 constexpr void UseIG() {
-  const Mole n = Mole(2);
-  const Celsius T = Celsius(100.0);
+  const auto n = Mole(2);
+  const auto T = Celsius(100.0);
   const auto V = 10.1_m3; // string literal operators
   // const auto pres = IdealGas(n,T,V); // Does not compile
   const auto pres = IdealGas(n,V,T);
