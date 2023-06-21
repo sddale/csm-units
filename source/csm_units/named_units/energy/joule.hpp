@@ -1,3 +1,10 @@
+/**  \file joule.hpp
+ *   \brief This file is used to define the Energy SI unit Joule.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Joule">Joule</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

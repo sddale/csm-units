@@ -1,3 +1,10 @@
+/**  \file weber.hpp
+ *   \brief This file is used to define the Magnetic Flux SI unit Weber.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Weber_(unit)">Weber</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

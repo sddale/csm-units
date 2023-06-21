@@ -1,3 +1,10 @@
+/**  \file gray.hpp
+ *   \brief This file is used to define the Absorbed Dose SI unit Gray.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Gray_(unit)">Gray</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

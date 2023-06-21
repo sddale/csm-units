@@ -1,3 +1,11 @@
+/**  \file sqr_meter.hpp
+ *   \brief This file is used to define the unit Square Meter derived from the
+ * base dimension for Area.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Square_metre">Square Meter</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

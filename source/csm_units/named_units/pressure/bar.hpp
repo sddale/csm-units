@@ -1,3 +1,11 @@
+/**  \file bar.hpp
+ *   \brief This file is used to define the unit Bar derived from the base
+ * dimension for Pressure.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Bar_(unit)">Bar</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

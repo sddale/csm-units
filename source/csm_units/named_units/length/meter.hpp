@@ -1,3 +1,10 @@
+/**  \file meter.hpp
+ *   \brief This file is used to define the Length SI unit Meter.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Metre">Meter</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

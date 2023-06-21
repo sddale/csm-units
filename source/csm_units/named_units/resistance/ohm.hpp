@@ -1,3 +1,10 @@
+/**  \file ohm.hpp
+ *   \brief This file is used to define the Resistance SI unit Ohm.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Ohm">Ohm</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

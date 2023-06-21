@@ -1,3 +1,11 @@
+/**  \file inch.hpp
+ *   \brief This file is used to define the unit Inch derived from the
+ * base dimension for Length.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Inch">Inch</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

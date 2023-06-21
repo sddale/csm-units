@@ -1,3 +1,10 @@
+/**  \file watt.hpp
+ *   \brief This file is used to define the Power SI unit Watt.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Watt">Watt</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

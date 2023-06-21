@@ -1,3 +1,11 @@
+/**  \file sqr_candela.hpp
+ *   \brief This file is used to define the unit Square Candela derived from the
+ * base dimension for Luminosity.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Candela">Candela</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

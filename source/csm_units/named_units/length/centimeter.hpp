@@ -1,3 +1,11 @@
+/**  \file centimeter.hpp
+ *   \brief This file is used to define the unit Centimeter derived from the
+ * base dimension for Length.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Centimetre#">Centimeter</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

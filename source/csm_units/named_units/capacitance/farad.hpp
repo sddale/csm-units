@@ -1,3 +1,10 @@
+/**  \file farad.hpp
+ *   \brief This file is used to define the Capacitance SI unit Farad.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Farad">Farad</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

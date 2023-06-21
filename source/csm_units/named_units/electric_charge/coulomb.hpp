@@ -1,3 +1,10 @@
+/**  \file coulomb.hpp
+ *   \brief This file is used to define the Electric Charge SI unit Coulomb.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Coulomb">Coulomb</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

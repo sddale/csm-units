@@ -1,3 +1,13 @@
+/**  \file kg_per_liter.hpp
+ *   \brief This file is used to define the unit Kilogram Per Liter derived from
+ * the base dimension for Density.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Kilogram_per_cubic_metre">Kilogram Per
+ * Cubic Meter</a> if needed. Kilogram Per Liter having a close description to
+ * this.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

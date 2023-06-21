@@ -1,3 +1,10 @@
+/**  \file tesla.hpp
+ *   \brief This file is used to define the Magnetic Flux Density SI unit Tesla.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Tesla_(unit)">Tesla</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

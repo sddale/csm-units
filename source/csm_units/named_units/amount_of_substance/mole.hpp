@@ -1,3 +1,10 @@
+/**  \file mole.hpp
+ *   \brief This file is used to define the Amount of a Substance SI unit Mole.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Mole_(unit)">Mole</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

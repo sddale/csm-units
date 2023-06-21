@@ -1,3 +1,10 @@
+/**  \file henry.hpp
+ *   \brief This file is used to define the Inductance SI unit Henry.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Henry_(unit)">Henry</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

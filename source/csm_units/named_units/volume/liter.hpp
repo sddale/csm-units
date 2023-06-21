@@ -1,3 +1,11 @@
+/**  \file liter.hpp
+ *   \brief This file is used to define the unit Liter derived from the base
+ * dimension for Volume.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Litre">Liter</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

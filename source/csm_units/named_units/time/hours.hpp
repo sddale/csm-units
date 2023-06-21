@@ -1,3 +1,11 @@
+/**  \file hours.hpp
+ *   \brief This file is used to define the unit Hours derived from the base
+ * dimension for Time.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Hour">Hours</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

@@ -1,3 +1,10 @@
+/**  \file candela.hpp
+ *   \brief This file is used to define the Luminosity SI unit Candela.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Candela">Candela</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

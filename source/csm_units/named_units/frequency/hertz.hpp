@@ -1,3 +1,10 @@
+/**  \file hertz.hpp
+ *   \brief This file is used to define the Frequency SI unit Hertz.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Hertz">Hertz</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

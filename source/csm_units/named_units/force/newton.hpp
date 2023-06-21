@@ -1,3 +1,10 @@
+/**  \file newton.hpp
+ *   \brief This file is used to define the Force SI unit Newton.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Newton_(unit)">Newton</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

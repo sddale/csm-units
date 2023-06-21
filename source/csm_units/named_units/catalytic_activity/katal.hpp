@@ -1,3 +1,10 @@
+/**  \file katal.hpp
+ *   \brief This file is used to define the Absorbed Dose SI unit Katal.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Katal">Katal</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

@@ -1,3 +1,11 @@
+/**  \file kelvin.hpp
+ *   \brief This file is used to define the Thermodynamic Temperature SI unit
+ * Kelvin.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Kelvin">Kelvin</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

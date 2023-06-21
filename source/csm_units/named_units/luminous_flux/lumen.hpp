@@ -1,3 +1,10 @@
+/**  \file lumen.hpp
+ *   \brief This file is used to define the Luminous Flux SI unit Lumen.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Lumen_(unit)">Lumen</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

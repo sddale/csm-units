@@ -1,3 +1,11 @@
+/**  \file gram.hpp
+ *   \brief This file is used to define the unit Gram derived from the base
+ * dimension for Mass.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Gram">Gram</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

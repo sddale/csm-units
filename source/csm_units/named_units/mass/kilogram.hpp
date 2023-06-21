@@ -1,3 +1,10 @@
+/**  \file kilogram.hpp
+ *   \brief This file is used to define the Mass SI unit Kilogram.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Kilogram">Kilogram</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

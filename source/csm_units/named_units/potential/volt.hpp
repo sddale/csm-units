@@ -1,3 +1,10 @@
+/**  \file volt.hpp
+ *   \brief This file is used to define the Potential SI unit Volt.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Volt">Volt</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

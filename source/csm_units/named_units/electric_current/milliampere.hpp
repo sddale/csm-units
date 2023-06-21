@@ -1,3 +1,12 @@
+/**  \file milliampere.hpp
+ *   \brief This file is used to define the unit Milliampere derived from the
+ * base dimension for Electric Current.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/?title=Milliampere&redirect=no">Milliampere</a>
+ * if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

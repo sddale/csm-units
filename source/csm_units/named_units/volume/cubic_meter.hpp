@@ -1,3 +1,10 @@
+/**  \file cubic_meter.hpp
+ *   \brief This file is used to define the Volume SI unit Cubic Meter.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Cubic_metre">Cubic Meter</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

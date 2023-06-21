@@ -1,3 +1,10 @@
+/**  \file pascal.hpp
+ *   \brief This file is used to define the Pressure SI unit Pascal.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Pascal_(unit)">Pascal</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

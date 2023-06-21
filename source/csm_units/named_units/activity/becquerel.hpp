@@ -1,3 +1,11 @@
+/**  \file becquerel.hpp
+ *   \brief This file is used to define the Activity of a Radionuclide SI unit
+ * Becquerel.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Becquerel">Becquerel</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

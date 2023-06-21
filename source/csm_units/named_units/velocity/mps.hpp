@@ -1,3 +1,11 @@
+/**  \file mps.hpp
+ *   \brief This file is used to define the Velocity SI unit Meters Per Second.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Metre_per_second">Meters Per Second</a>
+ * if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

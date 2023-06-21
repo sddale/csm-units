@@ -1,3 +1,11 @@
+/**  \file millimeter.hpp
+ *   \brief This file is used to define the unit Millimeter derived from the
+ * base dimension for Length.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Millimetre">Millimeter</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

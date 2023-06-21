@@ -1,3 +1,11 @@
+/**  \file celsius.hpp
+ *   \brief This file is used to define the unit Celsius derived from the base
+ * dimension for Thermodynamic Temperature.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Celsius">Celsius</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

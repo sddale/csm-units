@@ -1,3 +1,10 @@
+/**  \file sievert.hpp
+ *   \brief This file is used to define the Dose Equivalent SI unit Sievert.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Sievert">Sievert</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

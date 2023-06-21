@@ -1,3 +1,12 @@
+/**  \file sqr_mole.hpp
+ *   \brief This file is used to define the unit Square Mole derived from
+ * the base dimension for Amount of a Substance.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Mole_(unit)">Mole</a> if
+ * needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

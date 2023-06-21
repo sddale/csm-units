@@ -1,3 +1,12 @@
+/**  \file dimension.hpp
+ *   \brief This file is used to define the Magnetic Flux dimension with unit
+ *   base.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Magnetic_flux">Magnetic Flux</a> if
+ * needed.
+ */
+
 #pragma once
 
 #include "../../exponents.hpp"

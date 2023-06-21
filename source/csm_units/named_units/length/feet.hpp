@@ -1,3 +1,11 @@
+/**  \file feet.hpp
+ *   \brief This file is used to define the unit Foot derived from the
+ * base dimension for Length.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Foot_(unit)">Foot</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"

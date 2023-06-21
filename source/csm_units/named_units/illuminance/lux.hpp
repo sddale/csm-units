@@ -1,3 +1,10 @@
+/**  \file lux.hpp
+ *   \brief This file is used to define the Illuminance SI unit Lux.
+ *
+ *   The following wikipedia page can explain <a
+ * href="https://en.wikipedia.org/wiki/Lux">Lux</a> if needed.
+ */
+
 #pragma once
 
 #include "../../unit.hpp"
