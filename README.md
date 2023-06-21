@@ -45,7 +45,8 @@ constexpr void UseIG() {
 
 using namespace csm_units::literals;
 
-constexpr auto IdealGas(csm_units::Kilomole n, csm_units::Liter V, csm_units::Fahrenheit T) -> csm_units::Bar {
+constexpr auto IdealGas(csm_units::Kilomole n, csm_units::Liter V,
+                        csm_units::Fahrenheit T) -> csm_units::Bar {
   const auto R = 8.31446261815324 <<= m3 * Pa / K / mol;
   // Using literals we can build what units the ideal gas constant R is using
   // and assign that to the double.
