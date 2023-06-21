@@ -31,7 +31,7 @@ constexpr auto CHECK_DBL_EQ = [](auto lhs, auto rhs) {
   CHECK_EQ(lhs, doctest::Approx(rhs));
 };
 
-constexpr auto IdealGas = [](Kilomole n, Liter V, Fahrenheit T) -> Bar {
+constexpr auto IdealGas = [](Kilomole n, Liter Volume, Fahrenheit Temp) -> Bar {
   const auto R = 8.31446261815324 <<= m3 * Pa / K / mol;
 
   CHECK_TYPE(
@@ -39,16 +39,16 @@ constexpr auto IdealGas = [](Kilomole n, Liter V, Fahrenheit T) -> Bar {
       csm_units::UnitBase<csm_units::Exponents<2, 1, -2, 0, -1, -1, 0>, double>(
           0.0));
 
-  const Bar P = n * R * T / V;
+  const Bar P = n * R * Temp / Volume;
   return P;
 };
 
 constexpr auto UseIG = []() {
   const Mole n = Mole(2);
-  const Celsius T = Celsius(100.0);
-  const auto V = 10.1_m3;
+  const Celsius Temp = Celsius(100.0);
+  const auto Volume = 10.1_m3;
 
-  const auto pres = IdealGas(n, V, T);
+  const auto pres = IdealGas(n, Volume, Temp);
 
   CHECK_DBL_EQ(pres.data, 0.006143646982);
 };
