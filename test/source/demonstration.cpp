@@ -39,17 +39,6 @@ constexpr auto IdealGas = [](Kilomole n, Liter V, Fahrenheit T) -> Bar {
       csm_units::UnitBase<csm_units::Exponents<2, 1, -2, 0, -1, -1, 0>, double>(
           0.0));
 
-  // Using literals we can build what units the ideal gas constant R is
-  // using and assign that to the double.
-
-  // Conversion between units automatically occurs to ensure that arithmetic
-  // is following the rules set in place by the units. This can be seen
-  // below where R is Cubic Meter, Pascals, Kelvin, and Mole. While the
-  // arguments for the moles of the gas (n), volume, and temperature are in
-  // Kilomole, Liter, and Fahrenheit respectively. As well the answer is
-  // looking for Bar. All of the conversion happens behind the scene to
-  // ensure the answer is correct to Bar.
-
   const Bar P = n * R * T / V;
   return P;
 };
@@ -57,13 +46,9 @@ constexpr auto IdealGas = [](Kilomole n, Liter V, Fahrenheit T) -> Bar {
 constexpr auto UseIG = []() {
   const Mole n = Mole(2);
   const Celsius T = Celsius(100.0);
-  const auto V = 10.1_m3;  // string literal operators
-  // const auto pres = IdealGas(n,T,V); // Does not
-  // compile
+  const auto V = 10.1_m3;
+
   const auto pres = IdealGas(n, V, T);
-  // The same auto converting happens when units are
-  // passed that are the same dimension, but different
-  // unit.
 
   CHECK_DBL_EQ(pres.data, 0.006143646982);
 };
