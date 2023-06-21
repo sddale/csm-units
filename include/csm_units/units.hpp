@@ -38,6 +38,7 @@
 #include <csm_units/volume.hpp>
 
 #include "source/csm_units/exponents.hpp"
+#include "source/csm_units/literal/literal.hpp"
 #include "source/csm_units/unit.hpp"
 #include "source/csm_units/unitbase.hpp"
 

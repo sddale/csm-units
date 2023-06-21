@@ -41,24 +41,45 @@ constexpr void UseIG() {
 
 ### After
 ```cpp
-using Units::Mol;
-using Units::CubicCm;
-using Units::Kelvin;
-using Units::Bar;
+#include <csm_units/units.hpp>
 
-constexpr auto IdealGas(Mol n, CubicCm V, Kelvin T) -> Bar {
-  const auto R = Units::IdealGasConst<Mol, CubicCm, Kelvin, Bar>(); // build R using literals. Use a different R so that we show auto changing
-  // Write a comment about auto changing
+using csm_units::Bar;
+using csm_units::Celsius;
+using csm_units::Fahrenheit;
+using csm_units::Kilomole;
+using csm_units::Liter;
+using csm_units::Mole;
+
+using csm_units::literals::K;
+using csm_units::literals::m3;
+using csm_units::literals::mol;
+using csm_units::literals::Pa;
+
+using namespace csm_units::literals;
+
+constexpr auto IdealGas(Kilomole n, Liter V, Fahrenheit T) -> Bar {
+  const auto R = 8.31446261815324 <<= m3 * Pa / K / mol;
+  // Using literals we can build what units the ideal gas constant R is using
+  // and assign that to the double.
+
+  // Conversion between units automatically occurs to ensure that arithmetic is
+  // following the rules set in place by the units. This can be seen below where
+  // R is Cubic Meter, Pascals, Kelvin, and Mole. While the arguments for the
+  // moles of the gas (n), volume, and temperature are in Kilomole, Liter, and
+  // Fahrenheit respectively. As well the answer is looking for Bar. All of the
+  // conversion happens behind the scene to ensure the answer is correct to Bar.
   const Bar P = n * R * T / V;
   return P;
 }
 
 constexpr void UseIG() {
-  const Mol n = 2;
-  const Kelvin T = 300.0;
-  const auto V = 10.1_cm3; // string literal operators
+  const Mole n = Mole(2);
+  const Celsius T = Celsius(100.0);
+  const auto V = 10.1_m3; // string literal operators
   // const auto pres = IdealGas(n,T,V); // Does not compile
   const auto pres = IdealGas(n,V,T);
+  // The same auto converting happens when units are passed that are the same
+  // dimension, but different unit.
 }
 ```
 
