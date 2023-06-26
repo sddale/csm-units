@@ -26,50 +26,6 @@ TEST_SUITE("UnitBase") {
     REQUIRE(sizeof(test) == sizeof(test.data));
   }
 
-  // TEST_CASE("Literals temp") {
-  //   const auto meterLength = 40.0_m;
-  //   const auto ref = Meter(40.0);
-
-  //   CHECK(ref.data == meterLength.data);
-  //   CHECK(std::is_same_v<decltype(ref), decltype(meterLength)>);
-
-  //   const auto kgMass = 40.0_kg;
-  //   const auto ref2 = Kilograms(40.0);
-
-  //   CHECK(ref2.data == kgMass.data);
-  //   CHECK(std::is_same_v<decltype(ref2), decltype(kgMass)>);
-
-  //   const auto secTime = 40.0_s;
-  //   const auto ref3 = Seconds(40.0);
-
-  //   CHECK(ref3.data == secTime.data);
-  //   CHECK(std::is_same_v<decltype(ref3), decltype(secTime)>);
-
-  //   const auto ampCurrent = 40.0_A;
-  //   const auto ref4 = Ampere(40.0);
-
-  //   CHECK(ref4.data == ampCurrent.data);
-  //   CHECK(std::is_same_v<decltype(ref4), decltype(ampCurrent)>);
-
-  //   const auto tempKel = 40.0_K;
-  //   const auto ref5 = Kelvin(40.0);
-
-  //   CHECK(ref5.data == tempKel.data);
-  //   CHECK(std::is_same_v<decltype(ref5), decltype(tempKel)>);
-
-  //   const auto amtMol = 40.0_mol;
-  //   const auto ref6 = Mole(40.0);
-
-  //   CHECK(ref6.data == amtMol.data);
-  //   CHECK(std::is_same_v<decltype(ref6), decltype(amtMol)>);
-
-  //   const auto lumCd = 40.0_cd;
-  //   const auto ref7 = Candela(40.0);
-
-  //   CHECK(ref7.data == lumCd.data);
-  //   CHECK(std::is_same_v<decltype(ref7), decltype(lumCd)>);
-  // }
-
   TEST_CASE("Objects") {
     SUBCASE("DimLength") {
       const auto test_length_pow1 =
@@ -151,20 +107,6 @@ TEST_SUITE("UnitBase") {
                0.5, 0.0);
     }
 
-    // SUBCASE("UnitBase/Base") {
-    //   test_div(UnitBase<Exponents<3, 2, 4>, double>(20.0), Base<DimLength>,
-    //   double>(4.0), 5.0,
-    //            UnitBase<Exponents<2, 2, 4>, double>(), 0.2,
-    //            UnitBase<Exponents<-2, -2, -4>, double>());
-    // }
-
-    // SUBCASE("Base/Base") {
-    //   test_div(Base<DimLength>, double>(4.0), Base<DimMass>,
-    //   double>(2.0), 2.0,
-    //            UnitBase<Exponents<1, -1, 0>, double>(), 0.5,
-    //            UnitBase<Exponents<-1, 1, 0>, double>());
-    // }
-
     SUBCASE("UnitBase/Double") {
       test_div(UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(40.0), 10.0,
                4.0, UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(), 0.25,
@@ -205,39 +147,6 @@ TEST_SUITE("UnitBase") {
                 0.0);
     }
 
-    // SUBCASE("UnitBase * Base") {
-    //   test_mult(UnitBase<Exponents<3, 2, 4>(20.0),
-    //   Base<DimLength>(4.0), 80.0,
-    //             UnitBase<Exponents<4, 2, 4>());
-
-    //   test_mult(UnitBase<Exponents<1, 4, 7>(32.0), Base<DimTime>(3.0), 96.0,
-    //             UnitBase<Exponents<1, 4, 8>());
-
-    //   test_mult(UnitBase<Exponents<1, 5, 6>(16.0),
-    //   Base<DimLength>(4.0), 64.0,
-    //             UnitBase<Exponents<2, 5, 6>());
-    // }
-
-    // SUBCASE("Base * Base") {
-    //   test_mult(Base<DimLength>(4.0), Base<DimMass>(2.0), 8.0,
-    //             UnitBase<Exponents<1, 1, 0>());
-
-    //   test_mult(Base<DimLength>(3.0), Base<DimTime>(8.0), 24.0,
-    //             UnitBase<Exponents<1, 0, 1>());
-
-    //   test_mult(Base<DimMass>(5.0), Base<DimTime>(6.0), 30.0,
-    //             UnitBase<Exponents<0, 1, 1>());
-
-    //   test_mult(Base<DimLength>(1.0), Base<DimLength>(7.0), 7.0,
-    //             UnitBase<Exponents<2, 0, 0>());
-
-    //   test_mult(Base<DimMass>(10.0), Base<DimMass>(12.0), 120.0,
-    //             UnitBase<Exponents<0, 2, 0>());
-
-    //   test_mult(Base<DimTime>(9.0), Base<DimTime>(11.0), 99.0,
-    //             UnitBase<Exponents<0, 0, 2>());
-    // }
-
     SUBCASE("UnitBase * Double") {
       test_mult(UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(40.0), 10.0,
                 400.0, UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>());
@@ -263,23 +172,6 @@ TEST_SUITE("UnitBase") {
       test_sum(UnitBase<Exponents<-1, -2, -3, 0, 0, 0, 0>, double>(3.0),
                UnitBase<Exponents<-1, -2, -3, 0, 0, 0, 0>, double>(12.0), 15.0);
     }
-
-    // SUBCASE("UnitBase + Base") {
-    //   test_sum(UnitBase<Exponents<1, 0, 0>(20.0),
-    //   Base<DimLength>(4.0), 24.0);
-
-    //   test_sum(UnitBase<Exponents<0, 0, 1>(32.0), Base<DimTime>(3.0), 35.0);
-
-    //   test_sum(UnitBase<Exponents<0, 1, 0>(16.0), Base<DimMass>(4.0), 20.0);
-    // }
-
-    // SUBCASE("Base + Base") {
-    //   test_sum(Base<DimLength>(4.0), Base<DimLength>(2.0), 6.0);
-
-    //   test_sum(Base<DimTime>(3.0), Base<DimTime>(8.0), 11.0);
-
-    //   test_sum(Base<DimMass>(5.0), Base<DimMass>(6.0), 11.0);
-    // }
   }
 
   TEST_CASE("Substraction") {
@@ -307,18 +199,6 @@ TEST_SUITE("UnitBase") {
                 UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(12.0), 12.0,
                 UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(), -12.0);
     }
-
-    // SUBCASE("UnitBase - Base") {
-    //   test_diff(UnitBase<Exponents<1, 0, 0>(20.0),
-    //   Base<DimLength>(4.0), 16.0,
-    //             UnitBase<Exponents<1, 0, 0>(), -16.0);
-    // }
-
-    // SUBCASE("Base - Base") {
-    //   test_diff(Base<DimMass>(4.0), Base<DimMass>(2.0), 2.0,
-    //   Base<DimMass>(0.0),
-    //             -2.0);
-    // }
   }
 
   // showcase for 2/22 meeting
@@ -394,22 +274,6 @@ TEST_SUITE("UnitBase") {
     //           << std::endl
     //           << std::endl;
   }
-
-  // TEST_CASE("Polished Test Case for Pascals to PSI") {
-  //   const auto pascal = Pascals(2.0);
-
-  //   const auto psi = Psi(Psi::FromBase(Pascals::ToBase(pascal.data)));
-
-  //   CHECK(psi.data == doctest::Approx(0.0093329024));
-  // }
-
-  // TEST_CASE("Polished Test Case for Pascals to PSI") {
-  //   const auto psi = Psi(2.0);
-
-  //   const auto pascals = Pascals(Pascals::FromBase(Psi::ToBase(psi.data)));
-
-  //   CHECK(pascals.data == doctest::Approx(428.5912157));
-  // }
 }
 // NOLINTEND(modernize-use-trailing-return-type)
 }  // namespace csm_units::test

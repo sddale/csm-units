@@ -34,6 +34,8 @@ class Literal {
   }
 };
 
+// NOLINTBEGIN(readability-identifier-length)
+
 constexpr auto Gy = Literal<Exponents<2, 0, -2, 0, 0, 0, 0>>();
 constexpr auto Bq = Literal<Exponents<0, 0, -1, 0, 0, 0, 0>>();
 constexpr auto mol = Literal<Exponents<0, 0, 0, 0, 0, 1, 0>>();
@@ -68,12 +70,14 @@ constexpr auto K = Literal<Exponents<0, 0, 0, 0, 1, 0, 0>>();
 constexpr auto s = Literal<Exponents<0, 0, 1, 0, 0, 0, 0>>();
 constexpr auto m3 = Literal<Exponents<3, 0, 0, 0, 0, 0, 0>>();
 
+// NOLINTEND(readability-identifier-length)
+
 constexpr auto mps = m / s;
 constexpr auto mps2 = m / s / s;
 
 template <Literal L>
-constexpr auto FromSymbols(double in) {
-  return in <<= L;
+constexpr auto FromSymbols(double input_data) {
+  return input_data <<= L;
 }
 
 }  // namespace csm_units::literals
