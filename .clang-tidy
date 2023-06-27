@@ -2,6 +2,7 @@
 # -readability-magic-numbers: Math coeffs
 # -misc-non-private-member-variables-in-classes: Waiting on refactor
 # -readability-function-cognitive-complexity: Unfairly punishes functional programming
+# -readability-identifier-length: Unit abbreviations as used in literals are short and set this check off
 Checks:
     -*,
     bugprone-*,
@@ -13,3 +14,4 @@ Checks:
     -readability-magic-numbers,
     -misc-non-private-member-variables-in-classes,
     -readability-function-cognitive-complexity
+    -readability-identifier-length
