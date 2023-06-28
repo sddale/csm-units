@@ -26,7 +26,6 @@ CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0") # To make target
 # ---- Create library ----
 add_library(${PROJECT_NAME} INTERFACE)
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 20)
-option(CSMUNITS_BUILD_TESTS "Set to ON to build tests" OFF)
 
 # Enforce standards conformance on MSVC
 target_compile_options(
@@ -88,9 +87,6 @@ else()
   )
 endif()
 
-if(CSMUNITS_BUILD_TESTS)
-  enable_testing()
-  include(${doctest_SOURCE_DIR}/scripts/cmake/doctest.cmake)
-  doctest_discover_tests(${PROJECT_NAME}_test)
-  # add_subdirectory(test)
-endif()
+enable_testing()
+include(${doctest_SOURCE_DIR}/scripts/cmake/doctest.cmake)
+doctest_discover_tests(${PROJECT_NAME}_test)
