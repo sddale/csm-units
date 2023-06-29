@@ -19,7 +19,7 @@ include(../cmake/tools.cmake)
 include(../cmake/CPM.cmake)
 CPMAddPackage("gh:onqtam/doctest@2.4.9")
 CPMAddPackage("gh:TheLartians/Format.cmake@1.7.3")
-CPMAddPackage("gh:sddale/csm-units@1.1.0")
+CPMAddPackage(NAME CSMUnits SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
 
 # ---- Create binary ----
 
