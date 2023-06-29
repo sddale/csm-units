@@ -2,4 +2,4 @@
 
 #include <doctest/doctest.h>
 
-namespace csm_units::test {}  // namespace csm_units::test
+// namespace csm_units::test {}  // namespace csm_units::test

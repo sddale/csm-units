@@ -1,5 +1,5 @@
 
-#include "source/csm_units/unit.hpp"
+// #include "source/csm_units/unit.hpp"
 
 #include <doctest/doctest.h>
 
@@ -9,8 +9,6 @@
 #include "source/csm_units/exponents.hpp"
 #include "source/csm_units/literal/literal.hpp"
 #include "source/csm_units/unitcast.hpp"
-
-namespace csm_units::test {
 
 // NOLINTBEGIN(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
 
@@ -187,6 +185,8 @@ constexpr auto test_div =
     };
 
 TEST_SUITE("Unit") {
+  using namespace csm_units;
+  using namespace csm_units::literals;
   TEST_CASE("Size") {
     const auto test = Kilogram(14.0);
     REQUIRE(sizeof(test) == sizeof(test.data));
@@ -753,5 +753,3 @@ TEST_SUITE("Unit") {
 }
 
 // NOLINTEND(modernize-use-trailing-return-type,misc-use-anonymous-namespace)
-
-}  // namespace csm_units::test

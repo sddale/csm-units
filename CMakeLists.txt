@@ -18,10 +18,12 @@ endif()
 # ---- Add dependencies via CPM ----
 # See https://github.com/TheLartians/CPM.cmake for more info
 include(cmake/CPM.cmake)
-CPMAddPackage("gh:onqtam/doctest@2.4.9")
 CPMAddPackage("gh:TheLartians/Format.cmake@1.7.3")
 CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0") # To make target
                                                            # installable
+
+# # Define project options option(CSMUNITS_BUILD_TESTS "Set to ON to build
+# tests" OFF) set(BUILD_TESTING OFF) set(DOCTEST_CONFIG_DISABLE OFF)
 
 # ---- Create library ----
 add_library(${PROJECT_NAME} INTERFACE)
@@ -57,36 +59,4 @@ packageProject(
   COMPATIBILITY SameMajorVersion
 )
 
-# ---- Test Target ----
-# Find test files
-file(GLOB_RECURSE test_sources CONFIGURE_DEPENDS
-     "${CMAKE_CURRENT_SOURCE_DIR}/test/source/*.cpp"
-)
-
-# Test Executable
-add_executable(${PROJECT_NAME}_test ${test_sources})
-
-target_link_libraries(${PROJECT_NAME}_test PRIVATE doctest::doctest)
-
-target_include_directories(${PROJECT_NAME}_test PRIVATE "test" "include" ".")
-# target_include_directories(${PROJECT_NAME}_test PRIVATE "test" "include"
-# ${CMAKE_CURRENT_LIST_DIR})
-
-set_property(
-  TARGET ${PROJECT_NAME}_test # PROPERTY CMAKE_BUILD_TYPE Debug
-  PROPERTY CMAKE_EXPORT_COMPILE_COMMANDS ON
-)
-
-# Compiler Properties for testing
-target_compile_features(${PROJECT_NAME}_test PRIVATE cxx_std_20)
-if(MSVC)
-  target_compile_options(${PROJECT_NAME}_test PRIVATE /G /W4 /WX)
-else()
-  target_compile_options(
-    ${PROJECT_NAME}_test PRIVATE -g -Wall -Wextra -Wpedantic -Werror
-  )
-endif()
-
 enable_testing()
-include(${doctest_SOURCE_DIR}/scripts/cmake/doctest.cmake)
-doctest_discover_tests(${PROJECT_NAME}_test)

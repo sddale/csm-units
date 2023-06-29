@@ -1,18 +1,17 @@
-#include "source/csm_units/literal/literal.hpp"
+// #include "source/csm_units/literal/literal.hpp"
 
 #include <doctest/doctest.h>
 
 #include <csm_units/units.hpp>
 #include <type_traits>
 
-namespace csm_units::test {
-
 // NOLINTBEGIN(modernize-use-trailing-return-type)
 
 TEST_SUITE("test suite") {
+  using namespace csm_units;
   TEST_CASE("test case") {
-    using literals::m;
-    using literals::s;
+    using csm_units::literals::m;
+    using csm_units::literals::s;
 
     SUBCASE("Seconds") {
       const auto test = 1.0 <<= s;
@@ -72,5 +71,3 @@ TEST_SUITE("test suite") {
 }
 
 // NOLINTEND(modernize-use-trailing-return-type)
-
-}  // namespace csm_units::test

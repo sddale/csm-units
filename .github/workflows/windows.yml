@@ -2,15 +2,17 @@ name: Windows
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - master
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - master
+      - main
 
 env:
   CTEST_OUTPUT_ON_FAILURE: 1
   CPM_SOURCE_CACHE: ${{ github.workspace }}/cpm_modules
-  BUILD_TYPE: Debug
-  EXECUTABLE: CSMUnits_test
 
 jobs:
   build:
@@ -19,17 +21,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: "**/cpm_modules"
           key: ${{ github.workflow }}-cpm-modules-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
 
       - name: configure
-        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+        run: cmake -Stest -Bbuild
 
       - name: build
-        run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -t ${{env.EXECUTABLE}}
+        run: cmake --build build --config Debug -j4
 
       - name: test
-        working-directory: ${{github.workspace}}/build
-        run: ctest -C ${{env.BUILD_TYPE}}
+        run: |
+          cd build
+          ctest --build-config Debug

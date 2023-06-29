@@ -3,9 +3,9 @@
 #include <csm_units/units.hpp>
 #include <cstdint>
 
-namespace csm_units::test {
-
 // velocity = m/s
+using csm_units::Exponents;
+using csm_units::UnitBase;
 using MeterPerSecond = UnitBase<Exponents<1, 0, -1, 0, 0, 0, 0>, double>;
 using Meter = UnitBase<Exponents<1, 0, 0, 0, 0, 0, 0>, double>;
 using Kilograms = UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>;
@@ -276,4 +276,3 @@ TEST_SUITE("UnitBase") {
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type)
-}  // namespace csm_units::test
