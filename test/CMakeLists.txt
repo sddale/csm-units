@@ -11,6 +11,9 @@ if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
   )
 endif()
 
+# Import tools
+include(../cmake/tools.cmake)
+
 # ---- Add dependencies via CPM ----
 # See https://github.com/TheLartians/CPM.cmake for more info
 include(../cmake/CPM.cmake)
