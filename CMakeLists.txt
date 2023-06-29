@@ -58,5 +58,3 @@ packageProject(
                                                # "${VERSION_HEADER_LOCATION}"
   COMPATIBILITY SameMajorVersion
 )
-
-enable_testing()
