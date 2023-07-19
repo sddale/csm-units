@@ -15,29 +15,21 @@
 
 namespace csm_units {
 
-using SqrRootJoulesPerSqrRootCubicMeter =
+using SqrtJoulesPerSqrtCubicMeter =
     Unit<SolubilityParameter, "J^(1/2)/m^(3/2)", double>;
 
 // Unit Cast for base m3
 template <>
 [[nodiscard]] constexpr auto UnitCast(SolubilityParameter &&input) noexcept
-    -> SqrRootJoulesPerSqrRootCubicMeter {
-  return SqrRootJoulesPerSqrRootCubicMeter(input.data);
+    -> SqrtJoulesPerSqrtCubicMeter {
+  return SqrtJoulesPerSqrtCubicMeter(input.data);
 }
 
 // Unit Cast for Unit m3
 template <>
 [[nodiscard]] constexpr auto UnitCast(
-    SqrRootJoulesPerSqrRootCubicMeter &&input) noexcept -> SolubilityParameter {
+    SqrtJoulesPerSqrtCubicMeter &&input) noexcept -> SolubilityParameter {
   return SolubilityParameter(input.data);
 }
-
-namespace literals {
-
-constexpr auto operator""_SqrRtJpSqrRtM3(long double data) noexcept {
-  return SqrRootJoulesPerSqrRootCubicMeter(static_cast<double>(data));
-}
-
-}  // namespace literals
 
 }  // namespace csm_units

@@ -31,12 +31,4 @@ template <>
   return SqrSolubilityParameter(input.data / 2.39006E-7);
 }
 
-namespace literals {
-
-constexpr auto operator""_calpcm3(long double data) noexcept {
-  return CalPerCubicCM(static_cast<double>(data));
-}
-
-}  // namespace literals
-
 }  // namespace csm_units
