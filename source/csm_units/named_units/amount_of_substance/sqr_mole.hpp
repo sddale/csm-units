@@ -27,12 +27,4 @@ template <>
   return SqrAmount(input.data);
 }
 
-namespace literals {
-
-constexpr auto operator""_mol2(long double data) noexcept {
-  return SqrMole(static_cast<double>(data));
-}
-
-}  // namespace literals
-
 }  // namespace csm_units
