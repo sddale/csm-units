@@ -29,12 +29,4 @@ template <>
   return MolarMass(input.data);
 }
 
-namespace literals {
-
-constexpr auto operator""_kgpmol(long double data) noexcept {
-  return KilogramsPerMol(static_cast<double>(data));
-}
-
-}  // namespace literals
-
 }  // namespace csm_units
