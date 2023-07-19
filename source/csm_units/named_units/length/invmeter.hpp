@@ -29,12 +29,4 @@ template <>
   return InvLength(input.data);
 }
 
-namespace literals {
-
-constexpr auto operator""_inv_m(long double data) noexcept {
-  return InvMeter(static_cast<double>(data));
-}
-
-}  // namespace literals
-
 }  // namespace csm_units
