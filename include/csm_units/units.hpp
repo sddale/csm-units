@@ -32,6 +32,7 @@
 #include <csm_units/power.hpp>
 #include <csm_units/pressure.hpp>
 #include <csm_units/resistance.hpp>
+#include <csm_units/solubility_parameter.hpp>
 #include <csm_units/temperature.hpp>
 #include <csm_units/time.hpp>
 #include <csm_units/velocity.hpp>
