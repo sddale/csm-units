@@ -28,12 +28,4 @@ template <>
   return MolarMass(input.data / 1000);
 }
 
-namespace literals {
-
-constexpr auto operator""_gpmol(long double data) noexcept {
-  return GramsPerMol(static_cast<double>(data));
-}
-
-}  // namespace literals
-
 }  // namespace csm_units

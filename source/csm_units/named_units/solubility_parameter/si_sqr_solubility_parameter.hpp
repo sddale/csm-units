@@ -31,12 +31,4 @@ template <>
   return SqrSolubilityParameter(input.data);
 }
 
-namespace literals {
-
-constexpr auto operator""_Jpcm3(long double data) noexcept {
-  return JoulesPerCubicMeter(static_cast<double>(data));
-}
-
-}  // namespace literals
-
 }  // namespace csm_units
