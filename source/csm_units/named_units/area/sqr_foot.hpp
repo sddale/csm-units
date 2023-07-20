@@ -1,4 +1,4 @@
-/**  \file sqr_feet.hpp
+/**  \file sqr_foot.hpp
  *   \brief This file is used to define the unit Square Foot derived from the
  * base dimension for Area.
  *

@@ -13,7 +13,7 @@ TEST_SUITE("test suite") {
     using csm_units::literals::m;
     using csm_units::literals::s;
 
-    SUBCASE("Seconds") {
+    SUBCASE("Second") {
       const auto test = 1.0 <<= s;
       CHECK(test.data == doctest::Approx(1.0));
       CHECK(std::is_same_v<std::remove_const_t<decltype(test)>,

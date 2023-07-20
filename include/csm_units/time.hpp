@@ -5,8 +5,8 @@
 #pragma once
 
 #include "source/csm_units/named_units/time/dimension.hpp"
-#include "source/csm_units/named_units/time/hours.hpp"
-#include "source/csm_units/named_units/time/minutes.hpp"
-#include "source/csm_units/named_units/time/seconds.hpp"
+#include "source/csm_units/named_units/time/hour.hpp"
+#include "source/csm_units/named_units/time/minute.hpp"
+#include "source/csm_units/named_units/time/second.hpp"
 
 namespace csm_units {}  // namespace csm_units
