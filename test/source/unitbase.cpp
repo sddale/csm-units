@@ -9,7 +9,7 @@ using csm_units::UnitBase;
 using MeterPerSecond = UnitBase<Exponents<1, 0, -1, 0, 0, 0, 0>, double>;
 using Meter = UnitBase<Exponents<1, 0, 0, 0, 0, 0, 0>, double>;
 using Kilograms = UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>;
-using Seconds = UnitBase<Exponents<0, 0, 1, 0, 0, 0, 0>, double>;
+using Second = UnitBase<Exponents<0, 0, 1, 0, 0, 0, 0>, double>;
 using Ampere = UnitBase<Exponents<0, 0, 0, 1, 0, 0, 0>, double>;
 using Kelvin = UnitBase<Exponents<0, 0, 0, 0, 1, 0, 0>, double>;
 using Mole = UnitBase<Exponents<0, 0, 0, 0, 0, 1, 0>, double>;
@@ -204,9 +204,9 @@ TEST_SUITE("UnitBase") {
   // showcase for 2/22 meeting
   TEST_CASE("Polished Test Case Calculating Velocity") {
     // A race car is traveling at a constant velocity and travels 100 meters in
-    // 10 seconds. What is the race car's velocity?
+    // 10 second. What is the race car's velocity?
     const auto distance = Meter(100.0);
-    const auto time = Seconds(10.0);
+    const auto time = Second(10.0);
 
     // our answer is held here
     const auto velocity = distance / time;
@@ -223,10 +223,10 @@ TEST_SUITE("UnitBase") {
   }
 
   TEST_CASE("Polished Test Case Calculating Acceleration") {
-    // A race car has a 50 m/s change in velocity in 2 seconds. What is the
+    // A race car has a 50 m/s change in velocity in 2 second. What is the
     // acceleration of the race car?
     const auto velocity_delta = MeterPerSecond(50.0);
-    const auto time = Seconds(2.0);
+    const auto time = Second(2.0);
 
     // our answer is held here
     const auto acceleration = velocity_delta / time;

@@ -263,13 +263,13 @@ TEST_SUITE("Unit") {
         SUBCASE("Addition Tests") {
           test_sum(Length(34.7), Length(13.6), Length(), 48.3, 48.3, 48.3);
           test_sum(Length(6.3), Meter(3.5), Length(), 9.8, 9.8, 9.8);
-          test_sum(Length(6.3), CentiMeter(3.5), Length(), 6.335, 6.335, 633.5);
-          test_sum(Length(6.3), MilliMeter(3.5), Length(), 6.3035, 6.3035,
+          test_sum(Length(6.3), Centimeter(3.5), Length(), 6.335, 6.335, 633.5);
+          test_sum(Length(6.3), Millimeter(3.5), Length(), 6.3035, 6.3035,
                    6303.5);
-          test_sum(Length(6.3), KiloMeter(3.5), Length(), 3506.3, 3506.3,
+          test_sum(Length(6.3), Kilometer(3.5), Length(), 3506.3, 3506.3,
                    3.5063);
           test_sum(Length(6.3), Inch(2.3), Length(), 6.35842, 6.35842, 250.331);
-          test_sum(Length(14.6), Feet(32.5), Length(), 24.506, 24.506,
+          test_sum(Length(14.6), Foot(32.5), Length(), 24.506, 24.506,
                    80.40026);
           test_sum(Length(13.4), Yard(24.7), Length(), 35.98568, 35.98568,
                    39.35442);
@@ -279,7 +279,7 @@ TEST_SUITE("Unit") {
 
         SUBCASE("Subtraction Tests") {
           test_diff(Length(12.3), Length(15.4), Length(), -3.1, -3.1, -3.1);
-          test_diff(Length(45.89), KiloMeter(3.9), Length(), -3854.11, -3854.11,
+          test_diff(Length(45.89), Kilometer(3.9), Length(), -3854.11, -3854.11,
                     -3.85411);
         }
 
@@ -303,7 +303,7 @@ TEST_SUITE("Unit") {
           test_div(Length(25.5), Length(5.5), 0.0, 0.0, 0.0, 0.0, 4.636363636,
                    4.636363636, 0.2156862745, 0.2156862745);
           // Base / Unit - result double
-          test_div(Length(48.6), CentiMeter(1234.6), 0.0, 0.0, 0.0, 0.0,
+          test_div(Length(48.6), Centimeter(1234.6), 0.0, 0.0, 0.0, 0.0,
                    3.936497651, 3.936497651, 0.2540329218, 0.2540329218);
           // Base / Different Unit
           test_div(Length(23.5), Gram(3.2),
@@ -313,7 +313,7 @@ TEST_SUITE("Unit") {
                    UnitBase<Exponents<-1, 1, 0, 0, 0, 0, 0>, double>(), 7343.75,
                    7343.75, 0.0001361702128, 0.0001361702128);
           // Base / double
-          test_div(Length(45.7), 6.9, Length(), KiloMeter(), InvLength(),
+          test_div(Length(45.7), 6.9, Length(), Kilometer(), InvLength(),
                    InvMeter(), 6.623188406, 0.0066231884, 0.1509846827,
                    0.1509846827);
         }
@@ -322,13 +322,13 @@ TEST_SUITE("Unit") {
       SUBCASE("Unit Meter Tests") {
         SUBCASE("Addition Tests") {
           test_sum(Meter(23.8), Meter(13.2), Length(), 37.0, 37.0, 37.0);
-          test_sum(Meter(6.3), CentiMeter(3.5), Length(), 6.335, 6.335, 633.5);
-          test_sum(Meter(6.3), MilliMeter(3.5), Length(), 6.3035, 6.3035,
+          test_sum(Meter(6.3), Centimeter(3.5), Length(), 6.335, 6.335, 633.5);
+          test_sum(Meter(6.3), Millimeter(3.5), Length(), 6.3035, 6.3035,
                    6303.5);
-          test_sum(Meter(6.3), KiloMeter(3.5), Length(), 3506.3, 3506.3,
+          test_sum(Meter(6.3), Kilometer(3.5), Length(), 3506.3, 3506.3,
                    3.5063);
           test_sum(Meter(6.3), Inch(2.3), Length(), 6.35842, 6.35842, 250.331);
-          test_sum(Meter(14.6), Feet(32.5), Length(), 24.506, 24.506, 80.40026);
+          test_sum(Meter(14.6), Foot(32.5), Length(), 24.506, 24.506, 80.40026);
           test_sum(Meter(13.4), Yard(24.7), Length(), 35.98568, 35.98568,
                    39.35442);
           test_sum(Meter(23.8), Miles(45.9), Length(), 73892.69, 73892.69,
@@ -338,7 +338,7 @@ TEST_SUITE("Unit") {
         SUBCASE("Subtraction Tests") {
           test_diff(Meter(12.3), Meter(15.4), Length(), -3.1, -3.1, -3.1);
           test_diff(Meter(45.89), Length(3.9), Length(), 41.99, 41.99, 41.99);
-          test_diff(Meter(12.3), Feet(15.4), Length(), 7.60608, 7.60608,
+          test_diff(Meter(12.3), Foot(15.4), Length(), 7.60608, 7.60608,
                     24.95433071);
         }
 
@@ -356,7 +356,7 @@ TEST_SUITE("Unit") {
 
         SUBCASE("Division Tests") {
           // Unit / Unit - result double
-          test_div(Meter(34.6), MilliMeter(3.6), 0.0, 0.0, 0.0, 0.0,
+          test_div(Meter(34.6), Millimeter(3.6), 0.0, 0.0, 0.0, 0.0,
                    9611.111111, 9611.111111, 0.0001040462428, 0.0001040462428);
           // Unit / Different Unit
           // Unit / double
@@ -364,63 +364,63 @@ TEST_SUITE("Unit") {
       }
 
       SUBCASE("Unit cm Tests") {
-        test_sum(CentiMeter(23.8), CentiMeter(13.2), Length(), 0.37, 37.0,
+        test_sum(Centimeter(23.8), Centimeter(13.2), Length(), 0.37, 37.0,
                  37.0);
-        test_sum(CentiMeter(6.3), MilliMeter(3.5), Length(), 0.0665, 6.65,
+        test_sum(Centimeter(6.3), Millimeter(3.5), Length(), 0.0665, 6.65,
                  66.5);
-        test_sum(CentiMeter(6.3), KiloMeter(3.5), Length(), 3500.063, 350006.3,
+        test_sum(Centimeter(6.3), Kilometer(3.5), Length(), 3500.063, 350006.3,
                  3.500063);
-        test_sum(CentiMeter(6.3), Inch(2.3), Length(), 0.1214202769,
+        test_sum(Centimeter(6.3), Inch(2.3), Length(), 0.1214202769,
                  12.14202769, 4.7803163);
-        test_sum(CentiMeter(14.6), Feet(32.5), Length(), 10.052, 1005.2,
+        test_sum(Centimeter(14.6), Foot(32.5), Length(), 10.052, 1005.2,
                  32.97900262);
-        test_sum(CentiMeter(13.4), Yard(24.7), Length(), 22.71968, 2271.968,
+        test_sum(Centimeter(13.4), Yard(24.7), Length(), 22.71968, 2271.968,
                  24.846544182);
-        test_sum(CentiMeter(23.8), Miles(45.9), Length(), 73869.128, 7386912.8,
+        test_sum(Centimeter(23.8), Miles(45.9), Length(), 73869.128, 7386912.8,
                  45.9001481349);
       }
 
       SUBCASE("Unit mm Tests") {
-        test_sum(MilliMeter(23.8), MilliMeter(13.2), Length(), 0.037, 37.0,
+        test_sum(Millimeter(23.8), Millimeter(13.2), Length(), 0.037, 37.0,
                  37.0);
-        test_sum(MilliMeter(6.3), KiloMeter(3.5), Length(), 3500.0035,
+        test_sum(Millimeter(6.3), Kilometer(3.5), Length(), 3500.0035,
                  3500003.5, 3.5000035);
-        test_sum(MilliMeter(6.3), Inch(2.3), Length(), 0.06472, 64.72,
+        test_sum(Millimeter(6.3), Inch(2.3), Length(), 0.06472, 64.72,
                  2.5480315);
-        test_sum(MilliMeter(14.6), Feet(32.5), Length(), 9.9206, 9920.6,
+        test_sum(Millimeter(14.6), Foot(32.5), Length(), 9.9206, 9920.6,
                  32.5479003);
-        test_sum(MilliMeter(13.4), Yard(24.7), Length(), 22.59908, 22599.08,
+        test_sum(Millimeter(13.4), Yard(24.7), Length(), 22.59908, 22599.08,
                  24.714654418);
-        test_sum(MilliMeter(23.8), Miles(45.9), Length(), 73869.0238,
+        test_sum(Millimeter(23.8), Miles(45.9), Length(), 73869.0238,
                  73869023.8, 45.90008338801);
       }
 
       SUBCASE("Unit km Tests") {
-        test_sum(KiloMeter(23.8), KiloMeter(13.2), Length(), 37000.0, 37.0,
+        test_sum(Kilometer(23.8), Kilometer(13.2), Length(), 37000.0, 37.0,
                  37.0);
-        test_sum(KiloMeter(6.3), Inch(2.3), Length(), 6300.05842, 6.30005842,
+        test_sum(Kilometer(6.3), Inch(2.3), Length(), 6300.05842, 6.30005842,
                  248033.796063);
-        test_sum(KiloMeter(14.6), Feet(32.5), Length(), 14609.906, 14.609906,
+        test_sum(Kilometer(14.6), Foot(32.5), Length(), 14609.906, 14.609906,
                  47932.7624672);
-        test_sum(KiloMeter(13.4), Yard(24.7), Length(), 13422.58568,
+        test_sum(Kilometer(13.4), Yard(24.7), Length(), 13422.58568,
                  13.42258568, 14679.118197725);
-        test_sum(KiloMeter(23.8), Miles(45.9), Length(), 97668.89, 97.66889,
+        test_sum(Kilometer(23.8), Miles(45.9), Length(), 97668.89, 97.66889,
                  60.688634624);
       }
 
       SUBCASE("Unit Inch Tests") {
         test_sum(Inch(23.8), Inch(13.2), Length(), 0.9398, 37.0, 37.0);
-        test_sum(Inch(14.6), Feet(32.5), Length(), 10.27684, 404.6,
+        test_sum(Inch(14.6), Foot(32.5), Length(), 10.27684, 404.6,
                  33.71666667);
         test_sum(Inch(13.4), Yard(24.7), Length(), 22.92604, 902.6, 25.072222);
         test_sum(Inch(23.8), Miles(45.9), Length(), 73869.49412, 2908247.8,
                  45.9003756313);
       }
 
-      SUBCASE("Unit Feet Tests") {
-        test_sum(Feet(23.8), Feet(13.2), Length(), 11.2776, 37.0, 37.0);
-        test_sum(Feet(13.4), Yard(24.7), Length(), 26.67, 87.5, 29.16667);
-        test_sum(Feet(23.8), Miles(45.9), Length(), 73876.14384, 242375.8,
+      SUBCASE("Unit Foot Tests") {
+        test_sum(Foot(23.8), Foot(13.2), Length(), 11.2776, 37.0, 37.0);
+        test_sum(Foot(13.4), Yard(24.7), Length(), 26.67, 87.5, 29.16667);
+        test_sum(Foot(23.8), Miles(45.9), Length(), 73876.14384, 242375.8,
                  45.904507576);
       }
 
@@ -446,9 +446,9 @@ TEST_SUITE("Unit") {
     SUBCASE("Time Tests") {
       // Testing to make sure casts in time work. The above length tests test to
       // make sure arthmetic works in unit and unit base. The below tests just
-      // make sure we can convert from and to seconds, minutes, and hours.
+      // make sure we can convert from and to second, minute, and hour.
       test_sum(Time(32.4), Second(2.7), Time(), 35.1, 35.1, 35.1);
-      test_sum(Hours(123.5), Minutes(24.5), Time(), 446070.0, 123.9083333,
+      test_sum(Hour(123.5), Minute(24.5), Time(), 446070.0, 123.9083333,
                7434.5);
     }
     SUBCASE("Electric Current Tests") {

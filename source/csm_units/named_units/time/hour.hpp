@@ -1,9 +1,9 @@
-/**  \file hours.hpp
- *   \brief This file is used to define the unit Hours derived from the base
+/**  \file hour.hpp
+ *   \brief This file is used to define the unit Hour derived from the base
  * dimension for Time.
  *
  *   The following wikipedia page can explain <a
- * href="https://en.wikipedia.org/wiki/Hour">Hours</a> if needed.
+ * href="https://en.wikipedia.org/wiki/Hour">Hour</a> if needed.
  */
 
 #pragma once
@@ -14,24 +14,24 @@
 
 namespace csm_units {
 
-using Hours = Unit<Time, "hour", double>;
+using Hour = Unit<Time, "hour", double>;
 
 // Unit Cast for Unit min to Base s
 template <>
-[[nodiscard]] constexpr auto UnitCast(Hours &&input) noexcept -> Time {
+[[nodiscard]] constexpr auto UnitCast(Hour &&input) noexcept -> Time {
   return Time(input.data * 3600);
 }
 
 // Unit Cast for Base s to Unit min
 template <>
-[[nodiscard]] constexpr auto UnitCast(Time &&input) noexcept -> Hours {
-  return Hours(input.data / 3600);
+[[nodiscard]] constexpr auto UnitCast(Time &&input) noexcept -> Hour {
+  return Hour(input.data / 3600);
 }
 
 namespace literals {
 
 constexpr auto operator""_hour(long double data) noexcept {
-  return Hours(static_cast<double>(data));
+  return Hour(static_cast<double>(data));
 }
 
 }  // namespace literals

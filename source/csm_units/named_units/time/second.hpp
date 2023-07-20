@@ -1,8 +1,8 @@
-/**  \file seconds.hpp
- *   \brief This file is used to define the Time SI unit Seconds.
+/**  \file second.hpp
+ *   \brief This file is used to define the Time SI unit Second.
  *
  *   The following wikipedia page can explain <a
- * href="https://en.wikipedia.org/wiki/Second">Seconds</a> if needed.
+ * href="https://en.wikipedia.org/wiki/Second">Second</a> if needed.
  */
 
 #pragma once

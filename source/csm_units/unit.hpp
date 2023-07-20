@@ -10,6 +10,7 @@
 #pragma once
 
 #include <csm_units/concepts.hpp>
+#include <ostream>
 
 #include "unitbase.hpp"
 #include "unitcast.hpp"
@@ -34,18 +35,24 @@ class Unit {
 
   Data data;
 
-  constexpr auto operator+=(const Base &rhs) noexcept -> auto & {
+  constexpr auto operator+=(const Base& rhs) noexcept -> auto& {
     auto temp = UnitCast<Base>(std::forward<Unit>(*this));
     temp = temp + rhs;
     data = UnitCast<Unit>(std::forward<Base>(temp)).data;
     return *this;
   }
 
-  constexpr auto operator-=(const Base &rhs) noexcept -> auto & {
+  constexpr auto operator-=(const Base& rhs) noexcept -> auto& {
     auto temp = UnitCast<Base>(std::forward<Unit>(*this));
     temp = temp - rhs;
     data = UnitCast<Unit>(std::forward<Base>(temp)).data;
     return *this;
+  }
+
+  constexpr friend auto operator<<(std::ostream& out, Unit unit)
+      -> std::ostream& {
+    out << unit.data << ' ' << Unit_Name.value;
+    return out;
   }
 };
 

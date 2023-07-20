@@ -14,26 +14,26 @@
 
 namespace csm_units {
 
-using CentiMeter = Unit<Length, "cm", double>;
+using Centimeter = Unit<Length, "cm", double>;
 
 // Unit cast for Base m to Unit cm
 // Conversion Equation: 1 m = 100 cm
 template <>
-[[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> CentiMeter {
-  return CentiMeter(input.data * 100);
+[[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> Centimeter {
+  return Centimeter(input.data * 100);
 }
 
 // Unit Cast for Unit cm to Base m
 // Conversion Equation: 1 m = 100 cm
 template <>
-[[nodiscard]] constexpr auto UnitCast(CentiMeter &&input) noexcept -> Length {
+[[nodiscard]] constexpr auto UnitCast(Centimeter &&input) noexcept -> Length {
   return Length(input.data / 100);
 }
 
 namespace literals {
 
 constexpr auto operator""_cm(long double data) noexcept {
-  return CentiMeter(static_cast<double>(data));
+  return Centimeter(static_cast<double>(data));
 }
 
 }  // namespace literals
