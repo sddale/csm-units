@@ -54,6 +54,11 @@ class Unit {
     out << unit.data << ' ' << Unit_Name.value;
     return out;
   }
+
+  friend constexpr auto operator-(Unit lhs) noexcept {
+    lhs.data = -1 * lhs.data;
+    return lhs;
+  }
 };
 
 }  // namespace csm_units

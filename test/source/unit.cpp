@@ -749,6 +749,12 @@ TEST_SUITE("Unit") {
       CHECK_DBL_EQ(P2.data, 0.153188859);
     }
   }
+  TEST_CASE("Unary negative") {
+    CHECK_EQ(-100.0_K, -1 * 100.0_K);
+    CHECK_EQ(std::array<csm_units::Kelvin, 1>{-38.44_degC}[0].data,
+             doctest::Approx(-1 * 38.44 + 273.15));
+    // CHECK_EQ(-38.44_degC, doctest::Approx(-1 * 38.44 + 273.15))
+  }
   // NOLINTEND(readability-identifier-length)
 }
 
