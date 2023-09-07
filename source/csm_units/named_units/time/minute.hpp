@@ -34,6 +34,10 @@ constexpr auto operator""_min(long double data) noexcept {
   return Minute(static_cast<double>(data));
 }
 
+constexpr auto operator""_min(unsigned long long data) noexcept {
+  return Minute(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

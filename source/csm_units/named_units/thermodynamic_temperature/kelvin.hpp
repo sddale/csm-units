@@ -35,6 +35,10 @@ constexpr auto operator""_K(long double data) noexcept {
   return Kelvin(static_cast<double>(data));
 }
 
+constexpr auto operator""_K(unsigned long long data) noexcept {
+  return Kelvin(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

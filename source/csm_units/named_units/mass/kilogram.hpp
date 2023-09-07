@@ -36,6 +36,10 @@ constexpr auto operator""_kg(long double data) noexcept {
   return Kilogram(static_cast<double>(data));
 }
 
+constexpr auto operator""_kg(unsigned long long data) noexcept {
+  return Kilogram(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

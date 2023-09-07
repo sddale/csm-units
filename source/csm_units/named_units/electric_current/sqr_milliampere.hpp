@@ -35,6 +35,10 @@ constexpr auto operator""_mA2(long double data) noexcept {
   return SqrMilliamp(static_cast<double>(data));
 }
 
+constexpr auto operator""_mA2(unsigned long long data) noexcept {
+  return SqrMilliamp(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

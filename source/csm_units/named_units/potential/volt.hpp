@@ -31,6 +31,10 @@ constexpr auto operator""_V(long double data) noexcept {
   return Volt(static_cast<double>(data));
 }
 
+constexpr auto operator""_V(unsigned long long data) noexcept {
+  return Volt(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

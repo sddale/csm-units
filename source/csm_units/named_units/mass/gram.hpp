@@ -34,6 +34,10 @@ constexpr auto operator""_g(long double data) noexcept {
   return Gram(static_cast<double>(data));
 }
 
+constexpr auto operator""_g(unsigned long long data) noexcept {
+  return Gram(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

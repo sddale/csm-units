@@ -37,6 +37,10 @@ constexpr auto operator""_mA(long double data) noexcept {
   return Milliampere(static_cast<double>(data));
 }
 
+constexpr auto operator""_mA(unsigned long long data) noexcept {
+  return Milliampere(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

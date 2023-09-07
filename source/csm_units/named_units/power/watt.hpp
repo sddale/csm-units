@@ -31,6 +31,10 @@ constexpr auto operator""_W(long double data) noexcept {
   return Watt(static_cast<double>(data));
 }
 
+constexpr auto operator""_W(unsigned long long data) noexcept {
+  return Watt(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

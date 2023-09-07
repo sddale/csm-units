@@ -36,6 +36,10 @@ constexpr auto operator""_ft(long double data) noexcept {
   return Foot(static_cast<double>(data));
 }
 
+constexpr auto operator""_ft(unsigned long long data) noexcept {
+  return Foot(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

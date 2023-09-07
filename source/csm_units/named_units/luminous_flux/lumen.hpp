@@ -32,6 +32,10 @@ constexpr auto operator""_lm(long double data) noexcept {
   return Lumen(static_cast<double>(data));
 }
 
+constexpr auto operator""_lm(unsigned long long data) noexcept {
+  return Lumen(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

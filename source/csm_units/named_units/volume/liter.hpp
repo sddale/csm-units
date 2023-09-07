@@ -34,6 +34,10 @@ constexpr auto operator""_L(long double data) noexcept {
   return Liter(static_cast<double>(data));
 }
 
+constexpr auto operator""_L(unsigned long long data) noexcept {
+  return Liter(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

@@ -36,6 +36,10 @@ constexpr auto operator""_yd(long double data) noexcept {
   return Yard(static_cast<double>(data));
 }
 
+constexpr auto operator""_yd(unsigned long long data) noexcept {
+  return Yard(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

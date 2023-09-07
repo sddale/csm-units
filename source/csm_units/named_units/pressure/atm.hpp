@@ -37,6 +37,10 @@ constexpr auto operator""_Atm(long double data) noexcept {
   return Atm(static_cast<double>(data));
 }
 
+constexpr auto operator""_Atm(unsigned long long data) noexcept {
+  return Atm(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

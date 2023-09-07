@@ -31,6 +31,10 @@ constexpr auto operator""_ohm(long double data) noexcept {
   return Ohm(static_cast<double>(data));
 }
 
+constexpr auto operator""_ohm(unsigned long long data) noexcept {
+  return Ohm(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

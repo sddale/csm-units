@@ -34,6 +34,10 @@ constexpr auto operator""_hour(long double data) noexcept {
   return Hour(static_cast<double>(data));
 }
 
+constexpr auto operator""_hour(unsigned long long data) noexcept {
+  return Hour(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

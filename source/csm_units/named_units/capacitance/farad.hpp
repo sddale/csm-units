@@ -33,6 +33,10 @@ constexpr auto operator""_F(long double data) noexcept {
   return Farad(static_cast<double>(data));
 }
 
+constexpr auto operator""_F(unsigned long long data) noexcept {
+  return Farad(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units
