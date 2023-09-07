@@ -35,6 +35,11 @@ class Unit {
 
   Data data;
 
+  constexpr auto operator=(Arithmetic auto rhs) noexcept {
+    this->data = rhs;
+    return *this;
+  }
+
   constexpr auto operator+=(const Base& rhs) noexcept -> auto& {
     auto temp = UnitCast<Base>(std::forward<Unit>(*this));
     temp = temp + rhs;
