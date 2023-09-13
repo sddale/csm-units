@@ -33,6 +33,10 @@ constexpr auto operator""_mol2(long double data) noexcept {
   return SqrMole(static_cast<double>(data));
 }
 
+constexpr auto operator""_mol2(unsigned long long data) noexcept {
+  return SqrMole(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

@@ -34,6 +34,10 @@ constexpr auto operator""_m2(long double data) noexcept {
   return SqMeter(static_cast<double>(data));
 }
 
+constexpr auto operator""_m2(unsigned long long data) noexcept {
+  return SqMeter(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

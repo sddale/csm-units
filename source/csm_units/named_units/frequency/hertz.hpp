@@ -33,6 +33,10 @@ constexpr auto operator""_Hz(long double data) noexcept {
   return Hertz(static_cast<double>(data));
 }
 
+constexpr auto operator""_Hz(unsigned long long data) noexcept {
+  return Hertz(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

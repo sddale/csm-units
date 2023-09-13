@@ -34,6 +34,10 @@ constexpr auto operator""_degC(long double data) noexcept {
   return Celsius(static_cast<double>(data));
 }
 
+constexpr auto operator""_degC(unsigned long long data) noexcept {
+  return Celsius(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

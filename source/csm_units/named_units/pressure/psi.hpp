@@ -36,6 +36,10 @@ constexpr auto operator""_psi(long double data) noexcept {
   return Psi(static_cast<double>(data));
 }
 
+constexpr auto operator""_psi(unsigned long long data) noexcept {
+  return Psi(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

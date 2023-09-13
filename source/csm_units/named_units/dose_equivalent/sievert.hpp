@@ -33,6 +33,10 @@ constexpr auto operator""_Sv(long double data) noexcept {
   return Sievert(static_cast<double>(data));
 }
 
+constexpr auto operator""_Sv(unsigned long long data) noexcept {
+  return Sievert(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

@@ -33,6 +33,10 @@ constexpr auto operator""_H(long double data) noexcept {
   return Henry(static_cast<double>(data));
 }
 
+constexpr auto operator""_H(unsigned long long data) noexcept {
+  return Henry(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

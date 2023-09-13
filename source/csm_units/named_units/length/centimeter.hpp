@@ -36,6 +36,10 @@ constexpr auto operator""_cm(long double data) noexcept {
   return Centimeter(static_cast<double>(data));
 }
 
+constexpr auto operator""_cm(unsigned long long data) noexcept {
+  return Centimeter(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

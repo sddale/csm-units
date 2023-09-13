@@ -34,6 +34,10 @@ constexpr auto operator""_Bq(long double data) noexcept {
   return Becquerel(static_cast<double>(data));
 }
 
+constexpr auto operator""_Bq(unsigned long long data) noexcept {
+  return Becquerel(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

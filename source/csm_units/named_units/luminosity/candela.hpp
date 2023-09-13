@@ -34,6 +34,10 @@ constexpr auto operator""_cd(long double data) noexcept {
   return Candela(static_cast<double>(data));
 }
 
+constexpr auto operator""_cd(unsigned long long data) noexcept {
+  return Candela(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

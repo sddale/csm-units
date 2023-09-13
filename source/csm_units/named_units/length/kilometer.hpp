@@ -36,6 +36,10 @@ constexpr auto operator""_km(long double data) noexcept {
   return Kilometer(static_cast<double>(data));
 }
 
+constexpr auto operator""_km(unsigned long long data) noexcept {
+  return Kilometer(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

@@ -35,6 +35,10 @@ constexpr auto operator""_C(long double data) noexcept {
   return Coulomb(static_cast<double>(data));
 }
 
+constexpr auto operator""_C(unsigned long long data) noexcept {
+  return Coulomb(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

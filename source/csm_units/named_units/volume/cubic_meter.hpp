@@ -33,6 +33,10 @@ constexpr auto operator""_m3(long double data) noexcept {
   return CubeMeter(static_cast<double>(data));
 }
 
+constexpr auto operator""_m3(unsigned long long data) noexcept {
+  return CubeMeter(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

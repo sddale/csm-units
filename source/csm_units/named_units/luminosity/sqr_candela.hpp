@@ -34,6 +34,10 @@ constexpr auto operator""_cd2(long double data) noexcept {
   return SqrCandela(static_cast<double>(data));
 }
 
+constexpr auto operator""_cd2(unsigned long long data) noexcept {
+  return SqrCandela(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

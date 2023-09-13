@@ -36,6 +36,10 @@ constexpr auto operator""_in(long double data) noexcept {
   return Inch(static_cast<double>(data));
 }
 
+constexpr auto operator""_in(unsigned long long data) noexcept {
+  return Inch(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

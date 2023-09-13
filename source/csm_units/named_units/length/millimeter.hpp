@@ -36,6 +36,10 @@ constexpr auto operator""_mm(long double data) noexcept {
   return Millimeter(static_cast<double>(data));
 }
 
+constexpr auto operator""_mm(unsigned long long data) noexcept {
+  return Millimeter(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

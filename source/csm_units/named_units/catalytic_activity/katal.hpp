@@ -35,6 +35,10 @@ constexpr auto operator""_kat(long double data) noexcept {
   return Katal(static_cast<double>(data));
 }
 
+constexpr auto operator""_kat(unsigned long long data) noexcept {
+  return Katal(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

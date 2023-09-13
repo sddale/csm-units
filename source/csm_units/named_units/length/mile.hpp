@@ -36,6 +36,10 @@ constexpr auto operator""_miles(long double data) noexcept {
   return Miles(static_cast<double>(data));
 }
 
+constexpr auto operator""_miles(unsigned long long data) noexcept {
+  return Miles(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units

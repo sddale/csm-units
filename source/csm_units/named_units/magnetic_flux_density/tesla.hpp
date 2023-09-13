@@ -35,6 +35,10 @@ constexpr auto operator""_T(long double data) noexcept {
   return Tesla(static_cast<double>(data));
 }
 
+constexpr auto operator""_T(unsigned long long data) noexcept {
+  return Tesla(static_cast<double>(data));
+}
+
 }  // namespace literals
 
 }  // namespace csm_units
