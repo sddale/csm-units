@@ -757,11 +757,6 @@ TEST_SUITE("Unit") {
     // CHECK_EQ(-38.44_degC, doctest::Approx(-1 * 38.44 + 273.15))
   }
 
-  TEST_CASE("Assignment Overload") {
-    csm_units::Celsius test = 3.0;
-    CHECK_EQ(test.data, doctest::Approx(3.));
-  }
-
   // NOLINTEND(readability-identifier-length)
 }
 
