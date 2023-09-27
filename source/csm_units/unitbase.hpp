@@ -40,14 +40,13 @@ class UnitBase {
   constexpr explicit(false) UnitBase(U convert) noexcept
       : data(UnitCast<UnitBase>(std::forward<U>(convert)).data) {}
 
-  constexpr auto operator<=>(const UnitBase& other) const noexcept
-      -> std::strong_ordering {
+  constexpr auto operator<=>(const UnitBase& other) const noexcept {
     return data <=> other.data;
   }
 
   template <UnitType U>
-  friend constexpr auto operator<=>(const UnitBase& lhs, const U& rhs) noexcept
-      -> bool {
+  friend constexpr auto operator<=>(const UnitBase& lhs,
+                                    const U& rhs) noexcept {
     return lhs <=> UnitBase(rhs);
   }
 
