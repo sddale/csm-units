@@ -110,7 +110,7 @@ class UnitBase {
 
   // double / compound
   friend constexpr auto operator/(Arithmetic auto lhs, UnitBase rhs) noexcept {
-    return (UnitBase<ExponentsFlip<Powers>, decltype(lhs)>(lhs / rhs.data));
+    return (UnitBase<ExponentsFlip<Powers>, Data>(lhs / rhs.data));
   }
 
   // * operator overloads
