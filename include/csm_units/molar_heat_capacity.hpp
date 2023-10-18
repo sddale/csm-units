@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "source/csm_units/named_units/molar_heat_capacity/dimension.hpp
+#include "source/csm_units/named_units/molar_heat_capacity/dimension.hpp"
 #include "source/csm_units/named_units/molar_heat_capacity/joules_per_mole_kelvin.hpp"
 
 namespace csm_units {}  // namespace csm_units
