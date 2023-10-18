@@ -19,7 +19,7 @@
 #include <csm_units/energy.hpp>
 #include <csm_units/force.hpp>
 #include <csm_units/frequency.hpp>
-#include <csm_units/heat_capacity>
+#include <csm_units/heat_capacity.hpp>
 #include <csm_units/illuminance.hpp>
 #include <csm_units/inductance.hpp>
 #include <csm_units/length.hpp>
@@ -28,14 +28,14 @@
 #include <csm_units/magnetic_flux.hpp>
 #include <csm_units/magnetic_flux_density.hpp>
 #include <csm_units/mass.hpp>
-#include <csm_units/molar_heat_capacity>
+#include <csm_units/molar_heat_capacity.hpp>
 #include <csm_units/molar_mass.hpp>
 #include <csm_units/potential.hpp>
 #include <csm_units/power.hpp>
 #include <csm_units/pressure.hpp>
 #include <csm_units/resistance.hpp>
 #include <csm_units/solubility_parameter.hpp>
-#include <csm_units/specific_heat_capacity>
+#include <csm_units/specific_heat_capacity.hpp>
 #include <csm_units/temperature.hpp>
 #include <csm_units/time.hpp>
 #include <csm_units/velocity.hpp>
