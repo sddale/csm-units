@@ -11,6 +11,7 @@
 #include <csm_units/area.hpp>
 #include <csm_units/capacitance.hpp>
 #include <csm_units/catalytic_activity.hpp>
+#include <csm_units/concepts.hpp>
 #include <csm_units/conductance.hpp>
 #include <csm_units/density.hpp>
 #include <csm_units/dose_equivalent.hpp>
