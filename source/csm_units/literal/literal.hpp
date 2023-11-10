@@ -23,13 +23,26 @@ class Literal {
     return Literal<ExponentsAdd<E, E2>>();
   }
 
+  template <ExpType E2, Arithmetic D>
+  friend constexpr auto operator*(UnitBase<E2, D> lhs, Literal /*rhs*/) {
+    return UnitBase<ExponentsAdd<E2, E>, D>(lhs.data);
+  }
+
+  friend constexpr auto operator*(Arithmetic auto lhs, Literal /*rhs*/) {
+    return UnitBase<E, double>(lhs);
+  }
+
   template <ExpType E2>
   constexpr auto operator/(Literal<E2> /*rhs*/) const {
     return Literal<ExponentsSubtract<E, E2>>();
   }
 
-  // Derived factory of sorts
-  friend constexpr auto operator<<=(double lhs, Literal /*rhs*/) {
+  template <ExpType E2, Arithmetic D>
+  friend constexpr auto operator/(UnitBase<E2, D> lhs, Literal /*rhs*/) {
+    return UnitBase<ExponentsSubtract<E2, E>, D>(lhs.data);
+  }
+
+  friend constexpr auto operator/(Arithmetic auto lhs, Literal /*rhs*/) {
     return UnitBase<E, double>(lhs);
   }
 };
@@ -67,6 +80,9 @@ constexpr auto W = Literal<Exponents<2, 1, -3, 0, 0, 0, 0>>();
 constexpr auto Pa = Literal<Exponents<-1, 1, -2, 0, 0, 0, 0>>();
 constexpr auto ohm = Literal<Exponents<2, 1, -3, -2, 0, 0, 0>>();
 constexpr auto K = Literal<Exponents<0, 0, 0, 0, 1, 0, 0>>();
+constexpr auto K2 = Literal<Exponents<0, 0, 0, 0, 2, 0, 0>>();
+constexpr auto K3 = Literal<Exponents<0, 0, 0, 0, 3, 0, 0>>();
+constexpr auto K4 = Literal<Exponents<0, 0, 0, 0, 4, 0, 0>>();
 constexpr auto s = Literal<Exponents<0, 0, 1, 0, 0, 0, 0>>();
 constexpr auto m3 = Literal<Exponents<3, 0, 0, 0, 0, 0, 0>>();
 
