@@ -37,6 +37,16 @@ TEST_SUITE("test suite") {
       }
     }
 
+    SUBCASE("1/Meter") {
+      {
+        const auto test = 1.0 / m;
+        CHECK(test.data == doctest::Approx(1.0));
+        CHECK(
+            std::is_same_v<std::remove_const_t<decltype(test)>,
+                           UnitBase<Exponents<-1, 0, 0, 0, 0, 0, 0>, double>>);
+      }
+    }
+
     SUBCASE("Meter/Second/Second") {
       {
         const auto test = 1.0 * literals::mps / s;
