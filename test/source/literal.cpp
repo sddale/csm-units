@@ -14,7 +14,7 @@ TEST_SUITE("test suite") {
     using csm_units::literals::s;
 
     SUBCASE("Second") {
-      const auto test = 1.0 <<= s;
+      const auto test = 1.0 * s;
       CHECK(test.data == doctest::Approx(1.0));
       CHECK(std::is_same_v<std::remove_const_t<decltype(test)>,
                            UnitBase<Exponents<0, 0, 1, 0, 0, 0, 0>, double>>);
@@ -22,14 +22,14 @@ TEST_SUITE("test suite") {
 
     SUBCASE("Meter/Second") {
       {
-        const auto test = 1.0 <<= m / s;
+        const auto test = 1.0 * m / s;
         CHECK(test.data == doctest::Approx(1.0));
         CHECK(
             std::is_same_v<std::remove_const_t<decltype(test)>,
                            UnitBase<Exponents<1, 0, -1, 0, 0, 0, 0>, double>>);
       }
       {
-        const auto test = 1.0 <<= literals::mps;
+        const auto test = 1.0 * literals::mps;
         CHECK(test.data == doctest::Approx(1.0));
         CHECK(
             std::is_same_v<std::remove_const_t<decltype(test)>,
@@ -39,21 +39,21 @@ TEST_SUITE("test suite") {
 
     SUBCASE("Meter/Second/Second") {
       {
-        const auto test = 1.0 <<= literals::mps / s;
+        const auto test = 1.0 * literals::mps / s;
         CHECK(test.data == doctest::Approx(1.0));
         CHECK(
             std::is_same_v<std::remove_const_t<decltype(test)>,
                            UnitBase<Exponents<1, 0, -2, 0, 0, 0, 0>, double>>);
       }
       {
-        const auto test = 1.0 <<= m / (s * s);
+        const auto test = 1.0 * m / (s * s);
         CHECK(test.data == doctest::Approx(1.0));
         CHECK(
             std::is_same_v<std::remove_const_t<decltype(test)>,
                            UnitBase<Exponents<1, 0, -2, 0, 0, 0, 0>, double>>);
       }
       {
-        const auto test = 1.0 <<= m / s / s;
+        const auto test = 1.0 * m / s / s;
         CHECK(test.data == doctest::Approx(1.0));
         CHECK(
             std::is_same_v<std::remove_const_t<decltype(test)>,
@@ -62,7 +62,7 @@ TEST_SUITE("test suite") {
     }
 
     SUBCASE("Second/Meter") {
-      const auto test = 1.0 <<= s / m;
+      const auto test = 1.0 * s / m;
       CHECK(test.data == doctest::Approx(1.0));
       CHECK(std::is_same_v<std::remove_const_t<decltype(test)>,
                            UnitBase<Exponents<-1, 0, 1, 0, 0, 0, 0>, double>>);
