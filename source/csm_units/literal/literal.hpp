@@ -43,7 +43,7 @@ class Literal {
   }
 
   friend constexpr auto operator/(Arithmetic auto lhs, Literal /*rhs*/) {
-    return UnitBase<E, double>(lhs);
+    return UnitBase<ExponentsFlip<E>, double>(lhs);
   }
 };
 
