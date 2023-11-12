@@ -45,6 +45,13 @@ TEST_SUITE("test suite") {
             std::is_same_v<std::remove_const_t<decltype(test)>,
                            UnitBase<Exponents<-1, 0, 0, 0, 0, 0, 0>, double>>);
       }
+      {
+        const auto test = 1.0 / (m * s) * s;
+        CHECK(test.data == doctest::Approx(1.0));
+        CHECK(
+            std::is_same_v<std::remove_const_t<decltype(test)>,
+                           UnitBase<Exponents<-1, 0, 0, 0, 0, 0, 0>, double>>);
+      }
     }
 
     SUBCASE("Meter/Second/Second") {
@@ -64,6 +71,20 @@ TEST_SUITE("test suite") {
       }
       {
         const auto test = 1.0 * m / s / s;
+        CHECK(test.data == doctest::Approx(1.0));
+        CHECK(
+            std::is_same_v<std::remove_const_t<decltype(test)>,
+                           UnitBase<Exponents<1, 0, -2, 0, 0, 0, 0>, double>>);
+      }
+      {
+        const auto test = 1.0 / s * m / s;
+        CHECK(test.data == doctest::Approx(1.0));
+        CHECK(
+            std::is_same_v<std::remove_const_t<decltype(test)>,
+                           UnitBase<Exponents<1, 0, -2, 0, 0, 0, 0>, double>>);
+      }
+      {
+        const auto test = 1.0 / s / s * m;
         CHECK(test.data == doctest::Approx(1.0));
         CHECK(
             std::is_same_v<std::remove_const_t<decltype(test)>,
