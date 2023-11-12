@@ -725,9 +725,9 @@ TEST_SUITE("Unit") {
       using namespace csm_units::literals;
 
       const auto n = 13.0_mol;
-      const auto R = 8.31446 <<= J / mol / K;  // 8.3145 J/mol K
+      const auto R = 8.31446 * J / mol / K;  // 8.3145 J/mol K
       const auto temp = 293.15_K;
-      const auto volume = 30.0 <<= m3;
+      const auto volume = 30.0 * m3;
 
       const Pascal P = IdealGasLaw(temp, volume, n, R);
       CHECK_DBL_EQ(P.data, 1056.2);
@@ -740,7 +740,7 @@ TEST_SUITE("Unit") {
       const auto R =
           Liter(0.083144626) * Bar(1) / Kelvin(1) / Mole(1);  // 8.3145 J/mol K
       const auto temp = 293.15_K;
-      const auto volume = 30.0 <<= m3;
+      const auto volume = 30.0 * m3;
 
       const Pascal P = IdealGasLaw(temp, volume, n, R);
       CHECK_DBL_EQ(P.data, 1056.2);

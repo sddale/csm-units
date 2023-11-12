@@ -18,7 +18,7 @@ constexpr auto CHECK_DBL_EQ = [](auto lhs, auto rhs) {
 
 constexpr auto IdealGas = [](csm_units::Kilomole n, csm_units::Liter Volume,
                              csm_units::Fahrenheit Temp) -> csm_units::Bar {
-  const auto R = 8.31446261815324 <<= m3 * Pa / K / mol;
+  const auto R = 8.31446261815324 * m3 * Pa / K / mol;
 
   CHECK_TYPE(
       R,
