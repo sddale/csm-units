@@ -1,4 +1,4 @@
-/**  \file KgMPS.hpp
+/**  \file kilogram_meters_per_second.hpp
  *   \brief This file is used to define the Momentum SI unit Kg * m/s.
  *
  *   The following wikipedia page can explain <a

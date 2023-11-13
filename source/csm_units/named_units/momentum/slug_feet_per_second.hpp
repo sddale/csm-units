@@ -1,4 +1,4 @@
-/**  \file SlugFTPS.hpp
+/**  \file slug_feet_per_second.hpp
  *   \brief This file is used to define the unit slug * ft/s derived from the
  * base dimension for Momentum.
  *
