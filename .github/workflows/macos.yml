@@ -33,7 +33,7 @@ jobs:
           key: ${{ github.workflow }}-cpm-modules-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
 
       - name: configure
-        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCSMUNITS_TEST=CSMUNITS_TEST
 
       - name: build
         run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -t ${{env.EXECUTABLE}}
