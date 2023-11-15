@@ -27,7 +27,7 @@ CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0") # To make target
 
 # ---- Create library ----
 add_library(${PROJECT_NAME} INTERFACE)
-set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 20)
+set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 23)
 
 # Enforce standards conformance on MSVC
 target_compile_options(
@@ -40,6 +40,8 @@ target_include_directories(
             $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>
             $<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>
 )
+
+add_subdirectory(test)
 
 # ---- Create an installable target ----
 # Allows users to install and find the library via `find_package()`. The
