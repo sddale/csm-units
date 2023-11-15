@@ -42,7 +42,9 @@ target_include_directories(
 )
 
 add_subdirectory(test)
-
+if(CSMUNITS_TEST)
+  enable_testing()
+endif()
 # ---- Create an installable target ----
 # Allows users to install and find the library via `find_package()`. The
 # location where the project's version header will be placed should match the
