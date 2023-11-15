@@ -13,6 +13,8 @@ on:
 env:
   CTEST_OUTPUT_ON_FAILURE: 1
   CPM_SOURCE_CACHE: ${{ github.workspace }}/cpm_modules
+  TARGET: install
+  CSMUNIT_TEST: True
 
 jobs:
   build:
@@ -28,11 +30,12 @@ jobs:
 
       - name: build and install library
         run: |
-          cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release
-          sudo cmake --build build --target install
+          cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release -DCSMUNITS_TEST=${{env.CSMUNIT_TEST}}
+          sudo cmake --build build --target ${{env.TARGET}}
           rm -rf build
+
       - name: configure
-        run: cmake -Stest -Bbuild -DTEST_INSTALLED_VERSION=1
+        run: cmake -Stest -Bbuild -DCSMUNITS_TEST=${{env.CSMUNIT_TEST}} -DTEST_INSTALLED_VERSION=1
 
       - name: build
         run: cmake --build build --config Debug -j4
