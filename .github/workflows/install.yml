@@ -13,6 +13,7 @@ on:
 env:
   CTEST_OUTPUT_ON_FAILURE: 1
   CPM_SOURCE_CACHE: ${{ github.workspace }}/cpm_modules
+  BUILD_TYPE: Debug
   TARGET: install
   CSMUNIT_TEST: True
 
@@ -35,12 +36,12 @@ jobs:
           rm -rf build
 
       - name: configure
-        run: cmake -Stest -Bbuild -DCSMUNITS_TEST=${{env.CSMUNIT_TEST}} -DTEST_INSTALLED_VERSION=1
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCSMUNITS_TEST=${{env.CSMUNIT_TEST}}
 
       - name: build
-        run: cmake --build build --config Debug -j4
+        run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+
 
       - name: test
-        run: |
-          cd build
-          ctest --build-config Debug
+        working-directory: ${{github.workspace}}/build
+        run: ctest -C ${{env.BUILD_TYPE}}
