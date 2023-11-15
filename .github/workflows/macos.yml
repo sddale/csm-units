@@ -13,26 +13,31 @@ on:
 env:
   CTEST_OUTPUT_ON_FAILURE: 1
   CPM_SOURCE_CACHE: ${{ github.workspace }}/cpm_modules
+  BUILD_TYPE: Debug
+  EXECUTABLE: CSMUnits_test
+  CC: gcc-12
+  CXX: g++-12
 
 jobs:
   build:
     runs-on: macos-latest
+    # runs-on: self-hosted
 
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v2
         with:
           path: "**/cpm_modules"
           key: ${{ github.workflow }}-cpm-modules-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
 
       - name: configure
-        run: cmake -Stest -Bbuild -DCMAKE_BUILD_TYPE=Debug
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
       - name: build
-        run: cmake --build build -j4
+        run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -t ${{env.EXECUTABLE}}
+
 
       - name: test
-        run: |
-          cd build
-          ctest --build-config Debug
+        working-directory: ${{github.workspace}}/build
+        run: ctest -C ${{env.BUILD_TYPE}}
