@@ -15,7 +15,8 @@ namespace csm_units {
 using SlugFeetPerSecond = Unit<Momentum, "slugftps", double>;
 
 template <>
-[[nodiscard]] constexpr auto UnitCast(Momentum &&input) noexcept -> SlugFTPS {
+[[nodiscard]] constexpr auto UnitCast(Momentum &&input) noexcept
+    -> SlugFeetPerSecond {
   return SlugFeetPerSecond(input.data / 4.44822162);
 }
 

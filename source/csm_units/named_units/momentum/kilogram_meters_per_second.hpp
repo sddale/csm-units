@@ -14,7 +14,8 @@ namespace csm_units {
 using KilogramMeterPerSecond = Unit<Momentum, "kgmps", double>;
 
 template <>
-[[nodiscard]] constexpr auto UnitCast(Momentum &&input) noexcept -> KgMPS {
+[[nodiscard]] constexpr auto UnitCast(Momentum &&input) noexcept
+    -> KilogramMeterPerSecond {
   return KilogramMeterPerSecond(input.data);
 }
 
