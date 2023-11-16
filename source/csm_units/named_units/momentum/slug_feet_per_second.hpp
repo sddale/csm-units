@@ -16,7 +16,7 @@ using SlugFeetPerSecond = Unit<Momentum, "slugftps", double>;
 
 template <>
 [[nodiscard]] constexpr auto UnitCast(Momentum &&input) noexcept -> SlugFTPS {
-  return SlugFTPS(input.data / 4.44822162);
+  return SlugFeetPerSecond(input.data / 4.44822162);
 }
 
 template <>
@@ -28,11 +28,11 @@ template <>
 namespace literals {
 
 constexpr auto operator""_slugftps(long double data) noexcept {
-  return SlugFTPS(static_cast<double>(data));
+  return SlugFeetPerSecond(static_cast<double>(data));
 }
 
 constexpr auto operator"" slugftps(unsigned long long data) noexcept {
-  return SlugFTPS(static_cast<double>(data));
+  return SlugFeetPerSecond(static_cast<double>(data));
 }
 
 }  // namespace literals

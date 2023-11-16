@@ -15,7 +15,7 @@ using KilogramMeterPerSecond = Unit<Momentum, "kgmps", double>;
 
 template <>
 [[nodiscard]] constexpr auto UnitCast(Momentum &&input) noexcept -> KgMPS {
-  return KgMPS(input.data);
+  return KilogramMeterPerSecond(input.data);
 }
 
 template <>
@@ -27,11 +27,11 @@ template <>
 namespace literals {
 
 constexpr auto operator""_kgmps(long double data) noexcept {
-  return KgMPS(static_cast<double>(data));
+  return KilogramMeterPerSecond(static_cast<double>(data));
 }
 
 constexpr auto operator""_kgmps(unsigned long long data) noexcept {
-  return KgMPS(static_cast<double>(data));
+  return KilogramMeterPerSecond(static_cast<double>(data));
 }
 
 }  // namespace literals
