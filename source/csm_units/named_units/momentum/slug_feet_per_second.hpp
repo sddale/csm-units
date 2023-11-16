@@ -1,6 +1,6 @@
 /**  \file slug_feet_per_second.hpp
- *   \brief This file is used to define the unit slug * ft/s derived from the
- * base dimension for Momentum.
+ *   \brief This file is used to define the unit Slug Feet Per Second derived
+ * from the base dimension for Momentum.
  *
  */
 
@@ -12,7 +12,7 @@
 
 namespace csm_units {
 
-using SlugFeetPerSecond = Unit<Momentum, "slugftps", double>;
+using SlugFeetPerSecond = Unit<Momentum, "slugft/s", double>;
 
 template <>
 [[nodiscard]] constexpr auto UnitCast(Momentum &&input) noexcept
