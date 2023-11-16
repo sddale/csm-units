@@ -58,6 +58,7 @@ constexpr auto F = Literal<Exponents<-2, -1, 4, 2, 0, 0, 0>>();
 constexpr auto kat = Literal<Exponents<0, 0, -1, 0, 0, 1, 0>>();
 constexpr auto S = Literal<Exponents<-2, -1, 3, 2, 0, 0, 0>>();
 constexpr auto kgperm3 = Literal<Exponents<-3, 1, 0, 0, 0, 0, 0>>();
+constexpr auto kgmpers = Literal<Exponents<1, 1, -1, 0, 0, 0, 0>>();
 constexpr auto Sv = Literal<Exponents<2, 0, -2, 0, 0, 0, 0>>();
 constexpr auto C = Literal<Exponents<0, 0, 1, 1, 0, 0, 0>>();
 constexpr auto A = Literal<Exponents<0, 0, 0, 1, 0, 0, 0>>();
