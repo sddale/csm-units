@@ -31,7 +31,7 @@ constexpr auto operator""_slugftps(long double data) noexcept {
   return SlugFeetPerSecond(static_cast<double>(data));
 }
 
-constexpr auto operator"" slugftps(unsigned long long data) noexcept {
+constexpr auto operator""_slugftps(unsigned long long data) noexcept {
   return SlugFeetPerSecond(static_cast<double>(data));
 }
 
