@@ -1,8 +1,6 @@
 /**  \file kilogram_meters_per_second.hpp
  *   \brief This file is used to define the Momentum SI unit Kg * m/s.
  *
- *   The following wikipedia page can explain <a
- * href="https://en.wikipedia.org/wiki/Momentum">Momentum</a> if needed.
  */
 
 #pragma once
@@ -13,7 +11,7 @@
 
 namespace csm_units {
 
-using KgMPS = Unit<Momentum, "kgmps", double>;
+using KilogramMeterPerSecond = Unit<Momentum, "kgmps", double>;
 
 template <>
 [[nodiscard]] constexpr auto UnitCast(Momentum &&input) noexcept -> KgMPS {
@@ -21,7 +19,8 @@ template <>
 }
 
 template <>
-[[nodiscard]] constexpr auto UnitCast(KgMPS &&input) noexcept -> Momentum {
+[[nodiscard]] constexpr auto UnitCast(KilogramMeterPerSecond &&input) noexcept
+    -> Momentum {
   return Momentum(input.data);
 }
 

@@ -2,8 +2,6 @@
  *   \brief This file is used to define the unit slug * ft/s derived from the
  * base dimension for Momentum.
  *
- *   The following wikipedia page can explain <a
- * href="https://en.wikipedia.org/wiki/Momentum">Momentum</a> if needed.
  */
 
 #pragma once
@@ -14,7 +12,7 @@
 
 namespace csm_units {
 
-using SlugFTPS = Unit<Momentum, "slugftps", double>;
+using SlugFeetPerSecond = Unit<Momentum, "slugftps", double>;
 
 template <>
 [[nodiscard]] constexpr auto UnitCast(Momentum &&input) noexcept -> SlugFTPS {
@@ -22,7 +20,8 @@ template <>
 }
 
 template <>
-[[nodiscard]] constexpr auto UnitCast(SlugFTPS &&input) noexcept -> Momentum {
+[[nodiscard]] constexpr auto UnitCast(SlugFeetPerSecond &&input) noexcept
+    -> Momentum {
   return Momentum(input.data * 4.44822162);
 }
 
