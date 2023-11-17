@@ -29,6 +29,7 @@
 #include <csm_units/magnetic_flux.hpp>
 #include <csm_units/magnetic_flux_density.hpp>
 #include <csm_units/mass.hpp>
+#include <csm_units/molar_energy.hpp>
 #include <csm_units/molar_heat_capacity.hpp>
 #include <csm_units/molar_mass.hpp>
 #include <csm_units/momentum.hpp>
