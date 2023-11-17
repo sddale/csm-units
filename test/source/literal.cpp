@@ -5,6 +5,8 @@
 #include <csm_units/units.hpp>
 #include <type_traits>
 
+namespace csm_units::test {
+
 // NOLINTBEGIN(modernize-use-trailing-return-type)
 
 TEST_SUITE("test suite") {
@@ -102,3 +104,5 @@ TEST_SUITE("test suite") {
 }
 
 // NOLINTEND(modernize-use-trailing-return-type)
+
+}  // namespace csm_units::test

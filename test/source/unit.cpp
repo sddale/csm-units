@@ -10,6 +10,8 @@
 #include "source/csm_units/literal/literal.hpp"
 #include "source/csm_units/unitcast.hpp"
 
+namespace csm_units::test {
+
 // NOLINTBEGIN(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
 
 constexpr auto CHECK_TYPE = [](auto input, auto ref) {
@@ -761,3 +763,5 @@ TEST_SUITE("Unit") {
 }
 
 // NOLINTEND(modernize-use-trailing-return-type,misc-use-anonymous-namespace)
+
+}  // namespace csm_units::test

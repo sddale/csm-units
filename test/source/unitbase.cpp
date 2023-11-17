@@ -3,6 +3,8 @@
 #include <csm_units/units.hpp>
 #include <cstdint>
 
+namespace csm_units::test {
+
 // velocity = m/s
 using csm_units::Exponents;
 using csm_units::UnitBase;
@@ -276,3 +278,5 @@ TEST_SUITE("UnitBase") {
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type)
+
+}  // namespace csm_units::test

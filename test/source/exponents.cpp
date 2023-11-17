@@ -3,6 +3,8 @@
 #include <csm_units/units.hpp>
 #include <type_traits>
 
+namespace csm_units::test {
+
 // NOLINTBEGIN(modernize-use-trailing-return-type)
 TEST_SUITE("Exponents") {
   using namespace csm_units;
@@ -26,4 +28,7 @@ TEST_SUITE("Exponents") {
           Exponents<-1, -3, -5, 0, 0, 0, 0, 2, 4, 6, 1, 1, 1, 1>>);
   }
 }
+
 // NOLINTEND(modernize-use-trailing-return-type)
+
+}  // namespace csm_units::test
