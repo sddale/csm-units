@@ -4,8 +4,8 @@
 
 #pragma once
 
-#include "source/csm_units/named_units/volume/cubic_centimeter_per_mole.hpp"
-#include "source/csm_units/named_units/volume/cubic_meter_per_mole.hpp"
-#include "source/csm_units/named_units/volume/dimension.hpp"
+#include "source/csm_units/named_units/molar_volume/cubic_centimeter_per_mole.hpp"
+#include "source/csm_units/named_units/molar_volume/cubic_meter_per_mole.hpp"
+#include "source/csm_units/named_units/molar_volume/dimension.hpp"
 
 namespace csm_units {}  // namespace csm_units
