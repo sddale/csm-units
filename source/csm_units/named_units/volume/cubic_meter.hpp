@@ -13,28 +13,28 @@
 
 namespace csm_units {
 
-using CubeMeter = Unit<Volume, "m3", double>;
+using CubicMeter = Unit<Volume, "m3", double>;
 
 // Unit Cast for base m3
 template <>
-[[nodiscard]] constexpr auto UnitCast(Volume &&input) noexcept -> CubeMeter {
-  return CubeMeter(input.data);
+[[nodiscard]] constexpr auto UnitCast(Volume &&input) noexcept -> CubicMeter {
+  return CubicMeter(input.data);
 }
 
 // Unit Cast for Unit m3
 template <>
-[[nodiscard]] constexpr auto UnitCast(CubeMeter &&input) noexcept -> Volume {
+[[nodiscard]] constexpr auto UnitCast(CubicMeter &&input) noexcept -> Volume {
   return Volume(input.data);
 }
 
 namespace literals {
 
 constexpr auto operator""_m3(long double data) noexcept {
-  return CubeMeter(static_cast<double>(data));
+  return CubicMeter(static_cast<double>(data));
 }
 
 constexpr auto operator""_m3(unsigned long long data) noexcept {
-  return CubeMeter(static_cast<double>(data));
+  return CubicMeter(static_cast<double>(data));
 }
 
 }  // namespace literals

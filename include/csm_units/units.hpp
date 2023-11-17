@@ -32,6 +32,7 @@
 #include <csm_units/molar_energy.hpp>
 #include <csm_units/molar_heat_capacity.hpp>
 #include <csm_units/molar_mass.hpp>
+#include <csm_units/molar_volume.hpp>
 #include <csm_units/momentum.hpp>
 #include <csm_units/potential.hpp>
 #include <csm_units/power.hpp>
