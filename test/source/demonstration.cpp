@@ -2,6 +2,8 @@
 
 #include <csm_units/units.hpp>
 
+namespace csm_units::test {
+
 using namespace csm_units::literals;
 
 // NOLINTBEGIN(modernize-use-trailing-return-type)
@@ -45,3 +47,5 @@ TEST_SUITE("README Demonstration") {
 
 // NOLINTEND(readability-identifier-length)
 // NOLINTEND(modernize-use-trailing-return-type)
+
+}  // namespace csm_units::test

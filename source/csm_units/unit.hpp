@@ -35,6 +35,17 @@ class Unit {
 
   Data data;
 
+  template <UnitType U>
+  friend constexpr auto operator<=>(const Unit& lhs, const U& rhs) noexcept {
+    return SI(lhs) <=> rhs;
+  }
+
+  template <UnitType U>
+  friend constexpr auto operator==(const Unit& lhs, const U& rhs) noexcept
+      -> bool {
+    return SI(lhs) == rhs;
+  }
+
   constexpr auto operator+=(const Base& rhs) noexcept -> auto& {
     auto temp = UnitCast<Base>(std::forward<Unit>(*this));
     temp = temp + rhs;
