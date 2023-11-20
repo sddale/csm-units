@@ -53,11 +53,12 @@ class UnitBase {
   constexpr auto operator==(const UnitBase& other) const noexcept
       -> bool = default;
 
-  template <UnitType U>
-  friend constexpr auto operator==(const UnitBase& lhs, const U& rhs) noexcept
-      -> bool {
-    return lhs == UnitBase(rhs);
-  }
+  // template <UnitType U>
+  // friend constexpr auto operator==(const UnitBase& lhs, const U& rhs)
+  // noexcept
+  //     -> bool {
+  //   return lhs == UnitBase(rhs);
+  // }
   // copy constructor
   constexpr UnitBase(const UnitBase& other) noexcept = default;
 
