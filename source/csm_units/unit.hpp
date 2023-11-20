@@ -36,6 +36,11 @@ class Unit {
   Data data;
 
   template <UnitType U>
+  friend constexpr auto operator<=>(const Unit& lhs, const U& rhs) noexcept {
+    return SI(lhs) <=> rhs;
+  }
+
+  template <UnitType U>
   friend constexpr auto operator==(const Unit& lhs, const U& rhs) noexcept
       -> bool {
     return SI(lhs) == rhs;
