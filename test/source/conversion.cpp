@@ -11,7 +11,7 @@ TEST_SUITE("Conversion Tests For Named Units") {
     const auto molar_cubic_centimeter = Centimeter(200.0);
     const auto molar_cubic_meter = Meter(2.0);
 
-    CHECK(molar_cubic_centimeter == molar_cubic_meter);
+    CHECK((molar_cubic_centimeter == molar_cubic_meter));
   }
 
   // TEST_CASE("Volume") {
