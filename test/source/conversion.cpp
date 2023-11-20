@@ -8,7 +8,7 @@ namespace csm_units::test {
 
 TEST_SUITE("Conversion Tests For Named Units") {
   TEST_CASE("Molar Volume") {
-    const auto molar_cubic_centimeter = CubicCentimeterPerMole(200.0);
+    const auto molar_cubic_centimeter = CubicCentimeterPerMole(2E+6);
     const auto molar_cubic_meter = CubicMeterPerMole(2.0);
 
     CHECK((molar_cubic_centimeter == molar_cubic_meter));
