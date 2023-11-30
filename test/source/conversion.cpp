@@ -24,6 +24,13 @@ TEST_SUITE("Conversion Tests For Named Units") {
     CHECK(cubic_centimeter == cubic_meter);
     CHECK(cubic_centimeter_literal == cubic_meter);
   }
+
+  TEST_CASE("Inverse Pascal and Inverse Bar") {
+    const auto inverse_pascals = InvPascal(1.0);
+    const auto inverse_bar = InvBar(100000.0);
+
+    CHECK(inverse_bar == inverse_pascals);
+  }
 }
 
 // NOLINTEND(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
