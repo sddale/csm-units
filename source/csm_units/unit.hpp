@@ -39,12 +39,6 @@ class Unit {
 
   Data data;
 
-  template <StringLiteral RUnitName>
-  constexpr auto operator+=(Unit<SI, RUnitName, Data> rhs) noexcept -> auto& {
-    data += UnitCast<Unit>(UnitCast<SI>(std::forward<decltype(rhs)>(rhs))).data;
-    return *this;
-  }
-
   template <UnitType U>
   friend constexpr auto operator<=>(const Unit& lhs, const U& rhs) noexcept {
     return SI(lhs) <=> rhs;
@@ -54,6 +48,12 @@ class Unit {
   friend constexpr auto operator==(const Unit& lhs, const U& rhs) noexcept
       -> bool {
     return SI(lhs) == rhs;
+  }
+
+  template <StringLiteral RUnitName>
+  constexpr auto operator+=(Unit<SI, RUnitName, Data> rhs) noexcept -> auto& {
+    data += UnitCast<Unit>(UnitCast<SI>(std::forward<decltype(rhs)>(rhs))).data;
+    return *this;
   }
 
   template <StringLiteral RUnitName, Arithmetic RData>
