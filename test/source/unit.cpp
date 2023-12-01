@@ -4,11 +4,9 @@
 #include <doctest/doctest.h>
 
 #include <csm_units/units.hpp>
-#include <ratio>
 
 #include "source/csm_units/exponents.hpp"
 #include "source/csm_units/literal/literal.hpp"
-#include "source/csm_units/unitcast.hpp"
 
 namespace csm_units::test {
 

@@ -9,9 +9,7 @@
 
 #pragma once
 
-#include <compare>
 #include <csm_units/concepts.hpp>
-#include <ratio>
 #include <type_traits>
 #include <utility>
 
