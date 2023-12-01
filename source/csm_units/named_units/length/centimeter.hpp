@@ -19,14 +19,14 @@ using Centimeter = Unit<Length, "cm", double>;
 // Unit cast for Base m to Unit cm
 // Conversion Equation: 1 m = 100 cm
 template <>
-[[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> Centimeter {
+[[nodiscard]] constexpr auto UnitCast(Length input) noexcept -> Centimeter {
   return Centimeter(input.data * 100);
 }
 
 // Unit Cast for Unit cm to Base m
 // Conversion Equation: 1 m = 100 cm
 template <>
-[[nodiscard]] constexpr auto UnitCast(Centimeter &&input) noexcept -> Length {
+[[nodiscard]] constexpr auto UnitCast(Centimeter input) noexcept -> Length {
   return Length(input.data / 100);
 }
 

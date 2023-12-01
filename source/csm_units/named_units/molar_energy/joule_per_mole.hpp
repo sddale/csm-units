@@ -18,12 +18,12 @@ using JoulePerMole = Unit<MolarEnergy, "J/mol", double>;
 
 // Unit Cast for Base Joule
 template <>
-[[nodiscard]] constexpr auto UnitCast(MolarEnergy &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(MolarEnergy input) noexcept
     -> JoulePerMole {
   return JoulePerMole(input.data);
 }
 template <>
-[[nodiscard]] constexpr auto UnitCast(JoulePerMole &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(JoulePerMole input) noexcept
     -> MolarEnergy {
   return MolarEnergy(input.data);
 }

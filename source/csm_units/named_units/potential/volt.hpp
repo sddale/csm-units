@@ -17,11 +17,11 @@ using Volt = Unit<Potential, "V", double>;
 
 // Unit Cast for Base Volt
 template <>
-[[nodiscard]] constexpr auto UnitCast(Potential &&input) noexcept -> Volt {
+[[nodiscard]] constexpr auto UnitCast(Potential input) noexcept -> Volt {
   return Volt(input.data);
 }
 template <>
-[[nodiscard]] constexpr auto UnitCast(Volt &&input) noexcept -> Potential {
+[[nodiscard]] constexpr auto UnitCast(Volt input) noexcept -> Potential {
   return Potential(input.data);
 }
 

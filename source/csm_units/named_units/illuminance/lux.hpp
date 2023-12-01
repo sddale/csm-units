@@ -16,13 +16,13 @@ namespace csm_units {
 using Lux = Unit<Illuminance, "lx", double>;
 
 template <>
-[[nodiscard]] constexpr auto UnitCast(Illuminance &&input) noexcept -> Lux {
+[[nodiscard]] constexpr auto UnitCast(Illuminance input) noexcept -> Lux {
   return Lux(input.data);
 }
 
 // Unit Cast for Unit Newton
 template <>
-[[nodiscard]] constexpr auto UnitCast(Lux &&input) noexcept -> Illuminance {
+[[nodiscard]] constexpr auto UnitCast(Lux input) noexcept -> Illuminance {
   return Illuminance(input.data);
 }
 

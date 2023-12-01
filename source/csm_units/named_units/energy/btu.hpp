@@ -20,7 +20,7 @@ using BritishThermalUnit = Unit<Energy, "Btu", double>;
 // Conversion Equation: 1 Btu = 1055.06 Joules (according to International Table
 // standards)
 template <>
-[[nodiscard]] constexpr auto UnitCast(Energy &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(Energy input) noexcept
     -> BritishThermalUnit {
   return BritishThermalUnit(input.data / 1055.06);
 }
@@ -29,7 +29,7 @@ template <>
 // Conversion Equation: 1 Btu = 1055.06 Joules (according to International Table
 // standards)
 template <>
-[[nodiscard]] constexpr auto UnitCast(BritishThermalUnit &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(BritishThermalUnit input) noexcept
     -> Energy {
   return Energy(input.data * 1055.06);
 }

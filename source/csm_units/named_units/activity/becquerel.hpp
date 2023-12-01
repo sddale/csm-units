@@ -18,13 +18,13 @@ using Becquerel = Unit<Activity, "Bq", double>;
 
 // Unit Cast for Base becquerel
 template <>
-[[nodiscard]] constexpr auto UnitCast(Activity &&input) noexcept -> Becquerel {
+[[nodiscard]] constexpr auto UnitCast(Activity input) noexcept -> Becquerel {
   return Becquerel(input.data);
 }
 
 // Unit Cast for Unit becquerel
 template <>
-[[nodiscard]] constexpr auto UnitCast(Becquerel &&input) noexcept -> Activity {
+[[nodiscard]] constexpr auto UnitCast(Becquerel input) noexcept -> Activity {
   return Activity(input.data);
 }
 

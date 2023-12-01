@@ -19,14 +19,14 @@ using CubicCentimeter = Unit<Volume, "cm3", double>;
 
 // Unit Cast for base m3
 template <>
-[[nodiscard]] constexpr auto UnitCast(Volume &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(Volume input) noexcept
     -> CubicCentimeter {
   return CubicCentimeter(input.data / 1E-6);
 }
 
 // Unit Cast for Unit m3
 template <>
-[[nodiscard]] constexpr auto UnitCast(CubicCentimeter &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(CubicCentimeter input) noexcept
     -> Volume {
   return Volume(input.data * 1E-6);
 }

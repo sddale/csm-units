@@ -17,11 +17,11 @@ using Newton = Unit<Force, "N", double>;
 
 // Unit Cast for Base Newton
 template <>
-[[nodiscard]] constexpr auto UnitCast(Force &&input) noexcept -> Newton {
+[[nodiscard]] constexpr auto UnitCast(Force input) noexcept -> Newton {
   return Newton(input.data);
 }
 template <>
-[[nodiscard]] constexpr auto UnitCast(Newton &&input) noexcept -> Force {
+[[nodiscard]] constexpr auto UnitCast(Newton input) noexcept -> Force {
   return Force(input.data);
 }
 

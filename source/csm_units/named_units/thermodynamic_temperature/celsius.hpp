@@ -18,13 +18,13 @@ using Celsius = Unit<Temperature, "degC", double>;
 
 // Base K -> Unit C
 template <>
-[[nodiscard]] constexpr auto UnitCast(Temperature &&input) noexcept -> Celsius {
+[[nodiscard]] constexpr auto UnitCast(Temperature input) noexcept -> Celsius {
   return Celsius(input.data - 273.15);
 }
 
 // Unit C -> Base K
 template <>
-[[nodiscard]] constexpr auto UnitCast(Celsius &&input) noexcept -> Temperature {
+[[nodiscard]] constexpr auto UnitCast(Celsius input) noexcept -> Temperature {
   return Temperature(input.data + 273.15);
 }
 

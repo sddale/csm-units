@@ -17,13 +17,13 @@ namespace csm_units {
 using SqrCandela = Unit<SqrLuminosity, "cd2", double>;
 
 template <>
-[[nodiscard]] constexpr auto UnitCast(SqrLuminosity &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(SqrLuminosity input) noexcept
     -> SqrCandela {
   return SqrCandela(input.data);
 }
 
 template <>
-[[nodiscard]] constexpr auto UnitCast(SqrCandela &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(SqrCandela input) noexcept
     -> SqrLuminosity {
   return SqrLuminosity(input.data);
 }

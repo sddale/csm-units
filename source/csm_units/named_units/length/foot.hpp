@@ -19,14 +19,14 @@ using Foot = Unit<Length, "ft", double>;
 // Unit Cast for Base m to Unit ft
 // Conversion Equation: 1 m = 3.28084 ft
 template <>
-[[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> Foot {
+[[nodiscard]] constexpr auto UnitCast(Length input) noexcept -> Foot {
   return Foot(input.data * 3.28084);
 }
 
 // Unit Cast for Unit ft to Base m
 // Conversion Equation: 1 m = 3.28084 ft
 template <>
-[[nodiscard]] constexpr auto UnitCast(Foot &&input) noexcept -> Length {
+[[nodiscard]] constexpr auto UnitCast(Foot input) noexcept -> Length {
   return Length(input.data / 3.28084);
 }
 

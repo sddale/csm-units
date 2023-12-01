@@ -19,14 +19,14 @@ using CalPerCubicCM = Unit<SqrSolubilityParameter, "cal/cm^3", double>;
 
 // Unit Cast for base m3
 template <>
-[[nodiscard]] constexpr auto UnitCast(SqrSolubilityParameter &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(SqrSolubilityParameter input) noexcept
     -> CalPerCubicCM {
   return CalPerCubicCM(input.data * 2.39006E-7);
 }
 
 // Unit Cast for Unit m3
 template <>
-[[nodiscard]] constexpr auto UnitCast(CalPerCubicCM &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(CalPerCubicCM input) noexcept
     -> SqrSolubilityParameter {
   return SqrSolubilityParameter(input.data / 2.39006E-7);
 }

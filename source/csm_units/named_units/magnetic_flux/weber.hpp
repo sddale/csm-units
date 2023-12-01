@@ -17,13 +17,13 @@ using Weber = Unit<MagneticFlux, "Wb", double>;
 
 // Unit Cast for Base weber
 template <>
-[[nodiscard]] constexpr auto UnitCast(MagneticFlux &&input) noexcept -> Weber {
+[[nodiscard]] constexpr auto UnitCast(MagneticFlux input) noexcept -> Weber {
   return Weber(input.data);
 }
 
 // Unit Cast for Unit weber
 template <>
-[[nodiscard]] constexpr auto UnitCast(Weber &&input) noexcept -> MagneticFlux {
+[[nodiscard]] constexpr auto UnitCast(Weber input) noexcept -> MagneticFlux {
   return MagneticFlux(input.data);
 }
 

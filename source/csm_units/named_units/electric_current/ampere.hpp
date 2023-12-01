@@ -17,15 +17,13 @@ using Ampere = Unit<ElectrCurrent, "A", double>;
 
 // Unit Cast for Unit Ampere
 template <>
-[[nodiscard]] constexpr auto UnitCast(ElectrCurrent &&input) noexcept
-    -> Ampere {
+[[nodiscard]] constexpr auto UnitCast(ElectrCurrent input) noexcept -> Ampere {
   return Ampere(input.data);
 }
 
 // Unit Cast for Unit Ampere
 template <>
-[[nodiscard]] constexpr auto UnitCast(Ampere &&input) noexcept
-    -> ElectrCurrent {
+[[nodiscard]] constexpr auto UnitCast(Ampere input) noexcept -> ElectrCurrent {
   return ElectrCurrent(input.data);
 }
 

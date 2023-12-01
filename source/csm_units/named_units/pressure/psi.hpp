@@ -19,14 +19,14 @@ using Psi = Unit<Pressure, "psi", double>;
 // Unit Cast for Base Pascals to Unit psi
 // Conversion Equation: 1 psi = 6894.76 pascals
 template <>
-[[nodiscard]] constexpr auto UnitCast(Pressure &&input) noexcept -> Psi {
+[[nodiscard]] constexpr auto UnitCast(Pressure input) noexcept -> Psi {
   return Psi(input.data / 6894.76);
 }
 
 // Unit Cast for Unit psi to Base Pascals
 // Conversion Equation: 1 psi = 6894.76 pascals
 template <>
-[[nodiscard]] constexpr auto UnitCast(Psi &&input) noexcept -> Pressure {
+[[nodiscard]] constexpr auto UnitCast(Psi input) noexcept -> Pressure {
   return Pressure(input.data * 6894.76);
 }
 

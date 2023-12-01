@@ -19,12 +19,12 @@ using JoulesPerMoleKelvin = Unit<MolarHeatCapacity, "J/K/mol", double>;
 
 // Unit Cast for Base Joules Per Kelvin
 template <>
-[[nodiscard]] constexpr auto UnitCast(MolarHeatCapacity &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(MolarHeatCapacity input) noexcept
     -> JoulesPerMoleKelvin {
   return JoulesPerMoleKelvin(input.data);
 }
 template <>
-[[nodiscard]] constexpr auto UnitCast(JoulesPerMoleKelvin &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(JoulesPerMoleKelvin input) noexcept
     -> MolarHeatCapacity {
   return MolarHeatCapacity(input.data);
 }

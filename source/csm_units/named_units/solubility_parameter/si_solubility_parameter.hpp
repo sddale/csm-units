@@ -20,7 +20,7 @@ using SqrtJoulesPerSqrtCubicMeter =
 
 // Unit Cast for base m3
 template <>
-[[nodiscard]] constexpr auto UnitCast(SolubilityParameter &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(SolubilityParameter input) noexcept
     -> SqrtJoulesPerSqrtCubicMeter {
   return SqrtJoulesPerSqrtCubicMeter(input.data);
 }
@@ -28,7 +28,7 @@ template <>
 // Unit Cast for Unit m3
 template <>
 [[nodiscard]] constexpr auto UnitCast(
-    SqrtJoulesPerSqrtCubicMeter &&input) noexcept -> SolubilityParameter {
+    SqrtJoulesPerSqrtCubicMeter input) noexcept -> SolubilityParameter {
   return SolubilityParameter(input.data);
 }
 

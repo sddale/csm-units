@@ -19,13 +19,13 @@ using InvMeter = Unit<InvLength, "inv_m", double>;
 
 // Unit Cast for Base invlength to Unit invm
 template <>
-[[nodiscard]] constexpr auto UnitCast(InvLength &&input) noexcept -> InvMeter {
+[[nodiscard]] constexpr auto UnitCast(InvLength input) noexcept -> InvMeter {
   return InvMeter(input.data);
 }
 
 // Unit Cast for Unit invm to Base invlength
 template <>
-[[nodiscard]] constexpr auto UnitCast(InvMeter &&input) noexcept -> InvLength {
+[[nodiscard]] constexpr auto UnitCast(InvMeter input) noexcept -> InvLength {
   return InvLength(input.data);
 }
 

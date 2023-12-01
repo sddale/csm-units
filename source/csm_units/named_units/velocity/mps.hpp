@@ -18,14 +18,14 @@ using MeterPerSecond = Unit<Velocity, "m/s", double>;
 
 // Unit Cast for Unit m/s
 template <>
-[[nodiscard]] constexpr auto UnitCast(Velocity &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(Velocity input) noexcept
     -> MeterPerSecond {
   return MeterPerSecond(input.data);
 }
 
 // Unit Cast for Unit m/s
 template <>
-[[nodiscard]] constexpr auto UnitCast(MeterPerSecond &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(MeterPerSecond input) noexcept
     -> Velocity {
   return Velocity(input.data);
 }

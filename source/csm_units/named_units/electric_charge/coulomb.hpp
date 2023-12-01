@@ -17,15 +17,13 @@ using Coulomb = Unit<ElectrCharge, "C", double>;
 
 // Unit Cast for Unit Coulomb
 template <>
-[[nodiscard]] constexpr auto UnitCast(ElectrCharge &&input) noexcept
-    -> Coulomb {
+[[nodiscard]] constexpr auto UnitCast(ElectrCharge input) noexcept -> Coulomb {
   return Coulomb(input.data);
 }
 
 // Unit Cast for Unit Coulomb
 template <>
-[[nodiscard]] constexpr auto UnitCast(Coulomb &&input) noexcept
-    -> ElectrCharge {
+[[nodiscard]] constexpr auto UnitCast(Coulomb input) noexcept -> ElectrCharge {
   return ElectrCharge(input.data);
 }
 

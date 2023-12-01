@@ -18,13 +18,13 @@ using SqFt = Unit<Area, "ft2", double>;
 
 // Unit Cast for Base area to ft2
 template <>
-[[nodiscard]] constexpr auto UnitCast(Area &&input) noexcept -> SqFt {
+[[nodiscard]] constexpr auto UnitCast(Area input) noexcept -> SqFt {
   return SqFt(input.data * 10.764);
 }
 
 // Unit Cast for Unit ft2 to base area
 template <>
-[[nodiscard]] constexpr auto UnitCast(SqFt &&input) noexcept -> Area {
+[[nodiscard]] constexpr auto UnitCast(SqFt input) noexcept -> Area {
   return Area(input.data / 10.764);
 }
 

@@ -17,12 +17,12 @@ using Sievert = Unit<DoseEquivalent, "Sv", double>;
 
 // Unit Cast for Base Sievert
 template <>
-[[nodiscard]] constexpr auto UnitCast(DoseEquivalent &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(DoseEquivalent input) noexcept
     -> Sievert {
   return Sievert(input.data);
 }
 template <>
-[[nodiscard]] constexpr auto UnitCast(Sievert &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(Sievert input) noexcept
     -> DoseEquivalent {
   return DoseEquivalent(input.data);
 }

@@ -18,13 +18,13 @@ using Kilomole = Unit<Amount, "kmol", double>;
 
 // Base Mole -> Kilomole unit
 template <>
-[[nodiscard]] constexpr auto UnitCast(Amount &&input) noexcept -> Kilomole {
+[[nodiscard]] constexpr auto UnitCast(Amount input) noexcept -> Kilomole {
   return Kilomole(input.data / 1000);
 }
 
 // unit kmol -> Base Mol
 template <>
-[[nodiscard]] constexpr auto UnitCast(Kilomole &&input) noexcept -> Amount {
+[[nodiscard]] constexpr auto UnitCast(Kilomole input) noexcept -> Amount {
   return Amount(input.data * 1000);
 }
 

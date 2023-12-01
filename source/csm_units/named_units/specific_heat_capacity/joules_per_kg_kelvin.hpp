@@ -18,12 +18,12 @@ namespace csm_units {
 using JoulesPerKilogramKelvin = Unit<SpecificHeatCapacity, "J/K/kg", double>;
 
 template <>
-[[nodiscard]] constexpr auto UnitCast(SpecificHeatCapacity &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(SpecificHeatCapacity input) noexcept
     -> JoulesPerKilogramKelvin {
   return JoulesPerKilogramKelvin(input.data);
 }
 template <>
-[[nodiscard]] constexpr auto UnitCast(JoulesPerKilogramKelvin &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(JoulesPerKilogramKelvin input) noexcept
     -> SpecificHeatCapacity {
   return SpecificHeatCapacity(input.data);
 }

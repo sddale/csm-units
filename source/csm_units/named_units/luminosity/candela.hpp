@@ -17,13 +17,13 @@ using Candela = Unit<Luminosity, "cd", double>;
 
 // Unit Cast for Unit Candela
 template <>
-[[nodiscard]] constexpr auto UnitCast(Luminosity &&input) noexcept -> Candela {
+[[nodiscard]] constexpr auto UnitCast(Luminosity input) noexcept -> Candela {
   return Candela(input.data);
 }
 
 // Unit Cast for Unit Candela
 template <>
-[[nodiscard]] constexpr auto UnitCast(Candela &&input) noexcept -> Luminosity {
+[[nodiscard]] constexpr auto UnitCast(Candela input) noexcept -> Luminosity {
   return Luminosity(input.data);
 }
 

@@ -17,13 +17,13 @@ using Hertz = Unit<Frequency, "Hz", double>;
 
 // Unit Cast for Base hertz
 template <>
-[[nodiscard]] constexpr auto UnitCast(Frequency &&input) noexcept -> Hertz {
+[[nodiscard]] constexpr auto UnitCast(Frequency input) noexcept -> Hertz {
   return Hertz(input.data);
 }
 
 // Unit Cast for Unit hertz
 template <>
-[[nodiscard]] constexpr auto UnitCast(Hertz &&input) noexcept -> Frequency {
+[[nodiscard]] constexpr auto UnitCast(Hertz input) noexcept -> Frequency {
   return Frequency(input.data);
 }
 

@@ -17,11 +17,11 @@ using Watt = Unit<Power, "W", double>;
 
 // Unit Cast for Base Watt
 template <>
-[[nodiscard]] constexpr auto UnitCast(Power &&input) noexcept -> Watt {
+[[nodiscard]] constexpr auto UnitCast(Power input) noexcept -> Watt {
   return Watt(input.data);
 }
 template <>
-[[nodiscard]] constexpr auto UnitCast(Watt &&input) noexcept -> Power {
+[[nodiscard]] constexpr auto UnitCast(Watt input) noexcept -> Power {
   return Power(input.data);
 }
 

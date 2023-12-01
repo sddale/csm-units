@@ -18,13 +18,13 @@ using SqMeter = Unit<Area, "m2", double>;
 
 // Unit Cast for Base m2
 template <>
-[[nodiscard]] constexpr auto UnitCast(Area &&input) noexcept -> SqMeter {
+[[nodiscard]] constexpr auto UnitCast(Area input) noexcept -> SqMeter {
   return SqMeter(input.data);
 }
 
 // Unit Cast for Unit m2
 template <>
-[[nodiscard]] constexpr auto UnitCast(SqMeter &&input) noexcept -> Area {
+[[nodiscard]] constexpr auto UnitCast(SqMeter input) noexcept -> Area {
   return Area(input.data);
 }
 

@@ -19,12 +19,12 @@ using KilogramsPerMol = Unit<MolarMass, "kg/mol", double>;
 
 // Unit Cast for Base KilogramsPerMol
 template <>
-[[nodiscard]] constexpr auto UnitCast(MolarMass &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(MolarMass input) noexcept
     -> KilogramsPerMol {
   return KilogramsPerMol(input.data);
 }
 template <>
-[[nodiscard]] constexpr auto UnitCast(KilogramsPerMol &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(KilogramsPerMol input) noexcept
     -> MolarMass {
   return MolarMass(input.data);
 }

@@ -17,11 +17,11 @@ using Ohm = Unit<Resistance, "ohm", double>;
 
 // Unit Cast for Base Ohm
 template <>
-[[nodiscard]] constexpr auto UnitCast(Resistance &&input) noexcept -> Ohm {
+[[nodiscard]] constexpr auto UnitCast(Resistance input) noexcept -> Ohm {
   return Ohm(input.data);
 }
 template <>
-[[nodiscard]] constexpr auto UnitCast(Ohm &&input) noexcept -> Resistance {
+[[nodiscard]] constexpr auto UnitCast(Ohm input) noexcept -> Resistance {
   return Resistance(input.data);
 }
 

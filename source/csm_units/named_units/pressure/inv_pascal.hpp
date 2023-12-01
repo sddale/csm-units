@@ -17,16 +17,14 @@ using InvPascal = Unit<InvPressure, "inv_Pa", double>;
 // Unit Cast for Base Pascals to Unit Pascals
 // Conversion Equation: Pascals = Pascals
 template <>
-[[nodiscard]] constexpr auto UnitCast(InvPressure &&input) noexcept
-    -> InvPascal {
+[[nodiscard]] constexpr auto UnitCast(InvPressure input) noexcept -> InvPascal {
   return InvPascal(input.data);
 }
 
 // Unit Cast for Unit Pascals to Base Pascals
 // Conversion Equation: Pascals = Pascals
 template <>
-[[nodiscard]] constexpr auto UnitCast(InvPascal &&input) noexcept
-    -> InvPressure {
+[[nodiscard]] constexpr auto UnitCast(InvPascal input) noexcept -> InvPressure {
   return InvPressure(input.data);
 }
 

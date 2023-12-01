@@ -18,13 +18,13 @@ using Hour = Unit<Time, "hour", double>;
 
 // Unit Cast for Unit min to Base s
 template <>
-[[nodiscard]] constexpr auto UnitCast(Hour &&input) noexcept -> Time {
+[[nodiscard]] constexpr auto UnitCast(Hour input) noexcept -> Time {
   return Time(input.data * 3600);
 }
 
 // Unit Cast for Base s to Unit min
 template <>
-[[nodiscard]] constexpr auto UnitCast(Time &&input) noexcept -> Hour {
+[[nodiscard]] constexpr auto UnitCast(Time input) noexcept -> Hour {
   return Hour(input.data / 3600);
 }
 

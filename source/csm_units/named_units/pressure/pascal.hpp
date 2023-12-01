@@ -18,14 +18,14 @@ using Pascal = Unit<Pressure, "Pa", double>;
 // Unit Cast for Base Pascals to Unit Pascals
 // Conversion Equation: Pascals = Pascals
 template <>
-[[nodiscard]] constexpr auto UnitCast(Pressure &&input) noexcept -> Pascal {
+[[nodiscard]] constexpr auto UnitCast(Pressure input) noexcept -> Pascal {
   return Pascal(input.data);
 }
 
 // Unit Cast for Unit Pascals to Base Pascals
 // Conversion Equation: Pascals = Pascals
 template <>
-[[nodiscard]] constexpr auto UnitCast(Pascal &&input) noexcept -> Pressure {
+[[nodiscard]] constexpr auto UnitCast(Pascal input) noexcept -> Pressure {
   return Pressure(input.data);
 }
 

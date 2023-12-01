@@ -19,12 +19,12 @@ using JoulesPerKelvin = Unit<HeatCapacity, "J/K", double>;
 
 // Unit Cast for Base Joules Per Kelvin
 template <>
-[[nodiscard]] constexpr auto UnitCast(HeatCapacity &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(HeatCapacity input) noexcept
     -> JoulesPerKelvin {
   return JoulesPerKelvin(input.data);
 }
 template <>
-[[nodiscard]] constexpr auto UnitCast(JoulesPerKelvin &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(JoulesPerKelvin input) noexcept
     -> HeatCapacity {
   return HeatCapacity(input.data);
 }

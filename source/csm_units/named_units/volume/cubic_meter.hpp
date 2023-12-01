@@ -17,13 +17,13 @@ using CubicMeter = Unit<Volume, "m3", double>;
 
 // Unit Cast for base m3
 template <>
-[[nodiscard]] constexpr auto UnitCast(Volume &&input) noexcept -> CubicMeter {
+[[nodiscard]] constexpr auto UnitCast(Volume input) noexcept -> CubicMeter {
   return CubicMeter(input.data);
 }
 
 // Unit Cast for Unit m3
 template <>
-[[nodiscard]] constexpr auto UnitCast(CubicMeter &&input) noexcept -> Volume {
+[[nodiscard]] constexpr auto UnitCast(CubicMeter input) noexcept -> Volume {
   return Volume(input.data);
 }
 

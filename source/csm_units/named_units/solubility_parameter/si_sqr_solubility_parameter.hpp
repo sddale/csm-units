@@ -19,14 +19,14 @@ using JoulesPerCubicMeter = Unit<SqrSolubilityParameter, "J/m^3", double>;
 
 // Unit Cast for base m3
 template <>
-[[nodiscard]] constexpr auto UnitCast(SqrSolubilityParameter &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(SqrSolubilityParameter input) noexcept
     -> JoulesPerCubicMeter {
   return JoulesPerCubicMeter(input.data);
 }
 
 // Unit Cast for Unit m3
 template <>
-[[nodiscard]] constexpr auto UnitCast(JoulesPerCubicMeter &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(JoulesPerCubicMeter input) noexcept
     -> SqrSolubilityParameter {
   return SqrSolubilityParameter(input.data);
 }

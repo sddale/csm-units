@@ -18,13 +18,11 @@ using GramsPerMol = Unit<MolarMass, "g/mol", double>;
 
 // Unit Cast for Base GramsPerMol
 template <>
-[[nodiscard]] constexpr auto UnitCast(MolarMass &&input) noexcept
-    -> GramsPerMol {
+[[nodiscard]] constexpr auto UnitCast(MolarMass input) noexcept -> GramsPerMol {
   return GramsPerMol(input.data * 1000);
 }
 template <>
-[[nodiscard]] constexpr auto UnitCast(GramsPerMol &&input) noexcept
-    -> MolarMass {
+[[nodiscard]] constexpr auto UnitCast(GramsPerMol input) noexcept -> MolarMass {
   return MolarMass(input.data / 1000);
 }
 

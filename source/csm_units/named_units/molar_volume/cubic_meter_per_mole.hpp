@@ -19,14 +19,14 @@ using CubicMeterPerMole = Unit<MolarVolume, "m3/mol", double>;
 
 // Unit Cast for base m3
 template <>
-[[nodiscard]] constexpr auto UnitCast(MolarVolume &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(MolarVolume input) noexcept
     -> CubicMeterPerMole {
   return CubicMeterPerMole(input.data);
 }
 
 // Unit Cast for Unit m3
 template <>
-[[nodiscard]] constexpr auto UnitCast(CubicMeterPerMole &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(CubicMeterPerMole input) noexcept
     -> MolarVolume {
   return MolarVolume(input.data);
 }

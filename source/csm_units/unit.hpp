@@ -29,13 +29,11 @@ class Unit {
   constexpr explicit Unit(Data value = 0.0) noexcept : data(value) {}
 
   constexpr explicit(false) Unit(SI new_base) noexcept
-      : data(UnitCast<Unit>(std::forward<SI>(new_base)).data) {}
+      : data(UnitCast<Unit>(new_base).data) {}
 
   template <StringLiteral UN, Arithmetic D>
   constexpr explicit(false) Unit(Unit<SI, UN, D> new_unit) noexcept
-      : data(UnitCast<Unit>(
-                 UnitCast<SI>(std::forward<decltype(new_unit)>(new_unit)))
-                 .data) {}
+      : data(UnitCast<Unit>(UnitCast<SI>(new_unit)).data) {}
 
   Data data;
 
@@ -52,23 +50,22 @@ class Unit {
 
   template <StringLiteral RUnitName>
   constexpr auto operator+=(Unit<SI, RUnitName, Data> rhs) noexcept -> auto& {
-    data += UnitCast<Unit>(UnitCast<SI>(std::forward<decltype(rhs)>(rhs))).data;
+    data += UnitCast<Unit>(UnitCast<SI>(rhs)).data;
     return *this;
   }
 
   template <StringLiteral RUnitName, Arithmetic RData>
-  friend constexpr auto operator+(Unit lhs,
-                                  Unit<SI, RUnitName, RData> rhs) noexcept {
+  friend constexpr auto operator+(
+      Unit lhs, const Unit<SI, RUnitName, RData>& rhs) noexcept {
     using OutData = std::remove_reference_t<decltype(Data() + RData())>;
     return Unit<Base, UnitName, OutData>(static_cast<OutData>(
-        lhs.data +
-        UnitCast<Unit>(UnitCast<SI>(std::forward<decltype(rhs)>(rhs))).data));
+        lhs.data + UnitCast<Unit>(UnitCast<SI>(rhs)).data));
   }
 
   constexpr auto operator-=(const Base& rhs) noexcept -> auto& {
-    auto temp = UnitCast<Base>(std::forward<Unit>(*this));
+    auto temp = UnitCast<Base>(*this);
     temp = temp - rhs;
-    data = UnitCast<Unit>(std::forward<Base>(temp)).data;
+    data = UnitCast<Unit>(temp).data;
     return *this;
   }
 
