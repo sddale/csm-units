@@ -41,9 +41,11 @@ constexpr auto UseIG = []() {
   CHECK_DBL_EQ(pres.data, 0.006143646982);
 };
 
+// NOLINTBEGIN(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
 TEST_SUITE("README Demonstration") {
   TEST_CASE("Example") { UseIG(); }
 }
+// NOLINTEND(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
 
 // NOLINTEND(readability-identifier-length)
 // NOLINTEND(modernize-use-trailing-return-type)

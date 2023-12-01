@@ -1,7 +1,6 @@
 #include <doctest/doctest.h>
 
 #include <csm_units/units.hpp>
-#include <cstdint>
 
 namespace csm_units::test {
 
@@ -17,7 +16,7 @@ using Kelvin = UnitBase<Exponents<0, 0, 0, 0, 1, 0, 0>, double>;
 using Mole = UnitBase<Exponents<0, 0, 0, 0, 0, 1, 0>, double>;
 using Candela = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 1>, double>;
 
-// NOLINTBEGIN(modernize-use-trailing-return-type)
+// NOLINTBEGIN(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
 TEST_SUITE("UnitBase") {
   // Tests to make sure that the unit class is working the way we expect
 
@@ -278,6 +277,6 @@ TEST_SUITE("UnitBase") {
     //           << std::endl;
   }
 }
-// NOLINTEND(modernize-use-trailing-return-type)
+// NOLINTEND(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
 
 }  // namespace csm_units::test

@@ -11,7 +11,6 @@
 
 #include <csm_units/concepts.hpp>
 #include <type_traits>
-#include <utility>
 
 #include "exponents.hpp"
 #include "unitcast.hpp"

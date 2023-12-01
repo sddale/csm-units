@@ -7,8 +7,7 @@
 
 namespace csm_units::test {
 
-// NOLINTBEGIN(modernize-use-trailing-return-type)
-
+// NOLINTBEGIN(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
 TEST_SUITE("test suite") {
   using namespace csm_units;
   TEST_CASE("test case") {
@@ -103,6 +102,6 @@ TEST_SUITE("test suite") {
   }
 }
 
-// NOLINTEND(modernize-use-trailing-return-type)
+// NOLINTEND(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
 
 }  // namespace csm_units::test
