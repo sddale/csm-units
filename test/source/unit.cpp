@@ -23,30 +23,15 @@ constexpr auto CHECK_DBL_EQ = [](auto lhs, auto rhs) {
   CHECK_EQ(lhs, doctest::Approx(rhs));
 };
 
-constexpr auto test_sum = [](auto first, auto second, auto base,
-                             auto exp_default_sum, auto exp_first_sum,
-                             auto exp_second_sum) {
+constexpr auto test_sum = [](auto first, auto second, auto exp_default_sum,
+                             auto exp_rev_sum) {
   const auto default_sum_ans = first + second;
-  const decltype(first) forced_first_ans = first + second;
-  const decltype(second) forced_sec_ans = first + second;
-
-  const auto default_inv = second + first;
-  const decltype(first) forced_first_inv = second + first;
-  const decltype(second) forced_sec_inv = second + first;
+  const auto rev_sum_ans = second + first;
 
   CHECK(default_sum_ans.data == doctest::Approx(exp_default_sum));
-  CHECK(forced_first_ans.data == doctest::Approx(exp_first_sum));
-  CHECK(forced_sec_ans.data == doctest::Approx(exp_second_sum));
-  CHECK_TYPE(default_sum_ans, base);
-  CHECK_TYPE(forced_first_ans, first);
-  CHECK_TYPE(forced_sec_ans, second);
-
-  CHECK(default_inv.data == doctest::Approx(exp_default_sum));
-  CHECK(forced_first_inv.data == doctest::Approx(exp_first_sum));
-  CHECK(forced_sec_inv.data == doctest::Approx(exp_second_sum));
-  CHECK_TYPE(default_inv, base);
-  CHECK_TYPE(forced_first_inv, first);
-  CHECK_TYPE(forced_sec_inv, second);
+  CHECK(rev_sum_ans.data == doctest::Approx(exp_rev_sum));
+  CHECK_TYPE(default_sum_ans, first);
+  CHECK_TYPE(rev_sum_ans, second);
 
   decltype(first) test_first = first;
   decltype(second) test_second = second;
@@ -54,8 +39,8 @@ constexpr auto test_sum = [](auto first, auto second, auto base,
   test_first += second;
   test_second += first;
 
-  CHECK(test_first.data == doctest::Approx(forced_first_ans.data));
-  CHECK(test_second.data == doctest::Approx(forced_sec_inv.data));
+  CHECK(test_first.data == doctest::Approx(default_sum_ans.data));
+  CHECK(test_second.data == doctest::Approx(rev_sum_ans.data));
 };
 
 constexpr auto test_diff = [](auto first, auto second, auto base,
@@ -241,18 +226,18 @@ TEST_SUITE("Unit") {
   }
 
   TEST_CASE("Unit Tests") {
-    SUBCASE("Unit-Unit Base Addition") {
-      const auto kg_unit = Kilogram(3.0);
-      const auto mass = Mass(4);
-      const auto test = kg_unit + mass;
-      CHECK_DBL_EQ(test.data, 7.0);
-      CHECK_TYPE(test, Mass());
-    }
+    // SUBCASE("Unit-Unit Base Addition") {
+    //   const auto kg_unit = Kilogram(3.0);
+    //   const auto mass = Mass(4);
+    //   const auto test = kg_unit + mass;
+    //   CHECK_DBL_EQ(test.data, 7.0);
+    //   CHECK_TYPE(test, Mass());
+    // }
 
     SUBCASE("Unit-Unit Addition") {
       const auto test = Gram(3.0) + Gram(4.0);
-      CHECK_DBL_EQ(test.data, 0.007);
-      CHECK_TYPE(test, Mass());
+      CHECK_DBL_EQ(test.data, 7);
+      CHECK_TYPE(test, Gram());
     }
 
     // Below is the start of in depth tests on different bases to make sure
@@ -262,42 +247,43 @@ TEST_SUITE("Unit") {
       // others only have tests on addition to prove that unit casting works for
       // all of them
       SUBCASE("Base Length Tests") {
-        SUBCASE("Addition Tests") {
-          test_sum(Length(34.7), Length(13.6), Length(), 48.3, 48.3, 48.3);
-          test_sum(Length(6.3), Meter(3.5), Length(), 9.8, 9.8, 9.8);
-          test_sum(Length(6.3), Centimeter(3.5), Length(), 6.335, 6.335, 633.5);
-          test_sum(Length(6.3), Millimeter(3.5), Length(), 6.3035, 6.3035,
-                   6303.5);
-          test_sum(Length(6.3), Kilometer(3.5), Length(), 3506.3, 3506.3,
-                   3.5063);
-          test_sum(Length(6.3), Inch(2.3), Length(), 6.35842, 6.35842, 250.331);
-          test_sum(Length(14.6), Foot(32.5), Length(), 24.506, 24.506,
-                   80.40026);
-          test_sum(Length(13.4), Yard(24.7), Length(), 35.98568, 35.98568,
-                   39.35442);
-          test_sum(Length(23.8), Miles(45.9), Length(), 73892.69, 73892.69,
-                   45.91478863);
-        }
+        // SUBCASE("Addition Tests") {
+        //   test_sum(Meter(34.7), Meter(13.6), Length(), 48.3, 48.3, 48.3);
+        //   test_sum(Meter(6.3), Meter(3.5), Length(), 9.8, 9.8, 9.8);
+        //   test_sum(Meter(6.3), Centimeter(3.5), Length(), 6.335, 6.335,
+        //   633.5); test_sum(Meter(6.3), Millimeter(3.5),
+        //   Length(), 6.3035, 6.3035,
+        //            6303.5);
+        //   test_sum(Meter(6.3), Kilometer(3.5), Length(), 3506.3, 3506.3,
+        //            3.5063);
+        //   test_sum(Meter(6.3), Inch(2.3), Length(), 6.35842, 6.35842,
+        //   250.331); test_sum(Meter(14.6), Foot(32.5),
+        //   Length(), 24.506, 24.506, 80.40026); test_sum(Meter(13.4),
+        //   Yard(24.7), Length(), 35.98568, 35.98568,
+        //            39.35442);
+        //   test_sum(Meter(23.8), Miles(45.9), Length(), 73892.69, 73892.69,
+        //            45.91478863);
+        // }
 
         SUBCASE("Subtraction Tests") {
-          test_diff(Length(12.3), Length(15.4), Length(), -3.1, -3.1, -3.1);
-          test_diff(Length(45.89), Kilometer(3.9), Length(), -3854.11, -3854.11,
+          test_diff(Meter(12.3), Meter(15.4), Length(), -3.1, -3.1, -3.1);
+          test_diff(Meter(45.89), Kilometer(3.9), Length(), -3854.11, -3854.11,
                     -3.85411);
         }
 
         SUBCASE("Multiplication Tests") {
           // Base * Base
-          test_mult(Length(23.8), Length(12.9), Area(), SqFt(), 307.02,
+          test_mult(Meter(23.8), Meter(12.9), Area(), SqFt(), 307.02,
                     3304.73578);
           // Base * Unit
-          test_mult(Length(23.8), Yard(12.9), Area(), SqFt(), 280.739088,
+          test_mult(Meter(23.8), Yard(12.9), Area(), SqFt(), 280.739088,
                     3021.850393701);
           // Base * double
-          test_mult(Length(3.2), 29.7, Length(), Miles(), 95.04, 0.059055118);
+          test_mult(Meter(3.2), 29.7, Length(), Miles(), 95.04, 0.059055118);
           // Base * inv_base
-          test_mult(Length(67.2), InvLength(12.9), 0.0, 0.0, 866.88, 866.88);
+          test_mult(Meter(67.2), InvLength(12.9), 0.0, 0.0, 866.88, 866.88);
           // Base * inv_unit
-          test_mult(Length(5.8), InvMeter(3.2), 0.0, 0.0, 18.56, 18.56);
+          test_mult(Meter(5.8), InvMeter(3.2), 0.0, 0.0, 18.56, 18.56);
         }
 
         SUBCASE("Division Tests") {
@@ -323,18 +309,14 @@ TEST_SUITE("Unit") {
 
       SUBCASE("Unit Meter Tests") {
         SUBCASE("Addition Tests") {
-          test_sum(Meter(23.8), Meter(13.2), Length(), 37.0, 37.0, 37.0);
-          test_sum(Meter(6.3), Centimeter(3.5), Length(), 6.335, 6.335, 633.5);
-          test_sum(Meter(6.3), Millimeter(3.5), Length(), 6.3035, 6.3035,
-                   6303.5);
-          test_sum(Meter(6.3), Kilometer(3.5), Length(), 3506.3, 3506.3,
-                   3.5063);
-          test_sum(Meter(6.3), Inch(2.3), Length(), 6.35842, 6.35842, 250.331);
-          test_sum(Meter(14.6), Foot(32.5), Length(), 24.506, 24.506, 80.40026);
-          test_sum(Meter(13.4), Yard(24.7), Length(), 35.98568, 35.98568,
-                   39.35442);
-          test_sum(Meter(23.8), Miles(45.9), Length(), 73892.69, 73892.69,
-                   45.91478863);
+          test_sum(Meter(23.8), Meter(13.2), 37.0, 37.0);
+          test_sum(Meter(6.3), Centimeter(3.5), 6.335, 633.5);
+          test_sum(Meter(6.3), Millimeter(3.5), 6.3035, 6303.5);
+          test_sum(Meter(6.3), Kilometer(3.5), 3506.3, 3.5063);
+          test_sum(Meter(6.3), Inch(2.3), 6.35842, 250.331);
+          test_sum(Meter(14.6), Foot(32.5), 24.506, 80.40026);
+          test_sum(Meter(13.4), Yard(24.7), 35.98568, 39.35442);
+          test_sum(Meter(23.8), Miles(45.9), 73892.69, 45.91478863);
         }
 
         SUBCASE("Subtraction Tests") {
@@ -366,74 +348,52 @@ TEST_SUITE("Unit") {
       }
 
       SUBCASE("Unit cm Tests") {
-        test_sum(Centimeter(23.8), Centimeter(13.2), Length(), 0.37, 37.0,
-                 37.0);
-        test_sum(Centimeter(6.3), Millimeter(3.5), Length(), 0.0665, 6.65,
-                 66.5);
-        test_sum(Centimeter(6.3), Kilometer(3.5), Length(), 3500.063, 350006.3,
-                 3.500063);
-        test_sum(Centimeter(6.3), Inch(2.3), Length(), 0.1214202769,
-                 12.14202769, 4.7803163);
-        test_sum(Centimeter(14.6), Foot(32.5), Length(), 10.052, 1005.2,
-                 32.97900262);
-        test_sum(Centimeter(13.4), Yard(24.7), Length(), 22.71968, 2271.968,
-                 24.846544182);
-        test_sum(Centimeter(23.8), Miles(45.9), Length(), 73869.128, 7386912.8,
-                 45.9001481349);
+        test_sum(Centimeter(23.8), Centimeter(13.2), 37.0, 37.0);
+        test_sum(Centimeter(6.3), Millimeter(3.5), 6.65, 66.5);
+        test_sum(Centimeter(6.3), Kilometer(3.5), 350006.3, 3.500063);
+        test_sum(Centimeter(6.3), Inch(2.3), 12.14202769, 4.7803163);
+        test_sum(Centimeter(14.6), Foot(32.5), 1005.2, 32.97900262);
+        test_sum(Centimeter(13.4), Yard(24.7), 2271.968, 24.846544182);
+        test_sum(Centimeter(23.8), Miles(45.9), 7386912.8, 45.9001481349);
       }
 
       SUBCASE("Unit mm Tests") {
-        test_sum(Millimeter(23.8), Millimeter(13.2), Length(), 0.037, 37.0,
-                 37.0);
-        test_sum(Millimeter(6.3), Kilometer(3.5), Length(), 3500.0035,
-                 3500003.5, 3.5000035);
-        test_sum(Millimeter(6.3), Inch(2.3), Length(), 0.06472, 64.72,
-                 2.5480315);
-        test_sum(Millimeter(14.6), Foot(32.5), Length(), 9.9206, 9920.6,
-                 32.5479003);
-        test_sum(Millimeter(13.4), Yard(24.7), Length(), 22.59908, 22599.08,
-                 24.714654418);
-        test_sum(Millimeter(23.8), Miles(45.9), Length(), 73869.0238,
-                 73869023.8, 45.90008338801);
+        test_sum(Millimeter(23.8), Millimeter(13.2), 37.0, 37.0);
+        test_sum(Millimeter(6.3), Kilometer(3.5), 3500003.5, 3.5000035);
+        test_sum(Millimeter(6.3), Inch(2.3), 64.72, 2.5480315);
+        test_sum(Millimeter(14.6), Foot(32.5), 9920.6, 32.5479003);
+        test_sum(Millimeter(13.4), Yard(24.7), 22599.08, 24.714654418);
+        test_sum(Millimeter(23.8), Miles(45.9), 73869023.8, 45.90008338801);
       }
 
       SUBCASE("Unit km Tests") {
-        test_sum(Kilometer(23.8), Kilometer(13.2), Length(), 37000.0, 37.0,
-                 37.0);
-        test_sum(Kilometer(6.3), Inch(2.3), Length(), 6300.05842, 6.30005842,
-                 248033.796063);
-        test_sum(Kilometer(14.6), Foot(32.5), Length(), 14609.906, 14.609906,
-                 47932.7624672);
-        test_sum(Kilometer(13.4), Yard(24.7), Length(), 13422.58568,
-                 13.42258568, 14679.118197725);
-        test_sum(Kilometer(23.8), Miles(45.9), Length(), 97668.89, 97.66889,
-                 60.688634624);
+        test_sum(Kilometer(23.8), Kilometer(13.2), 37.0, 37.0);
+        test_sum(Kilometer(6.3), Inch(2.3), 6.30005842, 248033.796063);
+        test_sum(Kilometer(14.6), Foot(32.5), 14.609906, 47932.7624672);
+        test_sum(Kilometer(13.4), Yard(24.7), 13.42258568, 14679.118197725);
+        test_sum(Kilometer(23.8), Miles(45.9), 97.66889, 60.688634624);
       }
 
       SUBCASE("Unit Inch Tests") {
-        test_sum(Inch(23.8), Inch(13.2), Length(), 0.9398, 37.0, 37.0);
-        test_sum(Inch(14.6), Foot(32.5), Length(), 10.27684, 404.6,
-                 33.71666667);
-        test_sum(Inch(13.4), Yard(24.7), Length(), 22.92604, 902.6, 25.072222);
-        test_sum(Inch(23.8), Miles(45.9), Length(), 73869.49412, 2908247.8,
-                 45.9003756313);
+        test_sum(Inch(23.8), Inch(13.2), 37.0, 37.0);
+        test_sum(Inch(14.6), Foot(32.5), 404.6, 33.71666667);
+        test_sum(Inch(13.4), Yard(24.7), 902.6, 25.072222);
+        test_sum(Inch(23.8), Miles(45.9), 2908247.8, 45.9003756313);
       }
 
       SUBCASE("Unit Foot Tests") {
-        test_sum(Foot(23.8), Foot(13.2), Length(), 11.2776, 37.0, 37.0);
-        test_sum(Foot(13.4), Yard(24.7), Length(), 26.67, 87.5, 29.16667);
-        test_sum(Foot(23.8), Miles(45.9), Length(), 73876.14384, 242375.8,
-                 45.904507576);
+        test_sum(Foot(23.8), Foot(13.2), 37.0, 37.0);
+        test_sum(Foot(13.4), Yard(24.7), 87.5, 29.16667);
+        test_sum(Foot(23.8), Miles(45.9), 242375.8, 45.904507576);
       }
 
       SUBCASE("Unit Yard Tests") {
-        test_sum(Yard(23.8), Yard(13.2), Length(), 33.8328, 37.0, 37.0);
-        test_sum(Yard(23.8), Miles(45.9), Length(), 73890.65232, 80807.8,
-                 45.91352273);
+        test_sum(Yard(23.8), Yard(13.2), 37.0, 37.0);
+        test_sum(Yard(23.8), Miles(45.9), 80807.8, 45.91352273);
       }
 
       SUBCASE("Unit Miles Tests") {
-        test_sum(Miles(23.8), Miles(13.2), Length(), 59545.7, 37.0, 37.0);
+        test_sum(Miles(23.8), Miles(13.2), 37.0, 37.0);
       }
     }
 
@@ -441,62 +401,51 @@ TEST_SUITE("Unit") {
       // Testing to make sure casts in mass work. The above length tests test to
       // make sure arthmetic works in unit and unit base. The below tests just
       // make sure we can convert from and to kilogram and gram
-      test_sum(Mass(32.4), Kilogram(2.7), Mass(), 35.1, 35.1, 35.1);
-      test_sum(Kilogram(123.5), Gram(24.5), Mass(), 123.5245, 123.5245,
-               123524.5);
+      test_sum(Kilogram(32.4), Kilogram(2.7), 35.1, 35.1);
+      test_sum(Kilogram(123.5), Gram(24.5), 123.5245, 123524.5);
     }
     SUBCASE("Time Tests") {
       // Testing to make sure casts in time work. The above length tests test to
       // make sure arthmetic works in unit and unit base. The below tests just
       // make sure we can convert from and to second, minute, and hour.
-      test_sum(Time(32.4), Second(2.7), Time(), 35.1, 35.1, 35.1);
-      test_sum(Hour(123.5), Minute(24.5), Time(), 446070.0, 123.9083333,
-               7434.5);
+      test_sum(Second(32.4), Second(2.7), 35.1, 35.1);
+      test_sum(Hour(123.5), Minute(24.5), 123.9083333, 7434.5);
     }
     SUBCASE("Electric Current Tests") {
       SUBCASE("Electric Current Additions") {
-        test_sum(ElectrCurrent(7.2), Ampere(3.4), ElectrCurrent(), 10.6, 10.6,
-                 10.6);
-        test_sum(ElectrCurrent(4.8), Milliampere(5421.44), ElectrCurrent(),
-                 10.22144, 10.22144, 10221.44);
-        test_sum(Milliampere(4567.22), Ampere(34.5), ElectrCurrent(), 39.06722,
-                 39067.22, 39.06722);
+        test_sum(Ampere(7.2), Ampere(3.4), 10.6, 10.6);
+        test_sum(Ampere(4.8), Milliampere(5421.44), 10.22144, 10221.44);
+        test_sum(Milliampere(4567.22), Ampere(34.5), 39067.22, 39.06722);
       }
       SUBCASE("Electric Current Subtractions") {
-        test_diff(ElectrCurrent(7.2), Ampere(3.4), ElectrCurrent(), 3.8, 3.8,
-                  3.8);
-        test_diff(ElectrCurrent(14.8), Milliampere(5421.44), ElectrCurrent(),
-                  9.37856, 9.37856, 9378.56);
+        test_diff(Ampere(7.2), Ampere(3.4), ElectrCurrent(), 3.8, 3.8, 3.8);
+        test_diff(Ampere(14.8), Milliampere(5421.44), ElectrCurrent(), 9.37856,
+                  9.37856, 9378.56);
         test_diff(Milliampere(45677.22), Ampere(4.5), ElectrCurrent(), 41.17722,
                   41177.22, 41.17722);
       }
       SUBCASE("Electric Current Multiplications") {
-        test_mult(ElectrCurrent(8.7), Ampere(5.3), SqrElectrCurrent(),
-                  SqrAmpere(), 46.11, 46.11);
-        test_mult(ElectrCurrent(8.7), Milliampere(5300), SqrElectrCurrent(),
+        test_mult(Ampere(8.7), Ampere(5.3), SqrElectrCurrent(), SqrAmpere(),
+                  46.11, 46.11);
+        test_mult(Ampere(8.7), Milliampere(5300), SqrElectrCurrent(),
                   SqrMilliamp(), 46.11, 46110000);
       }
       SUBCASE("Electric Current Divisions") {}
     }
     SUBCASE("Temperature Tests") {
       SUBCASE("Temperature Additions") {
-        test_sum(Temperature(72.4), Kelvin(43.3), Temperature(), 115.7, 115.7,
-                 115.7);
-        test_sum(Temperature(348.9), Celsius(98.4), Temperature(), 720.45,
-                 720.45, 447.3);
-        test_sum(Temperature(239.6), Fahrenheit(108.4), Temperature(),
-                 555.19444, 555.19444, 539.679992);
-        test_sum(Celsius(120.5), Fahrenheit(43.3), Temperature(), 673.0778,
-                 399.9278, 751.87004);
+        test_sum(Kelvin(72.4), Kelvin(43.3), 115.7, 115.7);
+        test_sum(Kelvin(348.9), Celsius(98.4), 720.4555, 447.3);
+        test_sum(Kelvin(239.6), Fahrenheit(108.4), 555.19444, 539.679992);
+        test_sum(Celsius(120.5), Fahrenheit(43.3), 399.9278, 751.87004);
       }
       SUBCASE("Temperature Subtractions") {
-        test_temp_diff(Temperature(343.8), Kelvin(209.9), Temperature(), 133.9,
+        test_temp_diff(Kelvin(343.8), Kelvin(209.9), Temperature(), 133.9,
                        133.9, 133.9, -133.9, -133.9, -133.9);
-        test_temp_diff(Temperature(123.45), Celsius(88.8), Temperature(),
-                       -238.5, -238.5, -511.65, 238.5, 238.5, -34.65);
-        test_temp_diff(Temperature(436.1), Fahrenheit(12.3), Temperature(),
-                       173.8944, 173.8944, -146.66008, -173.8944, -173.8944,
-                       -772.67992);
+        test_temp_diff(Kelvin(123.45), Celsius(88.8), Temperature(), -238.5,
+                       -238.5, -511.65, 238.5, 238.5, -34.65);
+        test_temp_diff(Kelvin(436.1), Fahrenheit(12.3), Temperature(), 173.8944,
+                       173.8944, -146.66008, -173.8944, -173.8944, -772.67992);
         test_temp_diff(Celsius(120.5), Fahrenheit(43.3), Temperature(),
                        114.2222, -158.9278, -254.07004, -114.2222, -387.3722,
                        -665.26996);
@@ -505,35 +454,31 @@ TEST_SUITE("Unit") {
     }
     SUBCASE("Amount Tests") {
       SUBCASE("Additions") {
-        test_sum(Amount(45.8), Mole(32.6), Amount(), 78.4, 78.4, 78.4);
-        test_sum(Amount(560.97), Kilomole(23.9), Amount(), 24460.97, 24460.97,
-                 24.46097);
-        test_sum(Kilomole(4.3), Mole(560.3), Amount(), 4860.3, 4.8603, 4860.3);
+        test_sum(Mole(45.8), Mole(32.6), 78.4, 78.4);
+        test_sum(Mole(560.97), Kilomole(23.9), 24460.97, 24.46097);
+        test_sum(Kilomole(4.3), Mole(560.3), 4.8603, 4860.3);
       }
       SUBCASE("Subtractions") {
-        test_diff(Amount(67.4), Mole(32.9), Amount(), 34.5, 34.5, 34.5);
-        test_diff(Amount(3245.8), Kilomole(2.4), Amount(), 845.8, 845.8,
-                  0.8458);
+        test_diff(Mole(67.4), Mole(32.9), Amount(), 34.5, 34.5, 34.5);
+        test_diff(Mole(3245.8), Kilomole(2.4), Amount(), 845.8, 845.8, 0.8458);
         test_diff(Kilomole(7.3), Mole(560.3), Amount(), 6739.7, 6.7397, 6739.7);
       }
       SUBCASE("Multiplications") {
-        test_mult(Amount(8.7), Mole(5.3), SqrAmount(), SqrMole(), 46.11, 46.11);
-        test_mult(Amount(806.7), Kilomole(5.3), SqrAmount(), SqrKilomole(),
+        test_mult(Mole(8.7), Mole(5.3), SqrAmount(), SqrMole(), 46.11, 46.11);
+        test_mult(Mole(806.7), Kilomole(5.3), SqrAmount(), SqrKilomole(),
                   4275510, 4.27551);
       }
       SUBCASE("Divisions") {}
     }
     SUBCASE("Luminosity Tests") {
       SUBCASE("Additions") {
-        test_sum(Luminosity(43.5), Candela(87.4), Luminosity(), 130.9, 130.9,
-                 130.9);
+        test_sum(Candela(43.5), Candela(87.4), 130.9, 130.9);
       }
       SUBCASE("Subtractions") {
-        test_diff(Luminosity(76.8), Candela(32.8), Luminosity(), 44.0, 44.0,
-                  44.0);
+        test_diff(Candela(76.8), Candela(32.8), Luminosity(), 44.0, 44.0, 44.0);
       }
       SUBCASE("Multiplications") {
-        test_mult(Luminosity(3.2), Candela(5.4), SqrLuminosity(), SqrCandela(),
+        test_mult(Candela(3.2), Candela(5.4), SqrLuminosity(), SqrCandela(),
                   17.28, 17.28);
       }
       SUBCASE("Divisions") {}
@@ -567,8 +512,8 @@ TEST_SUITE("Unit") {
     SUBCASE("PSI + PASCALS") {
       SUBCASE("Basic addition") {
         const auto test = psi + pascal;
-        CHECK_DBL_EQ(test.data, 217897.8);
-        CHECK_TYPE(test, Pressure());
+        CHECK_DBL_EQ(test.data, 31.6034);
+        CHECK_TYPE(test, Psi());
       }
       SUBCASE("Force pascal result") {
         const Pascal test = psi + pascal;

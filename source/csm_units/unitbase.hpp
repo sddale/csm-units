@@ -58,6 +58,7 @@ class UnitBase {
       -> bool {
     return lhs == UnitBase(rhs);
   }
+
   // copy constructor
   constexpr UnitBase(const UnitBase& other) noexcept = default;
 
@@ -157,15 +158,16 @@ class UnitBase {
   }
 
   // compound + compound
-  friend constexpr auto operator+(UnitBase lhs, const UnitBase& rhs) noexcept {
-    lhs.data = lhs.data + rhs.data;
-    return lhs;
-  }
+  // friend constexpr auto operator+(UnitBase lhs, const UnitBase& rhs) noexcept
+  // {
+  //   lhs.data = lhs.data + rhs.data;
+  //   return lhs;
+  // }
 
-  friend constexpr auto operator+(UnitBase lhs, UnitBase&& rhs) noexcept {
-    lhs.data = lhs.data + rhs.data;
-    return lhs;
-  }
+  // friend constexpr auto operator+(UnitBase lhs, UnitBase&& rhs) noexcept {
+  //   lhs.data = lhs.data + rhs.data;
+  //   return lhs;
+  // }
 
   // - operator overloads
 

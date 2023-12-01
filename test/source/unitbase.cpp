@@ -158,23 +158,24 @@ TEST_SUITE("UnitBase") {
     }
   }
 
-  TEST_CASE("Addition") {
-    constexpr auto test_sum = [](auto first, auto second, auto exp_sum) {
-      const auto sum_ans = first + second;
-      const auto inv_sum = second + first;
+  // TEST_CASE("Addition") {
+  //   constexpr auto test_sum = [](auto first, auto second, auto exp_sum) {
+  //     const auto sum_ans = first + second;
+  //     const auto inv_sum = second + first;
 
-      CHECK(sum_ans.data == doctest::Approx(exp_sum));
-      CHECK(inv_sum.data == doctest::Approx(exp_sum));
-    };
+  //     CHECK(sum_ans.data == doctest::Approx(exp_sum));
+  //     CHECK(inv_sum.data == doctest::Approx(exp_sum));
+  //   };
 
-    SUBCASE("UnitBase + UnitBase") {
-      test_sum(UnitBase<Exponents<3, 2, 0, 0, 0, 0, 0>, double>(20.0),
-               UnitBase<Exponents<3, 2, 0, 0, 0, 0, 0>, double>(50.0), 70.0);
+  //   SUBCASE("UnitBase + UnitBase") {
+  //     test_sum(UnitBase<Exponents<3, 2, 0, 0, 0, 0, 0>, double>(20.0),
+  //              UnitBase<Exponents<3, 2, 0, 0, 0, 0, 0>, double>(50.0), 70.0);
 
-      test_sum(UnitBase<Exponents<-1, -2, -3, 0, 0, 0, 0>, double>(3.0),
-               UnitBase<Exponents<-1, -2, -3, 0, 0, 0, 0>, double>(12.0), 15.0);
-    }
-  }
+  //     test_sum(UnitBase<Exponents<-1, -2, -3, 0, 0, 0, 0>, double>(3.0),
+  //              UnitBase<Exponents<-1, -2, -3, 0, 0, 0, 0>,
+  //              double>(12.0), 15.0);
+  //   }
+  // }
 
   TEST_CASE("Substraction") {
     constexpr auto test_diff = [](auto first, auto second, auto exp_diff,

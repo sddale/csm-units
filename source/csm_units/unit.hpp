@@ -16,9 +16,14 @@
 #include "unitcast.hpp"
 #include "util.hpp"
 
+#ifndef CSMUNITS_VALUE_TYPE
+#define CSMUNITS_VALUE_TYPE double
+#endif
+
 namespace csm_units {
 
-template <UnitBaseType Base, StringLiteral Unit_Name, Arithmetic Data>
+template <UnitBaseType Base, StringLiteral UnitName,
+          Arithmetic Data = CSMUNITS_VALUE_TYPE>
 class Unit {
  public:
   using SI = Base;
@@ -35,11 +40,27 @@ class Unit {
 
   Data data;
 
-  constexpr auto operator+=(const Base& rhs) noexcept -> auto& {
-    auto temp = UnitCast<Base>(std::forward<Unit>(*this));
-    temp = temp + rhs;
-    data = UnitCast<Unit>(std::forward<Base>(temp)).data;
+  template <StringLiteral RUnitName>
+  constexpr auto operator+=(Unit<SI, RUnitName, Data> rhs) noexcept -> auto& {
+    // auto temp = UnitCast<Base>(std::forward<Unit>(*this));
+    // data = UnitCast<Unit>(*this + rhs).data;
+    data =
+        UnitCast<Unit>(SI(UnitCast<SI>(std::forward<Unit>(*this)).data +
+                          UnitCast<SI>(std::forward<decltype(rhs)>(rhs)).data))
+            .data;
     return *this;
+  }
+
+  template <StringLiteral RUnitName, Arithmetic RData>
+  friend constexpr auto operator+(Unit lhs,
+                                  Unit<SI, RUnitName, RData> rhs) noexcept {
+    // Unit lhs, const Unit<SI, RUnitName, RData>& rhs) noexcept {
+    using OutData = std::remove_reference_t<decltype(Data() + RData())>;
+    return UnitCast<Unit<Base, UnitName, OutData>>(
+        SI(UnitCast<SI>(std::forward<Unit>(lhs)).data +
+           UnitCast<SI>(std::forward<decltype(rhs)>(rhs)).data));
+    // lhs.data = lhs.data + rhs.data;
+    // return lhs;
   }
 
   constexpr auto operator-=(const Base& rhs) noexcept -> auto& {
@@ -51,7 +72,7 @@ class Unit {
 
   constexpr friend auto operator<<(std::ostream& out, Unit unit)
       -> std::ostream& {
-    out << unit.data << ' ' << Unit_Name.value;
+    out << unit.data << ' ' << UnitName.value;
     return out;
   }
 
