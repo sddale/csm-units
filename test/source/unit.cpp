@@ -435,9 +435,9 @@ TEST_SUITE("Unit") {
     SUBCASE("Temperature Tests") {
       SUBCASE("Temperature Additions") {
         test_sum(Kelvin(72.4), Kelvin(43.3), 115.7, 115.7);
-        test_sum(Kelvin(348.9), Celsius(98.4), 720.4555, 447.3);
-        test_sum(Kelvin(239.6), Fahrenheit(108.4), 555.19444, 539.679992);
-        test_sum(Celsius(120.5), Fahrenheit(43.3), 399.9278, 751.87004);
+        test_sum(Kelvin(348.9), Celsius(98.4), 720.4555, 174.15);
+        test_sum(Kelvin(239.6), Fahrenheit(108.4), 555.19444, 80.01);
+        test_sum(Celsius(120.5), Fahrenheit(43.3), 126.778, 292.2);
       }
       SUBCASE("Temperature Subtractions") {
         test_temp_diff(Kelvin(343.8), Kelvin(209.9), Temperature(), 133.9,
