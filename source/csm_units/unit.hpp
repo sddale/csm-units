@@ -45,6 +45,17 @@ class Unit {
     return *this;
   }
 
+  template <UnitType U>
+  friend constexpr auto operator<=>(const Unit& lhs, const U& rhs) noexcept {
+    return SI(lhs) <=> rhs;
+  }
+
+  template <UnitType U>
+  friend constexpr auto operator==(const Unit& lhs, const U& rhs) noexcept
+      -> bool {
+    return SI(lhs) == rhs;
+  }
+
   template <StringLiteral RUnitName, Arithmetic RData>
   friend constexpr auto operator+(Unit lhs,
                                   Unit<SI, RUnitName, RData> rhs) noexcept {
