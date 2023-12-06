@@ -4,11 +4,9 @@
 #include <doctest/doctest.h>
 
 #include <csm_units/units.hpp>
-#include <ratio>
 
 #include "source/csm_units/exponents.hpp"
 #include "source/csm_units/literal/literal.hpp"
-#include "source/csm_units/unitcast.hpp"
 
 namespace csm_units::test {
 
@@ -309,10 +307,10 @@ TEST_SUITE("Unit") {
                    3.936497651, 3.936497651, 0.2540329218, 0.2540329218);
           // Base / Different Unit
           test_div(Length(23.5), Gram(3.2),
-                   UnitBase<Exponents<1, -1, 0, 0, 0, 0, 0>, double>(),
-                   UnitBase<Exponents<1, -1, 0, 0, 0, 0, 0>, double>(),
-                   UnitBase<Exponents<-1, 1, 0, 0, 0, 0, 0>, double>(),
-                   UnitBase<Exponents<-1, 1, 0, 0, 0, 0, 0>, double>(), 7343.75,
+                   UnitBase<Exponents<1, -1, 0, 0, 0, 0, 0>>(),
+                   UnitBase<Exponents<1, -1, 0, 0, 0, 0, 0>>(),
+                   UnitBase<Exponents<-1, 1, 0, 0, 0, 0, 0>>(),
+                   UnitBase<Exponents<-1, 1, 0, 0, 0, 0, 0>>(), 7343.75,
                    7343.75, 0.0001361702128, 0.0001361702128);
           // Base / double
           test_div(Length(45.7), 6.9, Length(), Kilometer(), InvLength(),

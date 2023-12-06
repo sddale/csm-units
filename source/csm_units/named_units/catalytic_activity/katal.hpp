@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Katal = Unit<CatalyticActivity, "kat", double>;
+using Katal = Unit<CatalyticActivity, "kat">;
 
 // Unit Cast for Base katal
 template <>

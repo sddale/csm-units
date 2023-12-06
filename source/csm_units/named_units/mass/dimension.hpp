@@ -14,6 +14,6 @@
 
 namespace csm_units {
 
-using Mass = UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>;
+using Mass = UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>>;
 
 }  // namespace csm_units

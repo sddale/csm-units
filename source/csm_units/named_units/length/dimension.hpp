@@ -14,7 +14,7 @@
 
 namespace csm_units {
 
-using Length = UnitBase<Exponents<1, 0, 0, 0, 0, 0, 0>, double>;
-using InvLength = UnitBase<Exponents<-1, 0, 0, 0, 0, 0, 0>, double>;
+using Length = UnitBase<Exponents<1, 0, 0, 0, 0, 0, 0>>;
+using InvLength = UnitBase<Exponents<-1, 0, 0, 0, 0, 0, 0>>;
 
 }  // namespace csm_units

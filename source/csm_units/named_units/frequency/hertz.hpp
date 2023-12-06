@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Hertz = Unit<Frequency, "Hz", double>;
+using Hertz = Unit<Frequency, "Hz">;
 
 // Unit Cast for Base hertz
 template <>

@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Fahrenheit = Unit<Temperature, "degF", double>;
+using Fahrenheit = Unit<Temperature, "degF">;
 
 // Unit Cast for Base K to Unit F
 template <>

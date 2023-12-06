@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Lux = Unit<Illuminance, "lx", double>;
+using Lux = Unit<Illuminance, "lx">;
 
 template <>
 [[nodiscard]] constexpr auto UnitCast(Illuminance &&input) noexcept -> Lux {

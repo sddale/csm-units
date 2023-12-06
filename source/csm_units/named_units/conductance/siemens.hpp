@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Siemens = Unit<Conductance, "S", double>;
+using Siemens = Unit<Conductance, "S">;
 
 // Unit Cast for Base Siemens
 template <>

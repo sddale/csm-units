@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Weber = Unit<MagneticFlux, "Wb", double>;
+using Weber = Unit<MagneticFlux, "Wb">;
 
 // Unit Cast for Base weber
 template <>

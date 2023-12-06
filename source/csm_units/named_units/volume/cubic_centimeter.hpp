@@ -10,12 +10,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using CubicCentimeter = Unit<Volume, "cm3", double>;
+using CubicCentimeter = Unit<Volume, "cm3">;
 
 // Unit Cast for base m3
 template <>

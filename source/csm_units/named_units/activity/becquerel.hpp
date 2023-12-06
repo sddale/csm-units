@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Becquerel = Unit<Activity, "Bq", double>;
+using Becquerel = Unit<Activity, "Bq">;
 
 // Unit Cast for Base becquerel
 template <>

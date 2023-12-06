@@ -14,6 +14,6 @@
 
 namespace csm_units {
 
-using Density = UnitBase<Exponents<-3, 1, 0, 0, 0, 0, 0>, double>;
+using Density = UnitBase<Exponents<-3, 1, 0, 0, 0, 0, 0>>;
 
 }  // namespace csm_units

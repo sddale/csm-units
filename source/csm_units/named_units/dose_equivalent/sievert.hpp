@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Sievert = Unit<DoseEquivalent, "Sv", double>;
+using Sievert = Unit<DoseEquivalent, "Sv">;
 
 // Unit Cast for Base Sievert
 template <>

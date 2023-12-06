@@ -14,6 +14,6 @@
 
 namespace csm_units {
 
-using LuminousFlux = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 1>, double>;
+using LuminousFlux = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 1>>;
 
 }  // namespace csm_units

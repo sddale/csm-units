@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using CubicMeter = Unit<Volume, "m3", double>;
+using CubicMeter = Unit<Volume, "m3">;
 
 // Unit Cast for base m3
 template <>

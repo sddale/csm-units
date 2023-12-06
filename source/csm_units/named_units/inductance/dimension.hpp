@@ -14,6 +14,6 @@
 
 namespace csm_units {
 
-using Inductance = UnitBase<Exponents<1, 1, -2, 0, 0, 0, 0>, double>;
+using Inductance = UnitBase<Exponents<1, 1, -2, 0, 0, 0, 0>>;
 
 }  // namespace csm_units

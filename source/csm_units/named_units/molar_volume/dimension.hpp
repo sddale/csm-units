@@ -14,6 +14,6 @@
 
 namespace csm_units {
 
-using MolarVolume = UnitBase<Exponents<3, 0, 0, 0, 0, -1, 0>, double>;
+using MolarVolume = UnitBase<Exponents<3, 0, 0, 0, 0, -1, 0>>;
 
 }  // namespace csm_units

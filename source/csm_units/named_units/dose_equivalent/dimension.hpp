@@ -14,6 +14,6 @@
 
 namespace csm_units {
 
-using DoseEquivalent = UnitBase<Exponents<2, 0, -2, 0, 0, 0, 0>, double>;
+using DoseEquivalent = UnitBase<Exponents<2, 0, -2, 0, 0, 0, 0>>;
 
 }  // namespace csm_units

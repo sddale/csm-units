@@ -14,6 +14,6 @@
 
 namespace csm_units {
 
-using Illuminance = UnitBase<Exponents<-2, 0, 0, 0, 0, 0, 1>, double>;
+using Illuminance = UnitBase<Exponents<-2, 0, 0, 0, 0, 0, 1>>;
 
 }  // namespace csm_units

@@ -14,6 +14,6 @@
 
 namespace csm_units {
 
-using Area = UnitBase<Exponents<2, 0, 0, 0, 0, 0, 0>, double>;
+using Area = UnitBase<Exponents<2, 0, 0, 0, 0, 0, 0>>;
 
 }  // namespace csm_units

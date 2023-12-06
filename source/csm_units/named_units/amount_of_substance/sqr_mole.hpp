@@ -10,12 +10,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using SqrMole = Unit<SqrAmount, "mol2", double>;
+using SqrMole = Unit<SqrAmount, "mol2">;
 
 template <>
 [[nodiscard]] constexpr auto UnitCast(SqrAmount &&input) noexcept -> SqrMole {

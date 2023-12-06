@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Ampere = Unit<ElectrCurrent, "A", double>;
+using Ampere = Unit<ElectrCurrent, "A">;
 
 // Unit Cast for Unit Ampere
 template <>

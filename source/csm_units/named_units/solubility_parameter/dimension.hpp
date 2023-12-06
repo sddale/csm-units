@@ -15,8 +15,7 @@
 namespace csm_units {
 
 using SolubilityParameter =
-    UnitBase<Exponents<-1, 1, -1, 0, 0, 0, 0, 2, 2, 1, 1, 1, 1, 1>, double>;
-using SqrSolubilityParameter =
-    UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>;
+    UnitBase<Exponents<-1, 1, -1, 0, 0, 0, 0, 2, 2, 1, 1, 1, 1, 1>>;
+using SqrSolubilityParameter = UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>>;
 
 }  // namespace csm_units

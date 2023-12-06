@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Bar = Unit<Pressure, "bar", double>;
+using Bar = Unit<Pressure, "bar">;
 
 // Unit Cast for Base Pascals to Unit Bar
 // Conversion Equation: 1 bar = 100,000 pascals

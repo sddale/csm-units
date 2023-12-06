@@ -14,6 +14,6 @@
 
 namespace csm_units {
 
-using Velocity = UnitBase<Exponents<1, 0, -1, 0, 0, 0, 0>, double>;
+using Velocity = UnitBase<Exponents<1, 0, -1, 0, 0, 0, 0>>;
 
 }  // namespace csm_units

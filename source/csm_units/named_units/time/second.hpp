@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Second = Unit<Time, "s", double>;
+using Second = Unit<Time, "s">;
 
 // Unit Cast for Unit s to Base s
 template <>

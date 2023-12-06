@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Gray = Unit<AbsorbedDose, "Gy", double>;
+using Gray = Unit<AbsorbedDose, "Gy">;
 
 // Unit Cast for Base Gray
 template <>

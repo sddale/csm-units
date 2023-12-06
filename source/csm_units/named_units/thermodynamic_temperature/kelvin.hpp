@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Kelvin = Unit<Temperature, "K", double>;  // ---- Temperature
+using Kelvin = Unit<Temperature, "K">;  // ---- Temperature
 
 // Unit Cast for Unit Kelvin
 template <>

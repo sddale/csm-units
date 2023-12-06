@@ -10,12 +10,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using JoulesPerKelvin = Unit<HeatCapacity, "J/K", double>;
+using JoulesPerKelvin = Unit<HeatCapacity, "J/K">;
 
 // Unit Cast for Base Joules Per Kelvin
 template <>

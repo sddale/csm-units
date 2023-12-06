@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using MeterPerSecond = Unit<Velocity, "m/s", double>;
+using MeterPerSecond = Unit<Velocity, "m/s">;
 
 // Unit Cast for Unit m/s
 template <>

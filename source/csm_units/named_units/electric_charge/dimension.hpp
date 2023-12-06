@@ -14,6 +14,6 @@
 
 namespace csm_units {
 
-using ElectrCharge = UnitBase<Exponents<0, 0, 1, 1, 0, 0, 0>, double>;
+using ElectrCharge = UnitBase<Exponents<0, 0, 1, 1, 0, 0, 0>>;
 
 }  // namespace csm_units

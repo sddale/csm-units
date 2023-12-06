@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Yard = Unit<Length, "yd", double>;
+using Yard = Unit<Length, "yd">;
 
 // Unit Cast for Base m to Unit yard
 // Conversion Equation: 1 m = 1.09361 yard

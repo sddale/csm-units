@@ -9,20 +9,22 @@
 
 #pragma once
 
-#include <compare>
 #include <csm_units/concepts.hpp>
-#include <ratio>
 #include <type_traits>
 #include <utility>
 
 #include "exponents.hpp"
 #include "unitcast.hpp"
 
+#ifndef CSMUNITS_VALUE_TYPE
+#define CSMUNITS_VALUE_TYPE double
+#endif
+
 namespace csm_units {
 
 // compound - compoud alias
 // compound - base alias
-template <ExpType Powers, Arithmetic Data>
+template <ExpType Powers, Arithmetic Data = CSMUNITS_VALUE_TYPE>
 class UnitBase {
  public:
   using Dimensions = Powers;

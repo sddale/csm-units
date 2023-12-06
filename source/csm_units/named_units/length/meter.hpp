@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Meter = Unit<Length, "m", double>;
+using Meter = Unit<Length, "m">;
 
 // Unit cast for Base m to Unit m
 template <>

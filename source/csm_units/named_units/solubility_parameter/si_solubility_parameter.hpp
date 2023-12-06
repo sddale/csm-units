@@ -10,13 +10,12 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
 using SqrtJoulesPerSqrtCubicMeter =
-    Unit<SolubilityParameter, "J^(1/2)/m^(3/2)", double>;
+    Unit<SolubilityParameter, "J^(1/2)/m^(3/2)">;
 
 // Unit Cast for base m3
 template <>

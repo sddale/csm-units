@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Centimeter = Unit<Length, "cm", double>;
+using Centimeter = Unit<Length, "cm">;
 
 // Unit cast for Base m to Unit cm
 // Conversion Equation: 1 m = 100 cm

@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Foot = Unit<Length, "ft", double>;
+using Foot = Unit<Length, "ft">;
 
 // Unit Cast for Base m to Unit ft
 // Conversion Equation: 1 m = 3.28084 ft

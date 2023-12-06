@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Hour = Unit<Time, "hour", double>;
+using Hour = Unit<Time, "hour">;
 
 // Unit Cast for Unit min to Base s
 template <>

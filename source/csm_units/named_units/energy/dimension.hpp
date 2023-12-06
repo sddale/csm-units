@@ -14,6 +14,6 @@
 
 namespace csm_units {
 
-using Energy = UnitBase<Exponents<2, 1, -2, 0, 0, 0, 0>, double>;
+using Energy = UnitBase<Exponents<2, 1, -2, 0, 0, 0, 0>>;
 
 }  // namespace csm_units

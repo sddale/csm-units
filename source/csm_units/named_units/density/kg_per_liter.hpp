@@ -11,12 +11,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using KgPerL = Unit<Density, "kg/L", double>;
+using KgPerL = Unit<Density, "kg/L">;
 
 // Unit Cast for Unit kg/L
 template <>

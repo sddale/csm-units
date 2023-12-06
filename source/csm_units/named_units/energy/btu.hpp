@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using BritishThermalUnit = Unit<Energy, "Btu", double>;
+using BritishThermalUnit = Unit<Energy, "Btu">;
 
 // Unit Cast for Base Joules to Btu
 // Conversion Equation: 1 Btu = 1055.06 Joules (according to International Table

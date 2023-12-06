@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using SqMeter = Unit<Area, "m2", double>;
+using SqMeter = Unit<Area, "m2">;
 
 // Unit Cast for Base m2
 template <>

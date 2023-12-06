@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Watt = Unit<Power, "W", double>;
+using Watt = Unit<Power, "W">;
 
 // Unit Cast for Base Watt
 template <>

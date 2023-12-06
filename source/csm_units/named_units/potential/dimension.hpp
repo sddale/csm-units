@@ -14,6 +14,6 @@
 
 namespace csm_units {
 
-using Potential = UnitBase<Exponents<2, 1, -3, -1, 0, 0, 0>, double>;
+using Potential = UnitBase<Exponents<2, 1, -3, -1, 0, 0, 0>>;
 
 }  // namespace csm_units

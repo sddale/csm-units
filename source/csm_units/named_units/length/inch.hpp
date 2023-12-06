@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Inch = Unit<Length, "in", double>;
+using Inch = Unit<Length, "in">;
 
 // Unit Cast for Base m to Unit in
 // Conversion Equation: 1 m = 39.3701 in

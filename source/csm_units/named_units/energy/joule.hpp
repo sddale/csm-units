@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Joule = Unit<Energy, "J", double>;
+using Joule = Unit<Energy, "J">;
 
 // Unit Cast for Base Joule
 template <>

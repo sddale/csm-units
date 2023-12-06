@@ -14,6 +14,6 @@
 
 namespace csm_units {
 
-using Activity = UnitBase<Exponents<0, 0, -1, 0, 0, 0, 0>, double>;
+using Activity = UnitBase<Exponents<0, 0, -1, 0, 0, 0, 0>>;
 
 }  // namespace csm_units

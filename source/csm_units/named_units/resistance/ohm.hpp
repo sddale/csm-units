@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Ohm = Unit<Resistance, "ohm", double>;
+using Ohm = Unit<Resistance, "ohm">;
 
 // Unit Cast for Base Ohm
 template <>

@@ -10,12 +10,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using MPerS2 = Unit<Accel, "m/s2", double>;
+using MPerS2 = Unit<Accel, "m/s2">;
 
 // Unit Cast for Base mps2
 template <>

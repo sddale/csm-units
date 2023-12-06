@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Miles = Unit<Length, "miles", double>;
+using Miles = Unit<Length, "miles">;
 
 // Unit Cast for Base m to Unit miles
 // Conversion Equation: 1609.34 m = 1 miles

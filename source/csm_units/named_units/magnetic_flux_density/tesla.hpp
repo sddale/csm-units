@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Tesla = Unit<MagneticFluxDensity, "T", double>;
+using Tesla = Unit<MagneticFluxDensity, "T">;
 
 // Unit Cast for Base tesla
 template <>

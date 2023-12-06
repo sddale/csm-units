@@ -14,7 +14,7 @@
 
 namespace csm_units {
 
-using MolarHeatCapacity = UnitBase<Exponents<2, 1, -2, 0, -1, -1, 0>, double>;
+using MolarHeatCapacity = UnitBase<Exponents<2, 1, -2, 0, -1, -1, 0>>;
 using MolarEntropy = MolarHeatCapacity;
 
 }  // namespace csm_units

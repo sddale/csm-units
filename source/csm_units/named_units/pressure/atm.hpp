@@ -10,12 +10,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Atm = Unit<Pressure, "Atm", double>;
+using Atm = Unit<Pressure, "Atm">;
 
 // Unit Cast for Base Pascals to Unit Atm
 // Conversion Equation: 1 atm = 101,325 pascals

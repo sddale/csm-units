@@ -7,12 +7,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using KilogramMeterPerSecond = Unit<Momentum, "kgm/s", double>;
+using KilogramMeterPerSecond = Unit<Momentum, "kgm/s">;
 
 template <>
 [[nodiscard]] constexpr auto UnitCast(Momentum &&input) noexcept
