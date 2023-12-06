@@ -14,7 +14,7 @@
 
 namespace csm_units {
 
-using Pressure = UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>, double>;
-using InvPressure = UnitBase<Exponents<1, -1, 2, 0, 0, 0, 0>, double>;
+using Pressure = UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>>;
+using InvPressure = UnitBase<Exponents<1, -1, 2, 0, 0, 0, 0>>;
 
 }  // namespace csm_units

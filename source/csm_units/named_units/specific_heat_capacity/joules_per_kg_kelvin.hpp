@@ -10,12 +10,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using JoulesPerKilogramKelvin = Unit<SpecificHeatCapacity, "J/K/kg", double>;
+using JoulesPerKilogramKelvin = Unit<SpecificHeatCapacity, "J/K/kg">;
 
 template <>
 [[nodiscard]] constexpr auto UnitCast(SpecificHeatCapacity &&input) noexcept

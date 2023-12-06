@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using GramsPerMol = Unit<MolarMass, "g/mol", double>;
+using GramsPerMol = Unit<MolarMass, "g/mol">;
 
 // Unit Cast for Base GramsPerMol
 template <>

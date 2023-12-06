@@ -8,14 +8,14 @@ namespace csm_units::test {
 // velocity = m/s
 using csm_units::Exponents;
 using csm_units::UnitBase;
-using MeterPerSecond = UnitBase<Exponents<1, 0, -1, 0, 0, 0, 0>, double>;
-using Meter = UnitBase<Exponents<1, 0, 0, 0, 0, 0, 0>, double>;
-using Kilograms = UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>;
-using Second = UnitBase<Exponents<0, 0, 1, 0, 0, 0, 0>, double>;
-using Ampere = UnitBase<Exponents<0, 0, 0, 1, 0, 0, 0>, double>;
-using Kelvin = UnitBase<Exponents<0, 0, 0, 0, 1, 0, 0>, double>;
-using Mole = UnitBase<Exponents<0, 0, 0, 0, 0, 1, 0>, double>;
-using Candela = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 1>, double>;
+using MeterPerSecond = UnitBase<Exponents<1, 0, -1, 0, 0, 0, 0>>;
+using Meter = UnitBase<Exponents<1, 0, 0, 0, 0, 0, 0>>;
+using Kilograms = UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>>;
+using Second = UnitBase<Exponents<0, 0, 1, 0, 0, 0, 0>>;
+using Ampere = UnitBase<Exponents<0, 0, 0, 1, 0, 0, 0>>;
+using Kelvin = UnitBase<Exponents<0, 0, 0, 0, 1, 0, 0>>;
+using Mole = UnitBase<Exponents<0, 0, 0, 0, 0, 1, 0>>;
+using Candela = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 1>>;
 
 // NOLINTBEGIN(modernize-use-trailing-return-type)
 TEST_SUITE("UnitBase") {
@@ -24,16 +24,16 @@ TEST_SUITE("UnitBase") {
   //     test to make sure the size of the class never exceeds the size of the
   //     data member variable. Force all test cases to stop if it does.
   TEST_CASE("Size") {
-    const auto test = UnitBase<Exponents<14, 14, 14, 0, 0, 0, 0>, double>(14.0);
+    const auto test = UnitBase<Exponents<14, 14, 14, 0, 0, 0, 0>>(14.0);
     REQUIRE(sizeof(test) == sizeof(test.data));
   }
 
   TEST_CASE("Objects") {
     SUBCASE("DimLength") {
       const auto test_length_pow1 =
-          UnitBase<Exponents<1, 0, 0, 0, 0, 0, 0>, double>(13.0);
+          UnitBase<Exponents<1, 0, 0, 0, 0, 0, 0>>(13.0);
       const auto test_length_pow2 =
-          UnitBase<Exponents<2, 0, 0, 0, 0, 0, 0>, double>(13.0);
+          UnitBase<Exponents<2, 0, 0, 0, 0, 0, 0>>(13.0);
 
       CHECK(test_length_pow1.data == doctest::Approx(13.0));
       CHECK(test_length_pow2.data == doctest::Approx(13.0));
@@ -41,9 +41,9 @@ TEST_SUITE("UnitBase") {
 
     SUBCASE("DimMass") {
       const auto test_mass_pow1 =
-          UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>, double>(13.0);
+          UnitBase<Exponents<0, 1, 0, 0, 0, 0, 0>>(13.0);
       const auto test_mass_pow2 =
-          UnitBase<Exponents<0, 2, 0, 0, 0, 0, 0>, double>(13.0);
+          UnitBase<Exponents<0, 2, 0, 0, 0, 0, 0>>(13.0);
 
       CHECK(test_mass_pow1.data == doctest::Approx(13.0));
       CHECK(test_mass_pow2.data == doctest::Approx(13.0));
@@ -51,9 +51,9 @@ TEST_SUITE("UnitBase") {
 
     SUBCASE("DimTime") {
       const auto test_time_pow1 =
-          UnitBase<Exponents<0, 0, 1, 0, 0, 0, 0>, double>(13.0);
+          UnitBase<Exponents<0, 0, 1, 0, 0, 0, 0>>(13.0);
       const auto test_time_pow2 =
-          UnitBase<Exponents<0, 0, 2, 0, 0, 0, 0>, double>(13.0);
+          UnitBase<Exponents<0, 0, 2, 0, 0, 0, 0>>(13.0);
 
       CHECK(test_time_pow1.data == doctest::Approx(13.0));
       CHECK(test_time_pow2.data == doctest::Approx(13.0));
@@ -61,11 +61,11 @@ TEST_SUITE("UnitBase") {
 
     SUBCASE("Mix of All 3") {
       const auto length1_mass1_time1 =
-          UnitBase<Exponents<1, 1, 1, 0, 0, 0, 0>, double>(13.0);
+          UnitBase<Exponents<1, 1, 1, 0, 0, 0, 0>>(13.0);
       const auto length2_mass2_time2 =
-          UnitBase<Exponents<2, 2, 2, 0, 0, 0, 0>, double>(13.0);
+          UnitBase<Exponents<2, 2, 2, 0, 0, 0, 0>>(13.0);
       const auto arbitrary_mix_up =
-          UnitBase<Exponents<3, 1, 4, 0, 0, 0, 0>, double>(13.0);
+          UnitBase<Exponents<3, 1, 4, 0, 0, 0, 0>>(13.0);
 
       CHECK(length1_mass1_time1.data == doctest::Approx(13.0));
       CHECK(length2_mass2_time2.data == doctest::Approx(13.0));
@@ -99,20 +99,20 @@ TEST_SUITE("UnitBase") {
     };
 
     SUBCASE("UnitBase/UnitBase") {
-      test_div(UnitBase<Exponents<3, 6, 8, 0, 0, 0, 0>, double>(20.0),
-               UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(10.0), 2.0,
-               UnitBase<Exponents<2, 4, 5, 0, 0, 0, 0>, double>(), 0.5,
-               UnitBase<Exponents<-2, -4, -5, 0, 0, 0, 0>, double>());
+      test_div(UnitBase<Exponents<3, 6, 8, 0, 0, 0, 0>>(20.0),
+               UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>>(10.0), 2.0,
+               UnitBase<Exponents<2, 4, 5, 0, 0, 0, 0>>(), 0.5,
+               UnitBase<Exponents<-2, -4, -5, 0, 0, 0, 0>>());
 
-      test_div(UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(24.0),
-               UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(12.0), 2.0, 0.0,
-               0.5, 0.0);
+      test_div(UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>>(24.0),
+               UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>>(12.0), 2.0, 0.0, 0.5,
+               0.0);
     }
 
     SUBCASE("UnitBase/Double") {
-      test_div(UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(40.0), 10.0,
-               4.0, UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(), 0.25,
-               UnitBase<Exponents<-1, -2, -3, 0, 0, 0, 0>, double>());
+      test_div(UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>>(40.0), 10.0, 4.0,
+               UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>>(), 0.25,
+               UnitBase<Exponents<-1, -2, -3, 0, 0, 0, 0>>());
     }
   }
 
@@ -140,21 +140,20 @@ TEST_SUITE("UnitBase") {
     };
 
     SUBCASE("UnitBase * UnitBase") {
-      test_mult(UnitBase<Exponents<3, 2, 0, 0, 0, 0, 0>, double>(20.0),
-                UnitBase<Exponents<1, 0, 3, 0, 0, 0, 0>, double>(50.0), 1000.0,
-                UnitBase<Exponents<4, 2, 3, 0, 0, 0, 0>, double>());
+      test_mult(UnitBase<Exponents<3, 2, 0, 0, 0, 0, 0>>(20.0),
+                UnitBase<Exponents<1, 0, 3, 0, 0, 0, 0>>(50.0), 1000.0,
+                UnitBase<Exponents<4, 2, 3, 0, 0, 0, 0>>());
 
-      test_mult(UnitBase<Exponents<-1, -2, -3, 0, 0, 0, 0>, double>(3.0),
-                UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(12.0), 36.0,
-                0.0);
+      test_mult(UnitBase<Exponents<-1, -2, -3, 0, 0, 0, 0>>(3.0),
+                UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>>(12.0), 36.0, 0.0);
     }
 
     SUBCASE("UnitBase * Double") {
-      test_mult(UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(40.0), 10.0,
-                400.0, UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>());
+      test_mult(UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>>(40.0), 10.0, 400.0,
+                UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>>());
 
-      test_mult(UnitBase<Exponents<2, 1, 4, 0, 0, 0, 0>, double>(20.0), 5.0,
-                100.0, UnitBase<Exponents<2, 1, 4, 0, 0, 0, 0>, double>());
+      test_mult(UnitBase<Exponents<2, 1, 4, 0, 0, 0, 0>>(20.0), 5.0, 100.0,
+                UnitBase<Exponents<2, 1, 4, 0, 0, 0, 0>>());
     }
   }
 
@@ -168,11 +167,11 @@ TEST_SUITE("UnitBase") {
     };
 
     SUBCASE("UnitBase + UnitBase") {
-      test_sum(UnitBase<Exponents<3, 2, 0, 0, 0, 0, 0>, double>(20.0),
-               UnitBase<Exponents<3, 2, 0, 0, 0, 0, 0>, double>(50.0), 70.0);
+      test_sum(UnitBase<Exponents<3, 2, 0, 0, 0, 0, 0>>(20.0),
+               UnitBase<Exponents<3, 2, 0, 0, 0, 0, 0>>(50.0), 70.0);
 
-      test_sum(UnitBase<Exponents<-1, -2, -3, 0, 0, 0, 0>, double>(3.0),
-               UnitBase<Exponents<-1, -2, -3, 0, 0, 0, 0>, double>(12.0), 15.0);
+      test_sum(UnitBase<Exponents<-1, -2, -3, 0, 0, 0, 0>>(3.0),
+               UnitBase<Exponents<-1, -2, -3, 0, 0, 0, 0>>(12.0), 15.0);
     }
   }
 
@@ -193,13 +192,13 @@ TEST_SUITE("UnitBase") {
     };
 
     SUBCASE("UnitBase - UnitBase") {
-      test_diff(UnitBase<Exponents<3, 6, 8, 0, 0, 0, 0>, double>(20.0),
-                UnitBase<Exponents<3, 6, 8, 0, 0, 0, 0>, double>(10.0), 10.0,
-                UnitBase<Exponents<3, 6, 8, 0, 0, 0, 0>, double>(), -10.0);
+      test_diff(UnitBase<Exponents<3, 6, 8, 0, 0, 0, 0>>(20.0),
+                UnitBase<Exponents<3, 6, 8, 0, 0, 0, 0>>(10.0), 10.0,
+                UnitBase<Exponents<3, 6, 8, 0, 0, 0, 0>>(), -10.0);
 
-      test_diff(UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(24.0),
-                UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(12.0), 12.0,
-                UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>, double>(), -12.0);
+      test_diff(UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>>(24.0),
+                UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>>(12.0), 12.0,
+                UnitBase<Exponents<1, 2, 3, 0, 0, 0, 0>>(), -12.0);
     }
   }
 
@@ -214,7 +213,7 @@ TEST_SUITE("UnitBase") {
     const auto velocity = distance / time;
     CHECK(velocity.data == doctest::Approx(10.0));
     CHECK(std::is_same_v<std::remove_const_t<decltype(velocity)>,
-                         UnitBase<Exponents<1, 0, -1, 0, 0, 0, 0>, double>>);
+                         UnitBase<Exponents<1, 0, -1, 0, 0, 0, 0>>>);
 
     // std::cout << std::endl
     //           << "Question 1" << std::endl
@@ -234,7 +233,7 @@ TEST_SUITE("UnitBase") {
     const auto acceleration = velocity_delta / time;
     CHECK(acceleration.data == doctest::Approx(25.0));
     CHECK(std::is_same_v<std::remove_const_t<decltype(acceleration)>,
-                         UnitBase<Exponents<1, 0, -2, 0, 0, 0, 0>, double>>);
+                         UnitBase<Exponents<1, 0, -2, 0, 0, 0, 0>>>);
 
     // std::cout << "Question 2a" << std::endl
     //           << "The race car has an acceleration of " << acceleration.data
@@ -249,7 +248,7 @@ TEST_SUITE("UnitBase") {
     const auto force = mass * acceleration;
     CHECK(force.data == doctest::Approx(20000.0));
     CHECK(std::is_same_v<std::remove_const_t<decltype(force)>,
-                         UnitBase<Exponents<1, 1, -2, 0, 0, 0, 0>, double>>);
+                         UnitBase<Exponents<1, 1, -2, 0, 0, 0, 0>>>);
 
     // std::cout << "Question 2b" << std::endl
     //           << "The race car has a force of " << force.data
@@ -269,7 +268,7 @@ TEST_SUITE("UnitBase") {
     const auto density = mass / (length * width * height);
     CHECK(density.data == doctest::Approx(240.0));
     CHECK(std::is_same_v<std::remove_const_t<decltype(density)>,
-                         UnitBase<Exponents<-3, 1, 0, 0, 0, 0, 0>, double>>);
+                         UnitBase<Exponents<-3, 1, 0, 0, 0, 0, 0>>>);
 
     // std::cout << "Question 3" << std::endl
     //           << "The block has a density of " << density.data << " kg/m^3"

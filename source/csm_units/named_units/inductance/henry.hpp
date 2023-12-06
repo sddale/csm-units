@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Henry = Unit<Inductance, "H", double>;
+using Henry = Unit<Inductance, "H">;
 
 // Unit Cast for Unit Henry
 template <>

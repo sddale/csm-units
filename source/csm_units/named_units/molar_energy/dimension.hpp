@@ -14,6 +14,6 @@
 
 namespace csm_units {
 
-using MolarEnergy = UnitBase<Exponents<2, 1, -2, 0, 0, -1, 0>, double>;
+using MolarEnergy = UnitBase<Exponents<2, 1, -2, 0, 0, -1, 0>>;
 
 }  // namespace csm_units

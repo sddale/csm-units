@@ -12,13 +12,17 @@
 #include <csm_units/concepts.hpp>
 #include <ostream>
 
-#include "unitbase.hpp"
 #include "unitcast.hpp"
 #include "util.hpp"
 
+#ifndef CSMUNITS_VALUE_TYPE
+#define CSMUNITS_VALUE_TYPE double
+#endif
+
 namespace csm_units {
 
-template <UnitBaseType Base, StringLiteral Unit_Name, Arithmetic Data>
+template <UnitBaseType Base, StringLiteral Unit_Name,
+          Arithmetic Data = CSMUNITS_VALUE_TYPE>
 class Unit {
  public:
   using SI = Base;

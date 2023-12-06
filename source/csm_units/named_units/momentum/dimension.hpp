@@ -14,6 +14,6 @@
 
 namespace csm_units {
 
-using Momentum = UnitBase<Exponents<1, 1, -1, 0, 0, 0, 0>, double>;
+using Momentum = UnitBase<Exponents<1, 1, -1, 0, 0, 0, 0>>;
 
 }  // namespace csm_units

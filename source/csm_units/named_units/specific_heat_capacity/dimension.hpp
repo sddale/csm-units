@@ -14,7 +14,7 @@
 
 namespace csm_units {
 
-using SpecificHeatCapacity = UnitBase<Exponents<2, 0, -2, 0, -1, 0, 0>, double>;
+using SpecificHeatCapacity = UnitBase<Exponents<2, 0, -2, 0, -1, 0, 0>>;
 using SpecificEntropy = SpecificHeatCapacity;
 
 }  // namespace csm_units

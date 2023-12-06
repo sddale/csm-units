@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using SqrCandela = Unit<SqrLuminosity, "cd2", double>;
+using SqrCandela = Unit<SqrLuminosity, "cd2">;
 
 template <>
 [[nodiscard]] constexpr auto UnitCast(SqrLuminosity &&input) noexcept

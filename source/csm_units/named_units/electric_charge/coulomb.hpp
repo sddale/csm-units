@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Coulomb = Unit<ElectrCharge, "C", double>;
+using Coulomb = Unit<ElectrCharge, "C">;
 
 // Unit Cast for Unit Coulomb
 template <>

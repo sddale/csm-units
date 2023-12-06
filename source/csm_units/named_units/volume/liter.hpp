@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Liter = Unit<Volume, "L", double>;
+using Liter = Unit<Volume, "L">;
 
 // Unit Cast for base
 template <>

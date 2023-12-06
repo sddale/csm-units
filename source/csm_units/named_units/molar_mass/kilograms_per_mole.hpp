@@ -10,12 +10,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using KilogramsPerMol = Unit<MolarMass, "kg/mol", double>;
+using KilogramsPerMol = Unit<MolarMass, "kg/mol">;
 
 // Unit Cast for Base KilogramsPerMol
 template <>

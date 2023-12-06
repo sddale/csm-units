@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Millimeter = Unit<Length, "mm", double>;
+using Millimeter = Unit<Length, "mm">;
 
 // Unit cast for Base m to Unit mm
 // Conversion Equation: 1 m = 1000 mm

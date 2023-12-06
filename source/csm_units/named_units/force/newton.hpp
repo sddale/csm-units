@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Newton = Unit<Force, "N", double>;
+using Newton = Unit<Force, "N">;
 
 // Unit Cast for Base Newton
 template <>

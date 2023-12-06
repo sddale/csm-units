@@ -10,12 +10,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Milliampere = Unit<ElectrCurrent, "mA", double>;
+using Milliampere = Unit<ElectrCurrent, "mA">;
 
 // base A -> Unit mA
 template <>

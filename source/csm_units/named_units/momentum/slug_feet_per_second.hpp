@@ -7,12 +7,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using SlugFeetPerSecond = Unit<Momentum, "slugft/s", double>;
+using SlugFeetPerSecond = Unit<Momentum, "slugft/s">;
 
 template <>
 [[nodiscard]] constexpr auto UnitCast(Momentum &&input) noexcept

@@ -7,12 +7,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using InvPascal = Unit<InvPressure, "inv_Pa", double>;
+using InvPascal = Unit<InvPressure, "inv_Pa">;
 
 // Unit Cast for Base Pascals to Unit Pascals
 // Conversion Equation: Pascals = Pascals

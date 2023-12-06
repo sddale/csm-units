@@ -10,12 +10,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using CubicMeterPerMole = Unit<MolarVolume, "m3/mol", double>;
+using CubicMeterPerMole = Unit<MolarVolume, "m3/mol">;
 
 // Unit Cast for base m3
 template <>

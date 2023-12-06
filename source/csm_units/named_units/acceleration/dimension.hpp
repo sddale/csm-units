@@ -13,6 +13,6 @@
 
 namespace csm_units {
 
-using Accel = UnitBase<Exponents<1, 0, -2, 0, 0, 0, 0>, double>;
+using Accel = UnitBase<Exponents<1, 0, -2, 0, 0, 0, 0>>;
 
 }  // namespace csm_units

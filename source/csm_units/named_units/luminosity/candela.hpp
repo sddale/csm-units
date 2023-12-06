@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Candela = Unit<Luminosity, "cd", double>;
+using Candela = Unit<Luminosity, "cd">;
 
 // Unit Cast for Unit Candela
 template <>

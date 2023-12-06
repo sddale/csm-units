@@ -9,7 +9,7 @@
 #pragma once
 
 #include "../exponents.hpp"
-#include "../unit.hpp"
+#include "../unitbase.hpp"
 
 namespace csm_units::literals {
 
@@ -29,7 +29,7 @@ class Literal {
   }
 
   friend constexpr auto operator*(Arithmetic auto lhs, Literal /*rhs*/) {
-    return UnitBase<E, double>(lhs);
+    return UnitBase<E>(lhs);
   }
 
   template <ExpType E2>
@@ -43,7 +43,7 @@ class Literal {
   }
 
   friend constexpr auto operator/(Arithmetic auto lhs, Literal /*rhs*/) {
-    return UnitBase<ExponentsFlip<E>, double>(lhs);
+    return UnitBase<ExponentsFlip<E>>(lhs);
   }
 };
 
@@ -94,7 +94,7 @@ constexpr auto mps2 = m / s / s;
 
 template <Literal L>
 constexpr auto FromSymbols(double input_data) {
-  return input_data <<= L;
+  return input_data * L;
 }
 
 }  // namespace csm_units::literals

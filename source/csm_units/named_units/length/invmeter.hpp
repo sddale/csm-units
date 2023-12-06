@@ -10,12 +10,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using InvMeter = Unit<InvLength, "inv_m", double>;
+using InvMeter = Unit<InvLength, "inv_m">;
 
 // Unit Cast for Base invlength to Unit invm
 template <>

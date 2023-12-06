@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Kilometer = Unit<Length, "km", double>;
+using Kilometer = Unit<Length, "km">;
 
 // Unit cast for Base m to Unit km
 // Conversion Equation: 1000 m = 1 km

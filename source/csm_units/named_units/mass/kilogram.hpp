@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Kilogram = Unit<Mass, "kg", double>;
+using Kilogram = Unit<Mass, "kg">;
 
 // Unit Cast for Base g to Unit kg
 // Conversion Equation: 1000 g = 1 kg

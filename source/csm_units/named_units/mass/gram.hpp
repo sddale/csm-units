@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Gram = Unit<Mass, "g", double>;
+using Gram = Unit<Mass, "g">;
 
 // Unit Cast for Base g to Unit g
 template <>

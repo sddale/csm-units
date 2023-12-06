@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Mole = Unit<Amount, "mol", double>;
+using Mole = Unit<Amount, "mol">;
 
 // Unit Cast for Unit Mol
 template <>

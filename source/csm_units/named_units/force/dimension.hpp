@@ -14,6 +14,6 @@
 
 namespace csm_units {
 
-using Force = UnitBase<Exponents<1, 1, -2, 0, 0, 0, 0>, double>;
+using Force = UnitBase<Exponents<1, 1, -2, 0, 0, 0, 0>>;
 
 }  // namespace csm_units

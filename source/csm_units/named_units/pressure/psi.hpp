@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Psi = Unit<Pressure, "psi", double>;
+using Psi = Unit<Pressure, "psi">;
 
 // Unit Cast for Base Pascals to Unit psi
 // Conversion Equation: 1 psi = 6894.76 pascals

@@ -10,12 +10,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using JoulesPerMoleKelvin = Unit<MolarHeatCapacity, "J/K/mol", double>;
+using JoulesPerMoleKelvin = Unit<MolarHeatCapacity, "J/K/mol">;
 
 // Unit Cast for Base Joules Per Kelvin
 template <>

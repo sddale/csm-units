@@ -10,12 +10,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using KgPerM3 = Unit<Density, "kg/m3", double>;
+using KgPerM3 = Unit<Density, "kg/m3">;
 
 // Unit Cast for Unit kg/m^3
 template <>

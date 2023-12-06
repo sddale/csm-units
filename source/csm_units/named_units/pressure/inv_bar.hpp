@@ -7,12 +7,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using InvBar = Unit<InvPressure, "inv_bar", double>;
+using InvBar = Unit<InvPressure, "inv_bar">;
 
 // Unit Cast for Base Pascals to Unit InvBar
 // Conversion Equation: 1 InvBar = 100,000 pascals

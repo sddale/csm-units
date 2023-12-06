@@ -14,6 +14,6 @@
 
 namespace csm_units {
 
-using Volume = UnitBase<Exponents<3, 0, 0, 0, 0, 0, 0>, double>;
+using Volume = UnitBase<Exponents<3, 0, 0, 0, 0, 0, 0>>;
 
 }  // namespace csm_units

@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Volt = Unit<Potential, "V", double>;
+using Volt = Unit<Potential, "V">;
 
 // Unit Cast for Base Volt
 template <>

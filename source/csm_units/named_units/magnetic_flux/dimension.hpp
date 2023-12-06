@@ -14,6 +14,6 @@
 
 namespace csm_units {
 
-using MagneticFlux = UnitBase<Exponents<1, 1, -2, 1, 0, 0, 0>, double>;
+using MagneticFlux = UnitBase<Exponents<1, 1, -2, 1, 0, 0, 0>>;
 
 }  // namespace csm_units

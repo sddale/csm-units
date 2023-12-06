@@ -24,8 +24,7 @@ constexpr auto IdealGas = [](csm_units::Kilomole n, csm_units::Liter Volume,
 
   CHECK_TYPE(
       R,
-      csm_units::UnitBase<csm_units::Exponents<2, 1, -2, 0, -1, -1, 0>, double>(
-          0.0));
+      csm_units::UnitBase<csm_units::Exponents<2, 1, -2, 0, -1, -1, 0>>(0.0));
 
   const csm_units::Bar P = n * R * Temp / Volume;
   return P;

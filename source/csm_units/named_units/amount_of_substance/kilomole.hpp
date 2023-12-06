@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Kilomole = Unit<Amount, "kmol", double>;
+using Kilomole = Unit<Amount, "kmol">;
 
 // Base Mole -> Kilomole unit
 template <>

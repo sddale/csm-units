@@ -8,12 +8,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Farad = Unit<Capacitance, "F", double>;
+using Farad = Unit<Capacitance, "F">;
 
 // Unit Cast for Base farad
 template <>

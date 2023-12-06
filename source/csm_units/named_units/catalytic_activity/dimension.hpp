@@ -14,6 +14,6 @@
 
 namespace csm_units {
 
-using CatalyticActivity = UnitBase<Exponents<0, 0, -1, 0, 0, 1, 0>, double>;
+using CatalyticActivity = UnitBase<Exponents<0, 0, -1, 0, 0, 1, 0>>;
 
 }  // namespace csm_units

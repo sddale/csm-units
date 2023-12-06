@@ -10,12 +10,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using CalPerCubicCM = Unit<SqrSolubilityParameter, "cal/cm^3", double>;
+using CalPerCubicCM = Unit<SqrSolubilityParameter, "cal/cm^3">;
 
 // Unit Cast for base m3
 template <>

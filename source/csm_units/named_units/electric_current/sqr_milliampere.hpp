@@ -10,12 +10,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using SqrMilliamp = Unit<SqrElectrCurrent, "mA2", double>;
+using SqrMilliamp = Unit<SqrElectrCurrent, "mA2">;
 
 template <>
 [[nodiscard]] constexpr auto UnitCast(SqrElectrCurrent &&input) noexcept

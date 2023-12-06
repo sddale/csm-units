@@ -9,12 +9,11 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "../../unitcast.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using JoulePerMole = Unit<MolarEnergy, "J/mol", double>;
+using JoulePerMole = Unit<MolarEnergy, "J/mol">;
 
 // Unit Cast for Base Joule
 template <>

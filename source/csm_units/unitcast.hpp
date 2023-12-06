@@ -59,8 +59,6 @@
 
 #include <csm_units/concepts.hpp>
 
-#include "util.hpp"
-
 namespace csm_units {
 
 template <class DST, class SRC>
