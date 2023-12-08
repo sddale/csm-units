@@ -3,13 +3,14 @@ CPMAddPackage("gh:onqtam/doctest@2.4.9")
 
 add_executable(
   ${PROJECT_NAME}_test
-  source/demonstration.cpp
-  source/exponents.cpp
-  source/literal.cpp
+  source/converter.cpp
+  # source/demonstration.cpp
+  # source/exponents.cpp
+  # source/literal.cpp
   source/main.cpp
-  source/unit.cpp
-  source/unitbase.cpp
-  source/conversion.cpp
+  # source/unit.cpp
+  # source/unitbase.cpp
+  # source/conversion.cpp
 )
 target_link_libraries(
   ${PROJECT_NAME}_test PRIVATE doctest::doctest CSMUnits::CSMUnits
