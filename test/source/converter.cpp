@@ -37,7 +37,6 @@ struct Subtract {
   constexpr static int den = D;
   constexpr static auto Convert(Data data) { return data - Data(N) / D; }
 };
-
 }  // namespace detail
 
 template <class BinOp>
@@ -62,29 +61,6 @@ using Add = Operator<detail::Add<N, D, Data>>;
 template <int N, int D = 1, Arithmetic Data = CSMUNITS_VALUE_TYPE>
 using Subtract = Operator<detail::Subtract<N, D, Data>>;
 
-template <class T>
-struct Inverse {};
-
-template <int N, int D, Arithmetic Data>
-struct Inverse<Multiply<N, D, Data>> {
-  using val = Divide<N, D>;
-};
-
-template <int N, int D, Arithmetic Data>
-struct Inverse<Divide<N, D, Data>> {
-  using val = Multiply<N, D>;
-};
-
-template <int N, int D, Arithmetic Data>
-struct Inverse<Add<N, D, Data>> {
-  using val = Subtract<N, D>;
-};
-
-template <int N, int D, Arithmetic Data>
-struct Inverse<Subtract<N, D, Data>> {
-  using val = Add<N, D>;
-};
-
 template <class... Ts>
 struct Converter {
   constexpr static auto FromSI(Arithmetic auto data) {
@@ -93,10 +69,35 @@ struct Converter {
   constexpr static auto ToSI(Arithmetic auto data) {
     return (typename Inverse<Ts>::val() | ... | data);
   }
+
+ private:
+  template <class T>
+  struct Inverse;
+
+  template <int N, int D, Arithmetic Data>
+  struct Inverse<Multiply<N, D, Data>> {
+    using val = Divide<N, D>;
+  };
+
+  template <int N, int D, Arithmetic Data>
+  struct Inverse<Divide<N, D, Data>> {
+    using val = Multiply<N, D>;
+  };
+
+  template <int N, int D, Arithmetic Data>
+  struct Inverse<Add<N, D, Data>> {
+    using val = Subtract<N, D>;
+  };
+
+  template <int N, int D, Arithmetic Data>
+  struct Inverse<Subtract<N, D, Data>> {
+    using val = Add<N, D>;
+  };
 };
 
 struct None {
   constexpr auto FromSI(Arithmetic auto data) { return data; }
+  constexpr auto ToSI(Arithmetic auto data) { return data; }
 };
 
 template <class ConvL, class ConvR>
@@ -193,17 +194,18 @@ class Definition {
 };
 
 namespace definition {
+
 using Farenheit =
     Definition<Exponents<0, 0, 0, 0, 1, 0, 0>, converter::None, converter::None,
                converter::None, converter::None, converter::Farenheit>;
 using SquareFarenheit =
     Definition<Exponents<0, 0, 0, 0, 2, 0, 0>, converter::None, converter::None,
                converter::None, converter::None, converter::Farenheit>;
+
 }  // namespace definition
 
-// NOLINTBEGIN(readability-identifier-length)
-constexpr auto F = definition::Farenheit();
-// NOLINTEND(readability-identifier-length)
+constexpr auto F =  // NOLINT(readability-identifier-length)
+    definition::Farenheit();
 
 using Farenheit = definition::Unit<definition::Farenheit, double>;
 
