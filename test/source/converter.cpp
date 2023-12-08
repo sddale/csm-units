@@ -7,61 +7,99 @@
 #endif
 
 namespace csm_units {
+
+namespace concepts {
+
+template <class T>
+concept Operator = requires(T oper) {
+  { T::num } -> std::convertible_to<int>;
+  { T::den } -> std::convertible_to<int>;
+  { oper | 1.0 } -> Arithmetic;
+  { 1.0 | oper } -> Arithmetic;
+  { T::Apply(1.0) } -> Arithmetic;
+};
+
+template <class T>
+concept Converter = requires(T conv) {
+  { T::FromSI(1.0) } -> Arithmetic;
+  { T::ToSI(1.0) } -> Arithmetic;
+};
+
+template <class T>
+concept Definition = requires(T def) {
+  { typename T::E() } -> ExpType;
+  { typename T::L() } -> Converter;
+  { typename T::M() } -> Converter;
+  { typename T::T() } -> Converter;
+  { typename T::C() } -> Converter;
+  { typename T::TP() } -> Converter;
+  { typename T::A() } -> Converter;
+  { typename T::LM() } -> Converter;
+};
+
+}  // namespace concepts
+
 namespace converter {
+
 namespace detail {
 
-template <int N, int D, Arithmetic Data = CSMUNITS_VALUE_TYPE>
+template <int N, int D>
 struct Multiply {
   constexpr static int num = N;
   constexpr static int den = D;
-  constexpr static auto Convert(Data data) { return data * N / D; }
+  constexpr static auto Apply(Arithmetic auto data) { return data * N / D; }
 };
 
-template <int N, int D, Arithmetic Data = CSMUNITS_VALUE_TYPE>
+template <int N, int D>
 struct Divide {
   constexpr static int num = N;
   constexpr static int den = D;
-  constexpr static auto Convert(Data data) { return data * D / N; }
+  constexpr static auto Apply(Arithmetic auto data) { return data * D / N; }
 };
 
-template <int N, int D, Arithmetic Data = CSMUNITS_VALUE_TYPE>
+template <int N, int D>
 struct Add {
   constexpr static int num = N;
   constexpr static int den = D;
-  constexpr static auto Convert(Data data) { return data + Data(N) / D; }
+  constexpr static auto Apply(Arithmetic auto data) {
+    return data + decltype(data)(N) / D;
+  }
 };
 
-template <int N, int D, Arithmetic Data = CSMUNITS_VALUE_TYPE>
+template <int N, int D>
 struct Subtract {
   constexpr static int num = N;
   constexpr static int den = D;
-  constexpr static auto Convert(Data data) { return data - Data(N) / D; }
+  constexpr static auto Apply(Arithmetic auto data) {
+    return data - decltype(data)(N) / D;
+  }
 };
+
 }  // namespace detail
 
 template <class BinOp>
 struct Operator : public BinOp {
   constexpr friend auto operator|(Arithmetic auto lhs, Operator /*rhs*/) {
-    return BinOp::Convert(lhs);
+    return BinOp::Apply(lhs);
   }
   constexpr friend auto operator|(Operator /*lhs*/, Arithmetic auto rhs) {
-    return BinOp::Convert(rhs);
+    return BinOp::Apply(rhs);
   }
 };
 
-template <int N, int D = 1, Arithmetic Data = CSMUNITS_VALUE_TYPE>
-using Multiply = Operator<detail::Multiply<N, D, Data>>;
+template <int N, int D = 1>
+using Multiply = Operator<detail::Multiply<N, D>>;
 
-template <int N, int D = 1, Arithmetic Data = CSMUNITS_VALUE_TYPE>
-using Divide = Operator<detail::Divide<N, D, Data>>;
+template <int N, int D = 1>
+using Divide = Operator<detail::Divide<N, D>>;
 
-template <int N, int D = 1, Arithmetic Data = CSMUNITS_VALUE_TYPE>
-using Add = Operator<detail::Add<N, D, Data>>;
+template <int N, int D = 1>
+using Add = Operator<detail::Add<N, D>>;
 
-template <int N, int D = 1, Arithmetic Data = CSMUNITS_VALUE_TYPE>
-using Subtract = Operator<detail::Subtract<N, D, Data>>;
+template <int N, int D = 1>
+using Subtract = Operator<detail::Subtract<N, D>>;
 
-template <class... Ts>
+template <concepts::Operator... Ts>
 struct Converter {
   constexpr static auto FromSI(Arithmetic auto data) {
     return (data | ... | Ts());
@@ -72,45 +110,45 @@ struct Converter {
 
  private:
   template <class T>
-  struct Inverse;
+  struct Inverse {};
 
-  template <int N, int D, Arithmetic Data>
-  struct Inverse<Multiply<N, D, Data>> {
+  template <int N, int D>
+  struct Inverse<Multiply<N, D>> {
     using val = Divide<N, D>;
   };
 
-  template <int N, int D, Arithmetic Data>
-  struct Inverse<Divide<N, D, Data>> {
+  template <int N, int D>
+  struct Inverse<Divide<N, D>> {
     using val = Multiply<N, D>;
   };
 
-  template <int N, int D, Arithmetic Data>
-  struct Inverse<Add<N, D, Data>> {
+  template <int N, int D>
+  struct Inverse<Add<N, D>> {
     using val = Subtract<N, D>;
   };
 
-  template <int N, int D, Arithmetic Data>
-  struct Inverse<Subtract<N, D, Data>> {
+  template <int N, int D>
+  struct Inverse<Subtract<N, D>> {
     using val = Add<N, D>;
   };
 };
 
 struct None {
-  constexpr auto FromSI(Arithmetic auto data) { return data; }
-  constexpr auto ToSI(Arithmetic auto data) { return data; }
+  constexpr static auto FromSI(Arithmetic auto data) { return data; }
+  constexpr static auto ToSI(Arithmetic auto data) { return data; }
 };
 
-template <class ConvL, class ConvR>
+template <concepts::Converter ConvL, concepts::Converter ConvR>
 struct Selector {
   using val = ConvL;
 };
 
-template <class ConvL>
+template <concepts::Converter ConvL>
 struct Selector<ConvL, None> {
   using val = ConvL;
 };
 
-template <class ConvR>
+template <concepts::Converter ConvR>
 struct Selector<None, ConvR> {
   using val = ConvR;
 };
@@ -121,11 +159,12 @@ struct Selector<None, None> {
 };
 
 using Farenheit = Converter<Subtract<5463, 20>, Multiply<9, 5>, Add<32>>;
+
 }  // namespace converter
 
 namespace definition {
 
-template <class Def, Arithmetic Data = CSMUNITS_VALUE_TYPE>
+template <concepts::Definition Def, Arithmetic Data = CSMUNITS_VALUE_TYPE>
 class Unit {
  public:
   constexpr Unit(double input) : data(input){};
@@ -134,11 +173,15 @@ class Unit {
 
 }  // namespace definition
 
-template <ExpType Exp, class ConvL = converter::None,
-          class ConvM = converter::None, class ConvT = converter::None,
-          class ConvC = converter::None, class ConvTP = converter::None,
-          class ConvA = converter::None, class ConvLM = converter::None>
+template <ExpType Exp, concepts::Converter ConvL = converter::None,
+          concepts::Converter ConvM = converter::None,
+          concepts::Converter ConvT = converter::None,
+          concepts::Converter ConvC = converter::None,
+          concepts::Converter ConvTP = converter::None,
+          concepts::Converter ConvA = converter::None,
+          concepts::Converter ConvLM = converter::None>
 class Definition {
+ public:
   using E = Exp;
   using L = ConvL;
   using M = ConvM;
@@ -148,9 +191,28 @@ class Definition {
   using A = ConvA;
   using LM = ConvLM;
 
-  using Inverse = Definition<ExponentsFlip<E>, ConvL, ConvM, ConvT, ConvC,
-                             ConvTP, ConvA, ConvLM>;
-  template <class A, class B>
+  constexpr friend auto operator*(Arithmetic auto lhs, Definition /*rhs*/) {
+    return definition::Unit<Definition, decltype(lhs)>(lhs);
+  }
+  template <concepts::Definition D, Arithmetic Data>
+  constexpr friend auto operator*(definition::Unit<D, Data> lhs,
+                                  Definition /*rhs*/) {
+    return definition::Unit<Multiply<D, Definition>, Data>(lhs.data);
+  }
+  constexpr friend auto operator/(Arithmetic auto lhs, Definition /*rhs*/) {
+    return definition::Unit<Invert, decltype(lhs)>(lhs);
+  }
+  template <concepts::Definition D, Arithmetic Data>
+  constexpr friend auto operator/(definition::Unit<D, Data> lhs,
+                                  Definition /*rhs*/) {
+    return definition::Unit<Divide<D, Definition>, Data>(lhs.data);
+  }
+
+ private:
+  using Invert = Definition<ExponentsFlip<E>, ConvL, ConvM, ConvT, ConvC,
+                            ConvTP, ConvA, ConvLM>;
+
+  template <concepts::Definition A, concepts::Definition B>
   using Multiply = Definition<
       ExponentsAdd<typename A::E, typename B::E>,
       typename converter::Selector<typename A::L, typename B::L>::val,
@@ -161,7 +223,7 @@ class Definition {
       typename converter::Selector<typename A::A, typename B::A>::val,
       typename converter::Selector<typename A::LM, typename B::LM>::val>;
 
-  template <class A, class B>
+  template <concepts::Definition A, concepts::Definition B>
   using Divide = Definition<
       ExponentsSubtract<typename A::E, typename B::E>,
       typename converter::Selector<typename A::L, typename B::L>::val,
@@ -171,24 +233,6 @@ class Definition {
       typename converter::Selector<typename A::TP, typename B::TP>::val,
       typename converter::Selector<typename A::A, typename B::A>::val,
       typename converter::Selector<typename A::LM, typename B::LM>::val>;
-
- public:
-  constexpr friend auto operator*(Arithmetic auto lhs, Definition /*rhs*/) {
-    return definition::Unit<Definition, decltype(lhs)>(lhs);
-  }
-  template <class D, Arithmetic Data>
-  constexpr friend auto operator*(definition::Unit<D, Data> lhs,
-                                  Definition /*rhs*/) {
-    return definition::Unit<Multiply<D, Definition>, Data>(lhs.data);
-  }
-  constexpr friend auto operator/(Arithmetic auto lhs, Definition /*rhs*/) {
-    return definition::Unit<Inverse, decltype(lhs)>(lhs);
-  }
-  template <class D, Arithmetic Data>
-  constexpr friend auto operator/(definition::Unit<D, Data> lhs,
-                                  Definition /*rhs*/) {
-    return definition::Unit<Divide<D, Definition>, Data>(lhs.data);
-  }
 
   // TODO: return nondimnensional type when needed i.e. K / K
 };
@@ -217,8 +261,8 @@ namespace csm_units::test {
 
 TEST_SUITE("Conversion Operators") {
   TEST_CASE("Multiply") {
-    CHECK(converter::Multiply<3, 1>::Convert(5.5) == 16.5);
-    CHECK(converter::Multiply<3, 5>::Convert(5) == 3);
+    CHECK(converter::Multiply<3, 1>::Apply(5.5) == 16.5);
+    CHECK(converter::Multiply<3, 5>::Apply(5) == 3);
   }
 
   TEST_CASE("Converter") {
