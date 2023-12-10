@@ -20,8 +20,8 @@ concept IsArithmetic = std::is_arithmetic_v<T>;
  */
 template <class T>
 concept IsRatio = requires {
-  { T::num } -> std::convertible_to<int>;
-  { T::den } -> std::convertible_to<int>;
+  { T::num } -> std::convertible_to<intmax_t>;
+  { T::den } -> std::convertible_to<intmax_t>;
 };
 
 /**
@@ -52,7 +52,7 @@ concept IsDimension = requires {
 template <class D>
 concept IsDefinition = requires {
   IsDimension<typename D::dim>;
-  IsRatio<typename D::conv_len()>;
+  IsRatio<typename D::conv_len>;
   IsRatio<typename D::conv_mass>;
   IsRatio<typename D::conv_time>;
   IsRatio<typename D::conv_elec>;
@@ -69,6 +69,8 @@ concept IsUnit = requires(T unit) {
   { unit.data } -> std::convertible_to<double>;
   { unit.Get() } -> std::convertible_to<double>;
   IsDefinition<typename T::def>;
+  IsRatio<typename T::zero_point>;
+  IsArithmetic<typename T::type>;
 };
 
 /**
@@ -77,6 +79,8 @@ concept IsUnit = requires(T unit) {
 template <class T, class U>
 concept SameDimAs = requires(T lhs, U rhs) {
   { std::same_as<typename T::def::dim, typename U::def::dim> };
+  IsUnit<T>;
+  IsUnit<U>;
 };
 
 }  // namespace csm_units
