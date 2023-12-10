@@ -23,21 +23,6 @@
 
 namespace csm_units {
 
-// template <IsUnit U, IsRatio ZeroPoint>
-// class RelativeUnit : public U {
-//  public:
-//   constexpr explicit RelativeUnit(U::type data)
-//       : U(data + static_cast<U::type>(ZeroPoint::num) / ZeroPoint::den) {}
-
-//   [[nodiscard]] constexpr auto Get() const {
-//     return U::Get() - static_cast<U::type>(ZeroPoint::num) / ZeroPoint::den;
-//   }
-//   // [[nodiscard]] constexpr auto SI() const {
-//   //   return U::SI() + static_cast<U::type>(ZeroPoint::num) /
-//   ZeroPoint::den;
-//   // }
-// };
-
 template <IsDefinition Def, IsArithmetic Data = CSMUNITS_VALUE_TYPE,
           IsRatio ZeroPoint = std::ratio<0>>
 class Unit {
