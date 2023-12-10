@@ -15,8 +15,6 @@
 
 namespace csm_units {
 
-using concepts::ExpType;
-
 template <int LN, int MN, int TN, int CN, int TPN, int AN, int LMN, int LD = 1,
           int MD = 1, int TD = 1, int CD = 1, int TPD = 1, int AD = 1,
           int LMD = 1>
@@ -32,7 +30,7 @@ struct Exponents {
 
 namespace detail {
 
-template <ExpType E1, ExpType E2>
+template <IsDimension E1, IsDimension E2>
 class ExponentsAdd {
   template <int num, int den>
   using ratio = std::ratio<num, den>;
@@ -51,7 +49,7 @@ class ExponentsAdd {
                 L::den, M::den, T::den, C::den, TP::den, A::den, LM::den>;
 };
 
-template <ExpType E1, ExpType E2>
+template <IsDimension E1, IsDimension E2>
 class ExponentsSubtract {
   template <int num, int den>
   using ratio = std::ratio<num, den>;
@@ -74,13 +72,13 @@ class ExponentsSubtract {
 
 }  // namespace detail
 
-template <ExpType E1, ExpType E2>
+template <IsDimension E1, IsDimension E2>
 using ExponentsAdd = typename detail::ExponentsAdd<E1, E2>::type;
 
-template <ExpType E1, ExpType E2>
+template <IsDimension E1, IsDimension E2>
 using ExponentsSubtract = typename detail::ExponentsSubtract<E1, E2>::type;
 
-template <ExpType E>
+template <IsDimension E>
 using ExponentsFlip =
     Exponents<-E::L::num, -E::M::num, -E::T::num, -E::C::num, -E::TP::num,
               -E::A::num, -E::LM::num, E::L::den, E::M::den, E::T::den,

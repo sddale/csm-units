@@ -12,8 +12,6 @@
 #endif
 
 namespace csm_units::test {
-using concepts::Arithmetic;
-using concepts::ExpType;
 
 namespace definition {
 using Rankine =

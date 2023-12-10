@@ -7,19 +7,19 @@
 #include <concepts>  // IWYU pragma: keep (incorrect warning)
 #include <type_traits>
 
-namespace csm_units::concepts {
+namespace csm_units {
 
 /**
  * \brief This concept enforces arithmetics.
  */
 template <class T>
-concept Arithmetic = std::is_arithmetic_v<T>;
+concept IsArithmetic = std::is_arithmetic_v<T>;
 
 /**
  * \brief This concept enforces that a class is a ratio.
  */
 template <class T>
-concept Ratio = requires {
+concept IsRatio = requires {
   { T::num } -> std::convertible_to<int>;
   { T::den } -> std::convertible_to<int>;
 };
@@ -29,7 +29,7 @@ concept Ratio = requires {
  * stated.
  */
 template <class T>
-concept ExpType = requires {
+concept IsDimension = requires {
   { T::L::num } -> std::convertible_to<intmax_t>;
   { T::L::den } -> std::convertible_to<intmax_t>;
   { T::M::num } -> std::convertible_to<intmax_t>;
@@ -50,25 +50,25 @@ concept ExpType = requires {
  * \brief This concept enforces the form of unit definitions.
  */
 template <class D>
-concept Definition = requires {
-  ExpType<typename D::dim>;
-  Ratio<typename D::conv_len()>;
-  Ratio<typename D::conv_mass>;
-  Ratio<typename D::conv_time>;
-  Ratio<typename D::conv_elec>;
-  Ratio<typename D::conv_temper>;
-  Ratio<typename D::conv_amount>;
-  Ratio<typename D::conv_light>;
+concept IsDefinition = requires {
+  IsDimension<typename D::dim>;
+  IsRatio<typename D::conv_len()>;
+  IsRatio<typename D::conv_mass>;
+  IsRatio<typename D::conv_time>;
+  IsRatio<typename D::conv_elec>;
+  IsRatio<typename D::conv_temper>;
+  IsRatio<typename D::conv_amount>;
+  IsRatio<typename D::conv_light>;
 };
 
 /**
  * \brief This concept enforces the structure of a unit.
  */
 template <class T>
-concept Unit = requires(T unit) {
+concept IsUnit = requires(T unit) {
   { unit.data } -> std::convertible_to<double>;
   { unit.Get() } -> std::convertible_to<double>;
-  Definition<typename T::def>;
+  IsDefinition<typename T::def>;
 };
 
 /**
@@ -79,4 +79,4 @@ concept SameDimAs = requires(T lhs, U rhs) {
   { std::same_as<typename T::def::dim, typename U::def::dim> };
 };
 
-}  // namespace csm_units::concepts
+}  // namespace csm_units

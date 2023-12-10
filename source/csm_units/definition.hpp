@@ -20,16 +20,10 @@
 
 namespace csm_units {
 
-using concepts::Arithmetic;
-using concepts::ExpType;
-
-template <ExpType Dimension, concepts::Ratio ConvLen = std::ratio<1>,
-          concepts::Ratio ConvMass = std::ratio<1>,
-          concepts::Ratio ConvTime = std::ratio<1>,
-          concepts::Ratio ConvElec = std::ratio<1>,
-          concepts::Ratio ConvTemper = std::ratio<1>,
-          concepts::Ratio ConvAmount = std::ratio<1>,
-          concepts::Ratio ConvLight = std::ratio<1>>
+template <IsDimension Dimension, IsRatio ConvLen = std::ratio<1>,
+          IsRatio ConvMass = std::ratio<1>, IsRatio ConvTime = std::ratio<1>,
+          IsRatio ConvElec = std::ratio<1>, IsRatio ConvTemper = std::ratio<1>,
+          IsRatio ConvAmount = std::ratio<1>, IsRatio ConvLight = std::ratio<1>>
 class Definition {
  public:
   using dim = Dimension;
@@ -60,35 +54,35 @@ class Definition {
            InvConvert<conv_light, typename dim::LM>().value;
   }
 
-  template <concepts::Ratio RL, concepts::Ratio RR, concepts::Ratio Pow>
+  template <IsRatio RL, IsRatio RR, IsRatio Pow>
   struct Selector {
     using val = RL;
   };
 
-  template <concepts::Ratio RL, concepts::Ratio RR>
+  template <IsRatio RL, IsRatio RR>
   struct Selector<RL, RR, std::ratio<0>> {
     using val = std::ratio<1, 1>;
   };
 
-  template <concepts::Ratio RL, concepts::Ratio Pow>
+  template <IsRatio RL, IsRatio Pow>
     requires(!std::same_as<Pow, std::ratio<0>>)
   struct Selector<RL, std::ratio<1>, Pow> {
     using val = RL;
   };
 
-  template <concepts::Ratio RR, concepts::Ratio Pow>
+  template <IsRatio RR, IsRatio Pow>
     requires(!std::same_as<Pow, std::ratio<0>>)
   struct Selector<std::ratio<1>, RR, Pow> {
     using val = RR;
   };
 
-  template <concepts::Ratio Pow>
+  template <IsRatio Pow>
     requires(!std::same_as<Pow, std::ratio<0>>)
   struct Selector<std::ratio<1>, std::ratio<1>, Pow> {
     using val = std::ratio<1>;
   };
 
-  template <concepts::Definition A>
+  template <IsDefinition A>
   struct Multiply_ {
    private:
     using dimension = ExponentsAdd<typename A::dim, dim>;
@@ -111,10 +105,10 @@ class Definition {
                    typename Selector<typename A::conv_light, conv_light,
                                      typename dimension::LM>::val>;
   };
-  template <concepts::Definition A>
+  template <IsDefinition A>
   using Multiply = Multiply_<A>::val;
 
-  template <concepts::Definition A>
+  template <IsDefinition A>
   struct Divide_ {
    private:
     using dimension = ExponentsAdd<typename A::dim, dim>;
@@ -137,7 +131,7 @@ class Definition {
                    typename Selector<typename A::conv_light, conv_light,
                                      typename dimension::LM>::val>;
   };
-  template <concepts::Definition A>
+  template <IsDefinition A>
   using Divide = Divide_<A>::val;
 
   using InverseDef =
@@ -145,14 +139,14 @@ class Definition {
                  conv_temper, conv_amount, conv_light>;
 
  private:
-  template <concepts::Ratio R1, concepts::Ratio R2>
+  template <IsRatio R1, IsRatio R2>
   struct Convert {
     constexpr static auto value =
         gcem::pow(static_cast<double>(R1::num) / R1::den,
                   static_cast<double>(R2::num) / R2::den);
   };
 
-  template <concepts::Ratio R1, concepts::Ratio R2>
+  template <IsRatio R1, IsRatio R2>
   using InvConvert = Convert<std::ratio<R1::den, R1::num>, R2>;
 };
 
