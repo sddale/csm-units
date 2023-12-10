@@ -19,8 +19,8 @@ endif()
 # See https://github.com/TheLartians/CPM.cmake for more info
 include(cmake/CPM.cmake)
 CPMAddPackage("gh:TheLartians/Format.cmake@1.7.3")
-CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0") # To make target
-                                                           # installable
+CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0")
+CPMAddPackage("gh:kthohr/gcem@1.17.0")
 
 # # Define project options option(CSMUNITS_BUILD_TESTS "Set to ON to build
 # tests" OFF) set(BUILD_TESTING OFF) set(DOCTEST_CONFIG_DISABLE OFF)
@@ -41,6 +41,7 @@ target_include_directories(
             $<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>
 )
 
+target_link_libraries(${PROJECT_NAME} INTERFACE gcem)
 add_subdirectory(test)
 if(CSMUNITS_TEST)
   enable_testing()

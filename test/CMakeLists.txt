@@ -13,7 +13,7 @@ add_executable(
   # source/conversion.cpp
 )
 target_link_libraries(
-  ${PROJECT_NAME}_test PRIVATE doctest::doctest CSMUnits::CSMUnits
+  ${PROJECT_NAME}_test PRIVATE doctest::doctest CSMUnits::CSMUnits gcem
 )
 set_target_properties(${PROJECT_NAME}_test PROPERTIES CXX_STANDARD 23)
 
