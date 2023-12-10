@@ -13,6 +13,10 @@
 
 namespace csm_units::test {
 
+constexpr auto CHECK_UNIT_EQ = [](IsUnit auto lhs, IsUnit auto rhs) {
+  CHECK_EQ(lhs.data, doctest::Approx(rhs.data));
+};
+
 constexpr auto CHECK_DBL_EQ = [](auto lhs, auto rhs) {
   CHECK_EQ(lhs, doctest::Approx(rhs));
 };
@@ -36,7 +40,8 @@ constexpr auto R =  // NOLINT(readability-identifier-length)
 using Rankine = Unit<decltype(R), double>;
 using Kelvin = Unit<definition::Kelvin, double>;
 using Celsius = Unit<definition::Kelvin, double, std::ratio<5463, 20>>;
-using Farenheit = Unit<decltype(R), double, std::ratio<45967, 100>>;
+// using Fahrenheit = Unit<decltype(R), double, std::ratio<45967, 100>>;
+using Fahrenheit = Unit<decltype(R), double, std::ratio<45967, 180>>;
 
 // NOLINTBEGIN(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
 
@@ -147,24 +152,24 @@ TEST_SUITE("Unit") {
 }
 TEST_SUITE("Relative Unit") {
   TEST_CASE("Comparison") {
-    static_assert(Farenheit(100.) == Rankine(100 + 459.67));
-    static_assert(Farenheit(90.) != Rankine(100 + 459.67));
-    static_assert(Farenheit(90.) < Rankine(100 + 459.67));
-    static_assert(Farenheit(90.) <= Rankine(100 + 459.67));
-    static_assert(Farenheit(101.) >= Rankine(100 + 459.67));
-    static_assert(Farenheit(101.) > Rankine(100 + 459.67));
-    CHECK_DBL_EQ(Farenheit(100).data, Celsius(37.7778).data);
-    CHECK(Farenheit(101).data != doctest::Approx(Celsius(37.7778).data));
+    CHECK_UNIT_EQ(Fahrenheit(100.), Rankine(100 + 459.67));
+    static_assert(Fahrenheit(90.) != Rankine(100 + 459.67));
+    static_assert(Fahrenheit(90.).data < Rankine(100 + 459.67).data);
+    static_assert(Fahrenheit(90.) <= Rankine(100 + 459.67));
+    static_assert(Fahrenheit(101.) >= Rankine(100 + 459.67));
+    static_assert(Fahrenheit(101.) > Rankine(100 + 459.67));
+    CHECK_DBL_EQ(Fahrenheit(100).data, Celsius(37.7778).data);
+    CHECK(Fahrenheit(101).data != doctest::Approx(Celsius(37.7778).data));
   }
   TEST_CASE("Get() and .data") {
-    CHECK_DBL_EQ(Farenheit(100.).Get(), 100);
-    CHECK_DBL_EQ(Farenheit(100.).data, Celsius(37.7778).data);
-    static_assert(Farenheit(100.).data == Rankine(100 + 459.67).data);
-    CHECK_EQ(Farenheit(100.).data,
+    CHECK_DBL_EQ(Fahrenheit(100.).Get(), 100);
+    CHECK_DBL_EQ(Fahrenheit(100.).data, Celsius(37.7778).data);
+    CHECK_DBL_EQ(Fahrenheit(100.).data, Rankine(100 + 459.67).data);
+    CHECK_EQ(Fahrenheit(100.).data,
              doctest::Approx(Kelvin((100 - 32) * 5. / 9 + 273.15).Get()));
   }
   TEST_CASE("Unary operator-") {
-    static_assert(-Farenheit(100.) == -Rankine(100 + 459.67));
+    CHECK_UNIT_EQ(-Fahrenheit(100.), -Rankine(100 + 459.67));
   }
   TEST_CASE("Subtraction") {
     SUBCASE("Operator-=") {
@@ -175,44 +180,46 @@ TEST_SUITE("Relative Unit") {
       }
 
       {
-        auto result = Farenheit(5) -= Farenheit(3);
+        auto result = Fahrenheit(5) -= Fahrenheit(3);
         CHECK_DBL_EQ(result.data, 2. * 5 / 9);
-        CHECK_DBL_EQ(result.Get(), Farenheit(2 - 459.67).Get());
+        CHECK_DBL_EQ(result.Get(), Fahrenheit(2 - 459.67).Get());
       }
     }
     SUBCASE("Binary operator-") {
       {
         const auto result = Celsius(5) - Celsius(3);
         CHECK_DBL_EQ(result.data, 2.);
+        CHECK_DBL_EQ(result.SI(), 2.);
         CHECK_DBL_EQ(result.Get(), Celsius(2 - 273.15).Get());
       }
       {
-        const auto result = Farenheit(5) - Farenheit(3);
+        const auto result = Fahrenheit(5) - Fahrenheit(3);
         CHECK_DBL_EQ(result.data, 2. * 5 / 9);
-        CHECK_DBL_EQ(result.Get(), Farenheit(2 - 459.67).Get());
+        CHECK_DBL_EQ(result.Get(), Fahrenheit(2 - 459.67).Get());
       }
       {
-        const auto result = Celsius(5) - Farenheit(37.4);
+        const auto result = Celsius(5) - Fahrenheit(37.4);
         CHECK_DBL_EQ(result.data, 2.);
         CHECK_DBL_EQ(result.Get(), Celsius(2 - 273.15).Get());
       }
     }
-    // CHECK_DBL_EQ(farenheit.Get(),  Farenheit(1.).Get());
+    // CHECK_DBL_EQ(farenheit.Get(),  Fahrenheit(1.).Get());
   }
   TEST_CASE("Addition") {
     SUBCASE("Operator+=") {
       {
         const auto result = Celsius(5) += Celsius(3);
         CHECK_DBL_EQ(result.data, 8 + 2 * 273.15);
+        CHECK_DBL_EQ(result.SI(), 8 + 2 * 273.15);
         CHECK_DBL_EQ(result.Get(), Celsius(8 + 273.15).Get());
       }
       {
-        const auto result = Farenheit(5) += Farenheit(3);
+        const auto result = Fahrenheit(5) += Fahrenheit(3);
         CHECK_DBL_EQ(result.data, (8. + 2 * 459.67) * 5 / 9);
-        CHECK_DBL_EQ(result.Get(), Farenheit(8 + 459.67).Get());
+        CHECK_DBL_EQ(result.Get(), Fahrenheit(8 + 459.67).Get());
       }
       {
-        const auto result = Celsius(5) += Farenheit(37.4);
+        const auto result = Celsius(5) += Fahrenheit(37.4);
         CHECK_DBL_EQ(result.data, 8 + 2 * 273.15);
         CHECK_DBL_EQ(result.Get(), Celsius(8 + 273.15).Get());
       }
@@ -224,13 +231,18 @@ TEST_SUITE("Relative Unit") {
         CHECK_DBL_EQ(result.Get(), Celsius(8 + 273.15).Get());
       }
       {
-        const auto result = Farenheit(5) + Farenheit(3);
+        const auto result = Fahrenheit(5) + Fahrenheit(3);
         CHECK_DBL_EQ(result.data, (8. + 2 * 459.67) * 5 / 9);
-        CHECK_DBL_EQ(result.Get(), Farenheit(8 + 459.67).Get());
+        CHECK_DBL_EQ(result.Get(), Fahrenheit(8 + 459.67).Get());
       }
       {
-        const auto result = Celsius(5) + Farenheit(37.4);
+        const auto result = Celsius(5) + Fahrenheit(37.4);
         CHECK_DBL_EQ(result.data, 8 + 2 * 273.15);
+        CHECK_DBL_EQ(Celsius(Fahrenheit(5)).Get(), -15);
+        CHECK_DBL_EQ(Fahrenheit(Celsius(5)).Get(), 41);
+        CHECK_DBL_EQ(Celsius(Kelvin(300)).Get(), 300 - 273.15);
+        CHECK_DBL_EQ(Kelvin(Celsius(300)).Get(), 300 + 273.15);
+        CHECK_DBL_EQ(Fahrenheit(Rankine(1000)).Get(), 540.33);
         CHECK_DBL_EQ(result.Get(), Celsius(8 + 273.15).Get());
       }
     }
