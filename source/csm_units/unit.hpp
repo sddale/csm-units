@@ -110,10 +110,8 @@ class Unit {
     return lhs;
   }
 
-  template <IsRatio... Converters>
-  constexpr friend auto operator/(
-      Unit lhs,
-      Unit<Definition<typename def::dim, Converters...>, Data> rhs) noexcept {
+  template <SameDimAs<Unit> U>
+  constexpr friend auto operator/(Unit lhs, U rhs) noexcept {
     return lhs.data / rhs.data;
   }
   template <IsUnit U>
