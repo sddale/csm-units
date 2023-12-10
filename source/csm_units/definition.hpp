@@ -60,29 +60,6 @@ class Definition {
            InvConvert<conv_light, typename dim::LM>().value;
   }
 
-  // constexpr friend auto operator*(Arithmetic auto lhs, Definition /*rhs*/) {
-  //   return Unit<Definition, decltype(lhs)>(lhs);
-  // }
-  // template <concepts::Definition D>
-  // constexpr friend auto operator*(D /*lhs*/, Definition /*rhs*/) {
-  //   return Unit<Multiply<D>>(1.0);
-  // }
-  // template <concepts::Definition D, Arithmetic Data>
-  // constexpr friend auto operator*(Unit<D, Data> lhs, Definition /*rhs*/) {
-  //   return Unit<Multiply<D>, Data>(lhs.data);
-  // }
-  // constexpr friend auto operator/(Arithmetic auto lhs, Definition /*rhs*/) {
-  //   return Unit<InverseDef, decltype(lhs)>(lhs);
-  // }
-  // template <concepts::Definition D>
-  // constexpr friend auto operator/(D /*lhs*/, Definition /*rhs*/) {
-  //   return Unit<Divide<D>>(1.0);
-  // }
-  // template <concepts::Definition D, Arithmetic Data>
-  // constexpr friend auto operator/(Unit<D, Data> lhs, Definition /*rhs*/) {
-  //   return Unit<Divide<D>, Data>(lhs.data);
-  // }
-
   template <concepts::Ratio RL, concepts::Ratio RR, concepts::Ratio Pow>
   struct Selector {
     using val = RL;
