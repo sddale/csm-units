@@ -44,19 +44,29 @@ class RelativeUnit : public U {
   // }
 };
 
-template <concepts::Definition Def, Arithmetic Data = CSMUNITS_VALUE_TYPE>
+template <concepts::Definition Def, Arithmetic Data = CSMUNITS_VALUE_TYPE,
+          concepts::Ratio ZeroPoint = std::ratio<0>>
 class Unit {
  public:
   using def = Def;
   using type = Data;
+  using zero_point = ZeroPoint;
 
-  constexpr explicit Unit(Data input) : data(input * def::ToSI()){};
+  constexpr explicit Unit(Data input = std::declval<type>())
+      : data((input + static_cast<type>(ZeroPoint::num) / ZeroPoint::den) *
+             def::ToSI()){};
 
   template <concepts::SameDimAs<Unit> U>
+    requires std::same_as<zero_point, typename U::zero_point>
   constexpr explicit(false) Unit(U input) : data(input.data) {}
 
-  [[nodiscard]] constexpr auto Get() const { return data * Def::Get(); }
-  [[nodiscard]] constexpr auto SI() const { return data; }
+  [[nodiscard]] constexpr auto Get() const {
+    return data * Def::Get() -
+           static_cast<type>(ZeroPoint::num) / ZeroPoint::den;
+  }
+  [[nodiscard]] constexpr auto SI() const {
+    return data - static_cast<type>(ZeroPoint::num) / ZeroPoint::den;
+  }
 
   Data data;  // magnitude in si
 
@@ -71,8 +81,9 @@ class Unit {
     return lhs.data == rhs.data;
   }
 
-  constexpr auto operator-=(const Unit& rhs) noexcept -> auto& {
-    data -= rhs.data;
+  template <concepts::SameDimAs<Unit> U>
+  constexpr auto operator-=(const U& rhs) noexcept -> auto& {
+    data -= static_cast<type>(rhs.data);
     return *this;
   }
   constexpr friend auto operator-(Unit lhs) noexcept {
@@ -85,8 +96,9 @@ class Unit {
     return lhs;
   }
 
-  constexpr auto operator+=(const Unit& rhs) noexcept -> auto& {
-    data += rhs.data;
+  template <concepts::SameDimAs<Unit> U>
+  constexpr auto operator+=(const U& rhs) noexcept -> auto& {
+    data += static_cast<type>(rhs.data);
     return *this;
   }
 
@@ -96,17 +108,19 @@ class Unit {
     return lhs;
   }
 
-  template <concepts::Ratio... Converters>
-  constexpr friend auto operator*(
-      Unit lhs,
-      Unit<Definition<ExponentsFlip<typename def::dim>, Converters...>, Data>
-          rhs) noexcept {
+  template <concepts::Unit U>
+    requires std::same_as<typename U::def::dim,
+                          ExponentsFlip<typename def::dim>>
+  constexpr friend auto operator*(Unit lhs, U rhs) noexcept {
     return lhs.data * rhs.data;
   }
+
   template <concepts::Unit U>
   constexpr friend auto operator*(Unit lhs, const U& rhs) noexcept {
-    return Unit<typename Unit::def::template Muliply<typename U::def>, Data>(
-        lhs.data * rhs.data);
+    using result_type =
+        decltype(std::declval<type&>() * std::declval<typename U::type&>());
+    return Unit<typename Unit::def::template Multiply<typename U::def>,
+                result_type>(lhs.data * rhs.data);
   }
   constexpr auto operator*=(Arithmetic auto rhs) noexcept -> auto& {
     data *= rhs;
@@ -125,8 +139,10 @@ class Unit {
   }
   template <concepts::Unit U>
   constexpr friend auto operator/(Unit lhs, const U& rhs) noexcept {
-    return Unit<typename Unit::def::template Divide<typename U::def>, Data>(
-        lhs.data / rhs.data);
+    using result_type =
+        decltype(std::declval<type&>() / std::declval<typename U::type&>());
+    return Unit<typename Unit::def::template Divide<typename U::def>,
+                result_type>(lhs.data / rhs.data);
   }
   constexpr auto operator/=(Arithmetic auto rhs) noexcept -> auto& {
     data /= rhs;

@@ -50,6 +50,24 @@ TEST_SUITE("Conversion Operators") {
 }
 
 TEST_SUITE("Unit") {
+  TEST_CASE("Size") {
+    static_assert(sizeof(CSMUNITS_VALUE_TYPE) ==
+                  sizeof(Unit<definition::Kelvin>));
+    static_assert(sizeof(double) == sizeof(Unit<definition::Kelvin, double>));
+    static_assert(sizeof(float) == sizeof(Unit<definition::Kelvin, float>));
+    static_assert(sizeof(double) ==
+                  sizeof(decltype(Unit<definition::Kelvin, double>() *
+                                  Unit<definition::Kelvin, float>())));
+    static_assert(sizeof(double) ==
+                  sizeof(decltype(Unit<definition::Kelvin, float>() *
+                                  Unit<definition::Kelvin, double>())));
+    static_assert(sizeof(double) ==
+                  sizeof(decltype(Unit<definition::Kelvin, double>() /
+                                  Unit<definition::Kelvin, float>())));
+    static_assert(sizeof(double) ==
+                  sizeof(decltype(Unit<definition::Kelvin, float>() /
+                                  Unit<definition::Kelvin, double>())));
+  }
   TEST_CASE("Comparison") {
     static_assert(Rankine(100.) == Kelvin(100. * 5 / 9));
     static_assert(Rankine(100.) != Kelvin(101. * 5 / 9));
