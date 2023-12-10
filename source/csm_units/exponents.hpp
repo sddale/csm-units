@@ -15,6 +15,8 @@
 
 namespace csm_units {
 
+using concepts::ExpType;
+
 template <int LN, int MN, int TN, int CN, int TPN, int AN, int LMN, int LD = 1,
           int MD = 1, int TD = 1, int CD = 1, int TPD = 1, int AD = 1,
           int LMD = 1>

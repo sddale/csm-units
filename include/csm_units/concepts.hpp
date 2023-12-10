@@ -4,13 +4,10 @@
  */
 
 #pragma once
-
-#include <concepts>
-#include <cstdint>
-#include <ratio>
+#include <concepts>  // IWYU pragma: keep (incorrect warning)
 #include <type_traits>
 
-namespace csm_units {
+namespace csm_units::concepts {
 
 /**
  * \brief This concept enforces arithmetics.
@@ -19,11 +16,20 @@ template <class T>
 concept Arithmetic = std::is_arithmetic_v<T>;
 
 /**
- * \brief This concept enforces the any unitbase exponents to be in the form
+ * \brief This concept enforces that a class is a ratio.
+ */
+template <class T>
+concept Ratio = requires {
+  { T::num } -> std::convertible_to<int>;
+  { T::den } -> std::convertible_to<int>;
+};
+
+/**
+ * \brief This concept enforces the form of unit dimensions.
  * stated.
  */
 template <class T>
-concept ExpType = requires(T) {
+concept ExpType = requires {
   { T::L::num } -> std::convertible_to<intmax_t>;
   { T::L::den } -> std::convertible_to<intmax_t>;
   { T::M::num } -> std::convertible_to<intmax_t>;
@@ -41,30 +47,36 @@ concept ExpType = requires(T) {
 };
 
 /**
- * \brief This concept enforces that a class is a ratio.
+ * \brief This concept enforces the form of unit definitions.
  */
-template <class T>
-concept RatioType = requires(T) {
-  { T::num } -> std::convertible_to<intmax_t>;
-  { T::den } -> std::convertible_to<intmax_t>;
-};
-
-/**
- * \brief This concept enforces the structure of a base unit.
- */
-template <class T>
-concept UnitBaseType = requires(T unitbase) {
-  { unitbase.data } -> std::convertible_to<double>;
-  { unitbase.Flip() };
+template <class D>
+concept Definition = requires {
+  ExpType<typename D::dim>;
+  Ratio<typename D::conv_len()>;
+  Ratio<typename D::conv_mass>;
+  Ratio<typename D::conv_time>;
+  Ratio<typename D::conv_elec>;
+  Ratio<typename D::conv_temper>;
+  Ratio<typename D::conv_amount>;
+  Ratio<typename D::conv_light>;
 };
 
 /**
  * \brief This concept enforces the structure of a unit.
  */
 template <class T>
-concept UnitType = requires(T unit) {
+concept Unit = requires(T unit) {
   { unit.data } -> std::convertible_to<double>;
-  { typename T::SI() };
+  { unit.Get() } -> std::convertible_to<double>;
+  Definition<typename T::def>;
 };
 
-}  // namespace csm_units
+/**
+ * \brief This concept enforces matching dimensions between two Units
+ */
+template <class T, class U>
+concept SameDimAs = requires(T lhs, U rhs) {
+  { std::same_as<typename T::def::dim, typename U::def::dim> };
+};
+
+}  // namespace csm_units::concepts

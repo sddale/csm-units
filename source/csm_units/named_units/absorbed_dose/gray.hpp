@@ -7,31 +7,22 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Gray = Unit<AbsorbedDose, "Gy">;
-
-// Unit Cast for Base Gray
-template <>
-[[nodiscard]] constexpr auto UnitCast(AbsorbedDose &&input) noexcept -> Gray {
-  return Gray(input.data);
-}
-template <>
-[[nodiscard]] constexpr auto UnitCast(Gray &&input) noexcept -> AbsorbedDose {
-  return AbsorbedDose(input.data);
-}
+using Gray = Unit<Definition<AbsorbedDose>>;
 
 namespace literals {
 
 constexpr auto operator""_Gy(long double data) noexcept {
-  return Gray(static_cast<double>(data));
+  return Gray(static_cast<Gray::type>(data));
 }
 
 constexpr auto operator""_Gy(unsigned long long data) noexcept {
-  return Gray(static_cast<double>(data));
+  return Gray(static_cast<Gray::type>(data));
 }
 
 }  // namespace literals

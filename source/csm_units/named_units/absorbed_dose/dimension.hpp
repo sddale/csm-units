@@ -10,10 +10,9 @@
 #pragma once
 
 #include "../../exponents.hpp"
-#include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using AbsorbedDose = UnitBase<Exponents<2, 0, -2, 0, 0, 0, 0>>;
+using AbsorbedDose = Exponents<2, 0, -2, 0, 0, 0, 0>;
 
 }  // namespace csm_units
