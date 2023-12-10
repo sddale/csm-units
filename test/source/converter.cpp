@@ -13,6 +13,10 @@
 
 namespace csm_units::test {
 
+constexpr auto CHECK_DBL_EQ = [](auto lhs, auto rhs) {
+  CHECK_EQ(lhs, doctest::Approx(rhs));
+};
+
 namespace definition {
 using Rankine =
     Definition<Exponents<0, 0, 0, 0, 1, 0, 0>, std::ratio<1>, std::ratio<1>,
@@ -93,24 +97,24 @@ TEST_SUITE("Unit") {
       {
         auto val = Kelvin(100.);
         val -= Kelvin(99.);
-        CHECK(val.Get() == Kelvin(1.).Get());
+        CHECK_DBL_EQ(val.Get(), Kelvin(1.).Get());
       }
       {
         auto val = Rankine(100.);
         val -= Rankine(99.);
-        CHECK_EQ(val.data, doctest::Approx(1. * 5 / 9));
-        CHECK(val.Get() == doctest::Approx(Kelvin(1.).Get()));
+        CHECK_DBL_EQ(val.data, 1. * 5 / 9);
+        CHECK_DBL_EQ(val.Get(), Kelvin(1.).Get());
       }
     }
     SUBCASE("Binary operator-") {
       {
         const auto result = Kelvin(100.) - Kelvin(99);
-        CHECK(result.Get() == Kelvin(1.).Get());
+        CHECK_DBL_EQ(result.Get(), Kelvin(1.).Get());
       }
       {
         const auto result = Rankine(100.) - Rankine(99);
-        CHECK_EQ(result.data, doctest::Approx(1. * 5 / 9));
-        CHECK(result.Get() == doctest::Approx(Kelvin(1.).Get()));
+        CHECK_DBL_EQ(result.data, 1. * 5 / 9);
+        CHECK_DBL_EQ(result.Get(), Kelvin(1.).Get());
       }
     }
   }
@@ -119,24 +123,24 @@ TEST_SUITE("Unit") {
       {
         auto val = Kelvin(100.);
         val += Kelvin(99.);
-        CHECK(val.Get() == Kelvin(199.).Get());
+        CHECK_DBL_EQ(val.Get(), Kelvin(199.).Get());
       }
       {
         auto val = Rankine(100.);
         val += Rankine(99.);
-        CHECK_EQ(val.data, doctest::Approx(199. * 5 / 9));
-        CHECK(val.Get() == doctest::Approx(Kelvin(199.).Get()));
+        CHECK_DBL_EQ(val.data, 199. * 5 / 9);
+        CHECK_DBL_EQ(val.Get(), Kelvin(199.).Get());
       }
     }
     SUBCASE("Binary operator-") {
       {
         const auto result = Kelvin(100.) + Kelvin(99);
-        CHECK(result.Get() == Kelvin(199.).Get());
+        CHECK_DBL_EQ(result.Get(), Kelvin(199.).Get());
       }
       {
         const auto result = Rankine(100.) + Rankine(99);
-        CHECK_EQ(result.data, doctest::Approx(199. * 5 / 9));
-        CHECK(result.Get() == doctest::Approx(Kelvin(199.).Get()));
+        CHECK_DBL_EQ(result.data, 199. * 5 / 9);
+        CHECK_DBL_EQ(result.Get(), Kelvin(199.).Get());
       }
     }
   }
@@ -149,12 +153,12 @@ TEST_SUITE("Relative Unit") {
     static_assert(Farenheit(90.) <= Rankine(100 + 459.67));
     static_assert(Farenheit(101.) >= Rankine(100 + 459.67));
     static_assert(Farenheit(101.) > Rankine(100 + 459.67));
-    CHECK_EQ(Farenheit(100).data, doctest::Approx(Celsius(37.7778).data));
+    CHECK_DBL_EQ(Farenheit(100).data, Celsius(37.7778).data);
     CHECK(Farenheit(101).data != doctest::Approx(Celsius(37.7778).data));
   }
   TEST_CASE("Get() and .data") {
-    CHECK_EQ(Farenheit(100.).Get(), doctest::Approx(100));
-    CHECK_EQ(Farenheit(100.).data, doctest::Approx(Celsius(37.7778).data));
+    CHECK_DBL_EQ(Farenheit(100.).Get(), 100);
+    CHECK_DBL_EQ(Farenheit(100.).data, Celsius(37.7778).data);
     static_assert(Farenheit(100.).data == Rankine(100 + 459.67).data);
     CHECK_EQ(Farenheit(100.).data,
              doctest::Approx(Kelvin((100 - 32) * 5. / 9 + 273.15).Get()));
@@ -166,68 +170,68 @@ TEST_SUITE("Relative Unit") {
     SUBCASE("Operator-=") {
       {
         auto result = Celsius(5) -= Celsius(3);
-        CHECK_EQ(result.data, 2.);
-        CHECK_EQ(result.Get(), Celsius(2 - 273.15).Get());
+        CHECK_DBL_EQ(result.data, 2.);
+        CHECK_DBL_EQ(result.Get(), Celsius(2 - 273.15).Get());
       }
 
       {
         auto result = Farenheit(5) -= Farenheit(3);
-        CHECK_EQ(result.data, doctest::Approx(2. * 5 / 9));
-        CHECK_EQ(result.Get(), doctest::Approx(Farenheit(2 - 459.67).Get()));
+        CHECK_DBL_EQ(result.data, 2. * 5 / 9);
+        CHECK_DBL_EQ(result.Get(), Farenheit(2 - 459.67).Get());
       }
     }
     SUBCASE("Binary operator-") {
       {
         const auto result = Celsius(5) - Celsius(3);
-        CHECK_EQ(result.data, 2.);
-        CHECK_EQ(result.Get(), Celsius(2 - 273.15).Get());
+        CHECK_DBL_EQ(result.data, 2.);
+        CHECK_DBL_EQ(result.Get(), Celsius(2 - 273.15).Get());
       }
       {
         const auto result = Farenheit(5) - Farenheit(3);
-        CHECK_EQ(result.data, doctest::Approx(2. * 5 / 9));
-        CHECK_EQ(result.Get(), doctest::Approx(Farenheit(2 - 459.67).Get()));
+        CHECK_DBL_EQ(result.data, 2. * 5 / 9);
+        CHECK_DBL_EQ(result.Get(), Farenheit(2 - 459.67).Get());
       }
       {
         const auto result = Celsius(5) - Farenheit(37.4);
-        CHECK_EQ(result.data, doctest::Approx(2.));
-        CHECK_EQ(result.Get(), doctest::Approx(Celsius(2 - 273.15).Get()));
+        CHECK_DBL_EQ(result.data, 2.);
+        CHECK_DBL_EQ(result.Get(), Celsius(2 - 273.15).Get());
       }
     }
-    // CHECK(farenheit.Get() == Farenheit(1.).Get());
+    // CHECK_DBL_EQ(farenheit.Get(),  Farenheit(1.).Get());
   }
   TEST_CASE("Addition") {
     SUBCASE("Operator+=") {
       {
         const auto result = Celsius(5) += Celsius(3);
-        CHECK_EQ(result.data, 8 + 2 * 273.15);
-        CHECK_EQ(result.Get(), Celsius(8 + 273.15).Get());
+        CHECK_DBL_EQ(result.data, 8 + 2 * 273.15);
+        CHECK_DBL_EQ(result.Get(), Celsius(8 + 273.15).Get());
       }
       {
         const auto result = Farenheit(5) += Farenheit(3);
-        CHECK_EQ(result.data, doctest::Approx((8. + 2 * 459.67) * 5 / 9));
-        CHECK_EQ(result.Get(), doctest::Approx(Farenheit(8 + 459.67).Get()));
+        CHECK_DBL_EQ(result.data, (8. + 2 * 459.67) * 5 / 9);
+        CHECK_DBL_EQ(result.Get(), Farenheit(8 + 459.67).Get());
       }
       {
         const auto result = Celsius(5) += Farenheit(37.4);
-        CHECK_EQ(result.data, 8 + 2 * 273.15);
-        CHECK_EQ(result.Get(), Celsius(8 + 273.15).Get());
+        CHECK_DBL_EQ(result.data, 8 + 2 * 273.15);
+        CHECK_DBL_EQ(result.Get(), Celsius(8 + 273.15).Get());
       }
     }
     SUBCASE("Binary operator+") {
       {
         const auto result = Celsius(5) + Celsius(3);
-        CHECK_EQ(result.data, 8 + 2 * 273.15);
-        CHECK_EQ(result.Get(), Celsius(8 + 273.15).Get());
+        CHECK_DBL_EQ(result.data, 8 + 2 * 273.15);
+        CHECK_DBL_EQ(result.Get(), Celsius(8 + 273.15).Get());
       }
       {
         const auto result = Farenheit(5) + Farenheit(3);
-        CHECK_EQ(result.data, doctest::Approx((8. + 2 * 459.67) * 5 / 9));
-        CHECK_EQ(result.Get(), doctest::Approx(Farenheit(8 + 459.67).Get()));
+        CHECK_DBL_EQ(result.data, (8. + 2 * 459.67) * 5 / 9);
+        CHECK_DBL_EQ(result.Get(), Farenheit(8 + 459.67).Get());
       }
       {
         const auto result = Celsius(5) + Farenheit(37.4);
-        CHECK_EQ(result.data, 8 + 2 * 273.15);
-        CHECK_EQ(result.Get(), Celsius(8 + 273.15).Get());
+        CHECK_DBL_EQ(result.data, 8 + 2 * 273.15);
+        CHECK_DBL_EQ(result.Get(), Celsius(8 + 273.15).Get());
       }
     }
   }
