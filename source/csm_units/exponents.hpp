@@ -32,9 +32,6 @@ namespace detail {
 
 template <IsDimension E1, IsDimension E2>
 class ExponentsAdd {
-  template <int num, int den>
-  using ratio = std::ratio<num, den>;
-
   using L = typename std::ratio_add<typename E1::L, typename E2::L>::type;
   using M = typename std::ratio_add<typename E1::M, typename E2::M>::type;
   using T = typename std::ratio_add<typename E1::T, typename E2::T>::type;
@@ -51,9 +48,6 @@ class ExponentsAdd {
 
 template <IsDimension E1, IsDimension E2>
 class ExponentsSubtract {
-  template <int num, int den>
-  using ratio = std::ratio<num, den>;
-
   using L = typename std::ratio_subtract<typename E1::L, typename E2::L>::type;
   using M = typename std::ratio_subtract<typename E1::M, typename E2::M>::type;
   using T = typename std::ratio_subtract<typename E1::T, typename E2::T>::type;

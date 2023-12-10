@@ -35,7 +35,7 @@ class Definition {
   using conv_amount = ConvAmount;
   using conv_light = ConvLight;
 
-  constexpr static auto Get() {
+  [[nodiscard]] consteval static auto Get() noexcept {
     return Convert<conv_len, typename dim::L>().value *
            Convert<conv_mass, typename dim::M>().value *
            Convert<conv_time, typename dim::T>().value *
@@ -44,7 +44,7 @@ class Definition {
            Convert<conv_amount, typename dim::A>().value *
            Convert<conv_light, typename dim::LM>().value;
   }
-  constexpr static auto ToSI() {
+  [[nodiscard]] consteval static auto ToSI() noexcept {
     return InvConvert<conv_len, typename dim::L>().value *
            InvConvert<conv_mass, typename dim::M>().value *
            InvConvert<conv_time, typename dim::T>().value *
@@ -142,8 +142,8 @@ class Definition {
   template <IsRatio R1, IsRatio R2>
   struct Convert {
     constexpr static auto value =
-        gcem::pow(static_cast<double>(R1::num) / R1::den,
-                  static_cast<double>(R2::num) / R2::den);
+        gcem::pow(static_cast<CSMUNITS_VALUE_TYPE>(R1::num) / R1::den,
+                  static_cast<CSMUNITS_VALUE_TYPE>(R2::num) / R2::den);
   };
 
   template <IsRatio R1, IsRatio R2>

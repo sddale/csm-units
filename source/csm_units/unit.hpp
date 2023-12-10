@@ -23,6 +23,11 @@
 
 namespace csm_units {
 
+// Def: specifier for the unit's dimensions and the  conversions to SI fo each
+// dimension
+
+// Data: storage type such that sizeof(Data) = sizeof(Unit)
+
 // ZeroPoint: 0 [unit] = std::ratio<N,D> [SI]
 // i.e for Fahrenheit, ZeroPoint = ratio<45967, 180> = approx 255.372[Kelvin]
 template <IsDefinition Def, IsArithmetic Data = CSMUNITS_VALUE_TYPE,
@@ -33,22 +38,22 @@ class Unit {
   using type = Data;
   using zero_point = ZeroPoint;
 
-  constexpr explicit Unit(Data input = std::declval<type>())
+  constexpr explicit Unit(Data input = std::declval<type>()) noexcept
       : data(input * def::ToSI() +
              static_cast<type>(ZeroPoint::num) / ZeroPoint::den){};
 
   // Build from other unit of same dimension. Zero point is irrelevant
-  template <SameDimAs<Unit> U>
-  constexpr explicit(false) Unit(U input) : data(input.data) {}
+  constexpr explicit(false) Unit(SameDimAs<Unit> auto input) noexcept
+      : data(input.data) {}
 
   // Return magnitude in expected named unit by applying conversion
-  [[nodiscard]] constexpr auto Get() const {
+  [[nodiscard]] constexpr auto Get() const noexcept {
     return (data - static_cast<type>(ZeroPoint::num) / ZeroPoint::den) *
            Def::Get();
   }
 
   // Return magnitude in si, a getter for var data
-  [[nodiscard]] constexpr auto SI() const { return data; }
+  [[nodiscard]] constexpr auto SI() const noexcept { return data; }
 
   Data data;  // magnitude in si
 
@@ -63,10 +68,12 @@ class Unit {
     data *= rhs;
     return *this;
   }
+
   constexpr friend auto operator*(Unit lhs, IsArithmetic auto rhs) noexcept {
     lhs *= rhs;
     return lhs;
   }
+
   constexpr auto operator/=(IsArithmetic auto rhs) noexcept -> auto& {
     data /= rhs;
     return *this;
@@ -87,36 +94,36 @@ class Unit {
   }
 
   // Operator overloads for interactions with Units of the same dimension
-  template <SameDimAs<Unit> U>
-  constexpr friend auto operator<=>(const Unit& lhs, const U& rhs) noexcept
+  constexpr friend auto operator<=>(const Unit& lhs,
+                                    const SameDimAs<Unit> auto& rhs) noexcept
       -> std::strong_ordering {
     return std::strong_order(lhs.data, rhs.data);
   }
-  template <SameDimAs<Unit> U>
-  constexpr friend auto operator==(const Unit& lhs, const U& rhs) noexcept
+
+  constexpr friend auto operator==(const Unit& lhs,
+                                   const SameDimAs<Unit> auto& rhs) noexcept
       -> bool {
     return lhs.data == rhs.data;
   }
 
-  template <SameDimAs<Unit> U>
-  constexpr auto operator-=(const U& rhs) noexcept -> auto& {
+  constexpr auto operator-=(const SameDimAs<Unit> auto& rhs) noexcept -> auto& {
     data -= static_cast<type>(rhs.data);
     return *this;
   }
-  template <SameDimAs<Unit> U>
-  constexpr friend auto operator-(Unit lhs, const U& rhs) noexcept {
+
+  constexpr friend auto operator-(Unit lhs,
+                                  const SameDimAs<Unit> auto& rhs) noexcept {
     lhs -= rhs;
     return lhs;
   }
 
-  template <SameDimAs<Unit> U>
-  constexpr auto operator+=(const U& rhs) noexcept -> auto& {
+  constexpr auto operator+=(const SameDimAs<Unit> auto& rhs) noexcept -> auto& {
     data += static_cast<type>(rhs.data);
     return *this;
   }
 
-  template <SameDimAs<Unit> U>
-  constexpr friend auto operator+(Unit lhs, const U& rhs) noexcept {
+  constexpr friend auto operator+(Unit lhs,
+                                  const SameDimAs<Unit> auto& rhs) noexcept {
     lhs += rhs;
     return lhs;
   }
@@ -149,33 +156,33 @@ class Unit {
 // They are implemented in this header to avoid a circular dependency with
 // definition.hpp
 template <IsDefinition D>
-constexpr auto operator*(IsArithmetic auto lhs, D /*rhs*/) {
+constexpr auto operator*(IsArithmetic auto lhs, D /*rhs*/) noexcept {
   return Unit<D, decltype(lhs)>(lhs);
 }
 
 template <IsDefinition DL, IsDefinition DR>
-constexpr auto operator*(DL /*lhs*/, DR /*rhs*/) {
+constexpr auto operator*(DL /*lhs*/, DR /*rhs*/) noexcept {
   return Unit<typename DR::template Multiply<DL>>(1.0);
 }
 
 template <IsUnit U, IsDefinition D>
-constexpr auto operator*(U lhs, D /*rhs*/) {
+constexpr auto operator*(U lhs, D /*rhs*/) noexcept {
   return Unit<typename D::template Multiply<typename U::def>, typename U::type>(
       lhs.data);
 }
 
 template <IsDefinition D>
-constexpr auto operator/(IsArithmetic auto lhs, D /*rhs*/) {
+constexpr auto operator/(IsArithmetic auto lhs, D /*rhs*/) noexcept {
   return Unit<typename D::InverseDef, decltype(lhs)>(lhs);
 }
 
 template <IsDefinition DL, IsDefinition DR>
-constexpr auto operator/(DL /*lhs*/, DR /*rhs*/) {
+constexpr auto operator/(DL /*lhs*/, DR /*rhs*/) noexcept {
   return Unit<typename DR::template Divide<DL>>(1.0);
 }
 
 template <IsUnit U, IsDefinition D>
-constexpr auto operator/(U lhs, D /*rhs*/) {
+constexpr auto operator/(U lhs, D /*rhs*/) noexcept {
   return Unit<typename D::template Divide<typename U::def>, typename U::type>(
       lhs.data);
 }
