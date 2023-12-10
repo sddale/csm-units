@@ -52,8 +52,8 @@ class Unit {
 
   constexpr explicit Unit(Data input) : data(input * def::ToSI()){};
 
-  constexpr explicit(false) Unit(concepts::Unit auto input)
-      : data(input.data) {}
+  template <concepts::SameDimAs<Unit> U>
+  constexpr explicit(false) Unit(U input) : data(input.data) {}
 
   [[nodiscard]] constexpr auto Get() const { return data * Def::Get(); }
   [[nodiscard]] constexpr auto SI() const { return data; }
