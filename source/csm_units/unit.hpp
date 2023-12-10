@@ -23,19 +23,20 @@
 
 namespace csm_units {
 
-template <IsUnit U, IsRatio ZeroPoint>
-class RelativeUnit : public U {
- public:
-  constexpr explicit RelativeUnit(U::type data)
-      : U(data + static_cast<U::type>(ZeroPoint::num) / ZeroPoint::den) {}
+// template <IsUnit U, IsRatio ZeroPoint>
+// class RelativeUnit : public U {
+//  public:
+//   constexpr explicit RelativeUnit(U::type data)
+//       : U(data + static_cast<U::type>(ZeroPoint::num) / ZeroPoint::den) {}
 
-  [[nodiscard]] constexpr auto Get() const {
-    return U::Get() - static_cast<U::type>(ZeroPoint::num) / ZeroPoint::den;
-  }
-  // [[nodiscard]] constexpr auto SI() const {
-  //   return U::SI() + static_cast<U::type>(ZeroPoint::num) / ZeroPoint::den;
-  // }
-};
+//   [[nodiscard]] constexpr auto Get() const {
+//     return U::Get() - static_cast<U::type>(ZeroPoint::num) / ZeroPoint::den;
+//   }
+//   // [[nodiscard]] constexpr auto SI() const {
+//   //   return U::SI() + static_cast<U::type>(ZeroPoint::num) /
+//   ZeroPoint::den;
+//   // }
+// };
 
 template <IsDefinition Def, IsArithmetic Data = CSMUNITS_VALUE_TYPE,
           IsRatio ZeroPoint = std::ratio<0>>
@@ -84,7 +85,7 @@ class Unit {
     return lhs;
   }
   template <SameDimAs<Unit> U>
-  constexpr friend auto operator-(U lhs, const U& rhs) noexcept {
+  constexpr friend auto operator-(Unit lhs, const U& rhs) noexcept {
     lhs -= rhs;
     return lhs;
   }
@@ -96,7 +97,7 @@ class Unit {
   }
 
   template <SameDimAs<Unit> U>
-  constexpr friend auto operator+(U lhs, const U& rhs) noexcept {
+  constexpr friend auto operator+(Unit lhs, const U& rhs) noexcept {
     lhs += rhs;
     return lhs;
   }

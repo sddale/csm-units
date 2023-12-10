@@ -31,8 +31,8 @@ constexpr auto R =  // NOLINT(readability-identifier-length)
 
 using Rankine = Unit<decltype(R), double>;
 using Kelvin = Unit<definition::Kelvin, double>;
-using Celsius = RelativeUnit<Kelvin, std::ratio<5463, 20>>;
-using Farenheit = RelativeUnit<Rankine, std::ratio<45967, 100>>;
+using Celsius = Unit<definition::Kelvin, double, std::ratio<5463, 20>>;
+using Farenheit = Unit<decltype(R), double, std::ratio<45967, 100>>;
 
 // NOLINTBEGIN(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
 
@@ -164,15 +164,17 @@ TEST_SUITE("Relative Unit") {
   }
   TEST_CASE("Subtraction") {
     SUBCASE("Operator-=") {
-      auto celsius = Celsius(5);
-      celsius -= Celsius(3);
-      CHECK_EQ(celsius.data, 2.);
-      CHECK_EQ(celsius.Get(), Celsius(2 - 273.15).Get());
+      {
+        auto result = Celsius(5) -= Celsius(3);
+        CHECK_EQ(result.data, 2.);
+        CHECK_EQ(result.Get(), Celsius(2 - 273.15).Get());
+      }
 
-      auto farenheit = Farenheit(5);
-      farenheit -= Farenheit(3);
-      CHECK_EQ(farenheit.data, doctest::Approx(2. * 5 / 9));
-      CHECK_EQ(farenheit.Get(), doctest::Approx(Farenheit(2 - 459.67).Get()));
+      {
+        auto result = Farenheit(5) -= Farenheit(3);
+        CHECK_EQ(result.data, doctest::Approx(2. * 5 / 9));
+        CHECK_EQ(result.Get(), doctest::Approx(Farenheit(2 - 459.67).Get()));
+      }
     }
     SUBCASE("Binary operator-") {
       {
@@ -185,31 +187,47 @@ TEST_SUITE("Relative Unit") {
         CHECK_EQ(result.data, doctest::Approx(2. * 5 / 9));
         CHECK_EQ(result.Get(), doctest::Approx(Farenheit(2 - 459.67).Get()));
       }
+      {
+        const auto result = Celsius(5) - Farenheit(37.4);
+        CHECK_EQ(result.data, doctest::Approx(2.));
+        CHECK_EQ(result.Get(), doctest::Approx(Celsius(2 - 273.15).Get()));
+      }
     }
     // CHECK(farenheit.Get() == Farenheit(1.).Get());
   }
   TEST_CASE("Addition") {
     SUBCASE("Operator+=") {
-      auto celsius = Celsius(5);
-      celsius += Celsius(3);
-      CHECK_EQ(celsius.data, 8 + 2 * 273.15);
-      CHECK_EQ(celsius.Get(), Celsius(8 + 273.15).Get());
-
-      auto farenheit = Farenheit(5);
-      farenheit += Farenheit(3);
-      CHECK_EQ(farenheit.data, doctest::Approx((8. + 2 * 459.67) * 5 / 9));
-      CHECK_EQ(farenheit.Get(), doctest::Approx(Farenheit(8 + 459.67).Get()));
+      {
+        const auto result = Celsius(5) += Celsius(3);
+        CHECK_EQ(result.data, 8 + 2 * 273.15);
+        CHECK_EQ(result.Get(), Celsius(8 + 273.15).Get());
+      }
+      {
+        const auto result = Farenheit(5) += Farenheit(3);
+        CHECK_EQ(result.data, doctest::Approx((8. + 2 * 459.67) * 5 / 9));
+        CHECK_EQ(result.Get(), doctest::Approx(Farenheit(8 + 459.67).Get()));
+      }
+      {
+        const auto result = Celsius(5) += Farenheit(37.4);
+        CHECK_EQ(result.data, 8 + 2 * 273.15);
+        CHECK_EQ(result.Get(), Celsius(8 + 273.15).Get());
+      }
     }
     SUBCASE("Binary operator+") {
       {
-        const auto result = Celsius(5) - Celsius(3);
-        CHECK_EQ(result.data, 2.);
-        CHECK_EQ(result.Get(), Celsius(2 - 273.15).Get());
+        const auto result = Celsius(5) + Celsius(3);
+        CHECK_EQ(result.data, 8 + 2 * 273.15);
+        CHECK_EQ(result.Get(), Celsius(8 + 273.15).Get());
       }
       {
-        const auto result = Farenheit(5) - Farenheit(3);
-        CHECK_EQ(result.data, doctest::Approx(2. * 5 / 9));
-        CHECK_EQ(result.Get(), doctest::Approx(Farenheit(2 - 459.67).Get()));
+        const auto result = Farenheit(5) + Farenheit(3);
+        CHECK_EQ(result.data, doctest::Approx((8. + 2 * 459.67) * 5 / 9));
+        CHECK_EQ(result.Get(), doctest::Approx(Farenheit(8 + 459.67).Get()));
+      }
+      {
+        const auto result = Celsius(5) + Farenheit(37.4);
+        CHECK_EQ(result.data, 8 + 2 * 273.15);
+        CHECK_EQ(result.Get(), Celsius(8 + 273.15).Get());
       }
     }
   }
