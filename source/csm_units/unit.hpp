@@ -43,7 +43,7 @@ class Unit {
              static_cast<type>(ZeroPoint::num) / ZeroPoint::den){};
 
   // Build from other unit of same dimension. Zero point is irrelevant
-  constexpr explicit(false) Unit(SameDimAs<Unit> auto input) noexcept
+  constexpr explicit(false) Unit(SameDimensionAs<Unit> auto input) noexcept
       : data(input.data) {}
 
   // Return magnitude in expected named unit by applying conversion
@@ -94,41 +94,42 @@ class Unit {
   }
 
   // Operator overloads for interactions with Units of the same dimension
-  constexpr friend auto operator<=>(const Unit& lhs,
-                                    const SameDimAs<Unit> auto& rhs) noexcept
+  constexpr friend auto operator<=>(
+      const Unit& lhs, const SameDimensionAs<Unit> auto& rhs) noexcept
       -> std::strong_ordering {
     return std::strong_order(lhs.data, rhs.data);
   }
 
-  constexpr friend auto operator==(const Unit& lhs,
-                                   const SameDimAs<Unit> auto& rhs) noexcept
-      -> bool {
+  constexpr friend auto operator==(
+      const Unit& lhs, const SameDimensionAs<Unit> auto& rhs) noexcept -> bool {
     return lhs.data == rhs.data;
   }
 
-  constexpr auto operator-=(const SameDimAs<Unit> auto& rhs) noexcept -> auto& {
+  constexpr auto operator-=(const SameDimensionAs<Unit> auto& rhs) noexcept
+      -> auto& {
     data -= static_cast<type>(rhs.data);
     return *this;
   }
 
-  constexpr friend auto operator-(Unit lhs,
-                                  const SameDimAs<Unit> auto& rhs) noexcept {
+  constexpr friend auto operator-(
+      Unit lhs, const SameDimensionAs<Unit> auto& rhs) noexcept {
     lhs -= rhs;
     return lhs;
   }
 
-  constexpr auto operator+=(const SameDimAs<Unit> auto& rhs) noexcept -> auto& {
+  constexpr auto operator+=(const SameDimensionAs<Unit> auto& rhs) noexcept
+      -> auto& {
     data += static_cast<type>(rhs.data);
     return *this;
   }
 
-  constexpr friend auto operator+(Unit lhs,
-                                  const SameDimAs<Unit> auto& rhs) noexcept {
+  constexpr friend auto operator+(
+      Unit lhs, const SameDimensionAs<Unit> auto& rhs) noexcept {
     lhs += rhs;
     return lhs;
   }
 
-  template <SameDimAs<Unit> U>
+  template <SameDimensionAs<Unit> U>
   constexpr friend auto operator/(Unit lhs, U rhs) noexcept {
     return lhs.data / rhs.data;
   }
@@ -143,7 +144,7 @@ class Unit {
   }
 
   template <IsUnit U>
-    requires(not SameDimAs<Unit, U>)
+    requires(not SameDimensionAs<Unit, U>)
   constexpr friend auto operator/(Unit lhs, const U& rhs) noexcept {
     using result_type =
         decltype(std::declval<type&>() / std::declval<typename U::type&>());

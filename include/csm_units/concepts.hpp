@@ -77,7 +77,7 @@ concept IsUnit = requires(T unit) {
  * \brief This concept enforces matching dimensions between two Units
  */
 template <class T, class U>
-concept SameDimAs = requires(T lhs, U rhs) {
+concept SameDimensionAs = requires(T lhs, U rhs) {
   { std::same_as<typename T::def::dim, typename U::def::dim> };
   IsUnit<T>;
   IsUnit<U>;
