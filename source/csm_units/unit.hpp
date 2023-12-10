@@ -115,6 +115,7 @@ class Unit {
     return lhs.data / rhs.data;
   }
   template <IsUnit U>
+    requires(not SameDimAs<Unit, U>)
   constexpr friend auto operator/(Unit lhs, const U& rhs) noexcept {
     using result_type =
         decltype(std::declval<type&>() / std::declval<typename U::type&>());
