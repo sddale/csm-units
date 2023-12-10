@@ -38,11 +38,14 @@ class Unit {
   using type = Data;
   using zero_point = ZeroPoint;
 
+  // Build from arithmetic (i.e. double) value
   constexpr explicit Unit(Data input = std::declval<type>()) noexcept
       : data(input * def::ToSI() +
              static_cast<type>(ZeroPoint::num) / ZeroPoint::den){};
 
-  // Build from other unit of same dimension. Zero point is irrelevant
+  // Build from other unit of same dimension. Zero point is irrelevant.
+  // Should be implicit to allow for conversions between units of the same
+  // dimension
   constexpr explicit(false) Unit(SameDimensionAs<Unit> auto input) noexcept
       : data(input.data) {}
 
@@ -52,7 +55,8 @@ class Unit {
            Def::Get();
   }
 
-  // Return magnitude in si, a getter for var data
+  // Return magnitude in si, a getter for var data for readability if desired
+  // Note: data is public and can be accessed directly
   [[nodiscard]] constexpr auto SI() const noexcept { return data; }
 
   Data data;  // magnitude in si
@@ -85,6 +89,7 @@ class Unit {
   }
 
   // Operator overloads for interactions with Units of the same class
+  // Unit storage type follows regular c++ promotion rules
   template <IsUnit U>
   constexpr friend auto operator*(Unit lhs, const U& rhs) noexcept {
     using result_type =
@@ -131,7 +136,7 @@ class Unit {
 
   template <SameDimensionAs<Unit> U>
   constexpr friend auto operator/(Unit lhs, U rhs) noexcept {
-    return lhs.data / rhs.data;
+    return lhs.data / rhs.data;  // Unitless return since dimensions cancel
   }
 
   // Operator overloads for interactions with Units of specific relative
@@ -140,11 +145,11 @@ class Unit {
     requires std::same_as<typename U::def::dim,
                           ExponentsFlip<typename def::dim>>
   constexpr friend auto operator*(Unit lhs, U rhs) noexcept {
-    return lhs.data * rhs.data;
+    return lhs.data * rhs.data;  // Unitless return since dimensions cancel
   }
 
   template <IsUnit U>
-    requires(not SameDimensionAs<Unit, U>)
+    requires(not SameDimensionAs<Unit, U>)  // Otherwise dimensionless return
   constexpr friend auto operator/(Unit lhs, const U& rhs) noexcept {
     using result_type =
         decltype(std::declval<type&>() / std::declval<typename U::type&>());
