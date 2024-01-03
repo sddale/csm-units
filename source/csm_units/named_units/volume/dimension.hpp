@@ -9,11 +9,11 @@
 
 #pragma once
 
-#include "../../exponents.hpp"
+#include "../../dimension.hpp"
 #include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using Volume = UnitBase<Exponents<3, 0, 0, 0, 0, 0, 0>>;
+using Volume = UnitBase<Dimension<3, 0, 0, 0, 0, 0, 0>>;
 
 }  // namespace csm_units

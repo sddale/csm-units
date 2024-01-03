@@ -9,10 +9,10 @@
 
 #pragma once
 
-#include "../../exponents.hpp"
+#include "../../dimension.hpp"
 
 namespace csm_units {
 
-using AbsorbedDose = Exponents<2, 0, -2, 0, 0, 0, 0>;
+using AbsorbedDose = Dimension<2, 0, -2, 0, 0, 0, 0>;
 
 }  // namespace csm_units

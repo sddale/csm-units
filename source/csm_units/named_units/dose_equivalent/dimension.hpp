@@ -9,11 +9,11 @@
 
 #pragma once
 
-#include "../../exponents.hpp"
+#include "../../dimension.hpp"
 #include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using DoseEquivalent = UnitBase<Exponents<2, 0, -2, 0, 0, 0, 0>>;
+using DoseEquivalent = UnitBase<Dimension<2, 0, -2, 0, 0, 0, 0>>;
 
 }  // namespace csm_units

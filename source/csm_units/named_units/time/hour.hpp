@@ -8,33 +8,32 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Hour = Unit<Time, "hour">;
+namespace definition {
 
-// Unit Cast for Unit min to Base s
-template <>
-[[nodiscard]] constexpr auto UnitCast(Hour &&input) noexcept -> Time {
-  return Time(input.data * 3600);
+using Hour =
+    Definition<Time, std::ratio<1>, std::ratio<1>, std::ratio<1, 3600>>;
+
 }
 
-// Unit Cast for Base s to Unit min
-template <>
-[[nodiscard]] constexpr auto UnitCast(Time &&input) noexcept -> Hour {
-  return Hour(input.data / 3600);
-}
+using Hour = Unit<definition::Hour>;
 
 namespace literals {
 
-constexpr auto operator""_hour(long double data) noexcept {
-  return Hour(static_cast<double>(data));
+constexpr auto hr =  // NOLINT(readability-identifier-length)
+    definition::Hour();
+
+constexpr auto operator""_hr(long double data) noexcept {
+  return Hour(static_cast<Hour::type>(data));
 }
 
-constexpr auto operator""_hour(unsigned long long data) noexcept {
-  return Hour(static_cast<double>(data));
+constexpr auto operator""_hr(unsigned long long data) noexcept {
+  return Hour(static_cast<Hour::type>(data));
 }
 
 }  // namespace literals

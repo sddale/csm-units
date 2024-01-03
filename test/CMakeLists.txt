@@ -11,6 +11,7 @@ add_executable(
   source/comparison.cpp
   source/definition.cpp
   source/size.cpp
+  source/named_units/time.cpp
 )
 target_link_libraries(
   ${PROJECT_NAME}_test PRIVATE doctest::doctest CSMUnits::CSMUnits gcem

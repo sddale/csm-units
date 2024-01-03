@@ -2,7 +2,7 @@
 
 #include <csm_units/concepts.hpp>
 #include <source/csm_units/definition.hpp>
-#include <source/csm_units/exponents.hpp>
+#include <source/csm_units/dimension.hpp>
 #include <source/csm_units/unit.hpp>
 
 namespace csm_units::test {
@@ -26,7 +26,7 @@ namespace csm_units::test {
 
 //   CHECK_TYPE(
 //       R,
-//       csm_units::UnitBase<csm_units::Exponents<2, 1, -2, 0, -1, -1,
+//       csm_units::UnitBase<csm_units::Dimension<2, 1, -2, 0, -1, -1,
 //       0>>(0.0));
 
 //   const csm_units::Bar P = n * R * Temp / Volume;

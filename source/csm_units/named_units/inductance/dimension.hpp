@@ -9,11 +9,11 @@
 
 #pragma once
 
-#include "../../exponents.hpp"
+#include "../../dimension.hpp"
 #include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using Inductance = UnitBase<Exponents<1, 1, -2, 0, 0, 0, 0>>;
+using Inductance = UnitBase<Dimension<1, 1, -2, 0, 0, 0, 0>>;
 
 }  // namespace csm_units

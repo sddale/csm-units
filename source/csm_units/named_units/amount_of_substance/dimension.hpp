@@ -9,12 +9,12 @@
 
 #pragma once
 
-#include "../../exponents.hpp"
+#include "../../dimension.hpp"
 #include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using Amount = UnitBase<Exponents<0, 0, 0, 0, 0, 1, 0>>;
-using SqrAmount = UnitBase<Exponents<0, 0, 0, 0, 0, 2, 0>>;
+using Amount = UnitBase<Dimension<0, 0, 0, 0, 0, 1, 0>>;
+using SqrAmount = UnitBase<Dimension<0, 0, 0, 0, 0, 2, 0>>;
 
 }  // namespace csm_units

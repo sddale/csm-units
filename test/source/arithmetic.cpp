@@ -1,37 +1,26 @@
 #include <doctest/doctest.h>
 
 #include <csm_units/concepts.hpp>
-#include <source/csm_units/definition.hpp>
-#include <source/csm_units/exponents.hpp>
-#include <source/csm_units/unit.hpp>
-// #include <csm_units/units.hpp>
 #include <gcem.hpp>
+#include <source/csm_units/definition.hpp>
+#include <source/csm_units/dimension.hpp>
+#include <source/csm_units/unit.hpp>
 
-#ifndef CSMUNITS_VALUE_TYPE
-#define CSMUNITS_VALUE_TYPE double
-#endif
+#include "common.hpp"
 
 namespace csm_units::test {
-
-constexpr auto CHECK_UNIT_EQ = [](IsUnit auto lhs, IsUnit auto rhs) {
-  CHECK_EQ(lhs.data, doctest::Approx(rhs.data));
-};
-
-constexpr auto CHECK_DBL_EQ = [](auto lhs, auto rhs) {
-  CHECK_EQ(lhs, doctest::Approx(rhs));
-};
 
 namespace definition {
 
 using Rankine =
-    Definition<Exponents<0, 0, 0, 0, 1, 0, 0>, std::ratio<1>, std::ratio<1>,
+    Definition<Dimension<0, 0, 0, 0, 1, 0, 0>, std::ratio<1>, std::ratio<1>,
                std::ratio<1>, std::ratio<1>, std::ratio<9, 5>>;
 
 using SquareRankine =
-    Definition<Exponents<0, 0, 0, 0, 2, 0, 0>, std::ratio<1>, std::ratio<1>,
+    Definition<Dimension<0, 0, 0, 0, 2, 0, 0>, std::ratio<1>, std::ratio<1>,
                std::ratio<1>, std::ratio<1>, std::ratio<9, 5>>;
 
-using Kelvin = Definition<Exponents<0, 0, 0, 0, 1, 0, 0>>;
+using Kelvin = Definition<Dimension<0, 0, 0, 0, 1, 0, 0>>;
 
 }  // namespace definition
 

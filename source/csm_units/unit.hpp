@@ -13,9 +13,9 @@
 #include <compare>
 #include <csm_units/concepts.hpp>
 #include <gcem.hpp>
+#include <ratio>
 
-#include "definition.hpp"
-#include "exponents.hpp"
+#include "dimension.hpp"
 
 #ifndef CSMUNITS_VALUE_TYPE
 #define CSMUNITS_VALUE_TYPE double
@@ -39,7 +39,7 @@ class Unit {
   using zero_point = ZeroPoint;
 
   // Build from arithmetic (i.e. double) value
-  constexpr explicit Unit(Data input = std::declval<type>()) noexcept
+  constexpr explicit Unit(Data input = Data(0.0)) noexcept
       : data(input * def::ToSI() +
              static_cast<type>(ZeroPoint::num) / ZeroPoint::den){};
 
@@ -92,8 +92,7 @@ class Unit {
   // Unit storage type follows regular c++ promotion rules
   template <IsUnit U>
   constexpr friend auto operator*(Unit lhs, const U& rhs) noexcept {
-    using result_type =
-        decltype(std::declval<type&>() * std::declval<typename U::type&>());
+    using result_type = decltype(type(1.0) * typename U::type(1.0));
     return Unit<typename Unit::def::template Multiply<typename U::def>,
                 result_type>(lhs.data * rhs.data);
   }
@@ -143,7 +142,7 @@ class Unit {
   // dimensions
   template <IsUnit U>
     requires std::same_as<typename U::def::dim,
-                          ExponentsFlip<typename def::dim>>
+                          DimensionFlip<typename def::dim>>
   constexpr friend auto operator*(Unit lhs, U rhs) noexcept {
     return lhs.data * rhs.data;  // Unitless return since dimensions cancel
   }
@@ -151,8 +150,7 @@ class Unit {
   template <IsUnit U>
     requires(not SameDimensionAs<Unit, U>)  // Otherwise dimensionless return
   constexpr friend auto operator/(Unit lhs, const U& rhs) noexcept {
-    using result_type =
-        decltype(std::declval<type&>() / std::declval<typename U::type&>());
+    using result_type = decltype(type() / typename U::type(1.0));
     return Unit<typename Unit::def::template Divide<typename U::def>,
                 result_type>(lhs.data / rhs.data);
   }

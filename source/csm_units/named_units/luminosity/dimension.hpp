@@ -9,12 +9,12 @@
 
 #pragma once
 
-#include "../../exponents.hpp"
+#include "../../dimension.hpp"
 #include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using Luminosity = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 1>>;
-using SqrLuminosity = UnitBase<Exponents<0, 0, 0, 0, 0, 0, 2>>;
+using Luminosity = UnitBase<Dimension<0, 0, 0, 0, 0, 0, 1>>;
+using SqrLuminosity = UnitBase<Dimension<0, 0, 0, 0, 0, 0, 2>>;
 
 }  // namespace csm_units

@@ -9,11 +9,11 @@
 
 #pragma once
 
-#include "../../exponents.hpp"
+#include "../../dimension.hpp"
 #include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using MagneticFlux = UnitBase<Exponents<1, 1, -2, 1, 0, 0, 0>>;
+using MagneticFlux = UnitBase<Dimension<1, 1, -2, 1, 0, 0, 0>>;
 
 }  // namespace csm_units

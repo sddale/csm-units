@@ -9,11 +9,11 @@
 
 #pragma once
 
-#include "../../exponents.hpp"
+#include "../../dimension.hpp"
 #include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using Energy = UnitBase<Exponents<2, 1, -2, 0, 0, 0, 0>>;
+using Energy = UnitBase<Dimension<2, 1, -2, 0, 0, 0, 0>>;
 
 }  // namespace csm_units

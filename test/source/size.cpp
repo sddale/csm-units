@@ -1,28 +1,23 @@
 #include <doctest/doctest.h>
 
 #include <csm_units/concepts.hpp>
-#include <source/csm_units/definition.hpp>
-#include <source/csm_units/exponents.hpp>
-#include <source/csm_units/unit.hpp>
-// #include <csm_units/units.hpp>
 #include <gcem.hpp>
-
-#ifndef CSMUNITS_VALUE_TYPE
-#define CSMUNITS_VALUE_TYPE double
-#endif
+#include <source/csm_units/definition.hpp>
+#include <source/csm_units/dimension.hpp>
+#include <source/csm_units/unit.hpp>
 
 namespace csm_units::test {
 
 namespace definition {
 using Rankine =
-    Definition<Exponents<0, 0, 0, 0, 1, 0, 0>, std::ratio<1>, std::ratio<1>,
+    Definition<Dimension<0, 0, 0, 0, 1, 0, 0>, std::ratio<1>, std::ratio<1>,
                std::ratio<1>, std::ratio<1>, std::ratio<9, 5>>;
 
 using SquareRankine =
-    Definition<Exponents<0, 0, 0, 0, 2, 0, 0>, std::ratio<1>, std::ratio<1>,
+    Definition<Dimension<0, 0, 0, 0, 2, 0, 0>, std::ratio<1>, std::ratio<1>,
                std::ratio<1>, std::ratio<1>, std::ratio<9, 5>>;
 
-using Kelvin = Definition<Exponents<0, 0, 0, 0, 1, 0, 0>>;
+using Kelvin = Definition<Dimension<0, 0, 0, 0, 1, 0, 0>>;
 
 }  // namespace definition
 

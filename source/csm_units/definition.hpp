@@ -12,7 +12,7 @@
 #include <gcem.hpp>
 #include <ratio>
 
-#include "exponents.hpp"
+#include "dimension.hpp"
 
 #ifndef CSMUNITS_VALUE_TYPE
 #define CSMUNITS_VALUE_TYPE double
@@ -20,13 +20,13 @@
 
 namespace csm_units {
 
-template <IsDimension Dimension, IsRatio ConvLen = std::ratio<1>,
+template <IsDimension D, IsRatio ConvLen = std::ratio<1>,
           IsRatio ConvMass = std::ratio<1>, IsRatio ConvTime = std::ratio<1>,
           IsRatio ConvElec = std::ratio<1>, IsRatio ConvTemper = std::ratio<1>,
           IsRatio ConvAmount = std::ratio<1>, IsRatio ConvLight = std::ratio<1>>
 class Definition {
  public:
-  using dim = Dimension;
+  using dim = D;
   using conv_len = ConvLen;
   using conv_mass = ConvMass;
   using conv_time = ConvTime;
@@ -85,11 +85,11 @@ class Definition {
   template <IsDefinition A>
   struct Multiply_ {
    private:
-    using dimension = ExponentsAdd<typename A::dim, dim>;
+    using dimension = DimensionAdd<typename A::dim, dim>;
 
    public:
     using val =
-        Definition<ExponentsAdd<typename A::dim, dim>,
+        Definition<DimensionAdd<typename A::dim, dim>,
                    typename Selector<typename A::conv_len, conv_len,
                                      typename dimension::L>::val,
                    typename Selector<typename A::conv_mass, conv_mass,
@@ -111,11 +111,11 @@ class Definition {
   template <IsDefinition A>
   struct Divide_ {
    private:
-    using dimension = ExponentsAdd<typename A::dim, dim>;
+    using dimension = DimensionAdd<typename A::dim, dim>;
 
    public:
     using val =
-        Definition<ExponentsSubtract<typename A::dim, dim>,
+        Definition<DimensionSubtract<typename A::dim, dim>,
                    typename Selector<typename A::conv_len, conv_len,
                                      typename dimension::L>::val,
                    typename Selector<typename A::conv_mass, conv_mass,
@@ -135,7 +135,7 @@ class Definition {
   using Divide = Divide_<A>::val;
 
   using InverseDef =
-      Definition<ExponentsFlip<dim>, conv_len, conv_mass, conv_time, conv_elec,
+      Definition<DimensionFlip<dim>, conv_len, conv_mass, conv_time, conv_elec,
                  conv_temper, conv_amount, conv_light>;
 
  private:
@@ -153,46 +153,45 @@ class Definition {
 namespace literals {
 // NOLINTBEGIN(readability-identifier-length)
 
-constexpr auto Gy = Definition<Exponents<2, 0, -2, 0, 0, 0, 0>>();
-constexpr auto Bq = Definition<Exponents<0, 0, -1, 0, 0, 0, 0>>();
-constexpr auto mol = Definition<Exponents<0, 0, 0, 0, 0, 1, 0>>();
-constexpr auto mol2 = Definition<Exponents<0, 0, 0, 0, 0, 2, 0>>();
-constexpr auto m2 = Definition<Exponents<2, 0, 0, 0, 0, 0, 0>>();
-constexpr auto F = Definition<Exponents<-2, -1, 4, 2, 0, 0, 0>>();
-constexpr auto kat = Definition<Exponents<0, 0, -1, 0, 0, 1, 0>>();
-constexpr auto S = Definition<Exponents<-2, -1, 3, 2, 0, 0, 0>>();
-constexpr auto kgperm3 = Definition<Exponents<-3, 1, 0, 0, 0, 0, 0>>();
-constexpr auto kgmpers = Definition<Exponents<1, 1, -1, 0, 0, 0, 0>>();
-constexpr auto Sv = Definition<Exponents<2, 0, -2, 0, 0, 0, 0>>();
-constexpr auto C = Definition<Exponents<0, 0, 1, 1, 0, 0, 0>>();
-constexpr auto A = Definition<Exponents<0, 0, 0, 1, 0, 0, 0>>();
-constexpr auto A2 = Definition<Exponents<0, 0, 0, 2, 0, 0, 0>>();
-constexpr auto J = Definition<Exponents<2, 1, -2, 0, 0, 0, 0>>();
-constexpr auto N = Definition<Exponents<1, 1, -2, 0, 0, 0, 0>>();
-constexpr auto Hz = Definition<Exponents<0, 0, -1, 0, 0, 0, 0>>();
-constexpr auto lx = Definition<Exponents<-2, 0, 0, 0, 0, 0, 1>>();
-constexpr auto H = Definition<Exponents<1, 1, -2, 0, 0, 0, 0>>();
-constexpr auto m = Definition<Exponents<1, 0, 0, 0, 0, 0, 0>>();
-constexpr auto inv_m = Definition<Exponents<-1, 0, 0, 0, 0, 0, 0>>();
-constexpr auto cd = Definition<Exponents<0, 0, 0, 0, 0, 0, 1>>();
-constexpr auto cd2 = Definition<Exponents<0, 0, 0, 0, 0, 0, 2>>();
-constexpr auto lm = Definition<Exponents<0, 0, 0, 0, 0, 0, 1>>();
-constexpr auto Wb = Definition<Exponents<1, 1, -2, 1, 0, 0, 0>>();
-constexpr auto T = Definition<Exponents<-1, 1, -2, 1, 0, 0, 0>>();
-constexpr auto kg = Definition<Exponents<0, 1, 0, 0, 0, 0, 0>>();
-constexpr auto V = Definition<Exponents<2, 1, -3, -1, 0, 0, 0>>();
-constexpr auto W = Definition<Exponents<2, 1, -3, 0, 0, 0, 0>>();
-constexpr auto Pa = Definition<Exponents<-1, 1, -2, 0, 0, 0, 0>>();
-constexpr auto Pa2 = Definition<Exponents<-2, 2, -4, 0, 0, 0, 0>>();
-constexpr auto Pa3 = Definition<Exponents<-3, 3, -6, 0, 0, 0, 0>>();
-constexpr auto Pa4 = Definition<Exponents<-4, 4, -8, 0, 0, 0, 0>>();
-constexpr auto ohm = Definition<Exponents<2, 1, -3, -2, 0, 0, 0>>();
-constexpr auto K = Definition<Exponents<0, 0, 0, 0, 1, 0, 0>>();
-constexpr auto K2 = Definition<Exponents<0, 0, 0, 0, 2, 0, 0>>();
-constexpr auto K3 = Definition<Exponents<0, 0, 0, 0, 3, 0, 0>>();
-constexpr auto K4 = Definition<Exponents<0, 0, 0, 0, 4, 0, 0>>();
-constexpr auto s = Definition<Exponents<0, 0, 1, 0, 0, 0, 0>>();
-constexpr auto m3 = Definition<Exponents<3, 0, 0, 0, 0, 0, 0>>();
+constexpr auto Gy = Definition<Dimension<2, 0, -2, 0, 0, 0, 0>>();
+constexpr auto Bq = Definition<Dimension<0, 0, -1, 0, 0, 0, 0>>();
+constexpr auto mol = Definition<Dimension<0, 0, 0, 0, 0, 1, 0>>();
+constexpr auto mol2 = Definition<Dimension<0, 0, 0, 0, 0, 2, 0>>();
+constexpr auto m2 = Definition<Dimension<2, 0, 0, 0, 0, 0, 0>>();
+constexpr auto F = Definition<Dimension<-2, -1, 4, 2, 0, 0, 0>>();
+constexpr auto kat = Definition<Dimension<0, 0, -1, 0, 0, 1, 0>>();
+constexpr auto S = Definition<Dimension<-2, -1, 3, 2, 0, 0, 0>>();
+constexpr auto kgperm3 = Definition<Dimension<-3, 1, 0, 0, 0, 0, 0>>();
+constexpr auto kgmpers = Definition<Dimension<1, 1, -1, 0, 0, 0, 0>>();
+constexpr auto Sv = Definition<Dimension<2, 0, -2, 0, 0, 0, 0>>();
+constexpr auto C = Definition<Dimension<0, 0, 1, 1, 0, 0, 0>>();
+constexpr auto A = Definition<Dimension<0, 0, 0, 1, 0, 0, 0>>();
+constexpr auto A2 = Definition<Dimension<0, 0, 0, 2, 0, 0, 0>>();
+constexpr auto J = Definition<Dimension<2, 1, -2, 0, 0, 0, 0>>();
+constexpr auto N = Definition<Dimension<1, 1, -2, 0, 0, 0, 0>>();
+constexpr auto Hz = Definition<Dimension<0, 0, -1, 0, 0, 0, 0>>();
+constexpr auto lx = Definition<Dimension<-2, 0, 0, 0, 0, 0, 1>>();
+constexpr auto H = Definition<Dimension<1, 1, -2, 0, 0, 0, 0>>();
+constexpr auto m = Definition<Dimension<1, 0, 0, 0, 0, 0, 0>>();
+constexpr auto inv_m = Definition<Dimension<-1, 0, 0, 0, 0, 0, 0>>();
+constexpr auto cd = Definition<Dimension<0, 0, 0, 0, 0, 0, 1>>();
+constexpr auto cd2 = Definition<Dimension<0, 0, 0, 0, 0, 0, 2>>();
+constexpr auto lm = Definition<Dimension<0, 0, 0, 0, 0, 0, 1>>();
+constexpr auto Wb = Definition<Dimension<1, 1, -2, 1, 0, 0, 0>>();
+constexpr auto T = Definition<Dimension<-1, 1, -2, 1, 0, 0, 0>>();
+constexpr auto kg = Definition<Dimension<0, 1, 0, 0, 0, 0, 0>>();
+constexpr auto V = Definition<Dimension<2, 1, -3, -1, 0, 0, 0>>();
+constexpr auto W = Definition<Dimension<2, 1, -3, 0, 0, 0, 0>>();
+constexpr auto Pa = Definition<Dimension<-1, 1, -2, 0, 0, 0, 0>>();
+constexpr auto Pa2 = Definition<Dimension<-2, 2, -4, 0, 0, 0, 0>>();
+constexpr auto Pa3 = Definition<Dimension<-3, 3, -6, 0, 0, 0, 0>>();
+constexpr auto Pa4 = Definition<Dimension<-4, 4, -8, 0, 0, 0, 0>>();
+constexpr auto ohm = Definition<Dimension<2, 1, -3, -2, 0, 0, 0>>();
+constexpr auto K = Definition<Dimension<0, 0, 0, 0, 1, 0, 0>>();
+constexpr auto K2 = Definition<Dimension<0, 0, 0, 0, 2, 0, 0>>();
+constexpr auto K3 = Definition<Dimension<0, 0, 0, 0, 3, 0, 0>>();
+constexpr auto K4 = Definition<Dimension<0, 0, 0, 0, 4, 0, 0>>();
+constexpr auto m3 = Definition<Dimension<3, 0, 0, 0, 0, 0, 0>>();
 
 // NOLINTEND(readability-identifier-length)
 

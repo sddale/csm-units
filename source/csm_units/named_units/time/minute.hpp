@@ -5,36 +5,34 @@
  *   The following wikipedia page can explain <a
  * href="https://en.wikipedia.org/wiki/Minute">Minute</a> if needed.
  */
-
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Minute = Unit<Time, "min">;
+namespace definition {
 
-// Unit Cast for Unit min to Base s
-template <>
-[[nodiscard]] constexpr auto UnitCast(Minute &&input) noexcept -> Time {
-  return Time(input.data * 60);
+using Minute =
+    Definition<Time, std::ratio<1>, std::ratio<1>, std::ratio<1, 60>>;
+
 }
 
-// Unit Cast for Base s to Unit min
-template <>
-[[nodiscard]] constexpr auto UnitCast(Time &&input) noexcept -> Minute {
-  return Minute(input.data / 60);
-}
+using Minute = Unit<definition::Minute>;
 
 namespace literals {
 
+constexpr auto min =  // NOLINT(readability-identifier-length)
+    definition::Minute();
+
 constexpr auto operator""_min(long double data) noexcept {
-  return Minute(static_cast<double>(data));
+  return Minute(static_cast<Minute::type>(data));
 }
 
 constexpr auto operator""_min(unsigned long long data) noexcept {
-  return Minute(static_cast<double>(data));
+  return Minute(static_cast<Minute::type>(data));
 }
 
 }  // namespace literals

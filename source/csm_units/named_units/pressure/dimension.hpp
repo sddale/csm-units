@@ -9,12 +9,12 @@
 
 #pragma once
 
-#include "../../exponents.hpp"
+#include "../../dimension.hpp"
 #include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using Pressure = UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>>;
-using InvPressure = UnitBase<Exponents<1, -1, 2, 0, 0, 0, 0>>;
+using Pressure = UnitBase<Dimension<-1, 1, -2, 0, 0, 0, 0>>;
+using InvPressure = UnitBase<Dimension<1, -1, 2, 0, 0, 0, 0>>;
 
 }  // namespace csm_units

@@ -9,11 +9,11 @@
 
 #pragma once
 
-#include "../../exponents.hpp"
+#include "../../dimension.hpp"
 #include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using Resistance = UnitBase<Exponents<2, 1, -3, -2, 0, 0, 0>>;
+using Resistance = UnitBase<Dimension<2, 1, -3, -2, 0, 0, 0>>;
 
 }  // namespace csm_units
