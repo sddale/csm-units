@@ -7,34 +7,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Mole = Unit<Amount, "mol">;
+namespace definition {
 
-// Unit Cast for Unit Mol
-template <>
-[[nodiscard]] constexpr auto UnitCast(Amount &&input) noexcept -> Mole {
-  return Mole(input.data);
+using Mole = Definition<Amount>;
+
 }
 
-// Unit Cast for Unit Mole
-template <>
-[[nodiscard]] constexpr auto UnitCast(Mole &&input) noexcept -> Amount {
-  return Amount(input.data);
-}
+using Mole = Unit<definition::Mole>;
 
 namespace literals {
 
-// amount - mole
+constexpr auto mol =  // NOLINT(readability-identifier-length)
+    definition::Mole();
+
 constexpr auto operator""_mol(long double data) noexcept {
-  return Mole(static_cast<double>(data));
+  return Mole(static_cast<Mole::type>(data));
 }
 
 constexpr auto operator""_mol(unsigned long long data) noexcept {
-  return Mole(static_cast<double>(data));
+  return Mole(static_cast<Mole::type>(data));
 }
 
 }  // namespace literals

@@ -7,31 +7,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Joule = Unit<Energy, "J">;
+namespace definition {
 
-// Unit Cast for Base Joule
-template <>
-[[nodiscard]] constexpr auto UnitCast(Energy &&input) noexcept -> Joule {
-  return Joule(input.data);
+using Joule = Definition<Energy>;
+
 }
-template <>
-[[nodiscard]] constexpr auto UnitCast(Joule &&input) noexcept -> Energy {
-  return Energy(input.data);
-}
+
+using Joule = Unit<definition::Joule>;
 
 namespace literals {
 
+constexpr auto J =  // NOLINT(readability-identifier-length)
+    definition::Joule();
+
 constexpr auto operator""_J(long double data) noexcept {
-  return Joule(static_cast<double>(data));
+  return Joule(static_cast<Joule::type>(data));
 }
 
 constexpr auto operator""_J(unsigned long long data) noexcept {
-  return Joule(static_cast<double>(data));
+  return Joule(static_cast<Joule::type>(data));
 }
 
 }  // namespace literals

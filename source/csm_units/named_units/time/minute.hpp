@@ -5,6 +5,7 @@
  *   The following wikipedia page can explain <a
  * href="https://en.wikipedia.org/wiki/Minute">Minute</a> if needed.
  */
+
 #pragma once
 
 #include "../../definition.hpp"

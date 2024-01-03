@@ -7,33 +7,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Farad = Unit<Capacitance, "F">;
+namespace definition {
 
-// Unit Cast for Base farad
-template <>
-[[nodiscard]] constexpr auto UnitCast(Capacitance &&input) noexcept -> Farad {
-  return Farad(input.data);
+using Farad = Definition<Capacitance>;
+
 }
 
-// Unit Cast for Unit farad
-template <>
-[[nodiscard]] constexpr auto UnitCast(Farad &&input) noexcept -> Capacitance {
-  return Capacitance(input.data);
-}
+using Farad = Unit<definition::Farad>;
 
 namespace literals {
 
+constexpr auto F =  // NOLINT(readability-identifier-length)
+    definition::Farad();
+
 constexpr auto operator""_F(long double data) noexcept {
-  return Farad(static_cast<double>(data));
+  return Farad(static_cast<Farad::type>(data));
 }
 
 constexpr auto operator""_F(unsigned long long data) noexcept {
-  return Farad(static_cast<double>(data));
+  return Farad(static_cast<Farad::type>(data));
 }
 
 }  // namespace literals

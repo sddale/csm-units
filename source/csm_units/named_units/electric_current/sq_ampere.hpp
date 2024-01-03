@@ -5,36 +5,33 @@
  *   The following wikipedia page can explain <a
  * href="https://en.wikipedia.org/wiki/Ampere">Ampere</a> if needed.
  */
-
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using SqrAmpere = Unit<SqrElectrCurrent, "A2">;
+namespace definition {
 
-template <>
-[[nodiscard]] constexpr auto UnitCast(SqrElectrCurrent &&input) noexcept
-    -> SqrAmpere {
-  return SqrAmpere(input.data);
+using SqAmpere = Definition<SqElectricCurrent>;
+
 }
 
-template <>
-[[nodiscard]] constexpr auto UnitCast(SqrAmpere &&input) noexcept
-    -> SqrElectrCurrent {
-  return SqrElectrCurrent(input.data);
-}
+using SqAmpere = Unit<definition::SqAmpere>;
 
 namespace literals {
 
+constexpr auto A2 =  // NOLINT(readability-identifier-length)
+    definition::SqAmpere();
+
 constexpr auto operator""_A2(long double data) noexcept {
-  return SqrAmpere(static_cast<double>(data));
+  return SqAmpere(static_cast<SqAmpere::type>(data));
 }
 
 constexpr auto operator""_A2(unsigned long long data) noexcept {
-  return SqrAmpere(static_cast<double>(data));
+  return SqAmpere(static_cast<SqAmpere::type>(data));
 }
 
 }  // namespace literals

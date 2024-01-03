@@ -10,10 +10,9 @@
 #pragma once
 
 #include "../../dimension.hpp"
-#include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using Activity = UnitBase<Dimension<0, 0, -1, 0, 0, 0, 0>>;
+using Activity = DimensionInt<0, 0, -1>;
 
 }  // namespace csm_units

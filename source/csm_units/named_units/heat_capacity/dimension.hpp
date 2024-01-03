@@ -10,11 +10,10 @@
 #pragma once
 
 #include "../../dimension.hpp"
-#include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using HeatCapacity = UnitBase<Dimension<2, 1, -2, 0, -1, 0, 0>>;
+using HeatCapacity = DimensionInt<2, 1, -2, 0, -1>;
 using Entropy = HeatCapacity;
 
 }  // namespace csm_units

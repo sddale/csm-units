@@ -15,16 +15,25 @@
 
 namespace csm_units {
 
-using MPerS2 = Unit<Definition<Accel>>;
+namespace definition {
+
+using MeterPerSqSecond = Definition<Accel>;
+
+}
+
+using MeterPerSqSecond = Unit<definition::MeterPerSqSecond>;
 
 namespace literals {
 
+constexpr auto mps2 =  // NOLINT(readability-identifier-length)
+    definition::MeterPerSqSecond();
+
 constexpr auto operator""_mps2(long double data) noexcept {
-  return MPerS2(static_cast<MPerS2::type>(data));
+  return MeterPerSqSecond(static_cast<MeterPerSqSecond::type>(data));
 }
 
 constexpr auto operator""_mps2(unsigned long long data) noexcept {
-  return MPerS2(static_cast<MPerS2::type>(data));
+  return MeterPerSqSecond(static_cast<MeterPerSqSecond::type>(data));
 }
 
 }  // namespace literals

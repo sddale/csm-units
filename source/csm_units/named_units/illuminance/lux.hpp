@@ -7,32 +7,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Lux = Unit<Illuminance, "lx">;
+namespace definition {
 
-template <>
-[[nodiscard]] constexpr auto UnitCast(Illuminance &&input) noexcept -> Lux {
-  return Lux(input.data);
+using Lux = Definition<Illuminance>;
+
 }
 
-// Unit Cast for Unit Newton
-template <>
-[[nodiscard]] constexpr auto UnitCast(Lux &&input) noexcept -> Illuminance {
-  return Illuminance(input.data);
-}
+using Lux = Unit<definition::Lux>;
 
 namespace literals {
 
+constexpr auto lx =  // NOLINT(readability-identifier-length)
+    definition::Lux();
+
 constexpr auto operator""_lx(long double data) noexcept {
-  return Lux(static_cast<double>(data));
+  return Lux(static_cast<Lux::type>(data));
 }
 
 constexpr auto operator""_lx(unsigned long long data) noexcept {
-  return Lux(static_cast<double>(data));
+  return Lux(static_cast<Lux::type>(data));
 }
 
 }  // namespace literals

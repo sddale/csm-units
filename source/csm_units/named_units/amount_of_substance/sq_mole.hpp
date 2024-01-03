@@ -9,31 +9,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using SqrMole = Unit<SqrAmount, "mol2">;
+namespace definition {
 
-template <>
-[[nodiscard]] constexpr auto UnitCast(SqrAmount &&input) noexcept -> SqrMole {
-  return SqrMole(input.data);
+using SqMole = Definition<SqAmount>;
+
 }
 
-template <>
-[[nodiscard]] constexpr auto UnitCast(SqrMole &&input) noexcept -> SqrAmount {
-  return SqrAmount(input.data);
-}
+using SqMole = Unit<definition::SqMole>;
 
 namespace literals {
 
+constexpr auto mol2 =  // NOLINT(readability-identifier-length)
+    definition::SqMole();
+
 constexpr auto operator""_mol2(long double data) noexcept {
-  return SqrMole(static_cast<double>(data));
+  return SqMole(static_cast<SqMole::type>(data));
 }
 
 constexpr auto operator""_mol2(unsigned long long data) noexcept {
-  return SqrMole(static_cast<double>(data));
+  return SqMole(static_cast<SqMole::type>(data));
 }
 
 }  // namespace literals

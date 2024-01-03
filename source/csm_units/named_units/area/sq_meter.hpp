@@ -8,33 +8,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using SqMeter = Unit<Area, "m2">;
+namespace definition {
 
-// Unit Cast for Base m2
-template <>
-[[nodiscard]] constexpr auto UnitCast(Area &&input) noexcept -> SqMeter {
-  return SqMeter(input.data);
+using SqMeter = Definition<Area>;
+
 }
 
-// Unit Cast for Unit m2
-template <>
-[[nodiscard]] constexpr auto UnitCast(SqMeter &&input) noexcept -> Area {
-  return Area(input.data);
-}
+using SqMeter = Unit<definition::SqMeter>;
 
 namespace literals {
 
+constexpr auto m2 =  // NOLINT(readability-identifier-length)
+    definition::SqMeter();
+
 constexpr auto operator""_m2(long double data) noexcept {
-  return SqMeter(static_cast<double>(data));
+  return SqMeter(static_cast<SqMeter::type>(data));
 }
 
 constexpr auto operator""_m2(unsigned long long data) noexcept {
-  return SqMeter(static_cast<double>(data));
+  return SqMeter(static_cast<SqMeter::type>(data));
 }
 
 }  // namespace literals

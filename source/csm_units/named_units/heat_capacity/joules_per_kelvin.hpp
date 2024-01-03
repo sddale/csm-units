@@ -6,26 +6,35 @@
  * href="https://en.wikipedia.org/wiki/Heat_capacity">Joules Per Kelvin</a> if
  * needed.
  */
-
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using JoulesPerKelvin = Unit<HeatCapacity, "J/K">;
+namespace definition {
 
-// Unit Cast for Base Joules Per Kelvin
-template <>
-[[nodiscard]] constexpr auto UnitCast(HeatCapacity &&input) noexcept
-    -> JoulesPerKelvin {
-  return JoulesPerKelvin(input.data);
+using JoulesPerKelvin = Definition<HeatCapacity>;
+
 }
-template <>
-[[nodiscard]] constexpr auto UnitCast(JoulesPerKelvin &&input) noexcept
-    -> HeatCapacity {
-  return HeatCapacity(input.data);
+
+using JoulesPerKelvin = Unit<definition::JoulesPerKelvin>;
+
+namespace literals {
+
+constexpr auto JperK =  // NOLINT(readability-identifier-length)
+    definition::JoulesPerKelvin();
+
+constexpr auto operator""_JperK(long double data) noexcept {
+  return JoulesPerKelvin(static_cast<JoulesPerKelvin::type>(data));
 }
+
+constexpr auto operator""_JperK(unsigned long long data) noexcept {
+  return JoulesPerKelvin(static_cast<JoulesPerKelvin::type>(data));
+}
+
+}  // namespace literals
 
 }  // namespace csm_units

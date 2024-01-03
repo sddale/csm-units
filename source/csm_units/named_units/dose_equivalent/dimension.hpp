@@ -10,10 +10,9 @@
 #pragma once
 
 #include "../../dimension.hpp"
-#include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using DoseEquivalent = UnitBase<Dimension<2, 0, -2, 0, 0, 0, 0>>;
+using DoseEquivalent = DimensionInt<2, 0, -2>;
 
 }  // namespace csm_units

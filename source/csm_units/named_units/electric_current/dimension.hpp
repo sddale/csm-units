@@ -10,11 +10,10 @@
 #pragma once
 
 #include "../../dimension.hpp"
-#include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using ElectrCurrent = UnitBase<Dimension<0, 0, 0, 1, 0, 0, 0>>;
-using SqrElectrCurrent = UnitBase<Dimension<0, 0, 0, 2, 0, 0, 0>>;
+using ElectricCurrent = DimensionInt<0, 0, 0, 1>;
+using SqElectricCurrent = DimensionInt<0, 0, 0, 2>;
 
 }  // namespace csm_units

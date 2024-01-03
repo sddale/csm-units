@@ -7,31 +7,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Newton = Unit<Force, "N">;
+namespace definition {
 
-// Unit Cast for Base Newton
-template <>
-[[nodiscard]] constexpr auto UnitCast(Force &&input) noexcept -> Newton {
-  return Newton(input.data);
+using Newton = Definition<Force>;
+
 }
-template <>
-[[nodiscard]] constexpr auto UnitCast(Newton &&input) noexcept -> Force {
-  return Force(input.data);
-}
+
+using Newton = Unit<definition::Newton>;
 
 namespace literals {
 
+constexpr auto N =  // NOLINT(readability-identifier-length)
+    definition::Newton();
+
 constexpr auto operator""_N(long double data) noexcept {
-  return Newton(static_cast<double>(data));
+  return Newton(static_cast<Newton::type>(data));
 }
 
 constexpr auto operator""_N(unsigned long long data) noexcept {
-  return Newton(static_cast<double>(data));
+  return Newton(static_cast<Newton::type>(data));
 }
 
 }  // namespace literals

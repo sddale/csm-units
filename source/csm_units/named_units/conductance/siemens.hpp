@@ -7,31 +7,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Siemens = Unit<Conductance, "S">;
+namespace definition {
 
-// Unit Cast for Base Siemens
-template <>
-[[nodiscard]] constexpr auto UnitCast(Conductance &&input) noexcept -> Siemens {
-  return Siemens(input.data);
+using Siemens = Definition<Conductance>;
+
 }
-template <>
-[[nodiscard]] constexpr auto UnitCast(Siemens &&input) noexcept -> Conductance {
-  return Conductance(input.data);
-}
+
+using Siemens = Unit<definition::Siemens>;
 
 namespace literals {
 
+constexpr auto S =  // NOLINT(readability-identifier-length)
+    definition::Siemens();
+
 constexpr auto operator""_S(long double data) noexcept {
-  return Siemens(static_cast<double>(data));
+  return Siemens(static_cast<Siemens::type>(data));
 }
 
 constexpr auto operator""_S(unsigned long long data) noexcept {
-  return Siemens(static_cast<double>(data));
+  return Siemens(static_cast<Siemens::type>(data));
 }
 
 }  // namespace literals

@@ -7,36 +7,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Ampere = Unit<ElectrCurrent, "A">;
+namespace definition {
 
-// Unit Cast for Unit Ampere
-template <>
-[[nodiscard]] constexpr auto UnitCast(ElectrCurrent &&input) noexcept
-    -> Ampere {
-  return Ampere(input.data);
+using Ampere = Definition<ElectricCurrent>;
+
 }
 
-// Unit Cast for Unit Ampere
-template <>
-[[nodiscard]] constexpr auto UnitCast(Ampere &&input) noexcept
-    -> ElectrCurrent {
-  return ElectrCurrent(input.data);
-}
+using Ampere = Unit<definition::Ampere>;
 
 namespace literals {
 
-// current - ampere
+constexpr auto A =  // NOLINT(readability-identifier-length)
+    definition::Ampere();
+
 constexpr auto operator""_A(long double data) noexcept {
-  return Ampere(static_cast<double>(data));
+  return Ampere(static_cast<Ampere::type>(data));
 }
 
 constexpr auto operator""_A(unsigned long long data) noexcept {
-  return Ampere(static_cast<double>(data));
+  return Ampere(static_cast<Ampere::type>(data));
 }
 
 }  // namespace literals

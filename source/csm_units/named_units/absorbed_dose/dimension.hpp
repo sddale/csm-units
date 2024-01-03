@@ -13,6 +13,6 @@
 
 namespace csm_units {
 
-using AbsorbedDose = Dimension<2, 0, -2, 0, 0, 0, 0>;
+using AbsorbedDose = DimensionInt<2, 0, -2>;
 
 }  // namespace csm_units

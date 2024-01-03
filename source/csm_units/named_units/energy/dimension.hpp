@@ -10,10 +10,9 @@
 #pragma once
 
 #include "../../dimension.hpp"
-#include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using Energy = UnitBase<Dimension<2, 1, -2, 0, 0, 0, 0>>;
+using Energy = DimensionInt<2, 1, -2>;
 
 }  // namespace csm_units

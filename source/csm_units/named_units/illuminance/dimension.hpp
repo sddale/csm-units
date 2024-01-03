@@ -10,10 +10,9 @@
 #pragma once
 
 #include "../../dimension.hpp"
-#include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using Illuminance = UnitBase<Dimension<-2, 0, 0, 0, 0, 0, 1>>;
+using Illuminance = DimensionInt<-2, 0, 0, 0, 0, 0, 1>;
 
 }  // namespace csm_units

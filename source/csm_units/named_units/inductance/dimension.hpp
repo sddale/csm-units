@@ -10,10 +10,9 @@
 #pragma once
 
 #include "../../dimension.hpp"
-#include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using Inductance = UnitBase<Dimension<1, 1, -2, 0, 0, 0, 0>>;
+using Inductance = DimensionInt<1, 1, -2>;
 
 }  // namespace csm_units

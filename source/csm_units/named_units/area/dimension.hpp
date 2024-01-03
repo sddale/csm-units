@@ -10,10 +10,9 @@
 #pragma once
 
 #include "../../dimension.hpp"
-#include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using Area = UnitBase<Dimension<2, 0, 0, 0, 0, 0, 0>>;
+using Area = DimensionInt<2, 0, 0, 0, 0, 0, 0>;
 
 }  // namespace csm_units

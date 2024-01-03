@@ -10,11 +10,10 @@
 #pragma once
 
 #include "../../dimension.hpp"
-#include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using Amount = UnitBase<Dimension<0, 0, 0, 0, 0, 1, 0>>;
-using SqrAmount = UnitBase<Dimension<0, 0, 0, 0, 0, 2, 0>>;
+using Amount = DimensionInt<0, 0, 0, 0, 0, 1>;
+using SqAmount = DimensionInt<0, 0, 0, 0, 0, 2>;
 
 }  // namespace csm_units

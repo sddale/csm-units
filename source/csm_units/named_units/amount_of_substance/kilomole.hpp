@@ -8,33 +8,32 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Kilomole = Unit<Amount, "kmol">;
+namespace definition {
 
-// Base Mole -> Kilomole unit
-template <>
-[[nodiscard]] constexpr auto UnitCast(Amount &&input) noexcept -> Kilomole {
-  return Kilomole(input.data / 1000);
+using Kilomole = Definition<Amount, std::ratio<1>, std::ratio<1>, std::ratio<1>,
+                            std::ratio<1>, std::ratio<1>, std::kilo>;
+
 }
 
-// unit kmol -> Base Mol
-template <>
-[[nodiscard]] constexpr auto UnitCast(Kilomole &&input) noexcept -> Amount {
-  return Amount(input.data * 1000);
-}
+using Kilomole = Unit<definition::Kilomole>;
 
 namespace literals {
 
+constexpr auto kmol =  // NOLINT(readability-identifier-length)
+    definition::Kilomole();
+
 constexpr auto operator""_kmol(long double data) noexcept {
-  return Kilomole(static_cast<double>(data));
+  return Kilomole(static_cast<Kilomole::type>(data));
 }
 
 constexpr auto operator""_kmol(unsigned long long data) noexcept {
-  return Kilomole(static_cast<double>(data));
+  return Kilomole(static_cast<Kilomole::type>(data));
 }
 
 }  // namespace literals

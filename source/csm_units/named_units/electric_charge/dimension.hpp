@@ -10,10 +10,9 @@
 #pragma once
 
 #include "../../dimension.hpp"
-#include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using ElectrCharge = UnitBase<Dimension<0, 0, 1, 1, 0, 0, 0>>;
+using ElectricCharge = DimensionInt<0, 0, 1, 1>;
 
 }  // namespace csm_units

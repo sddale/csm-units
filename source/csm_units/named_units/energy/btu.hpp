@@ -8,41 +8,45 @@
 
 #pragma once
 
-#include "../../unit.hpp"
-#include "dimension.hpp"
+// TODO: MonolithicUnit class
 
-namespace csm_units {
+// #include "../../unit.hpp"
+// #include "dimension.hpp"
 
-using BritishThermalUnit = Unit<Energy, "Btu">;
+// namespace csm_units {
 
-// Unit Cast for Base Joules to Btu
-// Conversion Equation: 1 Btu = 1055.06 Joules (according to International Table
-// standards)
-template <>
-[[nodiscard]] constexpr auto UnitCast(Energy &&input) noexcept
-    -> BritishThermalUnit {
-  return BritishThermalUnit(input.data / 1055.06);
-}
+// using BritishThermalUnit = Unit<Energy, "Btu">;
 
-// Unit Cast for Btu to Base Joules
-// Conversion Equation: 1 Btu = 1055.06 Joules (according to International Table
-// standards)
-template <>
-[[nodiscard]] constexpr auto UnitCast(BritishThermalUnit &&input) noexcept
-    -> Energy {
-  return Energy(input.data * 1055.06);
-}
+// // Unit Cast for Base Joules to Btu
+// // Conversion Equation: 1 Btu = 1055.06 Joules (according to International
+// Table
+// // standards)
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(Energy &&input) noexcept
+//     -> BritishThermalUnit {
+//   return BritishThermalUnit(input.data / 1055.06);
+// }
 
-namespace literals {
+// // Unit Cast for Btu to Base Joules
+// // Conversion Equation: 1 Btu = 1055.06 Joules (according to International
+// Table
+// // standards)
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(BritishThermalUnit &&input) noexcept
+//     -> Energy {
+//   return Energy(input.data * 1055.06);
+// }
 
-constexpr auto operator""_Btu(long double data) noexcept {
-  return BritishThermalUnit(static_cast<double>(data));
-}
+// namespace literals {
 
-constexpr auto operator""_Btu(unsigned long long data) noexcept {
-  return BritishThermalUnit(static_cast<double>(data));
-}
+// constexpr auto operator""_Btu(long double data) noexcept {
+//   return BritishThermalUnit(static_cast<double>(data));
+// }
 
-}  // namespace literals
+// constexpr auto operator""_Btu(unsigned long long data) noexcept {
+//   return BritishThermalUnit(static_cast<double>(data));
+// }
 
-}  // namespace csm_units
+// }  // namespace literals
+
+// }  // namespace csm_units

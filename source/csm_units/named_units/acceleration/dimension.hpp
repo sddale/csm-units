@@ -12,6 +12,6 @@
 
 namespace csm_units {
 
-using Accel = Dimension<1, 0, -2, 0, 0, 0, 0>;
+using Accel = DimensionInt<1, 0, -2>;
 
 }  // namespace csm_units

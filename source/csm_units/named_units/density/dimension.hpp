@@ -10,10 +10,9 @@
 #pragma once
 
 #include "../../dimension.hpp"
-#include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using Density = UnitBase<Dimension<-3, 1, 0, 0, 0, 0, 0>>;
+using Density = DimensionInt<-3, 1>;
 
 }  // namespace csm_units

@@ -7,33 +7,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Hertz = Unit<Frequency, "Hz">;
+namespace definition {
 
-// Unit Cast for Base hertz
-template <>
-[[nodiscard]] constexpr auto UnitCast(Frequency &&input) noexcept -> Hertz {
-  return Hertz(input.data);
+using Hertz = Definition<Frequency>;
+
 }
 
-// Unit Cast for Unit hertz
-template <>
-[[nodiscard]] constexpr auto UnitCast(Hertz &&input) noexcept -> Frequency {
-  return Frequency(input.data);
-}
+using Hertz = Unit<definition::Hertz>;
 
 namespace literals {
 
+constexpr auto Hz =  // NOLINT(readability-identifier-length)
+    definition::Hertz();
+
 constexpr auto operator""_Hz(long double data) noexcept {
-  return Hertz(static_cast<double>(data));
+  return Hertz(static_cast<Hertz::type>(data));
 }
 
 constexpr auto operator""_Hz(unsigned long long data) noexcept {
-  return Hertz(static_cast<double>(data));
+  return Hertz(static_cast<Hertz::type>(data));
 }
 
 }  // namespace literals

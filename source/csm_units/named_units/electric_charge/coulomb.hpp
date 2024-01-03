@@ -7,35 +7,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Coulomb = Unit<ElectrCharge, "C">;
+namespace definition {
 
-// Unit Cast for Unit Coulomb
-template <>
-[[nodiscard]] constexpr auto UnitCast(ElectrCharge &&input) noexcept
-    -> Coulomb {
-  return Coulomb(input.data);
+using Coulomb = Definition<ElectricCharge>;
+
 }
 
-// Unit Cast for Unit Coulomb
-template <>
-[[nodiscard]] constexpr auto UnitCast(Coulomb &&input) noexcept
-    -> ElectrCharge {
-  return ElectrCharge(input.data);
-}
+using Coulomb = Unit<definition::Coulomb>;
 
 namespace literals {
 
+constexpr auto C =  // NOLINT(readability-identifier-length)
+    definition::Coulomb();
+
 constexpr auto operator""_C(long double data) noexcept {
-  return Coulomb(static_cast<double>(data));
+  return Coulomb(static_cast<Coulomb::type>(data));
 }
 
 constexpr auto operator""_C(unsigned long long data) noexcept {
-  return Coulomb(static_cast<double>(data));
+  return Coulomb(static_cast<Coulomb::type>(data));
 }
 
 }  // namespace literals

@@ -9,33 +9,33 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using SqrKilomole = Unit<SqrAmount, "kmol2">;
+namespace definition {
 
-template <>
-[[nodiscard]] constexpr auto UnitCast(SqrAmount &&input) noexcept
-    -> SqrKilomole {
-  return SqrKilomole(input.data / 1000000);
+using SqKilomole =
+    Definition<SqAmount, std::ratio<1>, std::ratio<1>, std::ratio<1>,
+               std::ratio<1>, std::ratio<1>, std::kilo>;
+
 }
 
-template <>
-[[nodiscard]] constexpr auto UnitCast(SqrKilomole &&input) noexcept
-    -> SqrAmount {
-  return SqrAmount(input.data * 1000000);
-}
+using SqKilomole = Unit<definition::SqKilomole>;
 
 namespace literals {
 
+constexpr auto kmol2 =  // NOLINT(readability-identifier-length)
+    definition::SqKilomole();
+
 constexpr auto operator""_kmol2(long double data) noexcept {
-  return SqrKilomole(static_cast<double>(data));
+  return SqKilomole(static_cast<SqKilomole::type>(data));
 }
 
 constexpr auto operator""_kmol2(unsigned long long data) noexcept {
-  return SqrKilomole(static_cast<double>(data));
+  return SqKilomole(static_cast<SqKilomole::type>(data));
 }
 
 }  // namespace literals
