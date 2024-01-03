@@ -1,9 +1,6 @@
 #include <doctest/doctest.h>
 
-#include <source/csm_units/named_units/thermodynamic_temperature/celsius.hpp>
-#include <source/csm_units/named_units/thermodynamic_temperature/fahrenheit.hpp>
-#include <source/csm_units/named_units/thermodynamic_temperature/kelvin.hpp>
-#include <source/csm_units/named_units/thermodynamic_temperature/rankine.hpp>
+#include <csm_units/temperature.hpp>
 
 #include "../common.hpp"
 

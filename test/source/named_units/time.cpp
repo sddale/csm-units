@@ -1,8 +1,6 @@
 #include <doctest/doctest.h>
 
-#include <source/csm_units/named_units/time/hour.hpp>
-#include <source/csm_units/named_units/time/minute.hpp>
-#include <source/csm_units/named_units/time/second.hpp>
+#include <csm_units/time.hpp>
 
 #include "../common.hpp"
 
