@@ -17,11 +17,11 @@ TEST_SUITE("Named Units") {
     CHECK_DBL_EQ(Hour(1.).data, 3600);
     CHECK_DBL_NEQ(Hour(1.).data, 360);
 
-    CHECK_DBL_EQ(Hour(1.).data, Minute(1 * 60.).data);
-    CHECK_DBL_NEQ(Hour(1.).data, Minute(1 * 6.).data);
+    CHECK_UNIT_EQ(Hour(1.), Minute(1 * 60.));
+    CHECK_UNIT_NEQ(Hour(1.), Minute(1 * 6.));
 
-    CHECK_DBL_EQ(Hour(1.).data, Second(1 * 60 * 60.).data);
-    CHECK_DBL_NEQ(Hour(1.).data, Second(1 * 60 * 6.).data);
+    CHECK_UNIT_EQ(Hour(1.), Second(1 * 60 * 60.));
+    CHECK_UNIT_NEQ(Hour(1.), Second(1 * 60 * 6.));
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
