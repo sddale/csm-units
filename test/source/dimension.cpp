@@ -1,11 +1,11 @@
 #include <doctest/doctest.h>
 
-#include <csm_units/units.hpp>
+#include <source/csm_units/exponents.hpp>
 #include <type_traits>
 
 namespace csm_units::test {
 
-// NOLINTBEGIN(modernize-use-trailing-return-type)
+// NOLINTBEGIN(modernize-use-trailing-return-type,misc-use-anonymous-namespace)
 TEST_SUITE("Exponents") {
   using namespace csm_units;
   TEST_CASE("Addition") {
@@ -29,6 +29,6 @@ TEST_SUITE("Exponents") {
   }
 }
 
-// NOLINTEND(modernize-use-trailing-return-type)
+// NOLINTEND(modernize-use-trailing-return-type,misc-use-anonymous-namespace)
 
 }  // namespace csm_units::test
