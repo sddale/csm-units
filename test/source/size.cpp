@@ -4,32 +4,13 @@
 #include <gcem.hpp>
 #include <source/csm_units/definition.hpp>
 #include <source/csm_units/dimension.hpp>
+#include <source/csm_units/named_units/thermodynamic_temperature/kelvin.hpp>
 #include <source/csm_units/unit.hpp>
 
 namespace csm_units::test {
 
-namespace definition {
-using Rankine =
-    Definition<Dimension<0, 0, 0, 0, 1, 0, 0>, std::ratio<1>, std::ratio<1>,
-               std::ratio<1>, std::ratio<1>, std::ratio<9, 5>>;
-
-using SquareRankine =
-    Definition<Dimension<0, 0, 0, 0, 2, 0, 0>, std::ratio<1>, std::ratio<1>,
-               std::ratio<1>, std::ratio<1>, std::ratio<9, 5>>;
-
-using Kelvin = Definition<Dimension<0, 0, 0, 0, 1, 0, 0>>;
-
-}  // namespace definition
-
 // NOLINTBEGIN(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
 TEST_SUITE("Size") {
-  constexpr auto R =  // NOLINT(readability-identifier-length)
-      definition::Rankine();
-
-  using Rankine = Unit<decltype(R), double>;
-  using Kelvin = Unit<definition::Kelvin, double>;
-  using Celsius = Unit<definition::Kelvin, double, std::ratio<5463, 20>>;
-  using Fahrenheit = Unit<decltype(R), double, std::ratio<45967, 180>>;
   TEST_CASE("Default") {
     static_assert(sizeof(CSMUNITS_VALUE_TYPE) ==
                   sizeof(Unit<definition::Kelvin>));

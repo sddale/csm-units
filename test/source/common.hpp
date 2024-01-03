@@ -12,7 +12,9 @@ namespace csm_units::test {
 constexpr void CHECK_UNIT_EQ(IsUnit auto lhs, IsUnit auto rhs) {
   CHECK_EQ(lhs.data, doctest::Approx(rhs.data));
 };
-
+constexpr void CHECK_UNIT_NEQ(IsUnit auto lhs, IsUnit auto rhs) {
+  CHECK(lhs.data != doctest::Approx(rhs.data));
+};
 constexpr void CHECK_DBL_EQ(auto lhs, auto rhs) {
   CHECK_EQ(lhs, doctest::Approx(rhs));
 };

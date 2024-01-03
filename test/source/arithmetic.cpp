@@ -4,38 +4,21 @@
 #include <gcem.hpp>
 #include <source/csm_units/definition.hpp>
 #include <source/csm_units/dimension.hpp>
+#include <source/csm_units/named_units/thermodynamic_temperature/celsius.hpp>
+#include <source/csm_units/named_units/thermodynamic_temperature/fahrenheit.hpp>
+#include <source/csm_units/named_units/thermodynamic_temperature/kelvin.hpp>
+#include <source/csm_units/named_units/thermodynamic_temperature/rankine.hpp>
 #include <source/csm_units/unit.hpp>
 
 #include "common.hpp"
 
 namespace csm_units::test {
 
-namespace definition {
-
-using Rankine =
-    Definition<Dimension<0, 0, 0, 0, 1, 0, 0>, std::ratio<1>, std::ratio<1>,
-               std::ratio<1>, std::ratio<1>, std::ratio<9, 5>>;
-
-using SquareRankine =
-    Definition<Dimension<0, 0, 0, 0, 2, 0, 0>, std::ratio<1>, std::ratio<1>,
-               std::ratio<1>, std::ratio<1>, std::ratio<9, 5>>;
-
-using Kelvin = Definition<Dimension<0, 0, 0, 0, 1, 0, 0>>;
-
-}  // namespace definition
-
 // NOLINTBEGIN(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
 TEST_SUITE("Unit arithmetic") {
-  constexpr auto R =  // NOLINT(readability-identifier-length)
-      definition::Rankine();
-
-  using Rankine = Unit<decltype(R), double>;
-  using Kelvin = Unit<definition::Kelvin, double>;
-  using Celsius = Unit<definition::Kelvin, double, std::ratio<5463, 20>>;
-  using Fahrenheit = Unit<decltype(R), double, std::ratio<45967, 180>>;
   TEST_CASE("Unary operator-") {
-    static_assert(-Rankine(100.) == -Kelvin(100. * 5 / 9));
-    static_assert(-Rankine(100.) == Kelvin(-100. * 5 / 9));
+    CHECK_UNIT_EQ(-Rankine(100.), -Kelvin(100. * 5 / 9));
+    CHECK_UNIT_EQ(-Rankine(100.), Kelvin(-100. * 5 / 9));
     CHECK_UNIT_EQ(-Fahrenheit(100.), -Rankine(100 + 459.67));
   }
   TEST_CASE("Subtraction") {

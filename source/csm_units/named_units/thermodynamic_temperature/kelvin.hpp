@@ -8,34 +8,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Kelvin = Unit<Temperature, "K">;  // ---- Temperature
+namespace definition {
 
-// Unit Cast for Unit Kelvin
-template <>
-[[nodiscard]] constexpr auto UnitCast(Temperature &&input) noexcept -> Kelvin {
-  return Kelvin(input.data);
+using Kelvin = Definition<Temperature>;
+
 }
 
-// Unit Cast for Unit Kelvin
-template <>
-[[nodiscard]] constexpr auto UnitCast(Kelvin &&input) noexcept -> Temperature {
-  return Temperature(input.data);
-}
+using Kelvin = Unit<definition::Kelvin>;
 
 namespace literals {
 
-// temperature - kelvin
+constexpr auto K =  // NOLINT(readability-identifier-length)
+    definition::Kelvin();
+
 constexpr auto operator""_K(long double data) noexcept {
-  return Kelvin(static_cast<double>(data));
+  return Kelvin(static_cast<Kelvin::type>(data));
 }
 
 constexpr auto operator""_K(unsigned long long data) noexcept {
-  return Kelvin(static_cast<double>(data));
+  return Kelvin(static_cast<Kelvin::type>(data));
 }
 
 }  // namespace literals

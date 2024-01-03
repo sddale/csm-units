@@ -10,10 +10,10 @@
 #pragma once
 
 #include "../../dimension.hpp"
-#include "../../unitbase.hpp"
 
 namespace csm_units {
 
-using Temperature = UnitBase<Dimension<0, 0, 0, 0, 1, 0, 0>>;
+using Temperature = Dimension<std::ratio<0>, std::ratio<0>, std::ratio<0>,
+                              std::ratio<0>, std::ratio<1>>;
 
 }  // namespace csm_units

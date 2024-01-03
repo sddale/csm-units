@@ -10,25 +10,26 @@ TEST_SUITE("Dimension") {
   using namespace csm_units;
   TEST_CASE("Addition") {
     CHECK(std::is_same_v<
-          DimensionAdd<Dimension<1, 2, 3, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1>,
-                       Dimension<4, 5, 6, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1>>,
-          Dimension<5, 7, 9, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1>>);
+          DimensionAdd<Dimension<std::ratio<1>, std::ratio<2>, std::ratio<3>>,
+                       Dimension<std::ratio<4>, std::ratio<5>, std::ratio<6>>>,
+          Dimension<std::ratio<5>, std::ratio<7>, std::ratio<9>>>);
   }
 
   TEST_CASE("Subtraction") {
     CHECK(std::is_same_v<
-          DimensionSubtract<Dimension<1, 2, 3, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1>,
-                            Dimension<4, 5, 6, 0, 0, 0, 0>>,
-          Dimension<-3, -3, -3, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1>>);
+          DimensionSubtract<
+              Dimension<std::ratio<1>, std::ratio<2>, std::ratio<7>>,
+              Dimension<std::ratio<2>, std::ratio<5>, std::ratio<3>>>,
+          Dimension<std::ratio<-1>, std::ratio<-3>, std::ratio<4>>>);
   }
 
   TEST_CASE("Flipping") {
     CHECK(std::is_same_v<
-          DimensionFlip<Dimension<1, 3, 5, 0, 0, 0, 0, 2, 4, 6, 1, 1, 1, 1>>,
-          Dimension<-1, -3, -5, 0, 0, 0, 0, 2, 4, 6, 1, 1, 1, 1>>);
+          DimensionFlip<
+              Dimension<std::ratio<1, 2>, std::ratio<3, 4>, std::ratio<5, 6>>>,
+          Dimension<std::ratio<-1, 2>, std::ratio<-3, 4>, std::ratio<-5, 6>>>);
   }
 }
-
 // NOLINTEND(modernize-use-trailing-return-type,misc-use-anonymous-namespace)
 
 }  // namespace csm_units::test
