@@ -23,14 +23,14 @@ using Henry = Unit<definition::Henry>;
 
 namespace literals {
 
-constexpr auto s =  // NOLINT(readability-identifier-length)
+constexpr auto H =  // NOLINT(readability-identifier-length)
     definition::Henry();
 
-constexpr auto operator""_s(long double data) noexcept {
+constexpr auto operator""_H(long double data) noexcept {
   return Henry(static_cast<Henry::type>(data));
 }
 
-constexpr auto operator""_s(unsigned long long data) noexcept {
+constexpr auto operator""_H(unsigned long long data) noexcept {
   return Henry(static_cast<Henry::type>(data));
 }
 
