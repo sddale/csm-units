@@ -13,6 +13,6 @@
 
 namespace csm_units {
 
-using Time = Dimension<std::ratio<0>, std::ratio<0>, std::ratio<1>>;
+using Time = DimensionInt<0, 0, 1>;
 
 }  // namespace csm_units

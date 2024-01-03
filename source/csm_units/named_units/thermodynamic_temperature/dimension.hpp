@@ -13,7 +13,6 @@
 
 namespace csm_units {
 
-using Temperature = Dimension<std::ratio<0>, std::ratio<0>, std::ratio<0>,
-                              std::ratio<0>, std::ratio<1>>;
+using Temperature = DimensionInt<0, 0, 0, 0, 1>;
 
 }  // namespace csm_units
