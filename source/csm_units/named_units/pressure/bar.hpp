@@ -6,39 +6,37 @@
  * href="https://en.wikipedia.org/wiki/Bar_(unit)">Bar</a> if needed.
  */
 
-#pragma once
+// TODO: MonolithicUnit
 
-#include "../../unit.hpp"
-#include "dimension.hpp"
+// #pragma once
 
-namespace csm_units {
+// #include "../../definition.hpp"
+// #include "../../unit.hpp"
+// #include "dimension.hpp"
 
-using Bar = Unit<Pressure, "bar">;
+// namespace csm_units {
 
-// Unit Cast for Base Pascals to Unit Bar
-// Conversion Equation: 1 bar = 100,000 pascals
-template <>
-[[nodiscard]] constexpr auto UnitCast(Pressure &&input) noexcept -> Bar {
-  return Bar(input.data / 100000);
-}
+// namespace definition {
 
-// Unit Cast for Unit Bar to Base Pascals
-// Conversion Equation: 1 bar = 100,000 pascals
-template <>
-[[nodiscard]] constexpr auto UnitCast(Bar &&input) noexcept -> Pressure {
-  return Pressure(input.data * 100000);
-}
+// using Bar = Definition<Pressure, NoConv>;
 
-namespace literals {
+// }
 
-constexpr auto operator""_bar(long double data) noexcept {
-  return Bar(static_cast<double>(data));
-}
+// using Bar = Unit<definition::Bar>;
 
-constexpr auto operator""_bar(unsigned long long data) noexcept {
-  return Bar(static_cast<double>(data));
-}
+// namespace literals {
 
-}  // namespace literals
+// constexpr auto bar =  // NOLINT(readability-identifier-length)
+//     definition::Bar();
 
-}  // namespace csm_units
+// constexpr auto operator""_bar(long double data) noexcept {
+//   return Bar(static_cast<Bar::type>(data));
+// }
+
+// constexpr auto operator""_bar(unsigned long long data) noexcept {
+//   return Bar(static_cast<Bar::type>(data));
+// }
+
+// }  // namespace literals
+
+// }  // namespace csm_units

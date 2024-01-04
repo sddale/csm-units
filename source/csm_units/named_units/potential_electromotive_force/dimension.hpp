@@ -9,11 +9,10 @@
 
 #pragma once
 
-#include "../../dimension.hpp"
-#include "../../unitbase.hpp"
+#include <source/csm_units/dimension.hpp>
 
 namespace csm_units {
 
-using Potential = UnitBase<Dimension<2, 1, -3, -1, 0, 0, 0>>;
+using PotentialElectromotiveForce = DimensionInt<2, 1, -3, -1>;
 
 }  // namespace csm_units

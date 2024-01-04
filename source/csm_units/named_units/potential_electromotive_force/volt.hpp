@@ -7,31 +7,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Volt = Unit<Potential, "V">;
+namespace definition {
 
-// Unit Cast for Base Volt
-template <>
-[[nodiscard]] constexpr auto UnitCast(Potential &&input) noexcept -> Volt {
-  return Volt(input.data);
+using Volt = Definition<PotentialElectromotiveForce>;
+
 }
-template <>
-[[nodiscard]] constexpr auto UnitCast(Volt &&input) noexcept -> Potential {
-  return Potential(input.data);
-}
+
+using Volt = Unit<definition::Volt>;
 
 namespace literals {
 
+constexpr auto V =  // NOLINT(readability-identifier-length)
+    definition::Volt();
+
 constexpr auto operator""_V(long double data) noexcept {
-  return Volt(static_cast<double>(data));
+  return Volt(static_cast<Volt::type>(data));
 }
 
 constexpr auto operator""_V(unsigned long long data) noexcept {
-  return Volt(static_cast<double>(data));
+  return Volt(static_cast<Volt::type>(data));
 }
 
 }  // namespace literals

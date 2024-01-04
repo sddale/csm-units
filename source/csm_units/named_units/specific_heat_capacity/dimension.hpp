@@ -9,7 +9,8 @@
 
 #pragma once
 
-#include "../../dimension.hpp"
+#include <source/csm_units/dimension.hpp>
+
 #include "../../unitbase.hpp"
 
 namespace csm_units {

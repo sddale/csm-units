@@ -8,35 +8,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Miles = Unit<Length, "miles">;
+namespace definition {
 
-// Unit Cast for Base m to Unit miles
-// Conversion Equation: 1609.34 m = 1 miles
-template <>
-[[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> Miles {
-  return Miles(input.data / 1609.34);
+using Mile = Definition<Length, std::ratio<100, 160934>>;
+
 }
 
-// Unit Cast for Unit miles to Base m
-// Conversion Equation: 1609.34 m = 1 miles
-template <>
-[[nodiscard]] constexpr auto UnitCast(Miles &&input) noexcept -> Length {
-  return Length(input.data * 1609.34);
-}
+using Mile = Unit<definition::Mile>;
 
 namespace literals {
 
-constexpr auto operator""_miles(long double data) noexcept {
-  return Miles(static_cast<double>(data));
+constexpr auto mi =  // NOLINT(readability-identifier-length)
+    definition::Mile();
+
+constexpr auto operator""_mi(long double data) noexcept {
+  return Mile(static_cast<Mile::type>(data));
 }
 
-constexpr auto operator""_miles(unsigned long long data) noexcept {
-  return Miles(static_cast<double>(data));
+constexpr auto operator""_mi(unsigned long long data) noexcept {
+  return Mile(static_cast<Mile::type>(data));
 }
 
 }  // namespace literals

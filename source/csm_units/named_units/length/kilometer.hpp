@@ -8,35 +8,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Kilometer = Unit<Length, "km">;
+namespace definition {
 
-// Unit cast for Base m to Unit km
-// Conversion Equation: 1000 m = 1 km
-template <>
-[[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> Kilometer {
-  return Kilometer(input.data / 1000);
+using Kilometer = Definition<Length, std::kilo>;
+
 }
 
-// Unit Cast for Unit km to Base m
-// Conversion Equation: 1000 m = 1 km
-template <>
-[[nodiscard]] constexpr auto UnitCast(Kilometer &&input) noexcept -> Length {
-  return Length(input.data * 1000);
-}
+using Kilometer = Unit<definition::Kilometer>;
 
 namespace literals {
 
+constexpr auto km =  // NOLINT(readability-identifier-length)
+    definition::Kilometer();
+
 constexpr auto operator""_km(long double data) noexcept {
-  return Kilometer(static_cast<double>(data));
+  return Kilometer(static_cast<Kilometer::type>(data));
 }
 
 constexpr auto operator""_km(unsigned long long data) noexcept {
-  return Kilometer(static_cast<double>(data));
+  return Kilometer(static_cast<Kilometer::type>(data));
 }
 
 }  // namespace literals

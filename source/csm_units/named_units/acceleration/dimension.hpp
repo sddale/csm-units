@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "../../dimension.hpp"
+#include <source/csm_units/dimension.hpp>
 
 namespace csm_units {
 

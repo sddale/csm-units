@@ -16,8 +16,7 @@ namespace csm_units {
 
 namespace definition {
 
-using Hour =
-    Definition<Time, std::ratio<1>, std::ratio<1>, std::ratio<1, 3600>>;
+using Hour = Definition<Time, NoConv, NoConv, std::ratio<1, 3600>>;
 
 }
 

@@ -9,12 +9,11 @@
 
 #pragma once
 
-#include "../../dimension.hpp"
-#include "../../unitbase.hpp"
+#include <source/csm_units/dimension.hpp>
 
 namespace csm_units {
 
-using MolarHeatCapacity = UnitBase<Dimension<2, 1, -2, 0, -1, -1, 0>>;
+using MolarHeatCapacity = DimensionInt<2, 1, -2, 0, -1, -1>;
 using MolarEntropy = MolarHeatCapacity;
 
 }  // namespace csm_units

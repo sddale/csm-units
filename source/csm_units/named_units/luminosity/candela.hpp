@@ -7,34 +7,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Candela = Unit<Luminosity, "cd">;
+namespace definition {
 
-// Unit Cast for Unit Candela
-template <>
-[[nodiscard]] constexpr auto UnitCast(Luminosity &&input) noexcept -> Candela {
-  return Candela(input.data);
+using Candela = Definition<Luminosity>;
+
 }
 
-// Unit Cast for Unit Candela
-template <>
-[[nodiscard]] constexpr auto UnitCast(Candela &&input) noexcept -> Luminosity {
-  return Luminosity(input.data);
-}
+using Candela = Unit<definition::Candela>;
 
 namespace literals {
 
-// luminosity - candela
+constexpr auto cd =  // NOLINT(readability-identifier-length)
+    definition::Candela();
+
 constexpr auto operator""_cd(long double data) noexcept {
-  return Candela(static_cast<double>(data));
+  return Candela(static_cast<Candela::type>(data));
 }
 
 constexpr auto operator""_cd(unsigned long long data) noexcept {
-  return Candela(static_cast<double>(data));
+  return Candela(static_cast<Candela::type>(data));
 }
 
 }  // namespace literals

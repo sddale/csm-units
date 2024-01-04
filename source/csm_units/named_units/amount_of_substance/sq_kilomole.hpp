@@ -18,8 +18,7 @@ namespace csm_units {
 namespace definition {
 
 using SqKilomole =
-    Definition<SqAmount, std::ratio<1>, std::ratio<1>, std::ratio<1>,
-               std::ratio<1>, std::ratio<1>, std::kilo>;
+    Definition<SqAmount, NoConv, NoConv, NoConv, NoConv, NoConv, std::kilo>;
 
 }
 

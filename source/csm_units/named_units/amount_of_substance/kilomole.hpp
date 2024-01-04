@@ -16,8 +16,8 @@ namespace csm_units {
 
 namespace definition {
 
-using Kilomole = Definition<Amount, std::ratio<1>, std::ratio<1>, std::ratio<1>,
-                            std::ratio<1>, std::ratio<1>, std::kilo>;
+using Kilomole =
+    Definition<Amount, NoConv, NoConv, NoConv, NoConv, NoConv, std::kilo>;
 
 }
 

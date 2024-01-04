@@ -7,33 +7,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Weber = Unit<MagneticFlux, "Wb">;
+namespace definition {
 
-// Unit Cast for Base weber
-template <>
-[[nodiscard]] constexpr auto UnitCast(MagneticFlux &&input) noexcept -> Weber {
-  return Weber(input.data);
+using Weber = Definition<MagneticFlux>;
+
 }
 
-// Unit Cast for Unit weber
-template <>
-[[nodiscard]] constexpr auto UnitCast(Weber &&input) noexcept -> MagneticFlux {
-  return MagneticFlux(input.data);
-}
+using Weber = Unit<definition::Weber>;
 
 namespace literals {
 
+constexpr auto Wb =  // NOLINT(readability-identifier-length)
+    definition::Weber();
+
 constexpr auto operator""_Wb(long double data) noexcept {
-  return Weber(static_cast<double>(data));
+  return Weber(static_cast<Weber::type>(data));
 }
 
 constexpr auto operator""_Wb(unsigned long long data) noexcept {
-  return Weber(static_cast<double>(data));
+  return Weber(static_cast<Weber::type>(data));
 }
 
 }  // namespace literals

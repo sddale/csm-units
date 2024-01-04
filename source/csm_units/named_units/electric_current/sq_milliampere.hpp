@@ -17,8 +17,8 @@ namespace csm_units {
 
 namespace definition {
 
-using SqMilliampere = Definition<SqElectricCurrent, std::ratio<1>,
-                                 std::ratio<1>, std::ratio<1>, std::milli>;
+using SqMilliampere =
+    Definition<SqElectricCurrent, NoConv, NoConv, NoConv, std::milli>;
 
 }
 

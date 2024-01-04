@@ -9,11 +9,10 @@
 
 #pragma once
 
-#include "../../dimension.hpp"
-#include "../../unitbase.hpp"
+#include <source/csm_units/dimension.hpp>
 
 namespace csm_units {
 
-using LuminousFlux = UnitBase<Dimension<0, 0, 0, 0, 0, 0, 1>>;
+using LuminousFlux = DimensionInt<0, 0, 0, 0, 0, 0, 1>;  // Radians are unitless
 
 }  // namespace csm_units

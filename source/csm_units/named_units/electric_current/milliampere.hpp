@@ -16,8 +16,8 @@ namespace csm_units {
 
 namespace definition {
 
-using Milliampere = Definition<ElectricCurrent, std::ratio<1>, std::ratio<1>,
-                               std::ratio<1>, std::milli>;
+using Milliampere =
+    Definition<ElectricCurrent, NoConv, NoConv, NoConv, std::milli>;
 
 }
 

@@ -7,31 +7,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Watt = Unit<Power, "W">;
+namespace definition {
 
-// Unit Cast for Base Watt
-template <>
-[[nodiscard]] constexpr auto UnitCast(Power &&input) noexcept -> Watt {
-  return Watt(input.data);
+using Watt = Definition<Power>;
+
 }
-template <>
-[[nodiscard]] constexpr auto UnitCast(Watt &&input) noexcept -> Power {
-  return Power(input.data);
-}
+
+using Watt = Unit<definition::Watt>;
 
 namespace literals {
 
+constexpr auto W =  // NOLINT(readability-identifier-length)
+    definition::Watt();
+
 constexpr auto operator""_W(long double data) noexcept {
-  return Watt(static_cast<double>(data));
+  return Watt(static_cast<Watt::type>(data));
 }
 
 constexpr auto operator""_W(unsigned long long data) noexcept {
-  return Watt(static_cast<double>(data));
+  return Watt(static_cast<Watt::type>(data));
 }
 
 }  // namespace literals

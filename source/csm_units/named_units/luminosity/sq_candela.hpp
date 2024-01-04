@@ -8,33 +8,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using SqrCandela = Unit<SqrLuminosity, "cd2">;
+namespace definition {
 
-template <>
-[[nodiscard]] constexpr auto UnitCast(SqrLuminosity &&input) noexcept
-    -> SqrCandela {
-  return SqrCandela(input.data);
+using SqCandela = Definition<SqLuminosity>;
+
 }
 
-template <>
-[[nodiscard]] constexpr auto UnitCast(SqrCandela &&input) noexcept
-    -> SqrLuminosity {
-  return SqrLuminosity(input.data);
-}
+using SqCandela = Unit<definition::SqCandela>;
 
 namespace literals {
 
+constexpr auto cd2 =  // NOLINT(readability-identifier-length)
+    definition::SqCandela();
+
 constexpr auto operator""_cd2(long double data) noexcept {
-  return SqrCandela(static_cast<double>(data));
+  return SqCandela(static_cast<SqCandela::type>(data));
 }
 
 constexpr auto operator""_cd2(unsigned long long data) noexcept {
-  return SqrCandela(static_cast<double>(data));
+  return SqCandela(static_cast<SqCandela::type>(data));
 }
 
 }  // namespace literals

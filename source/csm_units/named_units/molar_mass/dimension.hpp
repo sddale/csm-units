@@ -9,11 +9,10 @@
 
 #pragma once
 
-#include "../../dimension.hpp"
-#include "../../unitbase.hpp"
+#include <source/csm_units/dimension.hpp>
 
 namespace csm_units {
 
-using MolarMass = UnitBase<Dimension<0, 1, 0, 0, 0, -1, 0>>;
+using MolarMass = DimensionInt<0, 1, 0, 0, 0, -1>;
 
 }  // namespace csm_units

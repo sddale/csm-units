@@ -7,34 +7,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Meter = Unit<Length, "m">;
+namespace definition {
 
-// Unit cast for Base m to Unit m
-template <>
-[[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> Meter {
-  return Meter(input.data);
+using Meter = Definition<Length>;
+
 }
 
-// Unit Cast for Unit m to Base m
-template <>
-[[nodiscard]] constexpr auto UnitCast(Meter &&input) noexcept -> Length {
-  return Length(input.data);
-}
+using Meter = Unit<definition::Meter>;
 
 namespace literals {
 
-// length - meter
+constexpr auto m =  // NOLINT(readability-identifier-length)
+    definition::Meter();
+
 constexpr auto operator""_m(long double data) noexcept {
-  return Meter(static_cast<double>(data));
+  return Meter(static_cast<Meter::type>(data));
 }
 
 constexpr auto operator""_m(unsigned long long data) noexcept {
-  return Meter(static_cast<double>(data));
+  return Meter(static_cast<Meter::type>(data));
 }
 
 }  // namespace literals

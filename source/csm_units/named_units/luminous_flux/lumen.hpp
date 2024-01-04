@@ -7,32 +7,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Lumen = Unit<LuminousFlux, "lm">;
+namespace definition {
 
-template <>
-[[nodiscard]] constexpr auto UnitCast(LuminousFlux &&input) noexcept -> Lumen {
-  return Lumen(input.data);
+using Lumen = Definition<LuminousFlux>;
+
 }
 
-// Unit Cast for Unit Lumen
-template <>
-[[nodiscard]] constexpr auto UnitCast(Lumen &&input) noexcept -> LuminousFlux {
-  return LuminousFlux(input.data);
-}
+using Lumen = Unit<definition::Lumen>;
 
 namespace literals {
 
+constexpr auto lm =  // NOLINT(readability-identifier-length)
+    definition::Lumen();
+
 constexpr auto operator""_lm(long double data) noexcept {
-  return Lumen(static_cast<double>(data));
+  return Lumen(static_cast<Lumen::type>(data));
 }
 
 constexpr auto operator""_lm(unsigned long long data) noexcept {
-  return Lumen(static_cast<double>(data));
+  return Lumen(static_cast<Lumen::type>(data));
 }
 
 }  // namespace literals

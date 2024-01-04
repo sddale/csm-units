@@ -5,36 +5,33 @@
  *   The following wikipedia page can explain <a
  * href="https://en.wikipedia.org/wiki/Gram">Gram</a> if needed.
  */
-
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Gram = Unit<Mass, "g">;
+namespace definition {
 
-// Unit Cast for Base g to Unit g
-template <>
-[[nodiscard]] constexpr auto UnitCast(Mass &&input) noexcept -> Gram {
-  return Gram(input.data * 1000);
+using Gram = Definition<Mass, NoConv, std::milli>;
+
 }
 
-// Unit Cast for Unit g to Base g
-template <>
-[[nodiscard]] constexpr auto UnitCast(Gram &&input) noexcept -> Mass {
-  return Mass(input.data / 1000);
-}
+using Gram = Unit<definition::Gram>;
 
 namespace literals {
 
+constexpr auto g =  // NOLINT(readability-identifier-length)
+    definition::Gram();
+
 constexpr auto operator""_g(long double data) noexcept {
-  return Gram(static_cast<double>(data));
+  return Gram(static_cast<Gram::type>(data));
 }
 
 constexpr auto operator""_g(unsigned long long data) noexcept {
-  return Gram(static_cast<double>(data));
+  return Gram(static_cast<Gram::type>(data));
 }
 
 }  // namespace literals

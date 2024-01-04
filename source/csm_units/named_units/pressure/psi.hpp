@@ -6,39 +6,37 @@
  * href="https://en.wikipedia.org/wiki/Psi">Psi</a> if needed.
  */
 
-#pragma once
+// TODO: Monolithic units (lbf in this case)
 
-#include "../../unit.hpp"
-#include "dimension.hpp"
+// #pragma once
 
-namespace csm_units {
+// #include "../../definition.hpp"
+// #include "../../unit.hpp"
+// #include "dimension.hpp"
 
-using Psi = Unit<Pressure, "psi">;
+// namespace csm_units {
 
-// Unit Cast for Base Pascals to Unit psi
-// Conversion Equation: 1 psi = 6894.76 pascals
-template <>
-[[nodiscard]] constexpr auto UnitCast(Pressure &&input) noexcept -> Psi {
-  return Psi(input.data / 6894.76);
-}
+// namespace definition {
 
-// Unit Cast for Unit psi to Base Pascals
-// Conversion Equation: 1 psi = 6894.76 pascals
-template <>
-[[nodiscard]] constexpr auto UnitCast(Psi &&input) noexcept -> Pressure {
-  return Pressure(input.data * 6894.76);
-}
+// using PoundForcePerSqInch = Definition<Pressure, std::ratio<393701, 10000>>;
 
-namespace literals {
+// }
 
-constexpr auto operator""_psi(long double data) noexcept {
-  return Psi(static_cast<double>(data));
-}
+// using PoundForcePerSqInch = Unit<definition::PoundForcePerSqInch>;
 
-constexpr auto operator""_psi(unsigned long long data) noexcept {
-  return Psi(static_cast<double>(data));
-}
+// namespace literals {
 
-}  // namespace literals
+// constexpr auto in =  // NOLINT(readability-identifier-length)
+//     definition::PoundForcePerSqInch();
 
-}  // namespace csm_units
+// constexpr auto operator""_in(long double data) noexcept {
+//   return PoundForcePerSqInch(static_cast<PoundForcePerSqInch::type>(data));
+// }
+
+// constexpr auto operator""_in(unsigned long long data) noexcept {
+//   return PoundForcePerSqInch(static_cast<PoundForcePerSqInch::type>(data));
+// }
+
+// }  // namespace literals
+
+// }  // namespace csm_units

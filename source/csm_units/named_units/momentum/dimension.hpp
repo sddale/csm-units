@@ -9,11 +9,10 @@
 
 #pragma once
 
-#include "../../dimension.hpp"
-#include "../../unitbase.hpp"
+#include <source/csm_units/dimension.hpp>
 
 namespace csm_units {
 
-using Momentum = UnitBase<Dimension<1, 1, -1, 0, 0, 0, 0>>;
+using Momentum = DimensionInt<1, 1, -1>;
 
 }  // namespace csm_units

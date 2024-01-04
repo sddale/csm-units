@@ -16,8 +16,8 @@ namespace csm_units {
 
 namespace definition {
 
-using Rankine = Definition<Temperature, std::ratio<1>, std::ratio<1>,
-                           std::ratio<1>, std::ratio<1>, std::ratio<9, 5>>;
+using Rankine =
+    Definition<Temperature, NoConv, NoConv, NoConv, NoConv, std::ratio<9, 5>>;
 
 }
 

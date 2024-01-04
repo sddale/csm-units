@@ -7,35 +7,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Tesla = Unit<MagneticFluxDensity, "T">;
+namespace definition {
 
-// Unit Cast for Base tesla
-template <>
-[[nodiscard]] constexpr auto UnitCast(MagneticFluxDensity &&input) noexcept
-    -> Tesla {
-  return Tesla(input.data);
+using Tesla = Definition<MagneticFluxDensity>;
+
 }
 
-// Unit Cast for Unit tesla
-template <>
-[[nodiscard]] constexpr auto UnitCast(Tesla &&input) noexcept
-    -> MagneticFluxDensity {
-  return MagneticFluxDensity(input.data);
-}
+using Tesla = Unit<definition::Tesla>;
 
 namespace literals {
 
+constexpr auto T =  // NOLINT(readability-identifier-length)
+    definition::Tesla();
+
 constexpr auto operator""_T(long double data) noexcept {
-  return Tesla(static_cast<double>(data));
+  return Tesla(static_cast<Tesla::type>(data));
 }
 
 constexpr auto operator""_T(unsigned long long data) noexcept {
-  return Tesla(static_cast<double>(data));
+  return Tesla(static_cast<Tesla::type>(data));
 }
 
 }  // namespace literals
