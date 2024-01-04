@@ -88,16 +88,8 @@ class Unit {
     return lhs;
   }
 
-  // Operator overloads for interactions with Units of the same class
-  // Unit storage type follows regular c++ promotion rules
-  template <IsUnit U>
-  constexpr friend auto operator*(Unit lhs, const U& rhs) noexcept {
-    using result_type = decltype(type(1.0) * typename U::type(1.0));
-    return Unit<typename Unit::def::template Multiply<typename U::def>,
-                result_type>(lhs.data * rhs.data);
-  }
-
   // Operator overloads for interactions with Units of the same dimension
+  // Unit storage type follows from lhs class
   constexpr friend auto operator<=>(
       const Unit& lhs, const SameDimensionAs<Unit> auto& rhs) noexcept
       -> std::strong_ordering {
@@ -145,6 +137,15 @@ class Unit {
                           DimensionFlip<typename def::dim>>
   constexpr friend auto operator*(Unit lhs, U rhs) noexcept {
     return lhs.data * rhs.data;  // Unitless return since dimensions cancel
+  }
+
+  // Operator overloads for interactions with other Units
+  // Unit storage type follows regular c++ promotion rules
+  template <IsUnit U>
+  constexpr friend auto operator*(Unit lhs, const U& rhs) noexcept {
+    using result_type = decltype(type(1.0) * typename U::type(1.0));
+    return Unit<typename Unit::def::template Multiply<typename U::def>,
+                result_type>(lhs.data * rhs.data);
   }
 
   template <IsUnit U>
