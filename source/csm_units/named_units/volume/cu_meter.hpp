@@ -7,33 +7,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using CubicMeter = Unit<Volume, "m3">;
+namespace definition {
 
-// Unit Cast for base m3
-template <>
-[[nodiscard]] constexpr auto UnitCast(Volume &&input) noexcept -> CubicMeter {
-  return CubicMeter(input.data);
+using CuMeter = Definition<Volume>;
+
 }
 
-// Unit Cast for Unit m3
-template <>
-[[nodiscard]] constexpr auto UnitCast(CubicMeter &&input) noexcept -> Volume {
-  return Volume(input.data);
-}
+using CuMeter = Unit<definition::CuMeter>;
 
 namespace literals {
 
+constexpr auto m3 =  // NOLINT(readability-identifier-length)
+    definition::CuMeter();
+
 constexpr auto operator""_m3(long double data) noexcept {
-  return CubicMeter(static_cast<double>(data));
+  return CuMeter(static_cast<CuMeter::type>(data));
 }
 
 constexpr auto operator""_m3(unsigned long long data) noexcept {
-  return CubicMeter(static_cast<double>(data));
+  return CuMeter(static_cast<CuMeter::type>(data));
 }
 
 }  // namespace literals

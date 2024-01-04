@@ -11,12 +11,10 @@
 
 #include <source/csm_units/dimension.hpp>
 
-#include "../../unitbase.hpp"
-
 namespace csm_units {
 
 using SolubilityParameter =
-    UnitBase<Dimension<-1, 1, -1, 0, 0, 0, 0, 2, 2, 1, 1, 1, 1, 1>>;
-using SqrSolubilityParameter = UnitBase<Dimension<-1, 1, -2, 0, 0, 0, 0>>;
+    Dimension<std::ratio<-1, 2>, std::ratio<1, 2>, std::ratio<-1>>;
+using SqSolubilityParameter = DimensionInt<-1, 1, -2>;
 
 }  // namespace csm_units

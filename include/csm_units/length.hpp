@@ -8,7 +8,6 @@
 #include <source/csm_units/named_units/length/dimension.hpp>
 #include <source/csm_units/named_units/length/foot.hpp>
 #include <source/csm_units/named_units/length/inch.hpp>
-#include <source/csm_units/named_units/length/invmeter.hpp>
 #include <source/csm_units/named_units/length/kilometer.hpp>
 #include <source/csm_units/named_units/length/meter.hpp>
 #include <source/csm_units/named_units/length/mile.hpp>

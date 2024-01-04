@@ -20,6 +20,31 @@
 
 namespace csm_units {
 
+// using Length = DimensionInt<1>;
+
+// template <IsDimension D, IsRatio Conv>
+// struct Converter {
+//   using conv = Conv;
+// };
+
+// using MillimeterConverter = Converter<Length, std::milli>;
+
+// template <class Conv, IsDimension D>
+// class ApplyConverter {};
+
+// template <IsRatio T, IsDimension D>
+// class ApplyConverter<Converter<Length, T>, D> {
+//   static_assert(D::L::num == 0,
+//                 "Converter incorrectly applied to 0D dimension");
+//   using dim = D::L;
+//   using conv = Converter<Length, T>::conv;
+
+//  public:
+//   constexpr static auto value =
+//       gcem::pow(static_cast<CSMUNITS_VALUE_TYPE>(conv::num) / conv::den,
+//                 static_cast<CSMUNITS_VALUE_TYPE>(dim::num) / dim::den);
+// };
+
 using NoConv = std::ratio<1>;
 
 template <IsDimension D, IsRatio ConvLen = NoConv, IsRatio ConvMass = NoConv,

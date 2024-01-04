@@ -11,10 +11,8 @@
 
 #include <source/csm_units/dimension.hpp>
 
-#include "../../unitbase.hpp"
-
 namespace csm_units {
 
-using Volume = UnitBase<Dimension<3, 0, 0, 0, 0, 0, 0>>;
+using Volume = DimensionInt<3, 0, 0, 0, 0, 0, 0>;
 
 }  // namespace csm_units

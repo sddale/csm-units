@@ -4,8 +4,8 @@
 
 #pragma once
 
-#include <source/csm_units/named_units/volume/cubic_centimeter.hpp>
-#include <source/csm_units/named_units/volume/cubic_meter.hpp>
+#include <source/csm_units/named_units/volume/cu_centimeter.hpp>
+#include <source/csm_units/named_units/volume/cu_meter.hpp>
 #include <source/csm_units/named_units/volume/dimension.hpp>
 #include <source/csm_units/named_units/volume/liter.hpp>
 

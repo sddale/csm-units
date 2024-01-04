@@ -11,10 +11,8 @@
 
 #include <source/csm_units/dimension.hpp>
 
-#include "../../unitbase.hpp"
-
 namespace csm_units {
 
-using Resistance = UnitBase<Dimension<2, 1, -3, -2, 0, 0, 0>>;
+using Resistance = DimensionInt<2, 1, -3, -2, 0, 0, 0>;
 
 }  // namespace csm_units

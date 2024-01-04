@@ -11,10 +11,8 @@
 
 #include <source/csm_units/dimension.hpp>
 
-#include "../../unitbase.hpp"
-
 namespace csm_units {
 
-using Velocity = UnitBase<Dimension<1, 0, -1, 0, 0, 0, 0>>;
+using Velocity = DimensionInt<1, 0, -1, 0, 0, 0, 0>;
 
 }  // namespace csm_units

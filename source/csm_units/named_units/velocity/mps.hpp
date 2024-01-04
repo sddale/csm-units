@@ -8,35 +8,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using MeterPerSecond = Unit<Velocity, "m/s">;
+namespace definition {
 
-// Unit Cast for Unit m/s
-template <>
-[[nodiscard]] constexpr auto UnitCast(Velocity &&input) noexcept
-    -> MeterPerSecond {
-  return MeterPerSecond(input.data);
+using MeterPerSecond = Definition<Velocity>;
+
 }
 
-// Unit Cast for Unit m/s
-template <>
-[[nodiscard]] constexpr auto UnitCast(MeterPerSecond &&input) noexcept
-    -> Velocity {
-  return Velocity(input.data);
-}
+using MeterPerSecond = Unit<definition::MeterPerSecond>;
 
 namespace literals {
 
+constexpr auto mps =  // NOLINT(readability-identifier-length)
+    definition::MeterPerSecond();
+
 constexpr auto operator""_mps(long double data) noexcept {
-  return MeterPerSecond(static_cast<double>(data));
+  return MeterPerSecond(static_cast<MeterPerSecond::type>(data));
 }
 
 constexpr auto operator""_mps(unsigned long long data) noexcept {
-  return MeterPerSecond(static_cast<double>(data));
+  return MeterPerSecond(static_cast<MeterPerSecond::type>(data));
 }
 
 }  // namespace literals

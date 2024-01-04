@@ -6,27 +6,33 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using InvPascal = Unit<InvPressure, "inv_Pa">;
+namespace definition {
 
-// Unit Cast for Base Pascals to Unit Pascals
-// Conversion Equation: Pascals = Pascals
-template <>
-[[nodiscard]] constexpr auto UnitCast(InvPressure &&input) noexcept
-    -> InvPascal {
-  return InvPascal(input.data);
+using InversePascal = Definition<ReciprocalPressure>;
+
 }
 
-// Unit Cast for Unit Pascals to Base Pascals
-// Conversion Equation: Pascals = Pascals
-template <>
-[[nodiscard]] constexpr auto UnitCast(InvPascal &&input) noexcept
-    -> InvPressure {
-  return InvPressure(input.data);
+using InversePascal = Unit<definition::InversePascal>;
+
+namespace literals {
+
+constexpr auto invPa =  // NOLINT(readability-identifier-length)
+    definition::InversePascal();
+
+constexpr auto operator""_invPa(long double data) noexcept {
+  return InversePascal(static_cast<InversePascal::type>(data));
 }
+
+constexpr auto operator""_invPa(unsigned long long data) noexcept {
+  return InversePascal(static_cast<InversePascal::type>(data));
+}
+
+}  // namespace literals
 
 }  // namespace csm_units

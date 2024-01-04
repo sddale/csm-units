@@ -25,9 +25,7 @@ namespace csm_units {
 
 // Def: specifier for the unit's dimensions and the  conversions to SI fo each
 // dimension
-
 // Data: storage type such that sizeof(Data) = sizeof(Unit)
-
 // ZeroPoint: 0 [unit] = std::ratio<N,D> [SI]
 // i.e for Fahrenheit, ZeroPoint = ratio<45967, 180> = approx 255.372[Kelvin]
 template <IsDefinition Def, IsArithmetic Data = CSMUNITS_VALUE_TYPE,
@@ -167,7 +165,7 @@ constexpr auto operator*(IsArithmetic auto lhs, D /*rhs*/) noexcept {
 
 template <IsDefinition DL, IsDefinition DR>
 constexpr auto operator*(DL /*lhs*/, DR /*rhs*/) noexcept {
-  return Unit<typename DR::template Multiply<DL>>(1.0);
+  return typename DR::template Multiply<DL>();
 }
 
 template <IsUnit U, IsDefinition D>
@@ -183,7 +181,7 @@ constexpr auto operator/(IsArithmetic auto lhs, D /*rhs*/) noexcept {
 
 template <IsDefinition DL, IsDefinition DR>
 constexpr auto operator/(DL /*lhs*/, DR /*rhs*/) noexcept {
-  return Unit<typename DR::template Divide<DL>>(1.0);
+  return typename DR::template Divide<DL>();
 }
 
 template <IsUnit U, IsDefinition D>

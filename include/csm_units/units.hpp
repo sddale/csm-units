@@ -46,9 +46,8 @@
 #include <csm_units/time.hpp>
 #include <csm_units/velocity.hpp>
 #include <csm_units/volume.hpp>
-#include <source/csm_units/exponents.hpp>
-#include <source/csm_units/literal/literal.hpp>
+#include <source/csm_units/definition.hpp>
+#include <source/csm_units/dimension.hpp>
 #include <source/csm_units/unit.hpp>
-#include <source/csm_units/unitbase.hpp>
 
 namespace csm_units {}  // namespace csm_units

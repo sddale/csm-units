@@ -4,27 +4,31 @@
  *
  */
 
-#pragma once
+// TODO monolithic conversions
 
-#include "../../unit.hpp"
-#include "dimension.hpp"
+// #pragma once
 
-namespace csm_units {
+// #include "../../unit.hpp"
+// #include "dimension.hpp"
 
-using InvBar = Unit<InvPressure, "inv_bar">;
+// namespace csm_units {
 
-// Unit Cast for Base Pascals to Unit InvBar
-// Conversion Equation: 1 InvBar = 100,000 pascals
-template <>
-[[nodiscard]] constexpr auto UnitCast(InvPressure &&input) noexcept -> InvBar {
-  return InvBar(input.data * 100000);
-}
+// using InvBar = Unit<InvPressure, "inv_bar">;
 
-// Unit Cast for Unit InvBar to Base Pascals
-// Conversion Equation: 1 InvBar = 100,000 pascals
-template <>
-[[nodiscard]] constexpr auto UnitCast(InvBar &&input) noexcept -> InvPressure {
-  return InvPressure(input.data / 100000);
-}
+// // Unit Cast for Base Pascals to Unit InvBar
+// // Conversion Equation: 1 InvBar = 100,000 pascals
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(InvPressure &&input) noexcept -> InvBar
+// {
+//   return InvBar(input.data * 100000);
+// }
 
-}  // namespace csm_units
+// // Unit Cast for Unit InvBar to Base Pascals
+// // Conversion Equation: 1 InvBar = 100,000 pascals
+// template <>
+// [[nodiscard]] constexpr auto UnitCast(InvBar &&input) noexcept -> InvPressure
+// {
+//   return InvPressure(input.data / 100000);
+// }
+
+// }  // namespace csm_units

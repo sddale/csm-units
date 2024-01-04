@@ -8,33 +8,31 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Liter = Unit<Volume, "L">;
+namespace definition {
 
-// Unit Cast for base
-template <>
-[[nodiscard]] constexpr auto UnitCast(Volume &&input) noexcept -> Liter {
-  return Liter(input.data * 1000);
+using Liter = Definition<Volume, std::deca>;  // Liter = dm3
+
 }
 
-// Unit Cast for Unit Liter
-template <>
-[[nodiscard]] constexpr auto UnitCast(Liter &&input) noexcept -> Volume {
-  return Volume(input.data / 1000);
-}
+using Liter = Unit<definition::Liter>;
 
 namespace literals {
 
+constexpr auto L =  // NOLINT(readability-identifier-length)
+    definition::Liter();
+
 constexpr auto operator""_L(long double data) noexcept {
-  return Liter(static_cast<double>(data));
+  return Liter(static_cast<Liter::type>(data));
 }
 
 constexpr auto operator""_L(unsigned long long data) noexcept {
-  return Liter(static_cast<double>(data));
+  return Liter(static_cast<Liter::type>(data));
 }
 
 }  // namespace literals
