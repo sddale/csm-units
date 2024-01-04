@@ -20,10 +20,12 @@
 
 namespace csm_units {
 
-template <IsDimension D, IsRatio ConvLen = std::ratio<1>,
-          IsRatio ConvMass = std::ratio<1>, IsRatio ConvTime = std::ratio<1>,
-          IsRatio ConvElec = std::ratio<1>, IsRatio ConvTemper = std::ratio<1>,
-          IsRatio ConvAmount = std::ratio<1>, IsRatio ConvLight = std::ratio<1>>
+using NoConv = std::ratio<1>;
+
+template <IsDimension D, IsRatio ConvLen = NoConv, IsRatio ConvMass = NoConv,
+          IsRatio ConvTime = NoConv, IsRatio ConvElec = NoConv,
+          IsRatio ConvTemper = NoConv, IsRatio ConvAmount = NoConv,
+          IsRatio ConvLight = NoConv>
 class Definition {
  public:
   using dim = D;
@@ -66,20 +68,20 @@ class Definition {
 
   template <IsRatio RL, IsRatio Pow>
     requires(!std::same_as<Pow, std::ratio<0>>)
-  struct Selector<RL, std::ratio<1>, Pow> {
+  struct Selector<RL, NoConv, Pow> {
     using val = RL;
   };
 
   template <IsRatio RR, IsRatio Pow>
     requires(!std::same_as<Pow, std::ratio<0>>)
-  struct Selector<std::ratio<1>, RR, Pow> {
+  struct Selector<NoConv, RR, Pow> {
     using val = RR;
   };
 
   template <IsRatio Pow>
     requires(!std::same_as<Pow, std::ratio<0>>)
-  struct Selector<std::ratio<1>, std::ratio<1>, Pow> {
-    using val = std::ratio<1>;
+  struct Selector<NoConv, NoConv, Pow> {
+    using val = NoConv;
   };
 
   template <IsDefinition A>
