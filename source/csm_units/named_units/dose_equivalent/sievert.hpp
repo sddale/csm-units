@@ -26,11 +26,11 @@ constexpr auto Sv =  // NOLINT(readability-identifier-length)
     definition::Sievert();
 
 constexpr auto operator""_Sv(long double data) noexcept {
-  return Sievert(static_cast<Sievert::type>(data));
+  return Sievert(static_cast<Sievert::ValueType>(data));
 }
 
 constexpr auto operator""_Sv(unsigned long long data) noexcept {
-  return Sievert(static_cast<Sievert::type>(data));
+  return Sievert(static_cast<Sievert::ValueType>(data));
 }
 
 }  // namespace literals

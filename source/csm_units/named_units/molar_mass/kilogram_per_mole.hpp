@@ -29,11 +29,11 @@ constexpr auto kgpermol =  // NOLINT(readability-identifier-length)
     definition::KilogramPerMole();
 
 constexpr auto operator""_kgpermol(long double data) noexcept {
-  return KilogramPerMole(static_cast<KilogramPerMole::type>(data));
+  return KilogramPerMole(static_cast<KilogramPerMole::ValueType>(data));
 }
 
 constexpr auto operator""_kgpermol(unsigned long long data) noexcept {
-  return KilogramPerMole(static_cast<KilogramPerMole::type>(data));
+  return KilogramPerMole(static_cast<KilogramPerMole::ValueType>(data));
 }
 
 }  // namespace literals

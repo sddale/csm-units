@@ -10,29 +10,23 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "second.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using Minute = Definition<Time, NoConv, NoConv, std::ratio<1, 60>>;
-
-}
-
-using Minute = Unit<definition::Minute>;
+using Minute = Unit<literals::s * std::ratio<1, 60>()>;
 
 namespace literals {
 
 constexpr auto min =  // NOLINT(readability-identifier-length)
-    definition::Minute();
+    Minute::definition;
 
 constexpr auto operator""_min(long double data) noexcept {
-  return Minute(static_cast<Minute::type>(data));
+  return Minute(static_cast<Minute::ValueType>(data));
 }
 
 constexpr auto operator""_min(unsigned long long data) noexcept {
-  return Minute(static_cast<Minute::type>(data));
+  return Minute(static_cast<Minute::ValueType>(data));
 }
 
 }  // namespace literals

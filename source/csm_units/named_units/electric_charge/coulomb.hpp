@@ -27,11 +27,11 @@ constexpr auto C =  // NOLINT(readability-identifier-length)
     definition::Coulomb();
 
 constexpr auto operator""_C(long double data) noexcept {
-  return Coulomb(static_cast<Coulomb::type>(data));
+  return Coulomb(static_cast<Coulomb::ValueType>(data));
 }
 
 constexpr auto operator""_C(unsigned long long data) noexcept {
-  return Coulomb(static_cast<Coulomb::type>(data));
+  return Coulomb(static_cast<Coulomb::ValueType>(data));
 }
 
 }  // namespace literals

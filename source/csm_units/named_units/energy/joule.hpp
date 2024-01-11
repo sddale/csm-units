@@ -27,11 +27,11 @@ constexpr auto J =  // NOLINT(readability-identifier-length)
     definition::Joule();
 
 constexpr auto operator""_J(long double data) noexcept {
-  return Joule(static_cast<Joule::type>(data));
+  return Joule(static_cast<Joule::ValueTypeeType>(data));
 }
 
 constexpr auto operator""_J(unsigned long long data) noexcept {
-  return Joule(static_cast<Joule::type>(data));
+  return Joule(static_cast<Joule::ValueTypeeType>(data));
 }
 
 }  // namespace literals

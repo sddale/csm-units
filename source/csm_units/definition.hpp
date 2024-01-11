@@ -20,162 +20,113 @@
 
 namespace csm_units {
 
-// using Length = DimensionInt<1>;
+namespace literals {
 
-// template <IsDimension D, IsRatio Conv>
-// struct Converter {
-//   using conv = Conv;
-// };
+using Inv = std::ratio<-1>;
+using Zero = std::ratio<0>;
+using One = std::ratio<1>;
+using Two = std::ratio<2>;
+using Three = std::ratio<3>;
 
-// using MillimeterConverter = Converter<Length, std::milli>;
+}  // namespace literals
 
-// template <class Conv, IsDimension D>
-// class ApplyConverter {};
-
-// template <IsRatio T, IsDimension D>
-// class ApplyConverter<Converter<Length, T>, D> {
-//   static_assert(D::L::num == 0,
-//                 "Converter incorrectly applied to 0D dimension");
-//   using dim = D::L;
-//   using conv = Converter<Length, T>::conv;
-
-//  public:
-//   constexpr static auto value =
-//       gcem::pow(static_cast<CSMUNITS_VALUE_TYPE>(conv::num) / conv::den,
-//                 static_cast<CSMUNITS_VALUE_TYPE>(dim::num) / dim::den);
-// };
-
-using NoConv = std::ratio<1>;
-
-template <IsDimension D, IsRatio ConvLen = NoConv, IsRatio ConvMass = NoConv,
-          IsRatio ConvTime = NoConv, IsRatio ConvElec = NoConv,
-          IsRatio ConvTemper = NoConv, IsRatio ConvAmount = NoConv,
-          IsRatio ConvLight = NoConv>
+template <IsDimension D, IsRatio ConversionFactor = literals::One,
+          IsRatio Origin = literals::Zero>
 class Definition {
  public:
-  using dim = D;
-  using conv_len = ConvLen;
-  using conv_mass = ConvMass;
-  using conv_time = ConvTime;
-  using conv_elec = ConvElec;
-  using conv_temper = ConvTemper;
-  using conv_amount = ConvAmount;
-  using conv_light = ConvLight;
+  using DimenType = D;
+  using ConvType = ConversionFactor;
+  using OriginType = Origin;
 
   [[nodiscard]] consteval static auto Get() noexcept {
-    return Convert<conv_len, typename dim::L>().value *
-           Convert<conv_mass, typename dim::M>().value *
-           Convert<conv_time, typename dim::T>().value *
-           Convert<conv_elec, typename dim::C>().value *
-           Convert<conv_temper, typename dim::TP>().value *
-           Convert<conv_amount, typename dim::A>().value *
-           Convert<conv_light, typename dim::LM>().value;
+    return static_cast<CSMUNITS_VALUE_TYPE>(ConvType::num) / ConvType::den;
   }
+
   [[nodiscard]] consteval static auto ToSI() noexcept {
-    return InvConvert<conv_len, typename dim::L>().value *
-           InvConvert<conv_mass, typename dim::M>().value *
-           InvConvert<conv_time, typename dim::T>().value *
-           InvConvert<conv_elec, typename dim::C>().value *
-           InvConvert<conv_temper, typename dim::TP>().value *
-           InvConvert<conv_amount, typename dim::A>().value *
-           InvConvert<conv_light, typename dim::LM>().value;
+    return static_cast<CSMUNITS_VALUE_TYPE>(ConvType::den) / ConvType::num;
   }
 
-  template <IsRatio RL, IsRatio RR, IsRatio Pow>
-  struct Selector {
-    using val = RL;
-  };
-
-  template <IsRatio RL, IsRatio RR>
-  struct Selector<RL, RR, std::ratio<0>> {
-    using val = std::ratio<1, 1>;
-  };
-
-  template <IsRatio RL, IsRatio Pow>
-    requires(!std::same_as<Pow, std::ratio<0>>)
-  struct Selector<RL, NoConv, Pow> {
-    using val = RL;
-  };
-
-  template <IsRatio RR, IsRatio Pow>
-    requires(!std::same_as<Pow, std::ratio<0>>)
-  struct Selector<NoConv, RR, Pow> {
-    using val = RR;
-  };
-
-  template <IsRatio Pow>
-    requires(!std::same_as<Pow, std::ratio<0>>)
-  struct Selector<NoConv, NoConv, Pow> {
-    using val = NoConv;
-  };
+  // Arithmetic helpers
+  // Zero point nonsensical for any arithmetic
+  template <IsDefinition A>
+  using DefinitionMultiply =
+      Definition<DimensionAdd<DimenType, typename A::DimenType>,
+                 std::ratio_multiply<ConvType, typename A::ConvType>>;
 
   template <IsDefinition A>
-  struct Multiply_ {
-   private:
-    using dimension = DimensionAdd<typename A::dim, dim>;
+  using DefinitionDivide =
+      Definition<DimensionSubtract<DimenType, typename A::DimenType>,
+                 std::ratio_divide<ConvType, typename A::ConvType>>;
 
-   public:
-    using val =
-        Definition<DimensionAdd<typename A::dim, dim>,
-                   typename Selector<typename A::conv_len, conv_len,
-                                     typename dimension::L>::val,
-                   typename Selector<typename A::conv_mass, conv_mass,
-                                     typename dimension::M>::val,
-                   typename Selector<typename A::conv_time, conv_time,
-                                     typename dimension::T>::val,
-                   typename Selector<typename A::conv_elec, conv_elec,
-                                     typename dimension::C>::val,
-                   typename Selector<typename A::conv_temper, conv_temper,
-                                     typename dimension::TP>::val,
-                   typename Selector<typename A::conv_amount, conv_amount,
-                                     typename dimension::A>::val,
-                   typename Selector<typename A::conv_light, conv_light,
-                                     typename dimension::LM>::val>;
-  };
-  template <IsDefinition A>
-  using Multiply = Multiply_<A>::val;
+  using DefinitionInvert = Definition<DimensionFlip<DimenType>,
+                                      std::ratio<ConvType::den, ConvType::num>>;
 
-  template <IsDefinition A>
-  struct Divide_ {
-   private:
-    using dimension = DimensionAdd<typename A::dim, dim>;
+  template <IsDefinition DR>
+    requires std::same_as<DimenType, DimensionFlip<typename DR::DimenType>>
+  [[nodiscard]] constexpr auto operator*(DR /*rhs*/) const noexcept {
+    return CSMUNITS_VALUE_TYPE();
+  }
 
-   public:
-    using val =
-        Definition<DimensionSubtract<typename A::dim, dim>,
-                   typename Selector<typename A::conv_len, conv_len,
-                                     typename dimension::L>::val,
-                   typename Selector<typename A::conv_mass, conv_mass,
-                                     typename dimension::M>::val,
-                   typename Selector<typename A::conv_time, conv_time,
-                                     typename dimension::T>::val,
-                   typename Selector<typename A::conv_elec, conv_elec,
-                                     typename dimension::C>::val,
-                   typename Selector<typename A::conv_temper, conv_temper,
-                                     typename dimension::TP>::val,
-                   typename Selector<typename A::conv_amount, conv_amount,
-                                     typename dimension::A>::val,
-                   typename Selector<typename A::conv_light, conv_light,
-                                     typename dimension::LM>::val>;
-  };
-  template <IsDefinition A>
-  using Divide = Divide_<A>::val;
+  template <IsDefinition DR>
+  [[nodiscard]] constexpr auto operator*(DR /*rhs*/) const noexcept {
+    return DefinitionMultiply<DR>();
+  }
 
-  using InverseDef =
-      Definition<DimensionFlip<dim>, conv_len, conv_mass, conv_time,
-                 conv_temper, conv_elec, conv_amount, conv_light>;
+  template <IsDefinition DR>
+    requires std::same_as<DimenType, typename DR::DimenType>
+  [[nodiscard]] constexpr auto operator/(DR /*rhs*/) const noexcept {
+    return CSMUNITS_VALUE_TYPE();
+  }
 
- private:
-  template <IsRatio R1, IsRatio R2>
-  struct Convert {
-    constexpr static auto value =
-        gcem::pow(static_cast<CSMUNITS_VALUE_TYPE>(R1::num) / R1::den,
-                  static_cast<CSMUNITS_VALUE_TYPE>(R2::num) / R2::den);
-  };
-
-  template <IsRatio R1, IsRatio R2>
-  using InvConvert = Convert<std::ratio<R1::den, R1::num>, R2>;
+  template <IsDefinition DR>
+  [[nodiscard]] constexpr auto operator/(DR /*rhs*/) const noexcept {
+    return DefinitionDivide<DR>();
+  }
 };
+
+// Operator+,- with ratio sets Origin
+// Operator+ is symmetric, operator- with def rhs not supported due to
+// potentially unintuitive arithmetic
+template <IsRatio R, IsDefinition D>
+[[nodiscard]] constexpr auto operator+(R /*lhs*/, D /*rhs*/) noexcept {
+  return Definition<typename D::DimenType, typename D::ConvType, R>();
+}
+
+template <IsDefinition D, IsRatio R>
+[[nodiscard]] constexpr auto operator+(D /*lhs*/, R /*rhs*/) noexcept {
+  return Definition<typename D::DimenType, typename D::ConvType, R>();
+}
+
+template <IsDefinition D, IsRatio R>
+[[nodiscard]] constexpr auto operator-(D /*lhs*/, R /*rhs*/) noexcept {
+  return Definition<typename D::DimenType, typename D::ConvType,
+                    std::ratio<-1 * R::num, R::den>>();
+}
+
+// Operator*,/ with ratio sets conversion factor
+template <IsDefinition D, IsRatio R>
+[[nodiscard]] constexpr auto operator*(D /*lhs*/, R /*rhs*/) noexcept {
+  return Definition<typename D::DimenType,
+                    std::ratio_multiply<typename D::ConvType, R>>();
+}
+
+template <IsRatio R, IsDefinition D>
+[[nodiscard]] constexpr auto operator*(R /*lhs*/, D /*rhs*/) noexcept {
+  return Definition<typename D::DimenType,
+                    std::ratio_multiply<R, typename D::ConvType>>();
+}
+
+template <IsDefinition D, IsRatio R>
+[[nodiscard]] constexpr auto operator/(D /*lhs*/, R /*rhs*/) noexcept {
+  return Definition<typename D::DimenType,
+                    std::ratio_divide<typename D::ConvType, R>>();
+}
+
+template <IsRatio R, IsDefinition D>
+[[nodiscard]] constexpr auto operator/(R /*lhs*/, D /*rhs*/) noexcept {
+  return Definition<DimensionFlip<typename D::DimenType>,
+                    std::ratio_divide<R, typename D::ConvType>>();
+}
 
 namespace literals {
 // NOLINTBEGIN(readability-identifier-length)

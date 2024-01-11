@@ -27,11 +27,11 @@ constexpr auto Gy  // NOLINT(readability-identifier-length)
     = definition::AbsorbedDose();
 
 constexpr auto operator""_Gy(long double data) noexcept {
-  return Gray(static_cast<Gray::type>(data));
+  return Gray(static_cast<Gray::ValueType>(data));
 }
 
 constexpr auto operator""_Gy(unsigned long long data) noexcept {
-  return Gray(static_cast<Gray::type>(data));
+  return Gray(static_cast<Gray::ValueType>(data));
 }
 
 }  // namespace literals

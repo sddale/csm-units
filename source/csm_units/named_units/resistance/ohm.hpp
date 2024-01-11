@@ -27,11 +27,11 @@ constexpr auto ohm =  // NOLINT(readability-identifier-length)
     definition::Ohm();
 
 constexpr auto operator""_ohm(long double data) noexcept {
-  return Ohm(static_cast<Ohm::type>(data));
+  return Ohm(static_cast<Ohm::ValueType>(data));
 }
 
 constexpr auto operator""_ohm(unsigned long long data) noexcept {
-  return Ohm(static_cast<Ohm::type>(data));
+  return Ohm(static_cast<Ohm::ValueType>(data));
 }
 
 }  // namespace literals

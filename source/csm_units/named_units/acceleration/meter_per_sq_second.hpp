@@ -29,11 +29,11 @@ constexpr auto mps2 =  // NOLINT(readability-identifier-length)
     definition::MeterPerSqSecond();
 
 constexpr auto operator""_mps2(long double data) noexcept {
-  return MeterPerSqSecond(static_cast<MeterPerSqSecond::type>(data));
+  return MeterPerSqSecond(static_cast<MeterPerSqSecond::ValueType>(data));
 }
 
 constexpr auto operator""_mps2(unsigned long long data) noexcept {
-  return MeterPerSqSecond(static_cast<MeterPerSqSecond::type>(data));
+  return MeterPerSqSecond(static_cast<MeterPerSqSecond::ValueType>(data));
 }
 
 }  // namespace literals

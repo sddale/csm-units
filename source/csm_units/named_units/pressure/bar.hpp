@@ -30,11 +30,11 @@
 //     definition::Bar();
 
 // constexpr auto operator""_bar(long double data) noexcept {
-//   return Bar(static_cast<Bar::type>(data));
+//   return Bar(static_cast<Bar::ValueType>(data));
 // }
 
 // constexpr auto operator""_bar(unsigned long long data) noexcept {
-//   return Bar(static_cast<Bar::type>(data));
+//   return Bar(static_cast<Bar::ValueType>(data));
 // }
 
 // }  // namespace literals

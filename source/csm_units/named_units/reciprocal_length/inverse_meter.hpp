@@ -29,11 +29,11 @@ constexpr auto invm =  // NOLINT(readability-identifier-length)
     definition::InverseMeter();
 
 constexpr auto operator""_invm(long double data) noexcept {
-  return InverseMeter(static_cast<InverseMeter::type>(data));
+  return InverseMeter(static_cast<InverseMeter::ValueType>(data));
 }
 
 constexpr auto operator""_invm(unsigned long long data) noexcept {
-  return InverseMeter(static_cast<InverseMeter::type>(data));
+  return InverseMeter(static_cast<InverseMeter::ValueType>(data));
 }
 
 }  // namespace literals

@@ -14,25 +14,19 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Kelvin = Definition<Temperature>;
-
-}
-
-using Kelvin = Unit<definition::Kelvin>;
+using Kelvin = Unit<Definition<Temperature>{}>;
 
 namespace literals {
 
 constexpr auto K =  // NOLINT(readability-identifier-length)
-    definition::Kelvin();
+    Kelvin::DefType();
 
 constexpr auto operator""_K(long double data) noexcept {
-  return Kelvin(static_cast<Kelvin::type>(data));
+  return Kelvin(static_cast<Kelvin::ValueType>(data));
 }
 
 constexpr auto operator""_K(unsigned long long data) noexcept {
-  return Kelvin(static_cast<Kelvin::type>(data));
+  return Kelvin(static_cast<Kelvin::ValueType>(data));
 }
 
 }  // namespace literals

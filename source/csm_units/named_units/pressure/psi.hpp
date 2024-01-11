@@ -30,11 +30,13 @@
 //     definition::PoundForcePerSqInch();
 
 // constexpr auto operator""_in(long double data) noexcept {
-//   return PoundForcePerSqInch(static_cast<PoundForcePerSqInch::type>(data));
+//   return::ValueType
+//   PoundForcePerSqInch(static_cast<PoundForcePerSqInch::ValueType>(data));
 // }
 
-// constexpr auto operator""_in(unsigned long long data) noexcept {
-//   return PoundForcePerSqInch(static_cast<PoundForcePerSqInch::type>(data));
+// constexpr auto operator""_in(unsigned long long data) noexce::ValueType
+//   return
+//   PoundForcePerSqInch(static_cast<PoundForcePerSqInch::ValueType>(data));
 // }
 
 // }  // namespace literals

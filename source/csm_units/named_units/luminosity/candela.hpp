@@ -27,11 +27,11 @@ constexpr auto cd =  // NOLINT(readability-identifier-length)
     definition::Candela();
 
 constexpr auto operator""_cd(long double data) noexcept {
-  return Candela(static_cast<Candela::type>(data));
+  return Candela(static_cast<Candela::ValueType>(data));
 }
 
 constexpr auto operator""_cd(unsigned long long data) noexcept {
-  return Candela(static_cast<Candela::type>(data));
+  return Candela(static_cast<Candela::ValueType>(data));
 }
 
 }  // namespace literals

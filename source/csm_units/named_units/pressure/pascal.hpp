@@ -27,11 +27,11 @@ constexpr auto Pa =  // NOLINT(readability-identifier-length)
     definition::Pascal();
 
 constexpr auto operator""_Pa(long double data) noexcept {
-  return Pascal(static_cast<Pascal::type>(data));
+  return Pascal(static_cast<Pascal::ValueType>(data));
 }
 
 constexpr auto operator""_Pa(unsigned long long data) noexcept {
-  return Pascal(static_cast<Pascal::type>(data));
+  return Pascal(static_cast<Pascal::ValueType>(data));
 }
 
 }  // namespace literals

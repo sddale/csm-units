@@ -28,11 +28,11 @@ constexpr auto L =  // NOLINT(readability-identifier-length)
     definition::Liter();
 
 constexpr auto operator""_L(long double data) noexcept {
-  return Liter(static_cast<Liter::type>(data));
+  return Liter(static_cast<Liter::ValueType>(data));
 }
 
 constexpr auto operator""_L(unsigned long long data) noexcept {
-  return Liter(static_cast<Liter::type>(data));
+  return Liter(static_cast<Liter::ValueType>(data));
 }
 
 }  // namespace literals

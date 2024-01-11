@@ -27,11 +27,11 @@ constexpr auto Hz =  // NOLINT(readability-identifier-length)
     definition::Hertz();
 
 constexpr auto operator""_Hz(long double data) noexcept {
-  return Hertz(static_cast<Hertz::type>(data));
+  return Hertz(static_cast<Hertz::ValueType>(data));
 }
 
 constexpr auto operator""_Hz(unsigned long long data) noexcept {
-  return Hertz(static_cast<Hertz::type>(data));
+  return Hertz(static_cast<Hertz::ValueType>(data));
 }
 
 }  // namespace literals

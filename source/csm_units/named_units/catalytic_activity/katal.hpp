@@ -27,11 +27,11 @@ constexpr auto kat =  // NOLINT(readability-identifier-length)
     definition::Katal();
 
 constexpr auto operator""_kat(long double data) noexcept {
-  return Katal(static_cast<Katal::type>(data));
+  return Katal(static_cast<Katal::ValueType>(data));
 }
 
 constexpr auto operator""_kat(unsigned long long data) noexcept {
-  return Katal(static_cast<Katal::type>(data));
+  return Katal(static_cast<Katal::ValueType>(data));
 }
 
 }  // namespace literals

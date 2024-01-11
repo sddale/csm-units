@@ -32,11 +32,11 @@ constexpr auto N =  // NOLINT(readability-identifier-length)
     definition::Newton();
 
 constexpr auto operator""_N(long double data) noexcept {
-  return Newton(static_cast<Newton::type>(data));
+  return Newton(static_cast<Newton::ValueType>(data));
 }
 
 constexpr auto operator""_N(unsigned long long data) noexcept {
-  return Newton(static_cast<Newton::type>(data));
+  return Newton(static_cast<Newton::ValueType>(data));
 }
 
 }  // namespace literals

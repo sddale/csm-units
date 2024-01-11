@@ -7,9 +7,9 @@
 
 namespace csm_units::test {
 
-// using namespace csm_units::literals;
+using namespace csm_units::literals;
 
-// NOLINTBEGIN(modernize-use-trailing-return-type,readability-identifier-length)
+// NOLINTBEGIN(modernize-use-trailing-return-type,readability-identifier-length,misc-use-anonymous-namespace)
 
 // constexpr auto CHECK_TYPE = [](auto input, auto ref) {
 //   CHECK(std::is_same_v<std::remove_const_t<decltype(input)>,
@@ -20,18 +20,20 @@ namespace csm_units::test {
 //   CHECK_EQ(lhs, doctest::Approx(rhs));
 // };
 
-// constexpr auto IdealGas = [](csm_units::Kilomole n, csm_units::Liter Volume,
-//                              csm_units::Fahrenheit Temp) -> csm_units::Bar {
-//   const auto R = 8.31446261815324 * m3 * Pa / K / mol;
+// // constexpr auto IdealGas = [](csm_units::Kilomole n, csm_units::Liter
+// Volume,
+// //                              csm_units::Fahrenheit Temp) -> csm_units::Bar
+// {
+// //   const auto R = 8.31446261815324 * m3 * Pa / K / mol;
 
-//   CHECK_TYPE(
-//       R,
-//       csm_units::UnitBase<csm_units::Dimension<2, 1, -2, 0, -1, -1,
-//       0>>(0.0));
+// //   CHECK_TYPE(
+// //       R,
+// //       csm_units::UnitBase<csm_units::Dimension<2, 1, -2, 0, -1, -1,
+// 0>>(0.0));
 
-//   const csm_units::Bar P = n * R * Temp / Volume;
-//   return P;
-// };
+// //   const csm_units::Bar P = n * R * Temp / Volume;
+// //   return P;
+// // };
 
 // constexpr auto UseIG = []() {
 //   const auto n = csm_units::Mole(2);
@@ -47,6 +49,12 @@ namespace csm_units::test {
 //   TEST_CASE("Example") { UseIG(); }
 // }
 
-// NOLINTEND(modernize-use-trailing-return-type,readability-identifier-length)
+// TEST_SUITE("Demonstration") {
+//   TEST_CASE("Density") {
+
+//   }
+// }
+
+// NOLINTEND(modernize-use-trailing-return-type,readability-identifier-length,misc-use-anonymous-namespace)
 
 }  // namespace csm_units::test

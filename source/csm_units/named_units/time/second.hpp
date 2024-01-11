@@ -13,25 +13,19 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Second = Definition<Time>;
-
-}
-
-using Second = Unit<definition::Second>;
+using Second = Unit<Definition<Time>{}>;
 
 namespace literals {
 
 constexpr auto s =  // NOLINT(readability-identifier-length)
-    definition::Second();
+    Second::definition;
 
 constexpr auto operator""_s(long double data) noexcept {
-  return Second(static_cast<Second::type>(data));
+  return Second(static_cast<Second::ValueType>(data));
 }
 
 constexpr auto operator""_s(unsigned long long data) noexcept {
-  return Second(static_cast<Second::type>(data));
+  return Second(static_cast<Second::ValueType>(data));
 }
 
 }  // namespace literals

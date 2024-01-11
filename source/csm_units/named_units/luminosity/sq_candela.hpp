@@ -28,11 +28,11 @@ constexpr auto cd2 =  // NOLINT(readability-identifier-length)
     definition::SqCandela();
 
 constexpr auto operator""_cd2(long double data) noexcept {
-  return SqCandela(static_cast<SqCandela::type>(data));
+  return SqCandela(static_cast<SqCandela::ValueType>(data));
 }
 
 constexpr auto operator""_cd2(unsigned long long data) noexcept {
-  return SqCandela(static_cast<SqCandela::type>(data));
+  return SqCandela(static_cast<SqCandela::ValueType>(data));
 }
 
 }  // namespace literals

@@ -1,12 +1,14 @@
 #include <doctest/doctest.h>
 
 #include <csm_units/concepts.hpp>
-#include <csm_units/temperature.hpp>
 #include <gcem.hpp>
 #include <source/csm_units/definition.hpp>
 #include <source/csm_units/dimension.hpp>
-#include <source/csm_units/named_units/thermodynamic_temperature/rankine.hpp>
 #include <source/csm_units/unit.hpp>
+
+#ifndef CSMUNITS_VALUE_TYPE
+#define CSMUNITS_VALUE_TYPE double
+#endif
 
 namespace csm_units::test {
 
@@ -14,16 +16,17 @@ namespace csm_units::test {
 
 TEST_SUITE("Definition") {
   using namespace csm_units::literals;
-  using SquareRankine =
-      Definition<DimensionAdd<Temperature, Temperature>, std::ratio<1>,
-                 std::ratio<1>, std::ratio<1>, std::ratio<1>, std::ratio<9, 5>>;
+  using length_def = Definition<Dimension<One>>;
+  using inv_def = decltype(One() / length_def());
+  using area_def = decltype(length_def() * length_def());
+  using dimensionless = decltype(length_def() / length_def());
   TEST_CASE("Construction via operator*") {
-    static_assert(std::is_same_v<Unit<definition::Rankine, double>,
-                                 decltype(1.0 * degR)>);
-    static_assert(std::is_same_v<Unit<SquareRankine, double>,
-                                 decltype(1.0 * degR * degR)>);
-    static_assert(std::is_same_v<Unit<SquareRankine, double>,
-                                 decltype(Rankine(1.0) * degR)>);
+    static_assert(std::is_same_v<length_def::DimenType, Dimension<One>>);
+    static_assert(std::is_same_v<area_def::DimenType, Dimension<Two>>);
+    static_assert(std::is_same_v<dimensionless, CSMUNITS_VALUE_TYPE>);
+    static_assert(
+        std::is_same_v<decltype(area_def() / length_def()), length_def>);
+    static_assert(std::is_same_v<decltype(length_def() / area_def()), inv_def>);
   }
 }
 

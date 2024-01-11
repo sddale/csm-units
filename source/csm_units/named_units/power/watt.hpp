@@ -27,11 +27,11 @@ constexpr auto W =  // NOLINT(readability-identifier-length)
     definition::Watt();
 
 constexpr auto operator""_W(long double data) noexcept {
-  return Watt(static_cast<Watt::type>(data));
+  return Watt(static_cast<Watt::ValueType>(data));
 }
 
 constexpr auto operator""_W(unsigned long long data) noexcept {
-  return Watt(static_cast<Watt::type>(data));
+  return Watt(static_cast<Watt::ValueType>(data));
 }
 
 }  // namespace literals

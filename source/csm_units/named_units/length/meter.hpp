@@ -27,11 +27,11 @@ constexpr auto m =  // NOLINT(readability-identifier-length)
     definition::Meter();
 
 constexpr auto operator""_m(long double data) noexcept {
-  return Meter(static_cast<Meter::type>(data));
+  return Meter(static_cast<Meter::ValueType>(data));
 }
 
 constexpr auto operator""_m(unsigned long long data) noexcept {
-  return Meter(static_cast<Meter::type>(data));
+  return Meter(static_cast<Meter::ValueType>(data));
 }
 
 }  // namespace literals

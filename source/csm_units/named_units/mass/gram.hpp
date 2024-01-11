@@ -27,11 +27,11 @@ constexpr auto g =  // NOLINT(readability-identifier-length)
     definition::Gram();
 
 constexpr auto operator""_g(long double data) noexcept {
-  return Gram(static_cast<Gram::type>(data));
+  return Gram(static_cast<Gram::ValueType>(data));
 }
 
 constexpr auto operator""_g(unsigned long long data) noexcept {
-  return Gram(static_cast<Gram::type>(data));
+  return Gram(static_cast<Gram::ValueType>(data));
 }
 
 }  // namespace literals

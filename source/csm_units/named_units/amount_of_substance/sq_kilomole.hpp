@@ -30,11 +30,11 @@ constexpr auto kmol2 =  // NOLINT(readability-identifier-length)
     definition::SqKilomole();
 
 constexpr auto operator""_kmol2(long double data) noexcept {
-  return SqKilomole(static_cast<SqKilomole::type>(data));
+  return SqKilomole(static_cast<SqKilomole::ValueType>(data));
 }
 
 constexpr auto operator""_kmol2(unsigned long long data) noexcept {
-  return SqKilomole(static_cast<SqKilomole::type>(data));
+  return SqKilomole(static_cast<SqKilomole::ValueType>(data));
 }
 
 }  // namespace literals

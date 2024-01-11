@@ -10,29 +10,23 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "minute.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using Hour = Definition<Time, NoConv, NoConv, std::ratio<1, 3600>>;
-
-}
-
-using Hour = Unit<definition::Hour>;
+using Hour = Unit<literals::min * std::ratio<1, 60>()>;
 
 namespace literals {
 
 constexpr auto hr =  // NOLINT(readability-identifier-length)
-    definition::Hour();
+    Hour::definition;
 
 constexpr auto operator""_hr(long double data) noexcept {
-  return Hour(static_cast<Hour::type>(data));
+  return Hour(static_cast<Hour::ValueType>(data));
 }
 
 constexpr auto operator""_hr(unsigned long long data) noexcept {
-  return Hour(static_cast<Hour::type>(data));
+  return Hour(static_cast<Hour::ValueType>(data));
 }
 
 }  // namespace literals

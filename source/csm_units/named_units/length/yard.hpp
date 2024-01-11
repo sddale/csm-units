@@ -28,11 +28,11 @@ constexpr auto yd =  // NOLINT(readability-identifier-length)
     definition::Yard();
 
 constexpr auto operator""_yd(long double data) noexcept {
-  return Yard(static_cast<Yard::type>(data));
+  return Yard(static_cast<Yard::ValueType>(data));
 }
 
 constexpr auto operator""_yd(unsigned long long data) noexcept {
-  return Yard(static_cast<Yard::type>(data));
+  return Yard(static_cast<Yard::ValueType>(data));
 }
 
 }  // namespace literals

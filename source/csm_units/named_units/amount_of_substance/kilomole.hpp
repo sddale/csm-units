@@ -29,11 +29,11 @@ constexpr auto kmol =  // NOLINT(readability-identifier-length)
     definition::Kilomole();
 
 constexpr auto operator""_kmol(long double data) noexcept {
-  return Kilomole(static_cast<Kilomole::type>(data));
+  return Kilomole(static_cast<Kilomole::ValueType>(data));
 }
 
 constexpr auto operator""_kmol(unsigned long long data) noexcept {
-  return Kilomole(static_cast<Kilomole::type>(data));
+  return Kilomole(static_cast<Kilomole::ValueType>(data));
 }
 
 }  // namespace literals

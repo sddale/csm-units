@@ -10,30 +10,23 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "kelvin.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using Rankine =
-    Definition<Temperature, NoConv, NoConv, NoConv, NoConv, std::ratio<9, 5>>;
-
-}
-
-using Rankine = Unit<definition::Rankine>;
+using Rankine = Unit<literals::K * std::ratio<9, 5>()>;
 
 namespace literals {
 
 constexpr auto degR =  // NOLINT(readability-identifier-length)
-    definition::Rankine();
+    Rankine::definition;
 
 constexpr auto operator""_degR(long double data) noexcept {
-  return Rankine(static_cast<Rankine::type>(data));
+  return Rankine(static_cast<Rankine::ValueType>(data));
 }
 
 constexpr auto operator""_degR(unsigned long long data) noexcept {
-  return Rankine(static_cast<Rankine::type>(data));
+  return Rankine(static_cast<Rankine::ValueType>(data));
 }
 
 }  // namespace literals

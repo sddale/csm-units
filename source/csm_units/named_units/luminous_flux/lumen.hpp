@@ -27,11 +27,11 @@ constexpr auto lm =  // NOLINT(readability-identifier-length)
     definition::Lumen();
 
 constexpr auto operator""_lm(long double data) noexcept {
-  return Lumen(static_cast<Lumen::type>(data));
+  return Lumen(static_cast<Lumen::ValueType>(data));
 }
 
 constexpr auto operator""_lm(unsigned long long data) noexcept {
-  return Lumen(static_cast<Lumen::type>(data));
+  return Lumen(static_cast<Lumen::ValueType>(data));
 }
 
 }  // namespace literals

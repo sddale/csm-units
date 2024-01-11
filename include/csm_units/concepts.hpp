@@ -51,14 +51,9 @@ concept IsDimension = requires {
  */
 template <class D>
 concept IsDefinition = requires {
-  IsDimension<typename D::dim>;
-  IsRatio<typename D::conv_len>;
-  IsRatio<typename D::conv_mass>;
-  IsRatio<typename D::conv_time>;
-  IsRatio<typename D::conv_elec>;
-  IsRatio<typename D::conv_temper>;
-  IsRatio<typename D::conv_amount>;
-  IsRatio<typename D::conv_light>;
+  IsDimension<typename D::DimenType>;
+  IsRatio<typename D::ConvType>;
+  IsRatio<typename D::OriginType>;
 };
 
 /**
@@ -68,9 +63,8 @@ template <class T>
 concept IsUnit = requires(T unit) {
   { unit.data } -> std::convertible_to<double>;
   { unit.Get() } -> std::convertible_to<double>;
-  IsDefinition<typename T::def>;
-  IsRatio<typename T::zero_point>;
-  IsArithmetic<typename T::type>;
+  IsDefinition<typename T::DefType>;
+  IsArithmetic<typename T::ValueType>;
 };
 
 /**
@@ -78,7 +72,7 @@ concept IsUnit = requires(T unit) {
  */
 template <class T, class U>
 concept SameDimensionAs = requires(T lhs, U rhs) {
-  { std::same_as<typename T::def::dim, typename U::def::dim> };
+  { std::same_as<typename T::DimenType, typename U::DimenType> };
   IsUnit<T>;
   IsUnit<U>;
 };

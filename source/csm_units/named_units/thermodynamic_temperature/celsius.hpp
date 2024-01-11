@@ -13,18 +13,18 @@
 
 namespace csm_units {
 
-using Celsius = Unit<definition::Kelvin, Kelvin::type, std::ratio<5463, 20>>;
+using Celsius = Unit<literals::K + std::ratio<5463, 20>()>;
 
 namespace literals {
 
 // TODO literals for relative units
 
 constexpr auto operator""_degC(long double data) noexcept {
-  return Celsius(static_cast<Celsius::type>(data));
+  return Celsius(static_cast<Celsius::ValueType>(data));
 }
 
 constexpr auto operator""_degC(unsigned long long data) noexcept {
-  return Celsius(static_cast<Celsius::type>(data));
+  return Celsius(static_cast<Celsius::ValueType>(data));
 }
 
 }  // namespace literals

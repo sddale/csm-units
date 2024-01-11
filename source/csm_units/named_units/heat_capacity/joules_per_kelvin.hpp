@@ -28,11 +28,11 @@ constexpr auto JperK =  // NOLINT(readability-identifier-length)
     definition::JoulesPerKelvin();
 
 constexpr auto operator""_JperK(long double data) noexcept {
-  return JoulesPerKelvin(static_cast<JoulesPerKelvin::type>(data));
+  return JoulesPerKelvin(static_cast<JoulesPerKelvin::ValueTypeeType>(data));
 }
 
 constexpr auto operator""_JperK(unsigned long long data) noexcept {
-  return JoulesPerKelvin(static_cast<JoulesPerKelvin::type>(data));
+  return JoulesPerKelvin(static_cast<JoulesPerKelvin::ValueTypeeType>(data));
 }
 
 }  // namespace literals

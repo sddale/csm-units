@@ -28,11 +28,11 @@ constexpr auto gpermol =  // NOLINT(readability-identifier-length)
     definition::GramPerMole();
 
 constexpr auto operator""_gpermol(long double data) noexcept {
-  return GramPerMole(static_cast<GramPerMole::type>(data));
+  return GramPerMole(static_cast<GramPerMole::ValueType>(data));
 }
 
 constexpr auto operator""_gpermol(unsigned long long data) noexcept {
-  return GramPerMole(static_cast<GramPerMole::type>(data));
+  return GramPerMole(static_cast<GramPerMole::ValueType>(data));
 }
 
 }  // namespace literals

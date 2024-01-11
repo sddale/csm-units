@@ -29,11 +29,11 @@ constexpr auto cm3 =  // NOLINT(readability-identifier-length)
     definition::CuCentimeter();
 
 constexpr auto operator""_cm3(long double data) noexcept {
-  return CuCentimeter(static_cast<CuCentimeter::type>(data));
+  return CuCentimeter(static_cast<CuCentimeter::ValueType>(data));
 }
 
 constexpr auto operator""_cm3(unsigned long long data) noexcept {
-  return CuCentimeter(static_cast<CuCentimeter::type>(data));
+  return CuCentimeter(static_cast<CuCentimeter::ValueType>(data));
 }
 
 }  // namespace literals

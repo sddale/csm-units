@@ -29,11 +29,11 @@ constexpr auto kgperm3 =  // NOLINT(readability-identifier-length)
     definition::KilogramPerCuMeter();
 
 constexpr auto operator""_kgperm3(long double data) noexcept {
-  return KilogramPerCuMeter(static_cast<KilogramPerCuMeter::type>(data));
+  return KilogramPerCuMeter(static_cast<KilogramPerCuMeter::ValueType>(data));
 }
 
 constexpr auto operator""_kgperm3(unsigned long long data) noexcept {
-  return KilogramPerCuMeter(static_cast<KilogramPerCuMeter::type>(data));
+  return KilogramPerCuMeter(static_cast<KilogramPerCuMeter::ValueType>(data));
 }
 
 }  // namespace literals

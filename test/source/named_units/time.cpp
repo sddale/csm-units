@@ -1,6 +1,6 @@
 #include <doctest/doctest.h>
 
-#include <csm_units/units.hpp>
+#include <csm_units/time.hpp>
 
 #include "../common.hpp"
 

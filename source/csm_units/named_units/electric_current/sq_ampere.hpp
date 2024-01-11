@@ -27,11 +27,11 @@ constexpr auto A2 =  // NOLINT(readability-identifier-length)
     definition::SqAmpere();
 
 constexpr auto operator""_A2(long double data) noexcept {
-  return SqAmpere(static_cast<SqAmpere::type>(data));
+  return SqAmpere(static_cast<SqAmpere::ValueType>(data));
 }
 
 constexpr auto operator""_A2(unsigned long long data) noexcept {
-  return SqAmpere(static_cast<SqAmpere::type>(data));
+  return SqAmpere(static_cast<SqAmpere::ValueType>(data));
 }
 
 }  // namespace literals

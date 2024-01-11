@@ -28,11 +28,11 @@ constexpr auto mm =  // NOLINT(readability-identifier-length)
     definition::Millimeter();
 
 constexpr auto operator""_mm(long double data) noexcept {
-  return Millimeter(static_cast<Millimeter::type>(data));
+  return Millimeter(static_cast<Millimeter::ValueType>(data));
 }
 
 constexpr auto operator""_mm(unsigned long long data) noexcept {
-  return Millimeter(static_cast<Millimeter::type>(data));
+  return Millimeter(static_cast<Millimeter::ValueType>(data));
 }
 
 }  // namespace literals

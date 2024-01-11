@@ -13,8 +13,8 @@
 #include <compare>
 #include <csm_units/concepts.hpp>
 #include <gcem.hpp>
-#include <ratio>
 
+#include "definition.hpp"
 #include "dimension.hpp"
 
 #ifndef CSMUNITS_VALUE_TYPE
@@ -25,21 +25,24 @@ namespace csm_units {
 
 // Def: specifier for the unit's dimensions and the  conversions to SI fo each
 // dimension
-// Data: storage type such that sizeof(Data) = sizeof(Unit)
+// Data: storage ValueType such that sizeof(Data) = sizeof(Unit)
 // ZeroPoint: 0 [unit] = std::ratio<N,D> [SI]
 // i.e for Fahrenheit, ZeroPoint = ratio<45967, 180> = approx 255.372[Kelvin]
-template <IsDefinition Def, IsArithmetic Data = CSMUNITS_VALUE_TYPE,
-          IsRatio ZeroPoint = std::ratio<0>>
+template <Definition def, IsArithmetic Data = CSMUNITS_VALUE_TYPE>
 class Unit {
  public:
-  using def = Def;
-  using type = Data;
-  using zero_point = ZeroPoint;
+  using DefType = decltype(def);
+  using ValueType = Data;
+  using OriginType = typename DefType::OriginType;
+  using DimenType = typename DefType::DimenType;
+
+  constexpr static auto definition = def;
 
   // Build from arithmetic (i.e. double) value
   constexpr explicit Unit(Data input = Data(0.0)) noexcept
-      : data(input * def::ToSI() +
-             static_cast<type>(ZeroPoint::num) / ZeroPoint::den){};
+      : data((input +
+              static_cast<ValueType>(OriginType::num) / OriginType::den) *
+             DefType::ToSI()){};
 
   // Build from other unit of same dimension. Zero point is irrelevant.
   // Should be implicit to allow for conversions between units of the same
@@ -49,8 +52,8 @@ class Unit {
 
   // Return magnitude in expected named unit by applying conversion
   [[nodiscard]] constexpr auto Get() const noexcept {
-    return (data - static_cast<type>(ZeroPoint::num) / ZeroPoint::den) *
-           Def::Get();
+    return (data * DefType::Get()) -
+           static_cast<ValueType>(OriginType::num) / OriginType::den;
   }
 
   // Return magnitude in si, a getter for var data for readability if desired
@@ -76,6 +79,10 @@ class Unit {
     return lhs;
   }
 
+  constexpr friend auto operator*(IsArithmetic auto lhs, Unit rhs) noexcept {
+    return rhs * lhs;
+  }
+
   constexpr auto operator/=(IsArithmetic auto rhs) noexcept -> auto& {
     data /= rhs;
     return *this;
@@ -86,8 +93,17 @@ class Unit {
     return lhs;
   }
 
+  constexpr friend auto operator/(IsArithmetic auto lhs, Unit rhs) noexcept {
+    using ResultType = decltype(lhs / rhs.data);
+    return Unit<literals::One() / definition, ResultType>(lhs / rhs.data);
+  }
+
+  // constexpr friend auto operator/(IsArithmetic auto lhs, Unit rhs) noexcept {
+  //   return Unit<
+  // }
+
   // Operator overloads for interactions with Units of the same dimension
-  // Unit storage type follows from lhs class
+  // Unit storage ValueType follows from lhs class
   constexpr friend auto operator<=>(
       const Unit& lhs, const SameDimensionAs<Unit> auto& rhs) noexcept
       -> std::strong_ordering {
@@ -101,7 +117,7 @@ class Unit {
 
   constexpr auto operator-=(const SameDimensionAs<Unit> auto& rhs) noexcept
       -> auto& {
-    data -= static_cast<type>(rhs.data);
+    data -= rhs.data;
     return *this;
   }
 
@@ -113,7 +129,7 @@ class Unit {
 
   constexpr auto operator+=(const SameDimensionAs<Unit> auto& rhs) noexcept
       -> auto& {
-    data += static_cast<type>(rhs.data);
+    data += rhs.data;
     return *this;
   }
 
@@ -131,19 +147,18 @@ class Unit {
   // Operator overloads for interactions with Units of specific relative
   // dimensions
   template <IsUnit U>
-    requires std::same_as<typename U::def::dim,
-                          DimensionFlip<typename def::dim>>
+    requires std::same_as<typename U::DefType::dim,
+                          DimensionFlip<typename DefType::dim>>
   constexpr friend auto operator*(Unit lhs, U rhs) noexcept {
     return lhs.data * rhs.data;  // Unitless return since dimensions cancel
   }
 
   // Operator overloads for interactions with other Units
-  // Unit storage type follows regular c++ promotion rules
+  // Unit storage ValueType follows regular c++ promotion rules
   template <IsUnit U>
   constexpr friend auto operator*(Unit lhs, const U& rhs) noexcept {
-    using result_type = decltype(type(1.0) * typename U::type(1.0));
-    auto result = Unit<typename Unit::def::template Multiply<typename U::def>,
-                       result_type>();
+    using ResultType = decltype(lhs.data * rhs.data);
+    auto result = Unit<definition* typename U::DefType(), ResultType>();
     result.data = lhs.data * rhs.data;  // bypass constructor SI cast
     return result;
   }
@@ -151,9 +166,8 @@ class Unit {
   template <IsUnit U>
     requires(not SameDimensionAs<Unit, U>)  // Otherwise dimensionless return
   constexpr friend auto operator/(Unit lhs, const U& rhs) noexcept {
-    using result_type = decltype(type() / typename U::type(1.0));
-    auto result = Unit<typename Unit::def::template Divide<typename U::def>,
-                       result_type>();
+    using ResultType = decltype(lhs.data / rhs.data);
+    auto result = Unit<definition / U::DefType(), ResultType>();
     result.data = lhs.data / rhs.data;  // bypass constructor SI cast
     return result;
   }
@@ -162,36 +176,28 @@ class Unit {
 // Operator overloads for unit construction via Definition class
 // They are implemented in this header to avoid a circular dependency with
 // definition.hpp
-template <IsDefinition D>
-constexpr auto operator*(IsArithmetic auto lhs, D /*rhs*/) noexcept {
-  return Unit<D, decltype(lhs)>(lhs);
-}
-
-template <IsDefinition DL, IsDefinition DR>
-constexpr auto operator*(DL /*lhs*/, DR /*rhs*/) noexcept {
-  return typename DR::template Multiply<DL>();
+template <IsDefinition DR>
+constexpr auto operator*(IsArithmetic auto lhs, DR /*rhs*/) noexcept {
+  return Unit<DR::DR(), decltype(lhs)>(lhs);
 }
 
 template <IsUnit U, IsDefinition D>
-constexpr auto operator*(U lhs, D /*rhs*/) noexcept {
-  return Unit<typename D::template Multiply<typename U::def>, typename U::type>(
-      lhs.data);
+constexpr auto operator*(U lhs, D rhs) noexcept {
+  auto result = Unit<U::DefType() * rhs, typename U::ValueType>();
+  result.data = lhs.data;
+  return result;
 }
 
 template <IsDefinition D>
-constexpr auto operator/(IsArithmetic auto lhs, D /*rhs*/) noexcept {
-  return Unit<typename D::InverseDef, decltype(lhs)>(lhs);
-}
-
-template <IsDefinition DL, IsDefinition DR>
-constexpr auto operator/(DL /*lhs*/, DR /*rhs*/) noexcept {
-  return typename DR::template Divide<DL>();
+constexpr auto operator/(IsArithmetic auto lhs, D rhs) noexcept {
+  return Unit<literals::One() / rhs, decltype(lhs)>(lhs);
 }
 
 template <IsUnit U, IsDefinition D>
-constexpr auto operator/(U lhs, D /*rhs*/) noexcept {
-  return Unit<typename D::template Divide<typename U::def>, typename U::type>(
-      lhs.data);
+constexpr auto operator/(U lhs, D rhs) noexcept {
+  auto result = Unit<U::DefType() / rhs, typename U::ValueType>();
+  result.data = lhs.data;
+  return result;
 }
 
 }  // namespace csm_units

@@ -30,12 +30,12 @@ constexpr auto SqrtJperSqrtcm3 =  // NOLINT(readability-identifier-length)
 
 constexpr auto operator""_SqrtJperSqrtcm3(long double data) noexcept {
   return SqrtJoulesPerSqrtCuMeter(
-      static_cast<SqrtJoulesPerSqrtCuMeter::type>(data));
+      static_cast<SqrtJoulesPerSqrtCuMeter::ValueType>(data));
 }
 
 constexpr auto operator""_SqrtJperSqrtcm3(unsigned long long data) noexcept {
   return SqrtJoulesPerSqrtCuMeter(
-      static_cast<SqrtJoulesPerSqrtCuMeter::type>(data));
+      static_cast<SqrtJoulesPerSqrtCuMeter::ValueType>(data));
 }
 
 }  // namespace literals

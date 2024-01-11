@@ -27,11 +27,11 @@ constexpr auto Wb =  // NOLINT(readability-identifier-length)
     definition::Weber();
 
 constexpr auto operator""_Wb(long double data) noexcept {
-  return Weber(static_cast<Weber::type>(data));
+  return Weber(static_cast<Weber::ValueType>(data));
 }
 
 constexpr auto operator""_Wb(unsigned long long data) noexcept {
-  return Weber(static_cast<Weber::type>(data));
+  return Weber(static_cast<Weber::ValueType>(data));
 }
 
 }  // namespace literals

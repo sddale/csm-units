@@ -28,11 +28,11 @@ constexpr auto cm =  // NOLINT(readability-identifier-length)
     definition::Centimeter();
 
 constexpr auto operator""_cm(long double data) noexcept {
-  return Centimeter(static_cast<Centimeter::type>(data));
+  return Centimeter(static_cast<Centimeter::ValueType>(data));
 }
 
 constexpr auto operator""_cm(unsigned long long data) noexcept {
-  return Centimeter(static_cast<Centimeter::type>(data));
+  return Centimeter(static_cast<Centimeter::ValueType>(data));
 }
 
 }  // namespace literals

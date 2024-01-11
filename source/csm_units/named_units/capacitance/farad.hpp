@@ -27,11 +27,11 @@ constexpr auto F =  // NOLINT(readability-identifier-length)
     definition::Farad();
 
 constexpr auto operator""_F(long double data) noexcept {
-  return Farad(static_cast<Farad::type>(data));
+  return Farad(static_cast<Farad::ValueType>(data));
 }
 
 constexpr auto operator""_F(unsigned long long data) noexcept {
-  return Farad(static_cast<Farad::type>(data));
+  return Farad(static_cast<Farad::ValueType>(data));
 }
 
 }  // namespace literals

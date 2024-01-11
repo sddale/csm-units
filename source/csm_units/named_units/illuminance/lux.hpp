@@ -27,11 +27,11 @@ constexpr auto lx =  // NOLINT(readability-identifier-length)
     definition::Lux();
 
 constexpr auto operator""_lx(long double data) noexcept {
-  return Lux(static_cast<Lux::type>(data));
+  return Lux(static_cast<Lux::ValueType>(data));
 }
 
 constexpr auto operator""_lx(unsigned long long data) noexcept {
-  return Lux(static_cast<Lux::type>(data));
+  return Lux(static_cast<Lux::ValueType>(data));
 }
 
 }  // namespace literals

@@ -28,11 +28,11 @@ constexpr auto ft =  // NOLINT(readability-identifier-length)
     definition::Foot();
 
 constexpr auto operator""_ft(long double data) noexcept {
-  return Foot(static_cast<Foot::type>(data));
+  return Foot(static_cast<Foot::ValueType>(data));
 }
 
 constexpr auto operator""_ft(unsigned long long data) noexcept {
-  return Foot(static_cast<Foot::type>(data));
+  return Foot(static_cast<Foot::ValueType>(data));
 }
 
 }  // namespace literals

@@ -29,11 +29,11 @@ constexpr auto Jpercm3 =  // NOLINT(readability-identifier-length)
     definition::JoulesPerCuMeter();
 
 constexpr auto operator""_Jpercm3(long double data) noexcept {
-  return JoulesPerCuMeter(static_cast<JoulesPerCuMeter::type>(data));
+  return JoulesPerCuMeter(static_cast<JoulesPerCuMeter::ValueType>(data));
 }
 
 constexpr auto operator""_Jpercm3(unsigned long long data) noexcept {
-  return JoulesPerCuMeter(static_cast<JoulesPerCuMeter::type>(data));
+  return JoulesPerCuMeter(static_cast<JoulesPerCuMeter::ValueType>(data));
 }
 
 }  // namespace literals

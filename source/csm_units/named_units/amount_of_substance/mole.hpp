@@ -27,11 +27,11 @@ constexpr auto mol =  // NOLINT(readability-identifier-length)
     definition::Mole();
 
 constexpr auto operator""_mol(long double data) noexcept {
-  return Mole(static_cast<Mole::type>(data));
+  return Mole(static_cast<Mole::ValueType>(data));
 }
 
 constexpr auto operator""_mol(unsigned long long data) noexcept {
-  return Mole(static_cast<Mole::type>(data));
+  return Mole(static_cast<Mole::ValueType>(data));
 }
 
 }  // namespace literals

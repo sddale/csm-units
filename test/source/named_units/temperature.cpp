@@ -15,13 +15,13 @@ TEST_SUITE("Named Units") {
     CHECK_DBL_NEQ(Kelvin(1.).data, 2.);
 
     CHECK_UNIT_EQ(Kelvin(5. / 9), Rankine(1));
-    CHECK_UNIT_NEQ(Kelvin(5. / 9), Rankine(1));
+    CHECK_UNIT_NEQ(Kelvin(5.5 / 9), Rankine(1));
 
     CHECK_UNIT_EQ(Kelvin(274.15), Celsius(1));
     CHECK_UNIT_NEQ(Kelvin(273.15), Celsius(1));
 
     CHECK_UNIT_EQ(Kelvin(255.928), Fahrenheit(1));
-    CHECK_UNIT_NEQ(Kelvin(255.928), Fahrenheit(1));
+    CHECK_UNIT_NEQ(Kelvin(256.928), Fahrenheit(1));
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type, misc-use-anonymous-namespace)

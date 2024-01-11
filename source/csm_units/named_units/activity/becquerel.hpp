@@ -28,11 +28,11 @@ constexpr auto Bq =  // NOLINT(readability-identifier-length)
     definition::Becquerel();
 
 constexpr auto operator""_Bq(long double data) noexcept {
-  return Becquerel(static_cast<Becquerel::type>(data));
+  return Becquerel(static_cast<Becquerel::ValueType>(data));
 }
 
 constexpr auto operator""_Bq(unsigned long long data) noexcept {
-  return Becquerel(static_cast<Becquerel::type>(data));
+  return Becquerel(static_cast<Becquerel::ValueType>(data));
 }
 
 }  // namespace literals

@@ -28,11 +28,11 @@ constexpr auto slug =  // NOLINT(readability-identifier-length)
     definition::Slug();
 
 constexpr auto operator""_slug(long double data) noexcept {
-  return Slug(static_cast<Slug::type>(data));
+  return Slug(static_cast<Slug::ValueType>(data));
 }
 
 constexpr auto operator""_slug(unsigned long long data) noexcept {
-  return Slug(static_cast<Slug::type>(data));
+  return Slug(static_cast<Slug::ValueType>(data));
 }
 
 }  // namespace literals

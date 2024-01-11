@@ -27,11 +27,11 @@ constexpr auto T =  // NOLINT(readability-identifier-length)
     definition::Tesla();
 
 constexpr auto operator""_T(long double data) noexcept {
-  return Tesla(static_cast<Tesla::type>(data));
+  return Tesla(static_cast<Tesla::ValueType>(data));
 }
 
 constexpr auto operator""_T(unsigned long long data) noexcept {
-  return Tesla(static_cast<Tesla::type>(data));
+  return Tesla(static_cast<Tesla::ValueType>(data));
 }
 
 }  // namespace literals

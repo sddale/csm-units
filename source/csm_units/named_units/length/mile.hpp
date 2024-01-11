@@ -28,11 +28,11 @@ constexpr auto mi =  // NOLINT(readability-identifier-length)
     definition::Mile();
 
 constexpr auto operator""_mi(long double data) noexcept {
-  return Mile(static_cast<Mile::type>(data));
+  return Mile(static_cast<Mile::ValueType>(data));
 }
 
 constexpr auto operator""_mi(unsigned long long data) noexcept {
-  return Mile(static_cast<Mile::type>(data));
+  return Mile(static_cast<Mile::ValueType>(data));
 }
 
 }  // namespace literals

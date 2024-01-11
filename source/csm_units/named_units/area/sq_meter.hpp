@@ -28,11 +28,11 @@ constexpr auto m2 =  // NOLINT(readability-identifier-length)
     definition::SqMeter();
 
 constexpr auto operator""_m2(long double data) noexcept {
-  return SqMeter(static_cast<SqMeter::type>(data));
+  return SqMeter(static_cast<SqMeter::ValueType>(data));
 }
 
 constexpr auto operator""_m2(unsigned long long data) noexcept {
-  return SqMeter(static_cast<SqMeter::type>(data));
+  return SqMeter(static_cast<SqMeter::ValueType>(data));
 }
 
 }  // namespace literals

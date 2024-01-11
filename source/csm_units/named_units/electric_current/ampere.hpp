@@ -27,11 +27,11 @@ constexpr auto A =  // NOLINT(readability-identifier-length)
     definition::Ampere();
 
 constexpr auto operator""_A(long double data) noexcept {
-  return Ampere(static_cast<Ampere::type>(data));
+  return Ampere(static_cast<Ampere::ValueTypeeType>(data));
 }
 
 constexpr auto operator""_A(unsigned long long data) noexcept {
-  return Ampere(static_cast<Ampere::type>(data));
+  return Ampere(static_cast<Ampere::ValueTypeeType>(data));
 }
 
 }  // namespace literals

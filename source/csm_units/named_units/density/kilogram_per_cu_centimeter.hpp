@@ -31,12 +31,12 @@ constexpr auto kgpercm3 =  // NOLINT(readability-identifier-length)
 
 constexpr auto operator""_kgpercm3(long double data) noexcept {
   return KilogramPerCuCentimeter(
-      static_cast<KilogramPerCuCentimeter::type>(data));
+      static_cast<KilogramPerCuCentimeter::ValueType>(data));
 }
 
 constexpr auto operator""_kgpercm3(unsigned long long data) noexcept {
   return KilogramPerCuCentimeter(
-      static_cast<KilogramPerCuCentimeter::type>(data));
+      static_cast<KilogramPerCuCentimeter::ValueType>(data));
 }
 
 }  // namespace literals

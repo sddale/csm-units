@@ -30,11 +30,11 @@ constexpr auto mA2 =  // NOLINT(readability-identifier-length)
     definition::SqMilliampere();
 
 constexpr auto operator""_mA2(long double data) noexcept {
-  return SqMilliampere(static_cast<SqMilliampere::type>(data));
+  return SqMilliampere(static_cast<SqMilliampere::ValueType>(data));
 }
 
 constexpr auto operator""_mA2(unsigned long long data) noexcept {
-  return SqMilliampere(static_cast<SqMilliampere::type>(data));
+  return SqMilliampere(static_cast<SqMilliampere::ValueType>(data));
 }
 
 }  // namespace literals

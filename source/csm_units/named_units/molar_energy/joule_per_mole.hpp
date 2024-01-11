@@ -28,11 +28,11 @@ constexpr auto Jpermol =  // NOLINT(readability-identifier-length)
     definition::JoulePerMole();
 
 constexpr auto operator""_Jpermol(long double data) noexcept {
-  return JoulePerMole(static_cast<JoulePerMole::type>(data));
+  return JoulePerMole(static_cast<JoulePerMole::ValueType>(data));
 }
 
 constexpr auto operator""_Jpermol(unsigned long long data) noexcept {
-  return JoulePerMole(static_cast<JoulePerMole::type>(data));
+  return JoulePerMole(static_cast<JoulePerMole::ValueType>(data));
 }
 
 }  // namespace literals

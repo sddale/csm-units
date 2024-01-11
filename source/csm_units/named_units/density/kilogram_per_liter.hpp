@@ -30,11 +30,11 @@ constexpr auto kgperL =  // NOLINT(readability-identifier-length)
     definition::KilogramPerLiter();
 
 constexpr auto operator""_kgperL(long double data) noexcept {
-  return KilogramPerLiter(static_cast<KilogramPerLiter::type>(data));
+  return KilogramPerLiter(static_cast<KilogramPerLiter::ValueType>(data));
 }
 
 constexpr auto operator""_kgperL(unsigned long long data) noexcept {
-  return KilogramPerLiter(static_cast<KilogramPerLiter::type>(data));
+  return KilogramPerLiter(static_cast<KilogramPerLiter::ValueType>(data));
 }
 
 }  // namespace literals

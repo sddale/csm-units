@@ -28,11 +28,11 @@ constexpr auto in =  // NOLINT(readability-identifier-length)
     definition::Inch();
 
 constexpr auto operator""_in(long double data) noexcept {
-  return Inch(static_cast<Inch::type>(data));
+  return Inch(static_cast<Inch::ValueType>(data));
 }
 
 constexpr auto operator""_in(unsigned long long data) noexcept {
-  return Inch(static_cast<Inch::type>(data));
+  return Inch(static_cast<Inch::ValueType>(data));
 }
 
 }  // namespace literals

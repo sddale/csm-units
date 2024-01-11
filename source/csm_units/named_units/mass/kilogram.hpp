@@ -27,11 +27,11 @@ constexpr auto kg =  // NOLINT(readability-identifier-length)
     definition::Kilogram();
 
 constexpr auto operator""_kg(long double data) noexcept {
-  return Kilogram(static_cast<Kilogram::type>(data));
+  return Kilogram(static_cast<Kilogram::ValueType>(data));
 }
 
 constexpr auto operator""_kg(unsigned long long data) noexcept {
-  return Kilogram(static_cast<Kilogram::type>(data));
+  return Kilogram(static_cast<Kilogram::ValueType>(data));
 }
 
 }  // namespace literals

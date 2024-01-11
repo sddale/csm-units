@@ -28,11 +28,11 @@ constexpr auto ft2 =  // NOLINT(readability-identifier-length)
     definition::SqFoot();
 
 constexpr auto operator""_ft2(long double data) noexcept {
-  return SqFoot(static_cast<SqFoot::type>(data));
+  return SqFoot(static_cast<SqFoot::ValueType>(data));
 }
 
 constexpr auto operator""_ft2(unsigned long long data) noexcept {
-  return SqFoot(static_cast<SqFoot::type>(data));
+  return SqFoot(static_cast<SqFoot::ValueType>(data));
 }
 
 }  // namespace literals

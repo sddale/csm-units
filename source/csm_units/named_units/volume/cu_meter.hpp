@@ -27,11 +27,11 @@ constexpr auto m3 =  // NOLINT(readability-identifier-length)
     definition::CuMeter();
 
 constexpr auto operator""_m3(long double data) noexcept {
-  return CuMeter(static_cast<CuMeter::type>(data));
+  return CuMeter(static_cast<CuMeter::ValueType>(data));
 }
 
 constexpr auto operator""_m3(unsigned long long data) noexcept {
-  return CuMeter(static_cast<CuMeter::type>(data));
+  return CuMeter(static_cast<CuMeter::ValueType>(data));
 }
 
 }  // namespace literals

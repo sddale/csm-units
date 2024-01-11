@@ -27,11 +27,11 @@ constexpr auto lb =  // NOLINT(readability-identifier-length)
     definition::Pound();
 
 constexpr auto operator""_lb(long double data) noexcept {
-  return Pound(static_cast<Pound::type>(data));
+  return Pound(static_cast<Pound::ValueType>(data));
 }
 
 constexpr auto operator""_lb(unsigned long long data) noexcept {
-  return Pound(static_cast<Pound::type>(data));
+  return Pound(static_cast<Pound::ValueType>(data));
 }
 
 }  // namespace literals

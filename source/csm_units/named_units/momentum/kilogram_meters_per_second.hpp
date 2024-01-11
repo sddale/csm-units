@@ -27,12 +27,12 @@ constexpr auto kgmpers =  // NOLINT(readability-identifier-length)
 
 constexpr auto operator""_kgmpers(long double data) noexcept {
   return KilogramMeterPerSecond(
-      static_cast<KilogramMeterPerSecond::type>(data));
+      static_cast<KilogramMeterPerSecond::ValueType>(data));
 }
 
 constexpr auto operator""_kgmpers(unsigned long long data) noexcept {
   return KilogramMeterPerSecond(
-      static_cast<KilogramMeterPerSecond::type>(data));
+      static_cast<KilogramMeterPerSecond::ValueType>(data));
 }
 
 }  // namespace literals

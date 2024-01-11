@@ -4,7 +4,7 @@ CPMAddPackage("gh:onqtam/doctest@2.4.9")
 add_executable(
   ${PROJECT_NAME}_test
   source/dimension.cpp
-  source/demonstration.cpp
+  # source/demonstration.cpp
   source/main.cpp
   source/unit.cpp
   source/arithmetic.cpp
@@ -12,6 +12,7 @@ add_executable(
   source/definition.cpp
   source/size.cpp
   source/named_units/time.cpp
+  source/named_units/temperature.cpp
 )
 target_link_libraries(
   ${PROJECT_NAME}_test PRIVATE doctest::doctest CSMUnits::CSMUnits gcem

@@ -36,12 +36,12 @@ constexpr auto JperkgK =  // NOLINT(readability-identifier-length)
 
 constexpr auto operator""_JperkgK(long double data) noexcept {
   return JoulePerKilogramKelvin(
-      static_cast<JoulePerKilogramKelvin::type>(data));
+      static_cast<JoulePerKilogramKelvin::ValueType>(data));
 }
 
 constexpr auto operator""_JperkgK(unsigned long long data) noexcept {
   return JoulePerKilogramKelvin(
-      static_cast<JoulePerKilogramKelvin::type>(data));
+      static_cast<JoulePerKilogramKelvin::ValueType>(data));
 }
 
 }  // namespace literals

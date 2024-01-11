@@ -29,11 +29,11 @@ constexpr auto m3permole =  // NOLINT(readability-identifier-length)
     definition::CuMeterPerMole();
 
 constexpr auto operator""_m3permole(long double data) noexcept {
-  return CuMeterPerMole(static_cast<CuMeterPerMole::type>(data));
+  return CuMeterPerMole(static_cast<CuMeterPerMole::ValueType>(data));
 }
 
 constexpr auto operator""_m3permole(unsigned long long data) noexcept {
-  return CuMeterPerMole(static_cast<CuMeterPerMole::type>(data));
+  return CuMeterPerMole(static_cast<CuMeterPerMole::ValueType>(data));
 }
 
 }  // namespace literals

@@ -29,11 +29,11 @@ constexpr auto mol2 =  // NOLINT(readability-identifier-length)
     definition::SqMole();
 
 constexpr auto operator""_mol2(long double data) noexcept {
-  return SqMole(static_cast<SqMole::type>(data));
+  return SqMole(static_cast<SqMole::ValueType>(data));
 }
 
 constexpr auto operator""_mol2(unsigned long long data) noexcept {
-  return SqMole(static_cast<SqMole::type>(data));
+  return SqMole(static_cast<SqMole::ValueType>(data));
 }
 
 }  // namespace literals

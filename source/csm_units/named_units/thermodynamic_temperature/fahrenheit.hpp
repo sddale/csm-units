@@ -13,19 +13,18 @@
 
 namespace csm_units {
 
-using Fahrenheit =
-    Unit<definition::Rankine, Rankine::type, std::ratio<45967, 180>>;
+using Fahrenheit = Unit<literals::degR + std::ratio<45967, 100>()>;
 
 namespace literals {
 
 // TODO literals for relative units
 
 constexpr auto operator""_degF(long double data) noexcept {
-  return Fahrenheit(static_cast<Fahrenheit::type>(data));
+  return Fahrenheit(static_cast<Fahrenheit::ValueType>(data));
 }
 
 constexpr auto operator""_degF(unsigned long long data) noexcept {
-  return Fahrenheit(static_cast<Fahrenheit::type>(data));
+  return Fahrenheit(static_cast<Fahrenheit::ValueType>(data));
 }
 
 }  // namespace literals

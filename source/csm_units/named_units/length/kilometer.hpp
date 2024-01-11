@@ -28,11 +28,11 @@ constexpr auto km =  // NOLINT(readability-identifier-length)
     definition::Kilometer();
 
 constexpr auto operator""_km(long double data) noexcept {
-  return Kilometer(static_cast<Kilometer::type>(data));
+  return Kilometer(static_cast<Kilometer::ValueTypeeType>(data));
 }
 
 constexpr auto operator""_km(unsigned long long data) noexcept {
-  return Kilometer(static_cast<Kilometer::type>(data));
+  return Kilometer(static_cast<Kilometer::ValueTypeeType>(data));
 }
 
 }  // namespace literals

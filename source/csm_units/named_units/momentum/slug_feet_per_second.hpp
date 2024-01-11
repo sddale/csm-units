@@ -27,11 +27,11 @@ constexpr auto slugftpers =  // NOLINT(readability-identifier-length)
     definition::SlugFeetPerSecond();
 
 constexpr auto operator""_slugftpers(long double data) noexcept {
-  return SlugFeetPerSecond(static_cast<SlugFeetPerSecond::type>(data));
+  return SlugFeetPerSecond(static_cast<SlugFeetPerSecond::ValueType>(data));
 }
 
 constexpr auto operator""_slugftpers(unsigned long long data) noexcept {
-  return SlugFeetPerSecond(static_cast<SlugFeetPerSecond::type>(data));
+  return SlugFeetPerSecond(static_cast<SlugFeetPerSecond::ValueType>(data));
 }
 
 }  // namespace literals

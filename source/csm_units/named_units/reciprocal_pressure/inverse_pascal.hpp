@@ -26,11 +26,11 @@ constexpr auto invPa =  // NOLINT(readability-identifier-length)
     definition::InversePascal();
 
 constexpr auto operator""_invPa(long double data) noexcept {
-  return InversePascal(static_cast<InversePascal::type>(data));
+  return InversePascal(static_cast<InversePascal::ValueType>(data));
 }
 
 constexpr auto operator""_invPa(unsigned long long data) noexcept {
-  return InversePascal(static_cast<InversePascal::type>(data));
+  return InversePascal(static_cast<InversePascal::ValueType>(data));
 }
 
 }  // namespace literals

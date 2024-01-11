@@ -27,11 +27,11 @@ constexpr auto V =  // NOLINT(readability-identifier-length)
     definition::Volt();
 
 constexpr auto operator""_V(long double data) noexcept {
-  return Volt(static_cast<Volt::type>(data));
+  return Volt(static_cast<Volt::ValueTypeeType>(data));
 }
 
 constexpr auto operator""_V(unsigned long long data) noexcept {
-  return Volt(static_cast<Volt::type>(data));
+  return Volt(static_cast<Volt::ValueTypeeType>(data));
 }
 
 }  // namespace literals
