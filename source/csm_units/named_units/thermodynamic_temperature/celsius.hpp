@@ -17,7 +17,8 @@ using Celsius = Unit<literals::K + std::ratio<5463, 20>()>;
 
 namespace literals {
 
-// TODO literals for relative units
+constexpr auto degC =  // NOLINT(readability-identifier-length)
+    Celsius::DefType();
 
 constexpr auto operator""_degC(long double data) noexcept {
   return Celsius(static_cast<Celsius::ValueType>(data));

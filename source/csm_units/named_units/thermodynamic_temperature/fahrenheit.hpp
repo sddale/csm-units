@@ -17,7 +17,8 @@ using Fahrenheit = Unit<literals::degR + std::ratio<45967, 100>()>;
 
 namespace literals {
 
-// TODO literals for relative units
+constexpr auto degF =  // NOLINT(readability-identifier-length)
+    Fahrenheit::DefType();
 
 constexpr auto operator""_degF(long double data) noexcept {
   return Fahrenheit(static_cast<Fahrenheit::ValueType>(data));
