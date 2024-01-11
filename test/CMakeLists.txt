@@ -15,7 +15,7 @@ add_executable(
   source/named_units/temperature.cpp
 )
 target_link_libraries(
-  ${PROJECT_NAME}_test PRIVATE doctest::doctest CSMUnits::CSMUnits gcem
+  ${PROJECT_NAME}_test PRIVATE doctest::doctest CSMUnits::CSMUnits
 )
 set_target_properties(${PROJECT_NAME}_test PROPERTIES CXX_STANDARD 23)
 

@@ -9,7 +9,6 @@
 #pragma once
 
 #include <csm_units/concepts.hpp>
-#include <gcem.hpp>
 #include <ratio>
 
 #include "dimension.hpp"

@@ -39,6 +39,7 @@ using DimensionInt =
               std::ratio<Luminosity>>;
 
 namespace detail {
+
 template <IsDimension D1, IsDimension D2>
 class DimensionAdd {
   using L = typename std::ratio_add<typename D1::L, typename D2::L>::type;
@@ -69,6 +70,20 @@ class DimensionSubtract {
   using type = Dimension<L, M, T, C, TP, A, LM>;
 };
 
+template <IsDimension D, IsRatio R>
+class DimensionMultiply {
+  using L = typename std::ratio_multiply<typename D::L, R>::type;
+  using M = typename std::ratio_multiply<typename D::M, R>::type;
+  using T = typename std::ratio_multiply<typename D::T, R>::type;
+  using C = typename std::ratio_multiply<typename D::C, R>::type;
+  using TP = typename std::ratio_multiply<typename D::TP, R>::type;
+  using A = typename std::ratio_multiply<typename D::A, R>::type;
+  using LM = typename std::ratio_multiply<typename D::LM, R>::type;
+
+ public:
+  using type = Dimension<L, M, T, C, TP, A, LM>;
+};
+
 }  // namespace detail
 
 template <IsDimension D1, IsDimension D2>
@@ -76,6 +91,9 @@ using DimensionAdd = typename detail::DimensionAdd<D1, D2>::type;
 
 template <IsDimension D1, IsDimension D2>
 using DimensionSubtract = typename detail::DimensionSubtract<D1, D2>::type;
+
+template <IsDimension D, IsRatio R>
+using DimensionMultiply = typename detail::DimensionMultiply<D, R>::type;
 
 template <IsDimension D>
 using DimensionFlip = Dimension<

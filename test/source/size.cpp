@@ -2,7 +2,6 @@
 
 #include <csm_units/concepts.hpp>
 #include <csm_units/temperature.hpp>
-#include <gcem.hpp>
 #include <source/csm_units/definition.hpp>
 #include <source/csm_units/dimension.hpp>
 #include <source/csm_units/unit.hpp>

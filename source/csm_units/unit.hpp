@@ -12,7 +12,6 @@
 
 #include <compare>
 #include <csm_units/concepts.hpp>
-#include <gcem.hpp>
 
 #include "definition.hpp"
 #include "dimension.hpp"

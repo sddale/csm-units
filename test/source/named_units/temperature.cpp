@@ -8,11 +8,13 @@ namespace csm_units::test {
 
 // NOLINTBEGIN(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
 TEST_SUITE("Named Units") {
+  using namespace literals;
   TEST_CASE("Temperature") {
     CHECK_DBL_EQ(Kelvin(1.).Get(), 1.);
     CHECK_DBL_NEQ(Kelvin(1.).Get(), 2.);
     CHECK_DBL_EQ(Kelvin(1.).data, 1.);
     CHECK_DBL_NEQ(Kelvin(1.).data, 2.);
+    CHECK_DBL_NEQ(Unit<K * K>(1).data, Unit<degC * K>(1 + 273.15).data);
 
     CHECK_UNIT_EQ(Kelvin(5. / 9), Rankine(1));
     CHECK_UNIT_NEQ(Kelvin(5.5 / 9), Rankine(1));
