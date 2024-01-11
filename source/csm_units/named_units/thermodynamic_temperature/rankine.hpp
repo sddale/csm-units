@@ -19,7 +19,7 @@ using Rankine = Unit<literals::K * std::ratio<9, 5>()>;
 namespace literals {
 
 constexpr auto degR =  // NOLINT(readability-identifier-length)
-    Rankine::definition;
+    Rankine::def;
 
 constexpr auto operator""_degR(long double data) noexcept {
   return Rankine(static_cast<Rankine::ValueType>(data));

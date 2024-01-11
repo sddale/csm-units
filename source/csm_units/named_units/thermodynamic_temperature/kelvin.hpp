@@ -19,7 +19,7 @@ using Kelvin = Unit<Definition<Temperature>{}>;
 namespace literals {
 
 constexpr auto K =  // NOLINT(readability-identifier-length)
-    Kelvin::DefType();
+    Kelvin::def;
 
 constexpr auto operator""_K(long double data) noexcept {
   return Kelvin(static_cast<Kelvin::ValueType>(data));

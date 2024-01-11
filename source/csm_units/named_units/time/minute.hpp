@@ -19,7 +19,7 @@ using Minute = Unit<literals::s * std::ratio<1, 60>()>;
 namespace literals {
 
 constexpr auto min =  // NOLINT(readability-identifier-length)
-    Minute::definition;
+    Minute::def;
 
 constexpr auto operator""_min(long double data) noexcept {
   return Minute(static_cast<Minute::ValueType>(data));

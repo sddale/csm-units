@@ -27,15 +27,15 @@ namespace csm_units {
 // Data: storage ValueType such that sizeof(Data) = sizeof(Unit)
 // ZeroPoint: 0 [unit] = std::ratio<N,D> [SI]
 // i.e for Fahrenheit, ZeroPoint = ratio<45967, 180> = approx 255.372[Kelvin]
-template <Definition def, IsArithmetic Data = CSMUNITS_VALUE_TYPE>
+template <Definition definition, IsArithmetic Data = CSMUNITS_VALUE_TYPE>
 class Unit {
  public:
-  using DefType = decltype(def);
+  using DefType = decltype(definition);
   using ValueType = Data;
   using OriginType = typename DefType::OriginType;
   using DimenType = typename DefType::DimenType;
 
-  constexpr static auto definition = def;
+  constexpr static auto def = definition;
 
   // Build from arithmetic (i.e. double) value
   constexpr explicit Unit(Data input = Data(0.0)) noexcept
@@ -94,7 +94,7 @@ class Unit {
 
   constexpr friend auto operator/(IsArithmetic auto lhs, Unit rhs) noexcept {
     using ResultType = decltype(lhs / rhs.data);
-    return Unit<literals::One() / definition, ResultType>(lhs / rhs.data);
+    return Unit<literals::One() / def, ResultType>(lhs / rhs.data);
   }
 
   // constexpr friend auto operator/(IsArithmetic auto lhs, Unit rhs) noexcept {
@@ -157,7 +157,7 @@ class Unit {
   template <IsUnit U>
   constexpr friend auto operator*(Unit lhs, const U& rhs) noexcept {
     using ResultType = decltype(lhs.data * rhs.data);
-    auto result = Unit<definition* typename U::DefType(), ResultType>();
+    auto result = Unit<def * U::def, ResultType>();
     result.data = lhs.data * rhs.data;  // bypass constructor SI cast
     return result;
   }
@@ -166,7 +166,7 @@ class Unit {
     requires(not SameDimensionAs<Unit, U>)  // Otherwise dimensionless return
   constexpr friend auto operator/(Unit lhs, const U& rhs) noexcept {
     using ResultType = decltype(lhs.data / rhs.data);
-    auto result = Unit<definition / U::DefType(), ResultType>();
+    auto result = Unit<def / U::def, ResultType>();
     result.data = lhs.data / rhs.data;  // bypass constructor SI cast
     return result;
   }
@@ -182,7 +182,7 @@ constexpr auto operator*(IsArithmetic auto lhs, DR /*rhs*/) noexcept {
 
 template <IsUnit U, IsDefinition D>
 constexpr auto operator*(U lhs, D rhs) noexcept {
-  auto result = Unit<U::DefType() * rhs, typename U::ValueType>();
+  auto result = Unit<U::def * rhs, typename U::ValueType>();
   result.data = lhs.data;
   return result;
 }
@@ -194,7 +194,7 @@ constexpr auto operator/(IsArithmetic auto lhs, D rhs) noexcept {
 
 template <IsUnit U, IsDefinition D>
 constexpr auto operator/(U lhs, D rhs) noexcept {
-  auto result = Unit<U::DefType() / rhs, typename U::ValueType>();
+  auto result = Unit<U::def / rhs, typename U::ValueType>();
   result.data = lhs.data;
   return result;
 }
