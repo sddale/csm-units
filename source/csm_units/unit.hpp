@@ -142,16 +142,20 @@ class Unit {
   template <IsUnit U>
   constexpr friend auto operator*(Unit lhs, const U& rhs) noexcept {
     using result_type = decltype(type(1.0) * typename U::type(1.0));
-    return Unit<typename Unit::def::template Multiply<typename U::def>,
-                result_type>(lhs.data * rhs.data);
+    auto result = Unit<typename Unit::def::template Multiply<typename U::def>,
+                       result_type>();
+    result.data = lhs.data * rhs.data;  // bypass constructor SI cast
+    return result;
   }
 
   template <IsUnit U>
     requires(not SameDimensionAs<Unit, U>)  // Otherwise dimensionless return
   constexpr friend auto operator/(Unit lhs, const U& rhs) noexcept {
     using result_type = decltype(type() / typename U::type(1.0));
-    return Unit<typename Unit::def::template Divide<typename U::def>,
-                result_type>(lhs.data / rhs.data);
+    auto result = Unit<typename Unit::def::template Divide<typename U::def>,
+                       result_type>();
+    result.data = lhs.data / rhs.data;  // bypass constructor SI cast
+    return result;
   }
 };
 
