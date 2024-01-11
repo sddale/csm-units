@@ -14,13 +14,7 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using JoulesPerKelvin = Definition<HeatCapacity>;
-
-}
-
-using JoulesPerKelvin = Unit<definition::JoulesPerKelvin>;
+using JoulesPerKelvin = Unit<Definition<HeatCapacity>{}>;
 
 namespace literals {
 
@@ -28,11 +22,11 @@ constexpr auto JperK =  // NOLINT(readability-identifier-length)
     JoulesPerKelvin::def;
 
 constexpr auto operator""_JperK(long double data) noexcept {
-  return JoulesPerKelvin(static_cast<JoulesPerKelvin::ValueTypeeType>(data));
+  return JoulesPerKelvin(static_cast<JoulesPerKelvin::ValueType>(data));
 }
 
 constexpr auto operator""_JperK(unsigned long long data) noexcept {
-  return JoulesPerKelvin(static_cast<JoulesPerKelvin::ValueTypeeType>(data));
+  return JoulesPerKelvin(static_cast<JoulesPerKelvin::ValueType>(data));
 }
 
 }  // namespace literals

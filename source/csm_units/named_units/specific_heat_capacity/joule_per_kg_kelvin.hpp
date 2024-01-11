@@ -14,20 +14,10 @@
 #include "../energy/joule.hpp"
 #include "../mass/kilogram.hpp"
 #include "../thermodynamic_temperature/kelvin.hpp"
-#include "dimension.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using JoulePerKilogramKelvin =
-    decltype(literals::J / (literals::kg * literals::K));
-static_assert(
-    std::is_same_v<JoulePerKilogramKelvin::dim, SpecificHeatCapacity>);
-
-}  // namespace definition
-
-using JoulePerKilogramKelvin = Unit<definition::JoulePerKilogramKelvin>;
+using JoulePerKilogramKelvin = Unit<literals::J / (literals::kg * literals::K)>;
 
 namespace literals {
 

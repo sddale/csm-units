@@ -13,13 +13,7 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Lux = Definition<Illuminance>;
-
-}
-
-using Lux = Unit<definition::Lux>;
+using Lux = Unit<Definition<Illuminance>{}>;
 
 namespace literals {
 

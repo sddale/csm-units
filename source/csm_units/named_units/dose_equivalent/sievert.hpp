@@ -12,13 +12,7 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Sievert = Definition<DoseEquivalent>;
-
-}
-
-using Sievert = Unit<definition::Sievert>;
+using Sievert = Unit<Definition<DoseEquivalent>{}>;
 
 namespace literals {
 

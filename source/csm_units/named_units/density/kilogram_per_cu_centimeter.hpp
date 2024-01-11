@@ -12,17 +12,12 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "../mass/kilogram.hpp"
+#include "../volume/cu_centimeter.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using KilogramPerCuCentimeter = Definition<Density, std::centi>;
-
-}
-
-using KilogramPerCuCentimeter = Unit<definition::KilogramPerCuCentimeter>;
+using KilogramPerCuCentimeter = Unit<literals::kg / literals::cm3>;
 
 namespace literals {
 

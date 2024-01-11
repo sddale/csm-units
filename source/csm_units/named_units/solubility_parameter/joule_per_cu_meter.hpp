@@ -11,17 +11,12 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "sqrt_joule_per_sqrt_cu_meter.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using JoulesPerCuMeter = Definition<SqSolubilityParameter>;
-
-}
-
-using JoulesPerCuMeter = Unit<definition::JoulesPerCuMeter>;
+using JoulesPerCuMeter =
+    Unit<literals::SqrtJperSqrtcm3 * literals::SqrtJperSqrtcm3>;
 
 namespace literals {
 

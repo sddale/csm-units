@@ -11,17 +11,12 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "../amount_of_substance/mole.hpp"
+#include "../mass/kilogram.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using KilogramPerMole = Definition<MolarMass, NoConv>;
-
-}
-
-using KilogramPerMole = Unit<definition::KilogramPerMole>;
+using KilogramPerMole = Unit<literals::kg / literals::mol>;
 
 namespace literals {
 

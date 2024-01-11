@@ -10,17 +10,12 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "../amount_of_substance/mole.hpp"
+#include "../mass/gram.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using GramPerMole = Definition<MolarMass, NoConv, std::milli>;
-
-}
-
-using GramPerMole = Unit<definition::GramPerMole>;
+using GramPerMole = Unit<literals::g / literals::mol>;
 
 namespace literals {
 

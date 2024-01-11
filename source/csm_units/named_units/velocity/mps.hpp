@@ -14,13 +14,7 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using MeterPerSecond = Definition<Velocity>;
-
-}
-
-using MeterPerSecond = Unit<definition::MeterPerSecond>;
+using MeterPerSecond = Unit<Definition<Velocity>{}>;
 
 namespace literals {
 

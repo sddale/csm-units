@@ -13,13 +13,7 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Ohm = Definition<Resistance>;
-
-}
-
-using Ohm = Unit<definition::Ohm>;
+using Ohm = Unit<Definition<Resistance>{}>;
 
 namespace literals {
 

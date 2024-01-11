@@ -13,13 +13,7 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Hertz = Definition<Frequency>;
-
-}
-
-using Hertz = Unit<definition::Hertz>;
+using Hertz = Unit<Definition<Frequency>{}>;
 
 namespace literals {
 

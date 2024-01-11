@@ -13,13 +13,7 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Farad = Definition<Capacitance>;
-
-}
-
-using Farad = Unit<definition::Farad>;
+using Farad = Unit<Definition<Capacitance>{}>;
 
 namespace literals {
 

@@ -13,13 +13,7 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Henry = Definition<Inductance>;
-
-}
-
-using Henry = Unit<definition::Henry>;
+using Henry = Unit<Definition<Inductance>{}>;
 
 namespace literals {
 
@@ -27,11 +21,11 @@ constexpr auto H =  // NOLINT(readability-identifier-length)
     Henry::def;
 
 constexpr auto operator""_H(long double data) noexcept {
-  return Henry(static_cast<Henry::ValueTypeeType>(data));
+  return Henry(static_cast<Henry::ValueType>(data));
 }
 
 constexpr auto operator""_H(unsigned long long data) noexcept {
-  return Henry(static_cast<Henry::ValueTypeeType>(data));
+  return Henry(static_cast<Henry::ValueType>(data));
 }
 
 }  // namespace literals

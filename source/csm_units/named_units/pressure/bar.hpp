@@ -6,37 +6,29 @@
  * href="https://en.wikipedia.org/wiki/Bar_(unit)">Bar</a> if needed.
  */
 
-// TODO: MonolithicUnit
+#pragma once
 
-// #pragma once
+#include "../../definition.hpp"
+#include "../../unit.hpp"
+#include "pascal.hpp"
 
-// #include "../../definition.hpp"
-// #include "../../unit.hpp"
-// #include "dimension.hpp"
+namespace csm_units {
 
-// namespace csm_units {
+using Bar = Unit<literals::Pa * std::micro()>;
 
-// namespace definition {
+namespace literals {
 
-// using Bar = Definition<Pressure, NoConv>;
+constexpr auto bar =  // NOLINT(readability-identifier-length)
+    Bar::def;
 
-// }
+constexpr auto operator""_bar(long double data) noexcept {
+  return Bar(static_cast<Bar::ValueType>(data));
+}
 
-// using Bar = Unit<definition::Bar>;
+constexpr auto operator""_bar(unsigned long long data) noexcept {
+  return Bar(static_cast<Bar::ValueType>(data));
+}
 
-// namespace literals {
+}  // namespace literals
 
-// constexpr auto bar =  // NOLINT(readability-identifier-length)
-//     Bar::def;
-
-// constexpr auto operator""_bar(long double data) noexcept {
-//   return Bar(static_cast<Bar::ValueType>(data));
-// }
-
-// constexpr auto operator""_bar(unsigned long long data) noexcept {
-//   return Bar(static_cast<Bar::ValueType>(data));
-// }
-
-// }  // namespace literals
-
-// }  // namespace csm_units
+}  // namespace csm_units

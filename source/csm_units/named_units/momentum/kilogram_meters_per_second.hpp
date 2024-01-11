@@ -12,13 +12,7 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using KilogramMeterPerSecond = Definition<Momentum>;
-
-}
-
-using KilogramMeterPerSecond = Unit<definition::KilogramMeterPerSecond>;
+using KilogramMeterPerSecond = Unit<Definition<Momentum>{}>;
 
 namespace literals {
 

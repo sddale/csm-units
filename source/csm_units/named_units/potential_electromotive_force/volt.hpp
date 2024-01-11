@@ -13,13 +13,7 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Volt = Definition<PotentialElectromotiveForce>;
-
-}
-
-using Volt = Unit<definition::Volt>;
+using Volt = Unit<Definition<PotentialElectromotiveForce>{}>;
 
 namespace literals {
 
@@ -27,11 +21,11 @@ constexpr auto V =  // NOLINT(readability-identifier-length)
     Volt::def;
 
 constexpr auto operator""_V(long double data) noexcept {
-  return Volt(static_cast<Volt::ValueTypeeType>(data));
+  return Volt(static_cast<Volt::ValueType>(data));
 }
 
 constexpr auto operator""_V(unsigned long long data) noexcept {
-  return Volt(static_cast<Volt::ValueTypeeType>(data));
+  return Volt(static_cast<Volt::ValueType>(data));
 }
 
 }  // namespace literals

@@ -13,13 +13,7 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Ampere = Definition<ElectricCurrent>;
-
-}
-
-using Ampere = Unit<definition::Ampere>;
+using Ampere = Unit<Definition<ElectricCurrent>{}>;
 
 namespace literals {
 
@@ -27,11 +21,11 @@ constexpr auto A =  // NOLINT(readability-identifier-length)
     Ampere::def;
 
 constexpr auto operator""_A(long double data) noexcept {
-  return Ampere(static_cast<Ampere::ValueTypeeType>(data));
+  return Ampere(static_cast<Ampere::ValueType>(data));
 }
 
 constexpr auto operator""_A(unsigned long long data) noexcept {
-  return Ampere(static_cast<Ampere::ValueTypeeType>(data));
+  return Ampere(static_cast<Ampere::ValueType>(data));
 }
 
 }  // namespace literals

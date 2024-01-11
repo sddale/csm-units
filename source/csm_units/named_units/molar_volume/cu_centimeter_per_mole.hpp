@@ -8,17 +8,12 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "../amount_of_substance/mole.hpp"
+#include "../volume/cu_centimeter.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using CuCentimeterPerMole = Definition<MolarVolume, std::centi>;
-
-}
-
-using CuCentimeterPerMole = Unit<definition::CuCentimeterPerMole>;
+using CuCentimeterPerMole = Unit<literals::cm3 / literals::mol>;
 
 namespace literals {
 

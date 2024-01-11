@@ -13,13 +13,7 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Katal = Definition<CatalyticActivity>;
-
-}
-
-using Katal = Unit<definition::Katal>;
+using Katal = Unit<Definition<CatalyticActivity>{}>;
 
 namespace literals {
 

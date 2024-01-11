@@ -15,13 +15,7 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using KilogramPerCuMeter = Definition<Density>;
-
-}
-
-using KilogramPerCuMeter = Unit<definition::KilogramPerCuMeter>;
+using KilogramPerCuMeter = Unit<Definition<Density>{}>;
 
 namespace literals {
 

@@ -13,13 +13,7 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using CuMeter = Definition<Volume>;
-
-}
-
-using CuMeter = Unit<definition::CuMeter>;
+using CuMeter = Unit<Definition<Volume>{}>;
 
 namespace literals {
 

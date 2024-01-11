@@ -8,18 +8,13 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "../length/foot.hpp"
+#include "../mass/slug.hpp"
+#include "../time/second.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using SlugFeetPerSecond =
-    Definition<Momentum, std::ratio<82021, 25000>, std::ratio<10000, 145939>>;
-
-}
-
-using SlugFeetPerSecond = Unit<definition::SlugFeetPerSecond>;
+using SlugFeetPerSecond = Unit<literals::slug * literals::ft / literals::s>;
 
 namespace literals {
 

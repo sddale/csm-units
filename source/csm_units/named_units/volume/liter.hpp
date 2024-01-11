@@ -10,17 +10,11 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "cu_meter.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using Liter = Definition<Volume, std::deca>;  // Liter = dm3
-
-}
-
-using Liter = Unit<definition::Liter>;
+using Liter = Unit<literals::m3 * std::kilo()>;
 
 namespace literals {
 

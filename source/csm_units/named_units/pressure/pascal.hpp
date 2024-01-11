@@ -13,13 +13,7 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Pascal = Definition<Pressure>;
-
-}
-
-using Pascal = Unit<definition::Pascal>;
+using Pascal = Unit<Definition<Pressure>{}>;
 
 namespace literals {
 

@@ -12,19 +12,10 @@
 #include "../length/meter.hpp"
 #include "../mass/kilogram.hpp"
 #include "../time/second.hpp"
-#include "dimension.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using Newton =
-    decltype(literals::kg * literals::m / (literals::s * literals::s));
-static_assert(std::is_same_v<Newton::dim, Force>);
-
-}  // namespace definition
-
-using Newton = Unit<definition::Newton>;
+using Newton = Unit<literals::kg * literals::m / (literals::s * literals::s)>;
 
 namespace literals {
 

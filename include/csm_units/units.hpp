@@ -37,8 +37,6 @@
 #include <csm_units/potential_electromotive_force.hpp>
 #include <csm_units/power.hpp>
 #include <csm_units/pressure.hpp>
-#include <csm_units/reciprocal_length.hpp>
-#include <csm_units/reciprocal_pressure.hpp>
 #include <csm_units/resistance.hpp>
 #include <csm_units/solubility_parameter.hpp>
 #include <csm_units/specific_heat_capacity.hpp>

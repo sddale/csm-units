@@ -11,17 +11,11 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "../length/centimeter.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using CuCentimeter = Definition<Volume, std::centi>;
-
-}
-
-using CuCentimeter = Unit<definition::CuCentimeter>;
+using CuCentimeter = Unit<literals::cm * literals::cm * literals::cm>;
 
 namespace literals {
 

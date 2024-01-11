@@ -10,18 +10,11 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "ampere.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using Milliampere =
-    Definition<ElectricCurrent, NoConv, NoConv, NoConv, std::milli>;
-
-}
-
-using Milliampere = Unit<definition::Milliampere>;
+using Milliampere = Unit<literals::A / std::milli()>;
 
 namespace literals {
 

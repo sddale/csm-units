@@ -1,12 +1,6 @@
 #include <doctest/doctest.h>
 
-#include <csm_units/amount.hpp>
-#include <csm_units/concepts.hpp>
-#include <csm_units/energy.hpp>
-#include <csm_units/mass.hpp>
-#include <csm_units/molar_energy.hpp>
-#include <csm_units/temperature.hpp>
-#include <csm_units/time.hpp>
+#include <csm_units/units.hpp>
 #include <source/csm_units/definition.hpp>
 #include <source/csm_units/dimension.hpp>
 #include <source/csm_units/unit.hpp>

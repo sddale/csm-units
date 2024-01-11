@@ -13,13 +13,7 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Coulomb = Definition<ElectricCharge>;
-
-}
-
-using Coulomb = Unit<definition::Coulomb>;
+using Coulomb = Unit<Definition<ElectricCharge>{}>;
 
 namespace literals {
 

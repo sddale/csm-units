@@ -9,17 +9,11 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "ampere.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using SqAmpere = Definition<SqElectricCurrent>;
-
-}
-
-using SqAmpere = Unit<definition::SqAmpere>;
+using SqAmpere = Unit<literals::A * literals::A>;
 
 namespace literals {
 

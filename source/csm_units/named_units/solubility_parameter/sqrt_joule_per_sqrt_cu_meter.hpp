@@ -15,13 +15,7 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using SqrtJoulesPerSqrtCuMeter = Definition<SolubilityParameter>;
-
-}
-
-using SqrtJoulesPerSqrtCuMeter = Unit<definition::SqrtJoulesPerSqrtCuMeter>;
+using SqrtJoulesPerSqrtCuMeter = Unit<Definition<SolubilityParameter>{}>;
 
 namespace literals {
 

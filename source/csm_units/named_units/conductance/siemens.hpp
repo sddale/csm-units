@@ -13,13 +13,7 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Siemens = Definition<Conductance>;
-
-}
-
-using Siemens = Unit<definition::Siemens>;
+using Siemens = Unit<Definition<Conductance>{}>;
 
 namespace literals {
 

@@ -15,13 +15,7 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using CuMeterPerMole = Definition<MolarVolume>;
-
-}
-
-using CuMeterPerMole = Unit<definition::CuMeterPerMole>;
+using CuMeterPerMole = Unit<Definition<MolarVolume>{}>;
 
 namespace literals {
 

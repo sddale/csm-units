@@ -13,13 +13,7 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Watt = Definition<Power>;
-
-}
-
-using Watt = Unit<definition::Watt>;
+using Watt = Unit<Definition<Power>{}>;
 
 namespace literals {
 

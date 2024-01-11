@@ -14,6 +14,5 @@
 namespace csm_units {
 
 using ElectricCurrent = DimensionInt<0, 0, 0, 1>;
-using SqElectricCurrent = DimensionInt<0, 0, 0, 2>;
 
 }  // namespace csm_units

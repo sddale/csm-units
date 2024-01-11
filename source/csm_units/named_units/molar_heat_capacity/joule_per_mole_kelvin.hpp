@@ -14,13 +14,7 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using JoulePerMoleKelvin = Definition<MolarHeatCapacity>;
-
-}
-
-using JoulePerMoleKelvin = Unit<definition::JoulePerMoleKelvin>;
+using JoulePerMoleKelvin = Unit<Definition<MolarHeatCapacity>{}>;
 
 namespace literals {
 

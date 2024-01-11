@@ -12,17 +12,12 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "../mass/kilogram.hpp"
+#include "../volume/liter.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using KilogramPerLiter = Definition<Density, std::deca>;  // Liter = dm3
-
-}
-
-using KilogramPerLiter = Unit<definition::KilogramPerLiter>;
+using KilogramPerLiter = Unit<literals::kg / literals::L>;
 
 namespace literals {
 
