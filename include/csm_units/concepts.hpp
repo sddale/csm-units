@@ -51,9 +51,9 @@ concept IsDimension = requires {
  */
 template <class D>
 concept IsDefinition = requires {
-  IsDimension<typename D::DimenType>;
-  IsRatio<typename D::ConvType>;
-  IsRatio<typename D::OriginType>;
+  { typename std::remove_reference_t<D>::DimenType() } -> IsDimension;
+  { typename std::remove_reference_t<D>::ConvType() } -> IsRatio;
+  { typename std::remove_reference_t<D>::OriginType() } -> IsRatio;
 };
 
 /**
@@ -63,8 +63,8 @@ template <class T>
 concept IsUnit = requires(T unit) {
   { unit.data } -> std::convertible_to<double>;
   { unit.Get() } -> std::convertible_to<double>;
-  IsDefinition<typename T::DefType>;
-  IsArithmetic<typename T::ValueType>;
+  { typename std::remove_reference_t<T>::ValueType() } -> IsArithmetic;
+  { typename std::remove_reference_t<T>::DefType() } -> IsDefinition;
 };
 
 /**
@@ -72,9 +72,11 @@ concept IsUnit = requires(T unit) {
  */
 template <class T, class U>
 concept SameDimensionAs = requires(T lhs, U rhs) {
-  { std::same_as<typename T::DimenType, typename U::DimenType> };
-  IsUnit<T>;
-  IsUnit<U>;
+  { lhs } -> IsUnit;
+  { rhs } -> IsUnit;
+  {
+    typename std::remove_reference_t<T>::DimenType()
+  } -> std::same_as<typename std::remove_reference_t<U>::DimenType>;
 };
 
 }  // namespace csm_units

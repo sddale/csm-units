@@ -26,7 +26,7 @@ using Milliampere = Unit<definition::Milliampere>;
 namespace literals {
 
 constexpr auto mA =  // NOLINT(readability-identifier-length)
-    definition::Milliampere();
+    Milliampere::def;
 
 constexpr auto operator""_mA(long double data) noexcept {
   return Milliampere(static_cast<Milliampere::ValueType>(data));

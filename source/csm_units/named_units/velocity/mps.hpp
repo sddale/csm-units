@@ -25,7 +25,7 @@ using MeterPerSecond = Unit<definition::MeterPerSecond>;
 namespace literals {
 
 constexpr auto mps =  // NOLINT(readability-identifier-length)
-    definition::MeterPerSecond();
+    MeterPerSecond::def;
 
 constexpr auto operator""_mps(long double data) noexcept {
   return MeterPerSecond(static_cast<MeterPerSecond::ValueType>(data));

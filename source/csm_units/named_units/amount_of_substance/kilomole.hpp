@@ -10,23 +10,16 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "mole.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using Kilomole =
-    Definition<Amount, NoConv, NoConv, NoConv, NoConv, NoConv, std::kilo>;
-
-}
-
-using Kilomole = Unit<definition::Kilomole>;
+using Kilomole = Unit<literals::mol / std::kilo()>;
 
 namespace literals {
 
 constexpr auto kmol =  // NOLINT(readability-identifier-length)
-    definition::Kilomole();
+    Kilomole::def;
 
 constexpr auto operator""_kmol(long double data) noexcept {
   return Kilomole(static_cast<Kilomole::ValueType>(data));

@@ -13,18 +13,12 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Lumen = Definition<LuminousFlux>;
-
-}
-
-using Lumen = Unit<definition::Lumen>;
+using Lumen = Unit<Definition<LuminousFlux>{}>;
 
 namespace literals {
 
 constexpr auto lm =  // NOLINT(readability-identifier-length)
-    definition::Lumen();
+    Lumen::def;
 
 constexpr auto operator""_lm(long double data) noexcept {
   return Lumen(static_cast<Lumen::ValueType>(data));

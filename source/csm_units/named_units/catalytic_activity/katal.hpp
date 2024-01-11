@@ -24,7 +24,7 @@ using Katal = Unit<definition::Katal>;
 namespace literals {
 
 constexpr auto kat =  // NOLINT(readability-identifier-length)
-    definition::Katal();
+    Katal::def;
 
 constexpr auto operator""_kat(long double data) noexcept {
   return Katal(static_cast<Katal::ValueType>(data));

@@ -13,18 +13,12 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Mole = Definition<Amount>;
-
-}
-
-using Mole = Unit<definition::Mole>;
+using Mole = Unit<Definition<Amount>{}>;
 
 namespace literals {
 
 constexpr auto mol =  // NOLINT(readability-identifier-length)
-    definition::Mole();
+    Mole::def;
 
 constexpr auto operator""_mol(long double data) noexcept {
   return Mole(static_cast<Mole::ValueType>(data));

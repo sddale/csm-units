@@ -9,22 +9,16 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "kilogram.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using Pound = Definition<Mass, NoConv, std::ratio<220462, 100000>>;
-
-}
-
-using Pound = Unit<definition::Pound>;
+using Pound = Unit<literals::kg * std::ratio<220462, 100000>()>;
 
 namespace literals {
 
 constexpr auto lb =  // NOLINT(readability-identifier-length)
-    definition::Pound();
+    Pound::def;
 
 constexpr auto operator""_lb(long double data) noexcept {
   return Pound(static_cast<Pound::ValueType>(data));

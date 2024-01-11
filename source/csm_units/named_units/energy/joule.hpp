@@ -13,25 +13,19 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Joule = Definition<Energy>;
-
-}
-
-using Joule = Unit<definition::Joule>;
+using Joule = Unit<Definition<Energy>{}>;
 
 namespace literals {
 
 constexpr auto J =  // NOLINT(readability-identifier-length)
-    definition::Joule();
+    Joule::def;
 
 constexpr auto operator""_J(long double data) noexcept {
-  return Joule(static_cast<Joule::ValueTypeeType>(data));
+  return Joule(static_cast<Joule::ValueType>(data));
 }
 
 constexpr auto operator""_J(unsigned long long data) noexcept {
-  return Joule(static_cast<Joule::ValueTypeeType>(data));
+  return Joule(static_cast<Joule::ValueType>(data));
 }
 
 }  // namespace literals

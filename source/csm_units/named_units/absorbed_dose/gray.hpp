@@ -13,18 +13,12 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using AbsorbedDose = Definition<AbsorbedDose>;
-
-}
-
-using Gray = Unit<definition::AbsorbedDose>;
+using Gray = Unit<Definition<AbsorbedDose>{}>;
 
 namespace literals {
 
 constexpr auto Gy  // NOLINT(readability-identifier-length)
-    = definition::AbsorbedDose();
+    = Gray::def;
 
 constexpr auto operator""_Gy(long double data) noexcept {
   return Gray(static_cast<Gray::ValueType>(data));

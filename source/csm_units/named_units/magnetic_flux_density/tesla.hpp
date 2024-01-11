@@ -13,18 +13,12 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Tesla = Definition<MagneticFluxDensity>;
-
-}
-
-using Tesla = Unit<definition::Tesla>;
+using Tesla = Unit<Definition<MagneticFluxDensity>{}>;
 
 namespace literals {
 
 constexpr auto T =  // NOLINT(readability-identifier-length)
-    definition::Tesla();
+    Tesla::def;
 
 constexpr auto operator""_T(long double data) noexcept {
   return Tesla(static_cast<Tesla::ValueType>(data));

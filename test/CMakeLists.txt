@@ -13,6 +13,9 @@ add_executable(
   source/size.cpp
   source/named_units/time.cpp
   source/named_units/temperature.cpp
+  source/named_units/length.cpp
+  source/named_units/amount.cpp
+  source/named_units/mass.cpp
 )
 target_link_libraries(
   ${PROJECT_NAME}_test PRIVATE doctest::doctest CSMUnits::CSMUnits

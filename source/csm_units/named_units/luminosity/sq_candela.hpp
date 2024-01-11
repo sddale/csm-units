@@ -10,22 +10,16 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "candela.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using SqCandela = Definition<SqLuminosity>;
-
-}
-
-using SqCandela = Unit<definition::SqCandela>;
+using SqCandela = Unit<literals::cd * literals::cd>;
 
 namespace literals {
 
 constexpr auto cd2 =  // NOLINT(readability-identifier-length)
-    definition::SqCandela();
+    SqCandela::def;
 
 constexpr auto operator""_cd2(long double data) noexcept {
   return SqCandela(static_cast<SqCandela::ValueType>(data));

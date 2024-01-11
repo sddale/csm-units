@@ -10,29 +10,23 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "meter.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using Kilometer = Definition<Length, std::kilo>;
-
-}
-
-using Kilometer = Unit<definition::Kilometer>;
+using Kilometer = Unit<literals::m / std::kilo()>;
 
 namespace literals {
 
 constexpr auto km =  // NOLINT(readability-identifier-length)
-    definition::Kilometer();
+    Kilometer::def;
 
 constexpr auto operator""_km(long double data) noexcept {
-  return Kilometer(static_cast<Kilometer::ValueTypeeType>(data));
+  return Kilometer(static_cast<Kilometer::ValueType>(data));
 }
 
 constexpr auto operator""_km(unsigned long long data) noexcept {
-  return Kilometer(static_cast<Kilometer::ValueTypeeType>(data));
+  return Kilometer(static_cast<Kilometer::ValueType>(data));
 }
 
 }  // namespace literals

@@ -10,22 +10,16 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "foot.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using Yard = Definition<Length, std::ratio<109361, 100000>>;
-
-}
-
-using Yard = Unit<definition::Yard>;
+using Yard = Unit<literals::ft * std::ratio<1, 3>()>;
 
 namespace literals {
 
 constexpr auto yd =  // NOLINT(readability-identifier-length)
-    definition::Yard();
+    Yard::def;
 
 constexpr auto operator""_yd(long double data) noexcept {
   return Yard(static_cast<Yard::ValueType>(data));

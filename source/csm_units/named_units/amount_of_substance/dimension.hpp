@@ -14,6 +14,5 @@
 namespace csm_units {
 
 using Amount = DimensionInt<0, 0, 0, 0, 0, 1>;
-using SqAmount = DimensionInt<0, 0, 0, 0, 0, 2>;
 
 }  // namespace csm_units

@@ -13,18 +13,12 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Meter = Definition<Length>;
-
-}
-
-using Meter = Unit<definition::Meter>;
+using Meter = Unit<Definition<Length>{}>;
 
 namespace literals {
 
 constexpr auto m =  // NOLINT(readability-identifier-length)
-    definition::Meter();
+    Meter::def;
 
 constexpr auto operator""_m(long double data) noexcept {
   return Meter(static_cast<Meter::ValueType>(data));

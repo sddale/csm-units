@@ -13,18 +13,12 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Kilogram = Definition<Mass>;
-
-}
-
-using Kilogram = Unit<definition::Kilogram>;
+using Kilogram = Unit<Definition<Mass>{}>;
 
 namespace literals {
 
 constexpr auto kg =  // NOLINT(readability-identifier-length)
-    definition::Kilogram();
+    Kilogram::def;
 
 constexpr auto operator""_kg(long double data) noexcept {
   return Kilogram(static_cast<Kilogram::ValueType>(data));

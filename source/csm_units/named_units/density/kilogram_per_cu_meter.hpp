@@ -26,7 +26,7 @@ using KilogramPerCuMeter = Unit<definition::KilogramPerCuMeter>;
 namespace literals {
 
 constexpr auto kgperm3 =  // NOLINT(readability-identifier-length)
-    definition::KilogramPerCuMeter();
+    KilogramPerCuMeter::def;
 
 constexpr auto operator""_kgperm3(long double data) noexcept {
   return KilogramPerCuMeter(static_cast<KilogramPerCuMeter::ValueType>(data));

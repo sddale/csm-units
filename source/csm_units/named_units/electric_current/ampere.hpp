@@ -24,7 +24,7 @@ using Ampere = Unit<definition::Ampere>;
 namespace literals {
 
 constexpr auto A =  // NOLINT(readability-identifier-length)
-    definition::Ampere();
+    Ampere::def;
 
 constexpr auto operator""_A(long double data) noexcept {
   return Ampere(static_cast<Ampere::ValueTypeeType>(data));

@@ -27,7 +27,7 @@
 // namespace literals {
 
 // constexpr auto in =  // NOLINT(readability-identifier-length)
-//     definition::PoundForcePerSqInch();
+//     PoundForcePerSqInch::def;
 
 // constexpr auto operator""_in(long double data) noexcept {
 //   return::ValueType

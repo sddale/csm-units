@@ -24,7 +24,7 @@ using Lux = Unit<definition::Lux>;
 namespace literals {
 
 constexpr auto lx =  // NOLINT(readability-identifier-length)
-    definition::Lux();
+    Lux::def;
 
 constexpr auto operator""_lx(long double data) noexcept {
   return Lux(static_cast<Lux::ValueType>(data));

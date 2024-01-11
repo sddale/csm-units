@@ -24,7 +24,7 @@ using Watt = Unit<definition::Watt>;
 namespace literals {
 
 constexpr auto W =  // NOLINT(readability-identifier-length)
-    definition::Watt();
+    Watt::def;
 
 constexpr auto operator""_W(long double data) noexcept {
   return Watt(static_cast<Watt::ValueType>(data));

@@ -25,7 +25,7 @@ using Liter = Unit<definition::Liter>;
 namespace literals {
 
 constexpr auto L =  // NOLINT(readability-identifier-length)
-    definition::Liter();
+    Liter::def;
 
 constexpr auto operator""_L(long double data) noexcept {
   return Liter(static_cast<Liter::ValueType>(data));

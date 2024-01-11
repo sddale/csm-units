@@ -15,18 +15,12 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using MeterPerSqSecond = Definition<Accel>;
-
-}
-
-using MeterPerSqSecond = Unit<definition::MeterPerSqSecond>;
+using MeterPerSqSecond = Unit<Definition<Acceleration>{}>;
 
 namespace literals {
 
 constexpr auto mps2 =  // NOLINT(readability-identifier-length)
-    definition::MeterPerSqSecond();
+    MeterPerSqSecond::def;
 
 constexpr auto operator""_mps2(long double data) noexcept {
   return MeterPerSqSecond(static_cast<MeterPerSqSecond::ValueType>(data));

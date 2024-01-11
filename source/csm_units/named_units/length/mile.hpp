@@ -10,22 +10,16 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "foot.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using Mile = Definition<Length, std::ratio<100, 160934>>;
-
-}
-
-using Mile = Unit<definition::Mile>;
+using Mile = Unit<literals::ft * std::ratio<1, 5280>()>;
 
 namespace literals {
 
 constexpr auto mi =  // NOLINT(readability-identifier-length)
-    definition::Mile();
+    Mile::def;
 
 constexpr auto operator""_mi(long double data) noexcept {
   return Mile(static_cast<Mile::ValueType>(data));

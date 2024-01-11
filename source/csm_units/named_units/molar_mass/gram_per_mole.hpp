@@ -25,7 +25,7 @@ using GramPerMole = Unit<definition::GramPerMole>;
 namespace literals {
 
 constexpr auto gpermol =  // NOLINT(readability-identifier-length)
-    definition::GramPerMole();
+    GramPerMole::def;
 
 constexpr auto operator""_gpermol(long double data) noexcept {
   return GramPerMole(static_cast<GramPerMole::ValueType>(data));

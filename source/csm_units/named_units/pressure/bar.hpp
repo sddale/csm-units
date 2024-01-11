@@ -27,7 +27,7 @@
 // namespace literals {
 
 // constexpr auto bar =  // NOLINT(readability-identifier-length)
-//     definition::Bar();
+//     Bar::def;
 
 // constexpr auto operator""_bar(long double data) noexcept {
 //   return Bar(static_cast<Bar::ValueType>(data));

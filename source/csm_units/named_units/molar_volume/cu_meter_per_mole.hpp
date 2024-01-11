@@ -26,7 +26,7 @@ using CuMeterPerMole = Unit<definition::CuMeterPerMole>;
 namespace literals {
 
 constexpr auto m3permole =  // NOLINT(readability-identifier-length)
-    definition::CuMeterPerMole();
+    CuMeterPerMole::def;
 
 constexpr auto operator""_m3permole(long double data) noexcept {
   return CuMeterPerMole(static_cast<CuMeterPerMole::ValueType>(data));

@@ -11,23 +11,16 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "kilomole.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using SqKilomole =
-    Definition<SqAmount, NoConv, NoConv, NoConv, NoConv, NoConv, std::kilo>;
-
-}
-
-using SqKilomole = Unit<definition::SqKilomole>;
+using SqKilomole = Unit<literals::kmol * literals::kmol>;
 
 namespace literals {
 
 constexpr auto kmol2 =  // NOLINT(readability-identifier-length)
-    definition::SqKilomole();
+    SqKilomole::def;
 
 constexpr auto operator""_kmol2(long double data) noexcept {
   return SqKilomole(static_cast<SqKilomole::ValueType>(data));

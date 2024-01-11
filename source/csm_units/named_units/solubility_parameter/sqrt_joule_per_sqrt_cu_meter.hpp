@@ -26,7 +26,7 @@ using SqrtJoulesPerSqrtCuMeter = Unit<definition::SqrtJoulesPerSqrtCuMeter>;
 namespace literals {
 
 constexpr auto SqrtJperSqrtcm3 =  // NOLINT(readability-identifier-length)
-    definition::SqrtJoulesPerSqrtCuMeter();
+    SqrtJoulesPerSqrtCuMeter::def;
 
 constexpr auto operator""_SqrtJperSqrtcm3(long double data) noexcept {
   return SqrtJoulesPerSqrtCuMeter(

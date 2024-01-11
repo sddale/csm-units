@@ -13,18 +13,12 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Candela = Definition<Luminosity>;
-
-}
-
-using Candela = Unit<definition::Candela>;
+using Candela = Unit<Definition<Luminosity>{}>;
 
 namespace literals {
 
 constexpr auto cd =  // NOLINT(readability-identifier-length)
-    definition::Candela();
+    Candela::def;
 
 constexpr auto operator""_cd(long double data) noexcept {
   return Candela(static_cast<Candela::ValueType>(data));

@@ -24,7 +24,7 @@ using Volt = Unit<definition::Volt>;
 namespace literals {
 
 constexpr auto V =  // NOLINT(readability-identifier-length)
-    definition::Volt();
+    Volt::def;
 
 constexpr auto operator""_V(long double data) noexcept {
   return Volt(static_cast<Volt::ValueTypeeType>(data));

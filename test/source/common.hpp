@@ -9,10 +9,13 @@
 
 namespace csm_units::test {
 
-constexpr void CHECK_UNIT_EQ(IsUnit auto lhs, IsUnit auto rhs) {
+template <class UL, class UR>
+  requires SameDimensionAs<UL, UR>
+constexpr void CHECK_UNIT_EQ(UL lhs, UR rhs) {
   CHECK_EQ(lhs.data, doctest::Approx(rhs.data));
 };
-constexpr void CHECK_UNIT_NEQ(IsUnit auto lhs, IsUnit auto rhs) {
+constexpr void CHECK_UNIT_NEQ(IsUnit auto lhs,
+                              SameDimensionAs<decltype(lhs)> auto rhs) {
   CHECK(lhs.data != doctest::Approx(rhs.data));
 };
 constexpr void CHECK_DBL_EQ(auto lhs, auto rhs) {

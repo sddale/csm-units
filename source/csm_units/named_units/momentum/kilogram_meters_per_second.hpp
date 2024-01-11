@@ -23,7 +23,7 @@ using KilogramMeterPerSecond = Unit<definition::KilogramMeterPerSecond>;
 namespace literals {
 
 constexpr auto kgmpers =  // NOLINT(readability-identifier-length)
-    definition::KilogramMeterPerSecond();
+    KilogramMeterPerSecond::def;
 
 constexpr auto operator""_kgmpers(long double data) noexcept {
   return KilogramMeterPerSecond(

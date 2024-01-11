@@ -10,22 +10,16 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "pound.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using Slug = Definition<Mass, NoConv, std::ratio<10000, 145939>>;
-
-}
-
-using Slug = Unit<definition::Slug>;
+using Slug = Unit<literals::lb * std::ratio<100000, 3217405>()>;
 
 namespace literals {
 
 constexpr auto slug =  // NOLINT(readability-identifier-length)
-    definition::Slug();
+    Slug::def;
 
 constexpr auto operator""_slug(long double data) noexcept {
   return Slug(static_cast<Slug::ValueType>(data));

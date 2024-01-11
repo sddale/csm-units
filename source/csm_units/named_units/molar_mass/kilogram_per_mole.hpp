@@ -26,7 +26,7 @@ using KilogramPerMole = Unit<definition::KilogramPerMole>;
 namespace literals {
 
 constexpr auto kgpermol =  // NOLINT(readability-identifier-length)
-    definition::KilogramPerMole();
+    KilogramPerMole::def;
 
 constexpr auto operator""_kgpermol(long double data) noexcept {
   return KilogramPerMole(static_cast<KilogramPerMole::ValueType>(data));

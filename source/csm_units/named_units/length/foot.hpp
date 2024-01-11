@@ -10,22 +10,16 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "meter.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using Foot = Definition<Length, std::ratio<82021, 25000>>;
-
-}
-
-using Foot = Unit<definition::Foot>;
+using Foot = Unit<literals::m * std::ratio<82021, 25000>{}>;
 
 namespace literals {
 
 constexpr auto ft =  // NOLINT(readability-identifier-length)
-    definition::Foot();
+    Foot::def;
 
 constexpr auto operator""_ft(long double data) noexcept {
   return Foot(static_cast<Foot::ValueType>(data));

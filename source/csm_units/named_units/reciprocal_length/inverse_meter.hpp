@@ -26,7 +26,7 @@ using InverseMeter = Unit<definition::InverseMeter>;
 namespace literals {
 
 constexpr auto invm =  // NOLINT(readability-identifier-length)
-    definition::InverseMeter();
+    InverseMeter::def;
 
 constexpr auto operator""_invm(long double data) noexcept {
   return InverseMeter(static_cast<InverseMeter::ValueType>(data));

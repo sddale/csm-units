@@ -24,7 +24,7 @@ using Coulomb = Unit<definition::Coulomb>;
 namespace literals {
 
 constexpr auto C =  // NOLINT(readability-identifier-length)
-    definition::Coulomb();
+    Coulomb::def;
 
 constexpr auto operator""_C(long double data) noexcept {
   return Coulomb(static_cast<Coulomb::ValueType>(data));

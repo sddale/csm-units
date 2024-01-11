@@ -13,18 +13,12 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Weber = Definition<MagneticFlux>;
-
-}
-
-using Weber = Unit<definition::Weber>;
+using Weber = Unit<Definition<MagneticFlux>{}>;
 
 namespace literals {
 
 constexpr auto Wb =  // NOLINT(readability-identifier-length)
-    definition::Weber();
+    Weber::def;
 
 constexpr auto operator""_Wb(long double data) noexcept {
   return Weber(static_cast<Weber::ValueType>(data));

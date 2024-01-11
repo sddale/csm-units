@@ -24,7 +24,7 @@ using Farad = Unit<definition::Farad>;
 namespace literals {
 
 constexpr auto F =  // NOLINT(readability-identifier-length)
-    definition::Farad();
+    Farad::def;
 
 constexpr auto operator""_F(long double data) noexcept {
   return Farad(static_cast<Farad::ValueType>(data));

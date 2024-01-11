@@ -14,18 +14,12 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using SqMeter = Definition<Area>;
-
-}
-
-using SqMeter = Unit<definition::SqMeter>;
+using SqMeter = Unit<Definition<Area>{}>;
 
 namespace literals {
 
 constexpr auto m2 =  // NOLINT(readability-identifier-length)
-    definition::SqMeter();
+    SqMeter::def;
 
 constexpr auto operator""_m2(long double data) noexcept {
   return SqMeter(static_cast<SqMeter::ValueType>(data));

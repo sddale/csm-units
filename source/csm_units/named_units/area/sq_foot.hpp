@@ -10,22 +10,16 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "../length/foot.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using SqFoot = Definition<Area, std::ratio<21063, 25000>>;
-
-}
-
-using SqFoot = Unit<definition::SqFoot>;
+using SqFoot = Unit<literals::ft * literals::ft>;
 
 namespace literals {
 
 constexpr auto ft2 =  // NOLINT(readability-identifier-length)
-    definition::SqFoot();
+    SqFoot::def;
 
 constexpr auto operator""_ft2(long double data) noexcept {
   return SqFoot(static_cast<SqFoot::ValueType>(data));

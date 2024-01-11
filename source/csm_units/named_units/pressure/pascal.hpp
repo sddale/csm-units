@@ -24,7 +24,7 @@ using Pascal = Unit<definition::Pascal>;
 namespace literals {
 
 constexpr auto Pa =  // NOLINT(readability-identifier-length)
-    definition::Pascal();
+    Pascal::def;
 
 constexpr auto operator""_Pa(long double data) noexcept {
   return Pascal(static_cast<Pascal::ValueType>(data));

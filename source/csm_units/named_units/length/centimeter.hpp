@@ -10,22 +10,16 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "meter.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using Centimeter = Definition<Length, std::centi>;
-
-}
-
-using Centimeter = Unit<definition::Centimeter>;
+using Centimeter = Unit<literals::m / std::centi()>;
 
 namespace literals {
 
 constexpr auto cm =  // NOLINT(readability-identifier-length)
-    definition::Centimeter();
+    Centimeter::def;
 
 constexpr auto operator""_cm(long double data) noexcept {
   return Centimeter(static_cast<Centimeter::ValueType>(data));

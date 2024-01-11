@@ -23,7 +23,7 @@ using CuCentimeterPerMole = Unit<definition::CuCentimeterPerMole>;
 namespace literals {
 
 constexpr auto cm3permole =  // NOLINT(readability-identifier-length)
-    definition::CuCentimeterPerMole();
+    CuCentimeterPerMole::def;
 
 constexpr auto operator""_cm3permole(long double data) noexcept {
   return CuCentimeterPerMole(static_cast<CuCentimeterPerMole::ValueType>(data));

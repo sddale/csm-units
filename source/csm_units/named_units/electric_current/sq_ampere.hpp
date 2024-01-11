@@ -24,7 +24,7 @@ using SqAmpere = Unit<definition::SqAmpere>;
 namespace literals {
 
 constexpr auto A2 =  // NOLINT(readability-identifier-length)
-    definition::SqAmpere();
+    SqAmpere::def;
 
 constexpr auto operator""_A2(long double data) noexcept {
   return SqAmpere(static_cast<SqAmpere::ValueType>(data));

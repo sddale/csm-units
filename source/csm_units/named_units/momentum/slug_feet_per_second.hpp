@@ -24,7 +24,7 @@ using SlugFeetPerSecond = Unit<definition::SlugFeetPerSecond>;
 namespace literals {
 
 constexpr auto slugftpers =  // NOLINT(readability-identifier-length)
-    definition::SlugFeetPerSecond();
+    SlugFeetPerSecond::def;
 
 constexpr auto operator""_slugftpers(long double data) noexcept {
   return SlugFeetPerSecond(static_cast<SlugFeetPerSecond::ValueType>(data));

@@ -23,7 +23,7 @@ using Sievert = Unit<definition::Sievert>;
 namespace literals {
 
 constexpr auto Sv =  // NOLINT(readability-identifier-length)
-    definition::Sievert();
+    Sievert::def;
 
 constexpr auto operator""_Sv(long double data) noexcept {
   return Sievert(static_cast<Sievert::ValueType>(data));

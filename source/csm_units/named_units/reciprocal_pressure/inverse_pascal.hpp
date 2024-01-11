@@ -23,7 +23,7 @@ using InversePascal = Unit<definition::InversePascal>;
 namespace literals {
 
 constexpr auto invPa =  // NOLINT(readability-identifier-length)
-    definition::InversePascal();
+    InversePascal::def;
 
 constexpr auto operator""_invPa(long double data) noexcept {
   return InversePascal(static_cast<InversePascal::ValueType>(data));

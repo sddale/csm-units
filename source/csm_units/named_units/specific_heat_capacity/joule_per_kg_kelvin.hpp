@@ -32,7 +32,7 @@ using JoulePerKilogramKelvin = Unit<definition::JoulePerKilogramKelvin>;
 namespace literals {
 
 constexpr auto JperkgK =  // NOLINT(readability-identifier-length)
-    definition::JoulePerKilogramKelvin();
+    JoulePerKilogramKelvin::def;
 
 constexpr auto operator""_JperkgK(long double data) noexcept {
   return JoulePerKilogramKelvin(

@@ -26,7 +26,7 @@ using JoulesPerCuMeter = Unit<definition::JoulesPerCuMeter>;
 namespace literals {
 
 constexpr auto Jpercm3 =  // NOLINT(readability-identifier-length)
-    definition::JoulesPerCuMeter();
+    JoulesPerCuMeter::def;
 
 constexpr auto operator""_Jpercm3(long double data) noexcept {
   return JoulesPerCuMeter(static_cast<JoulesPerCuMeter::ValueType>(data));

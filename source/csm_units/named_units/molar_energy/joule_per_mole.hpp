@@ -10,22 +10,17 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "../amount_of_substance/mole.hpp"
+#include "../energy/joule.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using JoulePerMole = Definition<MolarEnergy>;
-
-}
-
-using JoulePerMole = Unit<definition::JoulePerMole>;
+using JoulePerMole = Unit<literals::J / literals::mol>;
 
 namespace literals {
 
 constexpr auto Jpermol =  // NOLINT(readability-identifier-length)
-    definition::JoulePerMole();
+    JoulePerMole::def;
 
 constexpr auto operator""_Jpermol(long double data) noexcept {
   return JoulePerMole(static_cast<JoulePerMole::ValueType>(data));

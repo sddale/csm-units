@@ -9,22 +9,16 @@
 
 #include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "kilogram.hpp"
 
 namespace csm_units {
 
-namespace definition {
-
-using Gram = Definition<Mass, NoConv, std::milli>;
-
-}
-
-using Gram = Unit<definition::Gram>;
+using Gram = Unit<literals::kg * std::kilo()>;
 
 namespace literals {
 
 constexpr auto g =  // NOLINT(readability-identifier-length)
-    definition::Gram();
+    Gram::def;
 
 constexpr auto operator""_g(long double data) noexcept {
   return Gram(static_cast<Gram::ValueType>(data));

@@ -14,18 +14,12 @@
 
 namespace csm_units {
 
-namespace definition {
-
-using Becquerel = Definition<Activity>;
-
-}
-
-using Becquerel = Unit<definition::Becquerel>;
+using Becquerel = Unit<Definition<Activity>{}>;
 
 namespace literals {
 
 constexpr auto Bq =  // NOLINT(readability-identifier-length)
-    definition::Becquerel();
+    Becquerel::def;
 
 constexpr auto operator""_Bq(long double data) noexcept {
   return Becquerel(static_cast<Becquerel::ValueType>(data));

@@ -25,7 +25,7 @@ using JoulePerMoleKelvin = Unit<definition::JoulePerMoleKelvin>;
 namespace literals {
 
 constexpr auto JpermolK =  // NOLINT(readability-identifier-length)
-    definition::JoulePerMoleKelvin();
+    JoulePerMoleKelvin::def;
 
 constexpr auto operator""_JpermolK(long double data) noexcept {
   return JoulePerMoleKelvin(static_cast<JoulePerMoleKelvin::ValueType>(data));

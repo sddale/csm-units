@@ -24,7 +24,7 @@ using Ohm = Unit<definition::Ohm>;
 namespace literals {
 
 constexpr auto ohm =  // NOLINT(readability-identifier-length)
-    definition::Ohm();
+    Ohm::def;
 
 constexpr auto operator""_ohm(long double data) noexcept {
   return Ohm(static_cast<Ohm::ValueType>(data));

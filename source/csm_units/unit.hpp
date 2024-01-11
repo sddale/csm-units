@@ -177,7 +177,7 @@ class Unit {
 // definition.hpp
 template <IsDefinition DR>
 constexpr auto operator*(IsArithmetic auto lhs, DR /*rhs*/) noexcept {
-  return Unit<DR::DR(), decltype(lhs)>(lhs);
+  return Unit<DR{}, decltype(lhs)>(lhs);
 }
 
 template <IsUnit U, IsDefinition D>

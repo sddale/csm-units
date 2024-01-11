@@ -24,7 +24,7 @@ using Henry = Unit<definition::Henry>;
 namespace literals {
 
 constexpr auto H =  // NOLINT(readability-identifier-length)
-    definition::Henry();
+    Henry::def;
 
 constexpr auto operator""_H(long double data) noexcept {
   return Henry(static_cast<Henry::ValueTypeeType>(data));
