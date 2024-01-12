@@ -10,9 +10,9 @@
 namespace csm_units::test {
 
 template <class UL, class UR>
-  requires SameDimensionAs<UL, UR>
+requires SameDimensionAs<UL, UR>
 constexpr void CHECK_UNIT_EQ(UL lhs, UR rhs) {
-  CHECK_EQ(lhs.data, doctest::Approx(rhs.data));
+  CHECK_EQ(lhs.data, doctest::Approx(rhs.data).scale(1e-6));
 };
 constexpr void CHECK_UNIT_NEQ(IsUnit auto lhs,
                               SameDimensionAs<decltype(lhs)> auto rhs) {
