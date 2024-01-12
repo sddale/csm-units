@@ -8,18 +8,29 @@ namespace csm_units::test {
 
 // NOLINTBEGIN(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
 TEST_SUITE("Named Units") {
+  using namespace literals;
+
   TEST_CASE("Time") {
-    CHECK_DBL_EQ(Hour(1.).Get(), 1.);
-    CHECK_DBL_NEQ(Hour(1.).Get(), 2.);
+    SUBCASE("Base unit functionality") {
+      CHECK_DBL_EQ(Second(2.).Get(), 2.);
+      CHECK_DBL_EQ(Second(2.).data, 2.);
 
-    CHECK_DBL_EQ(Hour(1.).data, 3600);
-    CHECK_DBL_NEQ(Hour(1.).data, 360);
+      // Literals
+      CHECK_UNIT_EQ(Second(3), 3_s);
+      CHECK_UNIT_EQ(Second(3), 3. * s);
+    }
 
-    CHECK_UNIT_EQ(Hour(1.), Minute(1 * 60.));
-    CHECK_UNIT_NEQ(Hour(1.), Minute(1 * 6.));
+    SUBCASE("Derived unit conversions and literals") {
+      CHECK_UNIT_EQ(3600_s, Minute(60));
+      CHECK_UNIT_EQ(3600_s, 60_min);
+      CHECK_UNIT_EQ(3600_s, 60. * min);
 
-    CHECK_UNIT_EQ(Hour(1.), Second(1 * 60 * 60.));
-    CHECK_UNIT_NEQ(Hour(1.), Second(1 * 60 * 6.));
+      CHECK_UNIT_EQ(3600_s, Hour(1));
+      CHECK_UNIT_EQ(3600_s, 1_hr);
+      CHECK_UNIT_EQ(3600_s, 1. * hr);
+    }
+
+    SUBCASE("Misc conversions") { CHECK_UNIT_EQ(1_hr, 60_min); }
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
