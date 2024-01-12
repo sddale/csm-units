@@ -32,6 +32,8 @@ TEST_SUITE("Named Units") {
       CHECK_UNIT_EQ(1.0_J, BritishThermalUnit(0.000947817));
       CHECK_UNIT_EQ(1.0_J, 0.000947817_BTU);
       CHECK_UNIT_EQ(1.0_J, 0.000947817 * BTU);
+      CHECK_UNIT_EQ(1.0_J, 0.000947817_Btu);
+      CHECK_UNIT_EQ(1.0_J, 0.000947817 * Btu);
     }
 
     SUBCASE("Misc conversions") {
