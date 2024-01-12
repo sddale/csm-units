@@ -17,7 +17,7 @@ TEST_SUITE("Named Units") {
     SUBCASE("Base unit functionality") {
       // Getters
       CHECK_DBL_EQ(Joule(1.).Get(), 1.);
-      CHECK_DBL_NEQ(Joule(1.).Get(), 2.);
+      CHECK_DBL_EQ(Joule(1.).data, 1.);
 
       // Literals
       CHECK_UNIT_EQ(Joule(1.), 1.0_J);
