@@ -17,6 +17,9 @@ add_executable(
   source/named_units/amount.cpp
   source/named_units/mass.cpp
   source/named_units/luminosity.cpp
+  source/named_units/volume.cpp
+  source/named_units/momentum.cpp
+  source/named_units/electric_current.cpp
 )
 target_link_libraries(
   ${PROJECT_NAME}_test PRIVATE doctest::doctest CSMUnits::CSMUnits
