@@ -38,7 +38,7 @@ class Unit {
   constexpr static auto def = definition;
 
   // Build from arithmetic (i.e. double) value
-  constexpr explicit Unit(Data input = Data(0.0)) noexcept
+  constexpr explicit Unit(ValueType input = ValueType(0.0)) noexcept
       : data((input +
               static_cast<ValueType>(OriginType::num) / OriginType::den) *
              DefType::ToSI()){};
