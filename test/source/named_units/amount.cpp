@@ -9,7 +9,7 @@ namespace csm_units::test {
 // NOLINTBEGIN(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
 TEST_SUITE("Named Units") {
   using namespace literals;
-  TEST_CASE("Length") {
+  TEST_CASE("Amount") {
     CHECK_DBL_EQ(Mole(3.).Get(), 3.);
     CHECK_DBL_EQ(Mole(3.).data, 3.);
 
