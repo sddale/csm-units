@@ -21,6 +21,9 @@ add_executable(
   source/named_units/volume.cpp
   source/named_units/momentum.cpp
   source/named_units/electric_current.cpp
+  source/named_units/pressure.cpp
+  source/named_units/solubility_parameter.cpp
+  source/named_units/area.cpp
 )
 target_link_libraries(
   ${PROJECT_NAME}_test PRIVATE doctest::doctest CSMUnits::CSMUnits
