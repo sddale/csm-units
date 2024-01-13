@@ -14,7 +14,7 @@
 
 namespace csm_units {
 
-using Bar = Unit<literals::Pa * std::micro()>;
+using Bar = Unit<literals::Pa * std::ratio<1, 100000>()>;
 
 namespace literals {
 
