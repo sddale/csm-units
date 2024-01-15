@@ -24,6 +24,9 @@ add_executable(
   source/named_units/pressure.cpp
   source/named_units/solubility_parameter.cpp
   source/named_units/area.cpp
+  source/named_units/molar_volume.cpp
+  source/named_units/molar_mass.cpp
+  source/named_units/density.cpp
 )
 target_link_libraries(
   ${PROJECT_NAME}_test PRIVATE doctest::doctest CSMUnits::CSMUnits
