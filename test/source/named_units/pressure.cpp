@@ -42,8 +42,12 @@ TEST_SUITE("Named Units") {
       CHECK_UNIT_EQ(101325_Pa, 1. * atm);
     }
 
-    SUBCASE("Misc conversions") {
+    SUBCASE("Validate derived dimension") {
       CHECK_UNIT_EQ(64_kg / 2_m / 8_s / 2_s, 2_Pa);
+    }
+
+    SUBCASE("Misc conversions") {
+      // If desired
     }
   }
 }

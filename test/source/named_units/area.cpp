@@ -29,7 +29,7 @@ TEST_SUITE("Named Units") {
       CHECK_UNIT_EQ(1_m2, 10.7639 * ft2);
     }
 
-    SUBCASE("Misc conversions") {
+    SUBCASE("Validate derived dimension") {
       CHECK_UNIT_EQ(3_m * 2_m, 6_m2);
       CHECK_UNIT_EQ(3_m * 2_m, 64.5835_ft2);
 
@@ -38,6 +38,10 @@ TEST_SUITE("Named Units") {
 
       CHECK_UNIT_EQ(3_ft * 2_m, 1.8288_m2);
       CHECK_UNIT_EQ(3_m * 2_ft, 19.6850394_ft2);
+    }
+
+    SUBCASE("Misc conversions") {
+      // If desired
     }
   }
 }
