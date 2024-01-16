@@ -3,7 +3,7 @@
  * Meter.
  *
  *   The following wikipedia page can explain <a
- * href="https://en.wikipedia.org/wiki/Kilogram_per_cubic_metre#:~:text=The%20kilogram%20per%20cubic%20metre,by%20volume%20in%20cubic%20metres.">Kilogram
+ * href="https://en.wikipedia.org/wiki/Kilogram_per_cubic_metre">Kilogram
  * Per Cubic Meter</a> if needed.
  */
 
