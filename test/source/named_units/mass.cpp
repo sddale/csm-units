@@ -16,7 +16,7 @@ TEST_SUITE("Named Units") {
       CHECK_DBL_EQ(Kilogram(3.).data, 3.);
 
       CHECK_UNIT_EQ(Kilogram(3.), 3_kg);
-      CHECK_UNIT_EQ(Kilogram(3.), 3 * kg);
+      CHECK_UNIT_EQ(Kilogram(3.), 3. * kg);
     }
 
     SUBCASE("Derived unit conversions and literals") {
