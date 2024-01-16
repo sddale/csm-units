@@ -1,5 +1,5 @@
 /**  \file calorie.hpp
- *   \brief This file is used to define the calorie
+ *   \brief This file is used to define the small calorie
  * from the base dimension for Energy.
  *
  *   The following wikipedia page can explain <a
