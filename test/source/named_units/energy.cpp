@@ -29,11 +29,17 @@ TEST_SUITE("Named Units") {
     }
 
     SUBCASE("Derived unit conversions and literals") {
+      // BTU
       CHECK_UNIT_EQ(1.0_J, BritishThermalUnit(0.000947817));
       CHECK_UNIT_EQ(1.0_J, 0.000947817_BTU);
       CHECK_UNIT_EQ(1.0_J, 0.000947817 * BTU);
       CHECK_UNIT_EQ(1.0_J, 0.000947817_Btu);
       CHECK_UNIT_EQ(1.0_J, 0.000947817 * Btu);
+
+      // Calorie
+      CHECK_UNIT_EQ(4.2_J, Calorie(1.0));
+      CHECK_UNIT_EQ(4.2_J, 1.0_Cal);
+      CHECK_UNIT_EQ(4.2_J, 1.0 * Cal);
     }
 
     SUBCASE("Misc conversions") {
