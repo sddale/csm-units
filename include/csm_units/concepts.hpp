@@ -20,8 +20,8 @@ concept IsArithmetic = std::is_arithmetic_v<T>;
  */
 template <class T>
 concept IsRatio = requires {
-  { T::num } -> std::convertible_to<intmax_t>;
-  { T::den } -> std::convertible_to<intmax_t>;
+  { T::num } -> std::convertible_to<int>;
+  { T::den } -> std::convertible_to<int>;
 };
 
 /**
@@ -30,20 +30,20 @@ concept IsRatio = requires {
  */
 template <class T>
 concept IsDimension = requires {
-  { T::L::num } -> std::convertible_to<intmax_t>;
-  { T::L::den } -> std::convertible_to<intmax_t>;
-  { T::M::num } -> std::convertible_to<intmax_t>;
-  { T::M::den } -> std::convertible_to<intmax_t>;
-  { T::T::num } -> std::convertible_to<intmax_t>;
-  { T::T::den } -> std::convertible_to<intmax_t>;
-  { T::C::num } -> std::convertible_to<intmax_t>;
-  { T::C::den } -> std::convertible_to<intmax_t>;
-  { T::TP::num } -> std::convertible_to<intmax_t>;
-  { T::TP::den } -> std::convertible_to<intmax_t>;
-  { T::A::num } -> std::convertible_to<intmax_t>;
-  { T::A::den } -> std::convertible_to<intmax_t>;
-  { T::LM::num } -> std::convertible_to<intmax_t>;
-  { T::LM::den } -> std::convertible_to<intmax_t>;
+  { T::L::num } -> std::convertible_to<int>;
+  { T::L::den } -> std::convertible_to<int>;
+  { T::M::num } -> std::convertible_to<int>;
+  { T::M::den } -> std::convertible_to<int>;
+  { T::T::num } -> std::convertible_to<int>;
+  { T::T::den } -> std::convertible_to<int>;
+  { T::C::num } -> std::convertible_to<int>;
+  { T::C::den } -> std::convertible_to<int>;
+  { T::TP::num } -> std::convertible_to<int>;
+  { T::TP::den } -> std::convertible_to<int>;
+  { T::A::num } -> std::convertible_to<int>;
+  { T::A::den } -> std::convertible_to<int>;
+  { T::LM::num } -> std::convertible_to<int>;
+  { T::LM::den } -> std::convertible_to<int>;
 };
 
 /**
