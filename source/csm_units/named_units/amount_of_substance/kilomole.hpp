@@ -3,38 +3,31 @@
  * dimension for Amount of a Substance.
  *
  *   The following wikipedia page can explain <a
- * href="https://en.wikipedia.org/wiki/Mole_(unit)">Mole</a> if needed.
+ * href="https://en.wikipedia.org/wiki/Mole_(unit)">Mole</a> if needed. Kilomole
+ * having a close description to this.
  */
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "mole.hpp"
 
 namespace csm_units {
 
-using Kilomole = Unit<Amount, "kmol">;
-
-// Base Mole -> Kilomole unit
-template <>
-[[nodiscard]] constexpr auto UnitCast(Amount &&input) noexcept -> Kilomole {
-  return Kilomole(input.data / 1000);
-}
-
-// unit kmol -> Base Mol
-template <>
-[[nodiscard]] constexpr auto UnitCast(Kilomole &&input) noexcept -> Amount {
-  return Amount(input.data * 1000);
-}
+using Kilomole = Unit<literals::mol / std::kilo()>;
 
 namespace literals {
 
+constexpr auto kmol =  // NOLINT(readability-identifier-length)
+    Kilomole::def;
+
 constexpr auto operator""_kmol(long double data) noexcept {
-  return Kilomole(static_cast<double>(data));
+  return Kilomole(static_cast<Kilomole::ValueType>(data));
 }
 
 constexpr auto operator""_kmol(unsigned long long data) noexcept {
-  return Kilomole(static_cast<double>(data));
+  return Kilomole(static_cast<Kilomole::ValueType>(data));
 }
 
 }  // namespace literals

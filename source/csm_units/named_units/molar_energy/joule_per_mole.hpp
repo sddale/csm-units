@@ -8,23 +8,28 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "../amount_of_substance/mole.hpp"
+#include "../energy/joule.hpp"
 
 namespace csm_units {
 
-using JoulePerMole = Unit<MolarEnergy, "J/mol">;
+using JoulePerMole = Unit<literals::J / literals::mol>;
 
-// Unit Cast for Base Joule
-template <>
-[[nodiscard]] constexpr auto UnitCast(MolarEnergy &&input) noexcept
-    -> JoulePerMole {
-  return JoulePerMole(input.data);
+namespace literals {
+
+constexpr auto Jpermol =  // NOLINT(readability-identifier-length)
+    JoulePerMole::def;
+
+constexpr auto operator""_Jpermol(long double data) noexcept {
+  return JoulePerMole(static_cast<JoulePerMole::ValueType>(data));
 }
-template <>
-[[nodiscard]] constexpr auto UnitCast(JoulePerMole &&input) noexcept
-    -> MolarEnergy {
-  return MolarEnergy(input.data);
+
+constexpr auto operator""_Jpermol(unsigned long long data) noexcept {
+  return JoulePerMole(static_cast<JoulePerMole::ValueType>(data));
 }
+
+}  // namespace literals
 
 }  // namespace csm_units

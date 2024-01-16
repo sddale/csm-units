@@ -6,33 +6,27 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using KilogramMeterPerSecond = Unit<Momentum, "kgm/s">;
-
-template <>
-[[nodiscard]] constexpr auto UnitCast(Momentum &&input) noexcept
-    -> KilogramMeterPerSecond {
-  return KilogramMeterPerSecond(input.data);
-}
-
-template <>
-[[nodiscard]] constexpr auto UnitCast(KilogramMeterPerSecond &&input) noexcept
-    -> Momentum {
-  return Momentum(input.data);
-}
+using KilogramMeterPerSecond = Unit<Definition<Momentum>{}>;
 
 namespace literals {
 
-constexpr auto operator""_kgmps(long double data) noexcept {
-  return KilogramMeterPerSecond(static_cast<double>(data));
+constexpr auto kgmpers =  // NOLINT(readability-identifier-length)
+    KilogramMeterPerSecond::def;
+
+constexpr auto operator""_kgmpers(long double data) noexcept {
+  return KilogramMeterPerSecond(
+      static_cast<KilogramMeterPerSecond::ValueType>(data));
 }
 
-constexpr auto operator""_kgmps(unsigned long long data) noexcept {
-  return KilogramMeterPerSecond(static_cast<double>(data));
+constexpr auto operator""_kgmpers(unsigned long long data) noexcept {
+  return KilogramMeterPerSecond(
+      static_cast<KilogramMeterPerSecond::ValueType>(data));
 }
 
 }  // namespace literals

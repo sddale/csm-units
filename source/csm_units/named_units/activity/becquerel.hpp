@@ -8,33 +8,25 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Becquerel = Unit<Activity, "Bq">;
-
-// Unit Cast for Base becquerel
-template <>
-[[nodiscard]] constexpr auto UnitCast(Activity &&input) noexcept -> Becquerel {
-  return Becquerel(input.data);
-}
-
-// Unit Cast for Unit becquerel
-template <>
-[[nodiscard]] constexpr auto UnitCast(Becquerel &&input) noexcept -> Activity {
-  return Activity(input.data);
-}
+using Becquerel = Unit<Definition<Activity>{}>;
 
 namespace literals {
 
+constexpr auto Bq =  // NOLINT(readability-identifier-length)
+    Becquerel::def;
+
 constexpr auto operator""_Bq(long double data) noexcept {
-  return Becquerel(static_cast<double>(data));
+  return Becquerel(static_cast<Becquerel::ValueType>(data));
 }
 
 constexpr auto operator""_Bq(unsigned long long data) noexcept {
-  return Becquerel(static_cast<double>(data));
+  return Becquerel(static_cast<Becquerel::ValueType>(data));
 }
 
 }  // namespace literals

@@ -8,35 +8,25 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "meter.hpp"
 
 namespace csm_units {
 
-using Centimeter = Unit<Length, "cm">;
-
-// Unit cast for Base m to Unit cm
-// Conversion Equation: 1 m = 100 cm
-template <>
-[[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> Centimeter {
-  return Centimeter(input.data * 100);
-}
-
-// Unit Cast for Unit cm to Base m
-// Conversion Equation: 1 m = 100 cm
-template <>
-[[nodiscard]] constexpr auto UnitCast(Centimeter &&input) noexcept -> Length {
-  return Length(input.data / 100);
-}
+using Centimeter = Unit<literals::m / std::centi()>;
 
 namespace literals {
 
+constexpr auto cm =  // NOLINT(readability-identifier-length)
+    Centimeter::def;
+
 constexpr auto operator""_cm(long double data) noexcept {
-  return Centimeter(static_cast<double>(data));
+  return Centimeter(static_cast<Centimeter::ValueType>(data));
 }
 
 constexpr auto operator""_cm(unsigned long long data) noexcept {
-  return Centimeter(static_cast<double>(data));
+  return Centimeter(static_cast<Centimeter::ValueType>(data));
 }
 
 }  // namespace literals

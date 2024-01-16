@@ -7,35 +7,25 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Katal = Unit<CatalyticActivity, "kat">;
-
-// Unit Cast for Base katal
-template <>
-[[nodiscard]] constexpr auto UnitCast(CatalyticActivity &&input) noexcept
-    -> Katal {
-  return Katal(input.data);
-}
-
-// Unit Cast for Unit katal
-template <>
-[[nodiscard]] constexpr auto UnitCast(Katal &&input) noexcept
-    -> CatalyticActivity {
-  return CatalyticActivity(input.data);
-}
+using Katal = Unit<Definition<CatalyticActivity>{}>;
 
 namespace literals {
 
+constexpr auto kat =  // NOLINT(readability-identifier-length)
+    Katal::def;
+
 constexpr auto operator""_kat(long double data) noexcept {
-  return Katal(static_cast<double>(data));
+  return Katal(static_cast<Katal::ValueType>(data));
 }
 
 constexpr auto operator""_kat(unsigned long long data) noexcept {
-  return Katal(static_cast<double>(data));
+  return Katal(static_cast<Katal::ValueType>(data));
 }
 
 }  // namespace literals

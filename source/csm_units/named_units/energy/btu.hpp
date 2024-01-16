@@ -8,39 +8,37 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "joule.hpp"
 
 namespace csm_units {
 
-using BritishThermalUnit = Unit<Energy, "Btu">;
-
-// Unit Cast for Base Joules to Btu
-// Conversion Equation: 1 Btu = 1055.06 Joules (according to International Table
-// standards)
-template <>
-[[nodiscard]] constexpr auto UnitCast(Energy &&input) noexcept
-    -> BritishThermalUnit {
-  return BritishThermalUnit(input.data / 1055.06);
-}
-
-// Unit Cast for Btu to Base Joules
-// Conversion Equation: 1 Btu = 1055.06 Joules (according to International Table
-// standards)
-template <>
-[[nodiscard]] constexpr auto UnitCast(BritishThermalUnit &&input) noexcept
-    -> Energy {
-  return Energy(input.data * 1055.06);
-}
+using BritishThermalUnit =
+    Unit<literals::J * std::ratio<50000000, 52752792631>()>;
 
 namespace literals {
 
+constexpr auto BTU =  // NOLINT(readability-identifier-length)
+    BritishThermalUnit::def;
+
+constexpr auto Btu =  // NOLINT(readability-identifier-length)
+    BritishThermalUnit::def;
+
+constexpr auto operator""_BTU(long double data) noexcept {
+  return BritishThermalUnit(static_cast<BritishThermalUnit::ValueType>(data));
+}
+
+constexpr auto operator""_BTU(unsigned long long data) noexcept {
+  return BritishThermalUnit(static_cast<BritishThermalUnit::ValueType>(data));
+}
+
 constexpr auto operator""_Btu(long double data) noexcept {
-  return BritishThermalUnit(static_cast<double>(data));
+  return BritishThermalUnit(static_cast<BritishThermalUnit::ValueType>(data));
 }
 
 constexpr auto operator""_Btu(unsigned long long data) noexcept {
-  return BritishThermalUnit(static_cast<double>(data));
+  return BritishThermalUnit(static_cast<BritishThermalUnit::ValueType>(data));
 }
 
 }  // namespace literals

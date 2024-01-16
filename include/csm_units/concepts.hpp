@@ -4,10 +4,7 @@
  */
 
 #pragma once
-
-#include <concepts>
-#include <cstdint>
-#include <ratio>
+#include <concepts>  // IWYU pragma: keep (incorrect warning)
 #include <type_traits>
 
 namespace csm_units {
@@ -16,55 +13,70 @@ namespace csm_units {
  * \brief This concept enforces arithmetics.
  */
 template <class T>
-concept Arithmetic = std::is_arithmetic_v<T>;
-
-/**
- * \brief This concept enforces the any unitbase exponents to be in the form
- * stated.
- */
-template <class T>
-concept ExpType = requires(T) {
-  { T::L::num } -> std::convertible_to<intmax_t>;
-  { T::L::den } -> std::convertible_to<intmax_t>;
-  { T::M::num } -> std::convertible_to<intmax_t>;
-  { T::M::den } -> std::convertible_to<intmax_t>;
-  { T::T::num } -> std::convertible_to<intmax_t>;
-  { T::T::den } -> std::convertible_to<intmax_t>;
-  { T::C::num } -> std::convertible_to<intmax_t>;
-  { T::C::den } -> std::convertible_to<intmax_t>;
-  { T::TP::num } -> std::convertible_to<intmax_t>;
-  { T::TP::den } -> std::convertible_to<intmax_t>;
-  { T::A::num } -> std::convertible_to<intmax_t>;
-  { T::A::den } -> std::convertible_to<intmax_t>;
-  { T::LM::num } -> std::convertible_to<intmax_t>;
-  { T::LM::den } -> std::convertible_to<intmax_t>;
-};
+concept IsArithmetic = std::is_arithmetic_v<T>;
 
 /**
  * \brief This concept enforces that a class is a ratio.
  */
 template <class T>
-concept RatioType = requires(T) {
-  { T::num } -> std::convertible_to<intmax_t>;
-  { T::den } -> std::convertible_to<intmax_t>;
+concept IsRatio = requires {
+  { T::num } -> std::convertible_to<int>;
+  { T::den } -> std::convertible_to<int>;
 };
 
 /**
- * \brief This concept enforces the structure of a base unit.
+ * \brief This concept enforces the form of unit dimensions.
+ * stated.
  */
 template <class T>
-concept UnitBaseType = requires(T unitbase) {
-  { unitbase.data } -> std::convertible_to<double>;
-  { unitbase.Flip() };
+concept IsDimension = requires {
+  { T::L::num } -> std::convertible_to<int>;
+  { T::L::den } -> std::convertible_to<int>;
+  { T::M::num } -> std::convertible_to<int>;
+  { T::M::den } -> std::convertible_to<int>;
+  { T::T::num } -> std::convertible_to<int>;
+  { T::T::den } -> std::convertible_to<int>;
+  { T::C::num } -> std::convertible_to<int>;
+  { T::C::den } -> std::convertible_to<int>;
+  { T::TP::num } -> std::convertible_to<int>;
+  { T::TP::den } -> std::convertible_to<int>;
+  { T::A::num } -> std::convertible_to<int>;
+  { T::A::den } -> std::convertible_to<int>;
+  { T::LM::num } -> std::convertible_to<int>;
+  { T::LM::den } -> std::convertible_to<int>;
+};
+
+/**
+ * \brief This concept enforces the form of unit definitions.
+ */
+template <class D>
+concept IsDefinition = requires {
+  { typename std::remove_reference_t<D>::DimenType() } -> IsDimension;
+  { typename std::remove_reference_t<D>::ConvType() } -> IsRatio;
+  { typename std::remove_reference_t<D>::OriginType() } -> IsRatio;
 };
 
 /**
  * \brief This concept enforces the structure of a unit.
  */
 template <class T>
-concept UnitType = requires(T unit) {
+concept IsUnit = requires(T unit) {
   { unit.data } -> std::convertible_to<double>;
-  { typename T::SI() };
+  { unit.Get() } -> std::convertible_to<double>;
+  { typename std::remove_reference_t<T>::ValueType() } -> IsArithmetic;
+  { typename std::remove_reference_t<T>::DefType() } -> IsDefinition;
+};
+
+/**
+ * \brief This concept enforces matching dimensions between two Units
+ */
+template <class T, class U>
+concept SameDimensionAs = requires(T lhs, U rhs) {
+  { lhs } -> IsUnit;
+  { rhs } -> IsUnit;
+  {
+    typename std::remove_reference_t<T>::DimenType()
+  } -> std::same_as<typename std::remove_reference_t<U>::DimenType>;
 };
 
 }  // namespace csm_units

@@ -6,33 +6,27 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "../length/foot.hpp"
+#include "../mass/slug.hpp"
+#include "../time/second.hpp"
 
 namespace csm_units {
 
-using SlugFeetPerSecond = Unit<Momentum, "slugft/s">;
-
-template <>
-[[nodiscard]] constexpr auto UnitCast(Momentum &&input) noexcept
-    -> SlugFeetPerSecond {
-  return SlugFeetPerSecond(input.data / 4.44822162);
-}
-
-template <>
-[[nodiscard]] constexpr auto UnitCast(SlugFeetPerSecond &&input) noexcept
-    -> Momentum {
-  return Momentum(input.data * 4.44822162);
-}
+using SlugFeetPerSecond = Unit<literals::slug * literals::ft / literals::s>;
 
 namespace literals {
 
-constexpr auto operator""_slugftps(long double data) noexcept {
-  return SlugFeetPerSecond(static_cast<double>(data));
+constexpr auto slugftpers =  // NOLINT(readability-identifier-length)
+    SlugFeetPerSecond::def;
+
+constexpr auto operator""_slugftpers(long double data) noexcept {
+  return SlugFeetPerSecond(static_cast<SlugFeetPerSecond::ValueType>(data));
 }
 
-constexpr auto operator""_slugftps(unsigned long long data) noexcept {
-  return SlugFeetPerSecond(static_cast<double>(data));
+constexpr auto operator""_slugftpers(unsigned long long data) noexcept {
+  return SlugFeetPerSecond(static_cast<SlugFeetPerSecond::ValueType>(data));
 }
 
 }  // namespace literals

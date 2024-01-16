@@ -8,33 +8,25 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "cu_meter.hpp"
 
 namespace csm_units {
 
-using Liter = Unit<Volume, "L">;
-
-// Unit Cast for base
-template <>
-[[nodiscard]] constexpr auto UnitCast(Volume &&input) noexcept -> Liter {
-  return Liter(input.data * 1000);
-}
-
-// Unit Cast for Unit Liter
-template <>
-[[nodiscard]] constexpr auto UnitCast(Liter &&input) noexcept -> Volume {
-  return Volume(input.data / 1000);
-}
+using Liter = Unit<literals::m3 * std::kilo()>;
 
 namespace literals {
 
+constexpr auto L =  // NOLINT(readability-identifier-length)
+    Liter::def;
+
 constexpr auto operator""_L(long double data) noexcept {
-  return Liter(static_cast<double>(data));
+  return Liter(static_cast<Liter::ValueType>(data));
 }
 
 constexpr auto operator""_L(unsigned long long data) noexcept {
-  return Liter(static_cast<double>(data));
+  return Liter(static_cast<Liter::ValueType>(data));
 }
 
 }  // namespace literals

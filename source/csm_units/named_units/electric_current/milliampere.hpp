@@ -6,38 +6,27 @@
  * href="https://en.wikipedia.org/?title=Milliampere&redirect=no">Milliampere</a>
  * if needed.
  */
-
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "ampere.hpp"
 
 namespace csm_units {
 
-using Milliampere = Unit<ElectrCurrent, "mA">;
-
-// base A -> Unit mA
-template <>
-[[nodiscard]] constexpr auto UnitCast(ElectrCurrent &&input) noexcept
-    -> Milliampere {
-  return Milliampere(input.data * 1000);
-}
-
-// Unit mA -> Base A
-template <>
-[[nodiscard]] constexpr auto UnitCast(Milliampere &&input) noexcept
-    -> ElectrCurrent {
-  return ElectrCurrent(input.data / 1000);
-}
+using Milliampere = Unit<literals::A / std::milli()>;
 
 namespace literals {
 
+constexpr auto mA =  // NOLINT(readability-identifier-length)
+    Milliampere::def;
+
 constexpr auto operator""_mA(long double data) noexcept {
-  return Milliampere(static_cast<double>(data));
+  return Milliampere(static_cast<Milliampere::ValueType>(data));
 }
 
 constexpr auto operator""_mA(unsigned long long data) noexcept {
-  return Milliampere(static_cast<double>(data));
+  return Milliampere(static_cast<Milliampere::ValueType>(data));
 }
 
 }  // namespace literals

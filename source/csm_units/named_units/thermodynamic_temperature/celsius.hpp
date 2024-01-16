@@ -9,32 +9,23 @@
 #pragma once
 
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "kelvin.hpp"
 
 namespace csm_units {
 
-using Celsius = Unit<Temperature, "degC">;
-
-// Base K -> Unit C
-template <>
-[[nodiscard]] constexpr auto UnitCast(Temperature &&input) noexcept -> Celsius {
-  return Celsius(input.data - 273.15);
-}
-
-// Unit C -> Base K
-template <>
-[[nodiscard]] constexpr auto UnitCast(Celsius &&input) noexcept -> Temperature {
-  return Temperature(input.data + 273.15);
-}
+using Celsius = Unit<literals::K + std::ratio<5463, 20>()>;
 
 namespace literals {
 
+constexpr auto degC =  // NOLINT(readability-identifier-length)
+    Celsius::def;
+
 constexpr auto operator""_degC(long double data) noexcept {
-  return Celsius(static_cast<double>(data));
+  return Celsius(static_cast<Celsius::ValueType>(data));
 }
 
 constexpr auto operator""_degC(unsigned long long data) noexcept {
-  return Celsius(static_cast<double>(data));
+  return Celsius(static_cast<Celsius::ValueType>(data));
 }
 
 }  // namespace literals

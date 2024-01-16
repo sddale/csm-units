@@ -7,35 +7,25 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Pascal = Unit<Pressure, "Pa">;
-
-// Unit Cast for Base Pascals to Unit Pascals
-// Conversion Equation: Pascals = Pascals
-template <>
-[[nodiscard]] constexpr auto UnitCast(Pressure &&input) noexcept -> Pascal {
-  return Pascal(input.data);
-}
-
-// Unit Cast for Unit Pascals to Base Pascals
-// Conversion Equation: Pascals = Pascals
-template <>
-[[nodiscard]] constexpr auto UnitCast(Pascal &&input) noexcept -> Pressure {
-  return Pressure(input.data);
-}
+using Pascal = Unit<Definition<Pressure>{}>;
 
 namespace literals {
 
+constexpr auto Pa =  // NOLINT(readability-identifier-length)
+    Pascal::def;
+
 constexpr auto operator""_Pa(long double data) noexcept {
-  return Pascal(static_cast<double>(data));
+  return Pascal(static_cast<Pascal::ValueType>(data));
 }
 
 constexpr auto operator""_Pa(unsigned long long data) noexcept {
-  return Pascal(static_cast<double>(data));
+  return Pascal(static_cast<Pascal::ValueType>(data));
 }
 
 }  // namespace literals

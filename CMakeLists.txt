@@ -19,8 +19,7 @@ endif()
 # See https://github.com/TheLartians/CPM.cmake for more info
 include(cmake/CPM.cmake)
 CPMAddPackage("gh:TheLartians/Format.cmake@1.7.3")
-CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0") # To make target
-                                                           # installable
+CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0")
 
 # # Define project options option(CSMUNITS_BUILD_TESTS "Set to ON to build
 # tests" OFF) set(BUILD_TESTING OFF) set(DOCTEST_CONFIG_DISABLE OFF)

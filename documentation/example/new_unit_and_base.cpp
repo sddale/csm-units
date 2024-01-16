@@ -1,7 +1,7 @@
 #include <csm_units/units.hpp>
 
 using base_alias = UnitBase<
-    Exponents<Length_Numerator, Mass_Numerator, Time_Numerator,
+    Dimension<Length_Numerator, Mass_Numerator, Time_Numerator,
               Current_Numerator, Thermodynamic_Temperature_Numerator,
               Amount_Of_A_Substance_Numerator, Luminous_Intensity_Numerator,
               Length_Denominator, Mass_Denominator, Time_Denominator,

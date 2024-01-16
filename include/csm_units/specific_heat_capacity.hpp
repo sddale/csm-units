@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "source/csm_units/named_units/specific_heat_capacity/dimension.hpp"
-#include "source/csm_units/named_units/specific_heat_capacity/joules_per_kg_kelvin.hpp"
+#include <source/csm_units/named_units/specific_heat_capacity/dimension.hpp>
+#include <source/csm_units/named_units/specific_heat_capacity/joule_per_kg_kelvin.hpp>
 
 namespace csm_units {}  // namespace csm_units

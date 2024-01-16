@@ -8,11 +8,10 @@
 
 #pragma once
 
-#include "../../exponents.hpp"
-#include "../../unitbase.hpp"
+#include <source/csm_units/dimension.hpp>
 
 namespace csm_units {
 
-using Accel = UnitBase<Exponents<1, 0, -2, 0, 0, 0, 0>>;
+using Acceleration = DimensionInt<1, 0, -2>;
 
 }  // namespace csm_units

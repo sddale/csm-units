@@ -8,33 +8,25 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "second.hpp"
 
 namespace csm_units {
 
-using Minute = Unit<Time, "min">;
-
-// Unit Cast for Unit min to Base s
-template <>
-[[nodiscard]] constexpr auto UnitCast(Minute &&input) noexcept -> Time {
-  return Time(input.data * 60);
-}
-
-// Unit Cast for Base s to Unit min
-template <>
-[[nodiscard]] constexpr auto UnitCast(Time &&input) noexcept -> Minute {
-  return Minute(input.data / 60);
-}
+using Minute = Unit<literals::s * std::ratio<1, 60>()>;
 
 namespace literals {
 
+constexpr auto min =  // NOLINT(readability-identifier-length)
+    Minute::def;
+
 constexpr auto operator""_min(long double data) noexcept {
-  return Minute(static_cast<double>(data));
+  return Minute(static_cast<Minute::ValueType>(data));
 }
 
 constexpr auto operator""_min(unsigned long long data) noexcept {
-  return Minute(static_cast<double>(data));
+  return Minute(static_cast<Minute::ValueType>(data));
 }
 
 }  // namespace literals

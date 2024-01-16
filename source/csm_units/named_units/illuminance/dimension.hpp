@@ -9,11 +9,10 @@
 
 #pragma once
 
-#include "../../exponents.hpp"
-#include "../../unitbase.hpp"
+#include <source/csm_units/dimension.hpp>
 
 namespace csm_units {
 
-using Illuminance = UnitBase<Exponents<-2, 0, 0, 0, 0, 0, 1>>;
+using Illuminance = DimensionInt<-2, 0, 0, 0, 0, 0, 1>;
 
 }  // namespace csm_units

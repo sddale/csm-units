@@ -9,11 +9,10 @@
 
 #pragma once
 
-#include "../../exponents.hpp"
-#include "../../unitbase.hpp"
+#include <source/csm_units/dimension.hpp>
 
 namespace csm_units {
 
-using MolarEnergy = UnitBase<Exponents<2, 1, -2, 0, 0, -1, 0>>;
+using MolarEnergy = DimensionInt<2, 1, -2, 0, 0, -1>;
 
 }  // namespace csm_units

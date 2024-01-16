@@ -7,31 +7,25 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Ohm = Unit<Resistance, "ohm">;
-
-// Unit Cast for Base Ohm
-template <>
-[[nodiscard]] constexpr auto UnitCast(Resistance &&input) noexcept -> Ohm {
-  return Ohm(input.data);
-}
-template <>
-[[nodiscard]] constexpr auto UnitCast(Ohm &&input) noexcept -> Resistance {
-  return Resistance(input.data);
-}
+using Ohm = Unit<Definition<Resistance>{}>;
 
 namespace literals {
 
+constexpr auto ohm =  // NOLINT(readability-identifier-length)
+    Ohm::def;
+
 constexpr auto operator""_ohm(long double data) noexcept {
-  return Ohm(static_cast<double>(data));
+  return Ohm(static_cast<Ohm::ValueType>(data));
 }
 
 constexpr auto operator""_ohm(unsigned long long data) noexcept {
-  return Ohm(static_cast<double>(data));
+  return Ohm(static_cast<Ohm::ValueType>(data));
 }
 
 }  // namespace literals

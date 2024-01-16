@@ -8,35 +8,25 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "meter.hpp"
 
 namespace csm_units {
 
-using Foot = Unit<Length, "ft">;
-
-// Unit Cast for Base m to Unit ft
-// Conversion Equation: 1 m = 3.28084 ft
-template <>
-[[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> Foot {
-  return Foot(input.data * 3.28084);
-}
-
-// Unit Cast for Unit ft to Base m
-// Conversion Equation: 1 m = 3.28084 ft
-template <>
-[[nodiscard]] constexpr auto UnitCast(Foot &&input) noexcept -> Length {
-  return Length(input.data / 3.28084);
-}
+using Foot = Unit<literals::m * std::ratio<82021, 25000>{}>;
 
 namespace literals {
 
+constexpr auto ft =  // NOLINT(readability-identifier-length)
+    Foot::def;
+
 constexpr auto operator""_ft(long double data) noexcept {
-  return Foot(static_cast<double>(data));
+  return Foot(static_cast<Foot::ValueType>(data));
 }
 
 constexpr auto operator""_ft(unsigned long long data) noexcept {
-  return Foot(static_cast<double>(data));
+  return Foot(static_cast<Foot::ValueType>(data));
 }
 
 }  // namespace literals

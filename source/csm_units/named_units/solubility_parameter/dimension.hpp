@@ -9,13 +9,12 @@
 
 #pragma once
 
-#include "../../exponents.hpp"
-#include "../../unitbase.hpp"
+#include <source/csm_units/dimension.hpp>
 
 namespace csm_units {
 
 using SolubilityParameter =
-    UnitBase<Exponents<-1, 1, -1, 0, 0, 0, 0, 2, 2, 1, 1, 1, 1, 1>>;
-using SqrSolubilityParameter = UnitBase<Exponents<-1, 1, -2, 0, 0, 0, 0>>;
+    Dimension<std::ratio<-1, 2>, std::ratio<1, 2>, std::ratio<-1>>;
+using SqSolubilityParameter = DimensionInt<-1, 1, -2>;
 
 }  // namespace csm_units

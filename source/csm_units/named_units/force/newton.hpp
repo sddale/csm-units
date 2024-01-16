@@ -7,31 +7,27 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "../length/meter.hpp"
+#include "../mass/kilogram.hpp"
+#include "../time/second.hpp"
 
 namespace csm_units {
 
-using Newton = Unit<Force, "N">;
-
-// Unit Cast for Base Newton
-template <>
-[[nodiscard]] constexpr auto UnitCast(Force &&input) noexcept -> Newton {
-  return Newton(input.data);
-}
-template <>
-[[nodiscard]] constexpr auto UnitCast(Newton &&input) noexcept -> Force {
-  return Force(input.data);
-}
+using Newton = Unit<literals::kg * literals::m / (literals::s * literals::s)>;
 
 namespace literals {
 
+constexpr auto N =  // NOLINT(readability-identifier-length)
+    Newton::def;
+
 constexpr auto operator""_N(long double data) noexcept {
-  return Newton(static_cast<double>(data));
+  return Newton(static_cast<Newton::ValueType>(data));
 }
 
 constexpr auto operator""_N(unsigned long long data) noexcept {
-  return Newton(static_cast<double>(data));
+  return Newton(static_cast<Newton::ValueType>(data));
 }
 
 }  // namespace literals

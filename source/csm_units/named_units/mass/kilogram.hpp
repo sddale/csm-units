@@ -7,36 +7,25 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Kilogram = Unit<Mass, "kg">;
-
-// Unit Cast for Base g to Unit kg
-// Conversion Equation: 1000 g = 1 kg
-template <>
-[[nodiscard]] constexpr auto UnitCast(Mass &&input) noexcept -> Kilogram {
-  return Kilogram(input.data);
-}
-
-// Unit Cast for Unit kg to Base g
-// Conversion Equation: 1000 g = 1 kg
-template <>
-[[nodiscard]] constexpr auto UnitCast(Kilogram &&input) noexcept -> Mass {
-  return Mass(input.data);
-}
+using Kilogram = Unit<Definition<Mass>{}>;
 
 namespace literals {
 
-// mass - kilogram
+constexpr auto kg =  // NOLINT(readability-identifier-length)
+    Kilogram::def;
+
 constexpr auto operator""_kg(long double data) noexcept {
-  return Kilogram(static_cast<double>(data));
+  return Kilogram(static_cast<Kilogram::ValueType>(data));
 }
 
 constexpr auto operator""_kg(unsigned long long data) noexcept {
-  return Kilogram(static_cast<double>(data));
+  return Kilogram(static_cast<Kilogram::ValueType>(data));
 }
 
 }  // namespace literals

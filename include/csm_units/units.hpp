@@ -34,7 +34,7 @@
 #include <csm_units/molar_mass.hpp>
 #include <csm_units/molar_volume.hpp>
 #include <csm_units/momentum.hpp>
-#include <csm_units/potential.hpp>
+#include <csm_units/potential_electromotive_force.hpp>
 #include <csm_units/power.hpp>
 #include <csm_units/pressure.hpp>
 #include <csm_units/resistance.hpp>
@@ -44,10 +44,8 @@
 #include <csm_units/time.hpp>
 #include <csm_units/velocity.hpp>
 #include <csm_units/volume.hpp>
-
-#include "source/csm_units/exponents.hpp"
-#include "source/csm_units/literal/literal.hpp"
-#include "source/csm_units/unit.hpp"
-#include "source/csm_units/unitbase.hpp"
+#include <source/csm_units/definition.hpp>
+#include <source/csm_units/dimension.hpp>
+#include <source/csm_units/unit.hpp>
 
 namespace csm_units {}  // namespace csm_units

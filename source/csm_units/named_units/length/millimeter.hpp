@@ -8,35 +8,25 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "meter.hpp"
 
 namespace csm_units {
 
-using Millimeter = Unit<Length, "mm">;
-
-// Unit cast for Base m to Unit mm
-// Conversion Equation: 1 m = 1000 mm
-template <>
-[[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> Millimeter {
-  return Millimeter(input.data * 1000);
-}
-
-// Unit Cast for Unit mm to Base m
-// Conversion Equation: 1 m = 1000 mm
-template <>
-[[nodiscard]] constexpr auto UnitCast(Millimeter &&input) noexcept -> Length {
-  return Length(input.data / 1000);
-}
+using Millimeter = Unit<literals::m / std::milli()>;
 
 namespace literals {
 
+constexpr auto mm =  // NOLINT(readability-identifier-length)
+    Millimeter::def;
+
 constexpr auto operator""_mm(long double data) noexcept {
-  return Millimeter(static_cast<double>(data));
+  return Millimeter(static_cast<Millimeter::ValueType>(data));
 }
 
 constexpr auto operator""_mm(unsigned long long data) noexcept {
-  return Millimeter(static_cast<double>(data));
+  return Millimeter(static_cast<Millimeter::ValueType>(data));
 }
 
 }  // namespace literals

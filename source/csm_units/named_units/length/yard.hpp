@@ -8,35 +8,25 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
-#include "dimension.hpp"
+#include "foot.hpp"
 
 namespace csm_units {
 
-using Yard = Unit<Length, "yd">;
-
-// Unit Cast for Base m to Unit yard
-// Conversion Equation: 1 m = 1.09361 yard
-template <>
-[[nodiscard]] constexpr auto UnitCast(Length &&input) noexcept -> Yard {
-  return Yard(input.data * 1.09361);
-}
-
-// Unit Cast for Unit yard to Base m
-// Conversion Equation: 1 m = 1.09361 yard
-template <>
-[[nodiscard]] constexpr auto UnitCast(Yard &&input) noexcept -> Length {
-  return Length(input.data / 1.09361);
-}
+using Yard = Unit<literals::ft * std::ratio<1, 3>()>;
 
 namespace literals {
 
+constexpr auto yd =  // NOLINT(readability-identifier-length)
+    Yard::def;
+
 constexpr auto operator""_yd(long double data) noexcept {
-  return Yard(static_cast<double>(data));
+  return Yard(static_cast<Yard::ValueType>(data));
 }
 
 constexpr auto operator""_yd(unsigned long long data) noexcept {
-  return Yard(static_cast<double>(data));
+  return Yard(static_cast<Yard::ValueType>(data));
 }
 
 }  // namespace literals

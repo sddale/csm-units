@@ -7,34 +7,25 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Second = Unit<Time, "s">;
-
-// Unit Cast for Unit s to Base s
-template <>
-[[nodiscard]] constexpr auto UnitCast(Second &&input) noexcept -> Time {
-  return Time(input.data);
-}
-
-// Unit Cast for Base s to Unit s
-template <>
-[[nodiscard]] constexpr auto UnitCast(Time &&input) noexcept -> Second {
-  return Second(input.data);
-}
+using Second = Unit<Definition<Time>{}>;
 
 namespace literals {
 
-// time - second
+constexpr auto s =  // NOLINT(readability-identifier-length)
+    Second::def;
+
 constexpr auto operator""_s(long double data) noexcept {
-  return Second(static_cast<double>(data));
+  return Second(static_cast<Second::ValueType>(data));
 }
 
 constexpr auto operator""_s(unsigned long long data) noexcept {
-  return Second(static_cast<double>(data));
+  return Second(static_cast<Second::ValueType>(data));
 }
 
 }  // namespace literals

@@ -4,36 +4,27 @@
  *   The following wikipedia page can explain <a
  * href="https://en.wikipedia.org/wiki/Sievert">Sievert</a> if needed.
  */
-
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Sievert = Unit<DoseEquivalent, "Sv">;
-
-// Unit Cast for Base Sievert
-template <>
-[[nodiscard]] constexpr auto UnitCast(DoseEquivalent &&input) noexcept
-    -> Sievert {
-  return Sievert(input.data);
-}
-template <>
-[[nodiscard]] constexpr auto UnitCast(Sievert &&input) noexcept
-    -> DoseEquivalent {
-  return DoseEquivalent(input.data);
-}
+using Sievert = Unit<Definition<DoseEquivalent>{}>;
 
 namespace literals {
 
+constexpr auto Sv =  // NOLINT(readability-identifier-length)
+    Sievert::def;
+
 constexpr auto operator""_Sv(long double data) noexcept {
-  return Sievert(static_cast<double>(data));
+  return Sievert(static_cast<Sievert::ValueType>(data));
 }
 
 constexpr auto operator""_Sv(unsigned long long data) noexcept {
-  return Sievert(static_cast<double>(data));
+  return Sievert(static_cast<Sievert::ValueType>(data));
 }
 
 }  // namespace literals

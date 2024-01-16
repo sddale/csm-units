@@ -1,50 +1,35 @@
 #include <doctest/doctest.h>
 
+#include <csm_units/concepts.hpp>
 #include <csm_units/units.hpp>
+
+#include "common.hpp"
 
 namespace csm_units::test {
 
+// NOLINTBEGIN(modernize-use-trailing-return-type,readability-identifier-length,misc-use-anonymous-namespace)
+
+using namespace csm_units;
 using namespace csm_units::literals;
 
-// NOLINTBEGIN(modernize-use-trailing-return-type)
-// NOLINTBEGIN(readability-identifier-length)
+constexpr auto IdealGas(Kilomole n, Liter volume, Fahrenheit temperature) {
+  const auto R = 8.3145 * m3 * Pa / (K * mol);
 
-constexpr auto CHECK_TYPE = [](auto input, auto ref) {
-  CHECK(std::is_same_v<std::remove_const_t<decltype(input)>,
-                       std::remove_const_t<decltype(ref)>>);
-};
+  static_assert(std::convertible_to<decltype(R), decltype(1_J / (mol * K))>);
+  static_assert(not std::convertible_to<decltype(R), decltype(1_J)>);
 
-constexpr auto CHECK_DBL_EQ = [](auto lhs, auto rhs) {
-  CHECK_EQ(lhs, doctest::Approx(rhs));
-};
-
-constexpr auto IdealGas = [](csm_units::Kilomole n, csm_units::Liter Volume,
-                             csm_units::Fahrenheit Temp) -> csm_units::Bar {
-  const auto R = 8.31446261815324 * m3 * Pa / K / mol;
-
-  CHECK_TYPE(
-      R,
-      csm_units::UnitBase<csm_units::Exponents<2, 1, -2, 0, -1, -1, 0>>(0.0));
-
-  const csm_units::Bar P = n * R * Temp / Volume;
+  const Bar P = n * R * temperature / volume;  // implicit conversion
   return P;
 };
 
-constexpr auto UseIG = []() {
-  const auto n = csm_units::Mole(2);
-  const auto Temp = csm_units::Celsius(100.0);
-  const auto Volume = 10.1_m3;
-
-  const auto pres = IdealGas(n, Volume, Temp);
-
-  CHECK_DBL_EQ(pres.data, 0.006143646982);
+constexpr auto UseIG() {
+  return IdealGas(2_mol, 10.1_m3,
+                  100.0_degC);  // implicit parameter conversions
 };
 
 TEST_SUITE("README Demonstration") {
-  TEST_CASE("Example") { UseIG(); }
+  TEST_CASE("Example") { CHECK_UNIT_EQ(UseIG(), 0.006144_Pa); }
 }
-
-// NOLINTEND(readability-identifier-length)
-// NOLINTEND(modernize-use-trailing-return-type)
+// NOLINTEND(modernize-use-trailing-return-type,readability-identifier-length,misc-use-anonymous-namespace)
 
 }  // namespace csm_units::test

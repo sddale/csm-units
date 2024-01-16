@@ -15,6 +15,8 @@ env:
   CPM_SOURCE_CACHE: ${{ github.workspace }}/cpm_modules
   BUILD_TYPE: Debug
   TARGET: install
+  CC: gcc-12
+  CXX: g++-12
   CSMUNIT_TEST: True
 
 jobs:

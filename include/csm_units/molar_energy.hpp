@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "source/csm_units/named_units/molar_energy/dimension.hpp"
-#include "source/csm_units/named_units/molar_energy/joule_per_mole.hpp"
+#include <source/csm_units/named_units/molar_energy/dimension.hpp>
+#include <source/csm_units/named_units/molar_energy/joule_per_mole.hpp>
 
 namespace csm_units {}  // namespace csm_units

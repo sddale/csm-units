@@ -7,33 +7,25 @@
 
 #pragma once
 
+#include "../../definition.hpp"
 #include "../../unit.hpp"
 #include "dimension.hpp"
 
 namespace csm_units {
 
-using Henry = Unit<Inductance, "H">;
-
-// Unit Cast for Unit Henry
-template <>
-[[nodiscard]] constexpr auto UnitCast(Inductance &&input) noexcept -> Henry {
-  return Henry(input.data);
-}
-
-// Unit Cast for Unit Henry
-template <>
-[[nodiscard]] constexpr auto UnitCast(Henry &&input) noexcept -> Inductance {
-  return Inductance(input.data);
-}
+using Henry = Unit<Definition<Inductance>{}>;
 
 namespace literals {
 
+constexpr auto H =  // NOLINT(readability-identifier-length)
+    Henry::def;
+
 constexpr auto operator""_H(long double data) noexcept {
-  return Henry(static_cast<double>(data));
+  return Henry(static_cast<Henry::ValueType>(data));
 }
 
 constexpr auto operator""_H(unsigned long long data) noexcept {
-  return Henry(static_cast<double>(data));
+  return Henry(static_cast<Henry::ValueType>(data));
 }
 
 }  // namespace literals
