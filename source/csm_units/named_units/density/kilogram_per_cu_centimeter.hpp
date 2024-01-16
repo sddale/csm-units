@@ -17,21 +17,21 @@
 
 namespace csm_units {
 
-using KilogramPerCuCentimeter = Unit<literals::kg / literals::cm3>;
+using KilogramsPerCuCentimeter = Unit<literals::kg / literals::cm3>;
 
 namespace literals {
 
 constexpr auto kgpercm3 =  // NOLINT(readability-identifier-length)
-    KilogramPerCuCentimeter::def;
+    KilogramsPerCuCentimeter::def;
 
 constexpr auto operator""_kgpercm3(long double data) noexcept {
-  return KilogramPerCuCentimeter(
-      static_cast<KilogramPerCuCentimeter::ValueType>(data));
+  return KilogramsPerCuCentimeter(
+      static_cast<KilogramsPerCuCentimeter::ValueType>(data));
 }
 
 constexpr auto operator""_kgpercm3(unsigned long long data) noexcept {
-  return KilogramPerCuCentimeter(
-      static_cast<KilogramPerCuCentimeter::ValueType>(data));
+  return KilogramsPerCuCentimeter(
+      static_cast<KilogramsPerCuCentimeter::ValueType>(data));
 }
 
 }  // namespace literals

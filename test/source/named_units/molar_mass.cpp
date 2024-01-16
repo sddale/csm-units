@@ -15,12 +15,12 @@ TEST_SUITE("Named Units") {
   TEST_CASE("Molar Mass") {
     SUBCASE("Base unit functionality") {
       // Getters
-      CHECK_DBL_EQ(KilogramPerMole(1.).Get(), 1.);
-      CHECK_DBL_EQ(KilogramPerMole(1.).data, 1.);
+      CHECK_DBL_EQ(KilogramsPerMole(1.).Get(), 1.);
+      CHECK_DBL_EQ(KilogramsPerMole(1.).data, 1.);
 
       // Literals
-      CHECK_UNIT_EQ(KilogramPerMole(1.), 1.0_kgpermol);
-      CHECK_UNIT_EQ(KilogramPerMole(1.), 1.0 * kgpermol);
+      CHECK_UNIT_EQ(KilogramsPerMole(1.), 1.0_kgpermol);
+      CHECK_UNIT_EQ(KilogramsPerMole(1.), 1.0 * kgpermol);
     }
 
     SUBCASE("Validate derived dimension") {
@@ -28,8 +28,8 @@ TEST_SUITE("Named Units") {
     }
 
     SUBCASE("Derived unit conversions and literals") {
-      CHECK_UNIT_EQ(1.0_kgpermol, GramPerMole(1.0e3));
-      CHECK_UNIT_EQ(5.4_kgpermol, GramPerMole(5.4e3));
+      CHECK_UNIT_EQ(1.0_kgpermol, GramsPerMole(1.0e3));
+      CHECK_UNIT_EQ(5.4_kgpermol, GramsPerMole(5.4e3));
       CHECK_UNIT_EQ(1.0_kgpermol, 1.0e3_gpermol);
       CHECK_UNIT_EQ(1.0_kgpermol, 1.0e3 * gpermol);
     }

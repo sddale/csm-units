@@ -15,19 +15,19 @@
 
 namespace csm_units {
 
-using KilogramPerCuMeter = Unit<Definition<Density>{}>;
+using KilogramsPerCuMeter = Unit<Definition<Density>{}>;
 
 namespace literals {
 
 constexpr auto kgperm3 =  // NOLINT(readability-identifier-length)
-    KilogramPerCuMeter::def;
+    KilogramsPerCuMeter::def;
 
 constexpr auto operator""_kgperm3(long double data) noexcept {
-  return KilogramPerCuMeter(static_cast<KilogramPerCuMeter::ValueType>(data));
+  return KilogramsPerCuMeter(static_cast<KilogramsPerCuMeter::ValueType>(data));
 }
 
 constexpr auto operator""_kgperm3(unsigned long long data) noexcept {
-  return KilogramPerCuMeter(static_cast<KilogramPerCuMeter::ValueType>(data));
+  return KilogramsPerCuMeter(static_cast<KilogramsPerCuMeter::ValueType>(data));
 }
 
 }  // namespace literals

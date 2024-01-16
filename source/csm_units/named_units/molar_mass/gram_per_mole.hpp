@@ -15,19 +15,19 @@
 
 namespace csm_units {
 
-using GramPerMole = Unit<literals::g / literals::mol>;
+using GramsPerMole = Unit<literals::g / literals::mol>;
 
 namespace literals {
 
 constexpr auto gpermol =  // NOLINT(readability-identifier-length)
-    GramPerMole::def;
+    GramsPerMole::def;
 
 constexpr auto operator""_gpermol(long double data) noexcept {
-  return GramPerMole(static_cast<GramPerMole::ValueType>(data));
+  return GramsPerMole(static_cast<GramsPerMole::ValueType>(data));
 }
 
 constexpr auto operator""_gpermol(unsigned long long data) noexcept {
-  return GramPerMole(static_cast<GramPerMole::ValueType>(data));
+  return GramsPerMole(static_cast<GramsPerMole::ValueType>(data));
 }
 
 }  // namespace literals

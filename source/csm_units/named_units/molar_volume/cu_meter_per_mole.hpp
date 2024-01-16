@@ -15,19 +15,19 @@
 
 namespace csm_units {
 
-using CuMeterPerMole = Unit<Definition<MolarVolume>{}>;
+using CuMetersPerMole = Unit<Definition<MolarVolume>{}>;
 
 namespace literals {
 
 constexpr auto m3permole =  // NOLINT(readability-identifier-length)
-    CuMeterPerMole::def;
+    CuMetersPerMole::def;
 
 constexpr auto operator""_m3permole(long double data) noexcept {
-  return CuMeterPerMole(static_cast<CuMeterPerMole::ValueType>(data));
+  return CuMetersPerMole(static_cast<CuMetersPerMole::ValueType>(data));
 }
 
 constexpr auto operator""_m3permole(unsigned long long data) noexcept {
-  return CuMeterPerMole(static_cast<CuMeterPerMole::ValueType>(data));
+  return CuMetersPerMole(static_cast<CuMetersPerMole::ValueType>(data));
 }
 
 }  // namespace literals

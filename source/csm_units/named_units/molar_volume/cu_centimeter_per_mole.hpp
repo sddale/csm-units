@@ -13,19 +13,21 @@
 
 namespace csm_units {
 
-using CuCentimeterPerMole = Unit<literals::cm3 / literals::mol>;
+using CuCentimetersPerMole = Unit<literals::cm3 / literals::mol>;
 
 namespace literals {
 
 constexpr auto cm3permole =  // NOLINT(readability-identifier-length)
-    CuCentimeterPerMole::def;
+    CuCentimetersPerMole::def;
 
 constexpr auto operator""_cm3permole(long double data) noexcept {
-  return CuCentimeterPerMole(static_cast<CuCentimeterPerMole::ValueType>(data));
+  return CuCentimetersPerMole(
+      static_cast<CuCentimetersPerMole::ValueType>(data));
 }
 
 constexpr auto operator""_cm3permole(unsigned long long data) noexcept {
-  return CuCentimeterPerMole(static_cast<CuCentimeterPerMole::ValueType>(data));
+  return CuCentimetersPerMole(
+      static_cast<CuCentimetersPerMole::ValueType>(data));
 }
 
 }  // namespace literals

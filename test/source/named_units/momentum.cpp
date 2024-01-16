@@ -11,11 +11,11 @@ TEST_SUITE("Named Units") {
   using namespace literals;
   TEST_CASE("Mass") {
     SUBCASE("Base unit functionality") {
-      CHECK_DBL_EQ(KilogramMeterPerSecond(3.).Get(), 3.);
-      CHECK_DBL_EQ(KilogramMeterPerSecond(3.).data, 3.);
+      CHECK_DBL_EQ(KilogramsMeterPerSecond(3.).Get(), 3.);
+      CHECK_DBL_EQ(KilogramsMeterPerSecond(3.).data, 3.);
 
-      CHECK_UNIT_EQ(KilogramMeterPerSecond(3.), 3_kgmpers);
-      CHECK_UNIT_EQ(KilogramMeterPerSecond(3.), 3. * kgmpers);
+      CHECK_UNIT_EQ(KilogramsMeterPerSecond(3.), 3_kgmpers);
+      CHECK_UNIT_EQ(KilogramsMeterPerSecond(3.), 3. * kgmpers);
 
       CHECK_DBL_EQ(SlugFeetPerSecond(3.).Get(), 3.);
       CHECK_DBL_EQ(SlugFeetPerSecond(3.).data, 13.3447);

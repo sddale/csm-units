@@ -16,19 +16,19 @@
 
 namespace csm_units {
 
-using KilogramPerMole = Unit<literals::kg / literals::mol>;
+using KilogramsPerMole = Unit<literals::kg / literals::mol>;
 
 namespace literals {
 
 constexpr auto kgpermol =  // NOLINT(readability-identifier-length)
-    KilogramPerMole::def;
+    KilogramsPerMole::def;
 
 constexpr auto operator""_kgpermol(long double data) noexcept {
-  return KilogramPerMole(static_cast<KilogramPerMole::ValueType>(data));
+  return KilogramsPerMole(static_cast<KilogramsPerMole::ValueType>(data));
 }
 
 constexpr auto operator""_kgpermol(unsigned long long data) noexcept {
-  return KilogramPerMole(static_cast<KilogramPerMole::ValueType>(data));
+  return KilogramsPerMole(static_cast<KilogramsPerMole::ValueType>(data));
 }
 
 }  // namespace literals

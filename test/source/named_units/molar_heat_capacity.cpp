@@ -18,12 +18,12 @@ TEST_SUITE("Named Units") {
   TEST_CASE("Molar Heat Capacity") {
     SUBCASE("Base unit functionality") {
       // Getters
-      CHECK_DBL_EQ(JoulePerMoleKelvin(1.).Get(), 1.);
-      CHECK_DBL_EQ(JoulePerMoleKelvin(1.).data, 1.);
+      CHECK_DBL_EQ(JoulesPerMoleKelvin(1.).Get(), 1.);
+      CHECK_DBL_EQ(JoulesPerMoleKelvin(1.).data, 1.);
 
       // Literals
-      CHECK_UNIT_EQ(JoulePerMoleKelvin(1.), 1.0_JpermolK);
-      CHECK_UNIT_EQ(JoulePerMoleKelvin(1.), 1.0 * JpermolK);
+      CHECK_UNIT_EQ(JoulesPerMoleKelvin(1.), 1.0_JpermolK);
+      CHECK_UNIT_EQ(JoulesPerMoleKelvin(1.), 1.0 * JpermolK);
     }
 
     SUBCASE("Validate derived dimension") {

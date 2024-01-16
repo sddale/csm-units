@@ -15,19 +15,19 @@
 
 namespace csm_units {
 
-using MeterPerSqSecond = Unit<Definition<Acceleration>{}>;
+using MetersPerSqSecond = Unit<Definition<Acceleration>{}>;
 
 namespace literals {
 
 constexpr auto mps2 =  // NOLINT(readability-identifier-length)
-    MeterPerSqSecond::def;
+    MetersPerSqSecond::def;
 
 constexpr auto operator""_mps2(long double data) noexcept {
-  return MeterPerSqSecond(static_cast<MeterPerSqSecond::ValueType>(data));
+  return MetersPerSqSecond(static_cast<MetersPerSqSecond::ValueType>(data));
 }
 
 constexpr auto operator""_mps2(unsigned long long data) noexcept {
-  return MeterPerSqSecond(static_cast<MeterPerSqSecond::ValueType>(data));
+  return MetersPerSqSecond(static_cast<MetersPerSqSecond::ValueType>(data));
 }
 
 }  // namespace literals

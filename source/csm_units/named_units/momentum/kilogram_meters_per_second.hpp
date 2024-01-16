@@ -12,21 +12,21 @@
 
 namespace csm_units {
 
-using KilogramMeterPerSecond = Unit<Definition<Momentum>{}>;
+using KilogramsMeterPerSecond = Unit<Definition<Momentum>{}>;
 
 namespace literals {
 
 constexpr auto kgmpers =  // NOLINT(readability-identifier-length)
-    KilogramMeterPerSecond::def;
+    KilogramsMeterPerSecond::def;
 
 constexpr auto operator""_kgmpers(long double data) noexcept {
-  return KilogramMeterPerSecond(
-      static_cast<KilogramMeterPerSecond::ValueType>(data));
+  return KilogramsMeterPerSecond(
+      static_cast<KilogramsMeterPerSecond::ValueType>(data));
 }
 
 constexpr auto operator""_kgmpers(unsigned long long data) noexcept {
-  return KilogramMeterPerSecond(
-      static_cast<KilogramMeterPerSecond::ValueType>(data));
+  return KilogramsMeterPerSecond(
+      static_cast<KilogramsMeterPerSecond::ValueType>(data));
 }
 
 }  // namespace literals

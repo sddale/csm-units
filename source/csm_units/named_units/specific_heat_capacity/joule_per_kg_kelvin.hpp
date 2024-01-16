@@ -17,21 +17,22 @@
 
 namespace csm_units {
 
-using JoulePerKilogramKelvin = Unit<literals::J / (literals::kg * literals::K)>;
+using JoulesPerKilogramKelvin =
+    Unit<literals::J / (literals::kg * literals::K)>;
 
 namespace literals {
 
 constexpr auto JperkgK =  // NOLINT(readability-identifier-length)
-    JoulePerKilogramKelvin::def;
+    JoulesPerKilogramKelvin::def;
 
 constexpr auto operator""_JperkgK(long double data) noexcept {
-  return JoulePerKilogramKelvin(
-      static_cast<JoulePerKilogramKelvin::ValueType>(data));
+  return JoulesPerKilogramKelvin(
+      static_cast<JoulesPerKilogramKelvin::ValueType>(data));
 }
 
 constexpr auto operator""_JperkgK(unsigned long long data) noexcept {
-  return JoulePerKilogramKelvin(
-      static_cast<JoulePerKilogramKelvin::ValueType>(data));
+  return JoulesPerKilogramKelvin(
+      static_cast<JoulesPerKilogramKelvin::ValueType>(data));
 }
 
 }  // namespace literals

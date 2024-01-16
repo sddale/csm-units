@@ -17,12 +17,12 @@ TEST_SUITE("Named Units") {
   TEST_CASE("Density") {
     SUBCASE("Base unit functionality") {
       // Getters
-      CHECK_DBL_EQ(KilogramPerCuMeter(1.).Get(), 1.);
-      CHECK_DBL_EQ(KilogramPerCuMeter(1.).data, 1.);
+      CHECK_DBL_EQ(KilogramsPerCuMeter(1.).Get(), 1.);
+      CHECK_DBL_EQ(KilogramsPerCuMeter(1.).data, 1.);
 
       // Literals
-      CHECK_UNIT_EQ(KilogramPerCuMeter(1.), 1.0_kgperm3);
-      CHECK_UNIT_EQ(KilogramPerCuMeter(1.), 1.0 * kgperm3);
+      CHECK_UNIT_EQ(KilogramsPerCuMeter(1.), 1.0_kgperm3);
+      CHECK_UNIT_EQ(KilogramsPerCuMeter(1.), 1.0 * kgperm3);
     }
 
     SUBCASE("Validate derived dimension") {
@@ -30,15 +30,15 @@ TEST_SUITE("Named Units") {
     }
 
     SUBCASE("Derived unit conversions and literals for Kg/Cm3") {
-      CHECK_UNIT_EQ(1.0_kgperm3, KilogramPerCuCentimeter(1.0e-6));
-      CHECK_UNIT_EQ(5.4_kgperm3, KilogramPerCuCentimeter(5.4e-6));
+      CHECK_UNIT_EQ(1.0_kgperm3, KilogramsPerCuCentimeter(1.0e-6));
+      CHECK_UNIT_EQ(5.4_kgperm3, KilogramsPerCuCentimeter(5.4e-6));
       CHECK_UNIT_EQ(1.0_kgperm3, 1.0e-6_kgpercm3);
       CHECK_UNIT_EQ(1.0_kgperm3, 1.0e-6 * kgpercm3);
     }
 
     SUBCASE("Derived unit conversions and literals for Kg/L") {
-      CHECK_UNIT_EQ(1.0_kgperm3, KilogramPerLiter(1.0e-3));
-      CHECK_UNIT_EQ(3.6_kgperm3, KilogramPerLiter(3.6e-3));
+      CHECK_UNIT_EQ(1.0_kgperm3, KilogramsPerLiter(1.0e-3));
+      CHECK_UNIT_EQ(3.6_kgperm3, KilogramsPerLiter(3.6e-3));
       CHECK_UNIT_EQ(1.0_kgperm3, 1.0e-3_kgperL);
       CHECK_UNIT_EQ(1.0_kgperm3, 1.0e-3 * kgperL);
     }

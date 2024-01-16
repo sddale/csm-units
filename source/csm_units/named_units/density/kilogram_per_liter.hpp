@@ -17,19 +17,19 @@
 
 namespace csm_units {
 
-using KilogramPerLiter = Unit<literals::kg / literals::L>;
+using KilogramsPerLiter = Unit<literals::kg / literals::L>;
 
 namespace literals {
 
 constexpr auto kgperL =  // NOLINT(readability-identifier-length)
-    KilogramPerLiter::def;
+    KilogramsPerLiter::def;
 
 constexpr auto operator""_kgperL(long double data) noexcept {
-  return KilogramPerLiter(static_cast<KilogramPerLiter::ValueType>(data));
+  return KilogramsPerLiter(static_cast<KilogramsPerLiter::ValueType>(data));
 }
 
 constexpr auto operator""_kgperL(unsigned long long data) noexcept {
-  return KilogramPerLiter(static_cast<KilogramPerLiter::ValueType>(data));
+  return KilogramsPerLiter(static_cast<KilogramsPerLiter::ValueType>(data));
 }
 
 }  // namespace literals

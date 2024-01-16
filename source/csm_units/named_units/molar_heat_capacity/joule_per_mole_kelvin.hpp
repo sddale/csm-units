@@ -14,19 +14,19 @@
 
 namespace csm_units {
 
-using JoulePerMoleKelvin = Unit<Definition<MolarHeatCapacity>{}>;
+using JoulesPerMoleKelvin = Unit<Definition<MolarHeatCapacity>{}>;
 
 namespace literals {
 
 constexpr auto JpermolK =  // NOLINT(readability-identifier-length)
-    JoulePerMoleKelvin::def;
+    JoulesPerMoleKelvin::def;
 
 constexpr auto operator""_JpermolK(long double data) noexcept {
-  return JoulePerMoleKelvin(static_cast<JoulePerMoleKelvin::ValueType>(data));
+  return JoulesPerMoleKelvin(static_cast<JoulesPerMoleKelvin::ValueType>(data));
 }
 
 constexpr auto operator""_JpermolK(unsigned long long data) noexcept {
-  return JoulePerMoleKelvin(static_cast<JoulePerMoleKelvin::ValueType>(data));
+  return JoulesPerMoleKelvin(static_cast<JoulesPerMoleKelvin::ValueType>(data));
 }
 
 }  // namespace literals

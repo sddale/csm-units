@@ -17,12 +17,12 @@ TEST_SUITE("Named Units") {
   TEST_CASE("Molar Volume") {
     SUBCASE("Base unit functionality") {
       // Getters
-      CHECK_DBL_EQ(CuMeterPerMole(1.).Get(), 1.);
-      CHECK_DBL_EQ(CuMeterPerMole(1.).data, 1.);
+      CHECK_DBL_EQ(CuMetersPerMole(1.).Get(), 1.);
+      CHECK_DBL_EQ(CuMetersPerMole(1.).data, 1.);
 
       // Literals
-      CHECK_UNIT_EQ(CuMeterPerMole(1.), 1.0_m3permole);
-      CHECK_UNIT_EQ(CuMeterPerMole(1.), 1.0 * m3permole);
+      CHECK_UNIT_EQ(CuMetersPerMole(1.), 1.0_m3permole);
+      CHECK_UNIT_EQ(CuMetersPerMole(1.), 1.0 * m3permole);
     }
 
     SUBCASE("Validate derived dimension") {
@@ -30,8 +30,8 @@ TEST_SUITE("Named Units") {
     }
 
     SUBCASE("Derived unit conversions and literals") {
-      CHECK_UNIT_EQ(1.0_m3permole, CuCentimeterPerMole(1.0e6));
-      CHECK_UNIT_EQ(6.7_m3permole, CuCentimeterPerMole(6.7e6));
+      CHECK_UNIT_EQ(1.0_m3permole, CuCentimetersPerMole(1.0e6));
+      CHECK_UNIT_EQ(6.7_m3permole, CuCentimetersPerMole(6.7e6));
       CHECK_UNIT_EQ(1.0_m3permole, 1.0e6_cm3permole);
       CHECK_UNIT_EQ(1.0_m3permole, 1.0e6 * cm3permole);
     }

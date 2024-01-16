@@ -15,19 +15,19 @@
 
 namespace csm_units {
 
-using JoulePerMole = Unit<literals::J / literals::mol>;
+using JoulesPerMole = Unit<literals::J / literals::mol>;
 
 namespace literals {
 
 constexpr auto Jpermol =  // NOLINT(readability-identifier-length)
-    JoulePerMole::def;
+    JoulesPerMole::def;
 
 constexpr auto operator""_Jpermol(long double data) noexcept {
-  return JoulePerMole(static_cast<JoulePerMole::ValueType>(data));
+  return JoulesPerMole(static_cast<JoulesPerMole::ValueType>(data));
 }
 
 constexpr auto operator""_Jpermol(unsigned long long data) noexcept {
-  return JoulePerMole(static_cast<JoulePerMole::ValueType>(data));
+  return JoulesPerMole(static_cast<JoulesPerMole::ValueType>(data));
 }
 
 }  // namespace literals

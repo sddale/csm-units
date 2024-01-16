@@ -17,12 +17,12 @@ TEST_SUITE("Named Units") {
   TEST_CASE("Molar Energy") {
     SUBCASE("Base unit functionality") {
       // Getters
-      CHECK_DBL_EQ(JoulePerMole(1.).Get(), 1.);
-      CHECK_DBL_EQ(JoulePerMole(1.).data, 1.);
+      CHECK_DBL_EQ(JoulesPerMole(1.).Get(), 1.);
+      CHECK_DBL_EQ(JoulesPerMole(1.).data, 1.);
 
       // Literals
-      CHECK_UNIT_EQ(JoulePerMole(1.), 1.0_Jpermol);
-      CHECK_UNIT_EQ(JoulePerMole(1.), 1.0 * Jpermol);
+      CHECK_UNIT_EQ(JoulesPerMole(1.), 1.0_Jpermol);
+      CHECK_UNIT_EQ(JoulesPerMole(1.), 1.0 * Jpermol);
     }
 
     SUBCASE("Validate derived dimension") {

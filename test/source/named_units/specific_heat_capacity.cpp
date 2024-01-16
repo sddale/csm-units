@@ -16,12 +16,12 @@ TEST_SUITE("Named Units") {
   TEST_CASE("Specific Heat Capacity") {
     SUBCASE("Base unit functionality") {
       // Getters
-      CHECK_DBL_EQ(JoulePerKilogramKelvin(1.).Get(), 1.);
-      CHECK_DBL_EQ(JoulePerKilogramKelvin(1.).data, 1.);
+      CHECK_DBL_EQ(JoulesPerKilogramKelvin(1.).Get(), 1.);
+      CHECK_DBL_EQ(JoulesPerKilogramKelvin(1.).data, 1.);
 
       // Literals
-      CHECK_UNIT_EQ(JoulePerKilogramKelvin(1.), 1.0_JperkgK);
-      CHECK_UNIT_EQ(JoulePerKilogramKelvin(1.), 1.0 * JperkgK);
+      CHECK_UNIT_EQ(JoulesPerKilogramKelvin(1.), 1.0_JperkgK);
+      CHECK_UNIT_EQ(JoulesPerKilogramKelvin(1.), 1.0 * JperkgK);
     }
 
     SUBCASE("Validate derived dimension") {
