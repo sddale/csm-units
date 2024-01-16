@@ -116,7 +116,7 @@ class Unit {
 
   constexpr auto operator-=(const SameDimensionAs<Unit> auto& rhs) noexcept
       -> auto& {
-    data -= rhs.data;
+    data -= static_cast<ValueType>(rhs.data);
     return *this;
   }
 
@@ -128,7 +128,7 @@ class Unit {
 
   constexpr auto operator+=(const SameDimensionAs<Unit> auto& rhs) noexcept
       -> auto& {
-    data += rhs.data;
+    data += static_cast<ValueType>(rhs.data);
     return *this;
   }
 
