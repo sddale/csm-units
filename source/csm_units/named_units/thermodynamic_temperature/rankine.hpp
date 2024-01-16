@@ -1,6 +1,6 @@
 /**  \file rankine.hpp
- *   \brief This file is used to define the Thermodynamic Temperature SI unit
- * Kelvin.
+ *   \brief This file is used to define the unit Rankine derived from the
+ * base dimension for Thermodynamic Temperature.
  *
  *   The following wikipedia page can explain <a
  * href="https://en.wikipedia.org/wiki/Rankine_scale">Rankine</a> if needed.

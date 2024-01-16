@@ -1,4 +1,4 @@
-/**  \file kg_per_cubic_m.hpp
+/**  \file kilogram_per_cu_meter.hpp
  *   \brief This file is used to define the Density SI unit Kilogram Per Cubic
  * Meter.
  *

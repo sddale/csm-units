@@ -1,4 +1,4 @@
-/**  \file grams_per_mole.hpp
+/**  \file gram_per_mole.hpp
  *   \brief This file is used to define the unit Grams Per Mole derived from the
  * base dimension for Molar Mass.
  *

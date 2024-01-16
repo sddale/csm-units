@@ -3,7 +3,8 @@
  * dimension for Amount of a Substance.
  *
  *   The following wikipedia page can explain <a
- * href="https://en.wikipedia.org/wiki/Mole_(unit)">Mole</a> if needed.
+ * href="https://en.wikipedia.org/wiki/Mole_(unit)">Mole</a> if needed. Kilomole
+ * having a close description to this.
  */
 
 #pragma once

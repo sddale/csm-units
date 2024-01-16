@@ -1,4 +1,4 @@
-/**  \file gram.hpp
+/**  \file slug.hpp
  *   \brief This file is used to define the unit Slug derived from the
  * base dimension for Mass.
  *

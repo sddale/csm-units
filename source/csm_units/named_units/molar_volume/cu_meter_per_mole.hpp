@@ -1,4 +1,4 @@
-/**  \file cubic_meter.hpp
+/**  \file cu_meter_per_mole.hpp
  *   \brief This file is used to define the MolarVolume SI unit Cubic Meter Per
  * Mole.
  *

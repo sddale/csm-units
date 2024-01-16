@@ -1,9 +1,9 @@
-/**  \file joules_per_kelvin.hpp
- *   \brief This file is used to define the Molar Heat Capacity SI unit Joules
+/**  \file joule_per_mole_kelvin.hpp
+ *   \brief This file is used to define the Molar Heat Capacity SI unit Joule
  * per Mole per Kelvin.
  *
  *   The following wikipedia page can explain <a
- * href="https://en.wikipedia.org/wiki/Molar_heat_capacity">Joules Per Mole
+ * href="https://en.wikipedia.org/wiki/Molar_heat_capacity">Joule Per Mole
  * Per Kelvin</a> if needed.
  */
 #pragma once

@@ -1,10 +1,10 @@
-/**  \file sqr_milliampere.hpp
+/**  \file sq_milliampere.hpp
  *   \brief This file is used to define the unit Square Milliammpere derived
  * from the base dimension for Amount of a Substance.
  *
  *   The following wikipedia page can explain <a
- * href="https://en.wikipedia.org/?title=SqMilliampere&redirect=no">SqMilliampere</a>
- * if needed.
+ * href="https://en.wikipedia.org/?title=SqMilliampere&redirect=no">Square
+ * Milliampere</a> if needed.
  */
 
 #pragma once

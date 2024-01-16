@@ -1,4 +1,4 @@
-/**  \file cubic_meter.hpp
+/**  \file cu_meter.hpp
  *   \brief This file is used to define the Volume SI unit Cubic Meter.
  *
  *   The following wikipedia page can explain <a

@@ -1,10 +1,10 @@
-/**  \file cal_per_cubic_cm.hpp
- *   \brief This file is used to define the unit cal / cm^3 derived from the
- * base dimension for Square Solubility Parameter.
+/**  \file calorie_per_cu_centimeter.hpp
+ *   \brief This file is used to define the unit (small) calorie Per Cubic
+ * Centimeter derived from the base dimension for Square Solubility Parameter.
  *
  *   The following wikipedia page can explain <a
- * href="https://en.wikipedia.org/wiki/Hildebrand_solubility_parameter">cal /
- * cm^3</a> if needed.
+ * href="https://en.wikipedia.org/wiki/Hildebrand_solubility_parameter">calorie
+ * Per Cubic Centimeter</a> if needed.
  */
 
 #pragma once

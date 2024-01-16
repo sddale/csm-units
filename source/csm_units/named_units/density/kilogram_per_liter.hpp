@@ -1,4 +1,4 @@
-/**  \file kg_per_liter.hpp
+/**  \file kilogram_per_liter.hpp
  *   \brief This file is used to define the unit Kilogram Per Liter derived from
  * the base dimension for Density.
  *

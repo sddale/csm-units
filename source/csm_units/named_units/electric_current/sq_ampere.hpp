@@ -1,9 +1,10 @@
-/**  \file sqr_ampere.hpp
+/**  \file sq_ampere.hpp
  *   \brief This file is used to define the unit Square Ampere derived from the
  * base dimension for Electric Current.
  *
  *   The following wikipedia page can explain <a
- * href="https://en.wikipedia.org/wiki/Ampere">Ampere</a> if needed.
+ * href="https://en.wikipedia.org/wiki/Ampere">Ampere</a> if needed. Square
+ * Ampere having a close description to this.
  */
 #pragma once
 

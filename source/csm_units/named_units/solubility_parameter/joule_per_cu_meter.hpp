@@ -1,9 +1,9 @@
-/**  \file si_sqr_solubility_parameter.hpp
+/**  \file joule_per_cu_meter.hpp
  *   \brief This file is used to define the Square Solubility Parameter SI unit
- * Joules Per Cubic Meter.
+ * Joule Per Cubic Meter.
  *
  *   The following wikipedia page can explain <a
- * href="https://en.wikipedia.org/wiki/Hildebrand_solubility_parameter">Joules
+ * href="https://en.wikipedia.org/wiki/Hildebrand_solubility_parameter">Joule
  * Per Cubic Meter</a> if needed.
  */
 

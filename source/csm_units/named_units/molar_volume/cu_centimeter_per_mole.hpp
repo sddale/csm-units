@@ -1,6 +1,6 @@
-/**  \file cubic_meter.hpp
+/**  \file cu_centimeter_per_mole.hpp
  *   \brief This file is used to define the unit Cubic Centimeter Per Mole from
- * the base dimension for MolarVolume.
+ * the base dimension for Molar Volume.
  *
  */
 

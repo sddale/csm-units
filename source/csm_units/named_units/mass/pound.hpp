@@ -1,4 +1,4 @@
-/**  \file gram.hpp
+/**  \file pound.hpp
  *   \brief This file is used to define the unit Pound (mass) derived from the
  * base dimension for Mass.
  *

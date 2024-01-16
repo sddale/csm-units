@@ -1,4 +1,4 @@
-/**  \file si_solubility_parameter.hpp
+/**  \file sqrt_joule_per_sqrt_cu_meter.hpp
  *   \brief This file is used to define the Solubility Parameter SI unit J^(1/2)
  * / m^(3/2).
  *

@@ -1,9 +1,9 @@
-/**  \file kilograms_per_mole.hpp
- *   \brief This file is used to define the Molar Mass SI unit Kilograms Per
+/**  \file kilogram_per_mole.hpp
+ *   \brief This file is used to define the Molar Mass SI unit Kilogram Per
  * Mole.
  *
  *   The following wikipedia page can explain <a
- * href="https://en.wikipedia.org/wiki/Molar_mass">Kilograms Per Mole</a> if
+ * href="https://en.wikipedia.org/wiki/Molar_mass">Kilogram Per Mole</a> if
  * needed.
  */
 

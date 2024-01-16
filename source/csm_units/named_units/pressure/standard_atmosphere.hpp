@@ -1,10 +1,10 @@
-/**  \file atm.hpp
+/**  \file standard_atmosphere.hpp
  *   \brief This file is used to define the unit Standard Atmosphere derived
  * from the base dimension for Pressure.
  *
  *   The following wikipedia page can explain <a
- * href="https://en.wikipedia.org/wiki/Standard_atmosphere_(unit)">Atmosphere</a>
- * if needed.
+ * href="https://en.wikipedia.org/wiki/Standard_atmosphere_(unit)">Standard
+ * Atmosphere</a> if needed.
  */
 
 #pragma once

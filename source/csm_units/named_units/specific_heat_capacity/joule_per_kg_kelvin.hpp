@@ -1,9 +1,9 @@
-/**  \file joules_per_kelvin.hpp
+/**  \file joule_per_kelvin.hpp
  *   \brief This file is used to define the Specific Heat Capacity SI unit
- * Joules per Kilogram per Kelvin.
+ * Joule per Kilogram per Kelvin.
  *
  *   The following wikipedia page can explain <a
- * href="https://en.wikipedia.org/wiki/Specific_heat_capacity">Joules Per
+ * href="https://en.wikipedia.org/wiki/Specific_heat_capacity">Joule Per
  * Kilogram Per Kelvin</a> if needed.
  */
 
