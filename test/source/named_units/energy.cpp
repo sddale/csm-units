@@ -37,9 +37,9 @@ TEST_SUITE("Named Units") {
       CHECK_UNIT_EQ(1.0_J, 0.000947817 * Btu);
 
       // Calorie
-      CHECK_UNIT_EQ(4.2_J, Calorie(1.0));
-      CHECK_UNIT_EQ(4.2_J, 1.0_Cal);
-      CHECK_UNIT_EQ(4.2_J, 1.0 * Cal);
+      CHECK_UNIT_EQ(4.184_J, Calorie(1.0));
+      CHECK_UNIT_EQ(4.184_J, 1.0_cal);
+      CHECK_UNIT_EQ(4.184_J, 1.0 * cal);
     }
 
     SUBCASE("Misc conversions") {
