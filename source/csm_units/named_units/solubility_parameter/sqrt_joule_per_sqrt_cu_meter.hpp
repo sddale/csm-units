@@ -19,15 +19,15 @@ using SqrtJoulesPerSqrtCuMeter = Unit<Definition<SolubilityParameter>{}>;
 
 namespace literals {
 
-constexpr auto SqrtJperSqrtcm3 =  // NOLINT(readability-identifier-length)
+constexpr auto SqrtJperSqrtm3 =  // NOLINT(readability-identifier-length)
     SqrtJoulesPerSqrtCuMeter::def;
 
-constexpr auto operator""_SqrtJperSqrtcm3(long double data) noexcept {
+constexpr auto operator""_SqrtJperSqrtm3(long double data) noexcept {
   return SqrtJoulesPerSqrtCuMeter(
       static_cast<SqrtJoulesPerSqrtCuMeter::ValueType>(data));
 }
 
-constexpr auto operator""_SqrtJperSqrtcm3(unsigned long long data) noexcept {
+constexpr auto operator""_SqrtJperSqrtm3(unsigned long long data) noexcept {
   return SqrtJoulesPerSqrtCuMeter(
       static_cast<SqrtJoulesPerSqrtCuMeter::ValueType>(data));
 }

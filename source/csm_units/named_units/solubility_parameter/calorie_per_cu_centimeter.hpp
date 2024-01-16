@@ -7,28 +7,29 @@
  * cm^3</a> if needed.
  */
 
-// #pragma once
+#pragma once
 
-// #include "../../unit.hpp"
-// #include "dimension.hpp"
+#include "../../definition.hpp"
+#include "../../unit.hpp"
+#include "joule_per_cu_meter.hpp"
 
-// namespace csm_units {
+namespace csm_units {
 
-// using CalPerCubicCM = Unit<SqrSolubilityParameter, "cal/cm^3">;
+using CaloriesPerCuCM = Unit<literals::Jperm3 * std::ratio<1, 4184000>()>;
 
-// // Unit Cast for base m3
-// template <>
-// [[nodiscard]] constexpr auto UnitCast(SqrSolubilityParameter &&input)
-// noexcept
-//     -> CalPerCubicCM {
-//   return CalPerCubicCM(input.data * 2.39006E-7);
-// }
+namespace literals {
 
-// // Unit Cast for Unit m3
-// template <>
-// [[nodiscard]] constexpr auto UnitCast(CalPerCubicCM &&input) noexcept
-//     -> SqrSolubilityParameter {
-//   return SqrSolubilityParameter(input.data / 2.39006E-7);
-// }
+constexpr auto calpercm3 =  // NOLINT(readability-identifier-length)
+    CaloriesPerCuCM::def;
 
-// }  // namespace csm_units
+constexpr auto operator""_calpercm3(long double data) noexcept {
+  return CaloriesPerCuCM(static_cast<CaloriesPerCuCM::ValueType>(data));
+}
+
+constexpr auto operator""_calpercm3(unsigned long long data) noexcept {
+  return CaloriesPerCuCM(static_cast<CaloriesPerCuCM::ValueType>(data));
+}
+
+}  // namespace literals
+
+}  // namespace csm_units

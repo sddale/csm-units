@@ -21,20 +21,27 @@ TEST_SUITE("Named Units") {
       CHECK_DBL_EQ(SqrtJoulesPerSqrtCuMeter(3.).data, 3.);
 
       // Literals
-      CHECK_UNIT_EQ(JoulesPerCuMeter(3), 3. * Jpercm3);
-      CHECK_UNIT_EQ(JoulesPerCuMeter(3), 3_Jpercm3);
-      CHECK_UNIT_EQ(SqrtJoulesPerSqrtCuMeter(3), 3. * SqrtJperSqrtcm3);
-      CHECK_UNIT_EQ(SqrtJoulesPerSqrtCuMeter(3), 3_SqrtJperSqrtcm3);
+      CHECK_UNIT_EQ(JoulesPerCuMeter(3), 3. * Jperm3);
+      CHECK_UNIT_EQ(JoulesPerCuMeter(3), 3_Jperm3);
+      CHECK_UNIT_EQ(SqrtJoulesPerSqrtCuMeter(3), 3. * SqrtJperSqrtm3);
+      CHECK_UNIT_EQ(SqrtJoulesPerSqrtCuMeter(3), 3_SqrtJperSqrtm3);
     }
 
     SUBCASE("Derived unit conversions and literals") {
       // Calories Per Cubic Centimeter
+      CHECK_UNIT_EQ(1_Jperm3, CaloriesPerCuCM(2.390057361E-7));
+      CHECK_UNIT_EQ(1_Jperm3, 2.390057361E-7_calpercm3);
+      CHECK_UNIT_EQ(1_Jperm3, 2.390057361E-7 * calpercm3);
+    }
+
+    SUBCASE("Validate derived dimension") {
+      CHECK_UNIT_EQ(3_SqrtJperSqrtm3 * 2_SqrtJperSqrtm3, 6_Jperm3);
+      CHECK_UNIT_EQ(6_J / 2_m3, 3_Jperm3);
+      CHECK_UNIT_EQ(4_SqrtJperSqrtm3 * 5_SqrtJperSqrtm3, 20_Jperm3);
     }
 
     SUBCASE("Misc conversions") {
-      CHECK_UNIT_EQ(3_SqrtJperSqrtcm3 * 2_SqrtJperSqrtcm3, 6_Jpercm3);
-      CHECK_UNIT_EQ(6_J / 2_m3, 3_Jpercm3);
-      CHECK_UNIT_EQ(4_SqrtJperSqrtcm3 * 5_SqrtJperSqrtcm3, 20_Jpercm3);
+      // If desired
     }
   }
 }
