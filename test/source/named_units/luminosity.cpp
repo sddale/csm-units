@@ -25,8 +25,8 @@ TEST_SUITE("Named Units") {
 
     SUBCASE("Misc conversions") {
       CHECK_UNIT_EQ(1_cd * cd, 1_cd2);
-      CHECK_UNIT_EQ(2_cd * 2_cd, 4 * cd2);
-      CHECK_UNIT_EQ(4_cd2 / 2_cd, 2 * cd);
+      CHECK_UNIT_EQ(2_cd * 2_cd, 4. * cd2);
+      CHECK_UNIT_EQ(4_cd2 / 2_cd, 2. * cd);
     }
   }
 }

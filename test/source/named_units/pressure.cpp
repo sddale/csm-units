@@ -38,7 +38,7 @@ TEST_SUITE("Named Units") {
       // Standard Atmosphere
       CHECK_UNIT_EQ(101325_Pa, StandardAtmosphere(1));
       CHECK_UNIT_EQ(101325_Pa, 1_atm);
-      CHECK_UNIT_EQ(101325_Pa, 1 * atm);
+      CHECK_UNIT_EQ(101325_Pa, 1. * atm);
       CHECK_UNIT_EQ(101325_Pa, 1. * atm);
     }
 

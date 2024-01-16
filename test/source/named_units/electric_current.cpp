@@ -27,7 +27,7 @@ TEST_SUITE("Named Units") {
       CHECK_DBL_EQ(SqAmpere(3.).data, 3);
 
       CHECK_UNIT_EQ(SqAmpere(3.), 3_A2);
-      CHECK_UNIT_EQ(SqAmpere(3.), 3 * A2);
+      CHECK_UNIT_EQ(SqAmpere(3.), 3. * A2);
 
       CHECK_DBL_EQ(SqMilliampere(3.).Get(), 3);
       CHECK_DBL_EQ(SqMilliampere(3.).data, 3e-6);
@@ -45,11 +45,11 @@ TEST_SUITE("Named Units") {
     SUBCASE("Derived unit conversions and literals") {
       CHECK_UNIT_EQ(1.0_A, Milliampere(1000));
       CHECK_UNIT_EQ(1.0_A, 1000_mA);
-      CHECK_UNIT_EQ(1.0_A, 1000 * mA);
+      CHECK_UNIT_EQ(1.0_A, 1000. * mA);
 
       CHECK_UNIT_EQ(1.0_A2, SqMilliampere(1000000));
       CHECK_UNIT_EQ(1.0_A2, 1000000_mA2);
-      CHECK_UNIT_EQ(1.0_A2, 1000000 * mA2);
+      CHECK_UNIT_EQ(1.0_A2, 1000000. * mA2);
     }
 
     SUBCASE("Misc conversions") {

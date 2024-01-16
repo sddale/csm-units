@@ -40,11 +40,11 @@ TEST_SUITE("Named Units") {
     SUBCASE("Derived unit conversions and literals") {
       CHECK_UNIT_EQ(1.0_m3, CuCentimeter(1000000));
       CHECK_UNIT_EQ(1.0_m3, 1000000_cm3);
-      CHECK_UNIT_EQ(1.0_m3, 1000000 * cm3);
+      CHECK_UNIT_EQ(1.0_m3, 1000000. * cm3);
 
       CHECK_UNIT_EQ(1.0_m3, Liter(1000));
       CHECK_UNIT_EQ(1.0_m3, 1000_L);
-      CHECK_UNIT_EQ(1.0_m3, 1000 * L);
+      CHECK_UNIT_EQ(1.0_m3, 1000. * L);
     }
 
     SUBCASE("Misc conversions") {
