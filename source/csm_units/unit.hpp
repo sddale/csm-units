@@ -1,12 +1,12 @@
-// /**  \file unit.hpp
-//  *   \brief This file defines a derived unit of any dimension and any system.
-//  *
-//  * The system refers to what standard the data is in. For example, the
-//  * International System of Units (SI) is a system in this sense. To define a
-//  new
-//  * unit please refer ot the instructions in the \link unitcast.hpp \endlink
-//  * file.
-//  */
+/**  \file unit.hpp
+ *   \brief This file defines a derived unit of any dimension and any system.
+ *
+ * The system refers to what standard the data is in. For example, the
+ * International System of Units (SI) is a system in this sense. To define a
+ new
+ * unit please refer ot the instructions in the \link unitcast.hpp \endlink
+ * file.
+ */
 
 #pragma once
 
