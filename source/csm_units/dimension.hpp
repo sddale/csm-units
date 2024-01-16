@@ -15,8 +15,6 @@
 
 namespace csm_units {
 
-// TODO: add lump converter for monolithic conversions
-
 template <IsRatio Length = std::ratio<1>, IsRatio Mass = std::ratio<0>,
           IsRatio Time = std::ratio<0>, IsRatio Current = std::ratio<0>,
           IsRatio Temperature = std::ratio<0>, IsRatio Amount = std::ratio<0>,
