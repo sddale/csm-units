@@ -146,8 +146,8 @@ class Unit {
   // Operator overloads for interactions with Units of specific relative
   // dimensions
   template <IsUnit U>
-    requires std::same_as<typename U::DefType::dim,
-                          DimensionFlip<typename DefType::dim>>
+    requires std::same_as<typename U::DefType::DimenType,
+                          DimensionFlip<typename DefType::DimenType>>
   constexpr friend auto operator*(Unit lhs, U rhs) noexcept {
     return lhs.data * rhs.data;  // Unitless return since dimensions cancel
   }
