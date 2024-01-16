@@ -11,22 +11,45 @@ add_executable(
   source/comparison.cpp
   source/definition.cpp
   source/size.cpp
-  source/named_units/time.cpp
-  source/named_units/temperature.cpp
-  source/named_units/length.cpp
+  source/named_units/absorbed_dose.cpp
+  source/named_units/acceleration.cpp
+  source/named_units/activity.cpp
   source/named_units/amount.cpp
-  source/named_units/mass.cpp
-  source/named_units/luminosity.cpp
-  source/named_units/energy.cpp
-  source/named_units/volume.cpp
-  source/named_units/momentum.cpp
-  source/named_units/electric_current.cpp
-  source/named_units/pressure.cpp
-  source/named_units/solubility_parameter.cpp
   source/named_units/area.cpp
-  source/named_units/molar_volume.cpp
-  source/named_units/molar_mass.cpp
+  source/named_units/capacitance.cpp
+  source/named_units/catalytic_activity.cpp
+  source/named_units/conductance.cpp
   source/named_units/density.cpp
+  source/named_units/dose_equivalent.cpp
+  source/named_units/electric_charge.cpp
+  source/named_units/electric_current.cpp
+  source/named_units/energy.cpp
+  source/named_units/force.cpp
+  source/named_units/frequency.cpp
+  source/named_units/heat_capacity.cpp
+  source/named_units/illuminance.cpp
+  source/named_units/inductance.cpp
+  source/named_units/length.cpp
+  source/named_units/luminosity.cpp
+  source/named_units/luminous_flux.cpp
+  source/named_units/magnetic_flux.cpp
+  source/named_units/magnetic_flux_density.cpp
+  source/named_units/mass.cpp
+  source/named_units/molar_energy.cpp
+  source/named_units/molar_heat_capacity.cpp
+  source/named_units/molar_mass.cpp
+  source/named_units/molar_volume.cpp
+  source/named_units/momentum.cpp
+  source/named_units/potential_electromotive_force.cpp
+  source/named_units/power.cpp
+  source/named_units/pressure.cpp
+  source/named_units/resistance.cpp
+  source/named_units/solubility_parameter.cpp
+  source/named_units/specific_heat_capacity.cpp
+  source/named_units/temperature.cpp
+  source/named_units/time.cpp
+  source/named_units/velocity.cpp
+  source/named_units/volume.cpp
 )
 target_link_libraries(
   ${PROJECT_NAME}_test PRIVATE doctest::doctest CSMUnits::CSMUnits
