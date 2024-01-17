@@ -46,6 +46,7 @@
 #include <csm_units/volume.hpp>
 #include <source/csm_units/definition.hpp>
 #include <source/csm_units/dimension.hpp>
+#include <source/csm_units/math.hpp>
 #include <source/csm_units/unit.hpp>
 
 namespace csm_units {}  // namespace csm_units
