@@ -17,6 +17,12 @@ TEST_SUITE("Math utility functions") {
     CHECK_UNIT_EQ(UnitSquare(-2._m), 4._m2);
     CHECK_UNIT_EQ(UnitCube(2._m), 8._m3);
     CHECK_UNIT_EQ(UnitCube(-2._m), -8._m3);
+    CHECK_DBL_EQ(UnitPow<0>(-2._m), 1.0);
+    CHECK_UNIT_EQ(UnitPow<1>(-2._m), -2._m);
+    CHECK_UNIT_EQ(UnitPow<2>(-2._m), 4._m2);
+    CHECK_UNIT_EQ(UnitPow<3>(-2._m), -8._m3);
+    CHECK_UNIT_EQ(UnitPow<4>(-2._m), 16._m3 * m);
+    CHECK_UNIT_EQ(UnitPow<4>(-2._m), 16._m3 * m);
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
