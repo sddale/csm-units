@@ -155,6 +155,8 @@ class Unit {
   // Operator overloads for interactions with other Units
   // Unit storage ValueType follows regular c++ promotion rules
   template <IsUnit U>
+    requires(not std::same_as<typename U::DefType::DimenType,
+                              DimensionFlip<typename DefType::DimenType>>)
   constexpr friend auto operator*(Unit lhs, const U& rhs) noexcept {
     using ResultType = decltype(lhs.data * rhs.data);
     auto result = Unit<def * U::def, ResultType>();
