@@ -4,6 +4,7 @@ CPMAddPackage("gh:onqtam/doctest@2.4.9")
 add_executable(
   ${PROJECT_NAME}_test
   source/dimension.cpp
+  source/math.cpp
   # source/demonstration.cpp
   source/main.cpp
   source/unit.cpp
