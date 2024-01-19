@@ -9,31 +9,16 @@
 
 namespace csm_units {
 
-namespace detail {
-
-template <int N>
-struct UnitPow {
-  static_assert(N > 0,
-                "Unit power function only accepts non-negative integers.");
-
-  [[nodiscard]] constexpr static auto Calc(IsUnit auto&& unit) noexcept {
-    return unit * UnitPow<N - 1>::Calc(std::forward<decltype(unit)>(unit));
-  }
-};
-
-template <>
-struct UnitPow<0> {
-  [[nodiscard]] constexpr static auto Calc(IsUnit auto&& /*unit*/) noexcept {
-    return 1.0;
-  }
-};
-
-}  // namespace detail
-
 // Unit to positive integer power
 template <int N>
 [[nodiscard]] constexpr auto UnitPow(IsUnit auto&& unit) noexcept {
-  return detail::UnitPow<N>::Calc(std::forward<decltype(unit)>(unit));
+  if constexpr (N > 0) {
+    return unit * UnitPow<N - 1>(std::forward<decltype(unit)>(unit));
+  } else if constexpr (N < 0) {
+    return 1.0 / (UnitPow<-1 * N>(std::forward<decltype(unit)>(unit)));
+  } else {
+    return 1.0;
+  }
 }
 
 // Alias for squaring a unit
