@@ -61,25 +61,22 @@ class Definition {
                                       std::ratio<ConvType::den, ConvType::num>>;
 
   template <IsDefinition DR>
-    requires std::same_as<DimenType, DimensionFlip<typename DR::DimenType>>
   [[nodiscard]] constexpr auto operator*(DR /*rhs*/) const noexcept {
-    return CSMUNITS_VALUE_TYPE();
-  }
-
-  template <IsDefinition DR>
-  [[nodiscard]] constexpr auto operator*(DR /*rhs*/) const noexcept {
-    return DefinitionMultiply<DR>();
-  }
-
-  template <IsDefinition DR>
-    requires std::same_as<DimenType, typename DR::DimenType>
-  [[nodiscard]] constexpr auto operator/(DR /*rhs*/) const noexcept {
-    return CSMUNITS_VALUE_TYPE();
+    if constexpr (std::same_as<DimenType,
+                               DimensionFlip<typename DR::DimenType>>) {
+      return static_cast<CSMUNITS_VALUE_TYPE>(1.0);
+    } else {
+      return DefinitionMultiply<DR>();
+    }
   }
 
   template <IsDefinition DR>
   [[nodiscard]] constexpr auto operator/(DR /*rhs*/) const noexcept {
-    return DefinitionDivide<DR>();
+    if constexpr (std::same_as<DimenType, typename DR::DimenType>) {
+      return static_cast<CSMUNITS_VALUE_TYPE>(1.0);
+    } else {
+      return DefinitionDivide<DR>();
+    }
   }
 };
 
