@@ -181,7 +181,7 @@ constexpr auto operator*(U lhs, D rhs) noexcept {
     return lhs.data;
   } else {
     auto result = Unit<U::def * rhs, typename U::ValueType>();
-    result.data = lhs.data;
+    result.data = lhs.data / rhs.Get();
     return result;
   }
 }
@@ -198,7 +198,7 @@ constexpr auto operator/(U lhs, D rhs) noexcept {
     return lhs.data;
   } else {
     auto result = Unit<U::def / rhs, typename U::ValueType>();
-    result.data = lhs.data;
+    result.data = lhs.data * rhs.Get();
     return result;
   }
 }
