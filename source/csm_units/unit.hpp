@@ -138,39 +138,31 @@ class Unit {
     return lhs;
   }
 
-  template <SameDimensionAs<Unit> U>
-  constexpr friend auto operator/(Unit lhs, U rhs) noexcept {
-    return lhs.data / rhs.data;  // Unitless return since dimensions cancel
-  }
-
-  // Operator overloads for interactions with Units of specific relative
-  // dimensions
-  template <IsUnit U>
-    requires std::same_as<typename U::DefType::DimenType,
-                          DimensionFlip<typename DefType::DimenType>>
-  constexpr friend auto operator*(Unit lhs, U rhs) noexcept {
-    return lhs.data * rhs.data;  // Unitless return since dimensions cancel
-  }
-
   // Operator overloads for interactions with other Units
   // Unit storage ValueType follows regular c++ promotion rules
   template <IsUnit U>
-    requires(not std::same_as<typename U::DefType::DimenType,
-                              DimensionFlip<typename DefType::DimenType>>)
   constexpr friend auto operator*(Unit lhs, const U& rhs) noexcept {
-    using ResultType = decltype(lhs.data * rhs.data);
-    auto result = Unit<def * U::def, ResultType>();
-    result.data = lhs.data * rhs.data;  // bypass constructor SI cast
-    return result;
+    if constexpr (std::same_as<typename U::DefType::DimenType,
+                               DimensionFlip<typename DefType::DimenType>>) {
+      return lhs.data * rhs.data;  // Unitless return since dimensions cancel
+    } else {
+      using ResultType = decltype(lhs.data * rhs.data);
+      auto result = Unit<def * U::def, ResultType>();
+      result.data = lhs.data * rhs.data;  // bypass constructor SI cast
+      return result;
+    }
   }
 
   template <IsUnit U>
-    requires(not SameDimensionAs<Unit, U>)  // Otherwise dimensionless return
   constexpr friend auto operator/(Unit lhs, const U& rhs) noexcept {
-    using ResultType = decltype(lhs.data / rhs.data);
-    auto result = Unit<def / U::def, ResultType>();
-    result.data = lhs.data / rhs.data;  // bypass constructor SI cast
-    return result;
+    if constexpr (SameDimensionAs<Unit, U>) {
+      return lhs.data / rhs.data;  // Unitless return since dimensions cancel
+    } else {
+      using ResultType = decltype(lhs.data / rhs.data);
+      auto result = Unit<def / U::def, ResultType>();
+      result.data = lhs.data / rhs.data;  // bypass constructor SI cast
+      return result;
+    }
   }
 };
 
@@ -184,9 +176,14 @@ constexpr auto operator*(IsArithmetic auto lhs, DR /*rhs*/) noexcept {
 
 template <IsUnit U, IsDefinition D>
 constexpr auto operator*(U lhs, D rhs) noexcept {
-  auto result = Unit<U::def * rhs, typename U::ValueType>();
-  result.data = lhs.data;
-  return result;
+  if constexpr (std::same_as<typename U::DefType::DimenType,
+                             DimensionFlip<typename D::DimenType>>) {
+    return lhs.data;
+  } else {
+    auto result = Unit<U::def * rhs, typename U::ValueType>();
+    result.data = lhs.data / rhs.Get();
+    return result;
+  }
 }
 
 template <IsDefinition D>
@@ -196,9 +193,14 @@ constexpr auto operator/(IsArithmetic auto lhs, D rhs) noexcept {
 
 template <IsUnit U, IsDefinition D>
 constexpr auto operator/(U lhs, D rhs) noexcept {
-  auto result = Unit<U::def / rhs, typename U::ValueType>();
-  result.data = lhs.data;
-  return result;
+  if constexpr (std::same_as<typename U::DefType::DimenType,
+                             typename D::DimenType>) {
+    return lhs.data;
+  } else {
+    auto result = Unit<U::def / rhs, typename U::ValueType>();
+    result.data = lhs.data * rhs.Get();
+    return result;
+  }
 }
 
 }  // namespace csm_units

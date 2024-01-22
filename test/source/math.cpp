@@ -22,6 +22,9 @@ TEST_SUITE("Math utility functions") {
     CHECK_UNIT_EQ(UnitPow<2>(-2._m), 4._m2);
     CHECK_UNIT_EQ(UnitPow<3>(-2._m), -8._m3);
     CHECK_UNIT_EQ(UnitPow<4>(-2._m), 16._m3 * m);
+    CHECK_UNIT_EQ(UnitPow<-1>(-2._m), Unit<One() / m>(-0.5));
+    CHECK_UNIT_EQ(UnitPow<-2>(-2._m), 1 / 4_m2);
+    CHECK_UNIT_EQ(UnitPow<-3>(-2._m), -1 / 8_m3);
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
