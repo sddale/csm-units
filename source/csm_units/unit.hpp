@@ -94,7 +94,9 @@ class Unit {
 
   constexpr friend auto operator/(IsArithmetic auto lhs, Unit rhs) noexcept {
     using ResultType = decltype(lhs / rhs.data);
-    return Unit<literals::One() / def, ResultType>(lhs / rhs.data);
+    auto result = Unit<literals::One() / def, ResultType>();
+    result.data = lhs / rhs.data;
+    return result;
   }
 
   // constexpr friend auto operator/(IsArithmetic auto lhs, Unit rhs) noexcept {
