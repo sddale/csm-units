@@ -17,7 +17,7 @@ class SciNo {
   };
 
  public:
-  constexpr static auto ord = [] consteval {
+  constexpr static auto ord = []() consteval {
     constexpr auto num = StaticAbs<Mag::num / Mag::den>::value;
     if constexpr (Mag::num == 0) {
       return 0;
@@ -29,7 +29,7 @@ class SciNo {
       return Order;
     }
   }();
-  constexpr static auto mag = [] consteval {
+  constexpr static auto mag = []() consteval {
     if constexpr (ord > Order) {
       return SciNo<std::ratio_multiply<Mag, std::ratio<1, 10>>, Order>::mag;
     } else if constexpr (ord < Order) {
