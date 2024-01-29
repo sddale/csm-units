@@ -29,7 +29,7 @@ concept IsRatio = requires {
  */
 template <class T>
 concept IsSciNo = requires(T input) {
-  { typename std::remove_reference_t<decltype(input.mag)>() } -> IsRatio;
+  { typename std::remove_reference_t<T>::MagType() } -> IsRatio;
   { input.ord } -> std::convertible_to<int>;
 };
 

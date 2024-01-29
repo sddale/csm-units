@@ -11,35 +11,37 @@ namespace csm_units {
 
 template <IsRatio Mag, int Order = 0>
 class SciNo {
-  template <int n>
-  struct StaticAbs {
-    constexpr static int value = n < 0 ? -n : n;
-  };
+  template <IsRatio R>
+  [[nodiscard]] consteval static auto StaticLog10() noexcept -> int {
+    constexpr int dec = R::num / R::den;
+    constexpr int abs = dec < 0 ? -dec : dec;
+    if constexpr ((abs >= 1 and abs < 10) or R::num == 0) {
+      return 0;
+    } else if constexpr (abs >= 10) {
+      return StaticLog10<std::ratio_divide<R, std::ratio<10>>>() + 1;
+    } else {
+      return StaticLog10<std::ratio_multiply<R, std::ratio<10>>>() - 1;
+    }
+  }
+
+  template <int N>
+  [[nodiscard]] consteval static auto StaticPow10() noexcept {
+    if constexpr (N > 0) {
+      return std::ratio_divide<decltype(StaticPow10<N - 1>()),
+                               std::ratio<10>>();
+    } else if constexpr (N < 0) {
+      return std::ratio_multiply<decltype(StaticPow10<N + 1>()),
+                                 std::ratio<10>>();
+    } else {
+      return std::ratio<1>();
+    }
+  }
 
  public:
-  constexpr static auto ord = [] {
-    constexpr auto num = StaticAbs<Mag::num / Mag::den>::value;
-    if constexpr (Mag::num == 0) {
-      return 0;
-    } else if constexpr (num >= 10) {
-      return SciNo<std::ratio_multiply<Mag, std::ratio<1, 10>>, Order>::ord + 1;
-    } else if constexpr (num < 1) {
-      return SciNo<std::ratio_multiply<Mag, std::ratio<10, 1>>, Order>::ord - 1;
-    } else {
-      return Order;
-    }
-  }();
-  constexpr static auto mag = [] {
-    if constexpr (ord > Order) {
-      return SciNo<std::ratio_multiply<Mag, std::ratio<1, 10>>, Order>::mag;
-    } else if constexpr (ord < Order) {
-      return SciNo<std::ratio_multiply<Mag, std::ratio<10, 1>>, Order>::mag;
-    } else {
-      return Mag();
-    }
-  }();
+  constexpr static auto ord = Order + StaticLog10<Mag>();
 
-  using MagType = decltype(mag);
+  using MagType =
+      std::ratio_multiply<Mag, decltype(StaticPow10<ord - Order>())>;
 };
 
 namespace detail {
@@ -73,20 +75,20 @@ struct SciNoNotEqual
 template <IsSciNo S>
 class SciNoDecimal {
   template <int N>
-  [[nodiscard]] constexpr static auto StaticPow() noexcept {
+  [[nodiscard]] consteval static auto StaticPow10() noexcept {
     if constexpr (N > 0) {
-      return 10 * StaticPow<N - 1>();
+      return 10 * StaticPow10<N - 1>();
     } else if constexpr (N < 0) {
-      return 1 / StaticPow<-N>();
+      return 1 / StaticPow10<-N>();
     } else {
-      return 1.0;
+      return CSMUNITS_VALUE_TYPE(1);
     }
   }
 
  public:
   constexpr static auto value =
       static_cast<CSMUNITS_VALUE_TYPE>(S::MagType::num) / S::MagType::den *
-      StaticPow<S::ord>();
+      StaticPow10<S::ord>();
 };
 
 }  // namespace detail

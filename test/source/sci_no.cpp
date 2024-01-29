@@ -41,10 +41,9 @@ TEST_SUITE("SciNo") {
       const int order = 1;
       static_assert(csm_units::SciNo<std::ratio<num, den>, order>::ord ==
                     order);
-      static_assert(csm_units::SciNo<std::ratio<num, den>, order>::mag.num ==
-                    std::ratio<num, den>::num);
-      static_assert(csm_units::SciNo<std::ratio<num, den>, order>::mag.den ==
-                    std::ratio<num, den>::den);
+      static_assert(
+          std::same_as<csm_units::SciNo<std::ratio<num, den>, order>::MagType,
+                       std::ratio<num, den>>);
     }
     SUBCASE("Input mag < 1") {
       using LHS = csm_units::SciNo<std::ratio<3, 4>, 1>;
