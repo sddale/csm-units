@@ -10,6 +10,7 @@ add_executable(
   source/unit.cpp
   source/arithmetic.cpp
   source/comparison.cpp
+  source/sci_no.cpp
   source/definition.cpp
   source/size.cpp
   source/named_units/absorbed_dose.cpp

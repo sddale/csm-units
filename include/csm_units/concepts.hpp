@@ -25,6 +25,22 @@ concept IsRatio = requires {
 };
 
 /**
+ * \brief This concept enforces that a class is a scientific number.
+ */
+template <class T>
+concept IsSciNo = requires(T input) {
+  { typename std::remove_reference_t<decltype(input.mag)>() } -> IsRatio;
+  { input.ord } -> std::convertible_to<int>;
+};
+
+/**
+ * \brief This concept enforces that a class is a conversion factor type, that
+ * is a SciNo or std::ratio.
+ */
+template <class T>
+concept IsConversion = IsRatio<T> or IsSciNo<T>;
+
+/**
  * \brief This concept enforces the form of unit dimensions.
  * stated.
  */
@@ -52,8 +68,8 @@ concept IsDimension = requires {
 template <class D>
 concept IsDefinition = requires {
   { typename std::remove_reference_t<D>::DimenType() } -> IsDimension;
-  { typename std::remove_reference_t<D>::ConvType() } -> IsRatio;
-  { typename std::remove_reference_t<D>::OriginType() } -> IsRatio;
+  { typename std::remove_reference_t<D>::ConvType() } -> IsConversion;
+  { typename std::remove_reference_t<D>::OriginType() } -> IsConversion;
 };
 
 /**
