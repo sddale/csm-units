@@ -81,30 +81,21 @@ class Definition {
 // Operator+,- with ratio sets Origin
 // Operator+ is symmetric, operator- with def rhs not supported due to
 // potentially unintuitive arithmetic
-template <IsConversion C, IsDefinition D>
-[[nodiscard]] constexpr auto operator+(C /*lhs*/, D /*rhs*/) noexcept {
-  if constexpr (IsRatio<C>) {
-    return Definition<typename D::DimenType, typename D::ConvType, C>();
-  } else {
-    return Definition<typename D::DimenType, typename D::ConvType,
-                      typename C::MagType>();
-  }
+template <IsRatio R, IsDefinition D>
+[[nodiscard]] constexpr auto operator+(R /*lhs*/, D /*rhs*/) noexcept {
+  return Definition<typename D::DimenType, typename D::ConvType,
+                    std::ratio_add<R, typename D::OriginType>>();
 }
 
 [[nodiscard]] constexpr auto operator+(IsDefinition auto lhs,
-                                       IsConversion auto rhs) noexcept {
+                                       IsRatio auto rhs) noexcept {
   return rhs + lhs;
 }
 
-template <IsDefinition D, IsConversion C>
-[[nodiscard]] constexpr auto operator-(D /*lhs*/, C /*rhs*/) noexcept {
-  if constexpr (IsRatio<C>) {
-    return Definition<typename D::DimenType, typename D::ConvType,
-                      std::ratio<-C::num, C::den>>();
-  } else {
-    return Definition<typename D::DimenType, typename D::ConvType,
-                      std::ratio<-C::MagType::num, C::MagType::den>>();
-  }
+template <IsDefinition D, IsRatio R>
+[[nodiscard]] constexpr auto operator-(D /*lhs*/, R /*rhs*/) noexcept {
+  return Definition<typename D::DimenType, typename D::ConvType,
+                    std::ratio_subtract<typename D::OriginType, R>>();
 }
 
 // Operator*,/ with ratio sets conversion factor
