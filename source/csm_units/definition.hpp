@@ -12,6 +12,7 @@
 #include <ratio>
 
 #include "dimension.hpp"
+#include "sci_no.hpp"
 
 #ifndef CSMUNITS_VALUE_TYPE
 #define CSMUNITS_VALUE_TYPE double
@@ -21,16 +22,16 @@ namespace csm_units {
 
 namespace literals {
 
-using Inv = std::ratio<-1>;
-using Zero = std::ratio<0>;
-using One = std::ratio<1>;
-using Two = std::ratio<2>;
-using Three = std::ratio<3>;
+using Inv = SciNo<std::ratio<-1>>;
+using Zero = SciNo<std::ratio<0>>;
+using One = SciNo<std::ratio<1>>;
+using Two = SciNo<std::ratio<2>>;
+using Three = SciNo<std::ratio<3>>;
 
 }  // namespace literals
 
-template <IsDimension D, IsRatio ConversionFactor = literals::One,
-          IsRatio Origin = literals::Zero>
+template <IsDimension D, IsSciNo ConversionFactor = literals::One,
+          IsRatio Origin = std::ratio<0>>
 class Definition {
  public:
   using DimenType = D;
@@ -38,11 +39,11 @@ class Definition {
   using OriginType = Origin;
 
   [[nodiscard]] consteval static auto Get() noexcept {
-    return static_cast<CSMUNITS_VALUE_TYPE>(ConvType::num) / ConvType::den;
+    return SciNoDecimal<ConvType>;
   }
 
   [[nodiscard]] consteval static auto ToSI() noexcept {
-    return static_cast<CSMUNITS_VALUE_TYPE>(ConvType::den) / ConvType::num;
+    return static_cast<CSMUNITS_VALUE_TYPE>(1.0) / SciNoDecimal<ConvType>;
   }
 
   // Arithmetic helpers
@@ -50,15 +51,12 @@ class Definition {
   template <IsDefinition A>
   using DefinitionMultiply =
       Definition<DimensionAdd<DimenType, typename A::DimenType>,
-                 std::ratio_multiply<ConvType, typename A::ConvType>>;
+                 SciNoMultiply<ConvType, typename A::ConvType>>;
 
   template <IsDefinition A>
   using DefinitionDivide =
       Definition<DimensionSubtract<DimenType, typename A::DimenType>,
-                 std::ratio_divide<ConvType, typename A::ConvType>>;
-
-  using DefinitionInvert = Definition<DimensionFlip<DimenType>,
-                                      std::ratio<ConvType::den, ConvType::num>>;
+                 SciNoDivide<ConvType, typename A::ConvType>>;
 
   template <IsDefinition DR>
   [[nodiscard]] constexpr auto operator*(DR /*rhs*/) const noexcept {
@@ -85,43 +83,58 @@ class Definition {
 // potentially unintuitive arithmetic
 template <IsRatio R, IsDefinition D>
 [[nodiscard]] constexpr auto operator+(R /*lhs*/, D /*rhs*/) noexcept {
-  return Definition<typename D::DimenType, typename D::ConvType, R>();
+  return Definition<typename D::DimenType, typename D::ConvType,
+                    std::ratio_add<R, typename D::OriginType>>();
 }
 
-template <IsDefinition D, IsRatio R>
-[[nodiscard]] constexpr auto operator+(D /*lhs*/, R /*rhs*/) noexcept {
-  return Definition<typename D::DimenType, typename D::ConvType, R>();
+[[nodiscard]] constexpr auto operator+(IsDefinition auto lhs,
+                                       IsRatio auto rhs) noexcept {
+  return rhs + lhs;
 }
 
 template <IsDefinition D, IsRatio R>
 [[nodiscard]] constexpr auto operator-(D /*lhs*/, R /*rhs*/) noexcept {
   return Definition<typename D::DimenType, typename D::ConvType,
-                    std::ratio<-1 * R::num, R::den>>();
+                    std::ratio_subtract<typename D::OriginType, R>>();
 }
 
 // Operator*,/ with ratio sets conversion factor
-template <IsDefinition D, IsRatio R>
-[[nodiscard]] constexpr auto operator*(D /*lhs*/, R /*rhs*/) noexcept {
-  return Definition<typename D::DimenType,
-                    std::ratio_multiply<typename D::ConvType, R>>();
+template <IsDefinition D, IsConversion C>
+[[nodiscard]] constexpr auto operator*(D /*lhs*/, C /*rhs*/) noexcept {
+  if constexpr (IsRatio<C>) {
+    return Definition<typename D::DimenType,
+                      SciNoMultiply<typename D::ConvType, SciNo<C>>>();
+  } else {
+    return Definition<typename D::DimenType,
+                      SciNoMultiply<typename D::ConvType, C>>();
+  }
 }
 
-template <IsRatio R, IsDefinition D>
-[[nodiscard]] constexpr auto operator*(R /*lhs*/, D /*rhs*/) noexcept {
-  return Definition<typename D::DimenType,
-                    std::ratio_multiply<R, typename D::ConvType>>();
+[[nodiscard]] constexpr auto operator*(IsConversion auto lhs,
+                                       IsDefinition auto rhs) noexcept {
+  return rhs * lhs;
 }
 
-template <IsDefinition D, IsRatio R>
-[[nodiscard]] constexpr auto operator/(D /*lhs*/, R /*rhs*/) noexcept {
-  return Definition<typename D::DimenType,
-                    std::ratio_divide<typename D::ConvType, R>>();
+template <IsDefinition D, IsConversion C>
+[[nodiscard]] constexpr auto operator/(D /*lhs*/, C /*rhs*/) noexcept {
+  if constexpr (IsRatio<C>) {
+    return Definition<typename D::DimenType,
+                      SciNoDivide<typename D::ConvType, SciNo<C>>>();
+  } else {
+    return Definition<typename D::DimenType,
+                      SciNoDivide<typename D::ConvType, C>>();
+  }
 }
 
-template <IsRatio R, IsDefinition D>
-[[nodiscard]] constexpr auto operator/(R /*lhs*/, D /*rhs*/) noexcept {
-  return Definition<DimensionFlip<typename D::DimenType>,
-                    std::ratio_divide<R, typename D::ConvType>>();
+template <IsConversion C, IsDefinition D>
+[[nodiscard]] constexpr auto operator/(C /*lhs*/, D /*rhs*/) noexcept {
+  if constexpr (IsRatio<C>) {
+    return Definition<DimensionFlip<typename D::DimenType>,
+                      SciNoDivide<SciNo<C>, typename D::ConvType>>();
+  } else {
+    return Definition<DimensionFlip<typename D::DimenType>,
+                      SciNoDivide<C, typename D::ConvType>>();
+  }
 }
 
 }  // namespace csm_units

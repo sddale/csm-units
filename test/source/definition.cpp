@@ -15,13 +15,15 @@ namespace csm_units::test {
 
 TEST_SUITE("Definition") {
   using namespace csm_units::literals;
-  using length_def = Definition<Dimension<One>>;
+  using length_def = Definition<DimensionInt<1>>;
   using inv_def = decltype(One() / length_def());
   using area_def = decltype(length_def() * length_def());
   using dimensionless = decltype(length_def() / length_def());
   TEST_CASE("Construction via operator*") {
-    static_assert(std::is_same_v<length_def::DimenType, Dimension<One>>);
-    static_assert(std::is_same_v<area_def::DimenType, Dimension<Two>>);
+    static_assert(
+        std::is_same_v<length_def::DimenType, Dimension<std::ratio<1>>>);
+    static_assert(
+        std::is_same_v<area_def::DimenType, Dimension<std::ratio<2>>>);
     static_assert(std::is_same_v<dimensionless, CSMUNITS_VALUE_TYPE>);
     static_assert(
         std::is_same_v<decltype(area_def() / length_def()), length_def>);

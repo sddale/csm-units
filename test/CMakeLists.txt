@@ -10,6 +10,7 @@ add_executable(
   source/unit.cpp
   source/arithmetic.cpp
   source/comparison.cpp
+  source/sci_no.cpp
   source/definition.cpp
   source/size.cpp
   source/named_units/absorbed_dose.cpp
@@ -66,7 +67,9 @@ set_property(
 # Compiler Properties for testing
 target_compile_features(${PROJECT_NAME}_test PRIVATE cxx_std_23)
 if(MSVC)
-  target_compile_options(${PROJECT_NAME}_test PRIVATE /bigobj /W4 /WX)
+  target_compile_options(
+    ${PROJECT_NAME}_test PRIVATE /bigobj /W4 /WX /std:c++latest
+  )
 else()
   target_compile_options(
     ${PROJECT_NAME}_test PRIVATE -g -Wall -Wextra -Wpedantic -Werror -std=c++2b
