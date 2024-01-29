@@ -67,7 +67,9 @@ set_property(
 # Compiler Properties for testing
 target_compile_features(${PROJECT_NAME}_test PRIVATE cxx_std_23)
 if(MSVC)
-  target_compile_options(${PROJECT_NAME}_test PRIVATE /bigobj /W4 /WX)
+  target_compile_options(
+    ${PROJECT_NAME}_test PRIVATE /bigobj /W4 /WX /std:c++latest
+  )
 else()
   target_compile_options(
     ${PROJECT_NAME}_test PRIVATE -g -Wall -Wextra -Wpedantic -Werror -std=c++2b
