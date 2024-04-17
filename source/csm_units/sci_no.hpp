@@ -94,10 +94,10 @@ class SciNoDecimal {
 }  // namespace detail
 
 template <IsSciNo L, IsSciNo R>
-using SciNoMultiply = detail::SciNoMultiply<L, R>::type;
+using SciNoMultiply = typename detail::SciNoMultiply<L, R>::type;
 
 template <IsSciNo L, IsSciNo R>
-using SciNoDivide = detail::SciNoDivide<L, R>::type;
+using SciNoDivide = typename detail::SciNoDivide<L, R>::type;
 
 template <IsSciNo L, IsSciNo R>
 constexpr auto SciNoEqual = detail::SciNoEqual<L, R>::value;
