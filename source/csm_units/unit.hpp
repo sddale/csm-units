@@ -99,10 +99,6 @@ class Unit {
     return result;
   }
 
-  // constexpr friend auto operator/(IsArithmetic auto lhs, Unit rhs) noexcept {
-  //   return Unit<
-  // }
-
   // Operator overloads for interactions with Units of the same dimension
   // Unit storage ValueType follows from lhs class
   constexpr friend auto operator<=>(

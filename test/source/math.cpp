@@ -25,6 +25,7 @@ TEST_SUITE("Math utility functions") {
     CHECK_UNIT_EQ(UnitPow<-1>(-2._m), Unit<One() / m>(-0.5));
     CHECK_UNIT_EQ(UnitPow<-2>(-2._m), 1 / 4_m2);
     CHECK_UNIT_EQ(UnitPow<-3>(-2._m), -1 / 8_m3);
+    CHECK_UNIT_EQ(UnitSqrt(2._m2), 1.4142135623730951_m);
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type, misc-use-anonymous-namespace)

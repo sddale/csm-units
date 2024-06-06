@@ -7,7 +7,26 @@
 #include <csm_units/concepts.hpp>
 #include <utility>
 
+#include "definition.hpp"
+#include "dimension.hpp"
+#include "sci_no.hpp"
+#include "unit.hpp"
+
 namespace csm_units {
+
+namespace detail {
+
+// Simple implementation of Heron's method
+[[nodiscard]] constexpr auto Sqrt(auto&& value) noexcept {
+  constexpr auto abs = [](auto&& n) { return n < 0 ? -n : n; };
+  auto result = std::remove_cvref_t<decltype(value)>(1);
+  while (abs(result * result - value) > 1e-12) {
+    result = 0.5 * (result + value / result);
+  }
+  return result;
+}
+
+}  // namespace detail
 
 // Unit to positive integer power
 template <int N>
@@ -19,6 +38,17 @@ template <int N>
   } else {
     return 1.0;
   }
+}
+
+// Unit square root
+template <IsUnit U>
+[[nodiscard]] constexpr auto UnitSqrt(U&& unit) noexcept {
+  static_assert(
+      SciNoEqual<typename U::DefType::ConvType, SciNo<std::ratio<1, 1>, 0>>,
+      "Sqrt input unit requires conversion factor == 1");
+  return Unit<Definition<
+      DimensionMultiply<typename U::DefType::DimenType, std::ratio<1, 2>>>{}>(
+      detail::Sqrt(unit.data));
 }
 
 // Alias for squaring a unit
