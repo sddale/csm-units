@@ -56,20 +56,20 @@ struct Root {
 
 // Unit to real power (via std::ratio exponent)
 // Specify root algo via RootF. Requires operator() overload for calling.
-template <IsRatio pow, IsUnit U,
-          class RootF = detail::Root<pow::den, typename U::ValueType>>
+template <IsRatio Pow, IsUnit U,
+          class RootF = detail::Root<Pow::den, typename U::ValueType>>
   requires requires { RootF()(typename U::ValueType{1}); }
 [[nodiscard]] constexpr auto UnitPow(U&& unit) noexcept {
-  if constexpr (pow::num == 0) {
+  if constexpr (Pow::num == 0) {
     return typename U::ValueType{1};
-  } else if constexpr (pow::num < 0) {
-    return 1.0 / UnitPow<std::ratio<-1 * pow::num, pow::den>>(
+  } else if constexpr (Pow::num < 0) {
+    return 1.0 / UnitPow<std::ratio<-1 * Pow::num, Pow::den>>(
                      std::forward<decltype(unit)>(unit));
   } else {  // Take x^(1/den)^num
-    using Dimen = DimensionMultiply<typename U::DefType::DimenType, pow>;
+    using Dimen = DimensionMultiply<typename U::DefType::DimenType, Pow>;
     using Data = U::ValueType;
     return Unit<Definition<Dimen>{}, Data>(
-        detail::Pow<pow::num, Data>()(RootF()(std::forward<Data>(unit.data))));
+        detail::Pow<Pow::num, Data>()(RootF()(std::forward<Data>(unit.data))));
   }
 }
 
