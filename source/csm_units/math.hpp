@@ -44,8 +44,9 @@ struct Root {
     auto value = T{1};
     const auto coeffs = std::pair<T, T>{static_cast<double>(N - 1) / N,
                                         static_cast<double>(input) / N};
-    while (abs(Pow<N, T>()(value) - input) > 1e-12) {
-      value = coeffs.first * value + coeffs.second / Pow<N - 1, T>()(value);
+    for (auto pow = Pow<N - 1, T>()(value); abs(pow * value - input) > 1e-12;) {
+      value = coeffs.first * value + coeffs.second / pow;
+      pow = Pow<N - 1, T>()(value);
     }
     return value;
   }
