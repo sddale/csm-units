@@ -1,6 +1,7 @@
 #include <doctest/doctest.h>
 
 #include <csm_units/units.hpp>
+#include <ratio>
 #include <source/csm_units/math.hpp>
 
 #include "common.hpp"
@@ -20,13 +21,18 @@ TEST_SUITE("Math utility functions") {
     CHECK_DBL_EQ(UnitPow<0>(-2._m), 1.0);
     CHECK_UNIT_EQ(UnitPow<1>(-2._m), -2._m);
     CHECK_UNIT_EQ(UnitPow<2>(-2._m), 4._m2);
+    CHECK_UNIT_EQ(UnitPow<std::ratio<2>>(-2._m), 4._m2);
     CHECK_UNIT_EQ(UnitPow<3>(-2._m), -8._m3);
     CHECK_UNIT_EQ(UnitPow<4>(-2._m), 16._m3 * m);
     CHECK_UNIT_EQ(UnitPow<-1>(-2._m), -0.5 / m);
     CHECK_UNIT_EQ(UnitPow<-2>(-2._m), 1 / 4_m2);
     CHECK_UNIT_EQ(UnitPow<-3>(-2._m), -1 / 8_m3);
-    CHECK_UNIT_EQ(UnitSqrt(2._m2), 1.4142135623730951_m);
-    CHECK_UNIT_EQ(UnitCbrt(10._m3), 2.15443469003_m);
+    CHECK_UNIT_EQ(UnitPow<std::ratio<1, 2>>(2._m2), 1.4142135623730951_m);
+    CHECK_UNIT_EQ(UnitPow<std::ratio<1, 3>>(10._m3), 2.15443469003_m);
+    CHECK_UNIT_EQ(UnitPow<std::ratio<2, 3>>(10._m3), 4.64158883361_m2);
+    CHECK_UNIT_EQ(UnitPow<std::ratio<3, 2>>(10._m2), 31.6227766017_m3);
+    CHECK_UNIT_EQ(UnitPow<std::ratio<-3, 2>>(10._m2), 0.0316227766 / m3);
+    CHECK_DBL_EQ(UnitPow<std::ratio<-0, 1>>(10._m2), 1);
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
