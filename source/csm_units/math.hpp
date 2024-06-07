@@ -72,10 +72,10 @@ template <IsRatio pow, IsUnit U,
   }
 }
 
-// Alias for unit to integer power
-template <int N>
+// Alias with two integer templates
+template <int N, int D = 1>
 [[nodiscard]] constexpr auto UnitPow(IsUnit auto&& unit) noexcept {
-  return UnitPow<std::ratio<N>>(std::forward<decltype(unit)>(unit));
+  return UnitPow<std::ratio<N, D>>(std::forward<decltype(unit)>(unit));
 }
 
 // Alias for unit square root
