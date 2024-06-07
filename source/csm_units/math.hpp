@@ -60,6 +60,11 @@ template <IsRatio N, IsUnit U,
           class RootF = detail::Root<N::den, typename U::ValueType>>
   requires requires { RootF()(typename U::ValueType{1}); }
 [[nodiscard]] constexpr auto UnitPow(U&& unit) noexcept {
+  static_assert(
+      N::den == 1 or
+          SciNoEqual<typename U::DefType::ConvType, SciNo<std::ratio<1, 1>, 0>>,
+      "Root calculation requires input unit conversion factor == 1");
+
   if constexpr (N::num == 0) {
     return typename U::ValueType{1};
   } else if constexpr (N::num < 0) {
