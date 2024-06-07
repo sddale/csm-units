@@ -42,8 +42,8 @@ struct Root {
   constexpr auto operator()(T input) noexcept {
     constexpr auto abs = [](auto&& n) { return n < 0 ? -n : n; };
     auto value = T{1};
-    const auto coeffs = std::pair{static_cast<double>(N - 1) / N,
-                                  static_cast<double>(input) / N};
+    const auto coeffs = std::pair<T, T>{static_cast<double>(N - 1) / N,
+                                        static_cast<double>(input) / N};
     while (abs(Pow<N, T>()(value) - input) > 1e-12) {
       value = coeffs.first * value + coeffs.second / Pow<N - 1, T>()(value);
     }
