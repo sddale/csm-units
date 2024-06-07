@@ -20,7 +20,7 @@ namespace csm_units {
 
 namespace detail {
 
-// Simple implementation of Heron's method
+// Simple implementation via Heron's method
 template <class T>
 struct Sqrt {
   constexpr auto operator()(T input) noexcept {
@@ -28,6 +28,19 @@ struct Sqrt {
     auto value = T{1};
     while (abs(value * value - input) > 1e-12) {
       value = 0.5 * (value + input / value);
+    }
+    return value;
+  }
+};
+
+// Simple implementation via Newton's method
+template <class T>
+struct Cbrt {
+  constexpr auto operator()(T input) noexcept {
+    constexpr auto abs = [](auto&& n) { return n < 0 ? -n : n; };
+    auto value = T{1};
+    while (abs(value * value * value - input) > 1e-12) {
+      value = 1. / 3 * (2 * value + input / (value * value));
     }
     return value;
   }
@@ -56,6 +69,17 @@ template <IsUnit U, class SqrRootF = detail::Sqrt<CSMUNITS_VALUE_TYPE>>
   return Unit<Definition<
       DimensionMultiply<typename U::DefType::DimenType, std::ratio<1, 2>>>{}>(
       SqrRootF()(unit.data));
+}
+
+// Unit cubic root
+template <IsUnit U, class CbRootF = detail::Cbrt<CSMUNITS_VALUE_TYPE>>
+[[nodiscard]] constexpr auto UnitCbrt(U&& unit) noexcept {
+  static_assert(
+      SciNoEqual<typename U::DefType::ConvType, SciNo<std::ratio<1, 1>, 0>>,
+      "Cbrt input unit requires conversion factor == 1");
+  return Unit<Definition<
+      DimensionMultiply<typename U::DefType::DimenType, std::ratio<1, 3>>>{}>(
+      CbRootF()(unit.data));
 }
 
 // Alias for squaring a unit
