@@ -68,7 +68,8 @@ template <IsRatio pow, IsUnit U,
     using Dimen = U::DefType::DimenType;
     using Data = U::ValueType;
     using Result = Unit<Definition<DimensionMultiply<Dimen, pow>>{}, Data>;
-    return Result(detail::Pow<pow::num, Data>()(RootF()(unit.data)));
+    return Result(
+        detail::Pow<pow::num, Data>()(RootF()(std::forward<Data>(unit.data))));
   }
 }
 
