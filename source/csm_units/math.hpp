@@ -68,8 +68,7 @@ template <IsRatio pow, IsUnit U,
   } else {  // Take x^(1/den)^num
     using Dimen = DimensionMultiply<typename U::DefType::DimenType, pow>;
     using Data = U::ValueType;
-    using Result = Unit<Definition<Dimen>{}, Data>;
-    return Result(
+    return Unit<Definition<Dimen>{}, Data>(
         detail::Pow<pow::num, Data>()(RootF()(std::forward<Data>(unit.data))));
   }
 }
