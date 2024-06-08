@@ -56,24 +56,21 @@ struct Root {
 
 // Unit to real power (via std::ratio exponent)
 // Specify root algo via RootF. Requires operator() overload for calling.
+// Function always return units of SI base i.e. UnitPow<2,cm> -> m^2
 template <IsRatio N, IsUnit U,
           class RootF = detail::Root<N::den, typename U::ValueType>>
   requires requires { RootF()(typename U::ValueType{1}); }
 [[nodiscard]] constexpr auto UnitPow(U&& unit) noexcept {
-  static_assert(
-      N::den == 1 or
-          SciNoEqual<typename U::DefType::ConvType, SciNo<std::ratio<1, 1>, 0>>,
-      "Root calculation requires input unit conversion factor == 1");
-
   if constexpr (N::num == 0) {
     return typename U::ValueType{1};
   } else if constexpr (N::num < 0) {
-    return 1.0 / UnitPow<std::ratio<-1 * N::num, N::den>>(
-                     std::forward<decltype(unit)>(unit));
+    return 1.0 / UnitPow<std::ratio<-1 * N::num, N::den>, U, RootF>(
+                     std::forward<U>(unit));
   } else {  // Take x^(1/den)^num
-    using Dimen = DimensionMultiply<typename U::DefType::DimenType, N>;
+    using Dimen = DimensionMultiply<typename U::DimenType, N>;
     using Data = U::ValueType;
-    return Unit<Definition<Dimen>{}, Data>(
+    using BaseUnit = Unit<Definition<Dimen>{}, Data>;
+    return BaseUnit(
         detail::Pow<N::num, Data>()(RootF()(std::forward<Data>(unit.data))));
   }
 }
