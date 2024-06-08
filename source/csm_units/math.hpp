@@ -39,7 +39,7 @@ struct Pow {
 // Simple implementation via Newton's method for nth root
 template <int N, class T>
 struct Root {
-  constexpr auto operator()(T input) noexcept {
+  constexpr static auto operator()(T input) noexcept {
     constexpr auto abs = [](auto&& n) { return n < 0 ? -n : n; };
     auto value = T{1};
     const auto coeffs = std::pair<T, T>{static_cast<double>(N - 1) / N,
@@ -55,11 +55,12 @@ struct Root {
 }  // namespace detail
 
 // Unit to real power (via std::ratio exponent)
-// Specify root algo via RootF. Requires operator() overload for calling.
-// Function always return units of SI base i.e. UnitPow<2,cm> -> m^2
+//  - Specify root algo via RootF, any func of form T(T) for Unit data type T
+//    (i.e. double)
+//  - Function always return units of SI base i.e. UnitPow<2, cm> -> m^2
 template <IsRatio N, IsUnit U,
-          class RootF = detail::Root<N::den, typename U::ValueType>>
-  requires requires { RootF()(typename U::ValueType{1}); }
+          auto RootF = detail::Root<N::den, typename U::ValueType>{}>
+  requires requires { RootF(typename U::ValueType{1}); }
 [[nodiscard]] constexpr auto UnitPow(U&& unit) noexcept {
   if constexpr (N::num == 0) {
     return typename U::ValueType{1};
@@ -71,7 +72,7 @@ template <IsRatio N, IsUnit U,
     using Data = U::ValueType;
     using BaseUnit = Unit<Definition<Dimen>{}, Data>;
     return BaseUnit(
-        detail::Pow<N::num, Data>()(RootF()(std::forward<Data>(unit.data))));
+        detail::Pow<N::num, Data>()(RootF(std::forward<Data>(unit.data))));
   }
 }
 

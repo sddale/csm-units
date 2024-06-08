@@ -34,6 +34,10 @@ TEST_SUITE("Math utility functions") {
     CHECK_UNIT_EQ(UnitPow<3, 2>(10. * cm * cm), 3.16228e-05_m3);
     CHECK_UNIT_EQ(UnitPow<std::ratio<-3, 2>>(10._m2), 0.0316227766 / m3);
     CHECK_DBL_EQ(UnitPow<std::ratio<-0, 1>>(10._m2), 1);
+    CHECK_UNIT_EQ(  // Check arbitrary root function, here just return 10
+        UnitPow<std::ratio<-3, 2>, SqMeter,
+                [](typename SqMeter::ValueType) { return 10; }>(10._m2),
+        1e-3 / m3);
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
