@@ -41,7 +41,7 @@ class Unit {
   constexpr explicit Unit(ValueType input = ValueType(0.0)) noexcept
       : data((input +
               static_cast<ValueType>(OriginType::num) / OriginType::den) *
-             DefType::ToSI()){};
+             DefType::ToSI()) {};
 
   // Build from other unit of same dimension. Zero point is irrelevant.
   // Should be implicit to allow for conversions between units of the same
@@ -98,10 +98,6 @@ class Unit {
     result.data = lhs / rhs.data;
     return result;
   }
-
-  // constexpr friend auto operator/(IsArithmetic auto lhs, Unit rhs) noexcept {
-  //   return Unit<
-  // }
 
   // Operator overloads for interactions with Units of the same dimension
   // Unit storage ValueType follows from lhs class
