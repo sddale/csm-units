@@ -5,6 +5,7 @@
 #pragma once
 
 #include <csm_units/concepts.hpp>
+#include <limits>
 #include <utility>
 
 #include "definition.hpp"
@@ -58,21 +59,28 @@ struct Root {
 //  - Specify root algo via RootF, any func of form T(T) for Unit data type T
 //    (i.e. double)
 //  - Function always return units of SI base i.e. UnitPow<2, cm> -> m^2
-template <IsRatio N, IsUnit U,
-          auto RootF = detail::Root<N::den, typename U::ValueType>{}>
-  requires requires { RootF(typename U::ValueType{1}); }
+template <IsRatio R, IsUnit U,
+          auto RootF = detail::Root<R::den, typename U::ValueType>{}>
+  requires requires {
+    {
+      RootF(typename U::ValueType{1})
+    } -> std::convertible_to<typename U::ValueType>;
+  }
 [[nodiscard]] constexpr auto UnitPow(U&& unit) noexcept {
-  if constexpr (N::num == 0) {
+  if constexpr (R::num == 0) {
     return typename U::ValueType{1};
-  } else if constexpr (N::num < 0) {
-    return 1.0 / UnitPow<std::ratio<-1 * N::num, N::den>, U, RootF>(
+  } else if constexpr (R::num < 0) {
+    return 1.0 / UnitPow<std::ratio<-1 * R::num, R::den>, U, RootF>(
                      std::forward<U>(unit));
   } else {  // Take x^(1/den)^num
-    using Dimen = DimensionMultiply<typename U::DimenType, N>;
+    using Dimen = DimensionMultiply<typename U::DimenType, R>;
     using Data = U::ValueType;
     using BaseUnit = Unit<Definition<Dimen>{}, Data>;
+    if (unit.data < 0.0 and R::den % 2 == 0) {  // check for imaginary answer
+      return BaseUnit(std::numeric_limits<double>::quiet_NaN());
+    }
     return BaseUnit(
-        detail::Pow<N::num, Data>()(RootF(std::forward<Data>(unit.data))));
+        detail::Pow<R::num, Data>()(RootF(std::forward<Data>(unit.data))));
   }
 }
 
