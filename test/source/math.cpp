@@ -26,7 +26,7 @@ TEST_SUITE("Math utility functions") {
     CHECK_UNIT_EQ(UnitPow<-1>(-2._m), -0.5 / m);
     CHECK_UNIT_EQ(UnitPow<-2>(-2._m), 1 / 4_m2);
     CHECK_UNIT_EQ(UnitPow<-3>(-2._m), -1 / 8_m3);
-    CHECK_UNIT_EQ(UnitPow<-3>(-2._cm), -125000 / m3);
+    CHECK_UNIT_EQ(UnitPow<-3>(-2._cm), -125000. / m3);
     CHECK_UNIT_EQ(UnitPow<std::ratio<1, 2>>(2._m2), 1.4142135623730951_m);
     CHECK_UNIT_EQ(UnitPow<std::ratio<1, 3>>(10._m3), 2.15443469003_m);
     CHECK_UNIT_EQ(UnitPow<std::ratio<2, 3>>(10._m3), 4.64158883361_m2);
@@ -38,6 +38,26 @@ TEST_SUITE("Math utility functions") {
         UnitPow<std::ratio<-3, 2>, SqMeter,
                 [](typename SqMeter::ValueType) { return 10; }>(10._m2),
         1e-3 / m3);
+
+    {
+      auto list = UnitList<Unit<m>, Unit<m2>, Unit<m3>>{};
+      ForEach(list, [](auto& input) {
+        input = std::remove_cvref_t<decltype(input)>(1);
+      });
+      CHECK_UNIT_EQ(std::get<0>(list), 1_m);
+    }
+
+    {
+      auto list = UnitList{1 * m, 1 * m2, 1 * m3};
+      ForEach(list, [](auto& input) { input = input * 2; });
+      CHECK_UNIT_EQ(std::get<0>(list), 2_m);
+    }
+    {
+      const auto unit1 = Meter(1);
+      auto list = UnitList{unit1, 1 * m2, 1 * m3};
+      ForEach(list, [](auto& input) { input = input * 2; });
+      CHECK_UNIT_EQ(std::get<0>(list), 2_m);
+    }
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type, misc-use-anonymous-namespace)
