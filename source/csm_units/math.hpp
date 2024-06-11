@@ -60,7 +60,7 @@ struct Root {
 //  - Function always return units of SI base i.e. UnitPow<2, cm> -> m^2
 template <IsRatio N, IsUnit U,
           auto RootF = detail::Root<N::den, typename U::ValueType>{}>
-// requires requires { RootF(typename U::ValueType{1}); }
+  requires requires { RootF(typename U::ValueType{1}); }
 [[nodiscard]] constexpr auto UnitPow(U&& unit) noexcept {
   if constexpr (N::num == 0) {
     return typename U::ValueType{1};
