@@ -1,5 +1,6 @@
 #include <doctest/doctest.h>
 
+#include <cmath>
 #include <csm_units/units.hpp>
 #include <ratio>
 #include <source/csm_units/math.hpp>
