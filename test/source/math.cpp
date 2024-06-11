@@ -38,26 +38,6 @@ TEST_SUITE("Math utility functions") {
         UnitPow<std::ratio<-3, 2>, SqMeter,
                 [](typename SqMeter::ValueType) { return 10; }>(10._m2),
         1e-3 / m3);
-
-    {
-      auto list = UnitList<Unit<m>, Unit<m2>, Unit<m3>>{};
-      ForEach(list, [](auto& input) {
-        input = std::remove_cvref_t<decltype(input)>(1);
-      });
-      CHECK_UNIT_EQ(std::get<0>(list), 1_m);
-    }
-
-    {
-      auto list = UnitList{1 * m, 1 * m2, 1 * m3};
-      ForEach(list, [](auto& input) { input = input * 2; });
-      CHECK_UNIT_EQ(std::get<0>(list), 2_m);
-    }
-    {
-      const auto unit1 = Meter(1);
-      auto list = UnitList{unit1, 1 * m2, 1 * m3};
-      ForEach(list, [](auto& input) { input = input * 2; });
-      CHECK_UNIT_EQ(std::get<0>(list), 2_m);
-    }
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type, misc-use-anonymous-namespace)

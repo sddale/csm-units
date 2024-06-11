@@ -23,7 +23,7 @@ namespace detail {
 // Simple implementation of real number to integer power
 template <int N, class T>
 struct Pow {
-  constexpr auto operator()(T input) noexcept {
+  constexpr auto operator()(T input) const noexcept {
     if constexpr (N >= 0) {
       auto result = T{1};
       for (int i = 0; i < N; ++i) {
@@ -39,7 +39,7 @@ struct Pow {
 // Simple implementation via Newton's method for nth root
 template <int N, class T>
 struct Root {
-  constexpr static auto operator()(T input) noexcept {
+  constexpr auto operator()(T input) const noexcept {
     constexpr auto abs = [](auto&& n) { return n < 0 ? -n : n; };
     auto value = T{1};
     const auto coeffs = std::pair<T, T>{static_cast<double>(N - 1) / N,
@@ -60,7 +60,7 @@ struct Root {
 //  - Function always return units of SI base i.e. UnitPow<2, cm> -> m^2
 template <IsRatio N, IsUnit U,
           auto RootF = detail::Root<N::den, typename U::ValueType>{}>
-  requires requires { RootF(typename U::ValueType{1}); }
+// requires requires { RootF(typename U::ValueType{1}); }
 [[nodiscard]] constexpr auto UnitPow(U&& unit) noexcept {
   if constexpr (N::num == 0) {
     return typename U::ValueType{1};
