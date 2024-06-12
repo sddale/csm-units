@@ -42,10 +42,13 @@ template <int N, class T>
 struct Root {
   constexpr auto operator()(T input) const noexcept {
     constexpr auto abs = [](auto&& n) { return n < 0 ? -n : n; };
-    auto value = T{1};
     const auto coeffs = std::pair<T, T>{static_cast<double>(N - 1) / N,
                                         static_cast<double>(input) / N};
-    for (auto pow = Pow<N - 1, T>()(value); abs(pow * value - input) > 1e-12;) {
+    auto value = input / T{N};
+    auto pow = T{1};
+    for (int count = 0; count < 1000 and abs(pow * value - input) >=
+                                             std::numeric_limits<T>::min();
+         ++count) {
       value = coeffs.first * value + coeffs.second / pow;
       pow = Pow<N - 1, T>()(value);
     }
