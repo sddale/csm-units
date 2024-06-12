@@ -5,6 +5,7 @@
 #pragma once
 
 #include <csm_units/concepts.hpp>
+#include <limits>
 #include <utility>
 
 #include "definition.hpp"
@@ -41,10 +42,13 @@ template <int N, class T>
 struct Root {
   constexpr auto operator()(T input) const noexcept {
     constexpr auto abs = [](auto&& n) { return n < 0 ? -n : n; };
-    auto value = T{1};
     const auto coeffs = std::pair<T, T>{static_cast<double>(N - 1) / N,
                                         static_cast<double>(input) / N};
-    for (auto pow = Pow<N - 1, T>()(value); abs(pow * value - input) > 1e-12;) {
+    auto value = input / T{N};
+    auto pow = T{1};
+    for (int count = 0; count < 1000 and abs(pow * value - input) >=
+                                             std::numeric_limits<T>::min();
+         ++count) {
       value = coeffs.first * value + coeffs.second / pow;
       pow = Pow<N - 1, T>()(value);
     }
@@ -58,48 +62,59 @@ struct Root {
 //  - Specify root algo via RootF, any func of form T(T) for Unit data type T
 //    (i.e. double)
 //  - Function always return units of SI base i.e. UnitPow<2, cm> -> m^2
-template <IsRatio N, IsUnit U,
-          auto RootF = detail::Root<N::den, typename U::ValueType>{}>
-  requires requires { RootF(typename U::ValueType{1}); }
+template <IsRatio R, IsUnit U,
+          auto RootF = detail::Root<R::den, typename U::ValueType>{}>
+  requires requires {
+    {
+      RootF(typename U::ValueType{1})
+    } -> std::convertible_to<typename U::ValueType>;
+  }
 [[nodiscard]] constexpr auto UnitPow(U&& unit) noexcept {
-  if constexpr (N::num == 0) {
+  if constexpr (R::num == 0) {
     return typename U::ValueType{1};
-  } else if constexpr (N::num < 0) {
-    return 1.0 / UnitPow<std::ratio<-1 * N::num, N::den>, U, RootF>(
+  } else if constexpr (R::num < 0) {
+    return 1.0 / UnitPow<std::ratio<-1 * R::num, R::den>, U, RootF>(
                      std::forward<U>(unit));
   } else {  // Take x^(1/den)^num
-    using Dimen = DimensionMultiply<typename U::DimenType, N>;
+    using Dimen = DimensionMultiply<typename U::DimenType, R>;
     using Data = U::ValueType;
     using BaseUnit = Unit<Definition<Dimen>{}, Data>;
-    return BaseUnit(
-        detail::Pow<N::num, Data>()(RootF(std::forward<Data>(unit.data))));
+    if (unit.data < 0.0 and R::den % 2 == 0) {  // check for imaginary answer
+      return BaseUnit(std::numeric_limits<double>::quiet_NaN());
+    }
+    return BaseUnit(detail::Pow<R::num, Data>()(RootF(unit.data)));
   }
 }
 
 // Alias with two integer templates
 template <int N, int D = 1>
 [[nodiscard]] constexpr auto UnitPow(IsUnit auto&& unit) noexcept {
-  return UnitPow<std::ratio<N, D>>(std::forward<decltype(unit)>(unit));
+  return UnitPow<std::ratio<N, D>>(
+      std::forward<std::remove_reference_t<decltype(unit)>>(unit));
 }
 
 // Alias for unit square root
 [[nodiscard]] constexpr auto UnitSqrt(IsUnit auto&& unit) noexcept {
-  return UnitPow<std::ratio<1, 2>>(std::forward<decltype(unit)>(unit));
+  return UnitPow<std::ratio<1, 2>>(
+      std::forward<std::remove_reference_t<decltype(unit)>>(unit));
 }
 
 // Alias for unit cubic root
 [[nodiscard]] constexpr auto UnitCbrt(IsUnit auto&& unit) noexcept {
-  return UnitPow<std::ratio<1, 3>>(std::forward<decltype(unit)>(unit));
+  return UnitPow<std::ratio<1, 3>>(
+      std::forward<std::remove_reference_t<decltype(unit)>>(unit));
 }
 
 // Alias for unit square
 [[nodiscard]] constexpr auto UnitSquare(IsUnit auto&& unit) noexcept {
-  return UnitPow<2>(std::forward<decltype(unit)>(unit));
+  return UnitPow<2>(
+      std::forward<std::remove_reference_t<decltype(unit)>>(unit));
 }
 
 // Alias for unit cube
 [[nodiscard]] constexpr auto UnitCube(IsUnit auto&& unit) noexcept {
-  return UnitPow<3>(std::forward<decltype(unit)>(unit));
+  return UnitPow<3>(
+      std::forward<std::remove_reference_t<decltype(unit)>>(unit));
 }
 
 }  // namespace csm_units
