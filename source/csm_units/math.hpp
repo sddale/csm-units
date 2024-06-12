@@ -82,35 +82,39 @@ template <IsRatio R, IsUnit U,
     if (unit.data < 0.0 and R::den % 2 == 0) {  // check for imaginary answer
       return BaseUnit(std::numeric_limits<double>::quiet_NaN());
     }
-    return BaseUnit(
-        detail::Pow<R::num, Data>()(RootF(std::forward<Data>(unit.data))));
+    return BaseUnit(detail::Pow<R::num, Data>()(RootF(unit.data)));
   }
 }
 
 // Alias with two integer templates
 template <int N, int D = 1>
 [[nodiscard]] constexpr auto UnitPow(IsUnit auto&& unit) noexcept {
-  return UnitPow<std::ratio<N, D>>(std::forward<decltype(unit)>(unit));
+  return UnitPow<std::ratio<N, D>>(
+      std::forward<std::remove_reference_t<decltype(unit)>>(unit));
 }
 
 // Alias for unit square root
 [[nodiscard]] constexpr auto UnitSqrt(IsUnit auto&& unit) noexcept {
-  return UnitPow<std::ratio<1, 2>>(std::forward<decltype(unit)>(unit));
+  return UnitPow<std::ratio<1, 2>>(
+      std::forward<std::remove_reference_t<decltype(unit)>>(unit));
 }
 
 // Alias for unit cubic root
 [[nodiscard]] constexpr auto UnitCbrt(IsUnit auto&& unit) noexcept {
-  return UnitPow<std::ratio<1, 3>>(std::forward<decltype(unit)>(unit));
+  return UnitPow<std::ratio<1, 3>>(
+      std::forward<std::remove_reference_t<decltype(unit)>>(unit));
 }
 
 // Alias for unit square
 [[nodiscard]] constexpr auto UnitSquare(IsUnit auto&& unit) noexcept {
-  return UnitPow<2>(std::forward<decltype(unit)>(unit));
+  return UnitPow<2>(
+      std::forward<std::remove_reference_t<decltype(unit)>>(unit));
 }
 
 // Alias for unit cube
 [[nodiscard]] constexpr auto UnitCube(IsUnit auto&& unit) noexcept {
-  return UnitPow<3>(std::forward<decltype(unit)>(unit));
+  return UnitPow<3>(
+      std::forward<std::remove_reference_t<decltype(unit)>>(unit));
 }
 
 }  // namespace csm_units
