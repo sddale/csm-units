@@ -20,8 +20,12 @@ TEST_SUITE("Unit") {
     CHECK_DBL_EQ(Rankine(100.).data, 100. * 5 / 9);
     static_assert(Kelvin(100.).Get() == Kelvin(100.).data);
     CHECK_DBL_EQ(Fahrenheit(100.).Get(), 100);
+    CHECK_DBL_EQ(Fahrenheit(100.).Get<K>(), Fahrenheit(100.).data);
+    CHECK_DBL_EQ(Fahrenheit(100.).Get<degF>(), Fahrenheit(100.).Get());
+    CHECK_DBL_EQ(Kelvin(100.).Get<degF>(), Fahrenheit(-279.67).Get());
     CHECK_DBL_EQ(Fahrenheit(100.).data, Rankine(559.67).data);
     CHECK_DBL_EQ(Fahrenheit(100.).data, Celsius(37.7778).data);
+    CHECK_DBL_EQ(Fahrenheit(100.).Get<degC>(), Celsius(37.7778).Get());
     CHECK_DBL_EQ(Fahrenheit(100.).data, Rankine(100 + 459.67).data);
     CHECK_EQ(Fahrenheit(100.).data,
              doctest::Approx(Kelvin((100 - 32) * 5. / 9 + 273.15).Get()));

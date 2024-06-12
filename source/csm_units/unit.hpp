@@ -49,10 +49,17 @@ class Unit {
   constexpr explicit(false) Unit(SameDimensionAs<Unit> auto input) noexcept
       : data(input.data) {}
 
-  // Return magnitude in expected named unit by applying conversion
+  // Return magnitude in expected named unit by applying conversion dictated by
+  // template
+  template <Definition out_def = definition>
+    requires requires {
+      { typename decltype(out_def)::DimenType{} } -> std::same_as<DimenType>;
+    }
   [[nodiscard]] constexpr auto Get() const noexcept {
-    return (data * DefType::Get()) -
-           static_cast<ValueType>(OriginType::num) / OriginType::den;
+    using OutDefType = decltype(out_def);
+    using OutOriginType = typename OutDefType::OriginType;
+    return (data * OutDefType::Get()) -
+           static_cast<ValueType>(OutOriginType::num) / OutOriginType::den;
   }
 
   // Return magnitude in si, a getter for var data for readability if desired
