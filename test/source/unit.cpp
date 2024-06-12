@@ -23,6 +23,8 @@ TEST_SUITE("Unit") {
     CHECK_DBL_EQ(Fahrenheit(100.).Get<K>(), Fahrenheit(100.).data);
     CHECK_DBL_EQ(Fahrenheit(100.).Get<degF>(), Fahrenheit(100.).Get());
     CHECK_DBL_EQ(Kelvin(100.).Get<degF>(), Fahrenheit(-279.67).Get());
+    CHECK_DBL_EQ(Fahrenheit(100.).Get<degC>(), 37.7778);
+    CHECK_DBL_EQ(Fahrenheit(100.).Get(), 100.);
     CHECK_DBL_EQ(Fahrenheit(100.).data, Rankine(559.67).data);
     CHECK_DBL_EQ(Fahrenheit(100.).data, Celsius(37.7778).data);
     CHECK_DBL_EQ(Fahrenheit(100.).Get<degC>(), Celsius(37.7778).Get());
