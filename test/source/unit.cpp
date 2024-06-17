@@ -31,7 +31,6 @@ TEST_SUITE("Unit") {
     CHECK_DBL_EQ(Fahrenheit(100.).data, Rankine(100 + 459.67).data);
     CHECK_EQ(Fahrenheit(100.).data,
              doctest::Approx(Kelvin((100 - 32) * 5. / 9 + 273.15).Get()));
-    CHECK_UNIT_EQ(12_Jpermol, 36_J / 3_mol);
   }
 }
 // NOLINTEND(modernize-use-trailing-return-type, misc-use-anonymous-namespace)

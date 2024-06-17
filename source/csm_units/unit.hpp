@@ -181,14 +181,7 @@ constexpr auto operator*(IsArithmetic auto lhs, DR /*rhs*/) noexcept {
 
 template <IsUnit U, IsDefinition D>
 constexpr auto operator*(U lhs, D rhs) noexcept {
-  if constexpr (std::same_as<typename U::DefType::DimenType,
-                             DimensionFlip<typename D::DimenType>>) {
-    return lhs.data;
-  } else {
-    auto result = Unit<U::def * rhs, typename U::ValueType>();
-    result.data = lhs.data / rhs.Get();
-    return result;
-  }
+  return lhs * Unit<rhs, typename U::ValueType>(typename U::ValueType{1});
 }
 
 template <IsDefinition D>
@@ -198,14 +191,7 @@ constexpr auto operator/(IsArithmetic auto lhs, D rhs) noexcept {
 
 template <IsUnit U, IsDefinition D>
 constexpr auto operator/(U lhs, D rhs) noexcept {
-  if constexpr (std::same_as<typename U::DefType::DimenType,
-                             typename D::DimenType>) {
-    return lhs.data;
-  } else {
-    auto result = Unit<U::def / rhs, typename U::ValueType>();
-    result.data = lhs.data * rhs.Get();
-    return result;
-  }
+  return lhs / Unit<rhs, typename U::ValueType>(typename U::ValueType{1});
 }
 
 }  // namespace csm_units
