@@ -68,7 +68,7 @@ set_property(
 target_compile_features(${PROJECT_NAME}_test PRIVATE cxx_std_23)
 if(MSVC)
   target_compile_options(
-    ${PROJECT_NAME}_test PRIVATE /bigobj /W4 /WX /std:c++latest
+    ${PROJECT_NAME}_test PRIVATE /bigobj /W4 /WX /std:c++latest /GL
   )
 else()
   target_compile_options(

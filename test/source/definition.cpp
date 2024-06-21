@@ -1,9 +1,12 @@
 #include <doctest/doctest.h>
 
 #include <csm_units/concepts.hpp>
+#include <csm_units/units.hpp>
 #include <source/csm_units/definition.hpp>
 #include <source/csm_units/dimension.hpp>
 #include <source/csm_units/unit.hpp>
+
+#include "common.hpp"
 
 #ifndef CSMUNITS_VALUE_TYPE
 #define CSMUNITS_VALUE_TYPE double
@@ -28,6 +31,11 @@ TEST_SUITE("Definition") {
     static_assert(
         std::is_same_v<decltype(area_def() / length_def()), length_def>);
     static_assert(std::is_same_v<decltype(length_def() / area_def()), inv_def>);
+  }
+  TEST_CASE("Binary operations") {
+    CHECK_UNIT_EQ(12_Jpermol, 36_J / 3_mol);
+    CHECK_DBL_EQ(300., 300._bar / bar);
+    CHECK_UNIT_EQ(100_m2, 0.1_km * 1._m);
   }
 }
 
