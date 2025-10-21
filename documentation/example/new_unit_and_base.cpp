@@ -14,13 +14,13 @@ using unit_alias =
     Unit<defined_base_dimension, "unit_code", underlying_data_type>;
 
 template <>
-[[nodiscard]] constexpr auto UnitCast(base_alias &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(base_alias&& input) noexcept
     -> unit_alias {
   return alias(equation);
 }
 
 template <>
-[[nodiscard]] constexpr auto UnitCast(unit_alias &&input) noexcept
+[[nodiscard]] constexpr auto UnitCast(unit_alias&& input) noexcept
     -> base_alias {
   return base_alias(equation);
 }
