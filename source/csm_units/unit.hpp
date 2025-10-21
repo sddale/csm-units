@@ -109,8 +109,8 @@ class Unit {
   // Operator overloads for interactions with Units of the same dimension
   // Unit storage ValueType follows from lhs class
   constexpr friend auto operator<=>(
-      const Unit& lhs,
-      const SameDimensionAs<Unit> auto& rhs) noexcept -> std::strong_ordering {
+      const Unit& lhs, const SameDimensionAs<Unit> auto& rhs) noexcept
+      -> std::strong_ordering {
     return std::strong_order(lhs.data, rhs.data);
   }
 
