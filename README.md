@@ -1,9 +1,8 @@
-[![Actions Status](https://github.com/sddale/csm-units/workflows/MacOS/badge.svg)](https://github.com/sddale/csm-units/actions)
-[![Actions Status](https://github.com/sddale/csm-units/workflows/Windows/badge.svg)](https://github.com/sddale/csm-units/actions)
-[![Actions Status](https://github.com/sddale/csm-units/workflows/Ubuntu/badge.svg)](https://github.com/sddale/csm-units/actions)
-[![Actions Status](https://github.com/sddale/csm-units/workflows/Style/badge.svg)](https://github.com/sddale/csm-units/actions)
-[![Actions Status](https://github.com/sddale/csm-units/workflows/Install/badge.svg)](https://github.com/sddale/csm-units/actions)
-<!-- [![codecov](https://codecov.io/gh/sddale/csm-units/branch/master/graph/badge.svg)](https://codecov.io/gh/sddale/csm-units) -->
+[![MacOS](https://github.com/sddale/csm-units/actions/workflows/macos.yml/badge.svg)](https://github.com/sddale/csm-units/actions/workflows/macos.yml)
+[![Windows](https://github.com/sddale/csm-units/actions/workflows/windows.yml/badge.svg)](https://github.com/sddale/csm-units/actions/workflows/windows.yml)
+[![Ubuntu](https://github.com/sddale/csm-units/actions/workflows/ubuntu.yml/badge.svg)](https://github.com/sddale/csm-units/actions/workflows/ubuntu.yml)
+[![Style](https://github.com/sddale/csm-units/actions/workflows/style.yml/badge.svg)](https://github.com/sddale/csm-units/actions/workflows/style.yml)
+[![Install](https://github.com/sddale/csm-units/actions/workflows/install.yml/badge.svg)](https://github.com/sddale/csm-units/actions/workflows/install.yml)
 
 <p align="center">
   <img src="https://www.mines.edu/wp-content/uploads/assets/logo_eee_rev_4c_r.png" height="100" width="auto" />
@@ -15,7 +14,6 @@ A C++20/23 library for descriptive units of measurements as drop-in replacements
 
 ## Features
 
-- Static inheritance via C++20 concepts
 - Implicit unit conversions
 - Build any unit of arbitrary dimension
 - Templated for arithmetic types
@@ -53,11 +51,8 @@ constexpr auto UseIG() {
 using namespace csm_units;
 using namespace csm_units::literals;
 
-constexpr auto IdealGas(Kilomole n, Liter volume, Fahrenheit temperature) {
+constexpr auto IdealGas(Kilomole n, Unit<"L"> volume, Unit<"F"> temperature) {
   const auto R = 8.3145 * m3 * Pa / (K * mol);
-
-  static_assert(std::convertible_to<decltype(R), decltype(1_J / (mol * K))>);
-  static_assert(not std::convertible_to<decltype(R), decltype(1_J)>);
 
   const Bar P = n * R * temperature / volume;  // implicit conversion
   return P;
