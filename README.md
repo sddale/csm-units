@@ -51,7 +51,7 @@ constexpr auto UseIG() {
 using namespace csm_units;
 using namespace csm_units::literals;
 
-constexpr auto IdealGas(Kilomole n, Unit<"L"> volume, Unit<"degF"> temperature) {
+constexpr auto IdealGas(Kilomole n, Unit<L> volume, Unit<degF> temperature) {
   const auto R = 8.3145 * m3 * Pa / (K * mol);
 
   const Bar P = n * R * temperature / volume;  // implicit conversion
