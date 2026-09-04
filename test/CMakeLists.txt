@@ -1,5 +1,5 @@
 # include(../cmake/CPM.cmake)
-CPMAddPackage("gh:doctest/doctest@2.4.12")
+CPMAddPackage("gh:doctest/doctest@2.5.3")
 
 add_executable(
   ${PROJECT_NAME}_test
