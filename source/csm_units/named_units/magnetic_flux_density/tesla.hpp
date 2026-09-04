@@ -17,7 +17,7 @@ using Tesla = Unit<Definition<MagneticFluxDensity>{}>;
 
 namespace literals {
 
-constexpr auto T =  // NOLINT(readability-identifier-length)
+inline constexpr auto T =  // NOLINT(readability-identifier-length)
     Tesla::def;
 
 constexpr auto operator""_T(long double data) noexcept {

@@ -19,7 +19,7 @@ using KilogramsPerCuMeter = Unit<Definition<Density>{}>;
 
 namespace literals {
 
-constexpr auto kgperm3 =  // NOLINT(readability-identifier-length)
+inline constexpr auto kgperm3 =  // NOLINT(readability-identifier-length)
     KilogramsPerCuMeter::def;
 
 constexpr auto operator""_kgperm3(long double data) noexcept {

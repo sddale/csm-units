@@ -17,7 +17,7 @@ using Gram = Unit<literals::kg * std::kilo()>;
 
 namespace literals {
 
-constexpr auto g =  // NOLINT(readability-identifier-length)
+inline constexpr auto g =  // NOLINT(readability-identifier-length)
     Gram::def;
 
 constexpr auto operator""_g(long double data) noexcept {

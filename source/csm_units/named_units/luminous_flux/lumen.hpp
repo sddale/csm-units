@@ -17,7 +17,7 @@ using Lumen = Unit<Definition<LuminousFlux>{}>;
 
 namespace literals {
 
-constexpr auto lm =  // NOLINT(readability-identifier-length)
+inline constexpr auto lm =  // NOLINT(readability-identifier-length)
     Lumen::def;
 
 constexpr auto operator""_lm(long double data) noexcept {

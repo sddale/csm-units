@@ -17,7 +17,7 @@ using Second = Unit<Definition<Time>{}>;
 
 namespace literals {
 
-constexpr auto s =  // NOLINT(readability-identifier-length)
+inline constexpr auto s =  // NOLINT(readability-identifier-length)
     Second::def;
 
 constexpr auto operator""_s(long double data) noexcept {

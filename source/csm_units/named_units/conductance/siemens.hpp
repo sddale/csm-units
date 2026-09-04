@@ -17,7 +17,7 @@ using Siemens = Unit<Definition<Conductance>{}>;
 
 namespace literals {
 
-constexpr auto S =  // NOLINT(readability-identifier-length)
+inline constexpr auto S =  // NOLINT(readability-identifier-length)
     Siemens::def;
 
 constexpr auto operator""_S(long double data) noexcept {

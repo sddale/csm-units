@@ -19,7 +19,7 @@ using Newton = Unit<literals::kg * literals::m / (literals::s * literals::s)>;
 
 namespace literals {
 
-constexpr auto N =  // NOLINT(readability-identifier-length)
+inline constexpr auto N =  // NOLINT(readability-identifier-length)
     Newton::def;
 
 constexpr auto operator""_N(long double data) noexcept {

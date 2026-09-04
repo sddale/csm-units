@@ -19,7 +19,7 @@ using JoulesPerMole = Unit<literals::J / literals::mol>;
 
 namespace literals {
 
-constexpr auto Jpermol =  // NOLINT(readability-identifier-length)
+inline constexpr auto Jpermol =  // NOLINT(readability-identifier-length)
     JoulesPerMole::def;
 
 constexpr auto operator""_Jpermol(long double data) noexcept {

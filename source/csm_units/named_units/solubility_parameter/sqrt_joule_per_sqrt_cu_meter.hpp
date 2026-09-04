@@ -19,7 +19,7 @@ using SqrtJoulesPerSqrtCuMeter = Unit<Definition<SolubilityParameter>{}>;
 
 namespace literals {
 
-constexpr auto SqrtJperSqrtm3 =  // NOLINT(readability-identifier-length)
+inline constexpr auto SqrtJperSqrtm3 =  // NOLINT(readability-identifier-length)
     SqrtJoulesPerSqrtCuMeter::def;
 
 constexpr auto operator""_SqrtJperSqrtm3(long double data) noexcept {

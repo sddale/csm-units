@@ -18,7 +18,7 @@ using Slug = Unit<literals::lb * std::ratio<100000, 3217405>()>;
 
 namespace literals {
 
-constexpr auto slug =  // NOLINT(readability-identifier-length)
+inline constexpr auto slug =  // NOLINT(readability-identifier-length)
     Slug::def;
 
 constexpr auto operator""_slug(long double data) noexcept {

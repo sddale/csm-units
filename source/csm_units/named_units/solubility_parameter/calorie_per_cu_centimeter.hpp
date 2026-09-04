@@ -19,7 +19,7 @@ using CaloriesPerCuCM = Unit<literals::Jperm3 * std::ratio<1, 4184000>()>;
 
 namespace literals {
 
-constexpr auto calpercm3 =  // NOLINT(readability-identifier-length)
+inline constexpr auto calpercm3 =  // NOLINT(readability-identifier-length)
     CaloriesPerCuCM::def;
 
 constexpr auto operator""_calpercm3(long double data) noexcept {

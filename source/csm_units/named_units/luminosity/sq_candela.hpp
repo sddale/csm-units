@@ -19,7 +19,7 @@ using SqCandela = Unit<literals::cd * literals::cd>;
 
 namespace literals {
 
-constexpr auto cd2 =  // NOLINT(readability-identifier-length)
+inline constexpr auto cd2 =  // NOLINT(readability-identifier-length)
     SqCandela::def;
 
 constexpr auto operator""_cd2(long double data) noexcept {

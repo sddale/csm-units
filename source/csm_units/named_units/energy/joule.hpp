@@ -17,7 +17,7 @@ using Joule = Unit<Definition<Energy>{}>;
 
 namespace literals {
 
-constexpr auto J =  // NOLINT(readability-identifier-length)
+inline constexpr auto J =  // NOLINT(readability-identifier-length)
     Joule::def;
 
 constexpr auto operator""_J(long double data) noexcept {

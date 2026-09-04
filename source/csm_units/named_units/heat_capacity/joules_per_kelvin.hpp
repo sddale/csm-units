@@ -18,7 +18,7 @@ using JoulesPerKelvin = Unit<Definition<HeatCapacity>{}>;
 
 namespace literals {
 
-constexpr auto JperK =  // NOLINT(readability-identifier-length)
+inline constexpr auto JperK =  // NOLINT(readability-identifier-length)
     JoulesPerKelvin::def;
 
 constexpr auto operator""_JperK(long double data) noexcept {

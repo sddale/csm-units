@@ -18,7 +18,7 @@ using Yard = Unit<literals::ft * std::ratio<1, 3>()>;
 
 namespace literals {
 
-constexpr auto yd =  // NOLINT(readability-identifier-length)
+inline constexpr auto yd =  // NOLINT(readability-identifier-length)
     Yard::def;
 
 constexpr auto operator""_yd(long double data) noexcept {

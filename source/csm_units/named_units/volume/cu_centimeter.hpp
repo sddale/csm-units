@@ -19,7 +19,7 @@ using CuCentimeter = Unit<literals::cm * literals::cm * literals::cm>;
 
 namespace literals {
 
-constexpr auto cm3 =  // NOLINT(readability-identifier-length)
+inline constexpr auto cm3 =  // NOLINT(readability-identifier-length)
     CuCentimeter::def;
 
 constexpr auto operator""_cm3(long double data) noexcept {

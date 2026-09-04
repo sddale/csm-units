@@ -18,7 +18,7 @@ using MeterPerSecond = Unit<Definition<Velocity>{}>;
 
 namespace literals {
 
-constexpr auto mps =  // NOLINT(readability-identifier-length)
+inline constexpr auto mps =  // NOLINT(readability-identifier-length)
     MeterPerSecond::def;
 
 constexpr auto operator""_mps(long double data) noexcept {

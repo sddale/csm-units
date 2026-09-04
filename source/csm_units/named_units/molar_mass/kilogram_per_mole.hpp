@@ -20,7 +20,7 @@ using KilogramsPerMole = Unit<literals::kg / literals::mol>;
 
 namespace literals {
 
-constexpr auto kgpermol =  // NOLINT(readability-identifier-length)
+inline constexpr auto kgpermol =  // NOLINT(readability-identifier-length)
     KilogramsPerMole::def;
 
 constexpr auto operator""_kgpermol(long double data) noexcept {

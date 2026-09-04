@@ -18,7 +18,7 @@ using Inch = Unit<literals::ft * std::ratio<12>()>;
 
 namespace literals {
 
-constexpr auto in =  // NOLINT(readability-identifier-length)
+inline constexpr auto in =  // NOLINT(readability-identifier-length)
     Inch::def;
 
 constexpr auto operator""_in(long double data) noexcept {

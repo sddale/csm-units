@@ -18,7 +18,7 @@ using Calorie = Unit<literals::J / std::ratio<523, 125>()>;
 
 namespace literals {
 
-constexpr auto cal =  // NOLINT(readability-identifier-length)
+inline constexpr auto cal =  // NOLINT(readability-identifier-length)
     Calorie::def;
 
 constexpr auto operator""_cal(long double data) noexcept {

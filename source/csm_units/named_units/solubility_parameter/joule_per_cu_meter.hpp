@@ -20,7 +20,7 @@ using JoulesPerCuMeter =
 
 namespace literals {
 
-constexpr auto Jperm3 =  // NOLINT(readability-identifier-length)
+inline constexpr auto Jperm3 =  // NOLINT(readability-identifier-length)
     JoulesPerCuMeter::def;
 
 constexpr auto operator""_Jperm3(long double data) noexcept {

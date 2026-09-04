@@ -17,7 +17,7 @@ using Weber = Unit<Definition<MagneticFlux>{}>;
 
 namespace literals {
 
-constexpr auto Wb =  // NOLINT(readability-identifier-length)
+inline constexpr auto Wb =  // NOLINT(readability-identifier-length)
     Weber::def;
 
 constexpr auto operator""_Wb(long double data) noexcept {

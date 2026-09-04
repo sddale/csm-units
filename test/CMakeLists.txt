@@ -72,7 +72,14 @@ if(MSVC)
   )
 else()
   target_compile_options(
-    ${PROJECT_NAME}_test PRIVATE -g -Wall -Wextra -Wpedantic -Werror -std=c++2b
+    ${PROJECT_NAME}_test
+    PRIVATE -g
+            -Wall
+            -Wextra
+            -Wpedantic
+            -Werror
+            -std=c++2b
+            -Wno-c2y-extensions
   )
 endif()
 

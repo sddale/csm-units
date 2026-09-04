@@ -18,7 +18,7 @@ using Milliampere = Unit<literals::A / std::milli()>;
 
 namespace literals {
 
-constexpr auto mA =  // NOLINT(readability-identifier-length)
+inline constexpr auto mA =  // NOLINT(readability-identifier-length)
     Milliampere::def;
 
 constexpr auto operator""_mA(long double data) noexcept {

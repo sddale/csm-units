@@ -17,7 +17,7 @@ using Katal = Unit<Definition<CatalyticActivity>{}>;
 
 namespace literals {
 
-constexpr auto kat =  // NOLINT(readability-identifier-length)
+inline constexpr auto kat =  // NOLINT(readability-identifier-length)
     Katal::def;
 
 constexpr auto operator""_kat(long double data) noexcept {

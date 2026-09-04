@@ -17,7 +17,7 @@ using Mole = Unit<Definition<Amount>{}>;
 
 namespace literals {
 
-constexpr auto mol =  // NOLINT(readability-identifier-length)
+inline constexpr auto mol =  // NOLINT(readability-identifier-length)
     Mole::def;
 
 constexpr auto operator""_mol(long double data) noexcept {

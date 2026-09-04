@@ -16,7 +16,7 @@ using Sievert = Unit<Definition<DoseEquivalent>{}>;
 
 namespace literals {
 
-constexpr auto Sv =  // NOLINT(readability-identifier-length)
+inline constexpr auto Sv =  // NOLINT(readability-identifier-length)
     Sievert::def;
 
 constexpr auto operator""_Sv(long double data) noexcept {
