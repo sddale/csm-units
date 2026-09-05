@@ -17,7 +17,7 @@ using Gray = Unit<Definition<AbsorbedDose>{}>;
 
 namespace literals {
 
-constexpr auto Gy  // NOLINT(readability-identifier-length)
+inline constexpr auto Gy  // NOLINT(readability-identifier-length)
     = Gray::def;
 
 constexpr auto operator""_Gy(long double data) noexcept {

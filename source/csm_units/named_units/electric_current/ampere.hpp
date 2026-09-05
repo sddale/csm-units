@@ -17,7 +17,7 @@ using Ampere = Unit<Definition<ElectricCurrent>{}>;
 
 namespace literals {
 
-constexpr auto A =  // NOLINT(readability-identifier-length)
+inline constexpr auto A =  // NOLINT(readability-identifier-length)
     Ampere::def;
 
 constexpr auto operator""_A(long double data) noexcept {

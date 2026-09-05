@@ -19,7 +19,7 @@ using SqKilomole = Unit<literals::kmol * literals::kmol>;
 
 namespace literals {
 
-constexpr auto kmol2 =  // NOLINT(readability-identifier-length)
+inline constexpr auto kmol2 =  // NOLINT(readability-identifier-length)
     SqKilomole::def;
 
 constexpr auto operator""_kmol2(long double data) noexcept {

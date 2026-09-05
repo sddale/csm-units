@@ -18,7 +18,7 @@ using PoundForcePerSqInch = Unit<literals::Pa * std::ratio<100, 689476>()>;
 
 namespace literals {
 
-constexpr auto psi =  // NOLINT(readability-identifier-length)
+inline constexpr auto psi =  // NOLINT(readability-identifier-length)
     PoundForcePerSqInch::def;
 
 constexpr auto operator""_psi(long double data) noexcept {

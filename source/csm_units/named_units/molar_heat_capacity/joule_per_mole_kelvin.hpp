@@ -18,7 +18,7 @@ using JoulesPerMoleKelvin = Unit<Definition<MolarHeatCapacity>{}>;
 
 namespace literals {
 
-constexpr auto JpermolK =  // NOLINT(readability-identifier-length)
+inline constexpr auto JpermolK =  // NOLINT(readability-identifier-length)
     JoulesPerMoleKelvin::def;
 
 constexpr auto operator""_JpermolK(long double data) noexcept {

@@ -17,7 +17,7 @@ using Hertz = Unit<Definition<Frequency>{}>;
 
 namespace literals {
 
-constexpr auto Hz =  // NOLINT(readability-identifier-length)
+inline constexpr auto Hz =  // NOLINT(readability-identifier-length)
     Hertz::def;
 
 constexpr auto operator""_Hz(long double data) noexcept {

@@ -19,14 +19,14 @@ using MetersPerSqSecond = Unit<Definition<Acceleration>{}>;
 
 namespace literals {
 
-constexpr auto mps2 =  // NOLINT(readability-identifier-length)
+inline constexpr auto mps2 =  // NOLINT(readability-identifier-length)
     MetersPerSqSecond::def;
 
-constexpr auto operator""_mps2(long double data) noexcept {
+inline constexpr auto operator""_mps2(long double data) noexcept {
   return MetersPerSqSecond(static_cast<MetersPerSqSecond::ValueType>(data));
 }
 
-constexpr auto operator""_mps2(unsigned long long data) noexcept {
+inline constexpr auto operator""_mps2(unsigned long long data) noexcept {
   return MetersPerSqSecond(static_cast<MetersPerSqSecond::ValueType>(data));
 }
 

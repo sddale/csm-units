@@ -18,7 +18,7 @@ using SqFoot = Unit<literals::ft * literals::ft>;
 
 namespace literals {
 
-constexpr auto ft2 =  // NOLINT(readability-identifier-length)
+inline constexpr auto ft2 =  // NOLINT(readability-identifier-length)
     SqFoot::def;
 
 constexpr auto operator""_ft2(long double data) noexcept {

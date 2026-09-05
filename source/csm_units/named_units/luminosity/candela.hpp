@@ -17,7 +17,7 @@ using Candela = Unit<Definition<Luminosity>{}>;
 
 namespace literals {
 
-constexpr auto cd =  // NOLINT(readability-identifier-length)
+inline constexpr auto cd =  // NOLINT(readability-identifier-length)
     Candela::def;
 
 constexpr auto operator""_cd(long double data) noexcept {

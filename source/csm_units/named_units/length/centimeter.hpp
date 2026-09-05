@@ -18,7 +18,7 @@ using Centimeter = Unit<literals::m / std::centi()>;
 
 namespace literals {
 
-constexpr auto cm =  // NOLINT(readability-identifier-length)
+inline constexpr auto cm =  // NOLINT(readability-identifier-length)
     Centimeter::def;
 
 constexpr auto operator""_cm(long double data) noexcept {

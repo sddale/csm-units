@@ -17,7 +17,7 @@ using Meter = Unit<Definition<Length>{}>;
 
 namespace literals {
 
-constexpr auto m =  // NOLINT(readability-identifier-length)
+inline constexpr auto m =  // NOLINT(readability-identifier-length)
     Meter::def;
 
 constexpr auto operator""_m(long double data) noexcept {

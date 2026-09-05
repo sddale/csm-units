@@ -17,7 +17,7 @@ using Celsius = Unit<literals::K + std::ratio<5463, 20>()>;
 
 namespace literals {
 
-constexpr auto degC =  // NOLINT(readability-identifier-length)
+inline constexpr auto degC =  // NOLINT(readability-identifier-length)
     Celsius::def;
 
 constexpr auto operator""_degC(long double data) noexcept {

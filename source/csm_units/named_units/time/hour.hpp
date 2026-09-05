@@ -18,7 +18,7 @@ using Hour = Unit<literals::min * std::ratio<1, 60>()>;
 
 namespace literals {
 
-constexpr auto hr =  // NOLINT(readability-identifier-length)
+inline constexpr auto hr =  // NOLINT(readability-identifier-length)
     Hour::def;
 
 constexpr auto operator""_hr(long double data) noexcept {

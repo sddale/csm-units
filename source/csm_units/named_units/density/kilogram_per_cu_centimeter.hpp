@@ -21,7 +21,7 @@ using KilogramsPerCuCentimeter = Unit<literals::kg / literals::cm3>;
 
 namespace literals {
 
-constexpr auto kgpercm3 =  // NOLINT(readability-identifier-length)
+inline constexpr auto kgpercm3 =  // NOLINT(readability-identifier-length)
     KilogramsPerCuCentimeter::def;
 
 constexpr auto operator""_kgpercm3(long double data) noexcept {

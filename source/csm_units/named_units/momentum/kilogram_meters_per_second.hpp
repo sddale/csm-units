@@ -16,7 +16,7 @@ using KilogramsMeterPerSecond = Unit<Definition<Momentum>{}>;
 
 namespace literals {
 
-constexpr auto kgmpers =  // NOLINT(readability-identifier-length)
+inline constexpr auto kgmpers =  // NOLINT(readability-identifier-length)
     KilogramsMeterPerSecond::def;
 
 constexpr auto operator""_kgmpers(long double data) noexcept {

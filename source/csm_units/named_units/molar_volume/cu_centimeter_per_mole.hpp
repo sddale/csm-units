@@ -17,7 +17,7 @@ using CuCentimetersPerMole = Unit<literals::cm3 / literals::mol>;
 
 namespace literals {
 
-constexpr auto cm3permole =  // NOLINT(readability-identifier-length)
+inline constexpr auto cm3permole =  // NOLINT(readability-identifier-length)
     CuCentimetersPerMole::def;
 
 constexpr auto operator""_cm3permole(long double data) noexcept {

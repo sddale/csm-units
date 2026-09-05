@@ -22,7 +22,7 @@ using JoulesPerKilogramKelvin =
 
 namespace literals {
 
-constexpr auto JperkgK =  // NOLINT(readability-identifier-length)
+inline constexpr auto JperkgK =  // NOLINT(readability-identifier-length)
     JoulesPerKilogramKelvin::def;
 
 constexpr auto operator""_JperkgK(long double data) noexcept {

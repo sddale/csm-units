@@ -18,7 +18,7 @@ using SlugFeetPerSecond = Unit<literals::slug * literals::ft / literals::s>;
 
 namespace literals {
 
-constexpr auto slugftpers =  // NOLINT(readability-identifier-length)
+inline constexpr auto slugftpers =  // NOLINT(readability-identifier-length)
     SlugFeetPerSecond::def;
 
 constexpr auto operator""_slugftpers(long double data) noexcept {

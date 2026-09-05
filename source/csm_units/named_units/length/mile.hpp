@@ -18,7 +18,7 @@ using Mile = Unit<literals::ft * std::ratio<1, 5280>()>;
 
 namespace literals {
 
-constexpr auto mi =  // NOLINT(readability-identifier-length)
+inline constexpr auto mi =  // NOLINT(readability-identifier-length)
     Mile::def;
 
 constexpr auto operator""_mi(long double data) noexcept {

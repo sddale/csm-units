@@ -19,7 +19,7 @@ using GramsPerMole = Unit<literals::g / literals::mol>;
 
 namespace literals {
 
-constexpr auto gpermol =  // NOLINT(readability-identifier-length)
+inline constexpr auto gpermol =  // NOLINT(readability-identifier-length)
     GramsPerMole::def;
 
 constexpr auto operator""_gpermol(long double data) noexcept {

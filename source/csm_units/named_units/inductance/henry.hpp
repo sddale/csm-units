@@ -17,7 +17,7 @@ using Henry = Unit<Definition<Inductance>{}>;
 
 namespace literals {
 
-constexpr auto H =  // NOLINT(readability-identifier-length)
+inline constexpr auto H =  // NOLINT(readability-identifier-length)
     Henry::def;
 
 constexpr auto operator""_H(long double data) noexcept {

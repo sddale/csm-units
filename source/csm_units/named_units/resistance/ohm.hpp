@@ -17,7 +17,7 @@ using Ohm = Unit<Definition<Resistance>{}>;
 
 namespace literals {
 
-constexpr auto ohm =  // NOLINT(readability-identifier-length)
+inline constexpr auto ohm =  // NOLINT(readability-identifier-length)
     Ohm::def;
 
 constexpr auto operator""_ohm(long double data) noexcept {

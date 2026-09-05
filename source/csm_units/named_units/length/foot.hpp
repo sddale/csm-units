@@ -18,7 +18,7 @@ using Foot = Unit<literals::m * std::ratio<82021, 25000>{}>;
 
 namespace literals {
 
-constexpr auto ft =  // NOLINT(readability-identifier-length)
+inline constexpr auto ft =  // NOLINT(readability-identifier-length)
     Foot::def;
 
 constexpr auto operator""_ft(long double data) noexcept {

@@ -17,7 +17,7 @@ using Lux = Unit<Definition<Illuminance>{}>;
 
 namespace literals {
 
-constexpr auto lx =  // NOLINT(readability-identifier-length)
+inline constexpr auto lx =  // NOLINT(readability-identifier-length)
     Lux::def;
 
 constexpr auto operator""_lx(long double data) noexcept {

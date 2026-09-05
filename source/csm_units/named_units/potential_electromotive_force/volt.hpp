@@ -17,7 +17,7 @@ using Volt = Unit<Definition<PotentialElectromotiveForce>{}>;
 
 namespace literals {
 
-constexpr auto V =  // NOLINT(readability-identifier-length)
+inline constexpr auto V =  // NOLINT(readability-identifier-length)
     Volt::def;
 
 constexpr auto operator""_V(long double data) noexcept {

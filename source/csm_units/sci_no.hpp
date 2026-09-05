@@ -100,12 +100,12 @@ template <IsSciNo L, IsSciNo R>
 using SciNoDivide = typename detail::SciNoDivide<L, R>::type;
 
 template <IsSciNo L, IsSciNo R>
-constexpr auto SciNoEqual = detail::SciNoEqual<L, R>::value;
+inline constexpr auto SciNoEqual = detail::SciNoEqual<L, R>::value;
 
 template <IsSciNo L, IsSciNo R>
-constexpr auto SciNoNotEqual = detail::SciNoNotEqual<L, R>::value;
+inline constexpr auto SciNoNotEqual = detail::SciNoNotEqual<L, R>::value;
 
 template <IsSciNo S>
-constexpr auto SciNoDecimal = detail::SciNoDecimal<S>::value;
+inline constexpr auto SciNoDecimal = detail::SciNoDecimal<S>::value;
 
 }  // namespace csm_units

@@ -17,7 +17,7 @@ using Farad = Unit<Definition<Capacitance>{}>;
 
 namespace literals {
 
-constexpr auto F =  // NOLINT(readability-identifier-length)
+inline constexpr auto F =  // NOLINT(readability-identifier-length)
     Farad::def;
 
 constexpr auto operator""_F(long double data) noexcept {

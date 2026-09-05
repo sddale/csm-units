@@ -17,7 +17,7 @@ using Watt = Unit<Definition<Power>{}>;
 
 namespace literals {
 
-constexpr auto W =  // NOLINT(readability-identifier-length)
+inline constexpr auto W =  // NOLINT(readability-identifier-length)
     Watt::def;
 
 constexpr auto operator""_W(long double data) noexcept {

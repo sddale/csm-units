@@ -17,7 +17,7 @@ using Pound = Unit<literals::kg * std::ratio<220462, 100000>()>;
 
 namespace literals {
 
-constexpr auto lb =  // NOLINT(readability-identifier-length)
+inline constexpr auto lb =  // NOLINT(readability-identifier-length)
     Pound::def;
 
 constexpr auto operator""_lb(long double data) noexcept {

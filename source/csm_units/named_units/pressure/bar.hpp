@@ -18,7 +18,7 @@ using Bar = Unit<literals::Pa * std::ratio<1, 100000>()>;
 
 namespace literals {
 
-constexpr auto bar =  // NOLINT(readability-identifier-length)
+inline constexpr auto bar =  // NOLINT(readability-identifier-length)
     Bar::def;
 
 constexpr auto operator""_bar(long double data) noexcept {

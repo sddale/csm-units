@@ -18,7 +18,7 @@ using SqAmpere = Unit<literals::A * literals::A>;
 
 namespace literals {
 
-constexpr auto A2 =  // NOLINT(readability-identifier-length)
+inline constexpr auto A2 =  // NOLINT(readability-identifier-length)
     SqAmpere::def;
 
 constexpr auto operator""_A2(long double data) noexcept {

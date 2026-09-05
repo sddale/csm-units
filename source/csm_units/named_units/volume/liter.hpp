@@ -18,7 +18,7 @@ using Liter = Unit<literals::m3 * std::kilo()>;
 
 namespace literals {
 
-constexpr auto L =  // NOLINT(readability-identifier-length)
+inline constexpr auto L =  // NOLINT(readability-identifier-length)
     Liter::def;
 
 constexpr auto operator""_L(long double data) noexcept {

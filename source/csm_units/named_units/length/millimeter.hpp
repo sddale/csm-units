@@ -18,7 +18,7 @@ using Millimeter = Unit<literals::m / std::milli()>;
 
 namespace literals {
 
-constexpr auto mm =  // NOLINT(readability-identifier-length)
+inline constexpr auto mm =  // NOLINT(readability-identifier-length)
     Millimeter::def;
 
 constexpr auto operator""_mm(long double data) noexcept {

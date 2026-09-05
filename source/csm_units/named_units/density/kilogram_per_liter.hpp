@@ -21,7 +21,7 @@ using KilogramsPerLiter = Unit<literals::kg / literals::L>;
 
 namespace literals {
 
-constexpr auto kgperL =  // NOLINT(readability-identifier-length)
+inline constexpr auto kgperL =  // NOLINT(readability-identifier-length)
     KilogramsPerLiter::def;
 
 constexpr auto operator""_kgperL(long double data) noexcept {

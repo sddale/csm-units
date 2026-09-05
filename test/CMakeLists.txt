@@ -1,5 +1,5 @@
 # include(../cmake/CPM.cmake)
-CPMAddPackage("gh:doctest/doctest@2.4.12")
+CPMAddPackage("gh:doctest/doctest@2.5.3")
 
 add_executable(
   ${PROJECT_NAME}_test
@@ -72,7 +72,14 @@ if(MSVC)
   )
 else()
   target_compile_options(
-    ${PROJECT_NAME}_test PRIVATE -g -Wall -Wextra -Wpedantic -Werror -std=c++2b
+    ${PROJECT_NAME}_test
+    PRIVATE -g
+            -Wall
+            -Wextra
+            -Wpedantic
+            -Werror
+            -std=c++2b
+            -Wno-c2y-extensions
   )
 endif()
 

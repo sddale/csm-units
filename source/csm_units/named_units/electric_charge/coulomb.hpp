@@ -17,7 +17,7 @@ using Coulomb = Unit<Definition<ElectricCharge>{}>;
 
 namespace literals {
 
-constexpr auto C =  // NOLINT(readability-identifier-length)
+inline constexpr auto C =  // NOLINT(readability-identifier-length)
     Coulomb::def;
 
 constexpr auto operator""_C(long double data) noexcept {

@@ -17,7 +17,7 @@ using Pascal = Unit<Definition<Pressure>{}>;
 
 namespace literals {
 
-constexpr auto Pa =  // NOLINT(readability-identifier-length)
+inline constexpr auto Pa =  // NOLINT(readability-identifier-length)
     Pascal::def;
 
 constexpr auto operator""_Pa(long double data) noexcept {

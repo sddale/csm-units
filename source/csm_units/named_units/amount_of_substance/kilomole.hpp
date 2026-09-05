@@ -19,7 +19,7 @@ using Kilomole = Unit<literals::mol / std::kilo()>;
 
 namespace literals {
 
-constexpr auto kmol =  // NOLINT(readability-identifier-length)
+inline constexpr auto kmol =  // NOLINT(readability-identifier-length)
     Kilomole::def;
 
 constexpr auto operator""_kmol(long double data) noexcept {

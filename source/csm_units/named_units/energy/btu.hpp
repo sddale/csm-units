@@ -19,10 +19,10 @@ using BritishThermalUnit =
 
 namespace literals {
 
-constexpr auto BTU =  // NOLINT(readability-identifier-length)
+inline constexpr auto BTU =  // NOLINT(readability-identifier-length)
     BritishThermalUnit::def;
 
-constexpr auto Btu =  // NOLINT(readability-identifier-length)
+inline constexpr auto Btu =  // NOLINT(readability-identifier-length)
     BritishThermalUnit::def;
 
 constexpr auto operator""_BTU(long double data) noexcept {

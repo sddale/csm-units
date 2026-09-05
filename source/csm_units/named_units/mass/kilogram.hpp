@@ -17,7 +17,7 @@ using Kilogram = Unit<Definition<Mass>{}>;
 
 namespace literals {
 
-constexpr auto kg =  // NOLINT(readability-identifier-length)
+inline constexpr auto kg =  // NOLINT(readability-identifier-length)
     Kilogram::def;
 
 constexpr auto operator""_kg(long double data) noexcept {

@@ -19,7 +19,7 @@ using SqMole = Unit<literals::mol * literals::mol>;
 
 namespace literals {
 
-constexpr auto mol2 =  // NOLINT(readability-identifier-length)
+inline constexpr auto mol2 =  // NOLINT(readability-identifier-length)
     SqMole::def;
 
 constexpr auto operator""_mol2(long double data) noexcept {

@@ -19,7 +19,7 @@ using CuMetersPerMole = Unit<Definition<MolarVolume>{}>;
 
 namespace literals {
 
-constexpr auto m3permole =  // NOLINT(readability-identifier-length)
+inline constexpr auto m3permole =  // NOLINT(readability-identifier-length)
     CuMetersPerMole::def;
 
 constexpr auto operator""_m3permole(long double data) noexcept {

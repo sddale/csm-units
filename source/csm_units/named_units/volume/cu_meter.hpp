@@ -17,7 +17,7 @@ using CuMeter = Unit<Definition<Volume>{}>;
 
 namespace literals {
 
-constexpr auto m3 =  // NOLINT(readability-identifier-length)
+inline constexpr auto m3 =  // NOLINT(readability-identifier-length)
     CuMeter::def;
 
 constexpr auto operator""_m3(long double data) noexcept {

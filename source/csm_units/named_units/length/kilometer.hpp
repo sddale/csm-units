@@ -18,7 +18,7 @@ using Kilometer = Unit<literals::m / std::kilo()>;
 
 namespace literals {
 
-constexpr auto km =  // NOLINT(readability-identifier-length)
+inline constexpr auto km =  // NOLINT(readability-identifier-length)
     Kilometer::def;
 
 constexpr auto operator""_km(long double data) noexcept {

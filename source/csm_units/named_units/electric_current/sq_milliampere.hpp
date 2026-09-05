@@ -19,7 +19,7 @@ using SqMilliampere = Unit<literals::mA * literals::mA>;
 
 namespace literals {
 
-constexpr auto mA2 =  // NOLINT(readability-identifier-length)
+inline constexpr auto mA2 =  // NOLINT(readability-identifier-length)
     SqMilliampere::def;
 
 constexpr auto operator""_mA2(long double data) noexcept {

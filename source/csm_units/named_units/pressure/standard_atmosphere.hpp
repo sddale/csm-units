@@ -19,7 +19,7 @@ using StandardAtmosphere = Unit<literals::Pa * std::ratio<1, 101325>()>;
 
 namespace literals {
 
-constexpr auto atm =  // NOLINT(readability-identifier-length)
+inline constexpr auto atm =  // NOLINT(readability-identifier-length)
     StandardAtmosphere::def;
 
 constexpr auto operator""_atm(long double data) noexcept {

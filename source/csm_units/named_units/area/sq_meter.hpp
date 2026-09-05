@@ -17,7 +17,7 @@ using SqMeter = Unit<Definition<Area>{}>;
 
 namespace literals {
 
-constexpr auto m2 =  // NOLINT(readability-identifier-length)
+inline constexpr auto m2 =  // NOLINT(readability-identifier-length)
     SqMeter::def;
 
 constexpr auto operator""_m2(long double data) noexcept {

@@ -18,7 +18,7 @@ using Becquerel = Unit<Definition<Activity>{}>;
 
 namespace literals {
 
-constexpr auto Bq =  // NOLINT(readability-identifier-length)
+inline constexpr auto Bq =  // NOLINT(readability-identifier-length)
     Becquerel::def;
 
 constexpr auto operator""_Bq(long double data) noexcept {
